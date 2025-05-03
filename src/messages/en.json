@@ -1,0 +1,16 @@
+{
+  "HomePage": {
+    "title": "Home Page",
+    "description": "This is the main page of the application."
+  },
+  "AdminPage": {
+    "title": "Admin Panel Home",
+    "description": "This is the main page of the admin panel."
+  },
+  "AdminLayout": {
+    "navigation": "Admin Navigation"
+  },
+  "Common": {
+    "clickMe": "Click Me"
+  }
+}

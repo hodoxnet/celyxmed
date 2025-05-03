@@ -1,0 +1,16 @@
+{
+  "HomePage": {
+    "title": "Ana Sayfa",
+    "description": "Burası uygulamanın ana sayfasıdır."
+  },
+  "AdminPage": {
+    "title": "Admin Paneli Ana Sayfası",
+    "description": "Burası yönetici panelinin ana sayfasıdır."
+  },
+  "AdminLayout": {
+    "navigation": "Admin Navigasyon"
+  },
+  "Common": {
+    "clickMe": "Bana Tıkla"
+  }
+}
