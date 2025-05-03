@@ -1,21 +1,20 @@
-"use client"; // İstemci Bileşeni olarak işaretle
+"use client";
 
-import { useTranslations } from 'next-intl';
-import React from 'react';
+import { AdminLayout } from "@/components/admin/layout";
+import { usePathname } from "next/navigation";
 
-export default function AdminLayout({
+export default function RootAdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const t = useTranslations('AdminLayout'); // 'AdminLayout' namespace'ini kullan
-
-  // TODO: Add authentication check here later
-  return (
-    <section>
-      {/* Admin paneline özel navigasyon veya sidebar eklenebilir */}
-      <nav>{t('navigation')}</nav> {/* Çeviriden navigasyon metnini al */}
-      <main>{children}</main>
-    </section>
-  );
+  const pathname = usePathname();
+  
+  // Login sayfasında default yapıyı kullan (sidebar olmadan)
+  if (pathname?.includes("/admin/login")) {
+    return <>{children}</>;
+  }
+  
+  // Diğer admin sayfalarında admin layout'u kullan
+  return <AdminLayout>{children}</AdminLayout>;
 }

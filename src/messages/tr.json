@@ -12,5 +12,16 @@
   },
   "Common": {
     "clickMe": "Bana Tıkla"
+  },
+  "Auth": {
+    "login": "Giriş Yap",
+    "email": "E-posta Adresi",
+    "password": "Şifre",
+    "submit": "Gönder",
+    "loginFailed": "Giriş başarısız oldu",
+    "invalidCredentials": "Geçersiz e-posta veya şifre",
+    "loginSuccess": "Giriş başarılı",
+    "adminPanel": "Admin Paneli",
+    "welcome": "Hoş Geldiniz"
   }
 }

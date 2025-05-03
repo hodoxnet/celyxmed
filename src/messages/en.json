@@ -12,5 +12,16 @@
   },
   "Common": {
     "clickMe": "Click Me"
+  },
+  "Auth": {
+    "login": "Login",
+    "email": "Email Address",
+    "password": "Password",
+    "submit": "Submit",
+    "loginFailed": "Login Failed",
+    "invalidCredentials": "Invalid email or password",
+    "loginSuccess": "Login Successful",
+    "adminPanel": "Admin Panel",
+    "welcome": "Welcome"
   }
 }

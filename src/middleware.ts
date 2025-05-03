@@ -1,10 +1,10 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 import { locales, defaultLocale } from './i18n';
+import { withAdminMiddleware } from './middleware/withAdmin';
 
 // Middleware fonksiyonu
-export default function middleware(request: NextRequest) {
-  // Kök dizine gelen istekleri yönlendir
+export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   console.log(`[Middleware] Processing path: ${pathname}`);
@@ -13,6 +13,12 @@ export default function middleware(request: NextRequest) {
   if (pathname === '/' || pathname === '') {
     console.log(`[Middleware] Redirecting / to /${defaultLocale}`);
     return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
+  }
+  
+  // Önce admin sayfalarına erişimi kontrol et
+  const adminResult = await withAdminMiddleware(request);
+  if (adminResult !== NextResponse.next()) {
+    return adminResult;
   }
   
   // Diğer rotalar için next-intl middleware'i kullan
