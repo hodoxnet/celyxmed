@@ -66,12 +66,12 @@ const FeaturesTabs = () => {
         {/* Sekmeler */}
         <Tabs defaultValue={tabData[0].value} className="w-full">
           {/* Sekme Tetikleyicileri */}
-          <TabsList className="flex flex-wrap justify-center gap-4 mb-8 md:mb-12 bg-transparent">
+          <TabsList className="flex justify-center gap-2 mb-8 md:mb-12 bg-transparent px-[6px] py-[30px] bg-gray-100 rounded-lg mx-auto max-w-4xl">
             {tabData.map((tab) => (
               <TabsTrigger 
                 key={tab.value} 
                 value={tab.value} 
-                className="py-3 px-6 text-base rounded-full bg-gray-50 hover:bg-gray-100 data-[state=active]:bg-white data-[state=active]:shadow-md"
+                className="py-4 px-8 text-base rounded-md bg-transparent hover:bg-gray-200 data-[state=active]:bg-white data-[state=active]:shadow-md my-2"
               >
                 {tab.trigger}
               </TabsTrigger>
@@ -84,27 +84,28 @@ const FeaturesTabs = () => {
               <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                   {/* Sol Taraf: Metin İçeriği */}
-                  <div className="p-8 md:p-12 flex flex-col justify-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4b978] text-white text-sm font-medium mb-6 self-start">
+                  <div className="px-10 py-[20px] md:px-16 md:py-[26px] flex flex-col justify-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4b978] text-white text-sm font-medium mb-8 self-start">
+                      <div className="w-2 h-2 rounded-full bg-white"></div>
                       {tab.tag}
                     </div>
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 text-gray-800 leading-tight">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 text-[#3b5998] leading-tight">
                       {tab.heading}
                     </h3>
-                    <p className="text-gray-600 mb-8 text-lg">
+                    <p className="text-gray-600 mb-10 text-base">
                       {tab.description}
                     </p>
-                    <div className="self-start">
+                    <div className="self-start flex items-center gap-4">
                       <Link 
                         href={tab.buttonLink}
-                        className="inline-flex items-center text-[#4a8f9c] hover:text-[#3d7a86] font-medium border-b border-[#4a8f9c] pb-1 transition-all duration-300"
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-[#d4b978] text-white hover:bg-[#c5ad6e] transition-all duration-300"
                       >
-                        {tab.buttonText}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 h-4 w-4">
-                          <path d="M5 12h14"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="m5 12h14"></path>
                           <path d="m12 5 7 7-7 7"></path>
                         </svg>
                       </Link>
+                      <span className="text-[#3b5998] font-medium">{tab.buttonText}</span>
                     </div>
                   </div>
                   {/* Sağ Taraf: Görsel */}
