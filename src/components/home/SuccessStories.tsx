@@ -56,28 +56,28 @@ const SuccessStories = () => {
           </p>
         </div>
 
-        {/* Başarı Hikayesi Görselleri (Yatay Kaydırma) */}
-        <div className="overflow-x-auto pb-8 -mx-4 px-4 mb-12 md:mb-16">
-          <div className="flex space-x-4 md:space-x-6 w-max">
+        {/* Başarı Hikayesi Görselleri (Otomatik Kaydırma) */}
+        <div className="overflow-hidden mb-12 md:mb-16">
+          <div className="flex animate-marquee space-x-4 md:space-x-6">
             {storyImages.map((src, index) => (
               <div key={index} className="flex-shrink-0 w-48 h-64 md:w-60 md:h-80 relative rounded-lg overflow-hidden shadow-md">
                 <Image
                   src={src}
                   alt={`Success story ${index + 1}`}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   className="transition-transform duration-300 hover:scale-105"
                 />
               </div>
             ))}
-             {/* İkinci set (marquee efekti hissi için) - Opsiyonel */}
-             {storyImages.map((src, index) => (
+             {/* İkinci set (sonsuz döngü için) */}
+             {storyImages.slice(0, 4).map((src, index) => (
               <div key={`duplicate-${index}`} className="flex-shrink-0 w-48 h-64 md:w-60 md:h-80 relative rounded-lg overflow-hidden shadow-md">
                 <Image
                   src={src}
                   alt={`Success story ${index + 1} duplicate`}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   className="transition-transform duration-300 hover:scale-105"
                 />
               </div>
@@ -87,16 +87,29 @@ const SuccessStories = () => {
 
          {/* Butonlar */}
          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 md:mb-16">
-            <Button size="lg" asChild>
-              <Link href="/contact">
-                Book Your Free Consultation
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/success-stories"> {/* Örnek link */}
-                Discover Success Stories and Before, Afters
-              </Link>
-            </Button>
+            <Link 
+              href="/contact"
+              className="flex items-center bg-[#4a8f9c] hover:bg-[#3d7a86] text-white rounded-[20px] shadow-lg transition-all duration-300 overflow-hidden"
+            >
+              <div className="bg-[#d4b978] h-[56px] w-[56px] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
+              <span className="px-6 py-4 text-base font-medium">Book Your Free Consultation</span>
+            </Link>
+            
+            <Link 
+              href="/success-stories"
+              className="inline-flex items-center text-[#4a8f9c] hover:text-[#3d7a86] font-medium border-b border-[#4a8f9c] pb-1 transition-all duration-300"
+            >
+              Discover Success Stories and Before, Afters
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 h-4 w-4">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </Link>
           </div>
 
         {/* Hasta Yorumları */}
