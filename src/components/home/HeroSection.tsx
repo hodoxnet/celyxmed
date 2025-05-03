@@ -31,25 +31,23 @@ const HeroSection = () => {
           <span className="font-semibold">Dental Aesthetics</span>, <span className="font-semibold">Hair Transplant</span>, and{' '}
           <span className="font-semibold">Medical Aesthetics</span>. Discover personalized care at our clinic in Ataşehir, Istanbul, Turkey.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Button 
-            asChild
-            className="bg-teal-700 hover:bg-teal-800 text-white rounded-md px-6 py-6 text-base flex items-center gap-2"
+        <div className="flex flex-col sm:flex-row gap-4 mt-8">
+          <Link 
+            href="/#treatments"
+            className="flex items-center gap-3 bg-white hover:bg-gray-100 text-gray-800 px-8 py-4 rounded-full shadow-lg transition-all duration-300"
           >
-            <Link href="/#treatments">
-              <ArrowRight className="h-5 w-5" />
-              <span>Learn More About Our Treatments</span>
-            </Link>
-          </Button>
-          <Button 
-            variant="outline" 
-            className="border-white text-white hover:bg-white hover:text-black rounded-md px-6 py-6 text-base" 
-            asChild
+            <div className="bg-[#4a8f9c] rounded-full p-2 flex items-center justify-center">
+              <ArrowRight className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-base font-medium">Learn More About Our Treatments</span>
+          </Link>
+          
+          <Link 
+            href="/contact"
+            className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-8 py-4 rounded-full shadow-lg transition-all duration-300 text-base font-bold"
           >
-            <Link href="/contact">
-              Book Your Free Consultation
-            </Link>
-          </Button>
+            Book Your Free Consultation
+          </Link>
         </div>
       </div>
     </section>
