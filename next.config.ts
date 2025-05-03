@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.prod.website-files.com',
+        port: '',
+        pathname: '/**', // Bu domain altındaki tüm yollara izin ver
+      },
+    ],
+  },
 };
 
 // Yapılandırmayı next-intl eklentisi ile sarmala ve i18n yapılandırma dosyasını belirt
