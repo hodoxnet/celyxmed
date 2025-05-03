@@ -14,8 +14,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"; // Navigasyon bileşenleri
-// Button yerine buttonVariants'ı import edelim
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button"; // buttonVariants import edildi
 
 // Açılır menü içindeki linkler için örnek bir bileşen
 const ListItem = React.forwardRef<
@@ -33,7 +32,8 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          {/* Yazı boyutu artırıldı */}
+          <div className="text-base font-medium leading-none">{title}</div>
           {/* <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p> */}
@@ -89,8 +89,8 @@ const Navbar = () => {
       {/* Beyaz container'ı ortalayalım */}
       <div className="container mx-auto px-4 flex justify-center">
         {/* Beyaz Arka Planlı Grup: Logo, Menü, Buton */}
-        {/* Daha yüksek (py-4), daha az oval (rounded-2xl), justify-between ile logo sola, menü sağa */}
-        <div className="flex items-center justify-between bg-white px-6 py-4 rounded-2xl shadow-lg w-full max-w-6xl">
+        {/* Daha yüksek (py-5), daha az oval (rounded-2xl), justify-between, max-w kaldırıldı */}
+        <div className="flex items-center justify-between bg-white px-6 py-5 rounded-2xl shadow-lg w-full">
           {/* Sol: Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-2">
@@ -105,15 +105,15 @@ const Navbar = () => {
         </div>
 
         {/* Sağ: Menü ve Buton Grubu */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6"> {/* Boşluğu artıralım */}
           {/* Navigasyon Menüsü */}
           <NavigationMenu>
-             {/* Menü listesi stilini ayarlayalım (arka plan beyaz olduğu için text rengi koyu) */}
-            <NavigationMenuList className="text-sm font-medium text-gray-700">
+             {/* Menü listesi stilini ayarlayalım (arka plan beyaz olduğu için text rengi koyu), yazı boyutu büyütüldü */}
+            <NavigationMenuList className="text-base font-medium text-gray-700">
               {/* Plastic Surgery */}
               <NavigationMenuItem>
-                 {/* Trigger stilini ayarlayalım (arka plan beyaz) */}
-                <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-3 py-2 rounded-md">Plastic Surgery</NavigationMenuTrigger>
+                 {/* Trigger stilini ayarlayalım (arka plan beyaz), yazı boyutu büyütüldü */}
+                <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-4 py-2 rounded-md text-base">Plastic Surgery</NavigationMenuTrigger>
                 <NavigationMenuContent>
                    {/* Açılır menü içeriği stilleri (arka plan beyaz) */}
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-md shadow-lg border"> {/* Border eklendi */}
@@ -132,7 +132,7 @@ const Navbar = () => {
 
               {/* Dental Aesthetic */}
                <NavigationMenuItem>
-                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-3 py-2 rounded-md">Dental Aesthetic</NavigationMenuTrigger>
+                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-4 py-2 rounded-md text-base">Dental Aesthetic</NavigationMenuTrigger>
                  <NavigationMenuContent>
                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-md shadow-lg border">
                      {dentalLinks.map((component) => (
@@ -148,7 +148,7 @@ const Navbar = () => {
 
                {/* Hair Transplant */}
                <NavigationMenuItem>
-                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-3 py-2 rounded-md">Hair Transplant</NavigationMenuTrigger>
+                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-4 py-2 rounded-md text-base">Hair Transplant</NavigationMenuTrigger>
                  <NavigationMenuContent>
                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-md shadow-lg border">
                      {hairLinks.map((component) => (
@@ -164,7 +164,7 @@ const Navbar = () => {
 
                 {/* Medical Aesthetics */}
                <NavigationMenuItem>
-                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-3 py-2 rounded-md">Medical Aesthetics</NavigationMenuTrigger>
+                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-4 py-2 rounded-md text-base">Medical Aesthetics</NavigationMenuTrigger>
                  <NavigationMenuContent>
                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-md shadow-lg border">
                      {medicalAestheticsLinks.map((component) => (
@@ -180,7 +180,7 @@ const Navbar = () => {
 
                {/* About Celyxmed */}
                <NavigationMenuItem>
-                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-3 py-2 rounded-md">About Celyxmed</NavigationMenuTrigger>
+                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-4 py-2 rounded-md text-base">About Celyxmed</NavigationMenuTrigger>
                  <NavigationMenuContent>
                    <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] bg-white rounded-md shadow-lg border">
                      {aboutLinks.map((component) => (
@@ -196,7 +196,7 @@ const Navbar = () => {
 
                {/* Language */}
                <NavigationMenuItem>
-                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-3 py-2 rounded-md">Language</NavigationMenuTrigger>
+                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 px-4 py-2 rounded-md text-base">Language</NavigationMenuTrigger>
                  <NavigationMenuContent>
                    <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] bg-white rounded-md shadow-lg border">
                      {languageLinks.map((component) => (
@@ -214,19 +214,19 @@ const Navbar = () => {
           </NavigationMenu>
 
           {/* Sağdaki Buton */}
-          {/* Button asChild yerine Link'e buttonVariants uygulayalım */}
+          {/* Button asChild yerine Link'e buttonVariants uygulayalım, boyut ve yazı büyütüldü */}
           <Link
             href="/contact"
             className={cn(
-              buttonVariants({ variant: "default", size: "sm" }),
-              // rounded-full kaldırıldı, arka planla aynı yuvarlaklık (rounded-2xl) ve padding ayarı
-              "bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl px-5 py-2 text-sm"
+              buttonVariants({ variant: "default", size: "default" }), // size: "default" yapıldı
+              // rounded-2xl yapıldı, padding ayarlandı, yazı boyutu büyütüldü
+              "bg-cyan-600 hover:bg-cyan-700 text-white rounded-2xl px-6 py-2.5 text-base"
             )}
           >
             Danışma {/* Türkçe metin */}
           </Link>
         </div> {/* Menü ve Buton Grubu div'i kapanışı */}
-       </div> {/* Beyaz Arka Planlı Grup div'i kapanışı - EKSİK OLAN BU */}
+       </div> {/* Beyaz Arka Planlı Grup div'i kapanışı */}
       </div>
       {/* Mobil Menü Butonu (şimdilik gizli) */}
       {/* <div className="md:hidden"> ... </div> */}
