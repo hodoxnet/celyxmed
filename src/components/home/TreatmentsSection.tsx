@@ -59,11 +59,18 @@ const TreatmentsSection = () => {
             <p className="text-lg text-gray-600 mb-6">
               From advanced bariatric procedures to expert dental care, hair transplants, medical treatments, and aesthetic surgeries, Celyxmed offers a full spectrum of personalized healthcare solutions. With experienced medical teams and partnerships with accredited hospitals, we ensure world-class care tailored to your needs.
             </p>
-            <Button size="lg" asChild>
-              <Link href="/treatments"> {/* Tüm tedaviler sayfasına link */}
-                Explore Our Treatments
-              </Link>
-            </Button>
+            <Link 
+              href="/treatments"
+              className="inline-flex items-center bg-[#4a8f9c] hover:bg-[#3d7a86] text-white rounded-[20px] shadow-lg transition-all duration-300 overflow-hidden"
+            >
+              <div className="bg-[#d4b978] h-[56px] w-[56px] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
+              <span className="px-6 py-4 text-base font-medium">Explore Our Treatments</span>
+            </Link>
           </div>
 
           {/* Sağ Taraf: Avatarlar */}

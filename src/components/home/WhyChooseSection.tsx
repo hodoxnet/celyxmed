@@ -36,17 +36,25 @@ const WhyChooseSection = () => {
 
           {/* Butonlar */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
-              <Link href="/#treatments"> {/* Örnek link */}
-                Learn More About Our Treatments
-                {/* İkon eklenebilir */}
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/contact">
-                Book Your Free Consultation
-              </Link>
-            </Button>
+            <Link 
+              href="/#treatments"
+              className="flex items-center bg-[#4a8f9c] hover:bg-[#3d7a86] text-white rounded-[20px] shadow-lg transition-all duration-300 overflow-hidden"
+            >
+              <div className="bg-[#d4b978] h-[56px] w-[56px] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
+              <span className="px-6 py-4 text-base font-medium">Learn More About Our Treatments</span>
+            </Link>
+            
+            <Link 
+              href="/contact"
+              className="flex items-center justify-center bg-transparent text-gray-700 hover:bg-gray-100 px-8 py-4 rounded-[20px] shadow-lg transition-all duration-300 text-base font-bold"
+            >
+              Book Your Free Consultation
+            </Link>
           </div>
         </div>
       </div>
