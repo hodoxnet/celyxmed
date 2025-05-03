@@ -24,8 +24,8 @@ const trustPoints = [
   }
 ];
 
-// Arka plan görseli URL'si (index.html'den)
-const backgroundImageUrl = "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/6780e1977ec2780fa31f9701_why-trust-celyxmed-your-health-our-priority.avif"; // Bu URL'yi kontrol et
+// Arka plan görseli URL'si (HeroSection ile aynı)
+const backgroundImageUrl = "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/67b76225b3622d69b5b3ef61_hair-transplant-clinic-in-turkey-celyxmed%20(2).avif";
 
 const WhyTrustSection = () => {
   return (
