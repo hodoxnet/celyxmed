@@ -102,29 +102,25 @@ const TreatmentsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {treatments.map((treatment) => (
             <Link key={treatment.title} href={treatment.link} className="block group">
-              <Card className="h-full flex flex-col overflow-hidden transition-shadow duration-300 hover:shadow-lg">
-                <CardHeader className="p-0">
-                  <div className="relative w-full aspect-[4/3] overflow-hidden"> {/* Görsel alanı */}
-                    <Image
-                      src={treatment.imageUrl}
-                      alt={treatment.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                </CardHeader>
-                <CardContent className="p-4 flex-grow">
-                  <CardTitle className="text-xl font-semibold mb-2 text-gray-800">{treatment.title}</CardTitle>
-                  <CardDescription className="text-gray-600 text-sm">
+              <div className="h-full flex flex-col overflow-hidden rounded-lg bg-white shadow transition-shadow duration-300 hover:shadow-lg">
+                {/* Görsel alanı - Kartın üst kısmını tamamen kaplıyor */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={treatment.imageUrl}
+                    alt={treatment.title}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                {/* İçerik alanı */}
+                <div className="p-4 flex-grow">
+                  <h3 className="text-xl font-semibold mb-2 text-gray-800">{treatment.title}</h3>
+                  <p className="text-gray-600 text-sm">
                     {treatment.description}
-                  </CardDescription>
-                </CardContent>
-                {/* İsteğe bağlı olarak CardFooter eklenebilir */}
-                {/* <CardFooter className="p-4 pt-0">
-                  <Button variant="link" className="p-0 h-auto">Learn More</Button>
-                </CardFooter> */}
-              </Card>
+                  </p>
+                </div>
+              </div>
             </Link>
           ))}
         </div>

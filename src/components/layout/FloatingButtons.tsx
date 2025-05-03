@@ -1,20 +1,15 @@
-"use client"; // window.location erişimi için client bileşeni olmalı
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { MessageSquare, Phone } from 'lucide-react'; // İkonlar
-// WhatsApp ikonu için basit bir SVG veya başka bir ikon kütüphanesi kullanılabilir
-// Örnek olarak lucide'dan Smartphone kullanalım
-import { Smartphone } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const FloatingButtons = () => {
   const [whatsappLink, setWhatsappLink] = useState('');
 
   useEffect(() => {
     // Bu kod sadece client tarafında çalışır
-    const phone = "902167064780"; // index.html'den alınan numara
-    // index.html'deki meta etiketlerinden mesajları almak yerine burada tanımlayalım
+    const phone = "902167064780"; // Telefon numarası
     const defaultMessage = "Hello, I would like to receive information about your treatments. Your Application Number: 107984338939 (Do not delete).";
     const utmMessage = "Hello, I would like to receive information about your treatments. Your Application Number: 207984338939 (Do not delete).";
 
@@ -24,45 +19,43 @@ const FloatingButtons = () => {
     const message = hasUtm ? utmMessage : defaultMessage;
     const generatedLink = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     setWhatsappLink(generatedLink);
-
-  }, []); // Sadece component mount olduğunda çalışır
+  }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 flex justify-between items-center md:justify-end md:space-x-4">
-       {/* Sol Taraf: Konsültasyon Butonu (index.html'deki gibi) */}
-       <div className="md:absolute md:left-4">
-         <Button asChild className="shadow-lg">
-           <Link href="/contact">
-             <MessageSquare className="mr-2 h-4 w-4" /> Consultation
-           </Link>
-         </Button>
-       </div>
-
-       {/* Sağ Taraf: WhatsApp ve Telefon Butonları */}
-       <div className="flex space-x-3">
-         {whatsappLink && ( // Link hazır olduğunda göster
-           <Button
-             asChild
-             size="icon"
-             className="rounded-full w-12 h-12 bg-green-500 hover:bg-green-600 text-white shadow-lg"
-           >
-             <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-               <Smartphone className="h-6 w-6" /> {/* WhatsApp ikonu */}
-             </a>
-           </Button>
-         )}
-         <Button
-           asChild
-           size="icon"
-           variant="outline"
-           className="rounded-full w-12 h-12 bg-white border-blue-500 text-blue-500 hover:bg-blue-50 shadow-lg"
-         >
-           <a href="tel:+902167064780" aria-label="Phone">
-             <Phone className="h-6 w-6" />
-           </a>
-         </Button>
-       </div>
-    </div>
+    <>
+      {/* Sol Alt: WhatsApp ve Telefon Butonları */}
+      <div className="fixed bottom-8 left-8 z-50 flex flex-col gap-4 sm:flex-row">
+        <Link 
+          href={whatsappLink || "https://wa.me/902167064780"} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full flex items-center justify-center shadow-lg"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </Link>
+        <Link 
+          href="tel:+902167064780" 
+          className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full flex items-center justify-center shadow-lg"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </Link>
+      </div>
+      
+      {/* Sağ Alt: Consultation Butonu */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <Link 
+          href="/contact" 
+          className="bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-md flex items-center gap-2 shadow-lg"
+        >
+          <ArrowRight className="h-5 w-5" />
+          <span>Consultation</span>
+        </Link>
+      </div>
+    </>
   );
 };
 
