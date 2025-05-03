@@ -18,53 +18,68 @@ const clinicImages = [
 
 const ClinicShowcase = () => {
   return (
-    <section className="py-16 md:py-24 bg-white"> {/* Arka plan rengi */}
+    <section className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
-        {/* Başlık, Açıklama ve Buton */}
-        <div className="mb-12 md:mb-16 text-center md:text-left">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 text-gray-800">
-            State-of-the-Art Clinic in Istanbul
-          </h2>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-             <p className="text-lg text-gray-600 max-w-xl">
-               Our modern clinic in Ataşehir, Istanbul, is designed to provide the highest standards of safety, hygiene, and comfort. While our aesthetic surgeries are performed in JCI-accredited partner hospitals, we ensure a seamless experience from consultation to recovery, prioritizing your well-being at every step.
-             </p>
-             <Button variant="link" className="text-lg p-0 h-auto" asChild>
-               <Link href="/our-clinic">
-                 Explore Our Clinic
-                 <span className="ml-2">→</span> {/* Ok ikonu */}
-               </Link>
-             </Button>
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+          {/* Sol Taraf: Başlık, Açıklama ve Buton */}
+          <div className="lg:w-1/2">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 text-gray-800">
+              State-of-the-Art Clinic in Istanbul
+            </h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Our modern clinic in Ataşehir, Istanbul, is designed to provide the highest standards of safety, hygiene, and comfort. While our aesthetic surgeries are performed in JCI-accredited partner hospitals, we ensure a seamless experience from consultation to recovery, prioritizing your well-being at every step.
+            </p>
+            <div className="inline-block">
+              <Link 
+                href="/our-clinic"
+                className="inline-flex items-center text-[#4a8f9c] hover:text-[#3d7a86] font-medium border-b border-[#4a8f9c] pb-1 transition-all duration-300"
+              >
+                Explore Our Clinic
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 h-4 w-4">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </Link>
+            </div>
           </div>
-        </div>
-
-        {/* Yatay Kaydırılabilir Görsel Galerisi */}
-        {/* Not: Gerçek marquee efekti için ek kütüphane veya CSS gerekebilir */}
-        <div className="overflow-x-auto pb-4 -mx-4 px-4"> {/* Yatay kaydırma ve padding ayarı */}
-          <div className="flex space-x-4 md:space-x-6 w-max"> {/* Görsellerin yan yana sığması için w-max */}
-            {clinicImages.map((src, index) => (
-              <div key={index} className="flex-shrink-0 w-64 h-48 md:w-80 md:h-60 relative rounded-lg overflow-hidden shadow-md">
-                <Image
-                  src={src}
-                  alt={`Clinic image ${index + 1}`}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-300 hover:scale-105"
-                />
+          
+          {/* Sağ Taraf: Otomatik Kaydırmalı Görsel Galerisi */}
+          <div className="lg:w-1/2">
+            <div className="overflow-hidden">
+              <div className="flex animate-marquee space-x-4">
+                {/* İlk set görseller */}
+                {clinicImages.map((src, index) => (
+                  <div 
+                    key={index} 
+                    className="flex-shrink-0 w-64 h-48 md:w-80 md:h-60 relative rounded-lg overflow-hidden shadow-md"
+                  >
+                    <Image
+                      src={src}
+                      alt={`Clinic image ${index + 1}`}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      className="transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                ))}
+                
+                {/* İkinci set görseller (sonsuz döngü için) */}
+                {clinicImages.slice(0, 4).map((src, index) => (
+                  <div 
+                    key={`duplicate-${index}`} 
+                    className="flex-shrink-0 w-64 h-48 md:w-80 md:h-60 relative rounded-lg overflow-hidden shadow-md"
+                  >
+                    <Image
+                      src={src}
+                      alt={`Clinic image ${index + 1} duplicate`}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      className="transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-             {/* İkinci set (marquee efekti hissi için) - Opsiyonel */}
-             {clinicImages.map((src, index) => (
-              <div key={`duplicate-${index}`} className="flex-shrink-0 w-64 h-48 md:w-80 md:h-60 relative rounded-lg overflow-hidden shadow-md">
-                <Image
-                  src={src}
-                  alt={`Clinic image ${index + 1} duplicate`}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
