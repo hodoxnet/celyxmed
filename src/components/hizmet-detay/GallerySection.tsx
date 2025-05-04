@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; // Link bileşenini import et
 import { Button } from '@/components/ui/button'; // Butonları ekleyelim
+import { ArrowRight } from 'lucide-react'; // İkonu import et
 
 // Galeri öğesi tipi
 interface GalleryItem {
@@ -61,12 +62,21 @@ const GallerySection: React.FC<GallerySectionProps> = ({
           ))}
         </div>
 
-        {/* Butonlar */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-           <Button asChild size="lg">
-             <Link href={ctaButtonLink}>{ctaButtonText}</Link>
-           </Button>
-           <Button variant="outline" size="lg" asChild>
+        {/* Butonlar - Yeni Stil */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-6"> {/* Gap artırıldı */}
+           {/* Ana Buton (Yeni Stil) */}
+           <Link href={ctaButtonLink} className="inline-flex items-center rounded-full overflow-hidden shadow-md group transition-shadow hover:shadow-lg text-white font-medium text-base">
+             {/* İkon Bölümü */}
+             <span className="flex h-12 w-12 items-center justify-center bg-[#d4b978] group-hover:bg-[#c5ad6e] transition-colors">
+               <ArrowRight className="h-5 w-5 text-white" />
+             </span>
+             {/* Metin Bölümü */}
+             <span className="px-6 py-3 bg-teal-600 group-hover:bg-teal-700 transition-colors">
+               {ctaButtonText}
+             </span>
+           </Link>
+           {/* İkincil Buton (Metin Linki) */}
+           <Button variant="link" asChild className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 px-0 font-medium text-base">
              <Link href={viewMoreButtonLink}>{viewMoreButtonText}</Link>
            </Button>
         </div>

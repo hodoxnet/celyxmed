@@ -1,7 +1,6 @@
 // src/components/hizmet-detay/ProcedureSteps.tsx
 import React from 'react';
-import Link from 'next/link'; // Link bileşenini import et
-import { Button } from "@/components/ui/button"; // Adımlardaki linkler için
+import Link from 'next/link';
 
 // Adım verisi tipi
 interface StepData {
@@ -23,28 +22,29 @@ const ProcedureSteps: React.FC<ProcedureStepsProps> = ({ sectionTitle, sectionDe
     return null;
   }
 
-  // Şimdilik basit bir grid yapısı kullanıyoruz
   return (
-    <section className="py-16"> {/* Üst ve alt boşluk eklendi */}
+    <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{sectionTitle}</h2>
+        {/* Başlık ve Açıklama Sola Hizalı */}
+        <div className="mb-12 md:mb-16 max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">{sectionTitle}</h2>
           {sectionDescription && (
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">{sectionDescription}</p>
+            <p className="text-base text-gray-600 dark:text-gray-400">{sectionDescription}</p>
           )}
         </div>
 
-        {/* Adımlar için Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step, index) => (
-            <div key={step.id} className="p-6 border rounded-lg shadow-sm bg-white dark:bg-gray-800 dark:border-gray-700 flex flex-col h-full"> {/* Kart görünümü ve tam yükseklik */}
-              <div className="text-blue-600 dark:text-blue-400 font-bold text-lg mb-2">Adım {index + 1}</div>
-              <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{step.description}</p> {/* flex-grow içeriği aşağı iter */}
+        {/* Adımlar için Yatay Kaydırılabilir Flex Layout */}
+        <div className="flex space-x-6 overflow-x-auto pb-4 -mb-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
+          {steps.map((step) => (
+            <div key={step.id} className="flex-shrink-0 w-full sm:w-[45%] md:w-[30%] lg:w-[23%] p-6 pt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm border-t-4 border-[#d4b978] dark:border-[#a88d5f] flex flex-col">
+              <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{step.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">{step.description}</p>
+              {/* Link Stili Güncellendi */}
               {step.linkText && (
-                 <Button variant="link" asChild className="mt-auto self-start px-0 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
-                   <Link href={step.linkHref || '/iletisim'}>{step.linkText} &rarr;</Link>
-                 </Button>
+                 <Link href={step.linkHref || '/iletisim'} className="mt-auto self-start inline-flex items-center text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white group">
+                   {step.linkText}
+                   <span className="ml-1 transition-transform group-hover:translate-x-1">{'>'}</span>
+                 </Link>
               )}
             </div>
           ))}
