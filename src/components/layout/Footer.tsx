@@ -3,48 +3,60 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 // Sosyal medya ikonları için lucide-react kullanabiliriz
-import { Youtube, Instagram, Facebook, Linkedin, Twitter, Phone, Mail, MapPin } from 'lucide-react';
+import { Youtube, Instagram, Facebook, Linkedin, Twitter, Phone, Mail, MapPin, LucideProps } from 'lucide-react'; // Facebook ve LucideProps eklendi
 
-// Link verileri (index.html'den)
+// TikTok ikonu için özel bir component veya SVG gerekebilir, şimdilik bir placeholder kullanalım
+const TikTokIcon = (props: LucideProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    {/* Basit TikTok benzeri ikon */}
+    <path d="M21 8.15c-1.3.35-2.7.55-4.1.55-1.5 0-2.9-.25-4.2-.75-.75-.3-1.45-.7-2.1-1.2-.65-.5-1.25-1.1-1.8-1.8C7.2 3.3 5.85 2 4 2" />
+    <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+    <path d="M12 22V12" />
+  </svg>
+);
+
+
+// Link verileri Türkçeleştirildi
 const footerLinks = {
   treatments: [
-    { title: "Plastic Surgery", href: "/plastic-surgery" },
-    { title: "Dental Aesthetic", href: "/dental-aesthetics" },
-    { title: "Hair Transplant", href: "/hair-transplant" },
-    { title: "Medical Aesthetic", href: "/medical-aesthetic" },
+    { title: "Plastik Cerrahi", href: "/plastik-cerrahi" }, // href güncellendi (isteğe bağlı)
+    { title: "Diş Estetiği, Tedavileri", href: "/dis-estetigi" }, // href güncellendi
+    { title: "Saç Ekimi", href: "/sac-ekimi" }, // href güncellendi
+    { title: "Medikal Estetik", href: "/medikal-estetik" }, // href güncellendi
   ],
   about: [
-    { title: "About Us", href: "/about" },
-    { title: "Our Clinic", href: "/our-clinic" },
-    { title: "Our Doctors", href: "/our-doctors" },
-    { title: "Contact", href: "/contact" },
+    { title: "Hakkımızda", href: "/hakkimizda" }, // href güncellendi
+    { title: "Kliniğimiz", href: "/klinigimiz" }, // href güncellendi
+    { title: "Doktorlarımız", href: "/doktorlarimiz" }, // href güncellendi
+    { title: "İletişim", href: "/iletisim" }, // href güncellendi
   ],
   resources: [
     { title: "Blog", href: "/blog" },
-    { title: "Success Stories", href: "/success-stories" }, // Örnek link
-    { title: "Patient Testimonials", href: "/testimonials" }, // Örnek link
-    { title: "Before & After Gallery", href: "/gallery" }, // Örnek link
-    { title: "Health and Travel Guide to Turkey 🇹🇷 ✈️", href: "/health-travel-guide" }, // Örnek link
+    { title: "Başarı Hikayeleri", href: "/basari-hikayeleri" }, // href güncellendi
+    { title: "Hasta Görüşleri", href: "/hasta-gorusleri" }, // href güncellendi
+    { title: "Önce & Sonra Galerisi", href: "/galeri" }, // href güncellendi
+    { title: "Türkiye Sağlık ve Seyahat Rehberi 🇹🇷✈️", href: "/turkiye-saglik-seyahat-rehberi" }, // href güncellendi
   ],
   legal: [
-    { title: "Privacy Policy", href: "/privacy-policy" },
-    { title: "Protection of Personal Data", href: "/protection-of-personal-data" },
-    { title: "Patient Rights", href: "/patient-rights" },
+    { title: "Gizlilik Politikası", href: "/gizlilik-politikasi" }, // href güncellendi
+    { title: "Kişisel Verilerin Korunması", href: "/kisisel-verilerin-korunmasi" }, // href güncellendi
+    { title: "Hasta Hakları", href: "/hasta-haklari" }, // href güncellendi
   ]
 };
 
-// Sosyal medya linkleri
+// Sosyal medya linkleri güncellendi (TikTok ve Facebook eklendi)
 const socialLinks = [
   { Icon: Youtube, href: "https://www.youtube.com/@Celyxmed", label: "YouTube" },
   { Icon: Instagram, href: "https://www.instagram.com/celyxmed/", label: "Instagram" },
-  // { Icon: Facebook, href: "#", label: "Facebook" }, // index.html'de yoktu, eklenebilir
+  { Icon: TikTokIcon, href: "#", label: "TikTok" }, // TikTok eklendi (href güncellenmeli)
+  { Icon: Facebook, href: "#", label: "Facebook" }, // Facebook eklendi (href güncellenmeli)
   { Icon: Linkedin, href: "https://www.linkedin.com/company/celyxmed/", label: "LinkedIn" },
-  // { Icon: Twitter, href: "#", label: "Twitter" }, // index.html'de yoktu, eklenebilir
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
+    // Renk şeması güncellendi: beyaz arka plan, koyu gri metin. Alt boşluk artırıldı.
+    <footer className="bg-white text-gray-700 pt-16 pb-24"> {/* pb-8'den pb-24'e çıkarıldı */}
       <div className="container mx-auto px-4">
         {/* Üst Kısım: Logo, Açıklama, Linkler */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
@@ -58,22 +70,31 @@ const Footer = () => {
                 height={33} // Oran korunarak biraz büyütüldü
               />
             </Link>
-            <p className="text-gray-400 mb-6 max-w-md">
-              Celyxmed is your trusted healthcare partner in Turkey, offering personalized treatments with world-class doctors and JCI-accredited clinics. Your health, our priority.
+            {/* Açıklama Türkçeleştirildi ve rengi güncellendi */}
+            <p className="text-gray-600 mb-6 max-w-md">
+              Celyxmed, dünya standartlarında doktorlar ve JCI akreditasyonlu kliniklerle kişiselleştirilmiş tedaviler sunan Türkiye'deki güvenilir sağlık ortağınızdır. Sizin sağlığınız, bizim önceliğimiz.
             </p>
-            <Button variant="secondary" asChild>
-              <Link href="/contact">Consultation</Link>
-            </Button>
+            {/* Buton Link ile sarıldı (asChild alternatifi) */}
+            <Link href="/iletisim" passHref legacyBehavior>
+              <Button
+                // as="a" // Bu prop kaldırıldı, legacyBehavior ile Link zaten a tag'i oluşturur
+                className="bg-[#3E838C] hover:bg-[#367078] text-white rounded-lg px-6 py-2 inline-block" // inline-block eklendi
+              >
+                İletişim
+              </Button>
+            </Link>
           </div>
 
           {/* Sağ Kısım: Link Sütunları */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:col-span-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 lg:col-span-3"> {/* 4 sütun yapıldı */}
             <div>
-              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Treatments</h4>
+              {/* Başlık stili güncellendi */}
+              <h4 className="text-base font-medium text-gray-800 mb-4">Tedaviler</h4>
               <ul className="space-y-2">
                 {footerLinks.treatments.map(link => (
                   <li key={link.title}>
-                    <Link href={link.href} className="hover:text-white transition-colors text-sm">
+                    {/* Link stili güncellendi */}
+                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
                       {link.title}
                     </Link>
                   </li>
@@ -81,11 +102,13 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">About Celyxmed</h4>
+              {/* Başlık stili güncellendi */}
+              <h4 className="text-base font-medium text-gray-800 mb-4">Celyxmed Hakkında</h4>
               <ul className="space-y-2">
                 {footerLinks.about.map(link => (
                   <li key={link.title}>
-                    <Link href={link.href} className="hover:text-white transition-colors text-sm">
+                    {/* Link stili güncellendi */}
+                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
                       {link.title}
                     </Link>
                   </li>
@@ -93,11 +116,13 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Resources</h4>
+              {/* Başlık stili güncellendi */}
+              <h4 className="text-base font-medium text-gray-800 mb-4">Kaynaklar</h4>
               <ul className="space-y-2">
                 {footerLinks.resources.map(link => (
                   <li key={link.title}>
-                    <Link href={link.href} className="hover:text-white transition-colors text-sm">
+                    {/* Link stili güncellendi */}
+                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
                       {link.title}
                     </Link>
                   </li>
@@ -105,11 +130,13 @@ const Footer = () => {
               </ul>
             </div>
              <div>
-              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Legal</h4>
+              {/* Başlık stili güncellendi */}
+              <h4 className="text-base font-medium text-gray-800 mb-4">Yasal</h4>
               <ul className="space-y-2">
                 {footerLinks.legal.map(link => (
                   <li key={link.title}>
-                    <Link href={link.href} className="hover:text-white transition-colors text-sm">
+                    {/* Link stili güncellendi */}
+                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
                       {link.title}
                     </Link>
                   </li>
@@ -120,17 +147,18 @@ const Footer = () => {
         </div>
 
         {/* Alt Kısım: Telif Hakkı ve Sosyal Medya */}
-        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
-          <div className="text-gray-400 mb-4 md:mb-0">
+        {/* Üst çizgi kaldırıldı */}
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+          {/* Metin rengi güncellendi, ayraç ve geliştirici linki kaldırıldı */}
+          <div className="text-gray-500 mb-4 md:mb-0">
             <span>Copyright © {new Date().getFullYear()} Celyxmed</span>
-            <span className="mx-2">|</span>
-            <a href="https://www.yagizgurbuz.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Design & Developed by Yağız Gürbüz
-            </a>
+             {/* Geliştirici bilgisi Türkçeleştirildi */}
+            <span className="ml-2">Tasarım & Geliştirme: Yağız Gürbüz</span>
           </div>
           <div className="flex space-x-4">
+            {/* İkon renkleri güncellendi */}
             {socialLinks.map(({ Icon, href, label }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-gray-400 hover:text-white transition-colors">
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-gray-700 hover:text-gray-900 transition-colors">
                 <Icon className="h-5 w-5" />
               </a>
             ))}
