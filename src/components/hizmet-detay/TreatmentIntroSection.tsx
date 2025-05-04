@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button'; // Shadcn Button kullanılıyor
+import { ImageOff, ArrowRight } from 'lucide-react'; // ImageOff ve ArrowRight ikonlarını ekle
 
 interface TreatmentLink {
   id: string; // Bölüm ID'si (örn. '#1', '#fiyat')
@@ -29,7 +30,8 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
   secondaryButtonLink,
   links,
 }) => {
-  const videoEmbedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+  // videoEmbedUrl kaldırıldı
+  // const videoEmbedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : null;
 
   return (
     <section id="detaylar" className="tedavi-y bg-gray-50 py-16 md:py-24">
@@ -42,21 +44,9 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
 
             {/* Sol Sütun (index.html: integrations-banner-left) */}
             <div className="flex flex-col space-y-6">
-              {/* Video */}
-              <div className="aspect-video w-full bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
-                {videoEmbedUrl ? (
-                  <iframe
-                    className="w-full h-full"
-                    src={videoEmbedUrl}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  ></iframe>
-                ) : (
-                  <span className="text-gray-500">Video Yüklenecek</span>
-                )}
+              {/* Video Placeholder */}
+              <div className="aspect-video w-full bg-gray-200 rounded-lg flex items-center justify-center">
+                <ImageOff className="h-16 w-16 text-gray-400" /> {/* Placeholder ikonu */}
               </div>
               {/* Başlık ve Açıklama (index.html: integrations-banner-heading-2) */}
               <div className="space-y-3">
@@ -65,14 +55,23 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
                 </h2>
                 <p className="text-gray-600 text-base leading-relaxed">{description}</p>
               </div>
-              {/* Butonlar (index.html: double-button) */}
+              {/* Butonlar (index.html: double-button) - Güncellenmiş stil */}
               <div className="mt-6 flex flex-col sm:flex-row gap-4 items-start">
-                <Button asChild size="lg" className="bg-[#4a8f9c] hover:bg-[#3d7a86] text-white px-7 py-3 rounded-lg text-base font-medium">
-                  <Link href={primaryButtonLink}>{primaryButtonText}</Link>
-                </Button>
-                <Button asChild variant="link" size="lg" className="text-[#4a8f9c] hover:text-[#3d7a86] px-0 py-3 text-base font-medium">
+                 {/* Ana Buton (Görseldeki gibi) - Yeni stil */}
+                 <Button size="lg" asChild className="bg-teal-600 text-white hover:bg-teal-700 rounded-full pl-2 pr-6 py-2 group shadow-md">
+                   <Link href={primaryButtonLink} className="flex items-center gap-2"> {/* Link içine flex eklendi */}
+                     {/* İkon Alanı */}
+                     <span className="bg-amber-400 p-2 rounded-full inline-flex items-center justify-center">
+                        <ArrowRight className="h-5 w-5 text-teal-800 transition-transform duration-300 group-hover:translate-x-1" />
+                     </span>
+                     {/* Metin Alanı */}
+                     <span className="font-semibold">{primaryButtonText}</span> {/* Metni span içine aldık */}
+                   </Link>
+                 </Button>
+                 {/* İkincil Buton (Metin Linki) */}
+                 <Button asChild variant="link" size="lg" className="text-gray-800 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400 px-0 py-3 font-medium">
                    <Link href={secondaryButtonLink}>{secondaryButtonText}</Link>
-                </Button>
+                 </Button>
               </div>
             </div>
 
@@ -81,12 +80,13 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
               {links.map((link, index) => (
                 // index.html: integrations-row
                 <div key={link.id} className={`integrations-row ${index !== links.length - 1 ? 'border-b border-gray-200' : ''}`}>
-                  {/* index.html: integrations-row-content */}
-                  <Link href={link.id} className="flex items-center space-x-4 py-4 hover:bg-gray-100 rounded-md transition-colors duration-150 px-3 -mx-3">
+                  {/* index.html: integrations-row-content - Güncellenmiş hover efekti */}
+                  <Link href={link.id} className="flex items-center space-x-4 py-4 rounded-md transition-all duration-150 px-3 -mx-3 group"> {/* hover:bg-gray-100 kaldırıldı, transition-all ve group eklendi */}
                     <div className="opacity-70 flex-shrink-0">
                       <div className="text-lg text-gray-400 font-medium w-8 text-right">{link.number}</div>
                     </div>
-                    <span className="text-lg text-gray-800 hover:text-[#4a8f9c] flex-1 transition-colors duration-150">
+                    {/* Yazı rengi hover ve aşağı kayma animasyonu eklendi */}
+                    <span className="text-lg text-gray-800 group-hover:text-teal-600 flex-1 transition-all duration-150 group-hover:translate-y-0.5">
                       {link.text}
                     </span>
                   </Link>
