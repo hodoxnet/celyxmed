@@ -57,6 +57,7 @@ interface ServiceData {
   overviewTabsData: any[];
   whySectionTitle: string;
   whyItems: any[];
+  whySectionBackgroundImageUrl?: string; // WhyCelyxmed bölümü için opsiyonel arka plan resmi
   gallerySectionTitle: string;
   gallerySectionDescription: string;
   galleryImages: any[];
@@ -224,6 +225,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           }
         ],
         whySectionTitle: "Anne Estetiği İçin Neden Celyxmed'e Güvenmelisiniz?",
+        whySectionBackgroundImageUrl: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c21c_mommy-makeover-in-turkey.avif", // Sağlanan URL eklendi
         whyItems: [
           { id: 'why-1', number: '01', title: 'Modern Klinik', description: 'İstanbul\'daki modern, JCI akreditasyonlu kliniğimizde en üst düzey bakımı deneyimleyin. Mommy Makeover yolculuğunuz boyunca güvenliğinizi, rahatınızı ve huzurunuzu garanti etmek için uluslararası sağlık standartlarını koruyoruz.' },
           { id: 'why-2', number: '02', title: 'Deneyimli Plastik Cerrahlar', description: 'Op. Dr. Kemal Aytuğlu liderliğindeki yetenekli plastik cerrahlarımız, dönüştürücü kozmetik prosedürlerde 25 yılı aşkın uzmanlığa sahiptir. Binlerce kadının özgüvenlerini yeniden kazanmalarına ve estetik hedeflerine ulaşmalarına başarıyla yardımcı olan ellere güvenin.' },
@@ -415,6 +417,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           <WhyCelyxmed
             sectionTitle={serviceData.whySectionTitle}
             items={serviceData.whyItems}
+            backgroundImageUrl={serviceData.whySectionBackgroundImageUrl} // Arka plan URL'si prop olarak eklendi
           />
         </div>
 

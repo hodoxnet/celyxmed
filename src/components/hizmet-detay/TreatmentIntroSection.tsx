@@ -33,11 +33,14 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
 
   return (
     <section id="detaylar" className="tedavi-y bg-gray-50 py-16 md:py-24">
+      {/* Ana container (ortalanmış ve padding'li) */}
       <div className="container mx-auto px-4">
+        {/* Kart yapısı (index.html'deki banner-bg-2'ye benzer) */}
         <div className="bg-white p-8 md:p-12 rounded-xl shadow-lg">
+          {/* İki sütunlu grid yapısı (index.html'deki integrations-banner-2) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-            {/* Sol Sütun */}
+            {/* Sol Sütun (index.html: integrations-banner-left) */}
             <div className="flex flex-col space-y-6">
               {/* Video */}
               <div className="aspect-video w-full bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
@@ -55,14 +58,14 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
                   <span className="text-gray-500">Video Yüklenecek</span>
                 )}
               </div>
-              {/* Başlık ve Açıklama */}
+              {/* Başlık ve Açıklama (index.html: integrations-banner-heading-2) */}
               <div className="space-y-3">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
                   <strong>{title}</strong>
                 </h2>
                 <p className="text-gray-600 text-base leading-relaxed">{description}</p>
               </div>
-              {/* Butonlar */}
+              {/* Butonlar (index.html: double-button) */}
               <div className="mt-6 flex flex-col sm:flex-row gap-4 items-start">
                 <Button asChild size="lg" className="bg-[#4a8f9c] hover:bg-[#3d7a86] text-white px-7 py-3 rounded-lg text-base font-medium">
                   <Link href={primaryButtonLink}>{primaryButtonText}</Link>
@@ -73,10 +76,12 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
               </div>
             </div>
 
-            {/* Sağ Sütun - Linkler */}
+            {/* Sağ Sütun - Linkler (index.html: integrations-banner-right) */}
             <div className="flex flex-col">
               {links.map((link, index) => (
-                <div key={link.id} className={` ${index !== links.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                // index.html: integrations-row
+                <div key={link.id} className={`integrations-row ${index !== links.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                  {/* index.html: integrations-row-content */}
                   <Link href={link.id} className="flex items-center space-x-4 py-4 hover:bg-gray-100 rounded-md transition-colors duration-150 px-3 -mx-3">
                     <div className="opacity-70 flex-shrink-0">
                       <div className="text-lg text-gray-400 font-medium w-8 text-right">{link.number}</div>
@@ -92,7 +97,7 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
           </div> {/* grid kapanışı */}
         </div> {/* Kart (bg-white) kapanışı */}
       </div> {/* container kapanışı */}
-    </section> // section kapanışı
+    </section> // section kapanışı - Düzeltildi
   );
 };
 

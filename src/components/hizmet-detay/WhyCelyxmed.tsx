@@ -1,10 +1,8 @@
-// src/components/hizmet-detay/WhyCelyxmed.tsx
 import React from 'react';
 
-// Neden Celyxmed öğesi tipi
 interface WhyItem {
   id: string;
-  number: string; // "01", "02" etc.
+  number: string;
   title: string;
   description: string;
 }
@@ -12,26 +10,46 @@ interface WhyItem {
 interface WhyCelyxmedProps {
   sectionTitle: string;
   items: WhyItem[];
+  backgroundImageUrl?: string; // Opsiyonel arka plan resmi
 }
 
-const WhyCelyxmed: React.FC<WhyCelyxmedProps> = ({ sectionTitle, items }) => {
-  if (!items || items.length === 0) {
-    return null;
-  }
+// Varsayılan arka plan resmi (WhyTrustSection'dan alındı, değiştirilebilir)
+const defaultBackgroundImageUrl = "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/67b76225b3622d69b5b3ef61_hair-transplant-clinic-in-turkey-celyxmed%20(2).avif";
 
+const WhyCelyxmed: React.FC<WhyCelyxmedProps> = ({
+  sectionTitle,
+  items,
+  backgroundImageUrl = defaultBackgroundImageUrl, // Varsayılan veya prop'tan gelen URL
+}) => {
   return (
-    // index.html'deki gibi bir arka plan resmi veya rengi eklenebilir
-    <section className="py-16 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{sectionTitle}</h2>
+    <section
+      className="py-20 md:py-32 bg-cover bg-center bg-no-repeat relative text-white"
+      style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
+    >
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/80 z-0"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Başlık */}
+        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+          <h2 className="text-4xl md:text-5xl font-semibold leading-tight">
+            {sectionTitle}
+          </h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        {/* Maddeler Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
           {items.map((item) => (
-            <div key={item.id} className="flex flex-col p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-3">{item.number}</div>
-              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 flex-grow">{item.description}</p>
+            <div key={item.id} className="flex items-start space-x-4">
+              {/* Numara */}
+              <div className="text-4xl font-bold text-cyan-400 flex-shrink-0 mt-1">
+                {item.number}
+              </div>
+              {/* Başlık ve Açıklama */}
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-300">{item.description}</p>
+              </div>
             </div>
           ))}
         </div>
