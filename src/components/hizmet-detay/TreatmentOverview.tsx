@@ -28,34 +28,55 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
     return null; // Veri yoksa bileşeni render etme
   }
 
+  // Başlığı iki satıra bölmek için (varsa) ilk boşluktan ayır
+  const titleParts = sectionTitle.split(' ');
+  const titleLine1 = titleParts.slice(0, titleParts.length - 2).join(' '); // Son iki kelime hariç
+  const titleLine2 = titleParts.slice(-2).join(' '); // Son iki kelime
+
   return (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900"> {/* Arka plan rengi eklendi */}
+    <section className="py-16 md:py-24 bg-white dark:bg-gray-950"> {/* Arka plan beyaz, padding artırıldı */}
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12"> {/* Başlık ve açıklama ortalandı */}
-          <h2 className="text-3xl font-bold mb-4">{sectionTitle}</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">{sectionDescription}</p>
+        <div className="text-center mb-12 md:mb-16"> {/* Başlık ve açıklama ortalandı, alt boşluk artırıldı */}
+          {/* Başlık büyütüldü ve iki satıra ayrıldı */}
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+            {titleLine1} <br /> {titleLine2}
+          </h2>
+          {/* Açıklama fontu küçültüldü ve rengi ayarlandı */}
+          <p className="text-base text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">{sectionDescription}</p>
         </div>
 
-        <Tabs defaultValue={tabsData[0].value} className="w-full">
-          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mb-8"> {/* Mobil uyumlu grid */}
+        <Tabs defaultValue={tabsData[0].value} className="w-full max-w-4xl mx-auto"> {/* Sekme genişliği sınırlandırıldı ve ortalandı */}
+          {/* Sekme Listesi Stili Güncellendi */}
+          <TabsList className="inline-flex h-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-1.5 mb-10 justify-center w-full">
             {tabsData.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>{tab.trigger}</TabsTrigger>
+              // Sekme Tetikleyici Stili Güncellendi
+              <TabsTrigger
+                key={tab.value}
+                value={tab.value}
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white text-gray-600 dark:text-gray-300 flex-1" // Yeni stil sınıfları
+              >
+                {tab.trigger}
+              </TabsTrigger>
             ))}
           </TabsList>
 
           {tabsData.map((tab) => (
-            <TabsContent key={tab.value} value={tab.value}>
-              <div className="grid md:grid-cols-2 gap-8 items-center bg-white dark:bg-gray-800 p-6 rounded-lg shadow"> {/* Kart benzeri görünüm */}
+            <TabsContent key={tab.value} value={tab.value} className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+              {/* İçerik alanı arka planı kaldırıldı, padding ayarlandı */}
+              <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center p-4 md:p-6">
                 {/* Metin İçeriği */}
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-semibold">{tab.title}</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{tab.content}</p>
-                  <Button asChild>
-                    <Link href={tab.buttonLink || '/iletisim'}>{tab.buttonText}</Link>
-                  </Button>
+                <div className="space-y-5"> {/* Boşluk artırıldı */}
+                  <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white">{tab.title}</h3> {/* Font boyutu ayarlandı */}
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{tab.content}</p> {/* Renk ve satır aralığı ayarlandı */}
+                  {/* Button'ı Link ile sarmalama (asChild kaldırıldı) */}
+                  <Link href={tab.buttonLink || '/iletisim'} passHref legacyBehavior>
+                    <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white rounded-lg px-6 py-3"> {/* Buton stili güncellendi */}
+                      {tab.buttonText}
+                    </Button>
+                  </Link>
                 </div>
                 {/* Resim */}
-                <div className="relative h-64 md:h-80 rounded-md overflow-hidden"> {/* Resim alanı */}
+                <div className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-md"> {/* Yükseklik ve gölge ayarlandı */}
                   <Image
                     src={tab.imageUrl}
                     alt={tab.imageAlt}
