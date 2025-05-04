@@ -5,7 +5,8 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import FloatingButtons from '@/components/layout/FloatingButtons';
 import HeroSection from '@/components/hizmet-detay/HeroSection';
-import TableOfContents from '@/components/hizmet-detay/TableOfContents';
+// TableOfContents importu kaldırıldı, yerine TocAndCtaSection gelecek
+import TocAndCtaSection from '@/components/hizmet-detay/TocAndCtaSection'; // Yeni bileşeni import et
 import TreatmentOverview from '@/components/hizmet-detay/TreatmentOverview';
 import WhyCelyxmed from '@/components/hizmet-detay/WhyCelyxmed';
 import GallerySection from '@/components/hizmet-detay/GallerySection';
@@ -34,10 +35,12 @@ interface ServiceData {
   title: string;
   description: string;
   heroImageUrl: string; // HeroSection için resim URL'si
-  heroImageAlt: string; // HeroSection için resim alt metni
-  tocTitle: string;
-  tocAuthorInfo?: string;
-  tocItems: ContentItem[];
+  heroImageAlt: string;
+  // toc ile başlayan alanlar TocAndCtaSection'a taşındı
+  tocAndCta_tocTitle: string; // Yeni prop isimleri
+  tocAndCta_tocAuthorInfo?: string;
+  tocAndCta_tocItems: ContentItem[];
+  tocAndCta_ctaDescription: string; // Sağ sütun açıklaması
   overviewSectionTitle: string;
   overviewSectionDescription: string;
   overviewTabsData: any[];
@@ -137,11 +140,12 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
         breadcrumb: 'Celyxmed > Plastik Cerrahi > Anne Estetiği (Mommy Makeover)',
         title: 'Anne Estetiği (Mommy Makeover)',
         description: 'Doğum sonrası vücudunuzu yeniden şekillendirin! İstanbul’da Celyxmed ile karın germe, meme estetiği, liposuction ve vajinal estetik gibi kombine operasyonlarla kişiye özel “Mommy Makeover” estetik çözümleri sunuyoruz.',
-        heroImageUrl: 'https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c21c_mommy-makeover-in-turkey.avif', // index.html'den alındı
+        heroImageUrl: 'https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c21c_mommy-makeover-in-turkey.avif',
         heroImageAlt: 'Anne Estetiği (Mommy Makeover) Arka Plan Resmi',
-        tocTitle: 'İçindekiler',
-        tocAuthorInfo: 'İçerik Yazarı: Op. Dr. Kemal Aytuğlu (Plastik Cerrah) | Son Güncelleme: 10 Ocak 2025',
-        tocItems: tocItems,
+        tocAndCta_tocTitle: 'İçindekiler',
+        tocAndCta_tocAuthorInfo: 'İçerik Yazarı: Op. Dr. Kemal Aytuğlu (Plastik Cerrah)\nSon Güncelleme: 10 Ocak 2025', // \n ile yeni satır
+        tocAndCta_tocItems: tocItems,
+        tocAndCta_ctaDescription: "Uzun araştırmaları atlayın ve yanıtları doğrudan uzmanlarımızdan alın. Tedavi seçeneklerinizi tartışmak, istediğiniz her şeyi sormak ve hızlı, güvenilir ve güvenebileceğiniz uzmanlardan kişiselleştirilmiş rehberlik almak için ücretsiz bir çevrimiçi konsültasyon rezervasyonu yapın.", // index.html'den alındı
         overviewSectionTitle: "Türkiye'de Anne Estetiği Tedavisine Genel Bakış",
         overviewSectionDescription: "JCI onaylı kliniklerde Türkiye'nin en iyi uzmanlarından kişiselleştirilmiş tedavileri deneyimleyin. Celyxmed, sağlığınız için güvenilir sağlık hizmetlerini uygun fiyatlı çözümlerle birleştirir.",
         overviewTabsData: [
@@ -331,12 +335,14 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           description={serviceData.description}
           imageUrl={serviceData.heroImageUrl}
           imageAlt={serviceData.heroImageAlt}
-          // İsteğe bağlı buton metinleri/linkleri de eklenebilir
         />
-        <TableOfContents
-          title={serviceData.tocTitle}
-          items={serviceData.tocItems}
-          authorInfo={serviceData.tocAuthorInfo}
+        {/* Yeni TocAndCtaSection bileşeni kullanılıyor */}
+        <TocAndCtaSection
+          tocTitle={serviceData.tocAndCta_tocTitle}
+          tocItems={serviceData.tocAndCta_tocItems}
+          tocAuthorInfo={serviceData.tocAndCta_tocAuthorInfo}
+          ctaDescription={serviceData.tocAndCta_ctaDescription}
+          // Buton metinleri/linkleri bileşenin varsayılan değerlerini kullanacak
         />
 
         {/* Tedaviye Genel Bakış Bölümü */}

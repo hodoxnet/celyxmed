@@ -16,7 +16,8 @@ interface TableOfContentsProps {
   authorInfo?: string; // Yazar ve güncelleme bilgisi (opsiyonel)
 }
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ title, items, authorInfo }) => {
+// Bu bileşen artık sadece Accordion'u render edecek
+const TableOfContentsAccordion: React.FC<TableOfContentsProps> = ({ title, items, authorInfo }) => {
   // Seviyeye göre içeriği formatlamak için yardımcı fonksiyon (şimdilik basit liste)
   const renderItems = (items: ContentItem[]) => {
     return (
@@ -31,26 +32,24 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ title, items, authorI
   };
 
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-4">
-        <Accordion type="single" collapsible className="w-full border rounded-lg shadow-sm dark:border-gray-700">
-          <AccordionItem value="toc-item">
-            <AccordionTrigger className="px-6 py-4 text-xl font-semibold hover:no-underline">
+    // Dıştaki section ve container kaldırıldı
+    <Accordion type="single" collapsible className="w-full border rounded-lg shadow-sm dark:border-gray-700 bg-white dark:bg-gray-800"> {/* Arka plan eklendi */}
+      <AccordionItem value="toc-item" className="border-b-0"> {/* Alt border kaldırıldı */}
+        <AccordionTrigger className="px-6 py-4 text-lg font-semibold hover:no-underline"> {/* Boyut ayarlandı */}
               {title}
             </AccordionTrigger>
-            <AccordionContent className="px-6 pb-4 pt-0">
+            <AccordionContent className="px-6 pb-4 pt-2"> {/* Üst padding azaltıldı */}
               {authorInfo && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{authorInfo}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 border-t dark:border-gray-600 pt-4">{authorInfo}</p> // Yazar bilgisi için üst border
               )}
-              <div className="prose dark:prose-invert max-w-none">
+              <div className="prose dark:prose-invert max-w-none text-sm"> {/* Yazı boyutu küçültüldü */}
                 {renderItems(items)}
               </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </div>
-    </section>
+    // Dıştaki section ve container kaldırıldı
   );
 };
 
-export default TableOfContents;
+export default TableOfContentsAccordion; // İsim değiştirildi
