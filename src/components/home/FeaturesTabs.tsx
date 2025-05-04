@@ -64,14 +64,14 @@ const FeaturesTabs = () => {
         </div>
 
         {/* Sekmeler */}
-        <Tabs defaultValue={tabData[0].value} className="w-full">
-          {/* Sekme Tetikleyicileri */}
-          <TabsList className="flex justify-center gap-2 mb-8 md:mb-12 bg-transparent px-[6px] py-[30px] bg-gray-100 rounded-lg mx-auto max-w-4xl">
+        <Tabs defaultValue={tabData[0].value} className="w-full max-w-4xl mx-auto"> {/* Sekme genişliği sınırlandırıldı ve ortalandı */}
+          {/* Sekme Tetikleyicileri - Stil TreatmentOverview'dan alındı */}
+          <TabsList className="inline-flex h-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-1.5 mb-10 justify-center w-full"> {/* Stil güncellendi */}
             {tabData.map((tab) => (
-              <TabsTrigger 
-                key={tab.value} 
-                value={tab.value} 
-                className="py-4 px-8 text-base rounded-md bg-transparent hover:bg-gray-200 data-[state=active]:bg-white data-[state=active]:shadow-md my-2"
+              <TabsTrigger
+                key={tab.value}
+                value={tab.value}
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white text-gray-600 dark:text-gray-300 flex-1" // Stil TreatmentOverview'dan alındı
               >
                 {tab.trigger}
               </TabsTrigger>
