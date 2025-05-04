@@ -16,6 +16,8 @@ import PricingSection from '@/components/hizmet-detay/PricingSection';
 import MeetExperts from '@/components/hizmet-detay/MeetExperts';
 import FaqSection from '@/components/hizmet-detay/FaqSection';
 import CtaSection from '@/components/hizmet-detay/CtaSection'; // Yeni bileşeni import et
+import ImageMarquee from '@/components/hizmet-detay/ImageMarquee'; // Yeni marquee bileşenini import et
+import TreatmentIntroSection from '@/components/hizmet-detay/TreatmentIntroSection'; // Yeni intro bölümünü import et
 // Gerekirse diğer UI bileşenlerini import edeceğiz
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 // import { Button } from "@/components/ui/button";
@@ -41,6 +43,15 @@ interface ServiceData {
   tocAndCta_tocAuthorInfo?: string;
   tocAndCta_tocItems: ContentItem[];
   tocAndCta_ctaDescription: string; // Sağ sütun açıklaması
+  marqueeImages?: { src: string; alt: string }[]; // Yeni marquee resimleri (opsiyonel)
+  treatmentIntro_videoId?: string; // Intro bölümü video ID (opsiyonel)
+  treatmentIntro_title: string;
+  treatmentIntro_description: string;
+  treatmentIntro_primaryButtonText: string;
+  treatmentIntro_primaryButtonLink: string;
+  treatmentIntro_secondaryButtonText: string;
+  treatmentIntro_secondaryButtonLink: string;
+  treatmentIntro_links: { id: string; number: string; text: string }[];
   overviewSectionTitle: string;
   overviewSectionDescription: string;
   overviewTabsData: any[];
@@ -146,6 +157,32 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
         tocAndCta_tocAuthorInfo: 'İçerik Yazarı: Op. Dr. Kemal Aytuğlu (Plastik Cerrah)\nSon Güncelleme: 10 Ocak 2025', // \n ile yeni satır
         tocAndCta_tocItems: tocItems,
         tocAndCta_ctaDescription: "Uzun araştırmaları atlayın ve yanıtları doğrudan uzmanlarımızdan alın. Tedavi seçeneklerinizi tartışmak, istediğiniz her şeyi sormak ve hızlı, güvenilir ve güvenebileceğiniz uzmanlardan kişiselleştirilmiş rehberlik almak için ücretsiz bir çevrimiçi konsültasyon rezervasyonu yapın.", // index.html'den alındı
+        // index.html'deki id="galeri" bölümünden alınan resimler
+        marqueeImages: [
+          { src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c21d_6666e56289b64376560fbf2b_before-after-photos-mommy-makeover-in-turkey%20(1).avif", alt: "Anne Estetiği Öncesi Sonrası Karşılaştırma 1" },
+          { src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c21e_6666e56471a7665b7b3b6ede_before-after-photos-mommy-makeover-in-turkey%20(1).avif", alt: "Anne Estetiği Öncesi Sonrası Karşılaştırma 2" },
+          { src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c21f_6666e56740fcd9aa812b7fd6_before-after-photos-mommy-makeover-in-turkey%20(2).avif", alt: "Anne Estetiği Öncesi Sonrası Karşılaştırma 3" },
+          { src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c225_6666e569b5a7d5128dd99a9e_before-after-photos-mommy-makeover-in-turkey%20(3)%20(1).avif", alt: "Anne Estetiği Öncesi Sonrası Karşılaştırma 4" },
+        ],
+        // TreatmentIntroSection verileri (index.html'den alındı)
+        treatmentIntro_videoId: '2edpx39Iy8g', // YouTube video ID'si
+        treatmentIntro_title: 'Cerrahınızla Tanışın ve Tedaviniz Hakkında Bilgi Edinin',
+        treatmentIntro_description: 'Cerrahınızı tanıyın ve tedavi yolculuğunuzun her ayrıntısını keşfedin. İlk konsültasyondan iyileşmeye kadar, sağlık hedeflerinize uygun güvenli, etkili ve kişiselleştirilmiş bakımı nasıl sağladığımızı keşfedin. Dönüşümünüz doğru uzmanın yanınızda olmasıyla başlar.',
+        treatmentIntro_primaryButtonText: 'Ücretsiz Konsültasyonunuzu Yaptırın',
+        treatmentIntro_primaryButtonLink: '/iletisim', // İletişim sayfasına link
+        treatmentIntro_secondaryButtonText: 'Tedaviye Genel Bakış',
+        treatmentIntro_secondaryButtonLink: '#1', // Genel Bakış bölümünün ID'si
+        treatmentIntro_links: [
+          { id: '#1', number: '01', text: 'Tedaviye Genel Bakış' },
+          { id: '#2', number: '02', text: 'Anne Estetiği İçin Neden Celyxmed\'i Seçmelisiniz?' },
+          { id: '#galeri', number: '03', text: 'Başarı Hikayeleri, Öncesi & Sonrası Sonuçlar, Yorumlar' }, // Galeri ID'si kullanıldı
+          { id: '#4', number: '04', text: 'Prosedür Nasıl İşliyor?' },
+          { id: '#5', number: '05', text: 'İyileşme ve Bakım Sonrası' },
+          { id: '#fiyat', number: '06', text: 'Fiyatlandırma & Paketler' }, // Fiyatlandırma ID'si varsayıldı
+          { id: '#7', number: '07', text: 'Uzmanlarımızla Tanışın' },
+          { id: '#8', number: '08', text: 'Sıkça Sorulan Sorular (SSS)' },
+          { id: '/iletisim', number: '09', text: 'Ücretsiz Konsültasyonunuzu Yaptırın' }, // Link olarak ayarlandı
+        ],
         overviewSectionTitle: "Türkiye'de Anne Estetiği Tedavisine Genel Bakış",
         overviewSectionDescription: "JCI onaylı kliniklerde Türkiye'nin en iyi uzmanlarından kişiselleştirilmiş tedavileri deneyimleyin. Celyxmed, sağlığınız için güvenilir sağlık hizmetlerini uygun fiyatlı çözümlerle birleştirir.",
         overviewTabsData: [
@@ -345,61 +382,102 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           // Buton metinleri/linkleri bileşenin varsayılan değerlerini kullanacak
         />
 
-        {/* Tedaviye Genel Bakış Bölümü */}
-        <TreatmentOverview
-          sectionTitle={serviceData.overviewSectionTitle}
-          sectionDescription={serviceData.overviewSectionDescription}
-          tabsData={serviceData.overviewTabsData}
+        {/* Yeni Image Marquee Bölümü */}
+        {serviceData.marqueeImages && serviceData.marqueeImages.length > 0 && (
+          <ImageMarquee images={serviceData.marqueeImages} />
+        )}
+
+        {/* Yeni Treatment Intro Bölümü */}
+        <TreatmentIntroSection
+          videoId={serviceData.treatmentIntro_videoId}
+          title={serviceData.treatmentIntro_title}
+          description={serviceData.treatmentIntro_description}
+          primaryButtonText={serviceData.treatmentIntro_primaryButtonText}
+          primaryButtonLink={serviceData.treatmentIntro_primaryButtonLink}
+          secondaryButtonText={serviceData.treatmentIntro_secondaryButtonText}
+          secondaryButtonLink={serviceData.treatmentIntro_secondaryButtonLink}
+          links={serviceData.treatmentIntro_links}
         />
+
+        {/* Tedaviye Genel Bakış Bölümü */}
+        {/* Bu bölümün ID'sinin '1' olduğunu varsayıyoruz, gerekirse güncellenmeli */}
+        <div id="1">
+          <TreatmentOverview
+            sectionTitle={serviceData.overviewSectionTitle}
+            sectionDescription={serviceData.overviewSectionDescription}
+            tabsData={serviceData.overviewTabsData}
+          />
+        </div>
 
         {/* Neden Celyxmed Bölümü */}
-        <WhyCelyxmed
-          sectionTitle={serviceData.whySectionTitle}
-          items={serviceData.whyItems}
-        />
+        {/* Bu bölümün ID'sinin '2' olduğunu varsayıyoruz */}
+        <div id="2">
+          <WhyCelyxmed
+            sectionTitle={serviceData.whySectionTitle}
+            items={serviceData.whyItems}
+          />
+        </div>
 
         {/* Galeri Bölümü */}
-        <GallerySection
-          sectionTitle={serviceData.gallerySectionTitle}
-          sectionDescription={serviceData.gallerySectionDescription}
-          images={serviceData.galleryImages}
-          // İsteğe bağlı buton metinleri ve linkleri de eklenebilir
-        />
+        {/* Bu bölümün ID'sinin 'galeri' olduğunu varsayıyoruz */}
+        <div id="galeri">
+          <GallerySection
+            sectionTitle={serviceData.gallerySectionTitle}
+            sectionDescription={serviceData.gallerySectionDescription}
+            images={serviceData.galleryImages}
+            // İsteğe bağlı buton metinleri ve linkleri de eklenebilir
+          />
+        </div>
 
         {/* Prosedür Adımları Bölümü */}
-        <ProcedureSteps
-          sectionTitle={serviceData.stepsSectionTitle}
-          sectionDescription={serviceData.stepsSectionDescription}
-          steps={serviceData.stepsData}
-        />
+        {/* Bu bölümün ID'sinin '4' olduğunu varsayıyoruz */}
+        <div id="4">
+          <ProcedureSteps
+            sectionTitle={serviceData.stepsSectionTitle}
+            sectionDescription={serviceData.stepsSectionDescription}
+            steps={serviceData.stepsData}
+          />
+        </div>
 
         {/* İyileşme Bilgisi Bölümü */}
-        <RecoveryInfo
-          sectionTitle={serviceData.recoverySectionTitle}
-          sectionDescription={serviceData.recoverySectionDescription}
-          items={serviceData.recoveryItems}
-        />
+        {/* Bu bölümün ID'sinin '5' olduğunu varsayıyoruz */}
+        <div id="5">
+          <RecoveryInfo
+            sectionTitle={serviceData.recoverySectionTitle}
+            sectionDescription={serviceData.recoverySectionDescription}
+            items={serviceData.recoveryItems}
+          />
+        </div>
 
         {/* Fiyatlandırma Bölümü */}
-        <PricingSection
-          sectionTitle={serviceData.pricingSectionTitle}
-          sectionDescription={serviceData.pricingSectionDescription}
-          packages={serviceData.pricingPackages}
-        />
+        {/* Bu bölümün ID'sinin 'fiyat' olduğunu varsayıyoruz */}
+        <div id="fiyat">
+          <PricingSection
+            sectionTitle={serviceData.pricingSectionTitle}
+            sectionDescription={serviceData.pricingSectionDescription}
+            packages={serviceData.pricingPackages}
+          />
+        </div>
 
         {/* Uzmanlarla Tanışın Bölümü */}
-        <MeetExperts
-          sectionTitle={serviceData.expertsSectionTitle}
-          tagline={serviceData.expertsTagline}
-          experts={serviceData.expertsData}
-        />
+        {/* Bu bölümün ID'sinin '7' olduğunu varsayıyoruz */}
+        <div id="7">
+          <MeetExperts
+            sectionTitle={serviceData.expertsSectionTitle}
+            tagline={serviceData.expertsTagline}
+            experts={serviceData.expertsData}
+          />
+        </div>
 
         {/* SSS Bölümü */}
-        <FaqSection
-          sectionTitle={serviceData.faqSectionTitle}
-          sectionDescription={serviceData.faqSectionDescription}
-          faqItems={serviceData.faqItems}
-        />
+        {/* Bu bölümün ID'sinin '8' olduğunu varsayıyoruz */}
+        <div id="8">
+          <FaqSection
+            sectionTitle={serviceData.faqSectionTitle}
+            sectionDescription={serviceData.faqSectionDescription}
+            faqItems={serviceData.faqItems}
+          />
+        </div>
 
         {/* CTA Bölümü */}
         <CtaSection
