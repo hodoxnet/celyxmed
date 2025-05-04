@@ -52,19 +52,19 @@ const tabData = [
 const FeaturesTabs = () => {
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-6xl"> {/* max-w-none yerine max-w-6xl kullanıldı, hizmet detay sayfasındaki gibi sınırlı genişlik */}
         {/* Ana Başlık ve Alt Başlık */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-800">
             Discover World-Class Healthcare with Celyxmed in Turkey
           </h2>
           <p className="text-lg text-gray-600">
-            Experience personalized treatments from Turkey’s top specialists at JCI-accredited clinics. Celyxmed combines trusted healthcare with affordable solutions for your well-being.
+            Experience personalized treatments from Turkey's top specialists at JCI-accredited clinics. Celyxmed combines trusted healthcare with affordable solutions for your well-being.
           </p>
         </div>
 
         {/* Sekmeler */}
-        <Tabs defaultValue={tabData[0].value} className="w-full max-w-4xl mx-auto"> {/* Sekme genişliği sınırlandırıldı ve ortalandı */}
+        <Tabs defaultValue={tabData[0].value} className="w-full mx-auto"> {/* max-w-none kaldırıldı, container'ın max-w-6xl değeri kullanılacak */}
           {/* Sekme Tetikleyicileri - Stil TreatmentOverview'dan alındı */}
           <TabsList className="inline-flex h-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-1.5 mb-10 justify-center w-full"> {/* Stil güncellendi */}
             {tabData.map((tab) => (
@@ -81,35 +81,41 @@ const FeaturesTabs = () => {
           {/* Sekme İçerikleri */}
           {tabData.map((tab) => (
             <TabsContent key={tab.value} value={tab.value}>
-              <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg">
+              <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"> {/* rounded-3xl yerine rounded-xl kullanıldı, TreatmentOverview ile uyumlu */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                   {/* Sol Taraf: Metin İçeriği */}
-                  <div className="px-10 py-[20px] md:px-16 md:py-[26px] flex flex-col justify-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4b978] text-white text-sm font-medium mb-8 self-start">
-                      <div className="w-2 h-2 rounded-full bg-white"></div>
+                  <div className="p-8 md:p-12 flex flex-col justify-center"> {/* Padding değerleri TreatmentOverview ile uyumlu hale getirildi */}
+                    <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300 mb-6 self-start">
                       {tab.tag}
-                    </div>
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 text-[#3b5998] leading-tight">
+                    </span>
+                    <h3 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900 dark:text-white leading-tight"> {/* Renk değiştirildi */}
                       {tab.heading}
                     </h3>
-                    <p className="text-gray-600 mb-10 text-base">
+                    <p className="text-gray-600 dark:text-gray-400 mb-8 text-base md:text-lg leading-relaxed"> {/* Font boyutu ve satır aralığı ayarlandı */}
                       {tab.description}
                     </p>
-                    <div className="self-start flex items-center gap-4">
+                    {/* Buton - TreatmentOverview'daki buton stili */}
+                    <div className="self-start">
                       <Link 
                         href={tab.buttonLink}
-                        className="w-12 h-12 flex items-center justify-center rounded-full bg-[#d4b978] text-white hover:bg-[#c5ad6e] transition-all duration-300"
+                        className="inline-flex items-center rounded-full overflow-hidden shadow-md group transition-shadow hover:shadow-lg text-white font-medium text-base"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="m5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        {/* İkon Bölümü */}
+                        <span className="flex h-12 w-12 items-center justify-center bg-[#d4b978] group-hover:bg-[#c5ad6e] transition-colors">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
+                            <path d="m5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                          </svg>
+                        </span>
+                        {/* Metin Bölümü - Renk değiştirildi */}
+                        <span className="px-6 py-3 bg-teal-600 group-hover:bg-teal-700 transition-colors">
+                          {tab.buttonText}
+                        </span>
                       </Link>
-                      <span className="text-[#3b5998] font-medium">{tab.buttonText}</span>
                     </div>
                   </div>
                   {/* Sağ Taraf: Görsel */}
-                  <div className="relative w-full h-full min-h-[400px]">
+                  <div className="relative w-full h-full min-h-[450px]"> {/* Yükseklik artırıldı */}
                     <Image
                       src={tab.imageUrl}
                       alt={tab.heading}
