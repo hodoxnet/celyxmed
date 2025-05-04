@@ -31,18 +31,32 @@ const TableOfContentsAccordion: React.FC<TableOfContentsProps> = ({ title, items
     );
   };
 
+  // Yazar bilgisini satırlara ayırmak için
+  const authorLines = authorInfo?.split('\n') || [];
+
   return (
-    // Dıştaki section ve container kaldırıldı
-    <Accordion type="single" collapsible className="w-full border rounded-lg shadow-sm dark:border-gray-700 bg-white dark:bg-gray-800"> {/* Arka plan eklendi */}
-      <AccordionItem value="toc-item" className="border-b-0"> {/* Alt border kaldırıldı */}
-        <AccordionTrigger className="px-6 py-4 text-lg font-semibold hover:no-underline"> {/* Boyut ayarlandı */}
-              {title}
-            </AccordionTrigger>
-            <AccordionContent className="px-6 pb-4 pt-2"> {/* Üst padding azaltıldı */}
-              {authorInfo && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 border-t dark:border-gray-600 pt-4">{authorInfo}</p> // Yazar bilgisi için üst border
-              )}
-              <div className="prose dark:prose-invert max-w-none text-sm"> {/* Yazı boyutu küçültüldü */}
+    // Stil güncellendi: Daha açık arka plan, daha belirgin border-radius
+    <Accordion type="single" collapsible className="w-full rounded-xl shadow-sm bg-gray-50 dark:bg-gray-800/50 overflow-hidden">
+      <AccordionItem value="toc-item" className="border-none"> {/* Border kaldırıldı */}
+        {/* Trigger içeriği güncellendi: Font boyutları artırıldı, manuel ikon kaldırıldı */}
+        <AccordionTrigger className="px-6 py-5 text-left hover:no-underline group justify-between"> {/* justify-between eklendi */}
+           <div className="flex flex-col items-start mr-4"> {/* Sağ boşluk eklendi */}
+             <span className="text-xl font-semibold text-gray-900 dark:text-white mb-1.5">{title}</span> {/* Boyut ve alt boşluk artırıldı */}
+             {/* Yazar bilgisi Trigger'a taşındı */}
+             {authorLines.length > 0 && (
+               <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1"> {/* Boyut ve satır aralığı artırıldı */}
+                 {authorLines.map((line, index) => (
+                   <p key={index}>{line}</p>
+                 ))}
+               </div>
+             )}
+           </div>
+           {/* Manuel SVG ikonu kaldırıldı, AccordionTrigger kendi ikonunu kullanacak */}
+        </AccordionTrigger>
+        {/* Content içeriği güncellendi: Yazar bilgisi kaldırıldı */}
+        <AccordionContent className="px-6 pb-5 pt-0"> {/* Padding ayarlandı */}
+              {/* Yazar bilgisi Trigger'a taşındığı için buradan kaldırıldı */}
+              <div className="prose dark:prose-invert max-w-none text-sm pt-4 border-t border-gray-200 dark:border-gray-700"> {/* Üst border ve padding eklendi */}
                 {renderItems(items)}
               </div>
             </AccordionContent>

@@ -39,8 +39,8 @@ export default async function RootLayout({
       <body className={`antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light" // Varsayılan tema "light" olarak değiştirildi
+          enableSystem // Sistem tercihini hala etkin bırakabiliriz, ancak başlangıç light olacak
           disableTransitionOnChange
         >
           {/* Çocuk bileşenleri NextIntlClientProvider ile sarmala */}
