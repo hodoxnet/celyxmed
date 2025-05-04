@@ -15,9 +15,11 @@ import RecoveryInfo from '@/components/hizmet-detay/RecoveryInfo';
 import PricingSection from '@/components/hizmet-detay/PricingSection';
 import MeetExperts from '@/components/hizmet-detay/MeetExperts';
 import FaqSection from '@/components/hizmet-detay/FaqSection';
-import CtaSection from '@/components/hizmet-detay/CtaSection'; // Yeni bileşeni import et
+// CtaSection importu zaten vardı, tekrar eklemeye gerek yok
 import ImageMarquee from '@/components/hizmet-detay/ImageMarquee'; // Yeni marquee bileşenini import et
 import TreatmentIntroSection from '@/components/hizmet-detay/TreatmentIntroSection'; // Yeni intro bölümünü import et
+import TestimonialsSection from '@/components/hizmet-detay/TestimonialsSection'; // Yeni yorum bölümünü import et
+import CtaSection from '@/components/hizmet-detay/CtaSection'; // CTA bölümünü import et (yeniden adlandırıldıysa düzelt)
 // Gerekirse diğer UI bileşenlerini import edeceğiz
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 // import { Button } from "@/components/ui/button";
@@ -64,6 +66,8 @@ interface ServiceData {
   stepsSectionTitle: string;
   stepsSectionDescription?: string;
   stepsData: any[];
+  testimonialsSectionTitle?: string; // Yorum bölümü başlığı (opsiyonel)
+  testimonialsData: any[]; // Yorum verileri
   recoverySectionTitle: string;
   recoverySectionDescription?: string;
   recoveryItems: any[];
@@ -84,6 +88,8 @@ interface ServiceData {
   ctaAvatars?: any[]; // CtaSection için avatarlar (tipi Avatar[] olmalı, opsiyonel)
   ctaAvatarText?: string; // CtaSection için avatar metni (opsiyonel)
   ctaBackgroundImageUrl?: string; // CtaSection için arka plan resmi (opsiyonel)
+  ctaMainImageUrl?: string; // CTA için ana görsel (opsiyonel)
+  ctaMainImageAlt?: string; // CTA ana görsel alt metni (opsiyonel)
 }
 
 // Sayfa parametrelerinin tipini tanımla
@@ -251,6 +257,31 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           // Beşinci adım eklendi
           { id: 'step-5', title: 'Takip ve Sonuçlar', description: 'Ameliyat sonrası düzenli takip randevuları ile iyileşme süreciniz yakından izlenir. Nihai sonuçlar genellikle birkaç ay içinde ortaya çıkar ve uzun süreli memnuniyet hedeflenir.', linkText: 'Sonuçları Görün' }
         ],
+        // Yorum verileri eklendi (SuccessStories'den alındı)
+        testimonialsSectionTitle: "Mutlu Hastalarımızdan Yorumlar", // Örnek başlık
+        testimonialsData: [
+           {
+            stars: 5,
+            text: "Celyxmed ve Op. Dr. Kemal Aytuğlu tam aradığımı verdi — güvenli, profesyonel ve hayat değiştiren bir deneyim. Prosedür sorunsuzdu ve sonuçlar inanılmaz. Daha hafif, daha özgüvenli hissediyorum ve görünüşüm hakkında endişelenmeden hayatın tadını çıkarmaya hazırım.",
+            author: "Olivia R. (Amerika Birleşik Devletleri 🇺🇸)",
+            treatment: "Türkiye'de Anne Estetiği Ameliyatı",
+            imageUrl: "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/6780df88a9c7db7861882613_liposuction-in-turkey-before-after-result-review.avif"
+          },
+           {
+            stars: 5,
+            text: "Celyxmed ve Op. Dr. Kemal Aytuğlu'nu seçmek kendim için verdiğim en iyi karardı. Aldığım ilgi ve özen olağanüstüydü. Vücudum yenilenmiş hissediyor ve özgüvenimi geri kazandım. Sonuçlar beklentilerimi aştı — sonunda kendimin en iyi versiyonu gibi hissediyorum!",
+            author: "Olivia M. (Amerika Birleşik Devletleri 🇺🇸)",
+            treatment: "Türkiye'de Anne Estetiği Ameliyatı",
+            imageUrl: "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/6780dbc0ee579a9541c8b9f9_mommy-makeover-in-turkey-before-after-result-review.avif"
+          },
+          {
+            stars: 5, // Örnek ek yorum
+            text: "İlk konsültasyondan ameliyat sonrası takibe kadar her adımda kendimi güvende ve bilgili hissettim. Dr. Aytuğlu ve ekibi gerçekten harika. Sonuçlardan çok memnunum!",
+            author: "Sarah D. (Meksika 🇲🇽)", // Örnek isim
+            treatment: "Türkiye'de Anne Estetiği Ameliyatı",
+            imageUrl: "" // Placeholder resim kaldırıldı, boş string bırakıldı
+          },
+        ],
         recoverySectionTitle: "Anne Estetiğinden Sonra Sizi Neler Bekler?",
         recoverySectionDescription: "İyileşme süreciniz en az ameliyatın kendisi kadar önemlidir. Celyxmed'de, sorunsuz, güvenli ve rahat bir iyileşme süreci sağlamak için ayrıntılı bir bakım sonrası planı sunuyoruz. Kişiselleştirilmiş diyet rehberliğinden 7/24 tıbbi desteğe kadar, yolun her adımında size yardımcı olmak için buradayız.",
         recoveryItems: [
@@ -340,7 +371,9 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           // "+50 uzman" göstergesi için ek avatar eklenebilir veya CtaSection içinde yönetilebilir
         ],
         ctaAvatarText: "Doktorunuzu Seçin, Sorularınızı Sorun",
-        // ctaBackgroundImageUrl: 'https://...' // İstenirse arka plan resmi URL'si eklenebilir
+        ctaMainImageUrl: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c14c_book-your-free-consultation.avif", // Ana görsel eklendi
+        ctaMainImageAlt: "Online danışmanlık için gülen kadın",
+        // ctaBackgroundImageUrl: '...' // İstenirse arka plan resmi URL'si eklenebilir
       };
     }
     // Diğer slug'lar için veri veya null döndür
@@ -434,6 +467,15 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           />
         </div>
 
+        {/* Yorumlar Bölümü */}
+        {/* Bu bölümün ID'si 'yorumlar' olabilir */}
+        <div id="yorumlar">
+          <TestimonialsSection
+            title={serviceData.testimonialsSectionTitle}
+            testimonials={serviceData.testimonialsData}
+          />
+        </div>
+
         {/* Prosedür Adımları Bölümü */}
         {/* Bu bölümün ID'sinin '4' olduğunu varsayıyoruz */}
         <div id="4">
@@ -453,6 +495,20 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
             items={serviceData.recoveryItems}
           />
         </div>
+
+        {/* CTA Bölümü Buraya Taşındı */}
+        <CtaSection
+          tagline={serviceData.ctaTagline}
+          title={serviceData.ctaTitle}
+          description={serviceData.ctaDescription}
+          buttonText={serviceData.ctaButtonText}
+          buttonLink={serviceData.ctaButtonLink}
+          avatars={serviceData.ctaAvatars} // Tekil prop
+          avatarText={serviceData.ctaAvatarText} // Tekil prop
+          backgroundImageUrl={serviceData.ctaBackgroundImageUrl}
+          mainImageUrl={serviceData.ctaMainImageUrl} // Ana görsel prop'ları eklendi
+          mainImageAlt={serviceData.ctaMainImageAlt}
+        />
 
         {/* Fiyatlandırma Bölümü */}
         {/* Bu bölümün ID'sinin 'fiyat' olduğunu varsayıyoruz */}
@@ -484,17 +540,8 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           />
         </div>
 
-        {/* CTA Bölümü */}
-        <CtaSection
-          tagline={serviceData.ctaTagline}
-          title={serviceData.ctaTitle}
-          description={serviceData.ctaDescription}
-          buttonText={serviceData.ctaButtonText}
-          buttonLink={serviceData.ctaButtonLink}
-          avatars={serviceData.ctaAvatars}
-          avatarText={serviceData.ctaAvatarText}
-          backgroundImageUrl={serviceData.ctaBackgroundImageUrl}
-        />
+        {/* CTA Bölümü yukarı taşındığı için buradan kaldırıldı */}
+
       </main>
       <Footer />
       <FloatingButtons />

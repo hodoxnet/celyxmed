@@ -1,84 +1,119 @@
 // src/components/hizmet-detay/CtaSection.tsx
 import React from 'react';
-import Image from 'next/image'; // Avatar resimleri için
-import Link from 'next/link'; // Link bileşenini import et
-import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button'; // Buton için
+import { ArrowRight } from 'lucide-react'; // İkon için
 
-// Avatar verisi tipi (opsiyonel)
+// Avatar verisi tipi
 interface Avatar {
   id: string;
   src: string;
   alt: string;
+  isBlurred?: boolean; // Bulanık ve +50 uzman metni için
 }
 
 interface CtaSectionProps {
-  tagline?: string; // Opsiyonel etiket (örn: "Be Your Best")
+  tagline?: string;
   title: string;
   description: string;
   buttonText: string;
   buttonLink?: string;
-  avatars?: Avatar[]; // Gösterilecek doktor avatarları (opsiyonel)
-  avatarText?: string; // Avatarların yanındaki metin (opsiyonel)
-  backgroundImageUrl?: string; // Arka plan resmi (opsiyonel)
+  avatars?: Avatar[];
+  avatarText?: string;
+  backgroundImageUrl?: string; // Opsiyonel arka plan resmi
+  mainImageUrl?: string; // Opsiyonel ana görsel (soldaki)
+  mainImageAlt?: string;
 }
 
 const CtaSection: React.FC<CtaSectionProps> = ({
-  tagline,
+  tagline = "Be Your Best",
   title,
   description,
   buttonText,
   buttonLink = "/iletisim",
-  avatars,
-  avatarText,
-  backgroundImageUrl
+  avatars = [],
+  avatarText = "Doktorunuzu Seçin, Sorularınızı Sorun",
+  backgroundImageUrl, // Arka plan resmi prop'u
+  mainImageUrl = "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c14c_book-your-free-consultation.avif", // Varsayılan ana görsel
+  mainImageAlt = "Online danışmanlık için gülen kadın",
 }) => {
-  const sectionStyle = backgroundImageUrl
-    ? { backgroundImage: `url(${backgroundImageUrl})` }
-    : {};
-
-  const bgColorClass = backgroundImageUrl ? 'bg-cover bg-center text-white' : 'bg-blue-600 text-white'; // Arka plan resmine göre sınıf ayarı
-  const textColorClass = backgroundImageUrl ? 'text-white' : 'text-white'; // Metin rengi
-  const descriptionColorClass = backgroundImageUrl ? 'text-blue-100' : 'text-blue-100'; // Açıklama rengi
-
   return (
-    <section
-      className={`py-16 ${bgColorClass}`}
-      style={sectionStyle}
-    >
-      <div className="container mx-auto px-4 text-center">
-        {tagline && (
-          <div className="inline-block bg-white text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded mb-2">
-            {/* Elips eklenebilir */}
-            {tagline}
-          </div>
-        )}
-        <h2 className={`text-3xl font-bold mb-4 ${textColorClass}`}>{title}</h2>
-        <p className={`mb-6 max-w-xl mx-auto ${descriptionColorClass}`}>{description}</p>
+    <section className="py-16 md:py-24">
+      <div className="container mx-auto px-4">
+        {/* Ana Banner Wrapper */}
+        <div
+          className="rounded-2xl overflow-hidden bg-teal-700 dark:bg-teal-800/60 relative p-8 md:p-12 lg:p-16"
+          style={backgroundImageUrl ? { backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Sol Taraf: Ana Görsel */}
+            {mainImageUrl && (
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden order-last lg:order-first">
+                <Image
+                  src={mainImageUrl}
+                  alt={mainImageAlt}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  loading="lazy"
+                />
+              </div>
+            )}
 
-        {/* Avatarlar (varsa) */}
-        {avatars && avatars.length > 0 && (
-          <div className="flex justify-center items-center space-x-2 mb-6">
-            <div className="flex -space-x-2 overflow-hidden">
-              {avatars.map((avatar) => (
-                <div key={avatar.id} className="relative inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-gray-800">
-                   <Image
-                     src={avatar.src}
-                     alt={avatar.alt}
-                     layout="fill"
-                     objectFit="cover"
-                     className="rounded-full"
-                   />
+            {/* Sağ Taraf: İçerik */}
+            <div className="flex flex-col items-start text-white">
+              {/* Etiket */}
+              {tagline && (
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
+                  {tagline}
                 </div>
-              ))}
-              {/* "+50 uzman" gibi bir gösterge eklenebilir */}
-            </div>
-            {avatarText && <span className={`text-sm ${descriptionColorClass}`}>{avatarText}</span>}
-          </div>
-        )}
+              )}
 
-        <Button asChild size="lg" variant={backgroundImageUrl ? 'secondary' : 'default'}>
-          <Link href={buttonLink}>{buttonText}</Link>
-        </Button>
+              {/* Başlık */}
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+
+              {/* Açıklama */}
+              <p className="text-base text-white/80 mb-8">{description}</p>
+
+              {/* Avatarlar */}
+              {avatars.length > 0 && (
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="flex -space-x-3">
+                    {avatars.map((avatar) => (
+                      <div key={avatar.id} className="relative h-10 w-10 rounded-full border-2 border-teal-600 dark:border-teal-700 overflow-hidden">
+                        <Image
+                          src={avatar.src}
+                          alt={avatar.alt}
+                          fill
+                          style={{ objectFit: 'cover' }}
+                          className={avatar.isBlurred ? 'blur-sm' : ''}
+                        />
+                        {avatar.isBlurred && (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white text-[10px] leading-tight font-medium text-center">
+                            <span>+50</span>
+                            <span>Uzman</span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  {avatarText && <p className="text-sm text-white/70">{avatarText}</p>}
+                </div>
+              )}
+
+              {/* Buton */}
+              <Button size="lg" asChild className="bg-white text-teal-700 hover:bg-gray-100 rounded-full pl-3 pr-6 py-3 group shadow-md">
+                 <Link href={buttonLink} className="flex items-center gap-3">
+                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-600">
+                      <ArrowRight className="h-5 w-5 text-teal-700 dark:text-white transition-transform duration-300 group-hover:translate-x-1" />
+                   </span>
+                   <span className="font-semibold">{buttonText}</span>
+                 </Link>
+               </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

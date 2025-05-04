@@ -20,6 +20,13 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**', // Bu domain altındaki tüm yollara izin ver
       },
+      // via.placeholder.com için yeni pattern eklendi
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
