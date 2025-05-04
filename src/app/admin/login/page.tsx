@@ -1,15 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl"; // Kaldırıldı
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  // Çevirileri doğru şekilde alıyoruz
-  const t = useTranslations("Auth");
+  // const t = useTranslations("Auth"); // Kaldırıldı
   const router = useRouter();
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -28,16 +27,19 @@ export default function LoginPage() {
       });
 
       if (result?.error) {
-        setError(t("invalidCredentials"));
+        // setError(t("invalidCredentials")); // Değiştirildi
+        setError("Geçersiz e-posta veya şifre."); 
         return;
       }
 
       if (result?.ok) {
-        router.push("/tr/admin");
-        router.refresh();
+        // router.push("/tr/admin"); // Değiştirildi
+        router.push("/admin"); 
+        router.refresh(); // Sayfayı yenilemek genellikle iyi bir fikirdir
       }
     } catch (error) {
-      setError(t("loginFailed"));
+      // setError(t("loginFailed")); // Değiştirildi
+      setError("Giriş işlemi sırasında bir hata oluştu."); 
       console.error("Login error:", error);
     } finally {
       setLoading(false);

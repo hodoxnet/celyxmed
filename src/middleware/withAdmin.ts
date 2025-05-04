@@ -17,17 +17,15 @@ export async function withAdminMiddleware(request: NextRequest) {
 
     // Token yoksa veya admin rolü değilse, login sayfasına yönlendir
     if (!token || token.role !== 'ADMIN') {
-      console.log('Yetkisiz erişim, login sayfasına yönlendiriliyor');
-      
+      console.log('Yetkisiz erişim, /admin/login sayfasına yönlendiriliyor');
+
       // URL'yi oluştur
       const url = request.nextUrl.clone();
-      
-      // Dil kodunu koru
-      const locale = path.split('/')[1];
-      url.pathname = `/${locale}/admin/login`;
-      
-      // callbackUrl'e yönlendir
-      url.searchParams.set('callbackUrl', request.url);
+      url.pathname = `/admin/login`; // Doğrudan /admin/login'e yönlendir
+
+      // callbackUrl ekle (kullanıcı giriş yaptıktan sonra geri dönmesi için)
+      // Orijinal URL'yi callback olarak kullanmak mantıklı olabilir.
+      url.searchParams.set('callbackUrl', path); // Veya request.url kullanabilirsiniz
       
       return NextResponse.redirect(url);
     }

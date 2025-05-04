@@ -8,20 +8,24 @@ export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   console.log(`[Middleware] Processing path: ${pathname}`);
-  
-  // Kök yola gelen istekleri doğrudan yönlendir
+
+  // Admin yollarını ayrı ele al
+  if (pathname.startsWith('/admin')) {
+    console.log(`[Middleware] Processing admin path: ${pathname}`);
+    // Admin yetkilendirme kontrolü
+    return await withAdminMiddleware(request); 
+    // withAdminMiddleware başarılıysa NextResponse.next() dönecek ve intlMiddleware atlanacak.
+    // Başarısızsa yönlendirme yapacak.
+  }
+
+  // Kök yola gelen istekleri varsayılan locale'e yönlendir
   if (pathname === '/' || pathname === '') {
     console.log(`[Middleware] Redirecting / to /${defaultLocale}`);
     return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
   }
-  
-  // Önce admin sayfalarına erişimi kontrol et
-  const adminResult = await withAdminMiddleware(request);
-  if (adminResult !== NextResponse.next()) {
-    return adminResult;
-  }
-  
-  // Diğer rotalar için next-intl middleware'i kullan
+
+  // Diğer (admin olmayan) rotalar için next-intl middleware'i kullan
+  console.log(`[Middleware] Processing non-admin path with next-intl: ${pathname}`);
   const intlMiddleware = createMiddleware({
     locales,
     defaultLocale,

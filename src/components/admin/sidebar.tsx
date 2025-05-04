@@ -29,38 +29,19 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     title: "Dashboard",
-    href: "/tr/admin",
+    href: "/admin", // Removed /tr
     icon: <LayoutDashboard className="h-5 w-5" />,
   },
   {
     title: "Blog Yönetimi",
-    href: "/tr/admin/blog",
-    icon: <FileText className="h-5 w-5" />,
+    href: "/admin/blog", // Removed /tr
+    icon: <FileText className="h-5 w-5" />, // Reverted icon change, kept original
   },
+  // Removed Sayfalar, Galeri, İletişim, Kullanıcılar, Ayarlar
   {
-    title: "Sayfalar",
-    href: "/tr/admin/sayfalar",
-    icon: <FileImage className="h-5 w-5" />,
-  },
-  {
-    title: "Galeri",
-    href: "/tr/admin/galeri",
-    icon: <GalleryHorizontal className="h-5 w-5" />,
-  },
-  {
-    title: "İletişim Mesajları",
-    href: "/tr/admin/iletisim",
-    icon: <Mail className="h-5 w-5" />,
-  },
-  {
-    title: "Kullanıcılar",
-    href: "/tr/admin/kullanicilar",
+    title: "Yöneticiler", // Added Yöneticiler menu
+    href: "/admin/yoneticiler", // Removed /tr
     icon: <Users className="h-5 w-5" />,
-  },
-  {
-    title: "Ayarlar",
-    href: "/tr/admin/ayarlar",
-    icon: <Settings className="h-5 w-5" />,
   },
 ];
 
@@ -71,7 +52,7 @@ export function Sidebar() {
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
-    router.push("/tr/admin/login");
+    router.push("/admin/login"); // Removed /tr
   };
 
   const NavItem = ({ item }: { item: NavItem }) => {

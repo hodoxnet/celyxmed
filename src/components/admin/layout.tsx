@@ -2,6 +2,7 @@
 
 import { SessionProvider } from "next-auth/react";
 import { Sidebar } from "./sidebar";
+import { Toaster } from "@/components/ui/sonner"; // Toaster'ı import et
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,6 +17,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             © {new Date().getFullYear()} CelyxMed. Tüm hakları saklıdır.
           </div>
         </footer>
+        <Toaster richColors position="top-right" /> {/* Toaster'ı ekle */}
       </div>
     </SessionProvider>
   );
