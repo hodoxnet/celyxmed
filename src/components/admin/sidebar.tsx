@@ -13,7 +13,8 @@ import {
   Menu,
   FileImage,
   PlusCircle,
-  GalleryHorizontal
+  GalleryHorizontal,
+  Languages // Languages ikonunu import et
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -42,6 +43,11 @@ const navItems: NavItem[] = [
     title: "Yöneticiler", // Added Yöneticiler menu
     href: "/admin/yoneticiler", // Removed /tr
     icon: <Users className="h-5 w-5" />,
+  },
+  {
+    title: "Dil Yönetimi", // Added Dil Yönetimi menu
+    href: "/admin/diller",
+    icon: <Languages className="h-5 w-5" />,
   },
 ];
 

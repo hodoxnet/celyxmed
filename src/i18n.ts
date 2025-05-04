@@ -1,35 +1,39 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
 
-// Desteklenen dillerin listesi - dışa aktarıyoruz, middleware'de kullanacağız
-export const locales = ['en', 'tr'];
-export const defaultLocale = 'tr';
+// Desteklenen dillerin listesi - MANUEL OLARAK GÜNCELLENMELİ!
+export const locales = ['tr', 'en', 'de']; // 'de' eklendi (manuel)
+export const defaultLocale = 'tr'; // Varsayılan dil
 
-// Mesajları statik olarak import et
-import enMessages from './messages/en.json';
-import trMessages from './messages/tr.json';
+// Mesajları dinamik olarak import et
+async function getMessagesForLocale(locale: string) {
+  try {
+    return (await import(`./messages/${locale}.json`)).default;
+  } catch (error) {
+    console.error(`[i18n] Could not load messages for locale ${locale}:`, error);
+    notFound(); // Mesaj dosyası bulunamazsa 404
+  }
+}
 
-// Mesajları bir haritada sakla
-const allMessages = {
-  en: enMessages,
-  tr: trMessages
-};
+export default getRequestConfig(async ({ locale }) => {
+  // Gelen locale geçerli mi kontrol et
+  // locale undefined olabilir, bu yüzden kontrol ekleyelim
+  const validatedLocale = locales.includes(locale as string) ? locale : defaultLocale;
 
-export default getRequestConfig(async ({locale}) => {
-  // Locale parametresinin geçerliliğini kontrol et - yoksa varsayılanı kullan
-  const baseLocale = (locale || defaultLocale) as string;
-  
-  // Geçerli locale değilse 404 göster
-  if (!locales.includes(baseLocale)) {
-    console.error(`Invalid locale: ${baseLocale}`);
-    notFound();
+  if (!locales.includes(validatedLocale as string)) {
+     // Bu durum aslında olmamalı ama yine de kontrol edelim
+     console.error(`[i18n] Invalid locale determined: ${validatedLocale}`);
+     notFound();
   }
 
-  console.log(`[i18n] Using locale: ${baseLocale}`);
+  console.log(`[i18n] Using locale: ${validatedLocale}`);
 
+  // validatedLocale artık kesinlikle string
   return {
-    locale: baseLocale,
-    // Doğru mesajları locale'e göre seç
-    messages: allMessages[baseLocale as keyof typeof allMessages]
+    locale: validatedLocale as string, 
+    messages: await getMessagesForLocale(validatedLocale as string)
   };
 });
+
+// getLocaleConfig fonksiyonu artık kullanılmıyor, kaldırılabilir veya yorum satırı yapılabilir.
+// export const getLocaleConfig = getActiveLocales;

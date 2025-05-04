@@ -1,25 +1,22 @@
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl'; // Yorumu kaldır
-import { getMessages } from 'next-intl/server'; // Yorumu kaldır
-import "../globals.css"; // globals.css yolunu güncelle
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { ThemeProvider } from "@/components/theme-provider"; // ThemeProvider'ı import et
+import "../globals.css";
 
 export const metadata: Metadata = {
   title: "Celyxmed Kurumsal",
   description: "Celyxmed Kurumsal Web Sitesi",
 };
 
-// Next.js 15 için doğru tipleri import et
-import { LayoutProps } from 'next/dist/lib/app-router-context.shared-runtime';
-
 // RootLayout fonksiyonu
 export default async function RootLayout({
   children,
-  params
-}: LayoutProps) {
-  // Next.js 15'te params bir Promise olabilir, await ile bekleyelim
-  const resolvedParams = await params;
-  // locale değerini al veya varsayılanı kullan
-  const locale = String(resolvedParams?.locale || 'tr');
+  params: { locale } // Parametreleri doğrudan destruct et ve locale'i al
+}: {
+  children: React.ReactNode;
+  params: { locale: string }; // Parametre tipini belirt
+}) {
   console.log(`[Layout] Received locale: ${locale}`); // Locale'i logla
 
   let messages;
@@ -37,13 +34,20 @@ export default async function RootLayout({
 
   return (
     // html etiketinin lang özelliğini dinamik olarak ayarla
-    <html lang={locale}>
+    // Tema değişikliğinden kaynaklanan hydration uyarısını bastır
+    <html lang={locale} suppressHydrationWarning={true}>
       <body className={`antialiased`}>
-        {/* Çocuk bileşenleri NextIntlClientProvider ile sarmala */}
-        {/* messages null/undefined değilse provider'ı render et */}
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Çocuk bileşenleri NextIntlClientProvider ile sarmala */}
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -37,3 +37,16 @@ model Session {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+// Desteklenen diller modeli
+model Language {
+  id        String  @id @default(cuid())
+  code      String  @unique // Dil kodu (örn: 'en', 'tr')
+  name      String  // Dilin tam adı (örn: 'English', 'Türkçe')
+  isActive  Boolean @default(true) // Dilin sitede aktif olup olmadığını belirtir
+  isDefault Boolean @default(false) // Varsayılan dil olup olmadığını belirtir (sadece biri true olabilir)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // @@unique([isDefault], name: "unique_default_language") // Bu kısıtlama Prisma'da doğrudan desteklenmiyor, uygulama seviyesinde kontrol edilecek.
+}

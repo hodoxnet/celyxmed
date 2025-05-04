@@ -2,12 +2,14 @@
 
 import { SessionProvider } from "next-auth/react";
 import { Sidebar } from "./sidebar";
-import { Toaster } from "@/components/ui/sonner"; // Toaster'ı import et
+import { AdminHeader } from "./header"; // AdminHeader'ı import et
+import { Toaster } from "@/components/ui/sonner";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
-      <div className="flex min-h-screen flex-col bg-gray-50">
+      <div className="flex min-h-screen flex-col bg-background"> {/* bg-gray-50 yerine bg-background kullanıldı */}
+        <AdminHeader /> {/* Header'ı buraya ekle */}
         <div className="flex flex-1">
           <Sidebar />
           <main className="flex-1 overflow-y-auto p-4 lg:p-8">{children}</main>
