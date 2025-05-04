@@ -26,32 +26,29 @@ const FaqSection: React.FC<FaqSectionProps> = ({ sectionTitle, sectionDescriptio
   }
 
   return (
-    <section className="py-16"> {/* Arka plan rengi kaldırıldı, ana sayfadaki gibi */}
+    <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{sectionTitle}</h2>
+        <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">{sectionTitle}</h2>
           {sectionDescription && (
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">{sectionDescription}</p>
+            <p className="text-base text-gray-600 dark:text-gray-400">{sectionDescription}</p>
           )}
         </div>
-
-        <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto"> {/* Ortalamak için max-w ve mx-auto */}
+        <Accordion type="single" collapsible className="w-full space-y-4">
           {faqItems.map((item) => (
-            <AccordionItem key={item.id} value={item.id} className="border-b dark:border-gray-700">
-              <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline py-4">
-                {item.question}
-              </AccordionTrigger>
-              <AccordionContent className="pb-4 pt-0">
-                 {/* Cevap HTML içerebileceği için dangerouslySetInnerHTML kullanılabilir,
-                     ancak güvenlik riski taşır. Güvenli bir kaynaktan gelmiyorsa
-                     sanitize edilmeli veya markdown gibi bir format kullanılmalı.
-                     Şimdilik basit metin olarak ekliyoruz. */}
-                <div
-                  className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
-                  dangerouslySetInnerHTML={{ __html: item.answer }} // HTML içeriği için
-                />
-              </AccordionContent>
-            </AccordionItem>
+            <React.Fragment key={item.id}>
+              <AccordionItem value={item.id} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl border-none overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline px-6 py-5 text-gray-900 dark:text-white">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6 pt-0">
+                  <div
+                    className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
+                    dangerouslySetInnerHTML={{ __html: item.answer }}
+                  />
+                </AccordionContent>
+              </AccordionItem>
+            </React.Fragment>
           ))}
         </Accordion>
       </div>
