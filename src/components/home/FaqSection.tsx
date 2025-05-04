@@ -6,79 +6,92 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-// SSS verileri (index.html'den alınmıştır)
+// SSS verileri Türkçeleştirildi ve yapı güncellendi (id kullanıldı)
 const faqData = [
   {
-    value: "item-1",
-    question: "What treatments does Celyxmed offer?",
-    answer: "Celyxmed offers a wide range of treatments, including bariatric surgery, plastic surgery, dental aesthetics, hair transplant, and various medical treatments."
+    id: "faq-home-1",
+    question: "Celyxmed hangi tedavileri sunuyor?",
+    answer: "Celyxmed, bariatrik cerrahi, plastik cerrahi, diş estetiği, saç ekimi ve çeşitli medikal tedaviler dahil olmak üzere geniş bir yelpazede tedavi sunmaktadır."
   },
   {
-    value: "item-2",
-    question: "Why should I choose Celyxmed over other clinics?",
-    answer: "Celyxmed is trusted by thousands of international patients for its JCI-accredited clinics, experienced doctors, and personalized care. We provide high-quality treatments at affordable prices."
+    id: "faq-home-2",
+    question: "Neden diğer klinikler yerine Celyxmed'i seçmeliyim?",
+    answer: "Celyxmed, JCI akreditasyonlu klinikleri, deneyimli doktorları ve kişiselleştirilmiş bakımıyla binlerce uluslararası hasta tarafından güvenilmektedir. Yüksek kaliteli tedavileri uygun fiyatlarla sunuyoruz."
   },
   {
-    value: "item-3",
-    question: "Is Turkey safe for medical treatments?",
-    answer: "Yes, Turkey is one of the leading destinations for medical tourism. With world-class clinics, experienced doctors, and affordable treatment options, it attracts thousands of patients every year."
+    id: "faq-home-3",
+    question: "Türkiye tıbbi tedaviler için güvenli mi?",
+    answer: "Evet, Türkiye medikal turizm için önde gelen destinasyonlardan biridir. Dünya standartlarında klinikler, deneyimli doktorlar ve uygun fiyatlı tedavi seçenekleri ile her yıl binlerce hastayı cezbetmektedir."
   },
   {
-    value: "item-4",
-    question: "How can I book a consultation?",
-    answer: "You can book your free consultation through our website or by contacting us via WhatsApp, email, or phone. Our team will guide you through the process."
+    id: "faq-home-4",
+    question: "Nasıl konsültasyon randevusu alabilirim?",
+    answer: "Ücretsiz konsültasyonunuzu web sitemiz üzerinden veya WhatsApp, e-posta ya da telefon yoluyla bizimle iletişime geçerek alabilirsiniz. Ekibimiz süreç boyunca size rehberlik edecektir."
   },
   {
-    value: "item-5",
-    question: "Can I consult with doctors online?",
-    answer: "Yes, you can schedule an online consultation with our specialists to discuss your needs and get personalized treatment advice before your visit."
+    id: "faq-home-5",
+    question: "Doktorlarla online görüşme yapabilir miyim?",
+    answer: "Evet, ziyaretinizden önce ihtiyaçlarınızı görüşmek ve kişiselleştirilmiş tedavi tavsiyesi almak için uzmanlarımızla online konsültasyon planlayabilirsiniz."
   },
    {
-    value: "item-6",
-    question: "Do I need a referral from my local doctor?",
-    answer: "No referral is needed. Simply book a consultation with Celyxmed, and we’ll handle the rest."
+    id: "faq-home-6",
+    question: "Yerel doktorumdan bir sevk almam gerekiyor mu?",
+    answer: "Hayır, sevk gerekmez. Sadece Celyxmed ile bir konsültasyon ayarlayın, gerisini biz hallederiz."
   },
    {
-    value: "item-7",
-    question: "Does Celyxmed arrange airport transfers?",
-    answer: "Yes, we provide airport transfers for our patients to ensure a smooth and comfortable experience upon arrival in Istanbul."
+    id: "faq-home-7",
+    question: "Celyxmed havaalanı transferlerini ayarlıyor mu?",
+    answer: "Evet, hastalarımızın İstanbul'a varışlarında sorunsuz ve konforlu bir deneyim yaşamalarını sağlamak için havaalanı transferleri sağlıyoruz."
   },
    {
-    value: "item-8",
-    question: "Can you help with accommodation arrangements?",
-    answer: "Yes, we offer assistance with booking accommodation near our clinics, ensuring a comfortable stay during your treatment journey."
+    id: "faq-home-8",
+    question: "Konaklama düzenlemeleri konusunda yardımcı olabilir misiniz?",
+    answer: "Evet, tedavi süreciniz boyunca konforlu bir konaklama sağlamak için kliniklerimize yakın konaklama rezervasyonu konusunda yardımcı oluyoruz."
   },
    {
-    value: "item-9",
-    question: "How long should I stay in Turkey for my treatment?",
-    answer: "The duration depends on the type of treatment. Our team will provide a detailed timeline after your consultation."
+    id: "faq-home-9",
+    question: "Tedavim için Türkiye'de ne kadar kalmalıyım?",
+    answer: "Süre, tedavi türüne bağlıdır. Ekibimiz konsültasyonunuzdan sonra ayrıntılı bir zaman çizelgesi sunacaktır."
   }
 ];
 
 const FaqSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-gray-50"> {/* Arka plan rengi */}
+    // Stil hizmet detay ile aynı yapıldı (dark mode dahil)
+    <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800">
-            Frequently Asked Questions and Solutions
+        {/* Başlık stili hizmet detay ile aynı yapıldı */}
+        <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+            Sıkça Sorulan Sorular ve Çözümleri {/* Başlık Türkçeleştirildi */}
           </h2>
+          {/* İsteğe bağlı açıklama eklenebilir:
+          <p className="text-base text-gray-600 dark:text-gray-400">Açıklama buraya</p>
+          */}
         </div>
 
-        <div className="max-w-3xl mx-auto"> {/* Akordiyonu ortala ve genişliği sınırla */}
-          <Accordion type="single" collapsible className="w-full space-y-2">
-            {faqData.map((faq) => (
-              <AccordionItem key={faq.value} value={faq.value} className="border rounded-lg bg-white shadow-sm px-4">
-                <AccordionTrigger className="text-left font-medium text-lg hover:no-underline">
-                  {faq.question}
+        {/* Ekstra sarmalayıcı div kaldırıldı, Accordion stilleri güncellendi */}
+        <Accordion type="single" collapsible className="w-full space-y-4">
+          {faqData.map((item) => ( // Değişken adı 'item' olarak değiştirildi
+            // React.Fragment eklendi (hizmet detaydaki gibi)
+            <React.Fragment key={item.id}>
+              {/* AccordionItem stili hizmet detay ile aynı yapıldı */}
+              <AccordionItem value={item.id} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl border-none overflow-hidden">
+                {/* AccordionTrigger stili hizmet detay ile aynı yapıldı */}
+                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline px-6 py-5 text-gray-900 dark:text-white">
+                  {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 pt-2 pb-4">
-                  {faq.answer}
+                {/* AccordionContent stili ve cevap renderlama hizmet detay ile aynı yapıldı */}
+                <AccordionContent className="px-6 pb-6 pt-0">
+                   <div
+                    className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
+                    dangerouslySetInnerHTML={{ __html: item.answer }}
+                  />
                 </AccordionContent>
               </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+            </React.Fragment>
+          ))}
+        </Accordion>
       </div>
     </section>
   );
