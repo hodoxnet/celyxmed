@@ -43,20 +43,23 @@ const BlogPreview = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {blogPosts.map((post) => (
-            <Card key={post.title} className="flex flex-col overflow-hidden group">
-              <Link href={post.link} className="block">
-                <CardHeader className="p-0">
-                  <div className="relative w-full aspect-[16/10] overflow-hidden"> {/* Görsel alanı */}
-                    <Image
-                      src={post.imageUrl}
-                      alt={post.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                </CardHeader>
-              </Link>
+            <Card key={post.title} className="flex flex-col overflow-hidden group p-0"> {/* Kartın kendi padding'ini sıfırla */}
+              {/* CardHeader kaldırıldı, resim container'ı doğrudan Card içine alındı */}
+              {/* Resim container'ı için aspect ratio ve overflow hidden */}
+              <div className="relative w-full aspect-[16/10] overflow-hidden">
+                  <Link href={post.link} className="block absolute inset-0 z-10">
+                     <span className="sr-only">Yazıyı oku: {post.title}</span>
+                  </Link>
+                  <Image
+                    src={post.imageUrl}
+                    alt={post.title}
+                    fill // layout="fill" yerine fill prop'u
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Responsive boyutlar için sizes prop'u
+                    style={{ objectFit: "cover" }}
+                    className="transition-transform duration-300 group-hover:scale-105"
+                  />
+              </div>
+              {/* CardHeader kaldırıldı */}
               <CardContent className="p-4 flex-grow">
                 <Link href={post.link} className="block">
                   <CardTitle className="text-lg font-semibold mb-2 text-gray-800 hover:text-cyan-600 transition-colors">

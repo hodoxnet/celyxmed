@@ -20,6 +20,7 @@ import ImageMarquee from '@/components/hizmet-detay/ImageMarquee'; // Yeni marqu
 import TreatmentIntroSection from '@/components/hizmet-detay/TreatmentIntroSection'; // Yeni intro bölümünü import et
 import TestimonialsSection from '@/components/hizmet-detay/TestimonialsSection'; // Yeni yorum bölümünü import et
 import CtaSection from '@/components/hizmet-detay/CtaSection'; // CTA bölümünü import et (yeniden adlandırıldıysa düzelt)
+import BlogPreview from '@/components/home/BlogPreview'; // Blog önizleme bölümünü import et
 // Gerekirse diğer UI bileşenlerini import edeceğiz
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 // import { Button } from "@/components/ui/button";
@@ -529,6 +530,9 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
             experts={serviceData.expertsData}
           />
         </div>
+
+        {/* Blog Önizleme Bölümü */}
+        <BlogPreview />
 
         {/* SSS Bölümü */}
         {/* Bu bölümün ID'sinin '8' olduğunu varsayıyoruz */}
