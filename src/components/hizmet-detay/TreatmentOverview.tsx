@@ -75,15 +75,26 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
                   <div className="space-y-5"> {/* Boşluk ayarlandı */}
                     <h3 className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white">{tab.title}</h3> {/* Font boyutu ayarlandı */}
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base">{tab.content}</p> {/* Renk, satır aralığı ve font boyutu ayarlandı */}
-                    {/* Yeni Buton Stili */}
-                    <Button variant="link" asChild className="p-0 h-auto text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 group">
+                    {/* Buton Stili Güncellendi (Home'daki gibi) */}
+                    <Link href={tab.buttonLink || '/iletisim'} className="inline-flex items-center rounded-full overflow-hidden shadow-md group transition-shadow hover:shadow-lg text-white font-medium text-base">
+                      {/* İkon Bölümü */}
+                      <span className="flex h-12 w-12 items-center justify-center bg-[#d4b978] group-hover:bg-[#c5ad6e] transition-colors"> {/* Renk ve boyut ayarlandı */}
+                        <ArrowRight className="h-5 w-5 text-white" />
+                      </span>
+                      {/* Metin Bölümü */}
+                      <span className="px-6 py-3 bg-teal-600 group-hover:bg-teal-700 transition-colors"> {/* Renk ve padding ayarlandı */}
+                        {tab.buttonText}
+                      </span>
+                    </Link>
+                    {/* Eski Buton kaldırıldı */}
+                    {/* <Button variant="link" asChild className="p-0 h-auto text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 group">
                        <Link href={tab.buttonLink || '/iletisim'} className="inline-flex items-center gap-3">
                          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 transition-colors group-hover:bg-amber-500">
                            <ArrowRight className="h-5 w-5 text-teal-900" />
                          </span>
                          <span className="font-medium">{tab.buttonText}</span>
                        </Link>
-                    </Button>
+                    </Button> */}
                   </div>
                   {/* Resim */}
                   <div className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-md"> {/* Yükseklik ve gölge ayarlandı */}
