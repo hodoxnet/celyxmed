@@ -33,6 +33,8 @@ interface ServiceData {
   breadcrumb: string;
   title: string;
   description: string;
+  heroImageUrl: string; // HeroSection için resim URL'si
+  heroImageAlt: string; // HeroSection için resim alt metni
   tocTitle: string;
   tocAuthorInfo?: string;
   tocItems: ContentItem[];
@@ -135,6 +137,8 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
         breadcrumb: 'Celyxmed > Plastik Cerrahi > Anne Estetiği (Mommy Makeover)',
         title: 'Anne Estetiği (Mommy Makeover)',
         description: 'Doğum sonrası vücudunuzu yeniden şekillendirin! İstanbul’da Celyxmed ile karın germe, meme estetiği, liposuction ve vajinal estetik gibi kombine operasyonlarla kişiye özel “Mommy Makeover” estetik çözümleri sunuyoruz.',
+        heroImageUrl: 'https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c21c_mommy-makeover-in-turkey.avif', // index.html'den alındı
+        heroImageAlt: 'Anne Estetiği (Mommy Makeover) Arka Plan Resmi',
         tocTitle: 'İçindekiler',
         tocAuthorInfo: 'İçerik Yazarı: Op. Dr. Kemal Aytuğlu (Plastik Cerrah) | Son Güncelleme: 10 Ocak 2025',
         tocItems: tocItems,
@@ -325,6 +329,9 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           breadcrumb={serviceData.breadcrumb}
           title={serviceData.title}
           description={serviceData.description}
+          imageUrl={serviceData.heroImageUrl}
+          imageAlt={serviceData.heroImageAlt}
+          // İsteğe bağlı buton metinleri/linkleri de eklenebilir
         />
         <TableOfContents
           title={serviceData.tocTitle}
