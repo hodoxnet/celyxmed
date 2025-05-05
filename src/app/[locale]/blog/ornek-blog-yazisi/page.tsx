@@ -102,24 +102,12 @@ const blogData = {
   ]
 };
 
-// ProcedureSteps için statik veri
-const procedureData = {
-  sectionTitle: "Blog Yazım Süreci",
-  steps: [
-    { id: "1", title: "Araştırma", description: "Konu hakkında detaylı araştırma yapılır." },
-    { id: "2", title: "Taslak Oluşturma", description: "Yazının ana hatları belirlenir." },
-    { id: "3", title: "Yazım", description: "İçerik detaylı bir şekilde yazılır." },
-    { id: "4", title: "Düzenleme", description: "Yazım ve dilbilgisi hataları kontrol edilir." },
-    { id: "5", title: "Yayınlama", description: "Blog yazısı yayına alınır." },
-  ]
-};
-
 const BlogDetailPage = () => {
   const [tocOpen, setTocOpen] = useState(true); // Varsayılan olarak açık
 
   return (
-    // Ana container kaldırıldı, sadece padding kaldı
-    <main className="pb-8 pt-40"> 
+    // Ana container kaldırıldı, sadece padding kaldı (pt artırıldı)
+    <main className="pb-8 pt-56"> 
       {/* İçeriği sarmalayan container */}
       <div className="container mx-auto px-4">
         {/* İlk görünüm - Ekranı kaplayan bölüm */}
@@ -179,7 +167,7 @@ const BlogDetailPage = () => {
         {/* Sınırlandırılmış Genişlikli Bileşenler (WhyTrustSection hariç) */}
         <div className="max-w-6xl mx-auto">
           <ClinicShowcase />
-          <ProcedureSteps sectionTitle={procedureData.sectionTitle} steps={procedureData.steps} />
+          {/* ProcedureSteps kaldırıldı */}
           <BlogPreview />
         </div>
       </div> {/* container div kapanışı */}
