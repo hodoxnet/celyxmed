@@ -115,24 +115,27 @@ const procedureData = {
 };
 
 const BlogDetailPage = () => {
-  const [tocOpen, setTocOpen] = useState(false);
+  const [tocOpen, setTocOpen] = useState(true); // Varsayılan olarak açık
 
   return (
-    <main className="container mx-auto px-4 pb-8 pt-40"> {/* Navbar için üst padding eklendi */}
-      {/* İlk görünüm - Ekranı kaplayan bölüm */}
-      <div className="min-h-[calc(100vh-10rem)] flex flex-col justify-center items-center">
-        {/* Blog Başlığı - Ortalanmış ve büyütülmüş */}
-        <section className="text-center max-w-4xl mx-auto">
+    // Ana container kaldırıldı, sadece padding kaldı
+    <main className="pb-8 pt-40"> 
+      {/* İçeriği sarmalayan container */}
+      <div className="container mx-auto px-4">
+        {/* İlk görünüm - Ekranı kaplayan bölüm */}
+        <div className="min-h-[calc(100vh-10rem)] flex flex-col justify-center items-center">
+          {/* Blog Başlığı - Ortalanmış ve büyütülmüş */}
+          <section className="text-center max-w-4xl mx-auto mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-10 text-slate-800">{blogData.title}</h1>
           
           {/* Uzun açıklama - Görseldeki gibi */}
-          <p className="text-base text-slate-700 leading-relaxed mb-16">
+          <p className="text-base text-slate-700 leading-relaxed mb-8">
             {blogData.fullDescription}
           </p>
         </section>
-
-        {/* İçindekiler - Daraltılabilir/Genişletilebilir */}
-        <section className="w-full max-w-4xl mx-auto mb-8">
+        
+        {/* İçindekiler - Daraltılabilir/Genişletilebilir - Tam genişlikte */}
+        <section className="w-full mb-12">
           <div 
             className="bg-gray-50 rounded-lg shadow-sm p-4 cursor-pointer"
             onClick={() => setTocOpen(!tocOpen)}
@@ -157,20 +160,33 @@ const BlogDetailPage = () => {
                 </ul>
               </div>
             )}
-          </div>
+            </div>
+          </section>
+        </div>
+
+        {/* Blog Kapak Resmi - Blog içeriğinin hemen üstünde */}
+        <section className="w-full mb-12 relative h-[450px] overflow-hidden rounded-xl max-w-6xl mx-auto">
+          <img 
+            src="https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/67b76225b3622d69b5b3ef61_hair-transplant-clinic-in-turkey-celyxmed%20(2).avif" 
+            alt={blogData.title}
+            className="w-full h-full object-cover"
+          />
         </section>
-      </div>
 
-      {/* Blog İçeriği */}
-      <article className="prose lg:prose-xl max-w-4xl mx-auto mb-16" dangerouslySetInnerHTML={{ __html: blogData.content }} />
+        {/* Blog İçeriği */}
+        <article className="prose lg:prose-xl max-w-4xl mx-auto mb-16" dangerouslySetInnerHTML={{ __html: blogData.content }} />
 
-      {/* Yeniden Kullanılabilir Bileşenler */}
-      <div className="max-w-6xl mx-auto">
-        <WhyTrustSection />
-        <ClinicShowcase />
-        <ProcedureSteps sectionTitle={procedureData.sectionTitle} steps={procedureData.steps} />
-        <BlogPreview />
-      </div>
+        {/* Sınırlandırılmış Genişlikli Bileşenler (WhyTrustSection hariç) */}
+        <div className="max-w-6xl mx-auto">
+          <ClinicShowcase />
+          <ProcedureSteps sectionTitle={procedureData.sectionTitle} steps={procedureData.steps} />
+          <BlogPreview />
+        </div>
+      </div> {/* container div kapanışı */}
+
+      {/* Tam Genişlikli Bileşen (Container dışında) */}
+      <WhyTrustSection />
+
     </main>
   );
 };
