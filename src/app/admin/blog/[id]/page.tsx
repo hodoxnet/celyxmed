@@ -29,23 +29,26 @@ import {
 
 // Şema tanımları
 const blogBaseSchema = z.object({
-  slug: z.string().min(1, "Slug zorunludur").refine(val => /^[a-z0-9-]+$/.test(val), {
-    message: "Slug sadece küçük harfler, sayılar ve tire (-) içerebilir",
-  }),
+  // slug buradan kaldırıldı
   coverImageUrl: z.string().optional(),
-  isPublished: z.boolean(), // .default(false) kaldırıldı
+  isPublished: z.boolean(),
 });
 
 const blogTranslationSchema = z.object({
   languageCode: z.string(),
+  // slug buraya eklendi
+  slug: z.string().min(1, "Slug zorunludur").refine(val => /^[a-z0-9-]+$/.test(val), {
+    message: "Slug sadece küçük harfler, sayılar ve tire (-) içerebilir",
+  }),
   title: z.string().min(1, "Başlık zorunludur"),
   fullDescription: z.string().min(1, "Açıklama zorunludur"),
   content: z.string().min(1, "İçerik zorunludur"),
   tocItems: z.any().optional(),
 });
 
+// blogFormSchema tanımı güncellendi (extend yerine doğrudan base + translations)
 const blogFormSchema = blogBaseSchema.extend({
-  translations: z.array(blogTranslationSchema),
+  translations: z.array(blogTranslationSchema).min(1, "En az bir dil çevirisi gereklidir"), // En az bir çeviri olmalı
 });
 
 type BlogFormValues = z.infer<typeof blogFormSchema>;
@@ -64,10 +67,10 @@ export default function BlogEditPage() {
 
   // Form için varsayılan değerleri açıkça tanımla
   const formDefaultValues: BlogFormValues = {
-    slug: '',
+    // slug buradan kaldırıldı
     coverImageUrl: '',
     isPublished: false,
-    translations: [],
+    translations: [], // Başlangıçta boş, diller yüklendikçe veya veri çekildikçe dolacak
   };
 
   // Form tanımla
@@ -126,10 +129,11 @@ export default function BlogEditPage() {
           const data = await response.json();
 
           // Form değerlerini doldur (setValue kullanarak)
-          form.setValue('slug', data.slug || '', { shouldValidate: true });
+          // form.setValue('slug', data.slug || '', { shouldValidate: true }); // Bu satır kaldırıldı
           form.setValue('coverImageUrl', data.coverImageUrl || '', { shouldValidate: true });
           form.setValue('isPublished', data.isPublished ?? false, { shouldValidate: true });
           // translations'ın her zaman bir dizi olduğundan emin ol
+          // API'den gelen her çevirinin slug içerdiğini varsayıyoruz (backend güncellemesi gerekli)
           form.setValue('translations', Array.isArray(data.translations) ? data.translations : [], { shouldValidate: true });
 
         } catch (err: any) { // Hata yakalama bloğu
@@ -196,9 +200,10 @@ export default function BlogEditPage() {
     
     if (existingTranslation) return existingTranslation;
     
-    // Yeni çeviri oluştur
+    // Yeni çeviri oluştur (slug alanı eklendi)
     const newTranslation = {
       languageCode,
+      slug: '', // Yeni çeviri için boş slug
       title: '',
       fullDescription: '',
       content: '',
@@ -235,12 +240,25 @@ export default function BlogEditPage() {
           <h1 className="text-3xl font-bold">{isNewBlog ? 'Yeni Blog Yazısı' : 'Blog Yazısını Düzenle'}</h1>
         </div>
         <div className="flex items-center space-x-2">
-          {!isNewBlog && (
-            <Button variant="outline" onClick={() => router.push(`/blog/${form.getValues().slug}`)}>
-              <Eye className="mr-2 h-4 w-4" /> Önizleme
+          {!isNewBlog && activeLanguage && ( // Aktif dil varsa önizleme butonu gösterilir
+            <Button
+              variant="outline"
+              onClick={() => {
+                const currentSlug = form.getValues().translations?.find(t => t.languageCode === activeLanguage)?.slug;
+                if (currentSlug) {
+                  // TODO: Locale bilgisini de URL'e eklemek gerekebilir. Şimdilik sadece slug kullanılıyor.
+                  // Örnek: router.push(`/${activeLanguage}/blog/${currentSlug}`)
+                  router.push(`/blog/${currentSlug}`);
+                } else {
+                  toast.info("Bu dil için geçerli bir slug bulunamadı.");
+                }
+              }}
+              disabled={!form.getValues().translations?.find(t => t.languageCode === activeLanguage)?.slug} // Aktif dilin slug'ı yoksa disable
+            >
+              <Eye className="mr-2 h-4 w-4" /> Önizleme ({getLanguageName(activeLanguage)})
             </Button>
           )}
-          <Button 
+          <Button
             onClick={form.handleSubmit(onSubmit)} 
             disabled={isSaving || isLoading}
             className="bg-green-600 hover:bg-green-700"
@@ -270,25 +288,9 @@ export default function BlogEditPage() {
               <div className="lg:col-span-1 space-y-6">
                 <div className="bg-white rounded-lg border p-6 space-y-6">
                   <h2 className="text-xl font-semibold border-b pb-2">Genel Ayarlar</h2>
-                  
-                  {/* Slug */}
-                  <FormField
-                    control={form.control}
-                    name="slug"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Slug</FormLabel>
-                        <FormControl>
-                          <Input placeholder="ornek-blog-yazisi" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          URL'de görünecek benzersiz tanımlayıcı.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
+
+                  {/* Slug alanı buradan kaldırıldı */}
+
                   {/* Kapak Resmi */}
                   <FormField
                     control={form.control}
@@ -380,11 +382,31 @@ export default function BlogEditPage() {
                             )}
                           </div>
 
+                          {/* Slug (Controller ile) - Her dil için ayrı */}
+                          <div className="space-y-2">
+                            <Label htmlFor={`translations.${index}.slug`}>Slug</Label>
+                            <Controller
+                              name={`translations.${index}.slug`}
+                              control={form.control}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  id={`translations.${index}.slug`}
+                                  placeholder={`${lang.name} için slug (ornek-blog-yazisi)`}
+                                />
+                              )}
+                            />
+                            <FormDescription>
+                              Bu dil için URL'de görünecek benzersiz tanımlayıcı.
+                            </FormDescription>
+                            <FormMessage>{form.formState.errors.translations?.[index]?.slug?.message}</FormMessage>
+                          </div>
+
                           {/* Başlık (Controller ile) */}
                           <div className="space-y-2">
                             <Label htmlFor={`translations.${index}.title`}>Başlık</Label>
                             <Controller
-                              name={`translations.${index}.title`}
+                              name={`translations.${index}.title`} // İsim doğru, index'e göre ayarlanıyor
                               control={form.control}
                               render={({ field }) => (
                                 <Input
