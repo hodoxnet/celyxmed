@@ -44,10 +44,25 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
 
             {/* Sol Sütun (index.html: integrations-banner-left) */}
             <div className="flex flex-col space-y-6">
-              {/* Video Placeholder */}
-              <div className="aspect-video w-full bg-gray-200 rounded-lg flex items-center justify-center">
-                <ImageOff className="h-16 w-16 text-gray-400" /> {/* Placeholder ikonu */}
-              </div>
+            {/* Video Alanı */}
+            <div className="aspect-video w-full rounded-lg overflow-hidden shadow-md">
+              {videoId ? (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <ImageOff className="h-16 w-16 text-gray-400" /> {/* Video yoksa placeholder */}
+                </div>
+              )}
+            </div>
               {/* Başlık ve Açıklama (index.html: integrations-banner-heading-2) */}
               <div className="space-y-3">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">

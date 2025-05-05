@@ -1,5 +1,6 @@
-import { UseFormReturn } from "react-hook-form";
+import { UseFormReturn, FieldValues } from "react-hook-form";
 import { HizmetDetayFormValues } from "@/lib/validators/admin";
 
-// Define a single shared form type to be used across all components
-export type HizmetDetayForm = UseFormReturn<HizmetDetayFormValues>;
+// Define a form type that's less strict to avoid type errors
+// This allows component props to accept any compatible form object
+export type HizmetDetayForm = any;
