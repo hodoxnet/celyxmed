@@ -45,6 +45,7 @@ export const config = {
   // - _next/static dosyaları hariç
   // - _next/image optimizasyonları hariç
   // - favicon.ico hariç
+  // - uploads klasörü hariç (eklendi)
   // tüm rotalarda çalışmasını sağlar.
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|uploads).*)']
 };
