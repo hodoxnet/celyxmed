@@ -14,7 +14,8 @@ import {
   FileImage,
   PlusCircle,
   GalleryHorizontal,
-  Languages // Languages ikonunu import et
+  Languages, // Languages ikonunu import et
+  ClipboardList // Hizmetler için ikon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -48,6 +49,11 @@ const navItems: NavItem[] = [
     title: "Dil Yönetimi", // Added Dil Yönetimi menu
     href: "/admin/diller",
     icon: <Languages className="h-5 w-5" />,
+  },
+  {
+    title: "Hizmetler", // Yeni menü öğesi
+    href: "/admin/hizmetler",
+    icon: <ClipboardList className="h-5 w-5" />, // Hizmetler için ikon
   },
 ];
 

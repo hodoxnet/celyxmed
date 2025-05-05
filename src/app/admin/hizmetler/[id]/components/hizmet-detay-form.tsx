@@ -159,7 +159,7 @@ export function HizmetDetayForm({ initialData, diller }: HizmetDetayFormProps) {
     breadcrumb: initialData?.breadcrumb ?? "",
     title: initialData?.title ?? "",
     description: initialData?.description ?? "",
-    published: initialData?.published ?? false, // boolean olmalı
+    published: initialData?.published ?? false, // boolean olmalı, şemada default var
     heroImageUrl: initialData?.heroImageUrl ?? "",
     heroImageAlt: initialData?.heroImageAlt ?? "",
     tocTitle: initialData?.tocTitle ?? "İçindekiler",
