@@ -169,6 +169,183 @@ exports.Prisma.BlogTranslationScalarFieldEnum = {
   languageCode: 'languageCode'
 };
 
+exports.Prisma.HizmetDetayScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  slug: 'slug',
+  breadcrumb: 'breadcrumb',
+  title: 'title',
+  description: 'description',
+  published: 'published',
+  languageCode: 'languageCode',
+  heroImageUrl: 'heroImageUrl',
+  heroImageAlt: 'heroImageAlt',
+  tocTitle: 'tocTitle',
+  tocAuthorInfo: 'tocAuthorInfo',
+  tocCtaDescription: 'tocCtaDescription',
+  introVideoId: 'introVideoId',
+  introTitle: 'introTitle',
+  introDescription: 'introDescription',
+  introPrimaryButtonText: 'introPrimaryButtonText',
+  introPrimaryButtonLink: 'introPrimaryButtonLink',
+  introSecondaryButtonText: 'introSecondaryButtonText',
+  introSecondaryButtonLink: 'introSecondaryButtonLink',
+  overviewTitle: 'overviewTitle',
+  overviewDescription: 'overviewDescription',
+  whyTitle: 'whyTitle',
+  whyBackgroundImageUrl: 'whyBackgroundImageUrl',
+  galleryTitle: 'galleryTitle',
+  galleryDescription: 'galleryDescription',
+  testimonialsSectionTitle: 'testimonialsSectionTitle',
+  stepsTitle: 'stepsTitle',
+  stepsDescription: 'stepsDescription',
+  recoveryTitle: 'recoveryTitle',
+  recoveryDescription: 'recoveryDescription',
+  ctaTagline: 'ctaTagline',
+  ctaTitle: 'ctaTitle',
+  ctaDescription: 'ctaDescription',
+  ctaButtonText: 'ctaButtonText',
+  ctaButtonLink: 'ctaButtonLink',
+  ctaAvatarText: 'ctaAvatarText',
+  ctaBackgroundImageUrl: 'ctaBackgroundImageUrl',
+  ctaMainImageUrl: 'ctaMainImageUrl',
+  ctaMainImageAlt: 'ctaMainImageAlt',
+  pricingTitle: 'pricingTitle',
+  pricingDescription: 'pricingDescription',
+  expertsSectionTitle: 'expertsSectionTitle',
+  expertsTagline: 'expertsTagline',
+  faqSectionTitle: 'faqSectionTitle',
+  faqSectionDescription: 'faqSectionDescription',
+  metaTitle: 'metaTitle',
+  metaDescription: 'metaDescription',
+  metaKeywords: 'metaKeywords'
+};
+
+exports.Prisma.HizmetTocItemScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  isBold: 'isBold',
+  level: 'level',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetMarqueeImageScalarFieldEnum = {
+  id: 'id',
+  src: 'src',
+  alt: 'alt',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetIntroLinkScalarFieldEnum = {
+  id: 'id',
+  targetId: 'targetId',
+  number: 'number',
+  text: 'text',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetOverviewTabScalarFieldEnum = {
+  id: 'id',
+  value: 'value',
+  triggerText: 'triggerText',
+  title: 'title',
+  content: 'content',
+  imageUrl: 'imageUrl',
+  imageAlt: 'imageAlt',
+  buttonText: 'buttonText',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetWhyItemScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  title: 'title',
+  description: 'description',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetGalleryImageScalarFieldEnum = {
+  id: 'id',
+  src: 'src',
+  alt: 'alt',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetTestimonialScalarFieldEnum = {
+  id: 'id',
+  stars: 'stars',
+  text: 'text',
+  author: 'author',
+  treatment: 'treatment',
+  imageUrl: 'imageUrl',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetStepScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  linkText: 'linkText',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetRecoveryItemScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  imageAlt: 'imageAlt',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetCtaAvatarScalarFieldEnum = {
+  id: 'id',
+  src: 'src',
+  alt: 'alt',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetPricingPackageScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  price: 'price',
+  features: 'features',
+  isFeatured: 'isFeatured',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetExpertItemScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  title: 'title',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  imageAlt: 'imageAlt',
+  ctaText: 'ctaText',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
+exports.Prisma.HizmetFaqItemScalarFieldEnum = {
+  id: 'id',
+  question: 'question',
+  answer: 'answer',
+  order: 'order',
+  hizmetDetayId: 'hizmetDetayId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -204,7 +381,21 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Language: 'Language',
   Blog: 'Blog',
-  BlogTranslation: 'BlogTranslation'
+  BlogTranslation: 'BlogTranslation',
+  HizmetDetay: 'HizmetDetay',
+  HizmetTocItem: 'HizmetTocItem',
+  HizmetMarqueeImage: 'HizmetMarqueeImage',
+  HizmetIntroLink: 'HizmetIntroLink',
+  HizmetOverviewTab: 'HizmetOverviewTab',
+  HizmetWhyItem: 'HizmetWhyItem',
+  HizmetGalleryImage: 'HizmetGalleryImage',
+  HizmetTestimonial: 'HizmetTestimonial',
+  HizmetStep: 'HizmetStep',
+  HizmetRecoveryItem: 'HizmetRecoveryItem',
+  HizmetCtaAvatar: 'HizmetCtaAvatar',
+  HizmetPricingPackage: 'HizmetPricingPackage',
+  HizmetExpertItem: 'HizmetExpertItem',
+  HizmetFaqItem: 'HizmetFaqItem'
 };
 
 /**
