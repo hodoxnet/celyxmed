@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from '@/components/ui/button';
+import { SubmitHandler } from 'react-hook-form'; // SubmitHandler tipini import et
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -12,7 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Switch } from '@/components/ui/switch';
 import { ArrowLeft, Save, Trash2, Eye, Upload, Loader2, X } from 'lucide-react';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm, useWatch, Controller } from "react-hook-form"; // Controller import edildi
 import { z } from "zod";
 import RichTextEditor from '@/components/admin/rich-text-editor';
 import ImageUpload from '@/components/admin/image-upload';
@@ -32,7 +33,7 @@ const blogBaseSchema = z.object({
     message: "Slug sadece küçük harfler, sayılar ve tire (-) içerebilir",
   }),
   coverImageUrl: z.string().optional(),
-  isPublished: z.boolean().default(false),
+  isPublished: z.boolean(), // .default(false) kaldırıldı
 });
 
 const blogTranslationSchema = z.object({
@@ -60,8 +61,9 @@ export default function BlogEditPage() {
   const [isLoading, setIsLoading] = useState(isNewBlog ? false : true);
   const [isSaving, setIsSaving] = useState(false);
   const [activeLanguage, setActiveLanguage] = useState<string>('');
-  
-  const defaultValues: BlogFormValues = {
+
+  // Form için varsayılan değerleri açıkça tanımla
+  const formDefaultValues: BlogFormValues = {
     slug: '',
     coverImageUrl: '',
     isPublished: false,
@@ -71,7 +73,7 @@ export default function BlogEditPage() {
   // Form tanımla
   const form = useForm<BlogFormValues>({
     resolver: zodResolver(blogFormSchema),
-    defaultValues,
+    defaultValues: formDefaultValues,
   });
 
   // Form değerlerini izle
@@ -103,39 +105,54 @@ export default function BlogEditPage() {
 
   // Blog verilerini getir (Düzenleme modu için)
   useEffect(() => {
-    // Yeni blog ekleme sayfasıysa veri çekmeye gerek yok
-    if (isNewBlog || !activeLanguage) return;
+    // Yeni blog ekleme sayfasıysa veri çekmeye gerek yok ve loading'i false yap
+    if (isNewBlog) {
+      setIsLoading(false);
+      return;
+    }
 
-    const fetchBlog = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(`/api/admin/blogs/${id}`);
-        if (!response.ok) throw new Error('Blog yüklenirken hata oluştu');
-        const data = await response.json();
-        
-        // Form değerlerini doldur
-        form.reset({
-          slug: data.slug,
-          coverImageUrl: data.coverImageUrl || '',
-          isPublished: data.isPublished,
-          translations: data.translations || [],
-        });
-        
-      } catch (err) {
-        console.error('Error fetching blog:', err);
-        toast.error('Blog yüklenirken bir hata oluştu.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    // Düzenleme modundaysa ve ID varsa veriyi çek
+    if (id) {
+      const fetchBlog = async () => {
+        setIsLoading(true); // Veri çekme başlarken loading'i true yap
+        try {
+          const response = await fetch(`/api/admin/blogs/${id}`);
+          if (!response.ok) {
+             // Hata durumunda daha detaylı bilgi almaya çalış
+             const errorData = await response.json().catch(() => ({ message: `Blog yüklenirken sunucu hatası (${response.status}) veya geçersiz JSON.` }));
+             console.error(`API Error (${response.status}):`, errorData);
+             throw new Error(errorData.message || `Blog yüklenirken hata oluştu (${response.status})`);
+          }
+          const data = await response.json();
 
-    fetchBlog();
-  }, [isNewBlog, id, form, activeLanguage]);
+          // Form değerlerini doldur (setValue kullanarak)
+          form.setValue('slug', data.slug || '', { shouldValidate: true });
+          form.setValue('coverImageUrl', data.coverImageUrl || '', { shouldValidate: true });
+          form.setValue('isPublished', data.isPublished ?? false, { shouldValidate: true });
+          // translations'ın her zaman bir dizi olduğundan emin ol
+          form.setValue('translations', Array.isArray(data.translations) ? data.translations : [], { shouldValidate: true });
 
-  // Blog kaydet
-  const onSubmit = async (values: BlogFormValues) => {
+        } catch (err: any) { // Hata yakalama bloğu
+          console.error('Error fetching blog:', err);
+          toast.error(err.message || 'Blog yüklenirken bilinmeyen bir hata oluştu.');
+        } finally {
+          setIsLoading(false); // İşlem bitince (başarılı veya hatalı) loading'i false yap
+        }
+      };
+      fetchBlog();
+    } else {
+      // ID yoksa (beklenmedik durum), loading'i false yap ve hata göster
+      setIsLoading(false);
+      toast.error("Blog ID'si bulunamadı.");
+      router.push('/admin/blog'); // Hata durumunda listeye yönlendir
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isNewBlog, id]); // Bağımlılıklar: isNewBlog ve id değiştiğinde çalışır
+
+  // Blog kaydet (SubmitHandler tipini kullan)
+  const onSubmit: SubmitHandler<BlogFormValues> = async (values) => {
     setIsSaving(true);
-    
+
     try {
       // Yeni blog mu yoksa güncelleme mi?
       const url = isNewBlog 
@@ -348,147 +365,102 @@ export default function BlogEditPage() {
                         ))}
                       </TabsList>
                     </div>
-                    
                     {languages.map((lang, index) => (
-                      <TabsContent key={lang.code} value={lang.code} className="m-0">
+                      <TabsContent key={lang.code} value={lang.code} forceMount className="m-0 data-[state=inactive]:hidden">
                         <div className="space-y-6">
                           <div className="flex items-center justify-between">
                             <h2 className="text-xl font-semibold">
                               {lang.name} <span className="text-sm font-normal text-gray-500">({lang.code})</span>
                             </h2>
-                            {translatedLanguages.includes(lang.code) && (
+                            {/* Check based on index existence in the form state array */}
+                            {form.getValues().translations?.[index] && (
                               <div className="flex items-center text-sm text-green-600">
                                 <span>Çeviri var</span>
                               </div>
                             )}
                           </div>
-                          
-                          {/* Başlık */}
+
+                          {/* Başlık (Controller ile) */}
                           <div className="space-y-2">
-                            <Label htmlFor={`title-${lang.code}`}>Başlık</Label>
-                            <Input
-                              id={`title-${lang.code}`}
-                              placeholder={`${lang.name} başlık`}
-                              value={currentTranslation?.title || ''}
-                              onChange={(e) => {
-                                const translations = [...form.getValues().translations];
-                                const index = translations.findIndex(t => t.languageCode === lang.code);
-                                if (index >= 0) {
-                                  translations[index].title = e.target.value;
-                                  form.setValue('translations', translations);
-                                } else {
-                                  // Yeni çeviri oluştur
-                                  const newTranslation = {
-                                    languageCode: lang.code,
-                                    title: e.target.value,
-                                    fullDescription: '',
-                                    content: '',
-                                    tocItems: null,
-                                  };
-                                  form.setValue('translations', [...translations, newTranslation]);
-                                }
-                              }}
+                            <Label htmlFor={`translations.${index}.title`}>Başlık</Label>
+                            <Controller
+                              name={`translations.${index}.title`}
+                              control={form.control}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  id={`translations.${index}.title`}
+                                  placeholder={`${lang.name} başlık`}
+                                />
+                              )}
                             />
+                            <FormMessage>{form.formState.errors.translations?.[index]?.title?.message}</FormMessage>
                           </div>
-                          
-                          {/* Açıklama */}
+
+                          {/* Açıklama (Controller ile) */}
                           <div className="space-y-2">
-                            <Label htmlFor={`description-${lang.code}`}>Açıklama</Label>
-                            <Textarea
-                              id={`description-${lang.code}`}
-                              placeholder={`${lang.name} açıklama`}
-                              value={currentTranslation?.fullDescription || ''}
-                              rows={4}
-                              onChange={(e) => {
-                                const translations = [...form.getValues().translations];
-                                const index = translations.findIndex(t => t.languageCode === lang.code);
-                                if (index >= 0) {
-                                  translations[index].fullDescription = e.target.value;
-                                  form.setValue('translations', translations);
-                                } else {
-                                  // Yeni çeviri oluştur
-                                  const newTranslation = {
-                                    languageCode: lang.code,
-                                    title: '',
-                                    fullDescription: e.target.value,
-                                    content: '',
-                                    tocItems: null,
-                                  };
-                                  form.setValue('translations', [...translations, newTranslation]);
-                                }
-                              }}
+                            <Label htmlFor={`translations.${index}.fullDescription`}>Açıklama</Label>
+                            <Controller
+                              name={`translations.${index}.fullDescription`}
+                              control={form.control}
+                              render={({ field }) => (
+                                <Textarea
+                                  {...field}
+                                  id={`translations.${index}.fullDescription`}
+                                  placeholder={`${lang.name} açıklama`}
+                                  rows={4}
+                                />
+                              )}
                             />
+                            <FormMessage>{form.formState.errors.translations?.[index]?.fullDescription?.message}</FormMessage>
                           </div>
-                          
-                          {/* İçerik - Zengin Metin Düzenleyici */}
+
+                          {/* İçerik - Zengin Metin Düzenleyici (Controller ile) */}
                           <div className="space-y-2">
-                            <Label htmlFor={`content-${lang.code}`}>İçerik</Label>
-                            <div className="min-h-[400px]">
-                              <RichTextEditor
-                                value={currentTranslation?.content || ''}
-                                onChange={(content) => {
-                                  const translations = [...form.getValues().translations];
-                                  const index = translations.findIndex(t => t.languageCode === lang.code);
-                                  if (index >= 0) {
-                                    translations[index].content = content;
-                                    
-                                    // Client tarafında çalıştığından emin ol
-                                    if (typeof window !== 'undefined') {
-                                      try {
-                                        // Başlıklardan oluşan TOC listesini otomatik oluştur ve kaydet
-                                        const parser = new DOMParser();
-                                        const doc = parser.parseFromString(content, 'text/html');
-                                        const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
-                                        
-                                        if (headings.length > 0) {
-                                          const tocItems = Array.from(headings).map((heading) => {
-                                            const text = heading.textContent || '';
-                                            // Türkçe karakterleri de destekleyen URL-friendly ID oluştur
-                                            const id = heading.id || text
-                                              .toLowerCase()
-                                              .replace(/ğ/g, 'g')
-                                              .replace(/ü/g, 'u')
-                                              .replace(/ş/g, 's')
-                                              .replace(/ı/g, 'i')
-                                              .replace(/ö/g, 'o')
-                                              .replace(/ç/g, 'c')
-                                              .replace(/[^a-z0-9 ]/g, '')
-                                              .replace(/\s+/g, '-');
-                                            return {
-                                              id,
-                                              text,
-                                              level: parseInt(heading.tagName.substring(1)),
-                                            };
-                                          });
-                                          translations[index].tocItems = tocItems;
-                                        } else {
-                                          // Başlık yoksa TOC'u temizle
-                                          translations[index].tocItems = [];
+                            <Label htmlFor={`translations.${index}.content`}>İçerik</Label>
+                            <Controller
+                              name={`translations.${index}.content`}
+                              control={form.control}
+                              render={({ field }) => (
+                                <div className="min-h-[400px]">
+                                  <RichTextEditor
+                                    value={field.value || ''} // Use value from Controller field
+                                    onChange={(content) => {
+                                      field.onChange(content); // Update RHF field state
+                                      // Handle TOC update (simplified, can be extracted)
+                                      const translations = [...form.getValues().translations];
+                                      if (translations[index]) {
+                                        translations[index].content = content;
+                                        if (typeof window !== 'undefined') {
+                                          try {
+                                            const parser = new DOMParser();
+                                            const doc = parser.parseFromString(content, 'text/html');
+                                            const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                                            if (headings.length > 0) {
+                                              const tocItems = Array.from(headings).map((heading) => {
+                                                const text = heading.textContent || '';
+                                                const id = heading.id || text.toLowerCase().replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '-');
+                                                return { id, text, level: parseInt(heading.tagName.substring(1)) };
+                                              });
+                                              translations[index].tocItems = tocItems;
+                                            } else {
+                                              translations[index].tocItems = [];
+                                            }
+                                          } catch (err) {
+                                            console.error('TOC extraction error:', err);
+                                            translations[index].tocItems = [];
+                                          }
                                         }
-                                      } catch (err) {
-                                        console.error('TOC extraction error:', err);
-                                        // Hata durumunda boş TOC
-                                        translations[index].tocItems = [];
+                                        form.setValue('translations', translations, { shouldDirty: true, shouldTouch: true });
                                       }
-                                    }
-                                    
-                                    form.setValue('translations', translations);
-                                  } else {
-                                    // Yeni çeviri oluştur
-                                    const newTranslation = {
-                                      languageCode: lang.code,
-                                      title: '',
-                                      fullDescription: '',
-                                      content: content,
-                                      tocItems: [],
-                                    };
-                                    form.setValue('translations', [...translations, newTranslation]);
-                                  }
-                                }}
-                                placeholder={`${lang.name} içerik`}
-                                toolbarId={`toolbar-${lang.code}`}
-                              />
-                            </div>
+                                    }}
+                                    placeholder={`${lang.name} içerik`}
+                                    toolbarId={`toolbar-${lang.code}`}
+                                  />
+                                </div>
+                              )}
+                            />
+                             <FormMessage>{form.formState.errors.translations?.[index]?.content?.message}</FormMessage>
                           </div>
                         </div>
                       </TabsContent>
