@@ -28,6 +28,13 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      // banaozel.sahibinden.com için yeni pattern eklendi
+      {
+        protocol: 'https',
+        hostname: 'banaozel.sahibinden.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

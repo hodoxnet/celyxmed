@@ -35,7 +35,7 @@ const HizmetTocItemSchema = z.object({
 
 const HizmetMarqueeImageSchema = z.object({
   id: z.string().optional(),
-  src: z.string().url("Geçerli bir URL girin"),
+  src: z.string().min(1, "Resim gereklidir"), // URL validasyonu kaldırıldı, sadece string kontrolü
   alt: z.string().min(1, "Alt metin boş olamaz"),
   order: z.number().optional().default(0),
 });
@@ -148,7 +148,7 @@ export const hizmetDetayFormSchema = z.object({
   published: z.boolean().default(false), // .default(false) geri eklendi
 
   // Hero
-  heroImageUrl: z.string().url("Geçerli bir URL girin"),
+  heroImageUrl: z.string().min(1, "Hero resmi gereklidir"), // URL validasyonu kaldırıldı, sadece string kontrolü
   heroImageAlt: z.string().min(1, "Hero resim alt metni boş olamaz"),
 
   // TOC & CTA

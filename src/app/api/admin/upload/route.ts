@@ -40,8 +40,9 @@ export const POST = withAdmin(async (req: Request) => {
 
     // Yükleme yolu (static directory)
     const staticDir = join(process.cwd(), 'public');
-    const uploadDir = join(staticDir, 'uploads', 'blogs');
-    
+    // Yükleme dizinini 'hizmetler' olarak değiştir
+    const uploadDir = join(staticDir, 'uploads', 'hizmetler');
+
     // Klasörün varlığını kontrol et, yoksa oluştur
     try {
       await mkdir(uploadDir, { recursive: true });
@@ -57,10 +58,10 @@ export const POST = withAdmin(async (req: Request) => {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     await writeFile(filePath, buffer);
-    
-    // Dosya yolu ve URL döndür
-    const fileUrl = `/uploads/blogs/${fileName}`;
-    
+
+    // Dosya yolu ve URL döndür (yolu 'hizmetler' olarak güncelle)
+    const fileUrl = `/uploads/hizmetler/${fileName}`;
+
     return NextResponse.json({ url: fileUrl, message: 'Dosya başarıyla yüklendi' });
   } catch (error) {
     console.error('File upload error:', error);

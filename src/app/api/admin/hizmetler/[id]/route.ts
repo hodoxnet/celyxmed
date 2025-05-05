@@ -4,13 +4,43 @@ import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { hizmetDetayFormSchema } from '@/lib/validators/admin';
 import { Role } from '@/generated/prisma';
-// Prisma importu kaldırıldı, SortOrder için kullanmıyoruz.
-// import { Prisma } from '@prisma/client';
+import { unlink } from 'fs/promises'; // Dosya silmek için
+import { join } from 'path'; // Yol birleştirmek için
 
 interface Context {
   params: {
     id: string;
   };
+}
+
+// Yardımcı fonksiyon: Fiziksel dosyayı siler (Sadece string kabul eder)
+async function deleteFile(relativePath: string) {
+  // Null/undefined kontrolü çağrıldığı yerde yapıldığı için burada tekrar gerekmez.
+  // Sadece /uploads/ ile başladığını kontrol edelim.
+   if (!relativePath.startsWith('/uploads/')) {
+     console.warn(`Geçersiz dosya yolu formatı: ${relativePath}`);
+     return;
+  }
+  try {
+    const filename = relativePath.split('/').pop(); // Sadece dosya adını al
+    if (!filename) return;
+
+    // Güvenlik: Path traversal saldırılarını önlemek için sadece dosya adını kullan
+    const safeFilename = filename.replace(/[^a-zA-Z0-9.\-_]/g, ''); // Güvenli karakterler dışındakileri temizle
+    if (safeFilename !== filename) {
+        console.warn(`Potansiyel path traversal engellendi: ${relativePath}`);
+        return; // Şüpheli yol ise silme
+    }
+
+    const filePath = join(process.cwd(), 'public', 'uploads', 'hizmetler', safeFilename);
+    await unlink(filePath);
+    console.log(`Dosya silindi: ${filePath}`);
+  } catch (error: any) {
+    // Dosya bulunamazsa hata verme (zaten silinmiş olabilir)
+    if (error.code !== 'ENOENT') {
+      console.error(`Dosya silme hatası (${relativePath}):`, error);
+    }
+  }
 }
 
 // GET: Belirli bir hizmet detayını getir
@@ -80,9 +110,27 @@ export async function PATCH(req: Request, context: Context) {
 
     const data = validationResult.data;
 
-    // 3. Veritabanı işlemi (Transaction içinde)
+    // 3. Güncellemeden önce mevcut veriyi çek (silinecek dosyaları belirlemek için)
+    const currentHizmet = await prisma.hizmetDetay.findUnique({
+        where: { id },
+        include: {
+            marqueeImages: { select: { src: true } },
+            galleryImages: { select: { src: true } },
+            overviewTabs: { select: { imageUrl: true } },
+            recoveryItems: { select: { imageUrl: true } },
+            ctaAvatars: { select: { src: true } },
+            expertItems: { select: { imageUrl: true } },
+            testimonials: { select: { imageUrl: true } },
+        }
+    });
+
+    if (!currentHizmet) {
+        return new NextResponse('Not Found', { status: 404 });
+    }
+
+    // 4. Veritabanı işlemi (Transaction içinde)
     const updatedHizmetDetay = await prisma.$transaction(async (tx) => {
-      // İlişkili verileri ayır
+      // İlişkili verileri ayır (formdan gelen yeni veri)
       const {
         tocItems = [],
         marqueeImages = [],
@@ -97,11 +145,73 @@ export async function PATCH(req: Request, context: Context) {
         pricingPackages = [],
         expertItems = [],
         faqs = [],
-        ...mainData // Ana HizmetDetay verileri
+        ...mainData // Ana HizmetDetay verileri (formdan gelen yeni veri)
       } = data;
 
-      // Önce mevcut ilişkili tüm öğeleri sil (basit yaklaşım)
-      // Daha sofistike: Gelen ID'lere göre update/create/delete yapılabilir ama daha karmaşık.
+      // 5. Silinecek fiziksel dosyaları belirle ve sil
+      const deletePromises: Promise<void>[] = [];
+
+      // Ana resimler (eğer değişmişse ve eskisi geçerliyse sil) - Null kontrolü yapılıp sadece string ile çağır
+      const oldHeroImage = currentHizmet.heroImageUrl;
+      if (oldHeroImage && oldHeroImage !== mainData.heroImageUrl) {
+         deletePromises.push(deleteFile(oldHeroImage));
+      }
+      const oldWhyBg = currentHizmet.whyBackgroundImageUrl;
+      if (oldWhyBg && oldWhyBg !== mainData.whyBackgroundImageUrl) {
+         deletePromises.push(deleteFile(oldWhyBg));
+      }
+      const oldCtaBg = currentHizmet.ctaBackgroundImageUrl;
+      if (oldCtaBg && oldCtaBg !== mainData.ctaBackgroundImageUrl) {
+         deletePromises.push(deleteFile(oldCtaBg));
+      }
+      const oldCtaMain = currentHizmet.ctaMainImageUrl;
+       if (oldCtaMain && oldCtaMain !== mainData.ctaMainImageUrl) {
+         deletePromises.push(deleteFile(oldCtaMain));
+      }
+
+      // İlişkili listelerdeki resimler (eskide olup yenide olmayanları sil)
+      const currentMarqueeSrcs = new Set(currentHizmet.marqueeImages?.map(item => item.src));
+      const newMarqueeSrcs = new Set(marqueeImages.map(item => item.src));
+      currentMarqueeSrcs.forEach(src => {
+        if (!newMarqueeSrcs.has(src)) {
+          deletePromises.push(deleteFile(src));
+        }
+      });
+      // Diğer listeler için benzer karşılaştırmalar... (galleryImages, overviewTabs, recoveryItems, ctaAvatars, expertItems, testimonials)
+       const currentGallerySrcs = new Set(currentHizmet.galleryImages?.map(item => item.src));
+       const newGallerySrcs = new Set(galleryImages.map(item => item.src));
+       currentGallerySrcs.forEach(src => !newGallerySrcs.has(src) && deletePromises.push(deleteFile(src)));
+
+       const currentOverviewUrls = new Set(currentHizmet.overviewTabs?.map(item => item.imageUrl));
+       const newOverviewUrls = new Set(overviewTabs.map(item => item.imageUrl));
+       currentOverviewUrls.forEach(url => !newOverviewUrls.has(url) && deletePromises.push(deleteFile(url)));
+
+       const currentRecoveryUrls = new Set(currentHizmet.recoveryItems?.map(item => item.imageUrl));
+       const newRecoveryUrls = new Set(recoveryItems.map(item => item.imageUrl));
+       currentRecoveryUrls.forEach(url => !newRecoveryUrls.has(url) && deletePromises.push(deleteFile(url)));
+
+       const currentCtaAvatarSrcs = new Set(currentHizmet.ctaAvatars?.map(item => item.src));
+       const newCtaAvatarSrcs = new Set(ctaAvatars.map(item => item.src));
+       currentCtaAvatarSrcs.forEach(src => !newCtaAvatarSrcs.has(src) && deletePromises.push(deleteFile(src)));
+
+       const currentExpertUrls = new Set(currentHizmet.expertItems?.map(item => item.imageUrl));
+       const newExpertUrls = new Set(expertItems.map(item => item.imageUrl));
+       currentExpertUrls.forEach(url => !newExpertUrls.has(url) && deletePromises.push(deleteFile(url)));
+
+       const currentTestimonialUrls = new Set(currentHizmet.testimonials?.map(item => item.imageUrl).filter((url): url is string => !!url)); // filter(Boolean) yerine type guard
+       const newTestimonialUrls = new Set(testimonials.map(item => item.imageUrl).filter((url): url is string => !!url));
+       currentTestimonialUrls.forEach(url => {
+           if (!newTestimonialUrls.has(url)) {
+               deletePromises.push(deleteFile(url)); // url burada string olmalı
+           }
+       });
+
+
+      // Dosya silme işlemlerini bekle (veritabanı güncellemesinden önce)
+      await Promise.allSettled(deletePromises);
+
+
+      // 6. Mevcut ilişkili tüm öğeleri sil (basit yaklaşım)
       await Promise.all([
         tx.hizmetTocItem.deleteMany({ where: { hizmetDetayId: id } }),
         tx.hizmetMarqueeImage.deleteMany({ where: { hizmetDetayId: id } }),
@@ -192,7 +302,55 @@ export async function DELETE(req: Request, context: Context) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    // 2. Veritabanı işlemi
+    // 2. Silmeden önce hizmet detayını ve ilişkili resim yollarını al
+    const hizmetToSil = await prisma.hizmetDetay.findUnique({
+      where: { id },
+      include: {
+        marqueeImages: { select: { src: true } },
+        galleryImages: { select: { src: true } },
+        overviewTabs: { select: { imageUrl: true } },
+        recoveryItems: { select: { imageUrl: true } },
+        ctaAvatars: { select: { src: true } },
+        expertItems: { select: { imageUrl: true } },
+        testimonials: { select: { imageUrl: true } }, // Testimonials eklendi
+        // Diğer resim içeren ilişkili modelleri de ekle (varsa)
+      }
+    });
+
+    if (!hizmetToSil) {
+      return new NextResponse('Not Found', { status: 404 });
+    }
+
+    // 3. İlişkili fiziksel dosyaları sil
+    const deletePromises: Promise<void>[] = [];
+
+    // Ana resimler - Null kontrolü eklendi
+    if (hizmetToSil.heroImageUrl) {
+        deletePromises.push(deleteFile(hizmetToSil.heroImageUrl));
+    }
+    if (hizmetToSil.whyBackgroundImageUrl) {
+        deletePromises.push(deleteFile(hizmetToSil.whyBackgroundImageUrl));
+    }
+    if (hizmetToSil.ctaBackgroundImageUrl) {
+        deletePromises.push(deleteFile(hizmetToSil.ctaBackgroundImageUrl));
+    }
+    if (hizmetToSil.ctaMainImageUrl) {
+        deletePromises.push(deleteFile(hizmetToSil.ctaMainImageUrl));
+    }
+
+    // İlişkili listelerdeki resimler
+    hizmetToSil.marqueeImages?.forEach(item => deletePromises.push(deleteFile(item.src)));
+    hizmetToSil.galleryImages?.forEach(item => deletePromises.push(deleteFile(item.src)));
+    hizmetToSil.overviewTabs?.forEach(item => deletePromises.push(deleteFile(item.imageUrl)));
+    hizmetToSil.recoveryItems?.forEach(item => deletePromises.push(deleteFile(item.imageUrl)));
+    hizmetToSil.ctaAvatars?.forEach(item => deletePromises.push(deleteFile(item.src)));
+    hizmetToSil.expertItems?.forEach(item => deletePromises.push(deleteFile(item.imageUrl)));
+    hizmetToSil.testimonials?.forEach(item => deletePromises.push(deleteFile(item.imageUrl))); // Testimonials imageUrl eklendi
+
+    // Tüm silme işlemlerinin tamamlanmasını bekle (hataları yoksayarak)
+    await Promise.allSettled(deletePromises);
+
+    // 4. Veritabanı kaydını sil
     await prisma.hizmetDetay.delete({
       where: { id },
     });

@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useState, useRef, ChangeEvent, useEffect } from 'react'; // useEffect import edildi
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { Upload, Loader2, X, Camera } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import Image from 'next/image'; // next/image import edildi
 
 interface ImageUploadProps {
   onImageUploaded: (imageUrl: string) => void;
@@ -14,8 +15,8 @@ interface ImageUploadProps {
   initialImage?: string;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ 
-  onImageUploaded, 
+const ImageUpload: React.FC<ImageUploadProps> = ({
+  onImageUploaded,
   className,
   buttonText = "Resim Yükle",
   showPreview = false,
@@ -23,51 +24,54 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  // previewUrl state'i initialImage değiştiğinde güncellenmeli
   const [previewUrl, setPreviewUrl] = useState<string>(initialImage);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  // Dosya seçilince önizleme oluştur
+
+  // initialImage prop'u değiştiğinde previewUrl'i güncelle
+  useEffect(() => {
+    setPreviewUrl(initialImage);
+  }, [initialImage]);
+
+  // Dosya seçilince Data URL önizlemesi oluştur (next/image için gerekli değil ama geçici görsel için kalabilir)
   const createPreview = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       if (e.target?.result) {
-        setPreviewUrl(e.target.result as string);
+        // Data URL'i sadece geçici olarak kullan, asıl src initialImage veya yüklenen URL olacak
+        // setPreviewUrl(e.target.result as string); // Bu satır kaldırılabilir veya farklı yönetilebilir
       }
     };
     reader.readAsDataURL(file);
   };
-  
+
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
-    // Sadece resim dosyalarına izin ver
+
     if (!file.type.startsWith('image/')) {
       toast.error('Sadece resim dosyaları yüklenebilir');
       return;
     }
-    
-    // Dosya boyutunu kontrol et (10MB'dan küçük olmalı)
+
     const maxSize = 10 * 1024 * 1024; // 10MB
     if (file.size > maxSize) {
       toast.error('Dosya boyutu 10MB\'dan küçük olmalıdır');
       return;
     }
-    
-    // Önizleme oluştur (eğer gösterilecekse)
-    if (showPreview) {
-      createPreview(file);
-    }
-    
+
+    // Geçici Data URL önizlemesi (opsiyonel)
+    // if (showPreview) {
+    //   createPreview(file);
+    // }
+
     setIsUploading(true);
-    setUploadProgress(10); // Başlangıç değeri
-    
+    setUploadProgress(10);
+
     try {
-      // FormData oluştur
       const formData = new FormData();
       formData.append('file', file);
-      
-      // Yükleme animasyonu için simüle edilmiş ilerleme
+
       const progressInterval = setInterval(() => {
         setUploadProgress(prev => {
           if (prev >= 90) {
@@ -77,120 +81,114 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           return prev + Math.floor(Math.random() * 10);
         });
       }, 300);
-      
-      // API'ye yükleme isteği gönder
+
       const response = await fetch('/api/admin/upload', {
         method: 'POST',
         body: formData,
       });
-      
+
       clearInterval(progressInterval);
-      
+
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || 'Dosya yüklenirken bir hata oluştu');
       }
-      
+
       setUploadProgress(100);
       const data = await response.json();
-      
-      // Yüklenen resmin URL'sini callback ile bildir
-      onImageUploaded(data.url);
+
+      onImageUploaded(data.url); // Yüklenen göreceli yolu bildir
       toast.success('Resim başarıyla yüklendi');
-      
-      // URL'i önizleme için kaydet
+
+      // previewUrl'i yüklenen göreceli yol ile güncelle
       if (showPreview && data.url) {
-        setPreviewUrl(data.url);
+         setPreviewUrl(data.url);
       }
-      
+
     } catch (error: any) {
       console.error('Error uploading image:', error);
       toast.error(error.message || 'Resim yüklenirken bir hata oluştu');
-      setPreviewUrl('');
+      setPreviewUrl(''); // Hata durumunda önizlemeyi temizle
     } finally {
       setIsUploading(false);
       setUploadProgress(0);
-      // Input alanını sıfırla
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
-  
+
   const handleClearImage = () => {
     setPreviewUrl('');
     onImageUploaded('');
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
-  
+
+  // previewUrl'in geçerli bir string olup olmadığını kontrol et
+  const hasValidPreview = typeof previewUrl === 'string' && previewUrl.length > 0;
+
   return (
     <div className={`${className} space-y-2`}>
-      {/* Resim önizleme alanı */}
-      {showPreview && previewUrl && (
-        <div className="relative rounded-md overflow-hidden border mb-2">
-          <img 
-            src={previewUrl} 
-            alt="Yüklenen resim önizlemesi" 
-            className="w-full h-auto object-cover max-h-48"
-            onError={() => setPreviewUrl('')}
+      {/* Resim önizleme alanı (next/image ile) */}
+      {showPreview && hasValidPreview && (
+        <div className="relative rounded-md overflow-hidden border mb-2 aspect-video max-h-48"> {/* aspect-video veya uygun bir boyut */}
+          <Image
+            src={previewUrl} // Göreceli yol (/uploads/...) veya tam URL olabilir
+            alt="Yüklenen resim önizlemesi"
+            fill // Konteyneri doldur
+            style={{ objectFit: 'cover' }} // Resmi kapla
+            onError={() => {
+              console.warn(`Önizleme yüklenemedi: ${previewUrl}`);
+              setPreviewUrl(''); // Hata durumunda temizle
+            }}
+            unoptimized={previewUrl.startsWith('blob:') || previewUrl.startsWith('data:')} // Data URL veya Blob URL ise optimizasyonu kapat
           />
           <Button
             type="button"
             variant="destructive"
             size="icon"
-            className="absolute top-2 right-2 h-8 w-8 rounded-full opacity-90 hover:opacity-100"
+            className="absolute top-2 right-2 h-8 w-8 rounded-full opacity-90 hover:opacity-100 z-10" // z-index eklendi
             onClick={handleClearImage}
           >
             <X className="h-4 w-4" />
           </Button>
         </div>
       )}
-      
+
       {/* Yükleme ilerleme çubuğu */}
       {isUploading && (
         <Progress value={uploadProgress} className="h-1 mb-2" />
       )}
-      
+
       {/* Yükleme butonu */}
       <div className="flex items-center gap-2">
-        <label htmlFor="image-upload" className="cursor-pointer flex-1">
+        <label htmlFor={`image-upload-${fileInputRef.current?.id || 'default'}`} className="cursor-pointer flex-1"> {/* ID'yi dinamik yap */}
           <Button
             type="button"
             variant="outline"
             className="flex items-center gap-2 w-full"
             disabled={isUploading}
-            asChild
+            onClick={() => fileInputRef.current?.click()} // Butona tıklayınca input'u tetikle
           >
-            <span>
-              {isUploading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  <span>Yükleniyor... {uploadProgress}%</span>
-                </>
-              ) : (
-                <>
-                  {previewUrl ? <Camera className="h-4 w-4" /> : <Upload className="h-4 w-4" />}
-                  <span>{previewUrl ? "Resmi Değiştir" : buttonText}</span>
-                </>
-              )}
-            </span>
+            {isUploading ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                <span>Yükleniyor... {uploadProgress}%</span>
+              </>
+            ) : (
+              <>
+                {hasValidPreview ? <Camera className="h-4 w-4" /> : <Upload className="h-4 w-4" />}
+                <span>{hasValidPreview ? "Resmi Değiştir" : buttonText}</span>
+              </>
+            )}
           </Button>
         </label>
-        
-        {previewUrl && !showPreview && (
-          <Button
-            type="button"
-            variant="destructive"
-            size="icon"
-            className="h-10 w-10"
-            onClick={handleClearImage}
-          >
-            <X className="h-4 w-4" />
-          </Button>
-        )}
+
+        {/* Bu buton artık gereksiz, önizleme üzerindeki X butonu var */}
+        {/* {previewUrl && !showPreview && ( ... )} */}
       </div>
-      
+
       <input
         type="file"
-        id="image-upload"
+        id={`image-upload-${fileInputRef.current?.id || 'default'}`} // ID'yi dinamik yap
         accept="image/*"
         onChange={handleFileChange}
         className="hidden"

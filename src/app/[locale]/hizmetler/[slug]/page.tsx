@@ -1,5 +1,5 @@
 // src/app/[locale]/hizmetler/[slug]/page.tsx
-"use client"; // Gerekli olabilecek istemci tarafı etkileşimleri için
+// "use client"; kaldırıldı, sunucu bileşeni olacak
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -101,14 +101,130 @@ interface ServiceDetailPageProps {
   };
 }
 
-export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
+// API'den dönecek veri tipi (Genişletildi - tüm alanlar opsiyonel)
+// Not: Bu tipin Prisma'dan veya paylaşılan bir tipten türetilmesi daha iyi olur.
+interface FetchedServiceData {
+  // Hero
+  heroImageUrl: string;
+  heroImageAlt: string;
+  breadcrumb: string;
+  title: string;
+  description: string;
+
+  // TOC & CTA
+  tocTitle?: string;
+  tocAuthorInfo?: string;
+  tocItems?: { id: string; text: string; isBold?: boolean; level?: number; order: number }[];
+  tocCtaDescription?: string;
+
+  // Marquee
+  marqueeImages?: { id: string; src: string; alt: string; order: number }[];
+
+  // Intro
+  introVideoId?: string;
+  introTitle?: string;
+  introDescription?: string;
+  introPrimaryButtonText?: string;
+  introPrimaryButtonLink?: string;
+  introSecondaryButtonText?: string;
+  introSecondaryButtonLink?: string;
+  introLinks?: { id: string; targetId: string; number: string; text: string; order: number }[];
+
+  // Overview
+  overviewTitle?: string;
+  overviewDescription?: string;
+  overviewTabs?: { id: string; value: string; triggerText: string; title: string; content: string; imageUrl: string; imageAlt: string; buttonText: string; order: number }[];
+
+  // Why Celyxmed
+  whyTitle?: string;
+  whyBackgroundImageUrl?: string;
+  whyItems?: { id: string; number: string; title: string; description: string; order: number }[];
+
+  // Gallery
+  galleryTitle?: string;
+  galleryDescription?: string;
+  galleryImages?: { id: string; src: string; alt: string; order: number }[];
+
+  // Testimonials
+  testimonialsSectionTitle?: string;
+  testimonials?: { id: string; stars?: number; text: string; author: string; treatment?: string; imageUrl?: string; order: number }[];
+
+  // Steps
+  stepsTitle?: string;
+  stepsDescription?: string;
+  steps?: { id: string; title: string; description: string; linkText?: string; order: number }[];
+
+  // Recovery
+  recoveryTitle?: string;
+  recoveryDescription?: string;
+  recoveryItems?: { id: string; title: string; description: string; imageUrl: string; imageAlt: string; order: number }[];
+
+  // Main CTA
+  ctaTagline?: string;
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  ctaButtonLink?: string;
+  ctaAvatars?: { id: string; src: string; alt: string; order: number }[];
+  ctaAvatarText?: string;
+  ctaBackgroundImageUrl?: string;
+  ctaMainImageUrl?: string;
+  ctaMainImageAlt?: string;
+
+  // Pricing
+  pricingTitle?: string;
+  pricingDescription?: string;
+  pricingPackages?: { id: string; title: string; price: string; features: string[]; isFeatured?: boolean; order: number }[];
+
+  // Experts
+  expertsSectionTitle?: string;
+  expertsTagline?: string;
+  expertItems?: { id: string; name: string; title: string; description: string; imageUrl: string; imageAlt: string; ctaText?: string; order: number }[];
+
+  // FAQs
+  faqSectionTitle?: string;
+  faqSectionDescription?: string;
+  faqs?: { id: string; question: string; answer: string; order: number }[];
+
+  // SEO (Bunlar sayfada kullanılmıyor ama API'den gelebilir)
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+}
+
+
+// Veri çekme fonksiyonu
+async function getServiceData(slug: string, locale: string): Promise<FetchedServiceData | null> {
+  try {
+    // TODO: API endpoint URL'sini doğrula/ayarla
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/hizmetler/${slug}?locale=${locale}`;
+    const res = await fetch(apiUrl, { cache: 'no-store' }); // Şimdilik cache kullanma
+
+    if (!res.ok) {
+      console.error(`API isteği başarısız: ${res.status} ${res.statusText}`);
+      return null;
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Hizmet verisi çekme hatası:", error);
+    return null;
+  }
+}
+
+
+export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   const { locale, slug } = params;
 
-  // --- Temsili Veri Getirme Mantığı ---
-  // Gerçek uygulamada bu kısım async olacak ve API/CMS/DB'den veri çekecek
-  const getServiceData = (serviceSlug: string): ServiceData | null => {
+  // Veriyi API'den çek
+  const serviceData = await getServiceData(slug, locale);
+
+
+  // --- Temsili Veri Getirme Mantığı (YORUM SATIRI) ---
+  /*
+  const getStaticServiceData = (serviceSlug: string): ServiceData | null => {
     if (serviceSlug === 'anne-estetigi') {
-      // index.html'den alınan İçindekiler verisi
       const tocItems: ContentItem[] = [
         { id: 'toc-1', text: 'Anne Estetiği Nedir?', isBold: true },
         { id: 'toc-1.1', text: '1.1 Anne Estetiği Prosedürlerine Genel Bakış' },
@@ -380,9 +496,10 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
     // Diğer slug'lar için veri veya null döndür
     return null;
   };
-
-  const serviceData = getServiceData(slug);
+  */
+  // const staticServiceData = getStaticServiceData(slug); // Eski statik veri
   // --- Veri Getirme Mantığı Sonu ---
+
 
   // Veri bulunamazsa gösterilecek içerik
   if (!serviceData) {
@@ -403,7 +520,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow">
-        {/* Hero ve İçindekiler Bölümleri */}
+        {/* Hero Bölümü - API'den gelen veri ile */}
         <HeroSection
           breadcrumb={serviceData.breadcrumb}
           title={serviceData.title}
@@ -411,144 +528,122 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           imageUrl={serviceData.heroImageUrl}
           imageAlt={serviceData.heroImageAlt}
         />
-        {/* Yeni TocAndCtaSection bileşeni kullanılıyor */}
-        <TocAndCtaSection
-          tocTitle={serviceData.tocAndCta_tocTitle}
-          tocItems={serviceData.tocAndCta_tocItems}
-          tocAuthorInfo={serviceData.tocAndCta_tocAuthorInfo}
-          ctaDescription={serviceData.tocAndCta_ctaDescription}
-          // Buton metinleri/linkleri bileşenin varsayılan değerlerini kullanacak
-        />
 
-        {/* Yeni Image Marquee Bölümü */}
-        {serviceData.marqueeImages && serviceData.marqueeImages.length > 0 && (
+        {/* Diğer bölümler şimdilik statik veya boş kalabilir */}
+        {/* Örnek:
+        <TocAndCtaSection tocTitle="İçindekiler" tocItems={[]} ctaDescription="Detaylar yakında..." />
+        <ImageMarquee images={[]} />
+        ... vb.
+        */}
+
+        {/* Yorum satırları kaldırıldı. Prop'lara varsayılan/boş değerler atanacak. */}
+        <TocAndCtaSection
+          tocTitle={serviceData?.tocTitle ?? "İçindekiler"} // Prop isimleri düzeltildi
+          tocItems={serviceData?.tocItems ?? []} // Prop isimleri düzeltildi
+          tocAuthorInfo={serviceData?.tocAuthorInfo ?? ""} // Prop isimleri düzeltildi
+          ctaDescription={serviceData?.tocCtaDescription ?? ""} // Prop isimleri düzeltildi
+        />
+        {/* marqueeImages API'den gelince kontrol edilecek */}
+        {(serviceData?.marqueeImages && serviceData.marqueeImages.length > 0) && (
           <ImageMarquee images={serviceData.marqueeImages} />
         )}
-
-        {/* Yeni Treatment Intro Bölümü */}
         <TreatmentIntroSection
-          videoId={serviceData.treatmentIntro_videoId}
-          title={serviceData.treatmentIntro_title}
-          description={serviceData.treatmentIntro_description}
-          primaryButtonText={serviceData.treatmentIntro_primaryButtonText}
-          primaryButtonLink={serviceData.treatmentIntro_primaryButtonLink}
-          secondaryButtonText={serviceData.treatmentIntro_secondaryButtonText}
-          secondaryButtonLink={serviceData.treatmentIntro_secondaryButtonLink}
-          links={serviceData.treatmentIntro_links}
+          videoId={serviceData?.introVideoId} // Prop isimleri düzeltildi
+          title={serviceData?.introTitle ?? ""} // Prop isimleri düzeltildi
+          description={serviceData?.introDescription ?? ""} // Prop isimleri düzeltildi
+          primaryButtonText={serviceData?.introPrimaryButtonText ?? ""} // Prop isimleri düzeltildi
+          primaryButtonLink={serviceData?.introPrimaryButtonLink ?? "#"} // Prop isimleri düzeltildi
+          secondaryButtonText={serviceData?.introSecondaryButtonText ?? ""} // Prop isimleri düzeltildi
+          secondaryButtonLink={serviceData?.introSecondaryButtonLink ?? "#"} // Prop isimleri düzeltildi
+          links={serviceData?.introLinks ?? []} // Prop isimleri düzeltildi
         />
-
-        {/* Tedaviye Genel Bakış Bölümü */}
-        {/* Bu bölümün ID'sinin '1' olduğunu varsayıyoruz, gerekirse güncellenmeli */}
         <div id="1">
           <TreatmentOverview
-            sectionTitle={serviceData.overviewSectionTitle}
-            sectionDescription={serviceData.overviewSectionDescription}
-            tabsData={serviceData.overviewTabsData}
+            sectionTitle={serviceData?.overviewTitle ?? ""} // Prop isimleri düzeltildi
+            sectionDescription={serviceData?.overviewDescription ?? ""} // Prop isimleri düzeltildi
+            // tabsData prop'unu map ile dönüştürerek 'triggerText' -> 'trigger' yapalım
+            tabsData={serviceData?.overviewTabs?.map(tab => ({ ...tab, trigger: tab.triggerText })) ?? []}
           />
         </div>
-
-        {/* Neden Celyxmed Bölümü */}
-        {/* Bu bölümün ID'sinin '2' olduğunu varsayıyoruz */}
         <div id="2">
           <WhyCelyxmed
-            sectionTitle={serviceData.whySectionTitle}
-            items={serviceData.whyItems}
-            backgroundImageUrl={serviceData.whySectionBackgroundImageUrl} // Arka plan URL'si prop olarak eklendi
+            sectionTitle={serviceData?.whyTitle ?? ""} // Prop isimleri düzeltildi
+            items={serviceData?.whyItems ?? []} // Prop isimleri düzeltildi
+            backgroundImageUrl={serviceData?.whyBackgroundImageUrl}
           />
         </div>
-
-        {/* Galeri Bölümü */}
-        {/* Bu bölümün ID'sinin 'galeri' olduğunu varsayıyoruz */}
         <div id="galeri">
           <GallerySection
-            sectionTitle={serviceData.gallerySectionTitle}
-            sectionDescription={serviceData.gallerySectionDescription}
-            images={serviceData.galleryImages}
-            // İsteğe bağlı buton metinleri ve linkleri de eklenebilir
+            sectionTitle={serviceData?.galleryTitle ?? ""} // Prop isimleri düzeltildi
+            sectionDescription={serviceData?.galleryDescription ?? ""} // Prop isimleri düzeltildi
+            images={serviceData?.galleryImages ?? []} // Prop isimleri düzeltildi
           />
         </div>
-
-        {/* Yorumlar Bölümü */}
-        {/* Bu bölümün ID'si 'yorumlar' olabilir */}
         <div id="yorumlar">
           <TestimonialsSection
-            title={serviceData.testimonialsSectionTitle}
-            testimonials={serviceData.testimonialsData}
+            title={serviceData?.testimonialsSectionTitle}
+            // testimonials prop'unu map ile dönüştürerek 'stars', 'treatment' ve 'imageUrl' için varsayılan değer atayalım
+            testimonials={serviceData?.testimonials?.map(testimonial => ({
+              ...testimonial,
+              stars: testimonial.stars ?? 5,
+              treatment: testimonial.treatment ?? "",
+              imageUrl: testimonial.imageUrl ?? "", // imageUrl için varsayılan boş string
+            })) ?? []}
           />
         </div>
-
-        {/* Prosedür Adımları Bölümü */}
-        {/* Bu bölümün ID'sinin '4' olduğunu varsayıyoruz */}
         <div id="4">
           <ProcedureSteps
-            sectionTitle={serviceData.stepsSectionTitle}
-            sectionDescription={serviceData.stepsSectionDescription}
-            steps={serviceData.stepsData}
+            sectionTitle={serviceData?.stepsTitle ?? ""} // Prop isimleri düzeltildi
+            sectionDescription={serviceData?.stepsDescription}
+            steps={serviceData?.steps ?? []} // Prop isimleri düzeltildi
           />
         </div>
-
-        {/* İyileşme Bilgisi Bölümü */}
-        {/* Bu bölümün ID'sinin '5' olduğunu varsayıyoruz */}
         <div id="5">
           <RecoveryInfo
-            sectionTitle={serviceData.recoverySectionTitle}
-            sectionDescription={serviceData.recoverySectionDescription}
-            items={serviceData.recoveryItems}
+            sectionTitle={serviceData?.recoveryTitle ?? ""} // Prop isimleri düzeltildi
+            sectionDescription={serviceData?.recoveryDescription}
+            items={serviceData?.recoveryItems ?? []} // Prop isimleri düzeltildi
           />
         </div>
-
-        {/* CTA Bölümü Buraya Taşındı */}
         <CtaSection
-          tagline={serviceData.ctaTagline}
-          title={serviceData.ctaTitle}
-          description={serviceData.ctaDescription}
-          buttonText={serviceData.ctaButtonText}
-          buttonLink={serviceData.ctaButtonLink}
-          avatars={serviceData.ctaAvatars} // Tekil prop
-          avatarText={serviceData.ctaAvatarText} // Tekil prop
-          backgroundImageUrl={serviceData.ctaBackgroundImageUrl}
-          mainImageUrl={serviceData.ctaMainImageUrl} // Ana görsel prop'ları eklendi
-          mainImageAlt={serviceData.ctaMainImageAlt}
+          tagline={serviceData?.ctaTagline}
+          title={serviceData?.ctaTitle ?? ""} // Prop isimleri düzeltildi
+          description={serviceData?.ctaDescription ?? ""} // Prop isimleri düzeltildi
+          buttonText={serviceData?.ctaButtonText ?? ""} // Prop isimleri düzeltildi
+          buttonLink={serviceData?.ctaButtonLink}
+          avatars={serviceData?.ctaAvatars ?? []} // Prop isimleri düzeltildi
+          avatarText={serviceData?.ctaAvatarText}
+          backgroundImageUrl={serviceData?.ctaBackgroundImageUrl}
+          mainImageUrl={serviceData?.ctaMainImageUrl}
+          mainImageAlt={serviceData?.ctaMainImageAlt}
         />
-
-        {/* Fiyatlandırma Bölümü */}
-        {/* Bu bölümün ID'sinin 'fiyat' olduğunu varsayıyoruz */}
         <div id="fiyat">
           <PricingSection
-            sectionTitle={serviceData.pricingSectionTitle}
-            sectionDescription={serviceData.pricingSectionDescription}
-            packages={serviceData.pricingPackages}
+            sectionTitle={serviceData?.pricingTitle ?? ""} // Prop isimleri düzeltildi
+            sectionDescription={serviceData?.pricingDescription}
+            packages={serviceData?.pricingPackages ?? []} // Prop isimleri düzeltildi
           />
         </div>
-
-        {/* Uzmanlarla Tanışın Bölümü */}
-        {/* Bu bölümün ID'sinin '7' olduğunu varsayıyoruz */}
         <div id="7">
           <MeetExperts
-            sectionTitle={serviceData.expertsSectionTitle}
-            tagline={serviceData.expertsTagline}
-            experts={serviceData.expertsData}
+            sectionTitle={serviceData?.expertsSectionTitle ?? ""} // Prop isimleri düzeltildi
+            tagline={serviceData?.expertsTagline}
+            experts={serviceData?.expertItems ?? []} // Prop isimleri düzeltildi
           />
         </div>
-
-        {/* Blog Önizleme Bölümü */}
-        <BlogPreview />
-
-        {/* SSS Bölümü */}
-        {/* Bu bölümün ID'sinin '8' olduğunu varsayıyoruz */}
+        <BlogPreview /> {/* BlogPreview muhtemelen kendi verisini çekiyor veya statik */}
         <div id="8">
           <FaqSection
-            sectionTitle={serviceData.faqSectionTitle}
-            sectionDescription={serviceData.faqSectionDescription}
-            faqItems={serviceData.faqItems}
+            sectionTitle={serviceData?.faqSectionTitle ?? ""} // Prop isimleri düzeltildi
+            sectionDescription={serviceData?.faqSectionDescription}
+            faqItems={serviceData?.faqs ?? []} // Prop isimleri düzeltildi
           />
         </div>
 
-        {/* CTA Bölümü yukarı taşındığı için buradan kaldırıldı */}
-
       </main>
-      <Footer />
-      <FloatingButtons />
+      {/* Footer layout'tan geldiği için buradan kaldırıldı */}
+      {/* <Footer /> */}
+      <FloatingButtons /> {/* FloatingButtons layout'ta da var, burada da kalabilir veya kaldırılabilir. Şimdilik kalsın. */}
     </div>
   );
 }

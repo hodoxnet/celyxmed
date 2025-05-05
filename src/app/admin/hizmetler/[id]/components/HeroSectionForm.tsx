@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// import ImageUpload from '@/components/admin/image-upload'; // TODO: ImageUpload entegrasyonu
+import ImageUpload from '@/components/admin/image-upload'; // ImageUpload import edildi
 
 interface HeroSectionFormProps {
   form: HizmetDetayForm;
@@ -26,10 +26,17 @@ export function HeroSectionForm({ form, loading }: HeroSectionFormProps) {
         name="heroImageUrl"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Hero Resim URL *</FormLabel>
+            <FormLabel>Hero Resmi *</FormLabel>
             <FormControl>
-              {/* TODO: Image Upload bileşeni entegre edilebilir */}
-              <Input placeholder="https://..." {...field} disabled={loading} />
+              <ImageUpload
+                initialImage={field.value} // Mevcut resmi göster
+                showPreview={true}
+                buttonText="Hero Resmi Yükle/Değiştir"
+                onImageUploaded={(imageUrl) => {
+                  field.onChange(imageUrl); // Form state'ini güncelle
+                }}
+                className="w-full"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-// import ImageUpload from '@/components/admin/image-upload'; // TODO: ImageUpload entegrasyonu
+import ImageUpload from '@/components/admin/image-upload'; // ImageUpload import edildi
 
 interface MarqueeSectionFormProps {
   form: UseFormReturn<HizmetDetayFormValues>;
@@ -40,10 +40,17 @@ export function MarqueeSectionForm({ form, loading }: MarqueeSectionFormProps) {
                 name={`marqueeImages.${index}.src`}
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                     <FormLabel className="text-xs">Resim URL *</FormLabel>
+                     <FormLabel className="text-xs">Resim *</FormLabel>
                     <FormControl>
-                      {/* TODO: Image Upload bileşeni entegre edilebilir */}
-                      <Input placeholder="https://..." {...field} disabled={loading} />
+                      <ImageUpload
+                        initialImage={field.value}
+                        showPreview={true} // Küçük önizleme gösterelim
+                        buttonText="Resim Yükle/Değiştir"
+                        onImageUploaded={(imageUrl) => {
+                          field.onChange(imageUrl); // Form state'ini güncelle
+                        }}
+                        className="w-full"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
