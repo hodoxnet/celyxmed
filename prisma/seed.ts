@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from '@/generated/prisma';
+import { PrismaClient, Role } from '../src/generated/prisma';
 import { hash } from 'bcrypt';
 
 const prisma = new PrismaClient();
@@ -49,7 +49,55 @@ async function main() {
       },
     });
     console.log('İngilizce dili eklendi/kontrol edildi.');
+    
+    await prisma.language.upsert({
+      where: { code: 'de' },
+      update: { isDefault: false },
+      create: {
+        code: 'de',
+        name: 'Deutsch',
+        isActive: true,
+        isDefault: false,
+      },
+    });
+    console.log('Almanca dili eklendi/kontrol edildi.');
     // --- Başlangıç Dilleri Ekle Bitti ---
+    
+    // Örnek blog yazısı oluştur
+    console.log('Örnek blog yazısı oluşturuluyor...');
+    const blog = await prisma.blog.create({
+      data: {
+        slug: 'ornek-blog-yazisi',
+        coverImageUrl: '/uploads/blogs/sample-cover.jpg',
+        isPublished: true,
+        publishedAt: new Date(),
+        translations: {
+          create: [
+            {
+              languageCode: 'tr',
+              title: 'Örnek Blog Yazısı',
+              fullDescription: 'Bu bir örnek blog yazısı açıklamasıdır.',
+              content: '<h1>Örnek Blog İçeriği</h1><p>Bu bir örnek blog içeriğidir. HTML formatında yazılmıştır.</p><h2>Alt Başlık</h2><p>Bu bir alt başlık içeriğidir.</p>',
+              tocItems: [
+                { id: 'ornek-blog-icerigi', text: 'Örnek Blog İçeriği', level: 1 },
+                { id: 'alt-baslik', text: 'Alt Başlık', level: 2 }
+              ]
+            },
+            {
+              languageCode: 'en',
+              title: 'Sample Blog Post',
+              fullDescription: 'This is a sample blog post description.',
+              content: '<h1>Sample Blog Content</h1><p>This is a sample blog content. It is written in HTML format.</p><h2>Subheading</h2><p>This is a subheading content.</p>',
+              tocItems: [
+                { id: 'sample-blog-content', text: 'Sample Blog Content', level: 1 },
+                { id: 'subheading', text: 'Subheading', level: 2 }
+              ]
+            }
+          ]
+        }
+      }
+    });
+    console.log('Örnek blog yazısı oluşturuldu:', blog.slug);
 
   } catch (error: any) {
     // Eğer kullanıcı zaten varsa (unique constraint hatası P2002), bunu görmezden gel

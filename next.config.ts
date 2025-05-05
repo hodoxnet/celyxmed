@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import withNextIntl from 'next-intl/plugin'; // next-intl plugin'ini import et
 
 const nextConfig: NextConfig = {
+  reactStrictMode: false, // Strict Mode'u geçici olarak devre dışı bırak
   // Root redirects'i ayarla - eğer middleware çalışmazsa bu backupdır
   async redirects() {
     return [
