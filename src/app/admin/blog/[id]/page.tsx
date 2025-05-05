@@ -27,6 +27,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+// Slug oluşturma yardımcı fonksiyonu
+const generateSlug = (text: string): string => {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/ı/g, 'i')
+    .replace(/ö/g, 'o')
+    .replace(/ç/g, 'c')
+    .replace(/[^a-z0-9 -]/g, '') // Harf, rakam, boşluk ve tire dışındakileri kaldır
+    .replace(/\s+/g, '-') // Boşlukları tire ile değiştir
+    .replace(/-+/g, '-') // Birden fazla tireyi tek tire yap
+    .replace(/^-+|-+$/g, ''); // Başta ve sondaki tireleri kaldır
+};
+
+
 // Şema tanımları
 const blogBaseSchema = z.object({
   // slug buradan kaldırıldı
@@ -382,8 +400,32 @@ export default function BlogEditPage() {
                             )}
                           </div>
 
-                          {/* Slug (Controller ile) - Her dil için ayrı */}
+                          {/* Başlık (Controller ile) */}
                           <div className="space-y-2">
+                            <Label htmlFor={`translations.${index}.title`}>Başlık</Label>
+                            <Controller
+                              name={`translations.${index}.title`}
+                              control={form.control}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  id={`translations.${index}.title`}
+                                  placeholder={`${lang.name} başlık`}
+                                  onChange={(e) => {
+                                    const titleValue = e.target.value;
+                                    field.onChange(titleValue); // Başlık alanını güncelle
+                                    const newSlug = generateSlug(titleValue);
+                                    // İlgili slug alanını güncelle (shouldValidate: false performansı artırabilir)
+                                    form.setValue(`translations.${index}.slug`, newSlug, { shouldValidate: true, shouldDirty: true });
+                                  }}
+                                />
+                              )}
+                            />
+                            <FormMessage>{form.formState.errors.translations?.[index]?.title?.message}</FormMessage>
+                          </div>
+
+                           {/* Slug (Controller ile) - Başlığın altına taşındı */}
+                           <div className="space-y-2">
                             <Label htmlFor={`translations.${index}.slug`}>Slug</Label>
                             <Controller
                               name={`translations.${index}.slug`}
@@ -392,31 +434,15 @@ export default function BlogEditPage() {
                                 <Input
                                   {...field}
                                   id={`translations.${index}.slug`}
-                                  placeholder={`${lang.name} için slug (ornek-blog-yazisi)`}
+                                  placeholder={`${lang.name} için otomatik oluşturulan slug`}
+                                  // İsteğe bağlı: Kullanıcı manuel düzenleme yaparsa otomatik güncellemeyi durdurmak için ek mantık eklenebilir.
                                 />
                               )}
                             />
                             <FormDescription>
-                              Bu dil için URL'de görünecek benzersiz tanımlayıcı.
+                              Başlığa göre otomatik oluşturulur. Gerekirse düzenleyebilirsiniz.
                             </FormDescription>
                             <FormMessage>{form.formState.errors.translations?.[index]?.slug?.message}</FormMessage>
-                          </div>
-
-                          {/* Başlık (Controller ile) */}
-                          <div className="space-y-2">
-                            <Label htmlFor={`translations.${index}.title`}>Başlık</Label>
-                            <Controller
-                              name={`translations.${index}.title`} // İsim doğru, index'e göre ayarlanıyor
-                              control={form.control}
-                              render={({ field }) => (
-                                <Input
-                                  {...field}
-                                  id={`translations.${index}.title`}
-                                  placeholder={`${lang.name} başlık`}
-                                />
-                              )}
-                            />
-                            <FormMessage>{form.formState.errors.translations?.[index]?.title?.message}</FormMessage>
                           </div>
 
                           {/* Açıklama (Controller ile) */}
