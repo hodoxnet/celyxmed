@@ -119,44 +119,47 @@ const BlogDetailPage = () => {
 
   return (
     <main className="container mx-auto px-4 pb-8 pt-40"> {/* Navbar için üst padding eklendi */}
-      {/* Blog Başlığı - Ortalanmış ve büyütülmüş */}
-      <section className="mb-8 text-center pt-16 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-10 text-slate-800">{blogData.title}</h1>
-        
-        {/* Uzun açıklama - Görseldeki gibi */}
-        <p className="text-base text-slate-700 leading-relaxed mb-16">
-          {blogData.fullDescription}
-        </p>
-      </section>
-
-      {/* İçindekiler - Daraltılabilir/Genişletilebilir */}
-      <section className="mb-12 max-w-4xl mx-auto">
-        <div 
-          className="bg-gray-50 rounded-lg shadow-sm p-4 cursor-pointer"
-          onClick={() => setTocOpen(!tocOpen)}
-        >
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-medium text-slate-800">İçindekiler</h2>
-            <ChevronDown 
-              className={`w-5 h-5 text-slate-500 transition-transform ${tocOpen ? 'transform rotate-180' : ''}`} 
-            />
-          </div>
+      {/* İlk görünüm - Ekranı kaplayan bölüm */}
+      <div className="min-h-[calc(100vh-10rem)] flex flex-col justify-center items-center">
+        {/* Blog Başlığı - Ortalanmış ve büyütülmüş */}
+        <section className="text-center max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-10 text-slate-800">{blogData.title}</h1>
           
-          {tocOpen && (
-            <div className="mt-4">
-              <ul className="space-y-2">
-                {blogData.tocItems.map(item => (
-                  <li key={item.id}>
-                    <a href={`#${item.id}`} className="text-blue-600 hover:underline">
-                      {item.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {/* Uzun açıklama - Görseldeki gibi */}
+          <p className="text-base text-slate-700 leading-relaxed mb-16">
+            {blogData.fullDescription}
+          </p>
+        </section>
+
+        {/* İçindekiler - Daraltılabilir/Genişletilebilir */}
+        <section className="w-full max-w-4xl mx-auto mb-8">
+          <div 
+            className="bg-gray-50 rounded-lg shadow-sm p-4 cursor-pointer"
+            onClick={() => setTocOpen(!tocOpen)}
+          >
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-medium text-slate-800">İçindekiler</h2>
+              <ChevronDown 
+                className={`w-5 h-5 text-slate-500 transition-transform ${tocOpen ? 'transform rotate-180' : ''}`} 
+              />
             </div>
-          )}
-        </div>
-      </section>
+            
+            {tocOpen && (
+              <div className="mt-4">
+                <ul className="space-y-2">
+                  {blogData.tocItems.map(item => (
+                    <li key={item.id}>
+                      <a href={`#${item.id}`} className="text-blue-600 hover:underline">
+                        {item.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
 
       {/* Blog İçeriği */}
       <article className="prose lg:prose-xl max-w-4xl mx-auto mb-16" dangerouslySetInnerHTML={{ __html: blogData.content }} />
