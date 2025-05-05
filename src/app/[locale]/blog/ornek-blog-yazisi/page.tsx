@@ -135,19 +135,23 @@ const BlogDetailPage = () => {
               />
             </div>
             
-            {tocOpen && (
-              <div className="mt-4">
-                <ul className="space-y-2">
-                  {blogData.tocItems.map(item => (
-                    <li key={item.id}>
-                      <a href={`#${item.id}`} className="text-blue-600 hover:underline">
-                        {item.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Animated TOC Content */}
+            <div 
+              className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                tocOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0' // max-h-96 yeterli bir yükseklik varsayımı
+              }`}
+            >
+              <ul className="space-y-2">
+                {blogData.tocItems.map(item => (
+                  <li key={item.id}>
+                    {/* Açıkça metin rengi eklendi */}
+                    <a href={`#${item.id}`} className="text-slate-800 hover:underline">
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
             </div>
           </section>
         </div>
