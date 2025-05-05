@@ -57,7 +57,7 @@ model Language {
 // Blog modeli
 model Blog {
   id          String   @id @default(cuid())
-  slug        String   @unique // URL slug
+  // slug        String   @unique // URL slug - KALDIRILDI
   coverImageUrl String? // Kapak görseli URL'si
   isPublished Boolean  @default(false) // Yayın durumu
   publishedAt DateTime? // Yayın tarihi (yayınlanmamışsa null)
@@ -71,6 +71,7 @@ model Blog {
 // Blog çevirileri modeli
 model BlogTranslation {
   id             String  @id @default(cuid())
+  slug           String? // URL slug (dile özgü) - EKLENDİ ve GEÇİCİ OLARAK İSTEĞE BAĞLI YAPILDI
   title          String  // Blog başlığı
   fullDescription String  // Kısa özet/açıklama
   content        String  @db.Text // HTML formatında ana içerik
@@ -86,4 +87,6 @@ model BlogTranslation {
   
   // Blog-dil ikilisi eşsiz olmalı
   @@unique([blogId, languageCode])
+  // Dil kodu ve slug ikilisi eşsiz olmalı (örn: /en/my-post ve /tr/my-post olabilir, ama iki tane /en/my-post olamaz)
+  // @@unique([languageCode, slug]) // Geçici olarak kaldırıldı, null değerler unique olamaz
 }

@@ -4448,7 +4448,6 @@ export namespace Prisma {
 
   export type BlogMinAggregateOutputType = {
     id: string | null
-    slug: string | null
     coverImageUrl: string | null
     isPublished: boolean | null
     publishedAt: Date | null
@@ -4458,7 +4457,6 @@ export namespace Prisma {
 
   export type BlogMaxAggregateOutputType = {
     id: string | null
-    slug: string | null
     coverImageUrl: string | null
     isPublished: boolean | null
     publishedAt: Date | null
@@ -4468,7 +4466,6 @@ export namespace Prisma {
 
   export type BlogCountAggregateOutputType = {
     id: number
-    slug: number
     coverImageUrl: number
     isPublished: number
     publishedAt: number
@@ -4480,7 +4477,6 @@ export namespace Prisma {
 
   export type BlogMinAggregateInputType = {
     id?: true
-    slug?: true
     coverImageUrl?: true
     isPublished?: true
     publishedAt?: true
@@ -4490,7 +4486,6 @@ export namespace Prisma {
 
   export type BlogMaxAggregateInputType = {
     id?: true
-    slug?: true
     coverImageUrl?: true
     isPublished?: true
     publishedAt?: true
@@ -4500,7 +4495,6 @@ export namespace Prisma {
 
   export type BlogCountAggregateInputType = {
     id?: true
-    slug?: true
     coverImageUrl?: true
     isPublished?: true
     publishedAt?: true
@@ -4583,7 +4577,6 @@ export namespace Prisma {
 
   export type BlogGroupByOutputType = {
     id: string
-    slug: string
     coverImageUrl: string | null
     isPublished: boolean
     publishedAt: Date | null
@@ -4610,7 +4603,6 @@ export namespace Prisma {
 
   export type BlogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    slug?: boolean
     coverImageUrl?: boolean
     isPublished?: boolean
     publishedAt?: boolean
@@ -4622,7 +4614,6 @@ export namespace Prisma {
 
   export type BlogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    slug?: boolean
     coverImageUrl?: boolean
     isPublished?: boolean
     publishedAt?: boolean
@@ -4632,7 +4623,6 @@ export namespace Prisma {
 
   export type BlogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    slug?: boolean
     coverImageUrl?: boolean
     isPublished?: boolean
     publishedAt?: boolean
@@ -4642,7 +4632,6 @@ export namespace Prisma {
 
   export type BlogSelectScalar = {
     id?: boolean
-    slug?: boolean
     coverImageUrl?: boolean
     isPublished?: boolean
     publishedAt?: boolean
@@ -4650,7 +4639,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type BlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "coverImageUrl" | "isPublished" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["blog"]>
+  export type BlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "coverImageUrl" | "isPublished" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["blog"]>
   export type BlogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     translations?: boolean | Blog$translationsArgs<ExtArgs>
     _count?: boolean | BlogCountOutputTypeDefaultArgs<ExtArgs>
@@ -4665,7 +4654,6 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      slug: string
       coverImageUrl: string | null
       isPublished: boolean
       publishedAt: Date | null
@@ -5096,7 +5084,6 @@ export namespace Prisma {
    */
   interface BlogFieldRefs {
     readonly id: FieldRef<"Blog", 'String'>
-    readonly slug: FieldRef<"Blog", 'String'>
     readonly coverImageUrl: FieldRef<"Blog", 'String'>
     readonly isPublished: FieldRef<"Blog", 'Boolean'>
     readonly publishedAt: FieldRef<"Blog", 'DateTime'>
@@ -5544,6 +5531,7 @@ export namespace Prisma {
 
   export type BlogTranslationMinAggregateOutputType = {
     id: string | null
+    slug: string | null
     title: string | null
     fullDescription: string | null
     content: string | null
@@ -5553,6 +5541,7 @@ export namespace Prisma {
 
   export type BlogTranslationMaxAggregateOutputType = {
     id: string | null
+    slug: string | null
     title: string | null
     fullDescription: string | null
     content: string | null
@@ -5562,6 +5551,7 @@ export namespace Prisma {
 
   export type BlogTranslationCountAggregateOutputType = {
     id: number
+    slug: number
     title: number
     fullDescription: number
     content: number
@@ -5574,6 +5564,7 @@ export namespace Prisma {
 
   export type BlogTranslationMinAggregateInputType = {
     id?: true
+    slug?: true
     title?: true
     fullDescription?: true
     content?: true
@@ -5583,6 +5574,7 @@ export namespace Prisma {
 
   export type BlogTranslationMaxAggregateInputType = {
     id?: true
+    slug?: true
     title?: true
     fullDescription?: true
     content?: true
@@ -5592,6 +5584,7 @@ export namespace Prisma {
 
   export type BlogTranslationCountAggregateInputType = {
     id?: true
+    slug?: true
     title?: true
     fullDescription?: true
     content?: true
@@ -5675,6 +5668,7 @@ export namespace Prisma {
 
   export type BlogTranslationGroupByOutputType = {
     id: string
+    slug: string | null
     title: string
     fullDescription: string
     content: string
@@ -5702,6 +5696,7 @@ export namespace Prisma {
 
   export type BlogTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    slug?: boolean
     title?: boolean
     fullDescription?: boolean
     content?: boolean
@@ -5714,6 +5709,7 @@ export namespace Prisma {
 
   export type BlogTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    slug?: boolean
     title?: boolean
     fullDescription?: boolean
     content?: boolean
@@ -5726,6 +5722,7 @@ export namespace Prisma {
 
   export type BlogTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    slug?: boolean
     title?: boolean
     fullDescription?: boolean
     content?: boolean
@@ -5738,6 +5735,7 @@ export namespace Prisma {
 
   export type BlogTranslationSelectScalar = {
     id?: boolean
+    slug?: boolean
     title?: boolean
     fullDescription?: boolean
     content?: boolean
@@ -5746,7 +5744,7 @@ export namespace Prisma {
     languageCode?: boolean
   }
 
-  export type BlogTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "fullDescription" | "content" | "tocItems" | "blogId" | "languageCode", ExtArgs["result"]["blogTranslation"]>
+  export type BlogTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "fullDescription" | "content" | "tocItems" | "blogId" | "languageCode", ExtArgs["result"]["blogTranslation"]>
   export type BlogTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     blog?: boolean | BlogDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
@@ -5768,6 +5766,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      slug: string | null
       title: string
       fullDescription: string
       content: string
@@ -6200,6 +6199,7 @@ export namespace Prisma {
    */
   interface BlogTranslationFieldRefs {
     readonly id: FieldRef<"BlogTranslation", 'String'>
+    readonly slug: FieldRef<"BlogTranslation", 'String'>
     readonly title: FieldRef<"BlogTranslation", 'String'>
     readonly fullDescription: FieldRef<"BlogTranslation", 'String'>
     readonly content: FieldRef<"BlogTranslation", 'String'>
@@ -6674,7 +6674,6 @@ export namespace Prisma {
 
   export const BlogScalarFieldEnum: {
     id: 'id',
-    slug: 'slug',
     coverImageUrl: 'coverImageUrl',
     isPublished: 'isPublished',
     publishedAt: 'publishedAt',
@@ -6687,6 +6686,7 @@ export namespace Prisma {
 
   export const BlogTranslationScalarFieldEnum: {
     id: 'id',
+    slug: 'slug',
     title: 'title',
     fullDescription: 'fullDescription',
     content: 'content',
@@ -7013,7 +7013,6 @@ export namespace Prisma {
     OR?: BlogWhereInput[]
     NOT?: BlogWhereInput | BlogWhereInput[]
     id?: StringFilter<"Blog"> | string
-    slug?: StringFilter<"Blog"> | string
     coverImageUrl?: StringNullableFilter<"Blog"> | string | null
     isPublished?: BoolFilter<"Blog"> | boolean
     publishedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
@@ -7024,7 +7023,6 @@ export namespace Prisma {
 
   export type BlogOrderByWithRelationInput = {
     id?: SortOrder
-    slug?: SortOrder
     coverImageUrl?: SortOrderInput | SortOrder
     isPublished?: SortOrder
     publishedAt?: SortOrderInput | SortOrder
@@ -7035,7 +7033,6 @@ export namespace Prisma {
 
   export type BlogWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    slug?: string
     AND?: BlogWhereInput | BlogWhereInput[]
     OR?: BlogWhereInput[]
     NOT?: BlogWhereInput | BlogWhereInput[]
@@ -7045,11 +7042,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Blog"> | Date | string
     updatedAt?: DateTimeFilter<"Blog"> | Date | string
     translations?: BlogTranslationListRelationFilter
-  }, "id" | "slug">
+  }, "id">
 
   export type BlogOrderByWithAggregationInput = {
     id?: SortOrder
-    slug?: SortOrder
     coverImageUrl?: SortOrderInput | SortOrder
     isPublished?: SortOrder
     publishedAt?: SortOrderInput | SortOrder
@@ -7065,7 +7061,6 @@ export namespace Prisma {
     OR?: BlogScalarWhereWithAggregatesInput[]
     NOT?: BlogScalarWhereWithAggregatesInput | BlogScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Blog"> | string
-    slug?: StringWithAggregatesFilter<"Blog"> | string
     coverImageUrl?: StringNullableWithAggregatesFilter<"Blog"> | string | null
     isPublished?: BoolWithAggregatesFilter<"Blog"> | boolean
     publishedAt?: DateTimeNullableWithAggregatesFilter<"Blog"> | Date | string | null
@@ -7078,6 +7073,7 @@ export namespace Prisma {
     OR?: BlogTranslationWhereInput[]
     NOT?: BlogTranslationWhereInput | BlogTranslationWhereInput[]
     id?: StringFilter<"BlogTranslation"> | string
+    slug?: StringNullableFilter<"BlogTranslation"> | string | null
     title?: StringFilter<"BlogTranslation"> | string
     fullDescription?: StringFilter<"BlogTranslation"> | string
     content?: StringFilter<"BlogTranslation"> | string
@@ -7090,6 +7086,7 @@ export namespace Prisma {
 
   export type BlogTranslationOrderByWithRelationInput = {
     id?: SortOrder
+    slug?: SortOrderInput | SortOrder
     title?: SortOrder
     fullDescription?: SortOrder
     content?: SortOrder
@@ -7106,6 +7103,7 @@ export namespace Prisma {
     AND?: BlogTranslationWhereInput | BlogTranslationWhereInput[]
     OR?: BlogTranslationWhereInput[]
     NOT?: BlogTranslationWhereInput | BlogTranslationWhereInput[]
+    slug?: StringNullableFilter<"BlogTranslation"> | string | null
     title?: StringFilter<"BlogTranslation"> | string
     fullDescription?: StringFilter<"BlogTranslation"> | string
     content?: StringFilter<"BlogTranslation"> | string
@@ -7118,6 +7116,7 @@ export namespace Prisma {
 
   export type BlogTranslationOrderByWithAggregationInput = {
     id?: SortOrder
+    slug?: SortOrderInput | SortOrder
     title?: SortOrder
     fullDescription?: SortOrder
     content?: SortOrder
@@ -7134,6 +7133,7 @@ export namespace Prisma {
     OR?: BlogTranslationScalarWhereWithAggregatesInput[]
     NOT?: BlogTranslationScalarWhereWithAggregatesInput | BlogTranslationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"BlogTranslation"> | string
+    slug?: StringNullableWithAggregatesFilter<"BlogTranslation"> | string | null
     title?: StringWithAggregatesFilter<"BlogTranslation"> | string
     fullDescription?: StringWithAggregatesFilter<"BlogTranslation"> | string
     content?: StringWithAggregatesFilter<"BlogTranslation"> | string
@@ -7351,7 +7351,6 @@ export namespace Prisma {
 
   export type BlogCreateInput = {
     id?: string
-    slug: string
     coverImageUrl?: string | null
     isPublished?: boolean
     publishedAt?: Date | string | null
@@ -7362,7 +7361,6 @@ export namespace Prisma {
 
   export type BlogUncheckedCreateInput = {
     id?: string
-    slug: string
     coverImageUrl?: string | null
     isPublished?: boolean
     publishedAt?: Date | string | null
@@ -7373,7 +7371,6 @@ export namespace Prisma {
 
   export type BlogUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
     coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7384,7 +7381,6 @@ export namespace Prisma {
 
   export type BlogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
     coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7395,7 +7391,6 @@ export namespace Prisma {
 
   export type BlogCreateManyInput = {
     id?: string
-    slug: string
     coverImageUrl?: string | null
     isPublished?: boolean
     publishedAt?: Date | string | null
@@ -7405,7 +7400,6 @@ export namespace Prisma {
 
   export type BlogUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
     coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7415,7 +7409,6 @@ export namespace Prisma {
 
   export type BlogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
     coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7425,6 +7418,7 @@ export namespace Prisma {
 
   export type BlogTranslationCreateInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -7435,6 +7429,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedCreateInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -7445,6 +7440,7 @@ export namespace Prisma {
 
   export type BlogTranslationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -7455,6 +7451,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -7465,6 +7462,7 @@ export namespace Prisma {
 
   export type BlogTranslationCreateManyInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -7475,6 +7473,7 @@ export namespace Prisma {
 
   export type BlogTranslationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -7483,6 +7482,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -7727,7 +7727,6 @@ export namespace Prisma {
 
   export type BlogCountOrderByAggregateInput = {
     id?: SortOrder
-    slug?: SortOrder
     coverImageUrl?: SortOrder
     isPublished?: SortOrder
     publishedAt?: SortOrder
@@ -7737,7 +7736,6 @@ export namespace Prisma {
 
   export type BlogMaxOrderByAggregateInput = {
     id?: SortOrder
-    slug?: SortOrder
     coverImageUrl?: SortOrder
     isPublished?: SortOrder
     publishedAt?: SortOrder
@@ -7747,7 +7745,6 @@ export namespace Prisma {
 
   export type BlogMinOrderByAggregateInput = {
     id?: SortOrder
-    slug?: SortOrder
     coverImageUrl?: SortOrder
     isPublished?: SortOrder
     publishedAt?: SortOrder
@@ -7809,6 +7806,7 @@ export namespace Prisma {
 
   export type BlogTranslationCountOrderByAggregateInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     fullDescription?: SortOrder
     content?: SortOrder
@@ -7819,6 +7817,7 @@ export namespace Prisma {
 
   export type BlogTranslationMaxOrderByAggregateInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     fullDescription?: SortOrder
     content?: SortOrder
@@ -7828,6 +7827,7 @@ export namespace Prisma {
 
   export type BlogTranslationMinOrderByAggregateInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     fullDescription?: SortOrder
     content?: SortOrder
@@ -8186,6 +8186,7 @@ export namespace Prisma {
 
   export type BlogTranslationCreateWithoutLanguageInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -8195,6 +8196,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedCreateWithoutLanguageInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -8233,6 +8235,7 @@ export namespace Prisma {
     OR?: BlogTranslationScalarWhereInput[]
     NOT?: BlogTranslationScalarWhereInput | BlogTranslationScalarWhereInput[]
     id?: StringFilter<"BlogTranslation"> | string
+    slug?: StringNullableFilter<"BlogTranslation"> | string | null
     title?: StringFilter<"BlogTranslation"> | string
     fullDescription?: StringFilter<"BlogTranslation"> | string
     content?: StringFilter<"BlogTranslation"> | string
@@ -8243,6 +8246,7 @@ export namespace Prisma {
 
   export type BlogTranslationCreateWithoutBlogInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -8252,6 +8256,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedCreateWithoutBlogInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -8287,7 +8292,6 @@ export namespace Prisma {
 
   export type BlogCreateWithoutTranslationsInput = {
     id?: string
-    slug: string
     coverImageUrl?: string | null
     isPublished?: boolean
     publishedAt?: Date | string | null
@@ -8297,7 +8301,6 @@ export namespace Prisma {
 
   export type BlogUncheckedCreateWithoutTranslationsInput = {
     id?: string
-    slug: string
     coverImageUrl?: string | null
     isPublished?: boolean
     publishedAt?: Date | string | null
@@ -8348,7 +8351,6 @@ export namespace Prisma {
 
   export type BlogUpdateWithoutTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
     coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8358,7 +8360,6 @@ export namespace Prisma {
 
   export type BlogUncheckedUpdateWithoutTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
     coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8399,6 +8400,7 @@ export namespace Prisma {
 
   export type BlogTranslationCreateManyLanguageInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -8408,6 +8410,7 @@ export namespace Prisma {
 
   export type BlogTranslationUpdateWithoutLanguageInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -8417,6 +8420,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedUpdateWithoutLanguageInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -8426,6 +8430,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedUpdateManyWithoutLanguageInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -8435,6 +8440,7 @@ export namespace Prisma {
 
   export type BlogTranslationCreateManyBlogInput = {
     id?: string
+    slug?: string | null
     title: string
     fullDescription: string
     content: string
@@ -8444,6 +8450,7 @@ export namespace Prisma {
 
   export type BlogTranslationUpdateWithoutBlogInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -8453,6 +8460,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedUpdateWithoutBlogInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -8462,6 +8470,7 @@ export namespace Prisma {
 
   export type BlogTranslationUncheckedUpdateManyWithoutBlogInput = {
     id?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     fullDescription?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string

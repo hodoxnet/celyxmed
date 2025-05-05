@@ -32,7 +32,7 @@ export const GET = withAdmin(async (req: Request, { params }: Params) => {
       return NextResponse.json({ message: 'Blog bulunamadı.' }, { status: 404 });
     }
     
-    console.log(`Blog found: ${blog.slug}`);
+    // console.log(`Blog found: ${blog.slug}`); // Slug artık Blog modelinde değil
     return NextResponse.json(blog);
   } catch (error) {
     console.error(`Error fetching blog with ID ${params.id}:`, error);
@@ -54,36 +54,43 @@ export const PUT = withAdmin(async (req: Request, { params }: Params) => {
     if (!existingBlog) {
       return NextResponse.json({ message: 'Blog bulunamadı.' }, { status: 404 });
     }
-    
-    // Slug değişirse, kontrolü yapılmalı
-    if (body.slug && body.slug !== existingBlog.slug) {
-      const slugExists = await prisma.blog.findUnique({
-        where: { slug: body.slug },
-      });
-      
-      if (slugExists) {
-        return NextResponse.json({ message: 'Bu slug zaten kullanılmaktadır.' }, { status: 409 });
-      }
-    }
-    
+
+    // Slug kontrolü kaldırıldı (çeviri seviyesinde yapılacak)
+
     // Blog ve çevirilerini transaction içinde güncelle
     const result = await prisma.$transaction(async (tx) => {
-      // 1. Ana blog kaydını güncelle
+      // 1. Ana blog kaydını güncelle (slug kaldırıldı)
       const updatedBlog = await tx.blog.update({
         where: { id },
         data: {
-          slug: body.slug,
+          // slug: body.slug, // Kaldırıldı
           coverImageUrl: body.coverImageUrl,
           isPublished: body.isPublished,
-          publishedAt: body.isPublished && !existingBlog.isPublished ? new Date() : existingBlog.publishedAt,
+          publishedAt: body.isPublished && !existingBlog.isPublished ? new Date() : existingBlog.publishedAt, // Yayınlanma tarihi mantığı korundu
         },
       });
       
       // 2. Çevirileri güncelle veya ekle
       if (body.translations && Array.isArray(body.translations)) {
         for (const translation of body.translations) {
-          if (translation.languageCode && translation.title && translation.fullDescription && translation.content) {
-            // Çeviri var mı kontrol et
+          // Gelen çeviride gerekli alanlar var mı kontrol et (slug dahil)
+          if (translation.languageCode && translation.slug && translation.title && translation.fullDescription && translation.content) {
+
+            // Yeni slug'ın o dil için başka bir blogda kullanılıp kullanılmadığını kontrol et
+            const slugExists = await tx.blogTranslation.findFirst({
+              where: {
+                languageCode: translation.languageCode,
+                slug: translation.slug,
+                blogId: { not: id } // Kendi blogu hariç
+              }
+            });
+
+            if (slugExists) {
+              // Hata fırlatmak transaction'ı geri alacaktır
+              throw new Error(`'${translation.slug}' slug'ı ${translation.languageCode} dili için zaten başka bir blogda kullanılıyor.`);
+            }
+
+            // Mevcut çeviriyi bul
             const existingTranslation = await tx.blogTranslation.findUnique({
               where: {
                 blogId_languageCode: {
@@ -94,26 +101,28 @@ export const PUT = withAdmin(async (req: Request, { params }: Params) => {
             });
             
             if (existingTranslation) {
-              // Mevcut çeviriyi güncelle
+              // Mevcut çeviriyi güncelle (slug dahil)
               await tx.blogTranslation.update({
                 where: { id: existingTranslation.id },
                 data: {
+                  slug: translation.slug, // Slug güncellemesi eklendi
                   title: translation.title,
                   fullDescription: translation.fullDescription,
                   content: translation.content,
-                  tocItems: translation.tocItems || existingTranslation.tocItems,
+                  tocItems: translation.tocItems || existingTranslation.tocItems, // tocItems null olabilir, kontrol et
                 },
               });
             } else {
-              // Yeni çeviri ekle
+              // Yeni çeviri ekle (slug dahil)
               await tx.blogTranslation.create({
                 data: {
                   blogId: id,
                   languageCode: translation.languageCode,
+                  slug: translation.slug, // Slug eklemesi eklendi
                   title: translation.title,
                   fullDescription: translation.fullDescription,
                   content: translation.content,
-                  tocItems: translation.tocItems || null,
+                  tocItems: translation.tocItems || null, // tocItems null olabilir
                 },
               });
             }

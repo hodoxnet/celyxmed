@@ -151,7 +151,6 @@ exports.Prisma.LanguageScalarFieldEnum = {
 
 exports.Prisma.BlogScalarFieldEnum = {
   id: 'id',
-  slug: 'slug',
   coverImageUrl: 'coverImageUrl',
   isPublished: 'isPublished',
   publishedAt: 'publishedAt',
@@ -161,6 +160,7 @@ exports.Prisma.BlogScalarFieldEnum = {
 
 exports.Prisma.BlogTranslationScalarFieldEnum = {
   id: 'id',
+  slug: 'slug',
   title: 'title',
   fullDescription: 'fullDescription',
   content: 'content',
