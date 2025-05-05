@@ -1,7 +1,6 @@
 "use client"; // İstemci Bileşeni olarak işaretlemeye devam edelim, alt bileşenler gerektirebilir
 
 // Layout bileşenlerini import et
-import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import FloatingButtons from '@/components/layout/FloatingButtons';
 
@@ -17,16 +16,10 @@ import FaqSection from '@/components/home/FaqSection';
 import WhyChooseSection from '@/components/home/WhyChooseSection';
 import ConsultOnlineSection from '@/components/home/ConsultOnlineSection'; // Yeni bileşeni import et
 
-// index.html'de olup planımızda olmayan ek bölümler için placeholder bileşenler (gerekirse oluşturulacak)
-// const WhyChooseSection = () => <section>Why Choose Section Placeholder</section>;
-// const ConsultOnlineSection = () => <section>Consult Online Section Placeholder</section>; // Placeholder'ı kaldır/yorum satırı yap
-
-
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen"> {/* Sayfanın tamamını kaplaması için */}
-      <Navbar />
-      <main className="flex-grow"> {/* Footer'ı aşağı itmek için */}
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-grow pt-0"> {/* Padding kaldırıldı */}
         <HeroSection />
         <WhyChooseSection /> {/* index.html'deki video ve açıklama bölümü */}
         <TreatmentsSection />

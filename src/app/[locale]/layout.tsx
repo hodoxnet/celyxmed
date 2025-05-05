@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { ThemeProvider } from "@/components/theme-provider"; // ThemeProvider'ı import et
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/layout/Navbar"; // Navbar import edildi
+import Footer from "@/components/layout/Footer"; // Footer import edildi
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -45,7 +47,14 @@ export default async function RootLayout({
         >
           {/* Çocuk bileşenleri NextIntlClientProvider ile sarmala */}
           <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              {/* Blog sayfaları için padding gerekli, ancak anasayfa için değil */}
+              <main className="flex-grow"> {/* Padding kaldırıldı, sayfa içinde gerekirse eklenecek */}
+                {children}
+              </main>
+              <Footer />
+            </div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
