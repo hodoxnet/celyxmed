@@ -74,15 +74,12 @@ const Footer = () => {
             <p className="text-gray-600 mb-6 max-w-md">
               Celyxmed, dünya standartlarında doktorlar ve JCI akreditasyonlu kliniklerle kişiselleştirilmiş tedaviler sunan Türkiye'deki güvenilir sağlık ortağınızdır. Sizin sağlığınız, bizim önceliğimiz.
             </p>
-            {/* Buton Link ile sarıldı (asChild alternatifi) */}
-            <Link href="/iletisim" passHref legacyBehavior>
-              <Button
-                // as="a" // Bu prop kaldırıldı, legacyBehavior ile Link zaten a tag'i oluşturur
-                className="bg-[#3E838C] hover:bg-[#367078] text-white rounded-lg px-6 py-2 inline-block" // inline-block eklendi
-              >
+            {/* Buton Link ile sarıldı (Yeni Next.js standardı) */}
+            <Button asChild className="bg-[#3E838C] hover:bg-[#367078] text-white rounded-lg px-6 py-2 inline-block">
+              <Link href="/iletisim">
                 İletişim
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
 
           {/* Sağ Kısım: Link Sütunları */}

@@ -2,7 +2,7 @@
 
 // Layout bileşenlerini import et
 import Footer from '@/components/layout/Footer';
-import FloatingButtons from '@/components/layout/FloatingButtons';
+// FloatingButtons importu kaldırıldı (layout'a taşındı)
 
 // Ana sayfa bölüm bileşenlerini import et
 import HeroSection from '@/components/home/HeroSection';
@@ -32,7 +32,7 @@ export default function HomePage() {
         <FaqSection />
       </main>
       <Footer />
-      <FloatingButtons /> {/* Bu bileşenin içinde sabit konumlandırma (fixed positioning) yapılması gerekecek */}
+      {/* FloatingButtons kullanımı kaldırıldı (layout'a taşındı) */}
     </div>
   );
 }

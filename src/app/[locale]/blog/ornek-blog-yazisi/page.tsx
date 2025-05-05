@@ -168,12 +168,11 @@ const BlogDetailPage = () => {
         {/* Blog İçeriği */}
         <article className="prose lg:prose-xl max-w-4xl mx-auto mb-16" dangerouslySetInnerHTML={{ __html: blogData.content }} />
 
-        {/* Sınırlandırılmış Genişlikli Bileşenler (WhyTrustSection hariç) */}
-        <div className="max-w-6xl mx-auto">
-          <ClinicShowcase />
-          {/* ProcedureSteps kaldırıldı */}
-          <BlogPreview />
-        </div>
+        {/* Ortak Bileşenler (Container içine geri taşındı) */}
+        <ClinicShowcase />
+        {/* ProcedureSteps kaldırıldı */}
+        <BlogPreview />
+        
       </div> {/* container div kapanışı */}
 
       {/* Tam Genişlikli Bileşen (Container dışında) */}

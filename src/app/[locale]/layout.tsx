@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/layout/Navbar"; // Navbar import edildi
-import Footer from "@/components/layout/Footer"; // Footer import edildi
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import FloatingButtons from "@/components/layout/FloatingButtons"; // FloatingButtons import edildi
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default async function RootLayout({
                 {children}
               </main>
               <Footer />
+              <FloatingButtons /> {/* FloatingButtons eklendi */}
             </div>
           </NextIntlClientProvider>
         </ThemeProvider>
