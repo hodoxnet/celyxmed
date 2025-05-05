@@ -1,0 +1,32 @@
+import { NextResponse } from 'next/server';
+import prisma from '@/lib/prisma'; // Prisma istemcisini import et
+
+export async function GET() {
+  try {
+    // Veritabanından sadece aktif olan dilleri çek
+    const activeLanguages = await prisma.language.findMany({
+      where: {
+        isActive: true, // Sadece aktif dilleri filtrele
+      },
+      select: {
+        code: true, // Dil kodunu seç
+        name: true, // Dil adını seç
+      },
+      orderBy: {
+        // İsteğe bağlı: Dilleri kodlarına göre sırala
+        code: 'asc', 
+      },
+    });
+
+    // Başarılı yanıtı JSON olarak döndür
+    return NextResponse.json(activeLanguages);
+
+  } catch (error) {
+    console.error('[API/LANGUAGES] Error fetching active languages:', error);
+    // Hata durumunda 500 Internal Server Error döndür
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}

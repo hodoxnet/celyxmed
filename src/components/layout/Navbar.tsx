@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from 'lucide-react';
@@ -8,17 +9,79 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport, // Viewport import edildi
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"; // Shadcn UI NavigationMenu importları
+
+// ListItem helper component (Shadcn UI dökümantasyonundan alınmıştır)
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          {/* İsteğe bağlı: Açıklama eklenebilir */}
+          {/* <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p> */}
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
+
 
 const Navbar = () => {
-  const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
+  // Mobil menü için state (ayrı yönetilecek)
+  const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null);
+  const [languages, setLanguages] = useState<{ code: string; name: string }[]>([]); // Dinamik diller için state
+  const [isLanguageLoading, setIsLanguageLoading] = useState(true); // Yüklenme durumu için state
 
-  // Menü öğeleri
-  const menuItems = [
+  // API'den dilleri çekmek için useEffect
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      setIsLanguageLoading(true);
+      try {
+        const response = await fetch('/api/languages');
+        if (!response.ok) {
+          throw new Error('Failed to fetch languages');
+        }
+        const data = await response.json();
+        setLanguages(data);
+      } catch (error) {
+        console.error("Error fetching languages:", error);
+        setLanguages([]);
+      } finally {
+        setIsLanguageLoading(false);
+      }
+    };
+    fetchLanguages();
+  }, []);
+
+  // Statik menü öğeleri (Dil hariç) - Yapı NavigationMenu için uyarlandı
+  const staticMenuItems = [
     {
       id: "plastic-surgery",
       label: "Plastic Surgery",
-      href: "#",
-      dropdown: [
+      items: [ // NavigationMenuContent içindeki linkler
         { title: "Mommy Makeover", href: "/mommy-makeover-turkey" },
         { title: "Nose Aesthetics (Rhinoplasty)", href: "/rhinoplasty-turkey" },
         { title: "Tummy Tuck (Abdominoplasty)", href: "/tummy-tuck-turkey" },
@@ -40,8 +103,7 @@ const Navbar = () => {
     {
       id: "dental-aesthetic",
       label: "Dental Aesthetic",
-      href: "#",
-      dropdown: [
+      items: [
         { title: "Hollywood Smile", href: "/hollywood-smile-turkey" },
         { title: "Dental Implant", href: "/dental-implant-turkey" },
         { title: "Dental Veneers", href: "/dental-veneers-turkey" },
@@ -53,8 +115,7 @@ const Navbar = () => {
     {
       id: "hair-transplant",
       label: "Hair Transplant",
-      href: "#",
-      dropdown: [
+      items: [
         { title: "Hair Transplant", href: "/hair-transplant-turkey" },
         { title: "FUE Hair Transplant", href: "/fue-hair-transplant-turkey" },
         { title: "DHI Hair Transplant", href: "/dhi-hair-transplant-turkey" },
@@ -66,8 +127,7 @@ const Navbar = () => {
     {
       id: "about-celyxmed",
       label: "About Celyxmed",
-      href: "#",
-      dropdown: [
+      items: [
         { title: "About Us", href: "/about" },
         { title: "Our Clinic", href: "/our-clinic" },
         { title: "Our Doctors", href: "/our-doctors" },
@@ -75,59 +135,12 @@ const Navbar = () => {
         { title: "Blog", href: "/blog" },
         { title: "FAQ", href: "/faq" }
       ]
-    },
-    {
-      id: "language",
-      label: "Language",
-      href: "#",
-      dropdown: [
-        { title: "🇬🇧 - English", href: "/" },
-        { title: "🇩🇪 - Deutsch", href: "/de" },
-        { title: "🇫🇷 - Français", href: "/fr" },
-        { title: "🇷🇺 - Русский", href: "/ru" },
-        { title: "🇮🇹 - Italiano", href: "/it" },
-        { title: "🇪🇸 - Español", href: "/es" },
-        { title: "🇹🇷 - Türkçe", href: "/tr" },
-      ]
     }
   ];
 
-  // Navbar hover state
-  const [isNavHovered, setIsNavHovered] = React.useState(false);
-  
-  // Menü açma/kapama fonksiyonu
-  const handleMouseEnter = (id: string) => {
-    setActiveDropdown(id);
-    setIsNavHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setActiveDropdown(null);
-  };
-  
-  // Navbar mouse events
-  const handleNavMouseEnter = () => {
-    setIsNavHovered(true);
-  };
-  
-  const handleNavMouseLeave = () => {
-    setIsNavHovered(false);
-    setActiveDropdown(null);
-  };
-
   return (
     <>
-      {/* Overlay - Menü açıldığında arka planı karartır */}
-      <div 
-        className={`fixed inset-0 bg-black/30 z-40 transition-opacity duration-500 ${
-          isNavHovered ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => {
-          setActiveDropdown(null);
-          setIsNavHovered(false);
-        }}
-      />
-      
+      {/* Overlay kaldırıldı, NavigationMenu kendi focus/blur yönetimini yapabilir */}
       <header className="absolute top-0 left-0 right-0 z-50 w-full pt-6">
         <div className="container mx-auto px-4 flex justify-center">
           <div className="flex items-center justify-between bg-white/90 backdrop-blur-md px-6 py-5 rounded-3xl shadow-lg w-full max-w-[1360px]">
@@ -147,54 +160,63 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Desktop Navigation */}
-            <div 
-              className="hidden lg:flex items-center space-x-6"
-              onMouseEnter={handleNavMouseEnter}
-              onMouseLeave={handleNavMouseLeave}
-            >
-              <nav className="flex items-center space-x-6">
-                {menuItems.map((item) => (
-                  <div 
-                    key={item.id} 
-                    className="relative group"
-                    onMouseEnter={() => handleMouseEnter(item.id)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <button className="flex items-center text-gray-700 hover:text-gray-900 py-2">
-                      <span>{item.label}</span>
-                      <ChevronDown className="ml-1 h-4 w-4" />
-                    </button>
-                    
-                    <div 
-                      className={`absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg z-50 border transition-all duration-300 ease-in-out ${
-                        activeDropdown === item.id 
-                          ? 'opacity-100 translate-y-0 pointer-events-auto' 
-                          : 'opacity-0 -translate-y-2 pointer-events-none'
-                      }`}
-                    >
-                      <div className="py-2 max-h-[70vh] overflow-y-auto">
-                        {item.dropdown.map((dropdownItem) => (
-                          <Link 
-                            key={dropdownItem.title}
-                            href={dropdownItem.href}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          >
-                            {dropdownItem.title}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </nav>
-              
+            {/* Desktop Navigation (Shadcn UI NavigationMenu) */}
+            <div className="hidden lg:flex items-center space-x-6">
+              {/* viewport={false} kullanarak, Radix UI'nin varsayılan viewport davranışını devre dışı bırakıyoruz */}
+              <NavigationMenu viewport={false}>
+                <NavigationMenuList>
+                  {/* Statik Menü Öğeleri */}
+                  {staticMenuItems.map((item) => (
+                    <NavigationMenuItem key={item.id}>
+                      <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-normal">
+                        {item.label}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] lg:w-[300px]">
+                          {item.items.map((subItem) => (
+                            <ListItem
+                              key={subItem.title}
+                              title={subItem.title}
+                              href={subItem.href}
+                            />
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  ))}
+
+                  {/* Dinamik Dil Menüsü */}
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-normal">
+                      Language
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-[150px] gap-3 p-4">
+                        {isLanguageLoading ? (
+                          <li className="text-sm text-gray-500">Loading...</li>
+                        ) : languages.length > 0 ? (
+                          languages.map((lang) => (
+                            <ListItem
+                              key={lang.code}
+                              title={lang.name}
+                              href={`/${lang.code}`}
+                            />
+                          ))
+                        ) : (
+                          <li className="text-sm text-gray-500">No languages found.</li>
+                        )}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+
               <Button className="bg-teal-700 hover:bg-teal-800 text-white rounded-md px-6 py-2">
                 Consultation
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button (Sheet yapısı korunuyor) */}
             <Sheet>
               <SheetTrigger asChild className="lg:hidden">
                 <Button variant="ghost" className="p-2">
@@ -222,21 +244,21 @@ const Navbar = () => {
                     </Link>
                   </div>
                   <div className="flex-1 overflow-auto py-6 px-4">
+                    {/* Mobil Navigasyon (Mevcut accordion stili korunuyor) */}
                     <nav className="flex flex-col space-y-6">
-                      {menuItems.map((item) => (
+                      {staticMenuItems.map((item) => (
                         <div key={item.id} className="border-b pb-4">
-                          <button 
+                          <button
                             className="flex items-center justify-between w-full text-left text-lg font-medium mb-2"
-                            onClick={() => setActiveDropdown(activeDropdown === item.id ? null : item.id)}
+                            onClick={() => setMobileActiveDropdown(mobileActiveDropdown === item.id ? null : item.id)}
                           >
                             <span>{item.label}</span>
-                            <ChevronDown className={`h-5 w-5 transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} />
+                            <ChevronDown className={`h-5 w-5 transition-transform ${mobileActiveDropdown === item.id ? 'rotate-180' : ''}`} />
                           </button>
-                          
-                          {activeDropdown === item.id && (
+                          {mobileActiveDropdown === item.id && (
                             <div className="pl-4 space-y-2 mt-2 max-h-[50vh] overflow-y-auto">
-                              {item.dropdown.map((dropdownItem) => (
-                                <Link 
+                              {item.items.map((dropdownItem) => (
+                                <Link
                                   key={dropdownItem.title}
                                   href={dropdownItem.href}
                                   className="block py-2 text-gray-600 hover:text-gray-900"
@@ -248,6 +270,35 @@ const Navbar = () => {
                           )}
                         </div>
                       ))}
+                      {/* Dinamik Dil Menüsü (Mobil) */}
+                      <div className="border-b pb-4">
+                        <button
+                          className="flex items-center justify-between w-full text-left text-lg font-medium mb-2"
+                          onClick={() => setMobileActiveDropdown(mobileActiveDropdown === "language" ? null : "language")}
+                        >
+                          <span>Language</span>
+                          <ChevronDown className={`h-5 w-5 transition-transform ${mobileActiveDropdown === "language" ? 'rotate-180' : ''}`} />
+                        </button>
+                        {mobileActiveDropdown === "language" && (
+                          <div className="pl-4 space-y-2 mt-2 max-h-[50vh] overflow-y-auto">
+                            {isLanguageLoading ? (
+                              <div className="py-2 text-gray-500">Loading...</div>
+                            ) : languages.length > 0 ? (
+                              languages.map((lang) => (
+                                <Link
+                                  key={lang.code}
+                                  href={`/${lang.code}`}
+                                  className="block py-2 text-gray-600 hover:text-gray-900"
+                                >
+                                  {lang.name}
+                                </Link>
+                              ))
+                            ) : (
+                              <div className="py-2 text-gray-500">No languages found.</div>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </nav>
                   </div>
                   <div className="p-6 border-t">
