@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import FloatingButtons from "@/components/layout/FloatingButtons"; // FloatingButtons import edildi
+import RootLayoutClient from "@/components/layout/RootLayoutClient";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -15,50 +11,33 @@ export const metadata: Metadata = {
 // RootLayout fonksiyonu
 export default async function RootLayout({
   children,
-  params: { locale } // Parametreleri doğrudan destruct et ve locale'i al
+  params
 }: {
   children: React.ReactNode;
-  params: { locale: string }; // Parametre tipini belirt
+  params: { locale: string };
 }) {
-  console.log(`[Layout] Received locale: ${locale}`); // Locale'i logla
+  const locale = params.locale;
+  console.log(`[Layout] Received locale: ${locale}`);
 
   let messages;
   try {
-    messages = await getMessages({ locale }); // locale parametresi ile mesajları al
-    console.log(`[Layout] Messages loaded for locale ${locale}:`, !!messages); // Mesajların yüklenip yüklenmediğini logla
+    messages = await getMessages({ locale });
+    console.log(`[Layout] Messages loaded for locale ${locale}:`, !!messages);
     if (!messages || typeof messages !== 'object') {
-       console.error(`[Layout] Invalid messages received for locale ${locale}:`, messages);
-       messages = {}; // Hata durumunda boş obje ata
+      console.error(`[Layout] Invalid messages received for locale ${locale}:`, messages);
+      messages = {};
     }
   } catch (error) {
     console.error(`[Layout] Error fetching messages for locale ${locale}:`, error);
-    messages = {}; // Hata durumunda boş obje ata
+    messages = {};
   }
 
   return (
-    // html etiketinin lang özelliğini dinamik olarak ayarla
-    // Tema değişikliğinden kaynaklanan hydration uyarısını bastır
     <html lang={locale} suppressHydrationWarning={true}>
-      <body className={`antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light" // Varsayılan tema "light" olarak değiştirildi
-          enableSystem // Sistem tercihini hala etkin bırakabiliriz, ancak başlangıç light olacak
-          disableTransitionOnChange
-        >
-          {/* Çocuk bileşenleri NextIntlClientProvider ile sarmala */}
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <div className="flex flex-col min-h-screen">
-              <Navbar />
-              {/* Blog sayfaları için padding gerekli, ancak anasayfa için değil */}
-              <main className="flex-grow"> {/* Padding kaldırıldı, sayfa içinde gerekirse eklenecek */}
-                {children}
-              </main>
-              <Footer />
-              <FloatingButtons /> {/* FloatingButtons eklendi */}
-            </div>
-          </NextIntlClientProvider>
-        </ThemeProvider>
+      <body className="antialiased">
+        <RootLayoutClient locale={locale} messages={messages}>
+          {children}
+        </RootLayoutClient>
       </body>
     </html>
   );

@@ -1,8 +1,7 @@
 "use client"; // İstemci Bileşeni olarak işaretlemeye devam edelim, alt bileşenler gerektirebilir
 
-// Layout bileşenlerini import et
-import Footer from '@/components/layout/Footer';
-// FloatingButtons importu kaldırıldı (layout'a taşındı)
+// Layout bileşenleri artık RootLayoutClient'da olduğu için burada import etmiyoruz
+// FloatingButtons ve Footer importları kaldırıldı (layout'a taşındı)
 
 // Ana sayfa bölüm bileşenlerini import et
 import HeroSection from '@/components/home/HeroSection';
@@ -31,8 +30,7 @@ export default function HomePage() {
         <BlogPreview />
         <FaqSection />
       </main>
-      <Footer />
-      {/* FloatingButtons kullanımı kaldırıldı (layout'a taşındı) */}
+      {/* Footer ve FloatingButtons artık RootLayoutClient içinde olduğu için kaldırıldı */}
     </div>
   );
 }
