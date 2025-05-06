@@ -1,4 +1,6 @@
 // src/components/hizmet-detay/RecoveryInfo.tsx
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
 

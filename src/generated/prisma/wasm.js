@@ -254,9 +254,10 @@ exports.Prisma.HizmetOverviewTabScalarFieldEnum = {
   triggerText: 'triggerText',
   title: 'title',
   content: 'content',
-  imageUrl: 'imageUrl',
+  imagePath: 'imagePath',
   imageAlt: 'imageAlt',
   buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
   order: 'order',
   hizmetDetayId: 'hizmetDetayId'
 };

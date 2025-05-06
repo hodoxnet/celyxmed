@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-// import ImageUpload from '@/components/admin/image-upload'; // TODO: ImageUpload entegrasyonu
+import ImageUpload from '@/components/admin/image-upload'; // ImageUpload import edildi
 
 interface OverviewSectionFormProps {
   form: UseFormReturn<HizmetDetayFormValues>;
@@ -128,31 +128,39 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.imageUrl`}
+                name={`overviewTabs.${index}.imagePath`}
                 render={({ field }) => (
                   <FormItem>
-                     <FormLabel className="text-xs">Resim URL *</FormLabel>
+                    <FormLabel className="text-xs">Sekme Resmi</FormLabel>
                     <FormControl>
-                       {/* TODO: Image Upload bileşeni entegre edilebilir */}
-                      <Input placeholder="https://..." {...field} disabled={loading} />
+                      <ImageUpload
+                        onImageUploaded={(url) => field.onChange(url)}
+                        initialImage={field.value || ""}
+                        showPreview={true}
+                        buttonText="Sekme Resmi Yükle/Değiştir"
+                        className="mt-1"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-               <FormField
-                control={form.control}
-                name={`overviewTabs.${index}.imageAlt`}
-                render={({ field }) => (
-                  <FormItem>
-                     <FormLabel className="text-xs">Resim Alt Metni *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Resim açıklaması..." {...field} disabled={loading} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {/* Resim Alt Metni - Sadece resim varsa göster */}
+              {form.watch(`overviewTabs.${index}.imagePath`) && (
+                <FormField
+                  control={form.control}
+                  name={`overviewTabs.${index}.imageAlt`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-xs">Resim Alt Metni</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Resim açıklaması..." {...field} disabled={loading} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
                <FormField
                 control={form.control}
                 name={`overviewTabs.${index}.buttonText`}
@@ -166,6 +174,19 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name={`overviewTabs.${index}.buttonLink`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs">Buton Linki (Opsiyonel)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="/iletisim veya https://..." {...field} disabled={loading} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               {/* TODO: Sıralama için sürükle bırak eklenebilir */}
             </div>
           ))}
@@ -174,13 +195,14 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
             variant="outline"
             size="sm"
             onClick={() => append({
-                value: "",
+                value: `sekme-${fields.length + 1}`, // Benzersiz value
                 triggerText: "",
                 title: "",
                 content: "",
-                imageUrl: "",
+                imagePath: "", // imagePath olarak değiştirildi
                 imageAlt: "",
                 buttonText: "",
+                buttonLink: "", // buttonLink eklendi
                 order: fields.length
             })}
             disabled={loading}

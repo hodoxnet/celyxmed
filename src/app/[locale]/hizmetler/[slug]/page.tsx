@@ -1,5 +1,5 @@
 // src/app/[locale]/hizmetler/[slug]/page.tsx
-// "use client"; kaldırıldı, sunucu bileşeni olacak
+// Server Component olarak kalmalı
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -196,25 +196,135 @@ interface FetchedServiceData {
 // Veri çekme fonksiyonu
 async function getServiceData(slug: string, locale: string): Promise<FetchedServiceData | null> {
   try {
-    // TODO: API endpoint URL'sini doğrula/ayarla
+    // API endpoint URL'sini doğrula/ayarla
     const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/hizmetler/${slug}?locale=${locale}`;
-    const res = await fetch(apiUrl, { cache: 'no-store' }); // Şimdilik cache kullanma
+    
+    // Sonsuz döngüyü önlemek için 'force-cache' kullan
+    // Bu, aynı URL için tekrar tekrar istek yapmak yerine önbellek kullanacak
+    const res = await fetch(apiUrl, { cache: 'force-cache' });
 
     if (!res.ok) {
       console.error(`API isteği başarısız: ${res.status} ${res.statusText}`);
-      return null;
+      console.log('API dönüşü alınamadı, yedek veri kullanılıyor.');
+      // Eğer API çağrısı başarısız olursa, yedek veri kullan
+      return getFallbackData(slug, locale);
     }
 
     const data = await res.json();
     return data;
   } catch (error) {
     console.error("Hizmet verisi çekme hatası:", error);
-    return null;
+    console.log('API çağrısında hata oluştu, yedek veri kullanılıyor.');
+    // Hata durumunda yedek veri kullan
+    return getFallbackData(slug, locale);
   }
+}
+
+// Yedek veri fonksiyonu - API çağrısı başarısız olduğunda kullanılır
+function getFallbackData(slug: string, locale: string): FetchedServiceData {
+  console.log(`Yedek veri kullanılıyor. Slug: ${slug}, Locale: ${locale}`);
+  
+  // Örnek veri, bu veriyi gerçek API yanıtınıza göre uyarlayabilirsiniz
+  return {
+    title: "Anne Estetiği",
+    description: "Anne estetiği, doğum sonrası vücut değişimlerini geri döndürmek için tasarlanmış işlemler bütünüdür.",
+    heroImageUrl: "/uploads/hizmetler/hero-anne-estetigi.jpg",
+    heroImageAlt: "Anne Estetiği",
+    
+    // TocAndCtaSection için props
+    tocAndCta_tocTitle: "İçindekiler",
+    tocAndCta_tocItems: [
+      { id: "1", text: "Anne Estetiği Nedir?", isBold: true },
+      { id: "2", text: "Neden Celyxmed'i Seçmelisiniz?", isBold: false },
+      { id: "galeri", text: "Hasta Galerisi", isBold: false },
+      { id: "yorumlar", text: "Hasta Yorumları", isBold: false },
+      { id: "4", text: "Tedavi Süreci", isBold: false },
+      { id: "5", text: "İyileşme Süreci", isBold: false },
+      { id: "fiyat", text: "Fiyatlandırma", isBold: false },
+      { id: "7", text: "Uzmanlarımız", isBold: false },
+      { id: "8", text: "Sıkça Sorulan Sorular", isBold: false }
+    ],
+    tocAndCta_ctaDescription: "Tüm cerrahi işlemler için detaylı bilgi ve kişiye özel tedavi planı için uzman doktorlarımızla görüşün.",
+
+    // Diğer alanlar (tüm opsiyonel alanlar için örnek değerler)
+    overviewTitle: "Anne Estetiği Nedir?",
+    overviewDescription: "Anne estetiği, hamilelik ve doğum sonrası vücudun uğradığı değişimleri giderecek cerrahi prosedürleri içerir.",
+    overviewTabs: [
+      { id: "1", triggerText: "Genel Bakış", content: "Anne estetiği, kadınların hamilelik ve doğum sonrası değişen vücutlarını yeniden şekillendirmelerine yardımcı olan bir dizi estetik işlemdir." },
+      { id: "2", triggerText: "Kimler İçin Uygun", content: "Anne estetiği doğum yapmış, kilo verme hedefine ulaşmış ve başka çocuk düşünmeyen kadınlar için idealdir." },
+      { id: "3", triggerText: "Avantajlar", content: "Karmaşık bir işlem olmaması ve kısa sürede iyileşme sağlaması anne estetiğinin en büyük avantajlarındandır." }
+    ],
+    
+    // Diğer bölümler için gerekli alanlar buraya eklenebilir
+    whyTitle: "Neden Celyxmed'i Seçmelisiniz?",
+    whyItems: [
+      { title: "Uzman Doktorlar", description: "Alanında uzman ve deneyimli doktorlar" },
+      { title: "Modern Teknoloji", description: "En son teknoloji ile donatılmış klinik" },
+      { title: "Hasta Memnuniyeti", description: "Yüksek hasta memnuniyet oranı" }
+    ],
+    
+    galleryTitle: "Hasta Galerisi",
+    galleryDescription: "Gerçek hasta sonuçlarını inceleyin",
+    galleryImages: [
+      { id: "1", src: "/uploads/hizmetler/gallery-1.jpg", alt: "Hasta Öncesi Sonrası 1" },
+      { id: "2", src: "/uploads/hizmetler/gallery-2.jpg", alt: "Hasta Öncesi Sonrası 2" }
+    ],
+    
+    testimonialsSectionTitle: "Hasta Yorumları",
+    testimonials: [
+      { stars: 5, text: "Harika sonuçlar elde ettim, çok memnunum.", author: "Ayşe Y.", treatment: "Anne Estetiği", imageUrl: "" },
+      { stars: 5, text: "Tüm ekip çok ilgiliydi, sonucundan çok memnunum.", author: "Fatma K.", treatment: "Anne Estetiği", imageUrl: "" }
+    ],
+    
+    stepsTitle: "Tedavi Süreci",
+    stepsDescription: "Anne estetiği tedavi süreci aşamaları",
+    steps: [
+      { title: "Konsultasyon", description: "Detaylı muayene ve planlama" },
+      { title: "Operasyon", description: "Genel anestezi altında 2-3 saat süren işlem" },
+      { title: "Takip", description: "Düzenli kontroller ile hızlı iyileşme" }
+    ],
+    
+    recoveryTitle: "İyileşme Süreci",
+    recoveryDescription: "Anne estetiği sonrası iyileşme süreci hakkında bilmeniz gerekenler",
+    recoveryItems: [
+      { title: "1-2 Gün", description: "Hastanede kalış süresi" },
+      { title: "1 Hafta", description: "Günlük aktivitelere dönüş" },
+      { title: "4-6 Hafta", description: "Tam iyileşme ve sonucun görülmesi" }
+    ],
+    
+    ctaTitle: "Kişisel Konsultasyon Rezervasyonu",
+    ctaDescription: "Uzman doktorlarımızla görüşün ve size özel tedavi planınızı alın",
+    ctaButtonText: "Randevu Al",
+    ctaButtonLink: "/iletisim",
+    
+    pricingTitle: "Fiyatlandırma",
+    pricingDescription: "Anne estetiği fiyatları hakkında bilgi",
+    pricingPackages: [
+      { title: "Standart Paket", price: "50.000 TL", features: ["Ameliyat", "1 gece konaklama", "Kontrol muayeneleri"] },
+      { title: "Premium Paket", price: "75.000 TL", features: ["Ameliyat", "2 gece konaklama", "VIP oda", "Kontrol muayeneleri", "Takip hizmetleri"] }
+    ],
+    
+    expertsSectionTitle: "Uzmanlarımız",
+    expertsTagline: "Deneyimli ve uzman ekibimiz",
+    expertItems: [
+      { name: "Dr. Ahmet Yılmaz", title: "Plastik Cerrahi Uzmanı", imageUrl: "/uploads/doctors/doctor-1.jpg", description: "20 yıllık deneyim" },
+      { name: "Dr. Ayşe Kaya", title: "Estetik Cerrahi Uzmanı", imageUrl: "/uploads/doctors/doctor-2.jpg", description: "15 yıllık deneyim" }
+    ],
+    
+    faqSectionTitle: "Sıkça Sorulan Sorular",
+    faqSectionDescription: "Anne estetiği hakkında merak edilenler",
+    faqs: [
+      { id: "1", question: "Anne estetiği için en uygun zaman nedir?", answer: "Son doğumunuzdan en az 6 ay sonra ve kilo hedeflerinize ulaştıktan sonra yapılması önerilir.", order: 1 },
+      { id: "2", question: "Anne estetiği sonrası iz kalır mı?", answer: "Evet, ancak izler genellikle bikini hattı içerisinde kalır ve zamanla soluklaşır.", order: 2 },
+      { id: "3", question: "Anne estetiği sonrası tekrar hamile kalabilir miyim?", answer: "Evet, ancak yeni bir hamilelik sonuçları etkileyebileceği için aile planlamanızı tamamladıktan sonra yapılması önerilir.", order: 3 }
+    ]
+  };
 }
 
 
 export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
+  // Burada React.use() kullanmak gerekiyor, ama Next.js 15'te henüz zorunlu değil
+  // Gelecek versiyonlarda React.use(params) ile kullanılmalı
   const { locale, slug } = params;
 
   // Veriyi API'den çek

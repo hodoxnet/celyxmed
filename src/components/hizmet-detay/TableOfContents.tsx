@@ -1,3 +1,5 @@
+"use client";
+
 // src/components/hizmet-detay/TableOfContents.tsx
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";

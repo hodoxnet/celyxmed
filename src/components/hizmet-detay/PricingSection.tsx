@@ -1,4 +1,6 @@
 // src/components/hizmet-detay/PricingSection.tsx
+"use client";
+
 import React from 'react';
 import Link from 'next/link'; // Link bileşenini import et
 import { Button } from '@/components/ui/button';

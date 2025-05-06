@@ -1,4 +1,6 @@
 // src/components/hizmet-detay/FaqSection.tsx
+"use client";
+
 import React from 'react';
 import {
   Accordion,

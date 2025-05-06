@@ -1,4 +1,6 @@
 // src/components/hizmet-detay/TreatmentOverview.tsx
+"use client";
+
 import React from 'react'; // Duplicate import removed
 import Image from 'next/image'; // Resimler için Next.js Image bileşeni
 import Link from 'next/link'; // Link bileşenini import et
@@ -12,8 +14,8 @@ interface TabData {
   trigger: string; // Sekme başlığı (örn: "Bu Tedavi Nedir?")
   title: string; // İçerik başlığı
   content: string; // İçerik metni
-  imageUrl: string; // Sekmeye ait resim URL'si
-  imageAlt: string; // Resim alt metni
+  imagePath?: string | null; // Sekmeye ait resim dosya yolu (opsiyonel)
+  imageAlt?: string | null; // Resim alt metni (opsiyonel)
   buttonText: string; // Buton metni
   buttonLink?: string; // Buton linki (opsiyonel)
 }
@@ -97,15 +99,17 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
                     </Button> */}
                   </div>
                   {/* Resim */}
-                  <div className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-md"> {/* Yükseklik ve gölge ayarlandı */}
-                  <Image
-                    src={tab.imageUrl}
-                    alt={tab.imageAlt}
-                    layout="fill"
-                    objectFit="cover"
-                    loading="lazy"
-                  />
-                  </div>
+                  {tab.imagePath && (
+                    <div className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-md"> {/* Yükseklik ve gölge ayarlandı */}
+                      <Image
+                        src={tab.imagePath} // Doğrudan path kullanılıyor, Next.js public klasöründen sunacak
+                        alt={tab.imageAlt || tab.title} // imageAlt yoksa başlığı kullan
+                        layout="fill"
+                        objectFit="cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </TabsContent>

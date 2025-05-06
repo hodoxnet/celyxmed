@@ -1,3 +1,5 @@
+"use client";
+
 // src/components/hizmet-detay/TestimonialsSection.tsx
 import React from 'react';
 import Image from 'next/image';

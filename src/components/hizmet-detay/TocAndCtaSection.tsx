@@ -1,3 +1,5 @@
+"use client";
+
 // src/components/hizmet-detay/TocAndCtaSection.tsx
 import React from 'react';
 import Link from 'next/link';

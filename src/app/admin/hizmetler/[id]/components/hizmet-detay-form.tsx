@@ -38,7 +38,7 @@ import { SeoSectionForm } from "./SeoSectionForm";
 
 
 // HizmetDetayFormValues tipini kullanarak ilişkili alanlara varsayılan değerler ekliyoruz
-type InitialDataType = Partial<HizmetDetay & { // Removed local type definition
+export type InitialDataType = Partial<HizmetDetay & { // Export edildi
     tocItems: Array<{
       id?: string;
       text: string;
@@ -65,9 +65,10 @@ type InitialDataType = Partial<HizmetDetay & { // Removed local type definition
       triggerText: string;
       title: string;
       content: string;
-      imageUrl: string;
-      imageAlt: string;
+      imagePath?: string | null; // Güncellendi
+      imageAlt?: string | null;  // Güncellendi
       buttonText: string;
+      buttonLink?: string | null; // Eklendi
       order?: number;
     }>;
     whyItems: Array<{
@@ -203,21 +204,23 @@ export function HizmetDetayForm({ initialData, diller }: HizmetDetayFormProps) {
           triggerText: tab.triggerText,
           title: tab.title,
           content: tab.content,
-          imageUrl: tab.imageUrl,
-          imageAlt: tab.imageAlt,
+          imagePath: tab.imagePath || '', // Değişiklik: imageUrl -> imagePath
+          imageAlt: tab.imageAlt || '',   // Değişiklik: Opsiyonel
           buttonText: tab.buttonText,
+          buttonLink: tab.buttonLink || '', // Değişiklik: Eklendi ve opsiyonel
           order: tab.order ?? 0
         }))
-      : [{ 
-          id: '', 
-          value: '', 
-          triggerText: '', 
-          title: '', 
-          content: '', 
-          imageUrl: '', 
-          imageAlt: '', 
-          buttonText: '', 
-          order: 0 
+      : [{
+          id: '',
+          value: 'varsayilan-sekme', // Benzersiz bir value olmalı
+          triggerText: 'Varsayılan Sekme',
+          title: 'Varsayılan Başlık',
+          content: 'Varsayılan içerik.',
+          imagePath: '',
+          imageAlt: '',
+          buttonText: 'Daha Fazla Bilgi',
+          buttonLink: '',
+          order: 0
         }],
     whyTitle: initialData?.whyTitle ?? "",
     whyBackgroundImageUrl: initialData?.whyBackgroundImageUrl ?? '',

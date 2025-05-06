@@ -54,9 +54,10 @@ const HizmetOverviewTabSchema = z.object({
   triggerText: z.string().min(1, "Tetikleyici metin boş olamaz"),
   title: z.string().min(1, "Başlık boş olamaz"),
   content: z.string().min(1, "İçerik boş olamaz"),
-  imageUrl: z.string().url("Geçerli bir URL girin"),
-  imageAlt: z.string().min(1, "Resim alt metni boş olamaz"),
+  imagePath: z.string().optional().or(z.literal('')), // URL'den path'e ve opsiyonel
+  imageAlt: z.string().optional().or(z.literal('')), // Resim yoksa alt metin de opsiyonel
   buttonText: z.string().min(1, "Buton metni boş olamaz"),
+  buttonLink: z.string().optional().or(z.literal('')), // Buton linki opsiyonel
   order: z.number().optional().default(0),
 });
 

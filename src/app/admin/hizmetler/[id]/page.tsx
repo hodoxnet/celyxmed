@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma"; // Veri çekmek için
-import { HizmetDetayForm } from "./components/hizmet-detay-form"; // Formu import et
+import { HizmetDetayForm, InitialDataType as FormInitialDataType } from "./components/hizmet-detay-form"; // Formu ve InitialDataType'ı import et
 import { HizmetDetay, Language } from "@/generated/prisma"; // Language tipini de import et
 
 export const metadata: Metadata = {
@@ -16,25 +16,10 @@ interface HizmetDetayPageProps {
   };
 }
 
-// Sunucu tarafında veri çekme (InitialDataType'ı döndürecek şekilde güncellendi)
-// initialData tipini daha esnek hale getirelim (ilişkili alanlar opsiyonel olabilir)
-type InitialDataType = Partial<HizmetDetay & {
-    tocItems: any[];
-    marqueeImages: any[];
-    introLinks: any[];
-    overviewTabs: any[];
-    whyItems: any[];
-    galleryImages: any[];
-    testimonials: any[];
-    steps: any[];
-    recoveryItems: any[];
-    ctaAvatars: any[];
-    pricingPackages: any[];
-    expertItems: any[];
-    faqs: any[];
-}> | null;
+// InitialDataType artık form bileşeninden import ediliyor.
+// Bu lokal tanım kaldırıldı.
 
-async function getHizmetDetay(id: string): Promise<InitialDataType> {
+async function getHizmetDetay(id: string): Promise<FormInitialDataType> { // Dönüş tipi FormInitialDataType olarak güncellendi
   if (id === 'yeni') {
     return null; // Yeni kayıt için veri yok
   }
@@ -47,7 +32,21 @@ async function getHizmetDetay(id: string): Promise<InitialDataType> {
         tocItems: true,
         marqueeImages: true,
         introLinks: true,
-        overviewTabs: true,
+        overviewTabs: { // overviewTabs için select eklendi
+          select: {
+            id: true,
+            value: true,
+            triggerText: true,
+            title: true,
+            content: true,
+            imagePath: true,
+            imageAlt: true,
+            buttonText: true,
+            buttonLink: true,
+            order: true,
+            hizmetDetayId: true // İlişki için gerekli olabilir
+          }
+        },
         whyItems: true,
         galleryImages: true,
         testimonials: true,
@@ -59,7 +58,7 @@ async function getHizmetDetay(id: string): Promise<InitialDataType> {
         faqs: true,
       },
     });
-    return hizmetDetay;
+    return hizmetDetay as FormInitialDataType; // Açıkça cast et
   } catch (error) {
     console.error("Error fetching hizmet detay:", error);
     return null; // Hata durumunda null dön

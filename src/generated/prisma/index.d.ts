@@ -13411,9 +13411,10 @@ export namespace Prisma {
     triggerText: string | null
     title: string | null
     content: string | null
-    imageUrl: string | null
+    imagePath: string | null
     imageAlt: string | null
     buttonText: string | null
+    buttonLink: string | null
     order: number | null
     hizmetDetayId: string | null
   }
@@ -13424,9 +13425,10 @@ export namespace Prisma {
     triggerText: string | null
     title: string | null
     content: string | null
-    imageUrl: string | null
+    imagePath: string | null
     imageAlt: string | null
     buttonText: string | null
+    buttonLink: string | null
     order: number | null
     hizmetDetayId: string | null
   }
@@ -13437,9 +13439,10 @@ export namespace Prisma {
     triggerText: number
     title: number
     content: number
-    imageUrl: number
+    imagePath: number
     imageAlt: number
     buttonText: number
+    buttonLink: number
     order: number
     hizmetDetayId: number
     _all: number
@@ -13460,9 +13463,10 @@ export namespace Prisma {
     triggerText?: true
     title?: true
     content?: true
-    imageUrl?: true
+    imagePath?: true
     imageAlt?: true
     buttonText?: true
+    buttonLink?: true
     order?: true
     hizmetDetayId?: true
   }
@@ -13473,9 +13477,10 @@ export namespace Prisma {
     triggerText?: true
     title?: true
     content?: true
-    imageUrl?: true
+    imagePath?: true
     imageAlt?: true
     buttonText?: true
+    buttonLink?: true
     order?: true
     hizmetDetayId?: true
   }
@@ -13486,9 +13491,10 @@ export namespace Prisma {
     triggerText?: true
     title?: true
     content?: true
-    imageUrl?: true
+    imagePath?: true
     imageAlt?: true
     buttonText?: true
+    buttonLink?: true
     order?: true
     hizmetDetayId?: true
     _all?: true
@@ -13586,9 +13592,10 @@ export namespace Prisma {
     triggerText: string
     title: string
     content: string
-    imageUrl: string
-    imageAlt: string
+    imagePath: string | null
+    imageAlt: string | null
     buttonText: string
+    buttonLink: string | null
     order: number
     hizmetDetayId: string
     _count: HizmetOverviewTabCountAggregateOutputType | null
@@ -13618,9 +13625,10 @@ export namespace Prisma {
     triggerText?: boolean
     title?: boolean
     content?: boolean
-    imageUrl?: boolean
+    imagePath?: boolean
     imageAlt?: boolean
     buttonText?: boolean
+    buttonLink?: boolean
     order?: boolean
     hizmetDetayId?: boolean
     hizmetDetay?: boolean | HizmetDetayDefaultArgs<ExtArgs>
@@ -13632,9 +13640,10 @@ export namespace Prisma {
     triggerText?: boolean
     title?: boolean
     content?: boolean
-    imageUrl?: boolean
+    imagePath?: boolean
     imageAlt?: boolean
     buttonText?: boolean
+    buttonLink?: boolean
     order?: boolean
     hizmetDetayId?: boolean
     hizmetDetay?: boolean | HizmetDetayDefaultArgs<ExtArgs>
@@ -13646,9 +13655,10 @@ export namespace Prisma {
     triggerText?: boolean
     title?: boolean
     content?: boolean
-    imageUrl?: boolean
+    imagePath?: boolean
     imageAlt?: boolean
     buttonText?: boolean
+    buttonLink?: boolean
     order?: boolean
     hizmetDetayId?: boolean
     hizmetDetay?: boolean | HizmetDetayDefaultArgs<ExtArgs>
@@ -13660,14 +13670,15 @@ export namespace Prisma {
     triggerText?: boolean
     title?: boolean
     content?: boolean
-    imageUrl?: boolean
+    imagePath?: boolean
     imageAlt?: boolean
     buttonText?: boolean
+    buttonLink?: boolean
     order?: boolean
     hizmetDetayId?: boolean
   }
 
-  export type HizmetOverviewTabOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "value" | "triggerText" | "title" | "content" | "imageUrl" | "imageAlt" | "buttonText" | "order" | "hizmetDetayId", ExtArgs["result"]["hizmetOverviewTab"]>
+  export type HizmetOverviewTabOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "value" | "triggerText" | "title" | "content" | "imagePath" | "imageAlt" | "buttonText" | "buttonLink" | "order" | "hizmetDetayId", ExtArgs["result"]["hizmetOverviewTab"]>
   export type HizmetOverviewTabInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hizmetDetay?: boolean | HizmetDetayDefaultArgs<ExtArgs>
   }
@@ -13689,9 +13700,10 @@ export namespace Prisma {
       triggerText: string
       title: string
       content: string
-      imageUrl: string
-      imageAlt: string
+      imagePath: string | null
+      imageAlt: string | null
       buttonText: string
+      buttonLink: string | null
       order: number
       hizmetDetayId: string
     }, ExtArgs["result"]["hizmetOverviewTab"]>
@@ -14123,9 +14135,10 @@ export namespace Prisma {
     readonly triggerText: FieldRef<"HizmetOverviewTab", 'String'>
     readonly title: FieldRef<"HizmetOverviewTab", 'String'>
     readonly content: FieldRef<"HizmetOverviewTab", 'String'>
-    readonly imageUrl: FieldRef<"HizmetOverviewTab", 'String'>
+    readonly imagePath: FieldRef<"HizmetOverviewTab", 'String'>
     readonly imageAlt: FieldRef<"HizmetOverviewTab", 'String'>
     readonly buttonText: FieldRef<"HizmetOverviewTab", 'String'>
+    readonly buttonLink: FieldRef<"HizmetOverviewTab", 'String'>
     readonly order: FieldRef<"HizmetOverviewTab", 'Int'>
     readonly hizmetDetayId: FieldRef<"HizmetOverviewTab", 'String'>
   }
@@ -24714,9 +24727,10 @@ export namespace Prisma {
     triggerText: 'triggerText',
     title: 'title',
     content: 'content',
-    imageUrl: 'imageUrl',
+    imagePath: 'imagePath',
     imageAlt: 'imageAlt',
     buttonText: 'buttonText',
+    buttonLink: 'buttonLink',
     order: 'order',
     hizmetDetayId: 'hizmetDetayId'
   };
@@ -25807,9 +25821,10 @@ export namespace Prisma {
     triggerText?: StringFilter<"HizmetOverviewTab"> | string
     title?: StringFilter<"HizmetOverviewTab"> | string
     content?: StringFilter<"HizmetOverviewTab"> | string
-    imageUrl?: StringFilter<"HizmetOverviewTab"> | string
-    imageAlt?: StringFilter<"HizmetOverviewTab"> | string
+    imagePath?: StringNullableFilter<"HizmetOverviewTab"> | string | null
+    imageAlt?: StringNullableFilter<"HizmetOverviewTab"> | string | null
     buttonText?: StringFilter<"HizmetOverviewTab"> | string
+    buttonLink?: StringNullableFilter<"HizmetOverviewTab"> | string | null
     order?: IntFilter<"HizmetOverviewTab"> | number
     hizmetDetayId?: StringFilter<"HizmetOverviewTab"> | string
     hizmetDetay?: XOR<HizmetDetayScalarRelationFilter, HizmetDetayWhereInput>
@@ -25821,9 +25836,10 @@ export namespace Prisma {
     triggerText?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    imageUrl?: SortOrder
-    imageAlt?: SortOrder
+    imagePath?: SortOrderInput | SortOrder
+    imageAlt?: SortOrderInput | SortOrder
     buttonText?: SortOrder
+    buttonLink?: SortOrderInput | SortOrder
     order?: SortOrder
     hizmetDetayId?: SortOrder
     hizmetDetay?: HizmetDetayOrderByWithRelationInput
@@ -25838,9 +25854,10 @@ export namespace Prisma {
     triggerText?: StringFilter<"HizmetOverviewTab"> | string
     title?: StringFilter<"HizmetOverviewTab"> | string
     content?: StringFilter<"HizmetOverviewTab"> | string
-    imageUrl?: StringFilter<"HizmetOverviewTab"> | string
-    imageAlt?: StringFilter<"HizmetOverviewTab"> | string
+    imagePath?: StringNullableFilter<"HizmetOverviewTab"> | string | null
+    imageAlt?: StringNullableFilter<"HizmetOverviewTab"> | string | null
     buttonText?: StringFilter<"HizmetOverviewTab"> | string
+    buttonLink?: StringNullableFilter<"HizmetOverviewTab"> | string | null
     order?: IntFilter<"HizmetOverviewTab"> | number
     hizmetDetayId?: StringFilter<"HizmetOverviewTab"> | string
     hizmetDetay?: XOR<HizmetDetayScalarRelationFilter, HizmetDetayWhereInput>
@@ -25852,9 +25869,10 @@ export namespace Prisma {
     triggerText?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    imageUrl?: SortOrder
-    imageAlt?: SortOrder
+    imagePath?: SortOrderInput | SortOrder
+    imageAlt?: SortOrderInput | SortOrder
     buttonText?: SortOrder
+    buttonLink?: SortOrderInput | SortOrder
     order?: SortOrder
     hizmetDetayId?: SortOrder
     _count?: HizmetOverviewTabCountOrderByAggregateInput
@@ -25873,9 +25891,10 @@ export namespace Prisma {
     triggerText?: StringWithAggregatesFilter<"HizmetOverviewTab"> | string
     title?: StringWithAggregatesFilter<"HizmetOverviewTab"> | string
     content?: StringWithAggregatesFilter<"HizmetOverviewTab"> | string
-    imageUrl?: StringWithAggregatesFilter<"HizmetOverviewTab"> | string
-    imageAlt?: StringWithAggregatesFilter<"HizmetOverviewTab"> | string
+    imagePath?: StringNullableWithAggregatesFilter<"HizmetOverviewTab"> | string | null
+    imageAlt?: StringNullableWithAggregatesFilter<"HizmetOverviewTab"> | string | null
     buttonText?: StringWithAggregatesFilter<"HizmetOverviewTab"> | string
+    buttonLink?: StringNullableWithAggregatesFilter<"HizmetOverviewTab"> | string | null
     order?: IntWithAggregatesFilter<"HizmetOverviewTab"> | number
     hizmetDetayId?: StringWithAggregatesFilter<"HizmetOverviewTab"> | string
   }
@@ -27418,9 +27437,10 @@ export namespace Prisma {
     triggerText: string
     title: string
     content: string
-    imageUrl: string
-    imageAlt: string
+    imagePath?: string | null
+    imageAlt?: string | null
     buttonText: string
+    buttonLink?: string | null
     order?: number
     hizmetDetay: HizmetDetayCreateNestedOneWithoutOverviewTabsInput
   }
@@ -27431,9 +27451,10 @@ export namespace Prisma {
     triggerText: string
     title: string
     content: string
-    imageUrl: string
-    imageAlt: string
+    imagePath?: string | null
+    imageAlt?: string | null
     buttonText: string
+    buttonLink?: string | null
     order?: number
     hizmetDetayId: string
   }
@@ -27444,9 +27465,10 @@ export namespace Prisma {
     triggerText?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    imageAlt?: StringFieldUpdateOperationsInput | string
+    imagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     hizmetDetay?: HizmetDetayUpdateOneRequiredWithoutOverviewTabsNestedInput
   }
@@ -27457,9 +27479,10 @@ export namespace Prisma {
     triggerText?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    imageAlt?: StringFieldUpdateOperationsInput | string
+    imagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     hizmetDetayId?: StringFieldUpdateOperationsInput | string
   }
@@ -27470,9 +27493,10 @@ export namespace Prisma {
     triggerText: string
     title: string
     content: string
-    imageUrl: string
-    imageAlt: string
+    imagePath?: string | null
+    imageAlt?: string | null
     buttonText: string
+    buttonLink?: string | null
     order?: number
     hizmetDetayId: string
   }
@@ -27483,9 +27507,10 @@ export namespace Prisma {
     triggerText?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    imageAlt?: StringFieldUpdateOperationsInput | string
+    imagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
   }
 
@@ -27495,9 +27520,10 @@ export namespace Prisma {
     triggerText?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    imageAlt?: StringFieldUpdateOperationsInput | string
+    imagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     hizmetDetayId?: StringFieldUpdateOperationsInput | string
   }
@@ -28931,9 +28957,10 @@ export namespace Prisma {
     triggerText?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    imageUrl?: SortOrder
+    imagePath?: SortOrder
     imageAlt?: SortOrder
     buttonText?: SortOrder
+    buttonLink?: SortOrder
     order?: SortOrder
     hizmetDetayId?: SortOrder
   }
@@ -28948,9 +28975,10 @@ export namespace Prisma {
     triggerText?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    imageUrl?: SortOrder
+    imagePath?: SortOrder
     imageAlt?: SortOrder
     buttonText?: SortOrder
+    buttonLink?: SortOrder
     order?: SortOrder
     hizmetDetayId?: SortOrder
   }
@@ -28961,9 +28989,10 @@ export namespace Prisma {
     triggerText?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    imageUrl?: SortOrder
+    imagePath?: SortOrder
     imageAlt?: SortOrder
     buttonText?: SortOrder
+    buttonLink?: SortOrder
     order?: SortOrder
     hizmetDetayId?: SortOrder
   }
@@ -31032,9 +31061,10 @@ export namespace Prisma {
     triggerText: string
     title: string
     content: string
-    imageUrl: string
-    imageAlt: string
+    imagePath?: string | null
+    imageAlt?: string | null
     buttonText: string
+    buttonLink?: string | null
     order?: number
   }
 
@@ -31044,9 +31074,10 @@ export namespace Prisma {
     triggerText: string
     title: string
     content: string
-    imageUrl: string
-    imageAlt: string
+    imagePath?: string | null
+    imageAlt?: string | null
     buttonText: string
+    buttonLink?: string | null
     order?: number
   }
 
@@ -31443,9 +31474,10 @@ export namespace Prisma {
     triggerText?: StringFilter<"HizmetOverviewTab"> | string
     title?: StringFilter<"HizmetOverviewTab"> | string
     content?: StringFilter<"HizmetOverviewTab"> | string
-    imageUrl?: StringFilter<"HizmetOverviewTab"> | string
-    imageAlt?: StringFilter<"HizmetOverviewTab"> | string
+    imagePath?: StringNullableFilter<"HizmetOverviewTab"> | string | null
+    imageAlt?: StringNullableFilter<"HizmetOverviewTab"> | string | null
     buttonText?: StringFilter<"HizmetOverviewTab"> | string
+    buttonLink?: StringNullableFilter<"HizmetOverviewTab"> | string | null
     order?: IntFilter<"HizmetOverviewTab"> | number
     hizmetDetayId?: StringFilter<"HizmetOverviewTab"> | string
   }
@@ -35637,9 +35669,10 @@ export namespace Prisma {
     triggerText: string
     title: string
     content: string
-    imageUrl: string
-    imageAlt: string
+    imagePath?: string | null
+    imageAlt?: string | null
     buttonText: string
+    buttonLink?: string | null
     order?: number
   }
 
@@ -35794,9 +35827,10 @@ export namespace Prisma {
     triggerText?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    imageAlt?: StringFieldUpdateOperationsInput | string
+    imagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
   }
 
@@ -35806,9 +35840,10 @@ export namespace Prisma {
     triggerText?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    imageAlt?: StringFieldUpdateOperationsInput | string
+    imagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
   }
 
@@ -35818,9 +35853,10 @@ export namespace Prisma {
     triggerText?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    imageAlt?: StringFieldUpdateOperationsInput | string
+    imagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
   }
 

@@ -63,7 +63,22 @@ export async function GET(req: Request, context: Context) {
         tocItems: { orderBy: { order: 'asc' } },
         marqueeImages: { orderBy: { order: 'asc' } },
         introLinks: { orderBy: { order: 'asc' } },
-        overviewTabs: { orderBy: { order: 'asc' } },
+        overviewTabs: { // overviewTabs için select eklendi
+          orderBy: { order: 'asc' },
+          select: {
+            id: true,
+            value: true,
+            triggerText: true,
+            title: true,
+            content: true,
+            imagePath: true,
+            imageAlt: true,
+            buttonText: true,
+            buttonLink: true,
+            order: true,
+            hizmetDetayId: true
+          }
+        },
         whyItems: { orderBy: { order: 'asc' } },
         galleryImages: { orderBy: { order: 'asc' } },
         testimonials: { orderBy: { order: 'asc' } },
@@ -116,7 +131,7 @@ export async function PATCH(req: Request, context: Context) {
         include: {
             marqueeImages: { select: { src: true } },
             galleryImages: { select: { src: true } },
-            overviewTabs: { select: { imageUrl: true } },
+            overviewTabs: { select: { imagePath: true } }, // imageUrl -> imagePath
             recoveryItems: { select: { imageUrl: true } },
             ctaAvatars: { select: { src: true } },
             expertItems: { select: { imageUrl: true } },
@@ -182,9 +197,9 @@ export async function PATCH(req: Request, context: Context) {
        const newGallerySrcs = new Set(galleryImages.map(item => item.src));
        currentGallerySrcs.forEach(src => !newGallerySrcs.has(src) && deletePromises.push(deleteFile(src)));
 
-       const currentOverviewUrls = new Set(currentHizmet.overviewTabs?.map(item => item.imageUrl));
-       const newOverviewUrls = new Set(overviewTabs.map(item => item.imageUrl));
-       currentOverviewUrls.forEach(url => !newOverviewUrls.has(url) && deletePromises.push(deleteFile(url)));
+       const currentOverviewPaths = new Set(currentHizmet.overviewTabs?.map(item => item.imagePath).filter((p): p is string => !!p));
+       const newOverviewPaths = new Set(overviewTabs.map(item => item.imagePath).filter((p): p is string => !!p));
+       currentOverviewPaths.forEach(path => !newOverviewPaths.has(path) && deletePromises.push(deleteFile(path)));
 
        const currentRecoveryUrls = new Set(currentHizmet.recoveryItems?.map(item => item.imageUrl));
        const newRecoveryUrls = new Set(recoveryItems.map(item => item.imageUrl));
@@ -308,7 +323,7 @@ export async function DELETE(req: Request, context: Context) {
       include: {
         marqueeImages: { select: { src: true } },
         galleryImages: { select: { src: true } },
-        overviewTabs: { select: { imageUrl: true } },
+        overviewTabs: { select: { imagePath: true } }, // imageUrl -> imagePath
         recoveryItems: { select: { imageUrl: true } },
         ctaAvatars: { select: { src: true } },
         expertItems: { select: { imageUrl: true } },
@@ -341,11 +356,11 @@ export async function DELETE(req: Request, context: Context) {
     // İlişkili listelerdeki resimler
     hizmetToSil.marqueeImages?.forEach(item => deletePromises.push(deleteFile(item.src)));
     hizmetToSil.galleryImages?.forEach(item => deletePromises.push(deleteFile(item.src)));
-    hizmetToSil.overviewTabs?.forEach(item => deletePromises.push(deleteFile(item.imageUrl)));
+    hizmetToSil.overviewTabs?.forEach(item => item.imagePath && deletePromises.push(deleteFile(item.imagePath))); // imageUrl -> imagePath ve null kontrolü
     hizmetToSil.recoveryItems?.forEach(item => deletePromises.push(deleteFile(item.imageUrl)));
     hizmetToSil.ctaAvatars?.forEach(item => deletePromises.push(deleteFile(item.src)));
     hizmetToSil.expertItems?.forEach(item => deletePromises.push(deleteFile(item.imageUrl)));
-    hizmetToSil.testimonials?.forEach(item => deletePromises.push(deleteFile(item.imageUrl))); // Testimonials imageUrl eklendi
+    hizmetToSil.testimonials?.forEach(item => item.imageUrl && deletePromises.push(deleteFile(item.imageUrl))); // Testimonials imageUrl null kontrolü
 
     // Tüm silme işlemlerinin tamamlanmasını bekle (hataları yoksayarak)
     await Promise.allSettled(deletePromises);

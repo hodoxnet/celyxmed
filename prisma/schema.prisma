@@ -239,9 +239,10 @@ model HizmetOverviewTab {
   triggerText   String
   title         String
   content       String  @db.Text // Uzun içerik olabileceği için Text tipi
-  imageUrl      String
-  imageAlt      String
+  imagePath     String? // Resim URL'si yerine dosya yolu, isteğe bağlı
+  imageAlt      String? // Resim yolu yoksa alt text de isteğe bağlı olabilir
   buttonText    String
+  buttonLink    String? // Buton linki isteğe bağlı
   order         Int     @default(0) // Sıralama için default değer eklendi
   hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
   hizmetDetayId String

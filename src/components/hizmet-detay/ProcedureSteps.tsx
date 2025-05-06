@@ -1,5 +1,5 @@
 // src/components/hizmet-detay/ProcedureSteps.tsx
-"use client"; // State ve Ref kullanımı için client component
+"use client";
 
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
