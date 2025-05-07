@@ -82,7 +82,7 @@ const HizmetTestimonialSchema = z.object({
   text: z.string().min(1, "Yorum metni boş olamaz"),
   author: z.string().min(1, "Yazar boş olamaz"),
   treatment: z.string().optional(),
-  imageUrl: z.string().url("Geçerli bir URL girin").optional().or(z.literal('')),
+  imageUrl: z.string().optional().or(z.literal('')), // URL validasyonu kaldırıldı
   order: z.number().optional().default(0),
 });
 

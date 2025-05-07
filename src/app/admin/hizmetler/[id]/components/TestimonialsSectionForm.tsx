@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Trash, Star } from "lucide-react";
-// import ImageUpload from '@/components/admin/image-upload'; // TODO: ImageUpload entegrasyonu
+import ImageUpload from '@/components/admin/image-upload';
 
 interface TestimonialsSectionFormProps {
   form: UseFormReturn<HizmetDetayFormValues>;
@@ -105,10 +105,17 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
                 name={`testimonials.${index}.imageUrl`}
                 render={({ field }) => (
                   <FormItem>
-                     <FormLabel className="text-xs">Yazar Resim URL (Opsiyonel)</FormLabel>
+                    <FormLabel className="text-xs">Yazar Resmi (Opsiyonel)</FormLabel>
                     <FormControl>
-                       {/* TODO: Image Upload bileşeni entegre edilebilir */}
-                      <Input placeholder="https://..." {...field} disabled={loading} />
+                      <ImageUpload
+                        initialImage={field.value}
+                        showPreview={true}
+                        buttonText="Yazar Resmi Yükle/Değiştir"
+                        onImageUploaded={(imageUrl) => {
+                          field.onChange(imageUrl);
+                        }}
+                        className="w-full"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
