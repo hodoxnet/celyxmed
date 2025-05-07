@@ -33,7 +33,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({
   title,
   description,
   buttonText,
-  buttonLink = "/iletisim",
+  buttonLink,
   avatars = [],
   avatarText = "Doktorunuzu Seçin, Sorularınızı Sorun",
   backgroundImageUrl, // Arka plan resmi prop'u
@@ -104,9 +104,9 @@ const CtaSection: React.FC<CtaSectionProps> = ({
                 </div>
               )}
 
-              {/* Buton */}
+              {/* Buton - buttonLink null kontrolü eklendi */}
               <Button size="lg" asChild className="bg-white text-teal-700 hover:bg-gray-100 rounded-full pl-3 pr-6 py-3 group shadow-md">
-                 <Link href={buttonLink} className="flex items-center gap-3">
+                 <Link href={buttonLink || "/iletisim"} className="flex items-center gap-3">
                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-600">
                       <ArrowRight className="h-5 w-5 text-teal-700 dark:text-white transition-transform duration-300 group-hover:translate-x-1" />
                    </span>
