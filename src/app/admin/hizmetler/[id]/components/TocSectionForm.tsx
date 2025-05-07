@@ -1,7 +1,6 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
 
 import {
   FormControl,
@@ -17,25 +16,32 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Trash } from "lucide-react";
 
 interface TocSectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<any>; // Şimdilik any
   loading: boolean;
+  activeLang: string; // Aktif dili ekle
 }
 
-export function TocSectionForm({ form, loading }: TocSectionFormProps) {
+export function TocSectionForm({ form, loading, activeLang }: TocSectionFormProps) {
+  // Dile özgü alan adları
+  const tocItemsFieldName = `translations.${activeLang}.tocItems` as const;
+  const tocTitleFieldName = `translations.${activeLang}.tocTitle` as const;
+  const tocAuthorInfoFieldName = `translations.${activeLang}.tocAuthorInfo` as const;
+  const tocCtaDescriptionFieldName = `translations.${activeLang}.tocCtaDescription` as const;
+
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "tocItems",
+    name: tocItemsFieldName, // Güncellendi
   });
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
-      <h3 className="text-lg font-medium">İçindekiler (TOC) & Sağ CTA</h3>
+      <h3 className="text-lg font-medium">İçindekiler (TOC) & Sağ CTA ({activeLang.toUpperCase()})</h3>
       <FormField
         control={form.control}
-        name="tocTitle"
+        name={tocTitleFieldName} // Güncellendi
         render={({ field }) => (
           <FormItem>
-            <FormLabel>İçindekiler Başlığı *</FormLabel>
+            <FormLabel>İçindekiler Başlığı ({activeLang.toUpperCase()}) *</FormLabel>
             <FormControl>
               <Input placeholder="İçindekiler" {...field} disabled={loading} />
             </FormControl>
@@ -45,10 +51,10 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
       />
       <FormField
         control={form.control}
-        name="tocAuthorInfo"
+        name={tocAuthorInfoFieldName} // Güncellendi
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Yazar/Güncelleme Bilgisi</FormLabel>
+            <FormLabel>Yazar/Güncelleme Bilgisi ({activeLang.toUpperCase()})</FormLabel>
             <FormControl>
               <Input placeholder="Op. Dr. İsim Soyisim - Son Güncelleme: Tarih" {...field} disabled={loading} />
             </FormControl>
@@ -58,10 +64,10 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
       />
       <FormField
         control={form.control}
-        name="tocCtaDescription"
+        name={tocCtaDescriptionFieldName} // Güncellendi
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Sağ Sütun CTA Açıklaması *</FormLabel>
+            <FormLabel>Sağ Sütun CTA Açıklaması ({activeLang.toUpperCase()}) *</FormLabel>
             <FormControl>
               <Textarea placeholder="Sağ sütunda görünecek kısa tanıtım/CTA metni..." {...field} disabled={loading} />
             </FormControl>
@@ -72,14 +78,14 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
 
       {/* İçindekiler Öğeleri (Field Array) */}
       <div>
-        <FormLabel>İçindekiler Öğeleri</FormLabel>
+        <FormLabel>İçindekiler Öğeleri ({activeLang.toUpperCase()})</FormLabel>
         <div className="space-y-4 mt-2">
           {fields.map((item, index) => (
             <div key={item.id} className="flex items-center space-x-4 border p-3 rounded-md">
               <span className="text-sm font-medium">{index + 1}.</span>
               <FormField
                 control={form.control}
-                name={`tocItems.${index}.text`}
+                name={`${tocItemsFieldName}.${index}.text`} // Güncellendi
                 render={({ field }) => (
                   <FormItem className="flex-1">
                     <FormControl>
@@ -91,7 +97,7 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
               />
               <FormField
                 control={form.control}
-                name={`tocItems.${index}.isBold`}
+                name={`${tocItemsFieldName}.${index}.isBold`} // Güncellendi
                 render={({ field }) => (
                   <FormItem className="flex items-center space-x-2">
                     <FormControl>
@@ -103,7 +109,7 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
               />
               <FormField
                 control={form.control}
-                name={`tocItems.${index}.level`}
+                name={`${tocItemsFieldName}.${index}.level`} // Güncellendi
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
@@ -111,8 +117,8 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
                         type="number"
                         placeholder="Seviye"
                         {...field}
-                        onChange={event => field.onChange(event.target.value === '' ? undefined : +event.target.value)} // Boşsa undefined yap
-                        value={field.value ?? ''} // null/undefined ise boş göster
+                        onChange={event => field.onChange(event.target.value === '' ? undefined : +event.target.value)}
+                        value={field.value ?? ''}
                         className="w-20"
                         disabled={loading}
                       />
@@ -120,7 +126,6 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
                   </FormItem>
                 )}
               />
-              {/* TODO: Sıralama için sürükle bırak eklenebilir */}
               <Button type="button" variant="destructive" size="sm" onClick={() => remove(index)} disabled={loading}>
                 <Trash className="h-4 w-4" />
               </Button>
@@ -130,7 +135,7 @@ export function TocSectionForm({ form, loading }: TocSectionFormProps) {
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => append({ text: "", isBold: false, level: undefined, order: fields.length })} // order eklendi
+            onClick={() => append({ text: "", isBold: false, level: undefined, order: fields.length })}
             disabled={loading}
           >
             Öğe Ekle

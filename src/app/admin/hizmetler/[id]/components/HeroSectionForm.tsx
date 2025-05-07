@@ -1,6 +1,8 @@
 "use client";
 
-import { HizmetDetayForm } from "@/types/form-types";
+// import { HizmetDetayForm } from "@/types/form-types"; // Eski tip
+import { UseFormReturn } from "react-hook-form"; // Yeni tip
+import { handleNullValue } from "@/lib/utils";
 
 import {
   FormControl,
@@ -10,10 +12,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import ImageUpload from '@/components/admin/image-upload'; // ImageUpload import edildi
+import ImageUpload from '@/components/admin/image-upload';
 
 interface HeroSectionFormProps {
-  form: HizmetDetayForm;
+  form: UseFormReturn<any>; // Şimdilik any
   loading: boolean;
 }
 
@@ -29,7 +31,7 @@ export function HeroSectionForm({ form, loading }: HeroSectionFormProps) {
             <FormLabel>Hero Resmi *</FormLabel>
             <FormControl>
               <ImageUpload
-                initialImage={field.value} // Mevcut resmi göster
+                initialImage={field.value || ""} // null ise boş string kullan
                 showPreview={true}
                 buttonText="Hero Resmi Yükle/Değiştir"
                 onImageUploaded={(imageUrl) => {
@@ -49,7 +51,15 @@ export function HeroSectionForm({ form, loading }: HeroSectionFormProps) {
           <FormItem>
             <FormLabel>Hero Resim Alt Metni *</FormLabel>
             <FormControl>
-              <Input placeholder="Resim açıklaması..." {...field} disabled={loading} />
+              <Input 
+                placeholder="Resim açıklaması..." 
+                value={handleNullValue(field.value)} 
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                name={field.name}
+                ref={field.ref}
+                disabled={loading}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

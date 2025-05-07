@@ -1,7 +1,8 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
+import { HizmetFormValues } from "./hizmet-form"; // Varsayılan olarak hizmet-form'dan import edilecek
+import { Language } from "@/generated/prisma"; // Language tipi import edildi
 
 import {
   FormControl,
@@ -14,30 +15,47 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-import ImageUpload from '@/components/admin/image-upload'; // ImageUpload import edildi
+import ImageUpload from '@/components/admin/image-upload';
 
 interface OverviewSectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<HizmetFormValues>;
   loading: boolean;
+  activeLang: string;
+  diller: Language[]; // diller prop'u eklendi
 }
 
-export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps) {
+export function OverviewSectionForm({ form, loading, activeLang, diller }: OverviewSectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "overviewTabs",
+    name: "overviewSection.definition.tabs", // overviewTabs -> overviewSection.definition.tabs
   });
+
+  const createTranslationsForAllLanguages = () => {
+    const translations: Record<string, any> = {};
+    diller.forEach(lang => {
+      translations[lang.code] = {
+        languageCode: lang.code,
+        triggerText: "",
+        title: "",
+        content: "",
+        buttonText: "Detaylar", // Default değer
+        buttonLink: "",
+      };
+    });
+    return translations;
+  };
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
       <h3 className="text-lg font-medium">Tedaviye Genel Bakış Bölümü</h3>
       <FormField
         control={form.control}
-        name="overviewTitle"
+        name={`overviewSection.translations.${activeLang}.title`} // overviewTitle -> overviewSection.translations[activeLang].title
         render={({ field }) => (
           <FormItem>
             <FormLabel>Bölüm Başlığı *</FormLabel>
             <FormControl>
-              <Input placeholder="Genel bakış bölüm başlığı..." {...field} disabled={loading} />
+              <Input placeholder="Genel bakış bölüm başlığı..." {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -45,19 +63,18 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
       />
       <FormField
         control={form.control}
-        name="overviewDescription"
+        name={`overviewSection.translations.${activeLang}.description`} // overviewDescription -> overviewSection.translations[activeLang].description
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Bölüm Açıklaması *</FormLabel>
+            <FormLabel>Bölüm Açıklaması</FormLabel>
             <FormControl>
-              <Textarea placeholder="Genel bakış bölüm açıklaması..." {...field} disabled={loading} />
+              <Textarea placeholder="Genel bakış bölüm açıklaması..." {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      {/* Genel Bakış Tabları (Field Array) */}
       <div>
         <FormLabel>Genel Bakış Sekmeleri</FormLabel>
         <div className="space-y-6 mt-2">
@@ -76,12 +93,12 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
                <h4 className="text-md font-medium border-b pb-2">Sekme {index + 1}</h4>
               <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.value`}
+                name={`overviewSection.definition.tabs.${index}.value`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Sekme Değeri (Benzersiz ID) *</FormLabel>
                     <FormControl>
-                      <Input placeholder="örn: nedir, kimin-icin" {...field} disabled={loading} />
+                      <Input placeholder="örn: nedir, kimin-icin" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,12 +106,12 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.triggerText`}
+                name={`overviewSection.definition.tabs.${index}.translations.${activeLang}.triggerText`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Sekme Başlığı (Tetikleyici Metin) *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Bu Tedavi Nedir?" {...field} disabled={loading} />
+                      <Input placeholder="Bu Tedavi Nedir?" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,12 +119,12 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.title`}
+                name={`overviewSection.definition.tabs.${index}.translations.${activeLang}.title`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">İçerik Başlığı *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Sekme içerik başlığı..." {...field} disabled={loading} />
+                      <Input placeholder="Sekme içerik başlığı..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -115,12 +132,12 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.content`}
+                name={`overviewSection.definition.tabs.${index}.translations.${activeLang}.content`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">İçerik *</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Sekme içeriği..." {...field} disabled={loading} />
+                      <Textarea placeholder="Sekme içeriği..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -128,7 +145,7 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.imagePath`}
+                name={`overviewSection.definition.tabs.${index}.imagePath`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs">Sekme Resmi</FormLabel>
@@ -145,16 +162,15 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
                   </FormItem>
                 )}
               />
-              {/* Resim Alt Metni - Sadece resim varsa göster */}
-              {form.watch(`overviewTabs.${index}.imagePath`) && (
+              {form.watch(`overviewSection.definition.tabs.${index}.imagePath`) && (
                 <FormField
                   control={form.control}
-                  name={`overviewTabs.${index}.imageAlt`}
+                  name={`overviewSection.definition.tabs.${index}.imageAlt`}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-xs">Resim Alt Metni</FormLabel>
                       <FormControl>
-                        <Input placeholder="Resim açıklaması..." {...field} disabled={loading} />
+                        <Input placeholder="Resim açıklaması..." {...field} value={field.value || ""} disabled={loading} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -163,12 +179,12 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
               )}
                <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.buttonText`}
+                name={`overviewSection.definition.tabs.${index}.translations.${activeLang}.buttonText`}
                 render={({ field }) => (
                   <FormItem>
-                     <FormLabel className="text-xs">Buton Metni *</FormLabel>
+                     <FormLabel className="text-xs">Buton Metni</FormLabel>
                     <FormControl>
-                      <Input placeholder="Dönüşümünüzü Başlatın" {...field} disabled={loading} />
+                      <Input placeholder="Dönüşümünüzü Başlatın" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -176,18 +192,17 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
               />
               <FormField
                 control={form.control}
-                name={`overviewTabs.${index}.buttonLink`}
+                name={`overviewSection.definition.tabs.${index}.translations.${activeLang}.buttonLink`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs">Buton Linki (Opsiyonel)</FormLabel>
                     <FormControl>
-                      <Input placeholder="/iletisim veya https://..." {...field} disabled={loading} />
+                      <Input placeholder="/iletisim veya https://..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {/* TODO: Sıralama için sürükle bırak eklenebilir */}
             </div>
           ))}
           <Button
@@ -195,15 +210,11 @@ export function OverviewSectionForm({ form, loading }: OverviewSectionFormProps)
             variant="outline"
             size="sm"
             onClick={() => append({
-                value: `sekme-${fields.length + 1}`, // Benzersiz value
-                triggerText: "",
-                title: "",
-                content: "",
-                imagePath: "", // imagePath olarak değiştirildi
+                value: `tab-${fields.length + 1}`, // Benzersiz value
+                imagePath: null,
                 imageAlt: "",
-                buttonText: "",
-                buttonLink: "", // buttonLink eklendi
-                order: fields.length
+                order: fields.length,
+                translations: createTranslationsForAllLanguages(),
             })}
             disabled={loading}
           >

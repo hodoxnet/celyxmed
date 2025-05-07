@@ -1,85 +1,104 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import prisma from "@/lib/prisma"; // Veri çekmek için
-import { HizmetDetayForm, InitialDataType as FormInitialDataType } from "./components/hizmet-detay-form"; // Formu ve InitialDataType'ı import et
-import { HizmetDetay, Language } from "@/generated/prisma"; // Language tipini de import et
+import prisma from "@/lib/prisma";
+// Form importu ve tipi güncellenecek, şimdilik HizmetForm olarak adlandırıyoruz
+import { HizmetForm } from "./components/hizmet-form"; // Güncellenecek dosya adı
+import { Language, Hizmet } from "@/generated/prisma"; // Hizmet tipini import et
 
 export const metadata: Metadata = {
-  // Dinamik olarak ayarlanabilir
-  title: "Admin - Hizmet Detayı Yönetimi",
-  description: "Yeni hizmet detayı ekleyin veya mevcut olanı düzenleyin.",
+  title: "Admin - Hizmet Yönetimi",
+  description: "Yeni hizmet ekleyin veya mevcut olanı düzenleyin.",
 };
 
-interface HizmetDetayPageProps {
+interface HizmetPageProps {
   params: {
     id: string; // 'yeni' veya hizmet ID'si
   };
 }
 
-// InitialDataType artık form bileşeninden import ediliyor.
-// Bu lokal tanım kaldırıldı.
+// Hizmet ve ilişkili tüm çevirilerini, definition'larını ve onların çevirilerini getirecek tip
+// Bu tip HizmetForm bileşeninde daha detaylı tanımlanacak. Şimdilik any kullanabiliriz.
+export type HizmetWithTranslationsAndRelations = Hizmet & {
+  translations: any[]; // Detaylandırılacak
+  marqueeImages: any[];
+  galleryImages: any[];
+  ctaAvatars: any[];
+  overviewTabDefinitions: (any & { translations: any[] })[];
+  whyItemDefinitions: (any & { translations:any[] })[];
+  testimonialDefinitions: (any & { translations: any[] })[];
+  recoveryItemDefinitions: (any & { translations: any[] })[];
+  expertItemDefinitions: (any & { translations: any[] })[];
+  pricingPackageDefinitions: (any & { translations: any[] })[];
+};
 
-async function getHizmetDetay(id: string): Promise<FormInitialDataType> { // Dönüş tipi FormInitialDataType olarak güncellendi
+
+async function getHizmetData(id: string): Promise<HizmetWithTranslationsAndRelations | null> {
   if (id === 'yeni') {
     return null; // Yeni kayıt için veri yok
   }
 
   try {
-    const hizmetDetay = await prisma.hizmetDetay.findUnique({
+    const hizmet = await prisma.hizmet.findUnique({
       where: { id },
-      // İlişkili verileri getir, sıralama olmadan
       include: {
-        tocItems: true,
-        marqueeImages: true,
-        introLinks: true,
-        overviewTabs: { // overviewTabs için select eklendi
-          select: {
-            id: true,
-            value: true,
-            triggerText: true,
-            title: true,
-            content: true,
-            imagePath: true,
-            imageAlt: true,
-            buttonText: true,
-            buttonLink: true,
-            order: true,
-            hizmetDetayId: true // İlişki için gerekli olabilir
+        translations: { // Tüm dillerdeki çevirileri getir
+          include: {
+            language: true, // Dil bilgisini de al
+            tocItems: { orderBy: { order: 'asc' } },
+            introLinks: { orderBy: { order: 'asc' } },
+            steps: { orderBy: { order: 'asc' } },
+            faqs: { orderBy: { order: 'asc' } },
           }
         },
-        whyItems: true,
-        galleryImages: true,
-        testimonials: true,
-        steps: true,
-        recoveryItems: true,
-        ctaAvatars: true,
-        pricingPackages: true,
-        expertItems: true,
-        faqs: true,
+        marqueeImages: { orderBy: { order: 'asc' } },
+        galleryImages: { orderBy: { order: 'asc' } },
+        ctaAvatars: { orderBy: { order: 'asc' } },
+        overviewTabDefinitions: {
+          orderBy: { order: 'asc' },
+          include: { translations: { include: { language: true } } }
+        },
+        whyItemDefinitions: {
+          orderBy: { order: 'asc' },
+          include: { translations: { include: { language: true } } }
+        },
+        testimonialDefinitions: {
+          orderBy: { order: 'asc' },
+          include: { translations: { include: { language: true } } }
+        },
+        recoveryItemDefinitions: {
+          orderBy: { order: 'asc' },
+          include: { translations: { include: { language: true } } }
+        },
+        expertItemDefinitions: {
+          orderBy: { order: 'asc' },
+          include: { translations: { include: { language: true } } }
+        },
+        pricingPackageDefinitions: {
+          orderBy: { order: 'asc' },
+          include: { translations: { include: { language: true } } }
+        },
       },
     });
-    return hizmetDetay as FormInitialDataType; // Açıkça cast et
+    return hizmet as HizmetWithTranslationsAndRelations;
   } catch (error) {
-    console.error("Error fetching hizmet detay:", error);
-    return null; // Hata durumunda null dön
+    console.error("Error fetching hizmet data:", error);
+    return null;
   }
 }
 
-export default async function HizmetDetayPage({ params }: HizmetDetayPageProps) {
-  const hizmetDetay = await getHizmetDetay(params.id);
+export default async function HizmetPage({ params }: HizmetPageProps) {
+  const hizmetData = await getHizmetData(params.id);
 
-  // ID 'yeni' değilse ve veri bulunamadıysa 404 göster
-  if (params.id !== 'yeni' && !hizmetDetay) {
+  if (params.id !== 'yeni' && !hizmetData) {
     notFound();
   }
 
-  // TODO: Dilleri çekip forma göndermek gerekebilir (select için)
-  const diller = await prisma.language.findMany({ where: { isActive: true } });
+  const diller = await prisma.language.findMany({ where: { isActive: true }, orderBy: { name: 'asc' } });
 
-  const pageTitle = params.id === 'yeni' ? "Yeni Hizmet Detayı Ekle" : "Hizmet Detayını Düzenle";
+  const pageTitle = params.id === 'yeni' ? "Yeni Hizmet Ekle" : "Hizmeti Düzenle";
   const pageDescription = params.id === 'yeni'
-    ? "Yeni bir hizmet detayı oluşturun."
-    : "Mevcut hizmet detayını düzenleyin.";
+    ? "Yeni bir hizmet ve çevirilerini oluşturun."
+    : "Mevcut hizmeti ve çevirilerini düzenleyin.";
 
   return (
     <div className="space-y-6">
@@ -87,15 +106,8 @@ export default async function HizmetDetayPage({ params }: HizmetDetayPageProps) 
         <h2 className="text-2xl font-bold tracking-tight">{pageTitle}</h2>
         <p className="text-muted-foreground">{pageDescription}</p>
       </div>
-
-      {/*
-        Buraya formu yönetecek Client Component gelecek.
-        Başlangıç verisi olarak 'hizmetDetay' ve 'diller' prop'larını alacak.
-        Örnek: <HizmetDetayForm initialData={hizmetDetay} diller={diller} />
-        Buraya formu yönetecek Client Component gelecek.
-        Başlangıç verisi olarak 'hizmetDetay' ve 'diller' prop'larını alacak.
-      */}
-      <HizmetDetayForm initialData={hizmetDetay} diller={diller} />
+      {/* Form bileşeninin adı ve props'ları güncellenecek */}
+      <HizmetForm initialData={hizmetData} diller={diller} />
     </div>
   );
 }

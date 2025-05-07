@@ -1,7 +1,8 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
+import { HizmetFormValues } from "./hizmet-form"; // Varsayılan olarak hizmet-form'dan import edilecek
+import { Language } from "@/generated/prisma"; // Language tipi import edildi
 
 import {
   FormControl,
@@ -13,38 +14,52 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Trash, Star } from "lucide-react";
+import { Trash } from "lucide-react"; // Star importu kaldırıldı, gereksiz
 import ImageUpload from '@/components/admin/image-upload';
 
 interface TestimonialsSectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<HizmetFormValues>;
   loading: boolean;
+  activeLang: string;
+  diller: Language[]; // diller prop'u eklendi
 }
 
-export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFormProps) {
+export function TestimonialsSectionForm({ form, loading, activeLang, diller }: TestimonialsSectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "testimonials",
+    name: "testimonialsSection.definition.items", // testimonials -> testimonialsSection.definition.items
   });
+
+  const createTranslationsForAllLanguages = () => {
+    const translations: Record<string, any> = {};
+    diller.forEach(lang => {
+      translations[lang.code] = {
+        languageCode: lang.code,
+        author: "",
+        text: "",
+        treatment: "",
+      };
+    });
+    return translations;
+  };
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
       <h3 className="text-lg font-medium">Yorumlar Bölümü</h3>
       <FormField
         control={form.control}
-        name="testimonialsSectionTitle"
+        name={`testimonialsSection.translations.${activeLang}.title`} // testimonialsSectionTitle -> testimonialsSection.translations[activeLang].title
         render={({ field }) => (
           <FormItem>
             <FormLabel>Bölüm Başlığı</FormLabel>
             <FormControl>
-              <Input placeholder="Mutlu Hastalarımızdan Yorumlar" {...field} disabled={loading} />
+              <Input placeholder="Mutlu Hastalarımızdan Yorumlar" {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      {/* Yorumlar (Field Array) */}
       <div>
         <FormLabel>Yorumlar</FormLabel>
         <div className="space-y-6 mt-2">
@@ -63,12 +78,12 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
                <h4 className="text-md font-medium border-b pb-2">Yorum {index + 1}</h4>
                <FormField
                 control={form.control}
-                name={`testimonials.${index}.author`}
+                name={`testimonialsSection.definition.items.${index}.translations.${activeLang}.author`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Yazar *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Olivia R. (Amerika Birleşik Devletleri 🇺🇸)" {...field} disabled={loading} />
+                      <Input placeholder="Olivia R. (Amerika Birleşik Devletleri 🇺🇸)" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -76,12 +91,12 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
               />
                <FormField
                 control={form.control}
-                name={`testimonials.${index}.text`}
+                name={`testimonialsSection.definition.items.${index}.translations.${activeLang}.text`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Yorum Metni *</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Yorum içeriği..." {...field} disabled={loading} />
+                      <Textarea placeholder="Yorum içeriği..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,12 +104,12 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
               />
                <FormField
                 control={form.control}
-                name={`testimonials.${index}.treatment`}
+                name={`testimonialsSection.definition.items.${index}.translations.${activeLang}.treatment`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Tedavi (Opsiyonel)</FormLabel>
                     <FormControl>
-                      <Input placeholder="Türkiye'de Anne Estetiği Ameliyatı" {...field} disabled={loading} />
+                      <Input placeholder="Türkiye'de Anne Estetiği Ameliyatı" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,13 +117,13 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
               />
                <FormField
                 control={form.control}
-                name={`testimonials.${index}.imageUrl`}
+                name={`testimonialsSection.definition.items.${index}.imageUrl`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs">Yazar Resmi (Opsiyonel)</FormLabel>
                     <FormControl>
                       <ImageUpload
-                        initialImage={field.value}
+                        initialImage={field.value || ""} // null ise boş string
                         showPreview={true}
                         buttonText="Yazar Resmi Yükle/Değiştir"
                         onImageUploaded={(imageUrl) => {
@@ -123,7 +138,7 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
               />
                <FormField
                 control={form.control}
-                name={`testimonials.${index}.stars`}
+                name={`testimonialsSection.definition.items.${index}.stars`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Yıldız Sayısı (1-5)</FormLabel>
@@ -134,8 +149,8 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
                         max="5"
                         placeholder="5"
                         {...field}
-                        onChange={event => field.onChange(event.target.value === '' ? 5 : +event.target.value)} // Boşsa 5 yap
-                        value={field.value ?? 5} // null/undefined ise 5 göster
+                        onChange={event => field.onChange(event.target.value === '' ? 5 : +event.target.value)}
+                        value={field.value ?? 5}
                         disabled={loading}
                         className="w-20"
                       />
@@ -144,7 +159,6 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
                   </FormItem>
                 )}
               />
-              {/* TODO: Sıralama için sürükle bırak eklenebilir */}
             </div>
           ))}
           <Button
@@ -153,11 +167,9 @@ export function TestimonialsSectionForm({ form, loading }: TestimonialsSectionFo
             size="sm"
             onClick={() => append({
                 stars: 5,
-                text: "",
-                author: "",
-                treatment: "",
-                imageUrl: "",
-                order: fields.length
+                imageUrl: null, // null olarak başlat
+                order: fields.length,
+                translations: createTranslationsForAllLanguages(),
             })}
             disabled={loading}
           >

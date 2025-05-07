@@ -1,7 +1,8 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
+import { HizmetFormValues } from "./hizmet-form"; // Varsayılan olarak hizmet-form'dan import edilecek
+import { Language } from "@/generated/prisma"; // Language tipi import edildi
 
 import {
   FormControl,
@@ -17,27 +18,43 @@ import { Trash } from "lucide-react";
 import ImageUpload from '@/components/admin/image-upload';
 
 interface ExpertsSectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<HizmetFormValues>;
   loading: boolean;
+  activeLang: string;
+  diller: Language[]; // diller prop'u eklendi
 }
 
-export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
+export function ExpertsSectionForm({ form, loading, activeLang, diller }: ExpertsSectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "expertItems",
+    name: "expertsSection.definition.items", // expertItems -> expertsSection.definition.items
   });
+
+  const createTranslationsForAllLanguages = () => {
+    const translations: Record<string, any> = {};
+    diller.forEach(lang => {
+      translations[lang.code] = {
+        languageCode: lang.code,
+        name: "",
+        title: "",
+        description: "",
+        ctaText: "",
+      };
+    });
+    return translations;
+  };
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
       <h3 className="text-lg font-medium">Uzmanlarla Tanışın Bölümü</h3>
       <FormField
         control={form.control}
-        name="expertsSectionTitle"
+        name={`expertsSection.translations.${activeLang}.title`} // expertsSectionTitle -> expertsSection.translations[activeLang].title
         render={({ field }) => (
           <FormItem>
             <FormLabel>Bölüm Başlığı *</FormLabel>
             <FormControl>
-              <Input placeholder="Celyxmed'de Anne Estetiği Uzmanlarınızla Tanışın" {...field} disabled={loading} />
+              <Input placeholder="Celyxmed'de Anne Estetiği Uzmanlarınızla Tanışın" {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -45,19 +62,18 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
       />
       <FormField
         control={form.control}
-        name="expertsTagline"
+        name={`expertsSection.translations.${activeLang}.tagline`} // expertsTagline -> expertsSection.translations[activeLang].tagline
         render={({ field }) => (
           <FormItem>
             <FormLabel>Etiket (Tagline)</FormLabel>
             <FormControl>
-              <Input placeholder="Doktorumuz Çevrimiçi ve Konsültasyona Hazır" {...field} disabled={loading} />
+              <Input placeholder="Doktorumuz Çevrimiçi ve Konsültasyona Hazır" {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      {/* Uzmanlar (Field Array) */}
       <div>
         <FormLabel>Uzmanlar</FormLabel>
         <div className="space-y-6 mt-2">
@@ -76,12 +92,12 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
                <h4 className="text-md font-medium border-b pb-2">Uzman {index + 1}</h4>
                <FormField
                 control={form.control}
-                name={`expertItems.${index}.name`}
+                name={`expertsSection.definition.items.${index}.translations.${activeLang}.name`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">İsim *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Op. Dr. Kemal Aytuğlu" {...field} disabled={loading} />
+                      <Input placeholder="Op. Dr. Kemal Aytuğlu" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,12 +105,12 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`expertItems.${index}.title`}
+                name={`expertsSection.definition.items.${index}.translations.${activeLang}.title`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Unvan *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Plastik, Rekonstrüktif ve Estetik Cerrahi Uzmanı" {...field} disabled={loading} />
+                      <Input placeholder="Plastik, Rekonstrüktif ve Estetik Cerrahi Uzmanı" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,12 +118,12 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`expertItems.${index}.description`}
+                name={`expertsSection.definition.items.${index}.translations.${activeLang}.description`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Açıklama *</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Uzman açıklaması..." {...field} disabled={loading} />
+                      <Textarea placeholder="Uzman açıklaması..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -115,13 +131,13 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`expertItems.${index}.imageUrl`}
+                name={`expertsSection.definition.items.${index}.imageUrl`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs">Resim *</FormLabel>
                     <FormControl>
                       <ImageUpload
-                        initialImage={field.value}
+                        initialImage={field.value || ""} // null ise boş string
                         showPreview={true}
                         buttonText="Resim Yükle/Değiştir"
                         onImageUploaded={(imageUrl) => {
@@ -136,12 +152,12 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`expertItems.${index}.imageAlt`}
+                name={`expertsSection.definition.items.${index}.imageAlt`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Resim Alt Metni *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Resim açıklaması..." {...field} disabled={loading} />
+                      <Input placeholder="Resim açıklaması..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -149,18 +165,17 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`expertItems.${index}.ctaText`}
+                name={`expertsSection.definition.items.${index}.translations.${activeLang}.ctaText`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Buton Metni (Opsiyonel)</FormLabel>
                     <FormControl>
-                      <Input placeholder="Çevrimiçi Danışma" {...field} disabled={loading} />
+                      <Input placeholder="Çevrimiçi Danışma" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {/* TODO: Sıralama için sürükle bırak eklenebilir */}
             </div>
           ))}
           <Button
@@ -168,13 +183,10 @@ export function ExpertsSectionForm({ form, loading }: ExpertsSectionFormProps) {
             variant="outline"
             size="sm"
             onClick={() => append({
-                name: "",
-                title: "",
-                description: "",
-                imageUrl: "",
+                imageUrl: null, // null olarak başlat
                 imageAlt: "",
-                ctaText: "",
-                order: fields.length
+                order: fields.length,
+                translations: createTranslationsForAllLanguages(),
             })}
             disabled={loading}
           >

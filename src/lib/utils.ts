@@ -10,6 +10,11 @@ export function ensureArray<T>(value: T[] | undefined | null): T[] {
   return Array.isArray(value) ? value : [];
 }
 
+// Form field helper to handle null values for inputs
+export function handleNullValue(value: any): string {
+  return value === null || value === undefined ? "" : String(value);
+}
+
 // Add default values to array object fields
 export function withDefaults<T extends object, K extends keyof T>(
   obj: T | undefined | null, 

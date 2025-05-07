@@ -1,7 +1,8 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
+// import { HizmetDetayFormValues } from "@/lib/validators/admin"; // Eski tip
+// Yeni form tipi import edilecek veya any kullanılacak
 
 import {
   FormControl,
@@ -13,10 +14,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-import ImageUpload from '@/components/admin/image-upload'; // ImageUpload import edildi
+import ImageUpload from '@/components/admin/image-upload';
 
 interface MarqueeSectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<any>; // Şimdilik any
   loading: boolean;
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
+import { HizmetFormValues } from "./hizmet-form"; // Varsayılan olarak hizmet-form'dan import edilecek
 
 import {
   FormControl,
@@ -16,27 +16,33 @@ import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 
 interface IntroSectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<HizmetFormValues>;
   loading: boolean;
+  activeLang: string;
 }
 
-export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
+export function IntroSectionForm({ form, loading, activeLang }: IntroSectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "introLinks",
+    name: `introSection.definition.links`, // introLinks -> introSection.definition.links
   });
+
+  // activeLang değiştiğinde, field array içindeki her bir link için
+  // translations altında ilgili dilin objesinin var olduğundan emin ol.
+  // Bu, formun başlangıç değerleri ayarlanırken veya dil değiştirildiğinde yapılabilir.
+  // Şimdilik, getInitialFormValues'un bunu hallettiğini varsayıyoruz.
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
       <h3 className="text-lg font-medium">Tedavi Tanıtım Alanı</h3>
       <FormField
         control={form.control}
-        name="introVideoId"
+        name={`introSection.definition.videoId`} // introVideoId -> introSection.definition.videoId
         render={({ field }) => (
           <FormItem>
             <FormLabel>Video ID (YouTube)</FormLabel>
             <FormControl>
-              <Input placeholder="Örn: 2edpx39Iy8g" {...field} disabled={loading} />
+              <Input placeholder="Örn: 2edpx39Iy8g" {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -44,12 +50,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
       />
       <FormField
         control={form.control}
-        name="introTitle"
+        name={`introSection.translations.${activeLang}.title`} // introTitle -> introSection.translations[activeLang].title
         render={({ field }) => (
           <FormItem>
             <FormLabel>Başlık *</FormLabel>
             <FormControl>
-              <Input placeholder="Tanıtım başlığı..." {...field} disabled={loading} />
+              <Input placeholder="Tanıtım başlığı..." {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -57,12 +63,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
       />
       <FormField
         control={form.control}
-        name="introDescription"
+        name={`introSection.translations.${activeLang}.description`} // introDescription -> introSection.translations[activeLang].description
         render={({ field }) => (
           <FormItem>
             <FormLabel>Açıklama *</FormLabel>
             <FormControl>
-              <Textarea placeholder="Tanıtım açıklaması..." {...field} disabled={loading} />
+              <Textarea placeholder="Tanıtım açıklaması..." {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -71,12 +77,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
        <div className="grid grid-cols-2 gap-4">
          <FormField
             control={form.control}
-            name="introPrimaryButtonText"
+            name={`introSection.translations.${activeLang}.primaryButtonText`}
             render={({ field }) => (
             <FormItem>
                 <FormLabel>Birincil Buton Metni *</FormLabel>
                 <FormControl>
-                <Input placeholder="Ücretsiz Konsültasyon" {...field} disabled={loading} />
+                <Input placeholder="Ücretsiz Konsültasyon" {...field} value={field.value || ""} disabled={loading} />
                 </FormControl>
                 <FormMessage />
             </FormItem>
@@ -84,12 +90,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
         />
          <FormField
             control={form.control}
-            name="introPrimaryButtonLink"
+            name={`introSection.translations.${activeLang}.primaryButtonLink`}
             render={({ field }) => (
             <FormItem>
                 <FormLabel>Birincil Buton Linki *</FormLabel>
                 <FormControl>
-                <Input placeholder="/iletisim veya #id" {...field} disabled={loading} />
+                <Input placeholder="/iletisim veya #id" {...field} value={field.value || ""} disabled={loading} />
                 </FormControl>
                 <FormMessage />
             </FormItem>
@@ -99,12 +105,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
        <div className="grid grid-cols-2 gap-4">
          <FormField
             control={form.control}
-            name="introSecondaryButtonText"
+            name={`introSection.translations.${activeLang}.secondaryButtonText`}
             render={({ field }) => (
             <FormItem>
                 <FormLabel>İkincil Buton Metni *</FormLabel>
                 <FormControl>
-                <Input placeholder="Tedaviye Genel Bakış" {...field} disabled={loading} />
+                <Input placeholder="Tedaviye Genel Bakış" {...field} value={field.value || ""} disabled={loading} />
                 </FormControl>
                 <FormMessage />
             </FormItem>
@@ -112,12 +118,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
         />
          <FormField
             control={form.control}
-            name="introSecondaryButtonLink"
+            name={`introSection.translations.${activeLang}.secondaryButtonLink`}
             render={({ field }) => (
             <FormItem>
                 <FormLabel>İkincil Buton Linki *</FormLabel>
                 <FormControl>
-                <Input placeholder="#genel-bakis" {...field} disabled={loading} />
+                <Input placeholder="#genel-bakis" {...field} value={field.value || ""} disabled={loading} />
                 </FormControl>
                 <FormMessage />
             </FormItem>
@@ -125,8 +131,6 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
         />
        </div>
 
-
-      {/* Tanıtım Linkleri (Field Array) */}
       <div>
         <FormLabel>Tanıtım Linkleri (Sağ Sütun)</FormLabel>
         <div className="space-y-4 mt-2">
@@ -134,12 +138,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
             <div key={item.id} className="grid grid-cols-4 gap-4 items-center border p-3 rounded-md">
               <FormField
                 control={form.control}
-                name={`introLinks.${index}.number`}
+                name={`introSection.definition.links.${index}.translations.${activeLang}.number`}
                 render={({ field }) => (
                   <FormItem>
-                     <FormLabel className="text-xs">Sıra No *</FormLabel>
+                     <FormLabel className="text-xs">Sıra No (Metin) *</FormLabel>
                     <FormControl>
-                      <Input placeholder="01" {...field} disabled={loading} />
+                      <Input placeholder="01" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -147,12 +151,12 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
               />
               <FormField
                 control={form.control}
-                name={`introLinks.${index}.text`}
+                name={`introSection.definition.links.${index}.translations.${activeLang}.text`}
                 render={({ field }) => (
                   <FormItem className="col-span-2">
                      <FormLabel className="text-xs">Link Metni *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Link metni..." {...field} disabled={loading} />
+                      <Input placeholder="Link metni..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -160,19 +164,18 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`introLinks.${index}.targetId`}
+                name={`introSection.definition.links.${index}.targetId`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Hedef ID/URL *</FormLabel>
                     <FormControl>
-                      <Input placeholder="#id veya /link" {...field} disabled={loading} />
+                      <Input placeholder="#id veya /link" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <div className="flex justify-end items-center">
-                 {/* TODO: Sıralama için sürükle bırak eklenebilir */}
                 <Button type="button" variant="destructive" size="sm" onClick={() => remove(index)} disabled={loading}>
                     <Trash className="h-4 w-4" />
                 </Button>
@@ -183,7 +186,13 @@ export function IntroSectionForm({ form, loading }: IntroSectionFormProps) {
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => append({ number: "", text: "", targetId: "", order: fields.length })} // order eklendi
+            onClick={() => append({
+              order: fields.length, // order dil bağımsız
+              targetId: "", // targetId dil bağımsız
+              translations: { // translations dile özgü
+                [activeLang]: { number: "", text: "" }
+              }
+            })}
             disabled={loading}
           >
             Link Ekle

@@ -1,7 +1,8 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
+import { HizmetFormValues } from "./hizmet-form"; // Varsayılan olarak hizmet-form'dan import edilecek
+import { Language } from "@/generated/prisma"; // Language tipi import edildi
 
 import {
   FormControl,
@@ -17,27 +18,41 @@ import { Trash } from "lucide-react";
 import ImageUpload from '@/components/admin/image-upload';
 
 interface RecoverySectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<HizmetFormValues>;
   loading: boolean;
+  activeLang: string;
+  diller: Language[]; // diller prop'u eklendi
 }
 
-export function RecoverySectionForm({ form, loading }: RecoverySectionFormProps) {
+export function RecoverySectionForm({ form, loading, activeLang, diller }: RecoverySectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "recoveryItems",
+    name: "recoverySection.definition.items", // recoveryItems -> recoverySection.definition.items
   });
+
+  const createTranslationsForAllLanguages = () => {
+    const translations: Record<string, any> = {};
+    diller.forEach(lang => {
+      translations[lang.code] = {
+        languageCode: lang.code,
+        title: "",
+        description: "",
+      };
+    });
+    return translations;
+  };
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
       <h3 className="text-lg font-medium">İyileşme Bilgisi Bölümü</h3>
       <FormField
         control={form.control}
-        name="recoveryTitle"
+        name={`recoverySection.translations.${activeLang}.title`} // recoveryTitle -> recoverySection.translations[activeLang].title
         render={({ field }) => (
           <FormItem>
             <FormLabel>Bölüm Başlığı *</FormLabel>
             <FormControl>
-              <Input placeholder="Anne Estetiğinden Sonra Sizi Neler Bekler?" {...field} disabled={loading} />
+              <Input placeholder="Anne Estetiğinden Sonra Sizi Neler Bekler?" {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -45,19 +60,18 @@ export function RecoverySectionForm({ form, loading }: RecoverySectionFormProps)
       />
       <FormField
         control={form.control}
-        name="recoveryDescription"
+        name={`recoverySection.translations.${activeLang}.description`} // recoveryDescription -> recoverySection.translations[activeLang].description
         render={({ field }) => (
           <FormItem>
             <FormLabel>Bölüm Açıklaması</FormLabel>
             <FormControl>
-              <Textarea placeholder="İyileşme bölümü açıklaması..." {...field} disabled={loading} />
+              <Textarea placeholder="İyileşme bölümü açıklaması..." {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      {/* İyileşme Öğeleri (Field Array) */}
       <div>
         <FormLabel>İyileşme Öğeleri</FormLabel>
         <div className="space-y-6 mt-2">
@@ -76,12 +90,12 @@ export function RecoverySectionForm({ form, loading }: RecoverySectionFormProps)
                <h4 className="text-md font-medium border-b pb-2">Öğe {index + 1}</h4>
                <FormField
                 control={form.control}
-                name={`recoveryItems.${index}.title`}
+                name={`recoverySection.definition.items.${index}.translations.${activeLang}.title`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Başlık *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ameliyat Sonrası Yolculuğunuz" {...field} disabled={loading} />
+                      <Input placeholder="Ameliyat Sonrası Yolculuğunuz" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,12 +103,12 @@ export function RecoverySectionForm({ form, loading }: RecoverySectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`recoveryItems.${index}.description`}
+                name={`recoverySection.definition.items.${index}.translations.${activeLang}.description`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Açıklama *</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Öğe açıklaması..." {...field} disabled={loading} />
+                      <Textarea placeholder="Öğe açıklaması..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,13 +116,13 @@ export function RecoverySectionForm({ form, loading }: RecoverySectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`recoveryItems.${index}.imageUrl`}
+                name={`recoverySection.definition.items.${index}.imageUrl`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs">Resim *</FormLabel>
                     <FormControl>
                       <ImageUpload
-                        initialImage={field.value}
+                        initialImage={field.value || ""} // null ise boş string
                         showPreview={true}
                         buttonText="Resim Yükle/Değiştir"
                         onImageUploaded={(imageUrl) => {
@@ -123,25 +137,29 @@ export function RecoverySectionForm({ form, loading }: RecoverySectionFormProps)
               />
                <FormField
                 control={form.control}
-                name={`recoveryItems.${index}.imageAlt`}
+                name={`recoverySection.definition.items.${index}.imageAlt`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Resim Alt Metni *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Resim açıklaması..." {...field} disabled={loading} />
+                      <Input placeholder="Resim açıklaması..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {/* TODO: Sıralama için sürükle bırak eklenebilir */}
             </div>
           ))}
           <Button
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => append({ title: "", description: "", imageUrl: "", imageAlt: "", order: fields.length })}
+            onClick={() => append({
+              imageUrl: null, // null olarak başlat
+              imageAlt: "",
+              order: fields.length,
+              translations: createTranslationsForAllLanguages(),
+            })}
             disabled={loading}
           >
             Öğe Ekle

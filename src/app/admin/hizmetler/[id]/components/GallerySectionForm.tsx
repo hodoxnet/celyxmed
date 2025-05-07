@@ -1,7 +1,6 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
 
 import {
   FormControl,
@@ -9,6 +8,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription, // Eklendi
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,27 +17,32 @@ import { Trash } from "lucide-react";
 import ImageUpload from '@/components/admin/image-upload';
 
 interface GallerySectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<any>; // Şimdilik any
   loading: boolean;
+  activeLang: string; // Aktif dili ekle
 }
 
-export function GallerySectionForm({ form, loading }: GallerySectionFormProps) {
+export function GallerySectionForm({ form, loading, activeLang }: GallerySectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "galleryImages",
+    name: "galleryImages", // Bu dil bağımsız, aynı kalıyor
   });
+
+  // Dile özgü alan adları
+  const titleFieldName = `translations.${activeLang}.gallerySectionTitle` as const;
+  const descriptionFieldName = `translations.${activeLang}.gallerySectionDescription` as const;
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
-      <h3 className="text-lg font-medium">Galeri Bölümü</h3>
+      <h3 className="text-lg font-medium">Galeri Bölümü ({activeLang.toUpperCase()})</h3>
       <FormField
         control={form.control}
-        name="galleryTitle"
+        name={titleFieldName} // Güncellendi
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Bölüm Başlığı *</FormLabel>
+            <FormLabel>Bölüm Başlığı ({activeLang.toUpperCase()}) *</FormLabel>
             <FormControl>
-              <Input placeholder="Galeri bölüm başlığı..." {...field} disabled={loading} />
+              <Input placeholder={`Galeri bölüm başlığı (${activeLang.toUpperCase()})...`} {...field} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -45,40 +50,41 @@ export function GallerySectionForm({ form, loading }: GallerySectionFormProps) {
       />
       <FormField
         control={form.control}
-        name="galleryDescription"
+        name={descriptionFieldName} // Güncellendi
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Bölüm Açıklaması *</FormLabel>
+            <FormLabel>Bölüm Açıklaması ({activeLang.toUpperCase()}) *</FormLabel>
             <FormControl>
-              <Textarea placeholder="Galeri bölüm açıklaması..." {...field} disabled={loading} />
+              <Textarea placeholder={`Galeri bölüm açıklaması (${activeLang.toUpperCase()})...`} {...field} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      {/* Galeri Resimleri (Field Array) */}
+      {/* Galeri Resimleri (Field Array - Dil Bağımsız) */}
       <div>
         <FormLabel>Galeri Resimleri</FormLabel>
+        <FormDescription>Bu resimler tüm diller için ortaktır.</FormDescription>
         <div className="space-y-4 mt-2">
           {fields.map((item, index) => (
             <div key={item.id} className="flex items-center space-x-4 border p-3 rounded-md">
               <span className="text-sm font-medium">{index + 1}.</span>
               <FormField
                 control={form.control}
-                name={`galleryImages.${index}.src`}
+                name={`galleryImages.${index}.src`} // Alan adı aynı kalıyor
                 render={({ field }) => (
                   <FormItem className="flex-1">
                     <FormLabel className="text-xs">Resim *</FormLabel>
                     <FormControl>
                       <ImageUpload
                         initialImage={field.value}
-                        showPreview={true} // Galeri için önizleme faydalı olabilir
+                        showPreview={true}
                         buttonText="Resim Yükle/Değiştir"
                         onImageUploaded={(imageUrl) => {
                           field.onChange(imageUrl);
                         }}
-                        className="w-full" // veya daha uygun bir stil
+                        className="w-full"
                       />
                     </FormControl>
                     <FormMessage />
@@ -87,7 +93,7 @@ export function GallerySectionForm({ form, loading }: GallerySectionFormProps) {
               />
               <FormField
                 control={form.control}
-                name={`galleryImages.${index}.alt`}
+                name={`galleryImages.${index}.alt`} // Alan adı aynı kalıyor
                 render={({ field }) => (
                   <FormItem className="flex-1">
                      <FormLabel className="text-xs">Alt Metin *</FormLabel>
@@ -98,7 +104,6 @@ export function GallerySectionForm({ form, loading }: GallerySectionFormProps) {
                   </FormItem>
                 )}
               />
-              {/* TODO: Sıralama için sürükle bırak eklenebilir */}
               <Button type="button" variant="destructive" size="sm" onClick={() => remove(index)} disabled={loading}>
                 <Trash className="h-4 w-4" />
               </Button>

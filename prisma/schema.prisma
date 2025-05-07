@@ -48,305 +48,389 @@ model Language {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Blog çevirileri ile ilişki
   blogTranslations BlogTranslation[]
-  // Hizmet Detayları ile ilişki (Eklendi)
-  hizmetDetaylari HizmetDetay[]
+  hizmetTranslations HizmetTranslation[] // Yeniden adlandırıldı ve HizmetTranslation'a bağlandı
 
-  // @@unique([isDefault], name: "unique_default_language") // Bu kısıtlama Prisma'da doğrudan desteklenmiyor, uygulama seviyesinde kontrol edilecek.
+  // Çevirisi yapılacak alt öğeler için dil ilişkileri
+  hizmetOverviewTabTranslations HizmetOverviewTabTranslation[]
+  hizmetWhyItemTranslations     HizmetWhyItemTranslation[]
+  hizmetTestimonialTranslations HizmetTestimonialTranslation[]
+  hizmetRecoveryItemTranslations HizmetRecoveryItemTranslation[]
+  hizmetExpertItemTranslations  HizmetExpertItemTranslation[]
+  hizmetPricingPackageTranslations HizmetPricingPackageTranslation[]
 }
 
 // Blog modeli
 model Blog {
-  id          String   @id @default(cuid())
-  // slug        String   @unique // URL slug - KALDIRILDI
-  coverImageUrl String? // Kapak görseli URL'si
-  isPublished Boolean  @default(false) // Yayın durumu
-  publishedAt DateTime? // Yayın tarihi (yayınlanmamışsa null)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Blog çevirileri ile ilişki
-  translations BlogTranslation[]
+  id            String   @id @default(cuid())
+  coverImageUrl String?
+  isPublished   Boolean  @default(false)
+  publishedAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  translations  BlogTranslation[]
 }
 
 // Blog çevirileri modeli
 model BlogTranslation {
-  id             String  @id @default(cuid())
-  slug           String? // URL slug (dile özgü) - EKLENDİ ve GEÇİCİ OLARAK İSTEĞE BAĞLI YAPILDI
-  title          String  // Blog başlığı
-  fullDescription String  // Kısa özet/açıklama
-  content        String  @db.Text // HTML formatında ana içerik
-  tocItems       Json?   // İçindekiler tablosu öğeleri (JSON formatında)
-
-  // Blog ile ilişki
-  blog           Blog    @relation(fields: [blogId], references: [id], onDelete: Cascade)
-  blogId         String
-
-  // Dil ile ilişki
-  language       Language @relation(fields: [languageCode], references: [code], onDelete: Cascade)
-  languageCode   String
-
-  // Blog-dil ikilisi eşsiz olmalı
+  id              String   @id @default(cuid())
+  slug            String?
+  title           String
+  fullDescription String
+  content         String   @db.Text
+  tocItems        Json?
+  blog            Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  blogId          String
+  language        Language @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode    String
   @@unique([blogId, languageCode])
-  // Dil kodu ve slug ikilisi eşsiz olmalı (örn: /en/my-post ve /tr/my-post olabilir, ama iki tane /en/my-post olamaz)
-  // @@unique([languageCode, slug]) // Geçici olarak kaldırıldı, null değerler unique olamaz
 }
 
+// ----- HİZMET MODELLERİ YENİ YAPI -----
 
-// ----- YENİ EKLENEN MODELLER -----
+// Hizmet Ana Modeli (Dil Bağımsız)
+model Hizmet {
+  id            String   @id @default(cuid())
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-// Hizmet Detay Ana Modeli
-model HizmetDetay {
+  // --- Dil Bağımsız Temel Resimler ---
+  heroImageUrl          String?
+  heroImageAlt          String? // Ana/varsayılan alt text
+  whyBackgroundImageUrl String?
+  ctaBackgroundImageUrl String?
+  ctaMainImageUrl       String?
+  ctaMainImageAlt       String? // Ana/varsayılan alt text
+
+  // --- Dil Bağımsız Resim Koleksiyonları ---
+  marqueeImages HizmetMarqueeImage[]
+  galleryImages HizmetGalleryImage[]
+  ctaAvatars    HizmetCtaAvatar[]
+
+  // --- Dil Bağımsız Yapısal Öğeler (Metinleri çevrilecek) ---
+  overviewTabDefinitions HizmetOverviewTabDefinition[]
+  whyItemDefinitions     HizmetWhyItemDefinition[]
+  testimonialDefinitions HizmetTestimonialDefinition[]
+  recoveryItemDefinitions HizmetRecoveryItemDefinition[]
+  expertItemDefinitions  HizmetExpertItemDefinition[]
+  pricingPackageDefinitions HizmetPricingPackageDefinition[]
+
+
+  // --- Çeviriler ---
+  translations HizmetTranslation[]
+}
+
+// Hizmet Çeviri Modeli (Dile Özgü Metinler)
+model HizmetTranslation {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  hizmet    Hizmet   @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId  String
+  language  Language @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode String
 
-  // --- Temel Bilgiler ---
+  // --- Dile Özgü Metinsel Alanlar ---
   slug        String   // URL parçası (dil ile birlikte unique)
   breadcrumb  String   // Sayfa üstü navigasyon yolu
   title       String   // Hizmet Başlığı
   description String   // Hizmet Kısa Açıklama
-  published   Boolean  @default(false) // Yayında mı?
-  language    Language @relation(fields: [languageCode], references: [code])
-  languageCode String   // Hangi dile ait olduğu
 
-  // --- Hero Alanı ---
-  heroImageUrl String
-  heroImageAlt String
+  // --- Hero Alanı (Metinler) ---
+  // heroImageUrl ve heroImageAlt Hizmet modeline taşındı
 
-  // --- İçindekiler ve Sağ CTA Alanı (TocAndCtaSection) ---
-  tocTitle       String
-  tocAuthorInfo  String?
-  tocItems       HizmetTocItem[] // İlişkili Model
+  // --- İçindekiler ve Sağ CTA Alanı (TocAndCtaSection) (Metinler) ---
+  tocTitle          String
+  tocAuthorInfo     String?
   tocCtaDescription String
+  // tocItems ilişkisi aşağıda, HizmetTranslation'a bağlı kalacak
 
   // --- Resim Marquee (Kaydırmalı Resimler) ---
-  marqueeImages HizmetMarqueeImage[] // İlişkili Model
+  // marqueeImages ilişkisi Hizmet modeline taşındı
 
-  // --- Tedavi Tanıtım Alanı (TreatmentIntroSection) ---
-  introVideoId            String?
+  // --- Tedavi Tanıtım Alanı (TreatmentIntroSection) (Metinler) ---
+  introVideoId            String? // Video ID dil bağımsız olabilir, Hizmet'e de taşınabilir. Şimdilik burada.
   introTitle              String
   introDescription        String
   introPrimaryButtonText  String
   introPrimaryButtonLink  String
   introSecondaryButtonText String
   introSecondaryButtonLink String
-  introLinks              HizmetIntroLink[] // İlişkili Model
+  // introLinks ilişkisi aşağıda, HizmetTranslation'a bağlı kalacak
 
-  // --- Tedaviye Genel Bakış (TreatmentOverview) ---
-  overviewTitle       String
-  overviewDescription String
-  overviewTabs        HizmetOverviewTab[] // İlişkili Model
+  // --- Tedaviye Genel Bakış (TreatmentOverview) (Ana Başlıklar) ---
+  overviewSectionTitle       String // Bölümün genel başlığı
+  overviewSectionDescription String?
+  // overviewTabs içeriklerinin çevirileri HizmetOverviewTabTranslation'da olacak
 
-  // --- Neden Celyxmed (WhyCelyxmed) ---
-  whyTitle              String
-  whyBackgroundImageUrl String?
-  whyItems              HizmetWhyItem[] // İlişkili Model
+  // --- Neden Celyxmed (WhyCelyxmed) (Ana Başlık) ---
+  whySectionTitle String // Bölümün genel başlığı
+  // whyItems içeriklerinin çevirileri HizmetWhyItemTranslation'da olacak
+  // whyBackgroundImageUrl Hizmet modeline taşındı
 
-  // --- Galeri (GallerySection) ---
-  galleryTitle       String
-  galleryDescription String
-  galleryImages      HizmetGalleryImage[] // İlişkili Model
+  // --- Galeri (GallerySection) (Ana Başlıklar) ---
+  gallerySectionTitle       String
+  gallerySectionDescription String
+  // galleryImages ilişkisi Hizmet modeline taşındı
 
-  // --- Yorumlar (TestimonialsSection) ---
+  // --- Yorumlar (TestimonialsSection) (Ana Başlık) ---
   testimonialsSectionTitle String?
-  testimonials             HizmetTestimonial[] // İlişkili Model
+  // testimonials içeriklerinin çevirileri HizmetTestimonialTranslation'da olacak
 
-  // --- Prosedür Adımları (ProcedureSteps) ---
-  stepsTitle       String
-  stepsDescription String?
-  steps            HizmetStep[] // İlişkili Model
+  // --- Prosedür Adımları (ProcedureSteps) (Ana Başlıklar) ---
+  stepsSectionTitle       String
+  stepsSectionDescription String?
+  // steps ilişkisi aşağıda, HizmetTranslation'a bağlı kalacak
 
-  // --- İyileşme Bilgisi (RecoveryInfo) ---
-  recoveryTitle       String
-  recoveryDescription String?
-  recoveryItems       HizmetRecoveryItem[] // İlişkili Model
+  // --- İyileşme Bilgisi (RecoveryInfo) (Ana Başlıklar) ---
+  recoverySectionTitle       String
+  recoverySectionDescription String?
+  // recoveryItems içeriklerinin çevirileri HizmetRecoveryItemTranslation'da olacak
 
-  // --- Ana CTA Alanı (CtaSection) ---
+  // --- Ana CTA Alanı (CtaSection) (Metinler) ---
   ctaTagline          String?
   ctaTitle            String
   ctaDescription      String
   ctaButtonText       String
   ctaButtonLink       String?
-  ctaAvatars          HizmetCtaAvatar[] // İlişkili Model
   ctaAvatarText       String?
-  ctaBackgroundImageUrl String?
-  ctaMainImageUrl     String?
-  ctaMainImageAlt     String?
+  // ctaAvatars, ctaBackgroundImageUrl, ctaMainImageUrl Hizmet modeline taşındı
 
-  // --- Fiyatlandırma (PricingSection) ---
-  pricingTitle       String
-  pricingDescription String?
-  pricingPackages    HizmetPricingPackage[] // İlişkili Model
+  // --- Fiyatlandırma (PricingSection) (Ana Başlıklar) ---
+  pricingSectionTitle       String
+  pricingSectionDescription String?
+  // pricingPackages içeriklerinin çevirileri HizmetPricingPackageTranslation'da olacak
 
-  // --- Uzmanlarla Tanışın (MeetExperts) ---
+  // --- Uzmanlarla Tanışın (MeetExperts) (Ana Başlıklar) ---
   expertsSectionTitle String
   expertsTagline      String?
-  expertItems         HizmetExpertItem[] // İlişkili Model
+  // expertItems içeriklerinin çevirileri HizmetExpertItemTranslation'da olacak
 
-  // --- Sıkça Sorulan Sorular (FaqSection) ---
+  // --- Sıkça Sorulan Sorular (FaqSection) (Ana Başlıklar) ---
   faqSectionTitle       String
   faqSectionDescription String?
-  faqs                  HizmetFaqItem[] // İlişkili Model (Hizmete özel)
+  // faqs ilişkisi aşağıda, HizmetTranslation'a bağlı kalacak
 
   // --- SEO Meta Alanları ---
   metaTitle       String?
   metaDescription String?
   metaKeywords    String?
 
-  @@unique([slug, languageCode]) // Slug'ın dil bazında unique olmasını sağlar
+  // --- HizmetTranslation'a Bağlı Kalan Tamamen Çeviriye Özgü Listeler ---
+  tocItems       HizmetTocItem[]
+  introLinks     HizmetIntroLink[]
+  steps          HizmetStep[]
+  faqs           HizmetFaqItem[]
+  // pricingPackages ilişkisi HizmetPricingPackageDefinition/Translation'a taşındı
+
+  @@unique([hizmetId, languageCode])
+  @@unique([slug, languageCode])
 }
 
-// ----- İlişkili Modeller -----
 
-// İçindekiler Öğesi
-model HizmetTocItem {
-  id            String  @id @default(cuid())
-  text          String
-  isBold        Boolean @default(false)
-  level         Int?
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
-}
+// ----- HİZMET ALT MODELLERİ YENİ YAPI -----
 
-// Marquee Resmi
+// --- Doğrudan Hizmet'e Bağlı Dil Bağımsız Resim Koleksiyonları ---
+
 model HizmetMarqueeImage {
-  id            String  @id @default(cuid())
-  src           String
-  alt           String
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+  id        String @id @default(cuid())
+  src       String
+  alt       String // Ana/varsayılan alt text
+  order     Int    @default(0)
+  hizmet    Hizmet @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId  String
 }
 
-// Tanıtım Linki
-model HizmetIntroLink {
-  id            String  @id @default(cuid())
-  targetId      String
-  number        String
-  text          String
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+model HizmetGalleryImage {
+  id        String @id @default(cuid())
+  src       String
+  alt       String // Ana/varsayılan alt text
+  order     Int    @default(0)
+  hizmet    Hizmet @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId  String
 }
+
+model HizmetCtaAvatar {
+  id        String @id @default(cuid())
+  src       String
+  alt       String // Ana/varsayılan alt text
+  order     Int    @default(0)
+  hizmet    Hizmet @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId  String
+}
+
+// --- HizmetTranslation'a Bağlı, Tamamen Çeviriye Özgü Yapısal Öğeler ---
+
+model HizmetTocItem {
+  id                  String            @id @default(cuid())
+  text                String
+  isBold              Boolean           @default(false)
+  level               Int?
+  order               Int               @default(0)
+  hizmetTranslation   HizmetTranslation @relation(fields: [hizmetTranslationId], references: [id], onDelete: Cascade)
+  hizmetTranslationId String
+}
+
+model HizmetIntroLink {
+  id                  String            @id @default(cuid())
+  targetId            String
+  number              String
+  text                String
+  order               Int               @default(0)
+  hizmetTranslation   HizmetTranslation @relation(fields: [hizmetTranslationId], references: [id], onDelete: Cascade)
+  hizmetTranslationId String
+}
+
+model HizmetStep {
+  id                  String            @id @default(cuid())
+  title               String
+  description         String
+  linkText            String?
+  order               Int               @default(0)
+  hizmetTranslation   HizmetTranslation @relation(fields: [hizmetTranslationId], references: [id], onDelete: Cascade)
+  hizmetTranslationId String
+}
+
+model HizmetFaqItem {
+  id                  String            @id @default(cuid())
+  question            String
+  answer              String            @db.Text
+  order               Int               @default(0)
+  hizmetTranslation   HizmetTranslation @relation(fields: [hizmetTranslationId], references: [id], onDelete: Cascade)
+  hizmetTranslationId String
+}
+
+
+// --- Karmaşık Alt Öğeler: Definition (Dil Bağımsız) ve Translation (Dile Özgü Metin) ---
 
 // Genel Bakış Tab'ı
-model HizmetOverviewTab {
-  id            String  @id @default(cuid())
-  value         String
-  triggerText   String
-  title         String
-  content       String  @db.Text // Uzun içerik olabileceği için Text tipi
-  imagePath     String? // Resim URL'si yerine dosya yolu, isteğe bağlı
-  imageAlt      String? // Resim yolu yoksa alt text de isteğe bağlı olabilir
+model HizmetOverviewTabDefinition {
+  id          String    @id @default(cuid())
+  hizmet      Hizmet    @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId    String
+  value       String    // Tab için unique bir değer (örn: "tab1")
+  imagePath   String?   // Dil bağımsız resim
+  imageAlt    String?   // Ana/varsayılan alt text
+  order       Int       @default(0)
+  translations HizmetOverviewTabTranslation[]
+  @@unique([hizmetId, value]) // Bir hizmet içinde tab value'ları unique olmalı
+}
+model HizmetOverviewTabTranslation {
+  id            String                      @id @default(cuid())
+  definition    HizmetOverviewTabDefinition @relation(fields: [definitionId], references: [id], onDelete: Cascade)
+  definitionId  String
+  language      Language                    @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+  triggerText   String    // Tab başlığı (buton metni)
+  title         String    // İçerik başlığı
+  content       String    @db.Text
   buttonText    String
-  buttonLink    String? // Buton linki isteğe bağlı
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+  buttonLink    String?
+  @@unique([definitionId, languageCode])
 }
 
 // Neden Celyxmed Öğesi
-model HizmetWhyItem {
-  id            String  @id @default(cuid())
-  number        String
+model HizmetWhyItemDefinition {
+  id          String    @id @default(cuid())
+  hizmet      Hizmet    @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId    String
+  number      String    // Dil bağımsız numara/sıra
+  order       Int       @default(0)
+  translations HizmetWhyItemTranslation[]
+}
+model HizmetWhyItemTranslation {
+  id            String                    @id @default(cuid())
+  definition    HizmetWhyItemDefinition   @relation(fields: [definitionId], references: [id], onDelete: Cascade)
+  definitionId  String
+  language      Language                  @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
   title         String
   description   String
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
-}
-
-// Galeri Resmi
-model HizmetGalleryImage {
-  id            String  @id @default(cuid())
-  src           String
-  alt           String
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+  @@unique([definitionId, languageCode])
 }
 
 // Hizmete Özel Yorum
-model HizmetTestimonial {
-  id            String  @id @default(cuid())
-  stars         Int     @default(5)
+model HizmetTestimonialDefinition {
+  id          String    @id @default(cuid())
+  hizmet      Hizmet    @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId    String
+  stars       Int       @default(5) // Dil bağımsız
+  imageUrl    String?   // Dil bağımsız resim
+  order       Int       @default(0)
+  translations HizmetTestimonialTranslation[]
+}
+model HizmetTestimonialTranslation {
+  id            String                         @id @default(cuid())
+  definition    HizmetTestimonialDefinition    @relation(fields: [definitionId], references: [id], onDelete: Cascade)
+  definitionId  String
+  language      Language                       @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
   text          String
   author        String
-  treatment     String?
-  imageUrl      String?
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
-}
-
-// Prosedür Adımı
-model HizmetStep {
-  id            String  @id @default(cuid())
-  title         String
-  description   String
-  linkText      String?
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+  treatment     String? // Tedavi adı (çevrilebilir)
+  @@unique([definitionId, languageCode])
 }
 
 // İyileşme Bilgisi Öğesi
-model HizmetRecoveryItem {
-  id            String  @id @default(cuid())
+model HizmetRecoveryItemDefinition {
+  id          String    @id @default(cuid())
+  hizmet      Hizmet    @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId    String
+  imageUrl    String    // Dil bağımsız resim
+  imageAlt    String    // Ana/varsayılan alt text
+  order       Int       @default(0)
+  translations HizmetRecoveryItemTranslation[]
+}
+model HizmetRecoveryItemTranslation {
+  id            String                          @id @default(cuid())
+  definition    HizmetRecoveryItemDefinition    @relation(fields: [definitionId], references: [id], onDelete: Cascade)
+  definitionId  String
+  language      Language                        @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
   title         String
   description   String
-  imageUrl      String
-  imageAlt      String
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
-}
-
-// CTA Avatarı
-model HizmetCtaAvatar {
-  id            String  @id @default(cuid())
-  src           String
-  alt           String
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+  @@unique([definitionId, languageCode])
 }
 
 // Fiyatlandırma Paketi
-model HizmetPricingPackage {
-  id            String   @id @default(cuid())
+model HizmetPricingPackageDefinition {
+  id          String    @id @default(cuid())
+  hizmet      Hizmet    @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId    String
+  isFeatured  Boolean   @default(false) // Dil bağımsız
+  order       Int       @default(0)
+  translations HizmetPricingPackageTranslation[]
+}
+model HizmetPricingPackageTranslation {
+  id            String                            @id @default(cuid())
+  definition    HizmetPricingPackageDefinition    @relation(fields: [definitionId], references: [id], onDelete: Cascade)
+  definitionId  String
+  language      Language                          @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
   title         String
-  price         String
-  features      String[]
-  isFeatured    Boolean  @default(false)
-  order         Int      @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+  price         String   // Fiyat (metin olarak, çevrilebilir)
+  features      String[] // Özellikler listesi (çevrilebilir)
+  @@unique([definitionId, languageCode])
 }
 
 // Hizmete Özel Uzman
-model HizmetExpertItem {
-  id            String  @id @default(cuid())
-  name          String
-  title         String
-  description   String
-  imageUrl      String
-  imageAlt      String
-  ctaText       String?
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+model HizmetExpertItemDefinition {
+  id          String    @id @default(cuid())
+  hizmet      Hizmet    @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId    String
+  imageUrl    String    // Dil bağımsız resim
+  imageAlt    String    // Ana/varsayılan alt text
+  order       Int       @default(0)
+  translations HizmetExpertItemTranslation[]
 }
-
-// Hizmete Özel SSS Öğesi
-model HizmetFaqItem {
-  id            String  @id @default(cuid())
-  question      String
-  answer        String  @db.Text // Uzun cevaplar için Text tipi
-  order         Int     @default(0) // Sıralama için default değer eklendi
-  hizmetDetay   HizmetDetay @relation(fields: [hizmetDetayId], references: [id], onDelete: Cascade)
-  hizmetDetayId String
+model HizmetExpertItemTranslation {
+  id            String                        @id @default(cuid())
+  definition    HizmetExpertItemDefinition    @relation(fields: [definitionId], references: [id], onDelete: Cascade)
+  definitionId  String
+  language      Language                      @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+  name          String
+  title         String    // Uzmanlık alanı/unvanı
+  description   String
+  ctaText       String?
+  @@unique([definitionId, languageCode])
 }

@@ -1,7 +1,8 @@
 "use client";
 
 import { UseFormReturn, useFieldArray } from "react-hook-form";
-import { HizmetDetayFormValues } from "@/lib/validators/admin";
+import { HizmetFormValues } from "./hizmet-form"; // Varsayılan olarak hizmet-form'dan import edilecek
+import { Language } from "@/generated/prisma"; // Language tipi import edildi
 
 import {
   FormControl,
@@ -17,27 +18,41 @@ import { Trash } from "lucide-react";
 import ImageUpload from '@/components/admin/image-upload';
 
 interface WhySectionFormProps {
-  form: UseFormReturn<HizmetDetayFormValues>;
+  form: UseFormReturn<HizmetFormValues>;
   loading: boolean;
+  activeLang: string;
+  diller: Language[]; // diller prop'u eklendi
 }
 
-export function WhySectionForm({ form, loading }: WhySectionFormProps) {
+export function WhySectionForm({ form, loading, activeLang, diller }: WhySectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "whyItems",
+    name: "whySection.definition.items", // whyItems -> whySection.definition.items
   });
+
+  const createTranslationsForAllLanguages = () => {
+    const translations: Record<string, any> = {};
+    diller.forEach(lang => {
+      translations[lang.code] = {
+        languageCode: lang.code,
+        title: "",
+        description: "",
+      };
+    });
+    return translations;
+  };
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
       <h3 className="text-lg font-medium">Neden Celyxmed Bölümü</h3>
       <FormField
         control={form.control}
-        name="whyTitle"
+        name={`whySection.translations.${activeLang}.title`} // whyTitle -> whySection.translations[activeLang].title
         render={({ field }) => (
           <FormItem>
             <FormLabel>Bölüm Başlığı *</FormLabel>
             <FormControl>
-              <Input placeholder="Neden Celyxmed'e Güvenmelisiniz?" {...field} disabled={loading} />
+              <Input placeholder="Neden Celyxmed'e Güvenmelisiniz?" {...field} value={field.value || ""} disabled={loading} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -45,13 +60,13 @@ export function WhySectionForm({ form, loading }: WhySectionFormProps) {
       />
        <FormField
         control={form.control}
-        name="whyBackgroundImageUrl"
+        name="whyBackgroundImageUrl" // Bu alan dil bağımsız ve ana form şemasında tanımlı
         render={({ field }) => (
           <FormItem>
             <FormLabel>Arka Plan Resmi</FormLabel>
             <FormControl>
               <ImageUpload
-                initialImage={field.value}
+                initialImage={field.value || ""} // null ise boş string
                 showPreview={true}
                 buttonText="Arka Plan Resmi Yükle/Değiştir"
                 onImageUploaded={(imageUrl) => {
@@ -65,7 +80,6 @@ export function WhySectionForm({ form, loading }: WhySectionFormProps) {
         )}
       />
 
-      {/* Neden Öğeleri (Field Array) */}
       <div>
         <FormLabel>Neden Öğeleri</FormLabel>
         <div className="space-y-4 mt-2">
@@ -84,12 +98,12 @@ export function WhySectionForm({ form, loading }: WhySectionFormProps) {
                <h4 className="text-md font-medium border-b pb-2">Öğe {index + 1}</h4>
               <FormField
                 control={form.control}
-                name={`whyItems.${index}.number`}
+                name={`whySection.definition.items.${index}.number`}
                 render={({ field }) => (
                   <FormItem>
-                     <FormLabel className="text-xs">Sıra No *</FormLabel>
+                     <FormLabel className="text-xs">Sıra No (Metin) *</FormLabel>
                     <FormControl>
-                      <Input placeholder="01" {...field} disabled={loading} />
+                      <Input placeholder="01" {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -97,12 +111,12 @@ export function WhySectionForm({ form, loading }: WhySectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`whyItems.${index}.title`}
+                name={`whySection.definition.items.${index}.translations.${activeLang}.title`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Başlık *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Öğe başlığı..." {...field} disabled={loading} />
+                      <Input placeholder="Öğe başlığı..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -110,25 +124,28 @@ export function WhySectionForm({ form, loading }: WhySectionFormProps) {
               />
                <FormField
                 control={form.control}
-                name={`whyItems.${index}.description`}
+                name={`whySection.definition.items.${index}.translations.${activeLang}.description`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Açıklama *</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Öğe açıklaması..." {...field} disabled={loading} />
+                      <Textarea placeholder="Öğe açıklaması..." {...field} value={field.value || ""} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {/* TODO: Sıralama için sürükle bırak eklenebilir */}
             </div>
           ))}
           <Button
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => append({ number: "", title: "", description: "", order: fields.length })}
+            onClick={() => append({
+              number: `${fields.length + 1 < 10 ? '0' : ''}${fields.length + 1}`, // Otomatik numara
+              order: fields.length,
+              translations: createTranslationsForAllLanguages(),
+            })}
             disabled={loading}
           >
             Öğe Ekle
