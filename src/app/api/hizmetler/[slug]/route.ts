@@ -38,6 +38,7 @@ export async function GET(req: Request, context: Context) {
             ctaBackgroundImageUrl: true,
             ctaMainImageUrl: true,
             ctaMainImageAlt: true,
+            introVideoId: true, // Buraya eklendi
             marqueeImages: { orderBy: { order: 'asc' } },
             galleryImages: { orderBy: { order: 'asc' } },
             ctaAvatars: { orderBy: { order: 'asc' } },
@@ -134,7 +135,7 @@ export async function GET(req: Request, context: Context) {
       })),
       
       // Intro bölümü
-      introVideoId: hizmetTranslation.introVideoId,
+      introVideoId: hizmetTranslation.hizmet.introVideoId, // hizmet'ten alınacak şekilde düzeltildi
       introTitle: hizmetTranslation.introTitle,
       introDescription: hizmetTranslation.introDescription,
       introPrimaryButtonText: hizmetTranslation.introPrimaryButtonText,
