@@ -103,13 +103,13 @@ const ProcedureSteps: React.FC<ProcedureStepsProps> = ({ sectionTitle, sectionDe
           className="flex space-x-6 overflow-x-auto pb-4 -mb-4 scrollbar-hide" // scrollbar-thin ve diğerleri kaldırıldı, scrollbar-hide eklendi
         >
           {steps.map((step) => (
-            <div key={step.id} className="flex-shrink-0 w-full sm:w-[45%] md:w-[30%] lg:w-[23%] p-6 pt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm border-t-4 border-[#d4b978] dark:border-[#a88d5f] flex flex-col">
+            <div key={step.id} className="flex-shrink-0 w-full sm:w-[48%] md:w-[32%] lg:w-[32%] p-6 pt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm border-t-4 border-[#d4b978] dark:border-[#a88d5f] flex flex-col"> {/* Genişlikler güncellendi */}
               <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{step.title}</h3>
               <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">{step.description}</p>
               {step.linkText && (
-                 <Link href={step.linkHref || '/iletisim'} className="mt-auto self-start inline-flex items-center text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white group">
+                 <Link href={step.linkHref || '/iletisim'} className="mt-auto self-start inline-flex items-center text-sm font-medium text-gray-900 dark:text-white hover:underline group"> {/* Stil güncellendi */}
                    {step.linkText}
-                   <span className="ml-1 transition-transform group-hover:translate-x-1">{'>'}</span>
+                   <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" /> {/* İkon değiştirildi */}
                  </Link>
               )}
             </div>
