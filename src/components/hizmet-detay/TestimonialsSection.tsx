@@ -25,9 +25,6 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ title, testim
     return null;
   }
 
-  // Gösterilecek yorum sayısı (örneğin ilk 3)
-  const displayedTestimonials = testimonials.slice(0, 3);
-
   return (
     <section className="py-16 md:py-24 bg-white dark:bg-gray-950"> {/* Arka plan rengi */}
       <div className="container mx-auto px-4">
@@ -42,7 +39,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ title, testim
 
         {/* Hasta Yorumları */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {displayedTestimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <Card key={index} className="flex flex-col bg-gray-50 dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-sm"> {/* Arka plan ve stil güncellendi */}
               <CardContent className="p-6 flex-grow">
                 <div className="flex mb-3"> {/* Alt boşluk artırıldı */}
