@@ -40,32 +40,32 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ title, testim
         {/* Hasta Yorumları */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="flex flex-col bg-gray-50 dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-sm"> {/* Arka plan ve stil güncellendi */}
+            <Card key={index} className="flex flex-col bg-gray-50 dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-md"> {/* shadow-sm -> shadow-md */}
               <CardContent className="p-6 flex-grow">
-                <div className="flex mb-3"> {/* Alt boşluk artırıldı */}
+                <div className="flex mb-4"> {/* mb-3 -> mb-4 */}
                   {[...Array(testimonial.stars)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                   ))}
                   {[...Array(5 - testimonial.stars)].map((_, i) => (
-                     <Star key={`empty-${i}`} className="h-5 w-5 text-gray-300 dark:text-gray-600" /> // Dark mode rengi eklendi
+                     <Star key={`empty-${i}`} className="h-5 w-5 text-gray-300 dark:text-gray-600" />
                   ))}
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed italic">"{testimonial.text}"</p> {/* Font boyutu ve satır aralığı ayarlandı */}
+                <p className="text-gray-800 dark:text-gray-200 mb-6 text-base leading-relaxed">"{testimonial.text}"</p> {/* italic kaldırıldı, text-sm -> text-base, mb-4 -> mb-6, renkler güncellendi */}
               </CardContent>
-              <div className="bg-gray-100 dark:bg-gray-700/50 p-4 mt-auto flex items-center space-x-3 border-t border-gray-200 dark:border-gray-700"> {/* Arka plan, border ve stil güncellendi */}
+              <div className="p-6 mt-auto flex items-center space-x-4"> {/* Arka plan ve border kaldırıldı, padding ve space güncellendi */}
                  {/* imageUrl varsa Image'ı render et */}
                  {testimonial.imageUrl && (
                    <Image
                       src={testimonial.imageUrl}
                       alt={testimonial.author}
-                      width={40}
-                      height={40}
+                      width={48} // 40 -> 48
+                      height={48} // 40 -> 48
                       className="rounded-full"
                     />
                  )}
                   <div>
-                    <p className="font-semibold text-sm text-gray-800 dark:text-gray-100">{testimonial.author}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{testimonial.treatment}</p>
+                    <p className="font-semibold text-base text-gray-900 dark:text-white">{testimonial.author}</p> {/* text-sm -> text-base, renkler güncellendi */}
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.treatment}</p> {/* text-xs -> text-sm, renkler güncellendi */}
                   </div>
               </div>
             </Card>
