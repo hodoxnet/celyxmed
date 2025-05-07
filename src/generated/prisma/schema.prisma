@@ -103,6 +103,7 @@ model Hizmet {
   ctaBackgroundImageUrl String?
   ctaMainImageUrl       String?
   ctaMainImageAlt       String? // Ana/varsayılan alt text
+  introVideoId          String? // Buraya taşındı
 
   // --- Dil Bağımsız Resim Koleksiyonları ---
   marqueeImages HizmetMarqueeImage[]
@@ -148,7 +149,6 @@ model HizmetTranslation {
   // marqueeImages ilişkisi Hizmet modeline taşındı
 
   // --- Tedavi Tanıtım Alanı (TreatmentIntroSection) (Metinler) ---
-  introVideoId             String? // Video ID dil bağımsız olabilir, Hizmet'e de taşınabilir. Şimdilik burada.
   introTitle               String
   introDescription         String
   introPrimaryButtonText   String

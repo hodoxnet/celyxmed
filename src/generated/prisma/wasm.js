@@ -179,7 +179,8 @@ exports.Prisma.HizmetScalarFieldEnum = {
   whyBackgroundImageUrl: 'whyBackgroundImageUrl',
   ctaBackgroundImageUrl: 'ctaBackgroundImageUrl',
   ctaMainImageUrl: 'ctaMainImageUrl',
-  ctaMainImageAlt: 'ctaMainImageAlt'
+  ctaMainImageAlt: 'ctaMainImageAlt',
+  introVideoId: 'introVideoId'
 };
 
 exports.Prisma.HizmetTranslationScalarFieldEnum = {
@@ -193,7 +194,6 @@ exports.Prisma.HizmetTranslationScalarFieldEnum = {
   tocTitle: 'tocTitle',
   tocAuthorInfo: 'tocAuthorInfo',
   tocCtaDescription: 'tocCtaDescription',
-  introVideoId: 'introVideoId',
   introTitle: 'introTitle',
   introDescription: 'introDescription',
   introPrimaryButtonText: 'introPrimaryButtonText',

@@ -2,6 +2,7 @@
 
 import { Language } from "@/generated/prisma";
 import { UseFormReturn } from "react-hook-form";
+import React, { useEffect } from "react"; // useEffect import edildi
 
 import {
   FormControl,
@@ -39,10 +40,22 @@ interface BasicInfoSectionProps {
 }
 
 export function BasicInfoSection({ form, activeLang, loading, isEditing }: BasicInfoSectionProps) {
-  const titleFieldName = `translations.${activeLang}.title` as const;
-  const slugFieldName = `translations.${activeLang}.slug` as const;
-  const descriptionFieldName = `translations.${activeLang}.description` as const;
-  const breadcrumbFieldName = `translations.${activeLang}.breadcrumb` as const;
+  const titleFieldName = `basicInfoSection.translations.${activeLang}.title` as const;
+  const slugFieldName = `basicInfoSection.translations.${activeLang}.slug` as const;
+  const descriptionFieldName = `basicInfoSection.translations.${activeLang}.description` as const;
+  const breadcrumbFieldName = `basicInfoSection.translations.${activeLang}.breadcrumb` as const;
+
+  const watchedTitle = form.watch(titleFieldName);
+
+  useEffect(() => {
+    // watchedTitle tanımsız değilse ve (düzenleme modunda değilsek VEYA slug alanı boşsa)
+    // o zaman slug'ı otomatik oluştur.
+    // form.getValues(slugFieldName) çağrısı, slug'ın kullanıcı tarafından manuel olarak düzenlenip düzenlenmediğini kontrol eder.
+    // Eğer düzenleme modundaysak ve slug zaten doluysa (kullanıcı manuel girmiş olabilir), otomatik güncelleme yapmayız.
+    if (watchedTitle !== undefined && (!isEditing || !form.getValues(slugFieldName))) {
+      form.setValue(slugFieldName, generateSlug(watchedTitle), { shouldValidate: true });
+    }
+  }, [watchedTitle, form, slugFieldName, isEditing, activeLang]); // activeLang eklendi çünkü slugFieldName ona bağlı
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
@@ -58,12 +71,7 @@ export function BasicInfoSection({ form, activeLang, loading, isEditing }: Basic
                 placeholder={`Hizmet başlığı (${activeLang.toUpperCase()})...`}
                 {...field}
                 disabled={loading}
-                onChange={(e) => {
-                    field.onChange(e.target.value);
-                    if (!isEditing || !form.getValues(slugFieldName)) {
-                        form.setValue(slugFieldName, generateSlug(e.target.value), { shouldValidate: true });
-                    }
-                }}
+                // onChange içindeki slug güncelleme mantığı useEffect'e taşındı
                />
             </FormControl>
             <FormMessage />

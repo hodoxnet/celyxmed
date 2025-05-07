@@ -29,8 +29,8 @@ export function GallerySectionForm({ form, loading, activeLang }: GallerySection
   });
 
   // Dile özgü alan adları
-  const titleFieldName = `translations.${activeLang}.gallerySectionTitle` as const;
-  const descriptionFieldName = `translations.${activeLang}.gallerySectionDescription` as const;
+  const titleFieldName = `gallerySection.translations.${activeLang}.title` as const;
+  const descriptionFieldName = `gallerySection.translations.${activeLang}.description` as const;
 
   return (
     <div className="space-y-4 p-6 border rounded-md">

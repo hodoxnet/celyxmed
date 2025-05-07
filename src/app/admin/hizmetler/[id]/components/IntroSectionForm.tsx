@@ -24,7 +24,7 @@ interface IntroSectionFormProps {
 export function IntroSectionForm({ form, loading, activeLang }: IntroSectionFormProps) {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: `introSection.definition.links`, // introLinks -> introSection.definition.links
+    name: `introSection.translations.${activeLang}.introLinks`,
   });
 
   // activeLang değiştiğinde, field array içindeki her bir link için
@@ -138,7 +138,7 @@ export function IntroSectionForm({ form, loading, activeLang }: IntroSectionForm
             <div key={item.id} className="grid grid-cols-4 gap-4 items-center border p-3 rounded-md">
               <FormField
                 control={form.control}
-                name={`introSection.definition.links.${index}.translations.${activeLang}.number`}
+                name={`introSection.translations.${activeLang}.introLinks.${index}.number`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Sıra No (Metin) *</FormLabel>
@@ -151,7 +151,7 @@ export function IntroSectionForm({ form, loading, activeLang }: IntroSectionForm
               />
               <FormField
                 control={form.control}
-                name={`introSection.definition.links.${index}.translations.${activeLang}.text`}
+                name={`introSection.translations.${activeLang}.introLinks.${index}.text`}
                 render={({ field }) => (
                   <FormItem className="col-span-2">
                      <FormLabel className="text-xs">Link Metni *</FormLabel>
@@ -164,7 +164,7 @@ export function IntroSectionForm({ form, loading, activeLang }: IntroSectionForm
               />
                <FormField
                 control={form.control}
-                name={`introSection.definition.links.${index}.targetId`}
+                name={`introSection.translations.${activeLang}.introLinks.${index}.targetId`}
                 render={({ field }) => (
                   <FormItem>
                      <FormLabel className="text-xs">Hedef ID/URL *</FormLabel>
@@ -187,11 +187,10 @@ export function IntroSectionForm({ form, loading, activeLang }: IntroSectionForm
             variant="outline"
             size="sm"
             onClick={() => append({
-              order: fields.length, // order dil bağımsız
-              targetId: "", // targetId dil bağımsız
-              translations: { // translations dile özgü
-                [activeLang]: { number: "", text: "" }
-              }
+              order: fields.length,
+              targetId: "",
+              number: "", // Doğrudan link öğesine ait
+              text: ""   // Doğrudan link öğesine ait
             })}
             disabled={loading}
           >

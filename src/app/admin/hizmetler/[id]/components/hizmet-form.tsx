@@ -461,6 +461,13 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
 
   const getInitialFormValues = (): HizmetFormValues => {
     try {
+      // Kullanılan metin şablonları - başlangıç değerleri
+      const initialEmptyText = {
+        slug: "hizmet-slug", // Benzersiz bir slug başlangıç değeri olmalı
+        title: "Başlık",
+        description: "Açıklama"
+      };
+      
       const baseValues: Partial<HizmetFormValues> = {
         id: initialData?.id,
         published: initialData?.published ?? false,
@@ -507,134 +514,151 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
 
     // HizmetTranslation'dan gelen verileri bölümlere dağıt
     diller.forEach(lang => {
+      // initialData varsa özelliklerini kullan, yoksa başlangıç değerleriyle doldur
       const tr = initialData?.translations.find(t => t.languageCode === lang.code);
-
-      // Daha esnek bir yaklaşım, eksik alanlar için varsayılan değerler kullan
-      baseValues.basicInfoSection!.translations[lang.code] = HizmetBasicInfoSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        slug: tr?.slug || "",
-        title: tr?.title || "",
-        description: tr?.description || "",
-        breadcrumb: tr?.breadcrumb || "",
-      });
-
-      baseValues.tocSection!.translations[lang.code] = HizmetTocSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        tocTitle: tr?.tocTitle || "İçindekiler",
-        tocAuthorInfo: tr?.tocAuthorInfo || "",
-        tocCtaDescription: tr?.tocCtaDescription || "",
-        tocItems: ensureArray(tr?.tocItems).map(item => hizmetTocItemSchema.parse({
-          id: item.id,
-          text: item.text || "", 
-          isBold: item.isBold || false,
-          level: item.level || 1,
-          order: item.order || 0,
-          hizmetTranslationId: item.hizmetTranslationId
-        })),
-      });
       
-      baseValues.introSection!.translations[lang.code] = HizmetIntroSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.introTitle || "",
-        description: tr?.introDescription || "",
-        primaryButtonText: tr?.introPrimaryButtonText || "",
-        primaryButtonLink: tr?.introPrimaryButtonLink || "",
-        secondaryButtonText: tr?.introSecondaryButtonText || "",
-        secondaryButtonLink: tr?.introSecondaryButtonLink || "",
-        introLinks: ensureArray(tr?.introLinks).map(link => hizmetIntroLinkSchema.parse({
-          id: link.id,
-          targetId: link.targetId || "",
-          number: link.number || "1",
-          text: link.text || "",
-          order: link.order || 0,
-          hizmetTranslationId: link.hizmetTranslationId
-        })),
-      });
-      // introSection.definition.videoId zaten yukarıda baseValues'da ayarlandı.
+      // Yeni form oluşturuluyorsa (initialData yoksa), her dil için varsayılan değerler ekleyin
+      if (!initialData) {
+        // Varsayılan değerlerle tüm bölümleri oluştur (zorunlu alanlar)
+        baseValues.basicInfoSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          slug: `hizmet-${Date.now()}-${lang.code}`, // Benzersiz bir slug oluştur - timestamp ve dil kodu ile
+          title: "Yeni Hizmet",
+          description: "Hizmet açıklaması",
+          breadcrumb: "Anasayfa > Hizmetler > Yeni Hizmet"
+        };
+        
+        // Diğer bölümler için de varsayılan değerler atanabilir
+        // Ancak şimdilik sadece temel bilgiler yeterli
+      }
+      else {
+        // initialData varsa, mevcut verileri kullan
+        // Daha esnek bir yaklaşım, eksik alanlar için varsayılan değerler kullan
+        baseValues.basicInfoSection!.translations[lang.code] = HizmetBasicInfoSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          slug: tr?.slug || "",
+          title: tr?.title || "",
+          description: tr?.description || "",
+          breadcrumb: tr?.breadcrumb || "",
+        });
 
-      baseValues.seoSection!.translations[lang.code] = HizmetSeoSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        metaTitle: tr?.metaTitle || null,
-        metaDescription: tr?.metaDescription || null,
-        metaKeywords: tr?.metaKeywords || null,
-      });
+        baseValues.tocSection!.translations[lang.code] = HizmetTocSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          tocTitle: tr?.tocTitle || "İçindekiler",
+          tocAuthorInfo: tr?.tocAuthorInfo || "",
+          tocCtaDescription: tr?.tocCtaDescription || "",
+          tocItems: ensureArray(tr?.tocItems).map(item => hizmetTocItemSchema.parse({
+            id: item.id,
+            text: item.text || "", 
+            isBold: item.isBold || false,
+            level: item.level || 1,
+            order: item.order || 0,
+            hizmetTranslationId: item.hizmetTranslationId
+          })),
+        });
+        
+        baseValues.introSection!.translations[lang.code] = HizmetIntroSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.introTitle || "",
+          description: tr?.introDescription || "",
+          primaryButtonText: tr?.introPrimaryButtonText || "",
+          primaryButtonLink: tr?.introPrimaryButtonLink || "",
+          secondaryButtonText: tr?.introSecondaryButtonText || "",
+          secondaryButtonLink: tr?.introSecondaryButtonLink || "",
+          introLinks: ensureArray(tr?.introLinks).map(link => hizmetIntroLinkSchema.parse({
+            id: link.id,
+            targetId: link.targetId || "",
+            number: link.number || "1",
+            text: link.text || "",
+            order: link.order || 0,
+            hizmetTranslationId: link.hizmetTranslationId
+          })),
+        });
+        // introSection.definition.videoId zaten yukarıda baseValues'da ayarlandı.
+        baseValues.seoSection!.translations[lang.code] = HizmetSeoSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          metaTitle: tr?.metaTitle || null,
+          metaDescription: tr?.metaDescription || null,
+          metaKeywords: tr?.metaKeywords || null,
+        });
 
-      baseValues.overviewSection!.translations[lang.code] = HizmetOverviewSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.overviewSectionTitle || "Genel Bakış",
-        description: tr?.overviewSectionDescription || "",
-      });
-      
-      baseValues.whySection!.translations[lang.code] = HizmetWhySectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.whySectionTitle || "Neden Biz?",
-      });
+        baseValues.overviewSection!.translations[lang.code] = HizmetOverviewSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.overviewSectionTitle || "Genel Bakış",
+          description: tr?.overviewSectionDescription || "",
+        });
+        
+        baseValues.whySection!.translations[lang.code] = HizmetWhySectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.whySectionTitle || "Neden Biz?",
+        });
 
-      baseValues.gallerySection!.translations[lang.code] = HizmetGallerySectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.gallerySectionTitle || "Galeri",
-        description: tr?.gallerySectionDescription || "",
-      });
+        baseValues.gallerySection!.translations[lang.code] = HizmetGallerySectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.gallerySectionTitle || "Galeri",
+          description: tr?.gallerySectionDescription || "",
+        });
 
-      baseValues.testimonialsSection!.translations[lang.code] = HizmetTestimonialsSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.testimonialsSectionTitle || "Yorumlar",
-      });
+        baseValues.testimonialsSection!.translations[lang.code] = HizmetTestimonialsSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.testimonialsSectionTitle || "Yorumlar",
+        });
 
-      baseValues.stepsSection!.translations[lang.code] = HizmetStepsSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.stepsSectionTitle || "Adımlar",
-        description: tr?.stepsSectionDescription || "",
-        steps: ensureArray(tr?.steps).map(s => hizmetStepSchema.parse({
-          id: s.id,
-          title: s.title || "",
-          description: s.description || "",
-          linkText: s.linkText || null,
-          order: s.order || 0,
-          hizmetTranslationId: s.hizmetTranslationId
-        })),
-      });
+        baseValues.stepsSection!.translations[lang.code] = HizmetStepsSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.stepsSectionTitle || "Adımlar",
+          description: tr?.stepsSectionDescription || "",
+          steps: ensureArray(tr?.steps).map(s => hizmetStepSchema.parse({
+            id: s.id,
+            title: s.title || "",
+            description: s.description || "",
+            linkText: s.linkText || null,
+            order: s.order || 0,
+            hizmetTranslationId: s.hizmetTranslationId
+          })),
+        });
 
-      baseValues.recoverySection!.translations[lang.code] = HizmetRecoverySectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.recoverySectionTitle || "İyileşme Süreci",
-        description: tr?.recoverySectionDescription || "",
-      });
-      
-      baseValues.ctaSection!.translations[lang.code] = HizmetCtaSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        tagline: tr?.ctaTagline || null,
-        title: tr?.ctaTitle || "Bize Ulaşın",
-        description: tr?.ctaDescription || "",
-        buttonText: tr?.ctaButtonText || "Randevu Al",
-        buttonLink: tr?.ctaButtonLink || null,
-        avatarText: tr?.ctaAvatarText || null,
-      });
+        baseValues.recoverySection!.translations[lang.code] = HizmetRecoverySectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.recoverySectionTitle || "İyileşme Süreci",
+          description: tr?.recoverySectionDescription || "",
+        });
+        
+        baseValues.ctaSection!.translations[lang.code] = HizmetCtaSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          tagline: tr?.ctaTagline || null,
+          title: tr?.ctaTitle || "Bize Ulaşın",
+          description: tr?.ctaDescription || "",
+          buttonText: tr?.ctaButtonText || "Randevu Al",
+          buttonLink: tr?.ctaButtonLink || null,
+          avatarText: tr?.ctaAvatarText || null,
+        });
 
-      baseValues.pricingSection!.translations[lang.code] = HizmetPricingSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.pricingSectionTitle || "Fiyatlandırma",
-        description: tr?.pricingSectionDescription || "",
-      });
+        baseValues.pricingSection!.translations[lang.code] = HizmetPricingSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.pricingSectionTitle || "Fiyatlandırma",
+          description: tr?.pricingSectionDescription || "",
+        });
 
-      baseValues.expertsSection!.translations[lang.code] = HizmetExpertsSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.expertsSectionTitle || "Uzmanlarımız",
-        tagline: tr?.expertsTagline || null,
-      });
-      
-      baseValues.faqSection!.translations[lang.code] = HizmetFaqSectionTranslationSchema.parse({
-        languageCode: lang.code,
-        title: tr?.faqSectionTitle || "Sıkça Sorulan Sorular",
-        description: tr?.faqSectionDescription || "",
-        faqs: ensureArray(tr?.faqs).map(f => hizmetFaqItemSchema.parse({
-          id: f.id,
-          question: f.question || "",
-          answer: f.answer || "",
-          order: f.order || 0,
-          hizmetTranslationId: f.hizmetTranslationId
-        })),
-      });
+        baseValues.expertsSection!.translations[lang.code] = HizmetExpertsSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.expertsSectionTitle || "Uzmanlarımız",
+          tagline: tr?.expertsTagline || null,
+        });
+        
+        baseValues.faqSection!.translations[lang.code] = HizmetFaqSectionTranslationSchema.parse({
+          languageCode: lang.code,
+          title: tr?.faqSectionTitle || "Sıkça Sorulan Sorular",
+          description: tr?.faqSectionDescription || "",
+          faqs: ensureArray(tr?.faqs).map(f => hizmetFaqItemSchema.parse({
+            id: f.id,
+            question: f.question || "",
+            answer: f.answer || "",
+            order: f.order || 0,
+            hizmetTranslationId: f.hizmetTranslationId
+          })),
+        });
+      }
     });
 
     // Definition tabanlı verileri işle
@@ -724,10 +748,64 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       baseValues.pricingSection!.definition!.packages = mappedPackages as any;
     }
     
-      return hizmetFormSchema.parse(baseValues);
+      try {
+        // Normal durumlarda parse işlemi
+        const parsedValues = hizmetFormSchema.parse(baseValues);
+        return parsedValues;
+      } catch (parseError) {
+        console.error("Zod validation error in getInitialFormValues (primary parse):", parseError);
+        
+        // Parse hatası durumunda - basit varsayılan değerlerle yeni bir boş form oluştur
+        // (özellikle yeni form oluşturulurken)
+        if (!initialData) {
+          console.log("Creating new form with default values");
+          const emptyForm: any = {
+            published: false,
+            basicInfoSection: { translations: {} },
+            tocSection: { translations: {} },
+            introSection: { definition: { videoId: null }, translations: {} },
+            seoSection: { translations: {} },
+            overviewSection: { definition: { tabs: [] }, translations: {} },
+            whySection: { definition: { items: [] }, translations: {} },
+            gallerySection: { translations: {} },
+            testimonialsSection: { definition: { items: [] }, translations: {} },
+            stepsSection: { translations: {} },
+            recoverySection: { definition: { items: [] }, translations: {} },
+            ctaSection: { translations: {} },
+            pricingSection: { definition: { packages: [] }, translations: {} },
+            expertsSection: { definition: { items: [] }, translations: {} },
+            faqSection: { translations: {} },
+            marqueeImages: [],
+            galleryImages: [],
+            ctaAvatars: []
+          };
+          
+          // Tüm diller için gerekli alanları manuel olarak ekle
+          diller.forEach(lang => {
+            // Temel bilgiler - zorunlu alanlar
+            emptyForm.basicInfoSection.translations[lang.code] = {
+              languageCode: lang.code,
+              slug: `hizmet-${Date.now()}-${lang.code}`,
+              title: "Yeni Hizmet",
+              description: "Hizmet açıklaması",
+              breadcrumb: "Anasayfa > Hizmetler > Yeni Hizmet"
+            };
+            
+            // Diğer tüm alanlar varsayılan değerlerle eklenebilir
+            // Bu örnekte sadece minimum gerekli alanlar eklendi
+          });
+          
+          // Manuel oluşturulan formu dön
+          return emptyForm as HizmetFormValues;
+        }
+        
+        // Eğer düzenleme modundaysa ve yine de hata varsa, boş bir form dön
+        console.error("Failed to create form values, returning empty schema");
+        return hizmetFormSchema.parse({});
+      }
     } catch (error) {
-      console.error("Zod validation error in getInitialFormValues:", error);
-      // Varsayılan form değerlerini döndür - boş bir form
+      console.error("Unhandled error in getInitialFormValues:", error);
+      // En son çare - tamamen boş bir form
       return hizmetFormSchema.parse({});
     }
   };
@@ -746,6 +824,9 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
   const onSubmit = async (values: HizmetFormValues) => {
     setLoading(true);
     try {
+      // Gönderim sırasında form değerlerini konsola yazdır - debug için
+      console.log("Form values being submitted:", values);
+      
       // API'nin beklediği yapıya dönüştürme
       // API'nin beklediği format:
       // - translations: Record<string, HizmetTranslationSchema>
@@ -757,6 +838,16 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       // Aktif diller için işlem yap
       diller.forEach(lang => {
         const langCode = lang.code;
+        
+        // Basic Info alanlarını kontrol et ve logla - debug için
+        const basicInfoForLang = values.basicInfoSection.translations[langCode];
+        console.log(`[DEBUG] BasicInfo for ${langCode}:`, 
+          JSON.stringify({
+            slug: basicInfoForLang?.slug,
+            title: basicInfoForLang?.title,
+            description: basicInfoForLang?.description
+          })
+        );
         
         // Her bölümün verilerini alıp tek bir objeye birleştir
         translations[langCode] = {
@@ -774,7 +865,6 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
           tocItems: values.tocSection.translations[langCode]?.tocItems || [],
           
           // Intro Section
-          introVideoId: values.introSection.definition?.videoId || null,
           introTitle: values.introSection.translations[langCode]?.title || "",
           introDescription: values.introSection.translations[langCode]?.description || "",
           introPrimaryButtonText: values.introSection.translations[langCode]?.primaryButtonText || "",
@@ -844,6 +934,7 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
         ctaMainImageUrl: values.ctaMainImageUrl,
         ctaMainImageAlt: values.ctaMainImageAlt,
+        introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
         marqueeImages: values.marqueeImages,
         galleryImages: values.galleryImages,
         ctaAvatars: values.ctaAvatars,
@@ -861,17 +952,33 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         : '/api/admin/hizmetler';
       const method = isEditing ? 'PATCH' : 'POST';
 
+      console.log("API Payload:", JSON.stringify(payload, null, 2));
+      
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
+      // Debug için - API yanıtını tam olarak logla
+      const responseText = await response.text();
+      console.log(`API Response (${response.status}):`, responseText);
+      
+      // Yanıt başarılı değilse, hatayı işle
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: `Sunucu hatası (${response.status}) veya geçersiz JSON yanıtı.` }));
+        let errorData;
+        try {
+          errorData = JSON.parse(responseText);
+        } catch (e) {
+          errorData = { message: `Sunucu hatası (${response.status}) veya geçersiz JSON yanıtı.` };
+        }
         throw new Error(errorData.message || `İşlem sırasında bir hata oluştu (${response.status})`);
       }
 
+      // API yanıtını parse et
+      const resultData = JSON.parse(responseText);
+      console.log("API Success Result:", resultData);
+      
       toast.success(toastMessageSuccess);
       router.push('/admin/hizmetler');
       router.refresh();

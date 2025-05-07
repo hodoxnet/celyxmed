@@ -9167,6 +9167,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl: string | null
     ctaMainImageUrl: string | null
     ctaMainImageAlt: string | null
+    introVideoId: string | null
   }
 
   export type HizmetMaxAggregateOutputType = {
@@ -9180,6 +9181,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl: string | null
     ctaMainImageUrl: string | null
     ctaMainImageAlt: string | null
+    introVideoId: string | null
   }
 
   export type HizmetCountAggregateOutputType = {
@@ -9193,6 +9195,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl: number
     ctaMainImageUrl: number
     ctaMainImageAlt: number
+    introVideoId: number
     _all: number
   }
 
@@ -9208,6 +9211,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: true
     ctaMainImageUrl?: true
     ctaMainImageAlt?: true
+    introVideoId?: true
   }
 
   export type HizmetMaxAggregateInputType = {
@@ -9221,6 +9225,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: true
     ctaMainImageUrl?: true
     ctaMainImageAlt?: true
+    introVideoId?: true
   }
 
   export type HizmetCountAggregateInputType = {
@@ -9234,6 +9239,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: true
     ctaMainImageUrl?: true
     ctaMainImageAlt?: true
+    introVideoId?: true
     _all?: true
   }
 
@@ -9320,6 +9326,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl: string | null
     ctaMainImageUrl: string | null
     ctaMainImageAlt: string | null
+    introVideoId: string | null
     _count: HizmetCountAggregateOutputType | null
     _min: HizmetMinAggregateOutputType | null
     _max: HizmetMaxAggregateOutputType | null
@@ -9350,6 +9357,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: boolean
     ctaMainImageUrl?: boolean
     ctaMainImageAlt?: boolean
+    introVideoId?: boolean
     marqueeImages?: boolean | Hizmet$marqueeImagesArgs<ExtArgs>
     galleryImages?: boolean | Hizmet$galleryImagesArgs<ExtArgs>
     ctaAvatars?: boolean | Hizmet$ctaAvatarsArgs<ExtArgs>
@@ -9374,6 +9382,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: boolean
     ctaMainImageUrl?: boolean
     ctaMainImageAlt?: boolean
+    introVideoId?: boolean
   }, ExtArgs["result"]["hizmet"]>
 
   export type HizmetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9387,6 +9396,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: boolean
     ctaMainImageUrl?: boolean
     ctaMainImageAlt?: boolean
+    introVideoId?: boolean
   }, ExtArgs["result"]["hizmet"]>
 
   export type HizmetSelectScalar = {
@@ -9400,9 +9410,10 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: boolean
     ctaMainImageUrl?: boolean
     ctaMainImageAlt?: boolean
+    introVideoId?: boolean
   }
 
-  export type HizmetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "published" | "createdAt" | "updatedAt" | "heroImageUrl" | "heroImageAlt" | "whyBackgroundImageUrl" | "ctaBackgroundImageUrl" | "ctaMainImageUrl" | "ctaMainImageAlt", ExtArgs["result"]["hizmet"]>
+  export type HizmetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "published" | "createdAt" | "updatedAt" | "heroImageUrl" | "heroImageAlt" | "whyBackgroundImageUrl" | "ctaBackgroundImageUrl" | "ctaMainImageUrl" | "ctaMainImageAlt" | "introVideoId", ExtArgs["result"]["hizmet"]>
   export type HizmetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     marqueeImages?: boolean | Hizmet$marqueeImagesArgs<ExtArgs>
     galleryImages?: boolean | Hizmet$galleryImagesArgs<ExtArgs>
@@ -9444,6 +9455,7 @@ export namespace Prisma {
       ctaBackgroundImageUrl: string | null
       ctaMainImageUrl: string | null
       ctaMainImageAlt: string | null
+      introVideoId: string | null
     }, ExtArgs["result"]["hizmet"]>
     composites: {}
   }
@@ -9887,6 +9899,7 @@ export namespace Prisma {
     readonly ctaBackgroundImageUrl: FieldRef<"Hizmet", 'String'>
     readonly ctaMainImageUrl: FieldRef<"Hizmet", 'String'>
     readonly ctaMainImageAlt: FieldRef<"Hizmet", 'String'>
+    readonly introVideoId: FieldRef<"Hizmet", 'String'>
   }
     
 
@@ -10554,7 +10567,6 @@ export namespace Prisma {
     tocTitle: string | null
     tocAuthorInfo: string | null
     tocCtaDescription: string | null
-    introVideoId: string | null
     introTitle: string | null
     introDescription: string | null
     introPrimaryButtonText: string | null
@@ -10599,7 +10611,6 @@ export namespace Prisma {
     tocTitle: string | null
     tocAuthorInfo: string | null
     tocCtaDescription: string | null
-    introVideoId: string | null
     introTitle: string | null
     introDescription: string | null
     introPrimaryButtonText: string | null
@@ -10644,7 +10655,6 @@ export namespace Prisma {
     tocTitle: number
     tocAuthorInfo: number
     tocCtaDescription: number
-    introVideoId: number
     introTitle: number
     introDescription: number
     introPrimaryButtonText: number
@@ -10691,7 +10701,6 @@ export namespace Prisma {
     tocTitle?: true
     tocAuthorInfo?: true
     tocCtaDescription?: true
-    introVideoId?: true
     introTitle?: true
     introDescription?: true
     introPrimaryButtonText?: true
@@ -10736,7 +10745,6 @@ export namespace Prisma {
     tocTitle?: true
     tocAuthorInfo?: true
     tocCtaDescription?: true
-    introVideoId?: true
     introTitle?: true
     introDescription?: true
     introPrimaryButtonText?: true
@@ -10781,7 +10789,6 @@ export namespace Prisma {
     tocTitle?: true
     tocAuthorInfo?: true
     tocCtaDescription?: true
-    introVideoId?: true
     introTitle?: true
     introDescription?: true
     introPrimaryButtonText?: true
@@ -10899,7 +10906,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo: string | null
     tocCtaDescription: string
-    introVideoId: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -10961,7 +10967,6 @@ export namespace Prisma {
     tocTitle?: boolean
     tocAuthorInfo?: boolean
     tocCtaDescription?: boolean
-    introVideoId?: boolean
     introTitle?: boolean
     introDescription?: boolean
     introPrimaryButtonText?: boolean
@@ -11013,7 +11018,6 @@ export namespace Prisma {
     tocTitle?: boolean
     tocAuthorInfo?: boolean
     tocCtaDescription?: boolean
-    introVideoId?: boolean
     introTitle?: boolean
     introDescription?: boolean
     introPrimaryButtonText?: boolean
@@ -11060,7 +11064,6 @@ export namespace Prisma {
     tocTitle?: boolean
     tocAuthorInfo?: boolean
     tocCtaDescription?: boolean
-    introVideoId?: boolean
     introTitle?: boolean
     introDescription?: boolean
     introPrimaryButtonText?: boolean
@@ -11107,7 +11110,6 @@ export namespace Prisma {
     tocTitle?: boolean
     tocAuthorInfo?: boolean
     tocCtaDescription?: boolean
-    introVideoId?: boolean
     introTitle?: boolean
     introDescription?: boolean
     introPrimaryButtonText?: boolean
@@ -11141,7 +11143,7 @@ export namespace Prisma {
     metaKeywords?: boolean
   }
 
-  export type HizmetTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "hizmetId" | "languageCode" | "slug" | "breadcrumb" | "title" | "description" | "tocTitle" | "tocAuthorInfo" | "tocCtaDescription" | "introVideoId" | "introTitle" | "introDescription" | "introPrimaryButtonText" | "introPrimaryButtonLink" | "introSecondaryButtonText" | "introSecondaryButtonLink" | "overviewSectionTitle" | "overviewSectionDescription" | "whySectionTitle" | "gallerySectionTitle" | "gallerySectionDescription" | "testimonialsSectionTitle" | "stepsSectionTitle" | "stepsSectionDescription" | "recoverySectionTitle" | "recoverySectionDescription" | "ctaTagline" | "ctaTitle" | "ctaDescription" | "ctaButtonText" | "ctaButtonLink" | "ctaAvatarText" | "pricingSectionTitle" | "pricingSectionDescription" | "expertsSectionTitle" | "expertsTagline" | "faqSectionTitle" | "faqSectionDescription" | "metaTitle" | "metaDescription" | "metaKeywords", ExtArgs["result"]["hizmetTranslation"]>
+  export type HizmetTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "hizmetId" | "languageCode" | "slug" | "breadcrumb" | "title" | "description" | "tocTitle" | "tocAuthorInfo" | "tocCtaDescription" | "introTitle" | "introDescription" | "introPrimaryButtonText" | "introPrimaryButtonLink" | "introSecondaryButtonText" | "introSecondaryButtonLink" | "overviewSectionTitle" | "overviewSectionDescription" | "whySectionTitle" | "gallerySectionTitle" | "gallerySectionDescription" | "testimonialsSectionTitle" | "stepsSectionTitle" | "stepsSectionDescription" | "recoverySectionTitle" | "recoverySectionDescription" | "ctaTagline" | "ctaTitle" | "ctaDescription" | "ctaButtonText" | "ctaButtonLink" | "ctaAvatarText" | "pricingSectionTitle" | "pricingSectionDescription" | "expertsSectionTitle" | "expertsTagline" | "faqSectionTitle" | "faqSectionDescription" | "metaTitle" | "metaDescription" | "metaKeywords", ExtArgs["result"]["hizmetTranslation"]>
   export type HizmetTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hizmet?: boolean | HizmetDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
@@ -11181,7 +11183,6 @@ export namespace Prisma {
       tocTitle: string
       tocAuthorInfo: string | null
       tocCtaDescription: string
-      introVideoId: string | null
       introTitle: string
       introDescription: string
       introPrimaryButtonText: string
@@ -11652,7 +11653,6 @@ export namespace Prisma {
     readonly tocTitle: FieldRef<"HizmetTranslation", 'String'>
     readonly tocAuthorInfo: FieldRef<"HizmetTranslation", 'String'>
     readonly tocCtaDescription: FieldRef<"HizmetTranslation", 'String'>
-    readonly introVideoId: FieldRef<"HizmetTranslation", 'String'>
     readonly introTitle: FieldRef<"HizmetTranslation", 'String'>
     readonly introDescription: FieldRef<"HizmetTranslation", 'String'>
     readonly introPrimaryButtonText: FieldRef<"HizmetTranslation", 'String'>
@@ -33175,7 +33175,8 @@ export namespace Prisma {
     whyBackgroundImageUrl: 'whyBackgroundImageUrl',
     ctaBackgroundImageUrl: 'ctaBackgroundImageUrl',
     ctaMainImageUrl: 'ctaMainImageUrl',
-    ctaMainImageAlt: 'ctaMainImageAlt'
+    ctaMainImageAlt: 'ctaMainImageAlt',
+    introVideoId: 'introVideoId'
   };
 
   export type HizmetScalarFieldEnum = (typeof HizmetScalarFieldEnum)[keyof typeof HizmetScalarFieldEnum]
@@ -33192,7 +33193,6 @@ export namespace Prisma {
     tocTitle: 'tocTitle',
     tocAuthorInfo: 'tocAuthorInfo',
     tocCtaDescription: 'tocCtaDescription',
-    introVideoId: 'introVideoId',
     introTitle: 'introTitle',
     introDescription: 'introDescription',
     introPrimaryButtonText: 'introPrimaryButtonText',
@@ -33940,6 +33940,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: StringNullableFilter<"Hizmet"> | string | null
     ctaMainImageUrl?: StringNullableFilter<"Hizmet"> | string | null
     ctaMainImageAlt?: StringNullableFilter<"Hizmet"> | string | null
+    introVideoId?: StringNullableFilter<"Hizmet"> | string | null
     marqueeImages?: HizmetMarqueeImageListRelationFilter
     galleryImages?: HizmetGalleryImageListRelationFilter
     ctaAvatars?: HizmetCtaAvatarListRelationFilter
@@ -33963,6 +33964,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: SortOrderInput | SortOrder
     ctaMainImageUrl?: SortOrderInput | SortOrder
     ctaMainImageAlt?: SortOrderInput | SortOrder
+    introVideoId?: SortOrderInput | SortOrder
     marqueeImages?: HizmetMarqueeImageOrderByRelationAggregateInput
     galleryImages?: HizmetGalleryImageOrderByRelationAggregateInput
     ctaAvatars?: HizmetCtaAvatarOrderByRelationAggregateInput
@@ -33989,6 +33991,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: StringNullableFilter<"Hizmet"> | string | null
     ctaMainImageUrl?: StringNullableFilter<"Hizmet"> | string | null
     ctaMainImageAlt?: StringNullableFilter<"Hizmet"> | string | null
+    introVideoId?: StringNullableFilter<"Hizmet"> | string | null
     marqueeImages?: HizmetMarqueeImageListRelationFilter
     galleryImages?: HizmetGalleryImageListRelationFilter
     ctaAvatars?: HizmetCtaAvatarListRelationFilter
@@ -34012,6 +34015,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: SortOrderInput | SortOrder
     ctaMainImageUrl?: SortOrderInput | SortOrder
     ctaMainImageAlt?: SortOrderInput | SortOrder
+    introVideoId?: SortOrderInput | SortOrder
     _count?: HizmetCountOrderByAggregateInput
     _max?: HizmetMaxOrderByAggregateInput
     _min?: HizmetMinOrderByAggregateInput
@@ -34031,6 +34035,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: StringNullableWithAggregatesFilter<"Hizmet"> | string | null
     ctaMainImageUrl?: StringNullableWithAggregatesFilter<"Hizmet"> | string | null
     ctaMainImageAlt?: StringNullableWithAggregatesFilter<"Hizmet"> | string | null
+    introVideoId?: StringNullableWithAggregatesFilter<"Hizmet"> | string | null
   }
 
   export type HizmetTranslationWhereInput = {
@@ -34047,7 +34052,6 @@ export namespace Prisma {
     tocTitle?: StringFilter<"HizmetTranslation"> | string
     tocAuthorInfo?: StringNullableFilter<"HizmetTranslation"> | string | null
     tocCtaDescription?: StringFilter<"HizmetTranslation"> | string
-    introVideoId?: StringNullableFilter<"HizmetTranslation"> | string | null
     introTitle?: StringFilter<"HizmetTranslation"> | string
     introDescription?: StringFilter<"HizmetTranslation"> | string
     introPrimaryButtonText?: StringFilter<"HizmetTranslation"> | string
@@ -34098,7 +34102,6 @@ export namespace Prisma {
     tocTitle?: SortOrder
     tocAuthorInfo?: SortOrderInput | SortOrder
     tocCtaDescription?: SortOrder
-    introVideoId?: SortOrderInput | SortOrder
     introTitle?: SortOrder
     introDescription?: SortOrder
     introPrimaryButtonText?: SortOrder
@@ -34154,7 +34157,6 @@ export namespace Prisma {
     tocTitle?: StringFilter<"HizmetTranslation"> | string
     tocAuthorInfo?: StringNullableFilter<"HizmetTranslation"> | string | null
     tocCtaDescription?: StringFilter<"HizmetTranslation"> | string
-    introVideoId?: StringNullableFilter<"HizmetTranslation"> | string | null
     introTitle?: StringFilter<"HizmetTranslation"> | string
     introDescription?: StringFilter<"HizmetTranslation"> | string
     introPrimaryButtonText?: StringFilter<"HizmetTranslation"> | string
@@ -34205,7 +34207,6 @@ export namespace Prisma {
     tocTitle?: SortOrder
     tocAuthorInfo?: SortOrderInput | SortOrder
     tocCtaDescription?: SortOrder
-    introVideoId?: SortOrderInput | SortOrder
     introTitle?: SortOrder
     introDescription?: SortOrder
     introPrimaryButtonText?: SortOrder
@@ -34256,7 +34257,6 @@ export namespace Prisma {
     tocTitle?: StringWithAggregatesFilter<"HizmetTranslation"> | string
     tocAuthorInfo?: StringNullableWithAggregatesFilter<"HizmetTranslation"> | string | null
     tocCtaDescription?: StringWithAggregatesFilter<"HizmetTranslation"> | string
-    introVideoId?: StringNullableWithAggregatesFilter<"HizmetTranslation"> | string | null
     introTitle?: StringWithAggregatesFilter<"HizmetTranslation"> | string
     introDescription?: StringWithAggregatesFilter<"HizmetTranslation"> | string
     introPrimaryButtonText?: StringWithAggregatesFilter<"HizmetTranslation"> | string
@@ -35837,6 +35837,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -35860,6 +35861,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -35883,6 +35885,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -35906,6 +35909,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -35929,6 +35933,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
   }
 
   export type HizmetUpdateManyMutationInput = {
@@ -35942,6 +35947,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type HizmetUncheckedUpdateManyInput = {
@@ -35955,6 +35961,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type HizmetTranslationCreateInput = {
@@ -35966,7 +35973,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -36017,7 +36023,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -36064,7 +36069,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -36115,7 +36119,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -36164,7 +36167,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -36207,7 +36209,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -36252,7 +36253,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -37953,6 +37953,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: SortOrder
     ctaMainImageUrl?: SortOrder
     ctaMainImageAlt?: SortOrder
+    introVideoId?: SortOrder
   }
 
   export type HizmetMaxOrderByAggregateInput = {
@@ -37966,6 +37967,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: SortOrder
     ctaMainImageUrl?: SortOrder
     ctaMainImageAlt?: SortOrder
+    introVideoId?: SortOrder
   }
 
   export type HizmetMinOrderByAggregateInput = {
@@ -37979,6 +37981,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: SortOrder
     ctaMainImageUrl?: SortOrder
     ctaMainImageAlt?: SortOrder
+    introVideoId?: SortOrder
   }
 
   export type HizmetScalarRelationFilter = {
@@ -38047,7 +38050,6 @@ export namespace Prisma {
     tocTitle?: SortOrder
     tocAuthorInfo?: SortOrder
     tocCtaDescription?: SortOrder
-    introVideoId?: SortOrder
     introTitle?: SortOrder
     introDescription?: SortOrder
     introPrimaryButtonText?: SortOrder
@@ -38092,7 +38094,6 @@ export namespace Prisma {
     tocTitle?: SortOrder
     tocAuthorInfo?: SortOrder
     tocCtaDescription?: SortOrder
-    introVideoId?: SortOrder
     introTitle?: SortOrder
     introDescription?: SortOrder
     introPrimaryButtonText?: SortOrder
@@ -38137,7 +38138,6 @@ export namespace Prisma {
     tocTitle?: SortOrder
     tocAuthorInfo?: SortOrder
     tocCtaDescription?: SortOrder
-    introVideoId?: SortOrder
     introTitle?: SortOrder
     introDescription?: SortOrder
     introPrimaryButtonText?: SortOrder
@@ -40845,7 +40845,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -40894,7 +40893,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -41160,7 +41158,6 @@ export namespace Prisma {
     tocTitle?: StringFilter<"HizmetTranslation"> | string
     tocAuthorInfo?: StringNullableFilter<"HizmetTranslation"> | string | null
     tocCtaDescription?: StringFilter<"HizmetTranslation"> | string
-    introVideoId?: StringNullableFilter<"HizmetTranslation"> | string | null
     introTitle?: StringFilter<"HizmetTranslation"> | string
     introDescription?: StringFilter<"HizmetTranslation"> | string
     introPrimaryButtonText?: StringFilter<"HizmetTranslation"> | string
@@ -41780,7 +41777,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -41829,7 +41825,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -42146,6 +42141,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -42168,6 +42164,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -42347,6 +42344,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -42369,6 +42367,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -42547,6 +42546,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionCreateNestedManyWithoutHizmetInput
@@ -42569,6 +42569,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUncheckedCreateNestedManyWithoutHizmetInput
@@ -42607,6 +42608,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUpdateManyWithoutHizmetNestedInput
@@ -42629,6 +42631,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUncheckedUpdateManyWithoutHizmetNestedInput
@@ -42651,6 +42654,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionCreateNestedManyWithoutHizmetInput
@@ -42673,6 +42677,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUncheckedCreateNestedManyWithoutHizmetInput
@@ -42711,6 +42716,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUpdateManyWithoutHizmetNestedInput
@@ -42733,6 +42739,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUncheckedUpdateManyWithoutHizmetNestedInput
@@ -42755,6 +42762,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionCreateNestedManyWithoutHizmetInput
@@ -42777,6 +42785,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUncheckedCreateNestedManyWithoutHizmetInput
@@ -42815,6 +42824,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUpdateManyWithoutHizmetNestedInput
@@ -42837,6 +42847,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     overviewTabDefinitions?: HizmetOverviewTabDefinitionUncheckedUpdateManyWithoutHizmetNestedInput
@@ -42857,7 +42868,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -42907,7 +42917,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -42969,7 +42978,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43019,7 +43027,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43065,7 +43072,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -43115,7 +43121,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -43177,7 +43182,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43227,7 +43231,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43273,7 +43276,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -43323,7 +43325,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -43385,7 +43386,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43435,7 +43435,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43481,7 +43480,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -43531,7 +43529,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -43593,7 +43590,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43643,7 +43639,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -43691,6 +43686,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -43713,6 +43709,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -43781,6 +43778,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -43803,6 +43801,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -43977,6 +43976,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -43999,6 +43999,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -44061,6 +44062,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -44083,6 +44085,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -44249,6 +44252,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -44271,6 +44275,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -44335,6 +44340,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -44357,6 +44363,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -44527,6 +44534,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -44549,6 +44557,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -44611,6 +44620,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -44633,6 +44643,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -44803,6 +44814,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -44825,6 +44837,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -44889,6 +44902,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -44911,6 +44925,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -45077,6 +45092,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarCreateNestedManyWithoutHizmetInput
@@ -45099,6 +45115,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: string | null
     ctaMainImageUrl?: string | null
     ctaMainImageAlt?: string | null
+    introVideoId?: string | null
     marqueeImages?: HizmetMarqueeImageUncheckedCreateNestedManyWithoutHizmetInput
     galleryImages?: HizmetGalleryImageUncheckedCreateNestedManyWithoutHizmetInput
     ctaAvatars?: HizmetCtaAvatarUncheckedCreateNestedManyWithoutHizmetInput
@@ -45165,6 +45182,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUpdateManyWithoutHizmetNestedInput
@@ -45187,6 +45205,7 @@ export namespace Prisma {
     ctaBackgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     ctaMainImageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     marqueeImages?: HizmetMarqueeImageUncheckedUpdateManyWithoutHizmetNestedInput
     galleryImages?: HizmetGalleryImageUncheckedUpdateManyWithoutHizmetNestedInput
     ctaAvatars?: HizmetCtaAvatarUncheckedUpdateManyWithoutHizmetNestedInput
@@ -45366,7 +45385,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -45488,7 +45506,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -45537,7 +45554,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -45585,7 +45601,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -45878,7 +45893,6 @@ export namespace Prisma {
     tocTitle: string
     tocAuthorInfo?: string | null
     tocCtaDescription: string
-    introVideoId?: string | null
     introTitle: string
     introDescription: string
     introPrimaryButtonText: string
@@ -46119,7 +46133,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -46168,7 +46181,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string
@@ -46216,7 +46228,6 @@ export namespace Prisma {
     tocTitle?: StringFieldUpdateOperationsInput | string
     tocAuthorInfo?: NullableStringFieldUpdateOperationsInput | string | null
     tocCtaDescription?: StringFieldUpdateOperationsInput | string
-    introVideoId?: NullableStringFieldUpdateOperationsInput | string | null
     introTitle?: StringFieldUpdateOperationsInput | string
     introDescription?: StringFieldUpdateOperationsInput | string
     introPrimaryButtonText?: StringFieldUpdateOperationsInput | string

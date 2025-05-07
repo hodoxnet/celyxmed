@@ -23,10 +23,10 @@ interface TocSectionFormProps {
 
 export function TocSectionForm({ form, loading, activeLang }: TocSectionFormProps) {
   // Dile özgü alan adları
-  const tocItemsFieldName = `translations.${activeLang}.tocItems` as const;
-  const tocTitleFieldName = `translations.${activeLang}.tocTitle` as const;
-  const tocAuthorInfoFieldName = `translations.${activeLang}.tocAuthorInfo` as const;
-  const tocCtaDescriptionFieldName = `translations.${activeLang}.tocCtaDescription` as const;
+  const tocItemsFieldName = `tocSection.translations.${activeLang}.tocItems` as const;
+  const tocTitleFieldName = `tocSection.translations.${activeLang}.tocTitle` as const;
+  const tocAuthorInfoFieldName = `tocSection.translations.${activeLang}.tocAuthorInfo` as const;
+  const tocCtaDescriptionFieldName = `tocSection.translations.${activeLang}.tocCtaDescription` as const;
 
   const { fields, append, remove } = useFieldArray({
     control: form.control,

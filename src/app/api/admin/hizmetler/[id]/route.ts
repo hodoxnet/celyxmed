@@ -16,7 +16,7 @@ const hizmetFaqItemSchema = z.object({ id: z.string().optional(), question: z.st
 const hizmetTranslationSchema = z.object({
   languageCode: z.string(), slug: z.string().min(1), title: z.string().min(1), description: z.string().min(1), breadcrumb: z.string().default(""),
   tocTitle: z.string().default("İçindekiler"), tocAuthorInfo: z.string().default(""), tocCtaDescription: z.string().default(""), tocItems: z.array(hizmetTocItemSchema).default([]),
-  introVideoId: z.string().optional().nullable().default(null), introTitle: z.string().default(""), introDescription: z.string().default(""), introPrimaryButtonText: z.string().default(""), introPrimaryButtonLink: z.string().default(""), introSecondaryButtonText: z.string().default(""), introSecondaryButtonLink: z.string().default(""), introLinks: z.array(hizmetIntroLinkSchema).default([]),
+  introTitle: z.string().default(""), introDescription: z.string().default(""), introPrimaryButtonText: z.string().default(""), introPrimaryButtonLink: z.string().default(""), introSecondaryButtonText: z.string().default(""), introSecondaryButtonLink: z.string().default(""), introLinks: z.array(hizmetIntroLinkSchema).default([]),
   overviewSectionTitle: z.string().default("Genel Bakış"), overviewSectionDescription: z.string().default(""), whySectionTitle: z.string().default("Neden Biz?"), gallerySectionTitle: z.string().default("Galeri"), gallerySectionDescription: z.string().default(""), testimonialsSectionTitle: z.string().optional().nullable().default("Yorumlar"),
   stepsSectionTitle: z.string().default("Adımlar"), stepsSectionDescription: z.string().default(""), steps: z.array(hizmetStepSchema).default([]), recoverySectionTitle: z.string().default("İyileşme Süreci"), recoverySectionDescription: z.string().default(""),
   ctaTagline: z.string().optional().nullable().default(null), ctaTitle: z.string().default("Bize Ulaşın"), ctaDescription: z.string().default(""), ctaButtonText: z.string().default("Randevu Al"), ctaButtonLink: z.string().optional().nullable().default(null), ctaAvatarText: z.string().optional().nullable().default(null),
@@ -37,7 +37,7 @@ const hizmetExpertItemDefinitionSchema = z.object({ id: z.string().optional(), i
 const hizmetPricingPackageTranslationSchema = z.object({ languageCode: z.string(), title: z.string().min(1), price: z.string().min(1), features: z.array(z.string()).default([]) });
 const hizmetPricingPackageDefinitionSchema = z.object({ id: z.string().optional(), isFeatured: z.boolean().default(false), order: z.number().default(0), translations: z.record(z.string(), hizmetPricingPackageTranslationSchema) });
 const hizmetFormSchema = z.object({
-  id: z.string().optional(), published: z.boolean().default(false), heroImageUrl: z.string().optional().nullable().default(null), heroImageAlt: z.string().optional().nullable().default(null), whyBackgroundImageUrl: z.string().optional().nullable().default(null), ctaBackgroundImageUrl: z.string().optional().nullable().default(null), ctaMainImageUrl: z.string().optional().nullable().default(null), ctaMainImageAlt: z.string().optional().nullable().default(null),
+  id: z.string().optional(), published: z.boolean().default(false), heroImageUrl: z.string().optional().nullable().default(null), heroImageAlt: z.string().optional().nullable().default(null), whyBackgroundImageUrl: z.string().optional().nullable().default(null), ctaBackgroundImageUrl: z.string().optional().nullable().default(null), ctaMainImageUrl: z.string().optional().nullable().default(null), ctaMainImageAlt: z.string().optional().nullable().default(null), introVideoId: z.string().optional().nullable().default(null),
   marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
   translations: z.record(z.string(), hizmetTranslationSchema),
   overviewTabDefinitions: z.array(hizmetOverviewTabDefinitionSchema).default([]), whyItemDefinitions: z.array(hizmetWhyItemDefinitionSchema).default([]), testimonialDefinitions: z.array(hizmetTestimonialDefinitionSchema).default([]), recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]),
@@ -162,12 +162,34 @@ export async function PATCH(req: Request, context: Context) {
       const deletePromises: Promise<void>[] = [];
 
       // 1. Ana Hizmet Alanlarını Güncelle
+      const vData = validationResult.data;
+
+      // İlişkili verileri vData'dan çıkar
       const {
-        translations, marqueeImages, galleryImages, ctaAvatars,
-        overviewTabDefinitions, whyItemDefinitions, testimonialDefinitions,
-        recoveryItemDefinitions, expertItemDefinitions, pricingPackageDefinitions,
-        ...mainHizmetData
-      } = data;
+        translations,
+        marqueeImages,
+        galleryImages,
+        ctaAvatars,
+        overviewTabDefinitions,
+        whyItemDefinitions,
+        testimonialDefinitions,
+        recoveryItemDefinitions,
+        expertItemDefinitions,
+        pricingPackageDefinitions,
+        // Diğer ana alanlar burada DEĞİL, aşağıda mainHizmetData'da ele alınıyor
+      } = vData;
+
+
+      const mainHizmetData = {
+        published: vData.published,
+        heroImageUrl: vData.heroImageUrl,
+        heroImageAlt: vData.heroImageAlt,
+        whyBackgroundImageUrl: vData.whyBackgroundImageUrl,
+        ctaBackgroundImageUrl: vData.ctaBackgroundImageUrl,
+        ctaMainImageUrl: vData.ctaMainImageUrl,
+        ctaMainImageAlt: vData.ctaMainImageAlt,
+        introVideoId: vData.introVideoId === "" ? null : vData.introVideoId,
+      };
 
       // Değişen ana resimleri sil
       if (currentHizmet.heroImageUrl && currentHizmet.heroImageUrl !== mainHizmetData.heroImageUrl) deletePromises.push(deleteFile(currentHizmet.heroImageUrl));
@@ -177,7 +199,7 @@ export async function PATCH(req: Request, context: Context) {
 
       await tx.hizmet.update({
         where: { id },
-        data: mainHizmetData,
+        data: mainHizmetData, // Sadece ana hizmet alanlarını içerir
       });
 
       // 2. Dil Bağımsız Koleksiyonları Güncelle (Sil & Yeniden Oluştur)
@@ -233,24 +255,24 @@ export async function PATCH(req: Request, context: Context) {
           });
           // İlişkili listeleri güncelle (Sil & Yeniden Oluştur)
           await tx.hizmetTocItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (tocItems.length > 0) await tx.hizmetTocItem.createMany({ data: tocItems.map(item => ({ ...item, hizmetTranslationId: currentTranslation.id })) });
+          if (tocItems.length > 0) await tx.hizmetTocItem.createMany({ data: tocItems.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
           // introLinks, steps, faqs için benzer sil/oluştur
           await tx.hizmetIntroLink.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (introLinks.length > 0) await tx.hizmetIntroLink.createMany({ data: introLinks.map(item => ({ ...item, hizmetTranslationId: currentTranslation.id })) });
+          if (introLinks.length > 0) await tx.hizmetIntroLink.createMany({ data: introLinks.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
           await tx.hizmetStep.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (steps.length > 0) await tx.hizmetStep.createMany({ data: steps.map(item => ({ ...item, hizmetTranslationId: currentTranslation.id })) });
+          if (steps.length > 0) await tx.hizmetStep.createMany({ data: steps.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
           await tx.hizmetFaqItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (faqs.length > 0) await tx.hizmetFaqItem.createMany({ data: faqs.map(item => ({ ...item, hizmetTranslationId: currentTranslation.id })) });
+          if (faqs.length > 0) await tx.hizmetFaqItem.createMany({ data: faqs.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
 
         } else {
           // Oluştur
           await tx.hizmetTranslation.create({
             data: {
               ...translationPayload,
-              tocItems: { createMany: { data: tocItems } },
-              introLinks: { createMany: { data: introLinks } },
-              steps: { createMany: { data: steps } },
-              faqs: { createMany: { data: faqs } },
+              tocItems: { createMany: { data: tocItems.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
+              introLinks: { createMany: { data: introLinks.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
+              steps: { createMany: { data: steps.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
+              faqs: { createMany: { data: faqs.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
             },
           });
         }
@@ -264,6 +286,11 @@ export async function PATCH(req: Request, context: Context) {
         currentDefinitions: any[],
         newDefinitions: any[]
       ) => {
+          interface DefTranslation {
+            id: string;
+            languageCode: string;
+            [key: string]: any;
+          }
           const currentDefMap = new Map(currentDefinitions.map(def => [def.id, def]));
           const newDefIds = new Set(newDefinitions.map(def => def.id).filter(Boolean));
 
@@ -311,19 +338,21 @@ export async function PATCH(req: Request, context: Context) {
               }
 
               // Definition'a bağlı çevirileri güncelle/oluştur
-              const currentDefTranslationMap = new Map(currentDef?.translations?.map((t: any) => [t.languageCode, t]) || []);
+              const currentDefTranslationMap = new Map<string, DefTranslation>(
+                currentDef?.translations?.map((t: any) => [t.languageCode, t as DefTranslation]) || []
+              );
               for (const langCode in newDefTranslations) {
                   const translationPayload = {
                       ...newDefTranslations[langCode],
                       definitionId: upsertedDefId,
                       languageCode: langCode,
                   };
-                  const currentDefTranslation = currentDefTranslationMap.get(langCode);
-                  if (currentDefTranslation) {
+                  const currentDefTranslation: DefTranslation | undefined = currentDefTranslationMap.get(langCode);
+                  if (currentDefTranslation && currentDefTranslation.id) {
                       // Çeviriyi Güncelle
                       // @ts-ignore
                       await tx[translationModelName].update({
-                          where: { id: currentDefTranslation.id },
+                          where: { id: currentDefTranslation.id }, // id şimdi tanınmalı
                           data: translationPayload,
                       });
                   } else {
