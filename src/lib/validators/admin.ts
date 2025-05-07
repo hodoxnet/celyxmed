@@ -124,7 +124,7 @@ const HizmetExpertItemSchema = z.object({
   name: z.string().min(1, "İsim boş olamaz"),
   title: z.string().min(1, "Unvan boş olamaz"),
   description: z.string().min(1, "Açıklama boş olamaz"),
-  imageUrl: z.string().url("Geçerli bir URL girin"),
+  imageUrl: z.string().min(1, "Resim gereklidir"), // URL validasyonu kaldırıldı
   imageAlt: z.string().min(1, "Resim alt metni boş olamaz"),
   ctaText: z.string().optional(),
   order: z.number().optional().default(0),
