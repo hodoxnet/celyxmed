@@ -98,7 +98,7 @@ const HizmetRecoveryItemSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1, "Başlık boş olamaz"),
   description: z.string().min(1, "Açıklama boş olamaz"),
-  imageUrl: z.string().url("Geçerli bir URL girin"),
+  imageUrl: z.string().min(1, "Resim gereklidir"), // URL validasyonu kaldırıldı, dosya yolu/URL'si için string kontrolü
   imageAlt: z.string().min(1, "Resim alt metni boş olamaz"),
   order: z.number().optional().default(0),
 });
