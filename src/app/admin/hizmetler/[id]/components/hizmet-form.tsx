@@ -123,9 +123,9 @@ const HizmetSeoSectionTranslationSchema = z.object({
 // Overview Section
 const HizmetOverviewTabTranslationSchema = z.object({
   languageCode: z.string(),
-  triggerText: z.string().min(1, "Sekme başlığı gerekli"),
-  title: z.string().min(1, "İçerik başlığı gerekli"),
-  content: z.string().min(1, "İçerik gerekli"),
+  triggerText: z.string().default(""), // .min(1) kaldırıldı
+  title: z.string().default(""), // .min(1) kaldırıldı
+  content: z.string().default(""), // .min(1) kaldırıldı
   buttonText: z.string().default("Detaylar"),
   buttonLink: z.string().optional().nullable().default(null),
 });
@@ -149,8 +149,8 @@ const HizmetOverviewSectionDefinitionSchema = z.object({
 // Why Section
 const HizmetWhyItemTranslationSchema = z.object({
   languageCode: z.string(),
-  title: z.string().min(1, "Başlık gerekli"),
-  description: z.string().min(1, "Açıklama gerekli"),
+  title: z.string().default(""), // .min(1) kaldırıldı
+  description: z.string().default(""), // .min(1) kaldırıldı
 });
 const HizmetWhyItemDefinitionSchema = z.object({
   id: z.string().optional(),
@@ -176,8 +176,8 @@ const HizmetGallerySectionTranslationSchema = z.object({
 // Testimonials Section
 const HizmetTestimonialTranslationSchema = z.object({
   languageCode: z.string(),
-  text: z.string().min(1, "Yorum metni gerekli"),
-  author: z.string().min(1, "Yazar gerekli"),
+  text: z.string().default(""), // .min(1) kaldırıldı
+  author: z.string().default(""), // .min(1) kaldırıldı
   treatment: z.string().optional().nullable().default(null),
 });
 const HizmetTestimonialDefinitionSchema = z.object({
@@ -214,8 +214,8 @@ const HizmetStepsSectionTranslationSchema = z.object({
 // Recovery Section
 const HizmetRecoveryItemTranslationSchema = z.object({
   languageCode: z.string(),
-  title: z.string().min(1, "Başlık gerekli"),
-  description: z.string().min(1, "Açıklama gerekli"),
+  title: z.string().default(""), // .min(1) kaldırıldı
+  description: z.string().default(""), // .min(1) kaldırıldı
 });
 const HizmetRecoveryItemDefinitionSchema = z.object({
   id: z.string().optional(),
@@ -247,8 +247,8 @@ const HizmetCtaSectionTranslationSchema = z.object({
 // Pricing Section
 const HizmetPricingPackageTranslationSchema = z.object({
   languageCode: z.string(),
-  title: z.string().min(1, "Paket başlığı gerekli"),
-  price: z.string().min(1, "Fiyat gerekli"),
+  title: z.string().default(""), // .min(1) kaldırıldı
+  price: z.string().default(""), // .min(1) kaldırıldı
   features: z.array(z.string()).default([]),
 });
 const HizmetPricingPackageDefinitionSchema = z.object({
@@ -269,9 +269,9 @@ const HizmetPricingSectionDefinitionSchema = z.object({
 // Experts Section
 const HizmetExpertItemTranslationSchema = z.object({
   languageCode: z.string(),
-  name: z.string().min(1, "Uzman adı gerekli"),
-  title: z.string().min(1, "Uzman unvanı gerekli"),
-  description: z.string().min(1, "Uzman açıklaması gerekli"),
+  name: z.string().default(""), // .min(1) kaldırıldı
+  title: z.string().default(""), // .min(1) kaldırıldı
+  description: z.string().default(""), // .min(1) kaldırıldı
   ctaText: z.string().optional().nullable().default(null),
 });
 const HizmetExpertItemDefinitionSchema = z.object({
@@ -820,6 +820,12 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
      form.reset(getInitialFormValues());
   }, [initialData, diller, form]); // form'u bağımlılıklardan kaldırdık, reset içinde zaten var
 
+ // Debug: Form validasyon hatalarını konsola yazdır
+ useEffect(() => {
+   if (Object.keys(form.formState.errors).length > 0) {
+     console.log("Form Validation Errors:", JSON.stringify(form.formState.errors, null, 2));
+   }
+ }, [form.formState.errors]);
 
   const onSubmit = async (values: HizmetFormValues) => {
     setLoading(true);
