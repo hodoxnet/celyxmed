@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-// import ImageUpload from '@/components/admin/image-upload'; // TODO: ImageUpload entegrasyonu
+import ImageUpload from '@/components/admin/image-upload';
 
 interface CtaSectionFormProps {
   form: UseFormReturn<HizmetDetayFormValues>;
@@ -115,10 +115,17 @@ export function CtaSectionForm({ form, loading }: CtaSectionFormProps) {
         name="ctaBackgroundImageUrl"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Arka Plan Resim URL</FormLabel>
+            <FormLabel>Arka Plan Resmi</FormLabel>
             <FormControl>
-              {/* TODO: Image Upload bileşeni entegre edilebilir */}
-              <Input placeholder="https://..." {...field} disabled={loading} />
+              <ImageUpload
+                initialImage={field.value}
+                showPreview={true}
+                buttonText="Arka Plan Resmi Yükle/Değiştir"
+                onImageUploaded={(imageUrl) => {
+                  field.onChange(imageUrl);
+                }}
+                className="w-full"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -129,10 +136,17 @@ export function CtaSectionForm({ form, loading }: CtaSectionFormProps) {
         name="ctaMainImageUrl"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Ana Resim URL</FormLabel>
+            <FormLabel>Ana Resim</FormLabel>
             <FormControl>
-              {/* TODO: Image Upload bileşeni entegre edilebilir */}
-              <Input placeholder="https://..." {...field} disabled={loading} />
+              <ImageUpload
+                initialImage={field.value}
+                showPreview={true}
+                buttonText="Ana Resmi Yükle/Değiştir"
+                onImageUploaded={(imageUrl) => {
+                  field.onChange(imageUrl);
+                }}
+                className="w-full"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

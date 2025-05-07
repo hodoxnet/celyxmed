@@ -208,8 +208,8 @@ export const hizmetDetayFormSchema = z.object({
   ctaButtonLink: z.string().optional(),
   ctaAvatars: z.array(HizmetCtaAvatarSchema).optional().default([]), // .optional().default([]) geri eklendi
   ctaAvatarText: z.string().optional(),
-  ctaBackgroundImageUrl: z.string().url("Geçerli bir URL girin").optional().or(z.literal('')),
-  ctaMainImageUrl: z.string().url("Geçerli bir URL girin").optional().or(z.literal('')),
+  ctaBackgroundImageUrl: z.string().optional().or(z.literal('')), // URL validasyonu kaldırıldı
+  ctaMainImageUrl: z.string().optional().or(z.literal('')), // URL validasyonu kaldırıldı
   ctaMainImageAlt: z.string().optional(),
 
   // Pricing
