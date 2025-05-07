@@ -465,7 +465,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             experts={serviceData?.expertItems ?? []} // Prop isimleri düzeltildi
           />
         </div>
-        <BlogPreview /> {/* BlogPreview muhtemelen kendi verisini çekiyor veya statik */}
+        {/* BlogPreview ve FaqSection yer değiştiriyor */}
         <div id="8">
           <FaqSection
             sectionTitle={serviceData?.faqSectionTitle ?? ""} // Prop isimleri düzeltildi
@@ -473,6 +473,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             faqItems={serviceData?.faqs ?? []} // Prop isimleri düzeltildi
           />
         </div>
+        <BlogPreview /> {/* BlogPreview en alta taşındı */}
 
       </main>
       {/* Footer layout'tan geldiği için buradan kaldırıldı */}
