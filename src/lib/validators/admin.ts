@@ -178,7 +178,7 @@ export const hizmetDetayFormSchema = z.object({
 
   // Why Celyxmed
   whyTitle: z.string().min(1, "Neden Celyxmed başlığı boş olamaz"),
-  whyBackgroundImageUrl: z.string().url("Geçerli bir URL girin").optional().or(z.literal('')),
+  whyBackgroundImageUrl: z.string().optional().or(z.literal('')), // URL validasyonu kaldırıldı
   whyItems: z.array(HizmetWhyItemSchema).min(1, "En az bir Neden Celyxmed öğesi ekleyin"),
 
   // Gallery
