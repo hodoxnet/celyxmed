@@ -688,10 +688,19 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         // her dil için çeviri ekle
         diller.forEach(lang => {
           const existingTrans = def.translations?.find((t: any) => t.languageCode === lang.code);
-          (parsedDef as any).translations[lang.code] = transSchema.parse({
+          // ADD LOGGING HERE:
+          if (lang.code === 'en') {
+            console.log(`[DEBUG getInitial] Found existing 'en' trans for def ${def.id}:`, JSON.stringify(existingTrans || null));
+          }
+          const parsedTranslation = transSchema.parse({
             languageCode: lang.code,
             ...(existingTrans || {}), // Prisma'dan gelen çeviriyi veya boş obje
           });
+          (parsedDef as any).translations[lang.code] = parsedTranslation;
+          // ADD LOGGING HERE:
+          if (lang.code === 'en') {
+             console.log(`[DEBUG getInitial] Parsed 'en' trans for def ${def.id}:`, JSON.stringify(parsedTranslation));
+          }
         });
         
         return parsedDef;
@@ -826,6 +835,20 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
      console.log("Form Validation Errors:", JSON.stringify(form.formState.errors, null, 2));
    }
  }, [form.formState.errors]);
+ 
+ // Aktif dil değiştiğinde kullanıcıya bilgi ver ve form içeriğini reset et
+ useEffect(() => {
+   console.log("Active Language Changed to:", activeLang);
+   // Kullanıcı arayüzünde aktif dil göstergesi
+   console.log(`%c ŞU AN AKTİF DİL: ${activeLang.toUpperCase()} `, 'background: #4CAF50; color: white; font-size: 14px; font-weight: bold; padding: 4px 8px;');
+   
+   // ÖNEMLİ: Dil değiştiğinde form değerleri tamamen baştan alınmalı
+   // Bu, dil sekmeleri arasında değerlerin paylaşılmasını önler
+   form.reset(getInitialFormValues());
+   
+   // Debug için form state'ini konsola yazdır
+   console.log("Current Form Values Structure:", Object.keys(form.getValues()));
+ }, [activeLang]);
 
   const onSubmit = async (values: HizmetFormValues) => {
     setLoading(true);
@@ -838,99 +861,128 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       // - translations: Record<string, HizmetTranslationSchema>
       // - overviewTabDefinitions, whyItemDefinitions, etc. (bunlar zaten doğru formatta)
       
-      // Tüm translations objelerini tek bir yerde topla
+      // SADECE AKTİF DİL için translations objesi oluştur
       const translations: Record<string, any> = {};
       
-      // Aktif diller için işlem yap
-      diller.forEach(lang => {
-        const langCode = lang.code;
+      // SADECE AKTİF DİL için işlem yap
+      const langCode = activeLang;
+      
+      // Basic Info alanlarını kontrol et ve logla - debug için
+      const basicInfoForLang = values.basicInfoSection.translations[langCode];
+      console.log(`[DEBUG] Only Processing BasicInfo for ACTIVE lang ${langCode}:`, 
+        JSON.stringify({
+          slug: basicInfoForLang?.slug,
+          title: basicInfoForLang?.title,
+          description: basicInfoForLang?.description
+        })
+      );
+      
+      // SADECE AKTİF DİL için veri dönüşümü yap
+      translations[langCode] = {
+        // BasicInfo
+        languageCode: langCode,
+        slug: values.basicInfoSection.translations[langCode]?.slug || "",
+        title: values.basicInfoSection.translations[langCode]?.title || "",
+        description: values.basicInfoSection.translations[langCode]?.description || "",
+        breadcrumb: values.basicInfoSection.translations[langCode]?.breadcrumb || "",
         
-        // Basic Info alanlarını kontrol et ve logla - debug için
-        const basicInfoForLang = values.basicInfoSection.translations[langCode];
-        console.log(`[DEBUG] BasicInfo for ${langCode}:`, 
-          JSON.stringify({
-            slug: basicInfoForLang?.slug,
-            title: basicInfoForLang?.title,
-            description: basicInfoForLang?.description
-          })
-        );
+        // Toc Section
+        tocTitle: values.tocSection.translations[langCode]?.tocTitle || "İçindekiler",
+        tocAuthorInfo: values.tocSection.translations[langCode]?.tocAuthorInfo || "",
+        tocCtaDescription: values.tocSection.translations[langCode]?.tocCtaDescription || "",
+        tocItems: values.tocSection.translations[langCode]?.tocItems || [],
         
-        // Her bölümün verilerini alıp tek bir objeye birleştir
-        translations[langCode] = {
-          // BasicInfo
-          languageCode: langCode,
-          slug: values.basicInfoSection.translations[langCode]?.slug || "",
-          title: values.basicInfoSection.translations[langCode]?.title || "",
-          description: values.basicInfoSection.translations[langCode]?.description || "",
-          breadcrumb: values.basicInfoSection.translations[langCode]?.breadcrumb || "",
-          
-          // Toc Section
-          tocTitle: values.tocSection.translations[langCode]?.tocTitle || "İçindekiler",
-          tocAuthorInfo: values.tocSection.translations[langCode]?.tocAuthorInfo || "",
-          tocCtaDescription: values.tocSection.translations[langCode]?.tocCtaDescription || "",
-          tocItems: values.tocSection.translations[langCode]?.tocItems || [],
-          
-          // Intro Section
-          introTitle: values.introSection.translations[langCode]?.title || "",
-          introDescription: values.introSection.translations[langCode]?.description || "",
-          introPrimaryButtonText: values.introSection.translations[langCode]?.primaryButtonText || "",
-          introPrimaryButtonLink: values.introSection.translations[langCode]?.primaryButtonLink || "",
-          introSecondaryButtonText: values.introSection.translations[langCode]?.secondaryButtonText || "",
-          introSecondaryButtonLink: values.introSection.translations[langCode]?.secondaryButtonLink || "",
-          introLinks: values.introSection.translations[langCode]?.introLinks || [],
-          
-          // SEO
-          metaTitle: values.seoSection.translations[langCode]?.metaTitle || null,
-          metaDescription: values.seoSection.translations[langCode]?.metaDescription || null,
-          metaKeywords: values.seoSection.translations[langCode]?.metaKeywords || null,
+        // Intro Section
+        introTitle: values.introSection.translations[langCode]?.title || "",
+        introDescription: values.introSection.translations[langCode]?.description || "",
+        introPrimaryButtonText: values.introSection.translations[langCode]?.primaryButtonText || "",
+        introPrimaryButtonLink: values.introSection.translations[langCode]?.primaryButtonLink || "",
+        introSecondaryButtonText: values.introSection.translations[langCode]?.secondaryButtonText || "",
+        introSecondaryButtonLink: values.introSection.translations[langCode]?.secondaryButtonLink || "",
+        introLinks: values.introSection.translations[langCode]?.introLinks || [],
+        
+        // SEO
+        metaTitle: values.seoSection.translations[langCode]?.metaTitle || null,
+        metaDescription: values.seoSection.translations[langCode]?.metaDescription || null,
+        metaKeywords: values.seoSection.translations[langCode]?.metaKeywords || null,
 
-          // Overview Section
-          overviewSectionTitle: values.overviewSection.translations[langCode]?.title || "Genel Bakış",
-          overviewSectionDescription: values.overviewSection.translations[langCode]?.description || "",
-          
-          // Why Section
-          whySectionTitle: values.whySection.translations[langCode]?.title || "Neden Biz?",
-          
-          // Gallery Section
-          gallerySectionTitle: values.gallerySection.translations[langCode]?.title || "Galeri",
-          gallerySectionDescription: values.gallerySection.translations[langCode]?.description || "",
-          
-          // Testimonials Section
-          testimonialsSectionTitle: values.testimonialsSection.translations[langCode]?.title || "Yorumlar",
-          
-          // Steps Section
-          stepsSectionTitle: values.stepsSection.translations[langCode]?.title || "Adımlar",
-          stepsSectionDescription: values.stepsSection.translations[langCode]?.description || "",
-          steps: values.stepsSection.translations[langCode]?.steps || [],
-          
-          // Recovery Section
-          recoverySectionTitle: values.recoverySection.translations[langCode]?.title || "İyileşme Süreci",
-          recoverySectionDescription: values.recoverySection.translations[langCode]?.description || "",
-          
-          // CTA Section
-          ctaTagline: values.ctaSection.translations[langCode]?.tagline || null,
-          ctaTitle: values.ctaSection.translations[langCode]?.title || "Bize Ulaşın",
-          ctaDescription: values.ctaSection.translations[langCode]?.description || "",
-          ctaButtonText: values.ctaSection.translations[langCode]?.buttonText || "Randevu Al",
-          ctaButtonLink: values.ctaSection.translations[langCode]?.buttonLink || null,
-          ctaAvatarText: values.ctaSection.translations[langCode]?.avatarText || null,
-          
-          // Pricing Section
-          pricingSectionTitle: values.pricingSection.translations[langCode]?.title || "Fiyatlandırma",
-          pricingSectionDescription: values.pricingSection.translations[langCode]?.description || "",
-          
-          // Experts Section
-          expertsSectionTitle: values.expertsSection.translations[langCode]?.title || "Uzmanlarımız",
-          expertsTagline: values.expertsSection.translations[langCode]?.tagline || null,
-          
-          // FAQ Section
-          faqSectionTitle: values.faqSection.translations[langCode]?.title || "Sıkça Sorulan Sorular",
-          faqSectionDescription: values.faqSection.translations[langCode]?.description || "",
-          faqs: values.faqSection.translations[langCode]?.faqs || [],
-        };
-      });
+        // Overview Section
+        overviewSectionTitle: values.overviewSection.translations[langCode]?.title || "Genel Bakış",
+        overviewSectionDescription: values.overviewSection.translations[langCode]?.description || "",
+        
+        // Why Section
+        whySectionTitle: values.whySection.translations[langCode]?.title || "Neden Biz?",
+        
+        // Gallery Section
+        gallerySectionTitle: values.gallerySection.translations[langCode]?.title || "Galeri",
+        gallerySectionDescription: values.gallerySection.translations[langCode]?.description || "",
+        
+        // Testimonials Section
+        testimonialsSectionTitle: values.testimonialsSection.translations[langCode]?.title || "Yorumlar",
+        
+        // Steps Section
+        stepsSectionTitle: values.stepsSection.translations[langCode]?.title || "Adımlar",
+        stepsSectionDescription: values.stepsSection.translations[langCode]?.description || "",
+        steps: values.stepsSection.translations[langCode]?.steps || [],
+        
+        // Recovery Section
+        recoverySectionTitle: values.recoverySection.translations[langCode]?.title || "İyileşme Süreci",
+        recoverySectionDescription: values.recoverySection.translations[langCode]?.description || "",
+        
+        // CTA Section
+        ctaTagline: values.ctaSection.translations[langCode]?.tagline || null,
+        ctaTitle: values.ctaSection.translations[langCode]?.title || "Bize Ulaşın",
+        ctaDescription: values.ctaSection.translations[langCode]?.description || "",
+        ctaButtonText: values.ctaSection.translations[langCode]?.buttonText || "Randevu Al",
+        ctaButtonLink: values.ctaSection.translations[langCode]?.buttonLink || null,
+        ctaAvatarText: values.ctaSection.translations[langCode]?.avatarText || null,
+        
+        // Pricing Section
+        pricingSectionTitle: values.pricingSection.translations[langCode]?.title || "Fiyatlandırma",
+        pricingSectionDescription: values.pricingSection.translations[langCode]?.description || "",
+        
+        // Experts Section
+        expertsSectionTitle: values.expertsSection.translations[langCode]?.title || "Uzmanlarımız",
+        expertsTagline: values.expertsSection.translations[langCode]?.tagline || null,
+        
+        // FAQ Section
+        faqSectionTitle: values.faqSection.translations[langCode]?.title || "Sıkça Sorulan Sorular",
+        faqSectionDescription: values.faqSection.translations[langCode]?.description || "",
+        faqs: values.faqSection.translations[langCode]?.faqs || [],
+      };
       
       // API'nin beklediği payload'ı oluştur
+
+      // Yardımcı fonksiyon: Definition dizilerindeki çevirileri sadece aktif dil için filtreler
+      // Bu sefer orijinal 'values' nesnesini değiştirmemeye dikkat edelim.
+      const processDefinitionsForPayload = (definitions: any[] | undefined) => {
+        if (!definitions) return [];
+        return definitions.map(def => {
+          const filteredTranslations: Record<string, any> = {};
+          
+          // SADECE aktif dilin çevirisini yeni bir nesneye kopyala (derin kopya için spread operatörü)
+          // Diğer tüm diller için çeviri gönderimi yapılmayacak!
+          if (def.translations && def.translations[activeLang]) {
+            // Aktif dil için tam bir kopya oluştur
+            filteredTranslations[activeLang] = { 
+              ...def.translations[activeLang],
+              languageCode: activeLang // Dil kodunu açıkça belirt
+            };
+            
+            console.log(`[PAYLOAD DEBUG] Processing ONLY ${activeLang} translation for definition:`, 
+              JSON.stringify(filteredTranslations[activeLang]));
+          } else {
+            console.log(`[PAYLOAD DEBUG] WARNING: No translation found for ${activeLang} in definition ${def.id || 'new'}`);
+          }
+          
+          // Orijinal definition'ın diğer alanlarını ve SADECE filtrelenmiş çevirileri içeren yeni bir nesne döndür
+          return {
+            ...def, // id, order, number, imageUrl vb. dil bağımsız alanlar
+            translations: filteredTranslations // SADECE aktif dil içerir
+          };
+        });
+      };
+
       const payload = {
         id: values.id,
         published: values.published,
@@ -944,13 +996,18 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         marqueeImages: values.marqueeImages,
         galleryImages: values.galleryImages,
         ctaAvatars: values.ctaAvatars,
-        translations,
-        overviewTabDefinitions: values.overviewSection.definition?.tabs || [],
-        whyItemDefinitions: values.whySection.definition?.items || [],
-        testimonialDefinitions: values.testimonialsSection.definition?.items || [],
-        recoveryItemDefinitions: values.recoverySection.definition?.items || [],
-        expertItemDefinitions: values.expertsSection.definition?.items || [],
-        pricingPackageDefinitions: values.pricingSection.definition?.packages || [],
+        // Ana HizmetTranslation verisini de sadece aktif dil için filtrele
+        translations: {
+          [activeLang]: translations[activeLang] // Sadece aktif dilin ana çevirisini al
+        },
+        // Definition dizilerini işle ve sadece aktif dilin çevirisini gönder
+        overviewTabDefinitions: processDefinitionsForPayload(values.overviewSection.definition?.tabs),
+        whyItemDefinitions: processDefinitionsForPayload(values.whySection.definition?.items),
+        testimonialDefinitions: processDefinitionsForPayload(values.testimonialsSection.definition?.items),
+        recoveryItemDefinitions: processDefinitionsForPayload(values.recoverySection.definition?.items),
+        expertItemDefinitions: processDefinitionsForPayload(values.expertsSection.definition?.items),
+        pricingPackageDefinitions: processDefinitionsForPayload(values.pricingSection.definition?.packages),
+        activeLang: activeLang, // Aktif dili payload'a ekle
       };
 
       const url = isEditing && initialData?.id
@@ -958,8 +1015,18 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         : '/api/admin/hizmetler';
       const method = isEditing ? 'PATCH' : 'POST';
 
-      console.log("API Payload:", JSON.stringify(payload, null, 2));
-      
+      // Göndermeden hemen önce payload içindeki definition dizilerini logla
+      console.log("[DEBUG PAYLOAD] overviewTabDefinitions:", JSON.stringify(payload.overviewTabDefinitions, null, 2));
+      console.log("[DEBUG PAYLOAD] whyItemDefinitions:", JSON.stringify(payload.whyItemDefinitions, null, 2));
+      // Gerekirse diğer definition tipleri için de log ekleyebilirsiniz
+      console.log("[DEBUG PAYLOAD] testimonialDefinitions:", JSON.stringify(payload.testimonialDefinitions, null, 2));
+      console.log("[DEBUG PAYLOAD] recoveryItemDefinitions:", JSON.stringify(payload.recoveryItemDefinitions, null, 2));
+      console.log("[DEBUG PAYLOAD] expertItemDefinitions:", JSON.stringify(payload.expertItemDefinitions, null, 2));
+      console.log("[DEBUG PAYLOAD] pricingPackageDefinitions:", JSON.stringify(payload.pricingPackageDefinitions, null, 2));
+      console.log("[DEBUG PAYLOAD] Top-level translations:", JSON.stringify(payload.translations, null, 2));
+
+      console.log("API Payload:", JSON.stringify(payload, null, 2)); // Bu genel log kalabilir
+
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
@@ -981,8 +1048,15 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         throw new Error(errorData.message || `İşlem sırasında bir hata oluştu (${response.status})`);
       }
 
-      // API yanıtını parse et
-      const resultData = JSON.parse(responseText);
+      // API yanıtını parse et - hata yakalamak için try/catch bloğu ekleyelim
+      let resultData;
+      try {
+        resultData = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error("JSON parse error:", parseError);
+        console.error("Raw response text:", responseText);
+        throw new Error("JSON yanıtı parse edilemedi. Sunucu yanıtı geçersiz.");
+      }
       console.log("API Success Result:", resultData);
       
       toast.success(toastMessageSuccess);

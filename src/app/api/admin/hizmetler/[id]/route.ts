@@ -41,6 +41,7 @@ const hizmetFormSchema = z.object({
   marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
   translations: z.record(z.string(), hizmetTranslationSchema),
   overviewTabDefinitions: z.array(hizmetOverviewTabDefinitionSchema).default([]), whyItemDefinitions: z.array(hizmetWhyItemDefinitionSchema).default([]), testimonialDefinitions: z.array(hizmetTestimonialDefinitionSchema).default([]), recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]),
+  activeLang: z.string(), // activeLang eklendi
 });
 // --- Şema kopyalama sonu ---
 
@@ -234,49 +235,64 @@ export async function PATCH(req: Request, context: Context) {
       await updateCollection('hizmetCtaAvatar', currentHizmet.ctaAvatars, ctaAvatars);
 
 
-      // 3. Çevirileri Güncelle/Oluştur
+      // 3. Çevirileri Güncelle/Oluştur - Sadece aktif dil için
       const currentTranslationMap = new Map(currentHizmet.translations.map(t => [t.languageCode, t]));
-      for (const langCode in translations) {
-        const newTranslationData = translations[langCode];
-        const { tocItems = [], introLinks = [], steps = [], faqs = [], ...mainTranslationData } = newTranslationData;
-        const currentTranslation = currentTranslationMap.get(langCode);
+      // Sadece activeLang için işlem yap
+      const activeLangCode = data.activeLang;
+      
+      console.log(`[DEBUG] TRANSLATIONS: Processing ONLY translations for active language: ${activeLangCode}`);
+      
+      if (translations[activeLangCode]) {
+          const newTranslationData = translations[activeLangCode];
+          const { tocItems = [], introLinks = [], steps = [], faqs = [], ...mainTranslationData } = newTranslationData;
+          const currentTranslation = currentTranslationMap.get(activeLangCode);
 
-        const translationPayload = {
-          ...mainTranslationData,
-          hizmetId: id,
-          languageCode: langCode,
-        };
+          const translationPayload = {
+            ...mainTranslationData,
+            hizmetId: id,
+            languageCode: activeLangCode,
+          };
 
-        if (currentTranslation) {
-          // Güncelle
-          await tx.hizmetTranslation.update({
-            where: { id: currentTranslation.id },
-            data: translationPayload,
-          });
-          // İlişkili listeleri güncelle (Sil & Yeniden Oluştur)
-          await tx.hizmetTocItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (tocItems.length > 0) await tx.hizmetTocItem.createMany({ data: tocItems.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
-          // introLinks, steps, faqs için benzer sil/oluştur
-          await tx.hizmetIntroLink.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (introLinks.length > 0) await tx.hizmetIntroLink.createMany({ data: introLinks.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
-          await tx.hizmetStep.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (steps.length > 0) await tx.hizmetStep.createMany({ data: steps.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
-          await tx.hizmetFaqItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-          if (faqs.length > 0) await tx.hizmetFaqItem.createMany({ data: faqs.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) }); // item: any ve id: undefined eklendi
+          console.log(`[DEBUG] TRANSLATIONS: Payload for ${activeLangCode}:`, JSON.stringify({
+            title: translationPayload.title, 
+            description: translationPayload.description
+          }));
 
-        } else {
-          // Oluştur
-          await tx.hizmetTranslation.create({
-            data: {
-              ...translationPayload,
-              tocItems: { createMany: { data: tocItems.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
-              introLinks: { createMany: { data: introLinks.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
-              steps: { createMany: { data: steps.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
-              faqs: { createMany: { data: faqs.map((item: any) => ({ ...item, id: undefined })) } }, // item: any ve id: undefined eklendi
-            },
-          });
-        }
+          if (currentTranslation) {
+            // Güncelle - SADECE aktif dil için
+            console.log(`[DEBUG] Updating ONLY ${activeLangCode} translation, id: ${currentTranslation.id}`);
+            await tx.hizmetTranslation.update({
+              where: { id: currentTranslation.id },
+              data: translationPayload,
+            });
+            // İlişkili listeleri güncelle (Sil & Yeniden Oluştur) - SADECE aktif dil için
+            await tx.hizmetTocItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+            if (tocItems.length > 0) await tx.hizmetTocItem.createMany({ data: tocItems.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            await tx.hizmetIntroLink.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+            if (introLinks.length > 0) await tx.hizmetIntroLink.createMany({ data: introLinks.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            await tx.hizmetStep.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+            if (steps.length > 0) await tx.hizmetStep.createMany({ data: steps.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            await tx.hizmetFaqItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+            if (faqs.length > 0) await tx.hizmetFaqItem.createMany({ data: faqs.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+
+          } else {
+            // Oluştur - SADECE aktif dil için
+            console.log(`[DEBUG] Creating NEW translation for ${activeLangCode}`);
+            await tx.hizmetTranslation.create({
+              data: {
+                ...translationPayload,
+                tocItems: { createMany: { data: tocItems.map((item: any) => ({ ...item, id: undefined })) } },
+                introLinks: { createMany: { data: introLinks.map((item: any) => ({ ...item, id: undefined })) } },
+                steps: { createMany: { data: steps.map((item: any) => ({ ...item, id: undefined })) } },
+                faqs: { createMany: { data: faqs.map((item: any) => ({ ...item, id: undefined })) } },
+              },
+            });
+          }
+      } else {
+           console.warn(`[WARN] No translation data found in payload for activeLang: ${activeLangCode}`);
       }
+      
+      // DİĞER DİLLER İÇİN HERHANGİ BİR İŞLEM YAPILMIYOR
 
       // 4. Definition/Translation Çiftlerini Güncelle/Oluştur/Sil
       const updateDefinitionCollection = async (
@@ -317,7 +333,8 @@ export async function PATCH(req: Request, context: Context) {
               let upsertedDefId: string;
 
               if (currentDef) {
-                  // Definition Güncelle
+                  // Definition Güncelle - Sadece dil bağımsız alanları güncelle
+                  console.log(`[DEBUG] Updating existing definition (${definitionModelName}) with id: ${currentDef.id}:`, JSON.stringify(definitionPayload));
                   // @ts-ignore
                   const updatedDef = await tx[definitionModelName].update({
                       where: { id: currentDef.id },
@@ -330,6 +347,7 @@ export async function PATCH(req: Request, context: Context) {
 
               } else {
                   // Definition Oluştur
+                  console.log(`[DEBUG] Creating NEW definition (${definitionModelName}):`, JSON.stringify(definitionPayload));
                   // @ts-ignore
                   const createdDef = await tx[definitionModelName].create({
                       data: definitionPayload,
@@ -341,28 +359,47 @@ export async function PATCH(req: Request, context: Context) {
               const currentDefTranslationMap = new Map<string, DefTranslation>(
                 currentDef?.translations?.map((t: any) => [t.languageCode, t as DefTranslation]) || []
               );
-              for (const langCode in newDefTranslations) {
+              
+              // Sadece activeLang için işlem yap
+              const activeLangCode = data.activeLang;
+              
+              // ÖNEMLİ: Yalnızca active language için işlem yapıyoruz
+              // Diğer dillerin (EN, DE, RU) çevirileri korunacak, sadece aktif dil değiştirilecek
+              if (newDefTranslations[activeLangCode]) {
+                  console.log(`[DEBUG] ONLY processing translation for language: ${activeLangCode}`);
+                  
                   const translationPayload = {
-                      ...newDefTranslations[langCode],
+                      ...newDefTranslations[activeLangCode],
                       definitionId: upsertedDefId,
-                      languageCode: langCode,
+                      languageCode: activeLangCode,
                   };
-                  const currentDefTranslation: DefTranslation | undefined = currentDefTranslationMap.get(langCode);
+                  
+                  const currentDefTranslation: DefTranslation | undefined = currentDefTranslationMap.get(activeLangCode);
+                  console.log(`[DEBUG] ${activeLangCode} translation for defId: ${upsertedDefId}. Found existing: ${!!currentDefTranslation}`);
+                  
                   if (currentDefTranslation && currentDefTranslation.id) {
-                      // Çeviriyi Güncelle
+                      console.log(`[DEBUG] Updating ONLY ${activeLangCode} translation, ID: ${currentDefTranslation.id}`);
+                      
+                      // Sadece bu dil için çeviriyi güncelle - diğer diller değişmez
                       // @ts-ignore
                       await tx[translationModelName].update({
-                          where: { id: currentDefTranslation.id }, // id şimdi tanınmalı
+                          where: { id: currentDefTranslation.id },
                           data: translationPayload,
                       });
                   } else {
-                      // Çeviriyi Oluştur
+                      console.log(`[DEBUG] Creating NEW ${activeLangCode} translation for defId: ${upsertedDefId}`);
+                      
+                      // Sadece bu dil için yeni çeviri oluştur
                       // @ts-ignore
                       await tx[translationModelName].create({
                           data: translationPayload,
                       });
                   }
+              } else {
+                   console.warn(`[WARN] No translation data found for lang ${activeLangCode} on defId: ${upsertedDefId}`);
               }
+              
+              // UYARI: DİĞER DİLLER İÇİN KESİNLİKLE HİÇBİR İŞLEM YAPILMAYACAK
           }
       };
 
@@ -391,6 +428,58 @@ export async function PATCH(req: Request, context: Context) {
         })
       });
     }); // Transaction sonu
+
+    // DEBUG: Güncelleme sonrası veriyi tekrar çek ve tüm diller için logla
+    // Bu, hangi değerlerin değiştiğini ve hangilerinin korunduğunu görmemizi sağlar
+    const finalData = await prisma.hizmet.findUnique({
+        where: { id },
+        include: {
+            overviewTabDefinitions: { include: { translations: true } },
+            whyItemDefinitions: { include: { translations: true } },
+            expertItemDefinitions: { include: { translations: true } },
+            // Diğer definition yapıları için de aynısını yapabiliriz
+        }
+    });
+    
+    // Sonuç kontrolü ve loglama - bu kısımları try/catch içine alalım
+    try {
+        // Aktif dil (güncellenen) ve İngilizce dil (korunması gereken) için karşılaştırmalı loglar 
+        console.log(`\n[DEBUG RESULTS] *** Active Language (${data.activeLang}) and English translations AFTER update ***`);
+        
+        // Why Items bölümü için her iki dil kontrolü (null kontrolü yaparak)
+        if (finalData?.whyItemDefinitions) {
+            console.log("[DEBUG RESULTS] Why Items Active Language Translation:", 
+                JSON.stringify(finalData.whyItemDefinitions.map(def => 
+                    def.translations.find(t => t.languageCode === data.activeLang)) || [], null, 2));
+            console.log("[DEBUG RESULTS] Why Items English Translation:", 
+                JSON.stringify(finalData.whyItemDefinitions.map(def => 
+                    def.translations.find(t => t.languageCode === 'en')) || [], null, 2));
+        }
+        
+        // Overview Tabs bölümü için her iki dil kontrolü (null kontrolü yaparak)
+        if (finalData?.overviewTabDefinitions) {
+            console.log("[DEBUG RESULTS] Overview Tabs Active Language Translation:", 
+                JSON.stringify(finalData.overviewTabDefinitions.map(def => 
+                    def.translations.find(t => t.languageCode === data.activeLang)) || [], null, 2));
+            console.log("[DEBUG RESULTS] Overview Tabs English Translation:", 
+                JSON.stringify(finalData.overviewTabDefinitions.map(def => 
+                    def.translations.find(t => t.languageCode === 'en')) || [], null, 2));
+        }
+        
+        // Uzmanlar bölümü için her iki dil kontrolü (null kontrolü yaparak)
+        if (finalData?.expertItemDefinitions) {
+            console.log("[DEBUG RESULTS] Expert Items Active Language Translation:", 
+                JSON.stringify(finalData.expertItemDefinitions.map(def => 
+                    def.translations.find(t => t.languageCode === data.activeLang)) || [], null, 2));
+            console.log("[DEBUG RESULTS] Expert Items English Translation:", 
+                JSON.stringify(finalData.expertItemDefinitions.map(def => 
+                    def.translations.find(t => t.languageCode === 'en')) || [], null, 2));
+        }
+    } catch (logError) {
+        console.error("Error in logging results:", logError);
+        // Loglama hatası oluşsa bile API yanıtını etkilemesin
+    }
+
 
     return NextResponse.json(updatedHizmet);
 
