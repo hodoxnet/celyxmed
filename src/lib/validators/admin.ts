@@ -71,7 +71,7 @@ const HizmetWhyItemSchema = z.object({
 
 const HizmetGalleryImageSchema = z.object({
   id: z.string().optional(),
-  src: z.string().url("Geçerli bir URL girin"),
+  src: z.string().min(1, "Resim gereklidir"), // URL validasyonu kaldırıldı, dosya yolu/URL'si için string kontrolü
   alt: z.string().min(1, "Alt metin boş olamaz"),
   order: z.number().optional().default(0),
 });

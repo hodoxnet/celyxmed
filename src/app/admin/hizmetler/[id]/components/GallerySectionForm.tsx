@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-// import ImageUpload from '@/components/admin/image-upload'; // TODO: ImageUpload entegrasyonu
+import ImageUpload from '@/components/admin/image-upload';
 
 interface GallerySectionFormProps {
   form: UseFormReturn<HizmetDetayFormValues>;
@@ -69,10 +69,17 @@ export function GallerySectionForm({ form, loading }: GallerySectionFormProps) {
                 name={`galleryImages.${index}.src`}
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                     <FormLabel className="text-xs">Resim URL *</FormLabel>
+                    <FormLabel className="text-xs">Resim *</FormLabel>
                     <FormControl>
-                      {/* TODO: Image Upload bileşeni entegre edilebilir */}
-                      <Input placeholder="https://..." {...field} disabled={loading} />
+                      <ImageUpload
+                        initialImage={field.value}
+                        showPreview={true} // Galeri için önizleme faydalı olabilir
+                        buttonText="Resim Yükle/Değiştir"
+                        onImageUploaded={(imageUrl) => {
+                          field.onChange(imageUrl);
+                        }}
+                        className="w-full" // veya daha uygun bir stil
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
