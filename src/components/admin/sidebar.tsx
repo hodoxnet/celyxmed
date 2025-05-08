@@ -15,17 +15,33 @@ import {
   PlusCircle,
   GalleryHorizontal,
   Languages, // Languages ikonunu import et
-  ClipboardList // Hizmetler için ikon
+  ClipboardList, // Hizmetler için ikon
+  Home, // Home ikonu import edildi
+  LayoutGrid // LayoutGrid ikonu import edildi
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"; // Accordion import edildi
 
-type NavItem = {
+// Alt menü öğesi tipi
+type SubNavItem = {
   title: string;
   href: string;
+};
+
+// Ana menü öğesi tipi (alt menüleri destekler)
+type NavItem = {
+  title: string;
   icon: React.ReactNode;
+  href?: string; // Ana menü öğesinin linki olmayabilir
+  subItems?: SubNavItem[]; // Alt menü öğeleri
 };
 
 const navItems: NavItem[] = [
@@ -56,6 +72,14 @@ const navItems: NavItem[] = [
     icon: <ClipboardList className="h-5 w-5" />, // Hizmetler için ikon
   },
   {
+    title: "Anasayfa Modülleri", // Yeni ana menü
+    icon: <LayoutGrid className="h-5 w-5" />, 
+    subItems: [ // Alt menüler
+      { title: "Hero Alanı Yönetimi", href: "/admin/hero" },
+      // Gelecekteki anasayfa modülleri buraya eklenebilir
+    ],
+  },
+  {
     title: "Genel Ayarlar",
     href: "/admin/ayarlar",
     icon: <Settings className="h-5 w-5" />,
@@ -72,39 +96,82 @@ export function Sidebar() {
     router.push("/admin/login"); // Removed /tr
   };
 
-  const NavItem = ({ item }: { item: NavItem }) => {
-    const isActive = pathname === item.href;
+  // Eski NavItem fonksiyonu kaldırıldı.
+
+  const SidebarContent = () => {
+    // Aktif alt menüyü belirlemek için state (opsiyonel, istenirse eklenebilir)
+    // const [openAccordion, setOpenAccordion] = useState<string | undefined>(
+    //   navItems.find(item => item.subItems?.some(sub => pathname.startsWith(sub.href)))?.title
+    // );
 
     return (
-      <Link
-        href={item.href}
-        className={cn(
-          "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
-          isActive
-            ? "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50"
-            : ""
-        )}
-      >
-        {item.icon}
-        {item.title}
-      </Link>
-    );
-  };
+      <div className="flex h-full w-full flex-col"> {/* gap-2 kaldırıldı */}
+        <div className="px-3 py-2">
+          <div className="mb-2 flex h-12 items-center justify-between">
+            <h2 className="text-lg font-semibold">CelyxMed Admin</h2>
+          </div>
+        </div>
 
-  const SidebarContent = () => (
-    <div className="flex h-full w-full flex-col gap-2">
-      <div className="px-3 py-2">
-        <div className="mb-2 flex h-12 items-center justify-between">
-          <h2 className="text-lg font-semibold">CelyxMed Admin</h2>
-        </div>
+        <nav className="flex-1 px-3 py-2 space-y-1"> {/* flex-col gap-1 yerine space-y-1 */}
+          <Accordion 
+            type="single" 
+            collapsible 
+            className="w-full"
+            // value={openAccordion} // Aktif alt menü state'i
+            // onValueChange={setOpenAccordion} // Aktif alt menü state'i
+          >
+            {navItems.map((item, index) => (
+              item.subItems ? (
+                // Alt menüsü olan öğe (AccordionItem)
+                <AccordionItem value={item.title} key={item.title} className="border-none">
+                  <AccordionTrigger className={cn(
+                    "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 hover:no-underline",
+                    item.subItems.some(sub => pathname.startsWith(sub.href)) ? "text-gray-900 dark:text-gray-50" : "" // Aktifse ana başlığı vurgula
+                  )}>
+                     <div className="flex items-center gap-3">
+                       {item.icon}
+                       {item.title}
+                     </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pl-9 pr-3 pb-1 pt-0">
+                    <div className="flex flex-col space-y-1">
+                      {item.subItems.map((subItem) => {
+                        const isSubActive = pathname === subItem.href;
+                        return (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            className={cn(
+                              "block rounded-md px-3 py-1.5 text-sm text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+                              isSubActive ? "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50" : ""
+                            )}
+                          >
+                            {subItem.title}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ) : item.href ? (
+                // Doğrudan link olan öğe
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+                    pathname === item.href ? "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50" : ""
+                  )}
+                >
+                  {item.icon}
+                  {item.title}
+                </Link>
+              ) : null // href veya subItems yoksa hiçbir şey render etme
+            ))}
+          </Accordion>
+        </nav>
         
-        <div className="flex w-full flex-col gap-1">
-          {navItems.map((item, index) => (
-            <NavItem key={index} item={item} />
-          ))}
-        </div>
-        
-        <div className="mt-auto">
+        <div className="mt-auto px-3 pb-4 pt-2"> {/* Padding ayarlandı */}
           <Button 
             variant="ghost" 
             className="w-full justify-start text-red-500 hover:text-red-600"
@@ -115,8 +182,8 @@ export function Sidebar() {
           </Button>
         </div>
       </div>
-    </div>
-  );
+    ); 
+  }; // Eksik kapanış süslü parantezi eklendi
 
   return (
     <>
