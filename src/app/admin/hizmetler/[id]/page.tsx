@@ -87,16 +87,17 @@ async function getHizmetData(id: string): Promise<HizmetWithTranslationsAndRelat
 }
 
 export default async function HizmetPage({ params }: HizmetPageProps) {
-  const hizmetData = await getHizmetData(params.id);
+  const { id } = params; // params'tan id'yi destruct et
+  const hizmetData = await getHizmetData(id);
 
-  if (params.id !== 'yeni' && !hizmetData) {
+  if (id !== 'yeni' && !hizmetData) {
     notFound();
   }
 
   const diller = await prisma.language.findMany({ where: { isActive: true }, orderBy: { name: 'asc' } });
 
-  const pageTitle = params.id === 'yeni' ? "Yeni Hizmet Ekle" : "Hizmeti Düzenle";
-  const pageDescription = params.id === 'yeni'
+  const pageTitle = id === 'yeni' ? "Yeni Hizmet Ekle" : "Hizmeti Düzenle";
+  const pageDescription = id === 'yeni'
     ? "Yeni bir hizmet ve çevirilerini oluşturun."
     : "Mevcut hizmeti ve çevirilerini düzenleyin.";
 

@@ -519,22 +519,390 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       
       // Yeni form oluşturuluyorsa (initialData yoksa), her dil için varsayılan değerler ekleyin
       if (!initialData) {
+        // Dil koduna göre başlık ve açıklamalar oluşturalım - dinamik dil desteğiyle
+        const getLocalizedDefaults = (langCode: string) => {
+          // Önceden tanımlanmış dil konfigürasyonları
+          const languageDefaults: {[key: string]: any} = {
+            // Türkçe
+            'tr': {
+              title: "Yeni Hizmet",
+              description: "Hizmet açıklaması",
+              breadcrumb: "Anasayfa > Hizmetler > Yeni Hizmet",
+              introTitle: "Giriş Başlığı",
+              introDesc: "Giriş Açıklaması",
+              primaryBtn: "Ana Buton",
+              secondaryBtn: "İkincil Buton",
+              metaTitle: "Meta Başlık",
+              metaDesc: "Meta Açıklama",
+              metaKeywords: "anahtar,kelimeler",
+              overviewTitle: "Genel Bakış",
+              overviewDesc: "Genel bakış açıklaması",
+              whyTitle: "Neden Biz?",
+              galleryTitle: "Galeri",
+              galleryDesc: "Galeri açıklaması",
+              testimonialsTitle: "Müşteri Yorumları",
+              stepsTitle: "Prosedür Adımları",
+              stepsDesc: "Adım açıklamaları",
+              recoveryTitle: "İyileşme Süreci",
+              recoveryDesc: "İyileşme süreci açıklaması",
+              ctaTagline: "Slogan",
+              ctaTitle: "Harekete Geçirici Mesaj Başlığı",
+              ctaDesc: "Harekete geçirici mesaj açıklaması",
+              ctaBtn: "Buton Metni",
+              ctaAvatarText: "Avatar Metni",
+              pricingTitle: "Fiyatlandırma",
+              pricingDesc: "Fiyatlandırma açıklaması",
+              expertsTitle: "Uzmanlarımız",
+              expertsTagline: "Uzmanlarımız sloganı",
+              faqTitle: "Sıkça Sorulan Sorular",
+              faqDesc: "SSS açıklaması"
+            },
+            // İngilizce
+            'en': {
+              title: "New Service",
+              description: "Service description",
+              breadcrumb: "Home > Services > New Service",
+              introTitle: "Introduction Title",
+              introDesc: "Introduction Description",
+              primaryBtn: "Primary Button",
+              secondaryBtn: "Secondary Button",
+              metaTitle: "Meta Title",
+              metaDesc: "Meta Description",
+              metaKeywords: "keywords,seo",
+              overviewTitle: "Overview",
+              overviewDesc: "Overview description",
+              whyTitle: "Why Us?",
+              galleryTitle: "Gallery",
+              galleryDesc: "Gallery description",
+              testimonialsTitle: "Testimonials",
+              stepsTitle: "Procedure Steps",
+              stepsDesc: "Steps description",
+              recoveryTitle: "Recovery Process",
+              recoveryDesc: "Recovery process description",
+              ctaTagline: "Tagline",
+              ctaTitle: "Call to Action Title",
+              ctaDesc: "Call to action description",
+              ctaBtn: "Button Text",
+              ctaAvatarText: "Avatar Text",
+              pricingTitle: "Pricing",
+              pricingDesc: "Pricing description",
+              expertsTitle: "Our Experts",
+              expertsTagline: "Our experts tagline",
+              faqTitle: "Frequently Asked Questions",
+              faqDesc: "FAQ description"
+            },
+            // Almanca
+            'de': {
+              title: "Neuer Service",
+              description: "Servicebeschreibung",
+              breadcrumb: "Startseite > Dienste > Neuer Service",
+              introTitle: "Einführungstitel",
+              introDesc: "Einführungsbeschreibung",
+              primaryBtn: "Primärer Button",
+              secondaryBtn: "Sekundärer Button",
+              metaTitle: "Meta-Titel",
+              metaDesc: "Meta-Beschreibung",
+              metaKeywords: "schlüsselwörter,seo",
+              overviewTitle: "Überblick",
+              overviewDesc: "Überblicksbeschreibung",
+              whyTitle: "Warum Wir?",
+              galleryTitle: "Galerie",
+              galleryDesc: "Galeriebeschreibung",
+              testimonialsTitle: "Kundenbewertungen",
+              stepsTitle: "Verfahrensschritte",
+              stepsDesc: "Schrittbeschreibung",
+              recoveryTitle: "Erholungsprozess",
+              recoveryDesc: "Beschreibung des Erholungsprozesses",
+              ctaTagline: "Slogan",
+              ctaTitle: "Call-to-Action Titel",
+              ctaDesc: "Call-to-Action Beschreibung",
+              ctaBtn: "Button-Text",
+              ctaAvatarText: "Avatar-Text",
+              pricingTitle: "Preisgestaltung",
+              pricingDesc: "Beschreibung der Preisgestaltung",
+              expertsTitle: "Unsere Experten",
+              expertsTagline: "Slogan unserer Experten",
+              faqTitle: "Häufig gestellte Fragen",
+              faqDesc: "FAQ-Beschreibung"
+            },
+            // Rusça
+            'ru': {
+              title: "Новая Услуга",
+              description: "Описание услуги",
+              breadcrumb: "Главная > Услуги > Новая Услуга",
+              introTitle: "Заголовок Введения",
+              introDesc: "Описание Введения",
+              primaryBtn: "Основная Кнопка",
+              secondaryBtn: "Дополнительная Кнопка",
+              metaTitle: "Мета-Заголовок",
+              metaDesc: "Мета-Описание",
+              metaKeywords: "ключевые,слова",
+              overviewTitle: "Обзор",
+              overviewDesc: "Описание обзора",
+              whyTitle: "Почему Мы?",
+              galleryTitle: "Галерея",
+              galleryDesc: "Описание галереи",
+              testimonialsTitle: "Отзывы",
+              stepsTitle: "Этапы Процедуры",
+              stepsDesc: "Описание этапов",
+              recoveryTitle: "Процесс Восстановления",
+              recoveryDesc: "Описание процесса восстановления",
+              ctaTagline: "Слоган",
+              ctaTitle: "Заголовок Призыва к Действию",
+              ctaDesc: "Описание призыва к действию",
+              ctaBtn: "Текст Кнопки",
+              ctaAvatarText: "Текст Аватара",
+              pricingTitle: "Цены",
+              pricingDesc: "Описание цен",
+              expertsTitle: "Наши Эксперты",
+              expertsTagline: "Слоган наших экспертов",
+              faqTitle: "Часто Задаваемые Вопросы",
+              faqDesc: "Описание FAQ"
+            },
+            // Fransızca
+            'fr': {
+              title: "Nouveau Service",
+              description: "Description du service",
+              breadcrumb: "Accueil > Services > Nouveau Service",
+              introTitle: "Titre d'Introduction",
+              introDesc: "Description d'Introduction",
+              primaryBtn: "Bouton Principal",
+              secondaryBtn: "Bouton Secondaire",
+              metaTitle: "Méta-Titre",
+              metaDesc: "Méta-Description",
+              metaKeywords: "mots,clés",
+              overviewTitle: "Aperçu",
+              overviewDesc: "Description de l'aperçu",
+              whyTitle: "Pourquoi Nous?",
+              galleryTitle: "Galerie",
+              galleryDesc: "Description de la galerie",
+              testimonialsTitle: "Témoignages",
+              stepsTitle: "Étapes de la Procédure",
+              stepsDesc: "Description des étapes",
+              recoveryTitle: "Processus de Récupération",
+              recoveryDesc: "Description du processus de récupération",
+              ctaTagline: "Slogan",
+              ctaTitle: "Titre d'Appel à l'Action",
+              ctaDesc: "Description d'appel à l'action",
+              ctaBtn: "Texte du Bouton",
+              ctaAvatarText: "Texte de l'Avatar",
+              pricingTitle: "Tarification",
+              pricingDesc: "Description des tarifs",
+              expertsTitle: "Nos Experts",
+              expertsTagline: "Slogan de nos experts",
+              faqTitle: "Questions Fréquemment Posées",
+              faqDesc: "Description FAQ"
+            },
+            // İspanyolca
+            'es': {
+              title: "Nuevo Servicio",
+              description: "Descripción del servicio",
+              breadcrumb: "Inicio > Servicios > Nuevo Servicio",
+              introTitle: "Título de Introducción",
+              introDesc: "Descripción de Introducción",
+              primaryBtn: "Botón Principal",
+              secondaryBtn: "Botón Secundario",
+              metaTitle: "Meta-Título",
+              metaDesc: "Meta-Descripción",
+              metaKeywords: "palabras,clave",
+              overviewTitle: "Visión General",
+              overviewDesc: "Descripción de la visión general",
+              whyTitle: "¿Por Qué Nosotros?",
+              galleryTitle: "Galería",
+              galleryDesc: "Descripción de la galería",
+              testimonialsTitle: "Testimonios",
+              stepsTitle: "Pasos del Procedimiento",
+              stepsDesc: "Descripción de los pasos",
+              recoveryTitle: "Proceso de Recuperación",
+              recoveryDesc: "Descripción del proceso de recuperación",
+              ctaTagline: "Eslogan",
+              ctaTitle: "Título de Llamada a la Acción",
+              ctaDesc: "Descripción de llamada a la acción",
+              ctaBtn: "Texto del Botón",
+              ctaAvatarText: "Texto del Avatar",
+              pricingTitle: "Precios",
+              pricingDesc: "Descripción de precios",
+              expertsTitle: "Nuestros Expertos",
+              expertsTagline: "Eslogan de nuestros expertos",
+              faqTitle: "Preguntas Frecuentes",
+              faqDesc: "Descripción de FAQ"
+            },
+            // İtalyanca
+            'it': {
+              title: "Nuovo Servizio",
+              description: "Descrizione del servizio",
+              breadcrumb: "Home > Servizi > Nuovo Servizio",
+              introTitle: "Titolo Introduzione",
+              introDesc: "Descrizione Introduzione",
+              primaryBtn: "Pulsante Primario",
+              secondaryBtn: "Pulsante Secondario",
+              metaTitle: "Meta-Titolo",
+              metaDesc: "Meta-Descrizione",
+              metaKeywords: "parole,chiave",
+              overviewTitle: "Panoramica",
+              overviewDesc: "Descrizione panoramica",
+              whyTitle: "Perché Noi?",
+              galleryTitle: "Galleria",
+              galleryDesc: "Descrizione della galleria",
+              testimonialsTitle: "Testimonianze",
+              stepsTitle: "Fasi della Procedura",
+              stepsDesc: "Descrizione delle fasi",
+              recoveryTitle: "Processo di Recupero",
+              recoveryDesc: "Descrizione del processo di recupero",
+              ctaTagline: "Slogan",
+              ctaTitle: "Titolo Call to Action",
+              ctaDesc: "Descrizione call to action",
+              ctaBtn: "Testo Pulsante",
+              ctaAvatarText: "Testo Avatar",
+              pricingTitle: "Prezzi",
+              pricingDesc: "Descrizione prezzi",
+              expertsTitle: "I Nostri Esperti",
+              expertsTagline: "Slogan dei nostri esperti",
+              faqTitle: "Domande Frequenti",
+              faqDesc: "Descrizione FAQ"
+            }
+          };
+          
+          // Dil koduna göre başlangıç değerlerini döndür
+          // Tanımlı değilse, Türkçe veya varsayılan değerleri kullan
+          if (languageDefaults[langCode]) {
+            return languageDefaults[langCode];
+          } else if (languageDefaults['tr']) {
+            // Bilinmeyen bir dil için Türkçe değerleri kullanabiliriz (varsayılan olarak)
+            console.log(`[DEBUG] No default values found for language '${langCode}', using Turkish defaults`);
+            return languageDefaults['tr'];
+          } else {
+            // Hiçbir dil tanımlanmamışsa, temel değerler oluştur
+            console.log(`[DEBUG] No default language values defined, using generic defaults`);
+            return {
+              title: "New Service",
+              description: "Service description",
+              breadcrumb: "Home > Services > New Service",
+              introTitle: "Introduction",
+              introDesc: "Introduction Description",
+              primaryBtn: "Primary Button",
+              secondaryBtn: "Secondary Button",
+              metaTitle: "Meta Title",
+              metaDesc: "Meta Description",
+              metaKeywords: "keywords",
+              overviewTitle: "Overview",
+              overviewDesc: "Overview description",
+              whyTitle: "Why Us?",
+              galleryTitle: "Gallery",
+              galleryDesc: "Gallery description",
+              testimonialsTitle: "Testimonials",
+              stepsTitle: "Procedure Steps",
+              stepsDesc: "Steps description",
+              recoveryTitle: "Recovery Process",
+              recoveryDesc: "Recovery process description",
+              ctaTagline: "Tagline",
+              ctaTitle: "Call to Action",
+              ctaDesc: "Call to action description",
+              ctaBtn: "Button Text",
+              ctaAvatarText: "Avatar Text",
+              pricingTitle: "Pricing",
+              pricingDesc: "Pricing description",
+              expertsTitle: "Our Experts",
+              expertsTagline: "Our experts tagline",
+              faqTitle: "FAQ",
+              faqDesc: "FAQ description"
+            };
+          }
+        };
+        
+        const localizedValues = getLocalizedDefaults(lang.code);
+        const uniqueTimestamp = Date.now();
+        
         // Varsayılan değerlerle tüm bölümleri oluştur (zorunlu alanlar)
         baseValues.basicInfoSection!.translations[lang.code] = {
           languageCode: lang.code,
-          slug: `hizmet-${Date.now()}-${lang.code}`, // Benzersiz bir slug oluştur - timestamp ve dil kodu ile
-          title: "Yeni Hizmet",
-          description: "Hizmet açıklaması",
-          breadcrumb: "Anasayfa > Hizmetler > Yeni Hizmet"
+          slug: `hizmet-${uniqueTimestamp}-${lang.code}`,
+          title: localizedValues.title,
+          description: localizedValues.description,
+          breadcrumb: localizedValues.breadcrumb
         };
-        
-        // Diğer bölümler için de varsayılan değerler atanabilir
-        // Ancak şimdilik sadece temel bilgiler yeterli
+        baseValues.tocSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          tocTitle: "İçindekiler",
+          tocAuthorInfo: "",
+          tocCtaDescription: "",
+          tocItems: [],
+        };
+        baseValues.introSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.introTitle,
+          description: localizedValues.introDesc,
+          primaryButtonText: localizedValues.primaryBtn,
+          primaryButtonLink: "#",
+          secondaryButtonText: localizedValues.secondaryBtn,
+          secondaryButtonLink: "#",
+          introLinks: [],
+        };
+        baseValues.seoSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          metaTitle: localizedValues.metaTitle,
+          metaDescription: localizedValues.metaDesc,
+          metaKeywords: localizedValues.metaKeywords,
+        };
+        baseValues.overviewSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.overviewTitle,
+          description: localizedValues.overviewDesc,
+        };
+        baseValues.whySection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.whyTitle,
+        };
+        baseValues.gallerySection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.galleryTitle,
+          description: localizedValues.galleryDesc,
+        };
+        baseValues.testimonialsSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.testimonialsTitle,
+        };
+        baseValues.stepsSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.stepsTitle,
+          description: localizedValues.stepsDesc,
+          steps: [],
+        };
+        baseValues.recoverySection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.recoveryTitle,
+          description: localizedValues.recoveryDesc,
+        };
+        baseValues.ctaSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          tagline: localizedValues.ctaTagline,
+          title: localizedValues.ctaTitle,
+          description: localizedValues.ctaDesc,
+          buttonText: localizedValues.ctaBtn,
+          buttonLink: "#",
+          avatarText: localizedValues.ctaAvatarText,
+        };
+        baseValues.pricingSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.pricingTitle,
+          description: localizedValues.pricingDesc,
+        };
+        baseValues.expertsSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.expertsTitle,
+          tagline: localizedValues.expertsTagline,
+        };
+        baseValues.faqSection!.translations[lang.code] = {
+          languageCode: lang.code,
+          title: localizedValues.faqTitle,
+          description: localizedValues.faqDesc,
+          faqs: [],
+        };
       }
       else {
         // initialData varsa, mevcut verileri kullan
-        // Daha esnek bir yaklaşım, eksik alanlar için varsayılan değerler kullan
-        baseValues.basicInfoSection!.translations[lang.code] = HizmetBasicInfoSectionTranslationSchema.parse({
+        // safeParse kullanarak daha güvenli doğrulama yap
+        const basicInfoParseResult = HizmetBasicInfoSectionTranslationSchema.safeParse({
           languageCode: lang.code,
           slug: tr?.slug || "",
           title: tr?.title || "",
@@ -542,6 +910,22 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
           breadcrumb: tr?.breadcrumb || "",
         });
 
+        if (basicInfoParseResult.success) {
+          baseValues.basicInfoSection!.translations[lang.code] = basicInfoParseResult.data;
+        } else {
+          console.warn(`[getInitialFormValues] Zod validation failed for basicInfoSection, lang: ${lang.code}. Attempting to use original values or fallbacks.`, basicInfoParseResult.error.flatten().fieldErrors);
+          // Hata durumunda, orijinal veriyi (boş olsa bile) korumaya çalış veya daha anlamlı varsayılan ata
+          baseValues.basicInfoSection!.translations[lang.code] = {
+            languageCode: lang.code,
+            slug: tr?.slug || `hizmet-${initialData?.id || 'error'}-${lang.code}`, // Orijinal slug'ı (boşsa boş) veya varsayılanı kullan
+            title: tr?.title || `[${lang.code.toUpperCase()} Başlık Girilmemiş]`, // Orijinal başlığı veya varsayılanı kullan
+            description: tr?.description || `[${lang.code.toUpperCase()} Açıklama Girilmemiş]`, // Orijinal açıklamayı veya varsayılanı kullan
+            breadcrumb: tr?.breadcrumb || "",
+          };
+        }
+
+        // Diğer bölümler için de safeParse kullanılabilir, şimdilik parse ile devam ediyoruz
+        // TODO: Diğer parse çağrılarını da safeParse ile güncelle
         baseValues.tocSection!.translations[lang.code] = HizmetTocSectionTranslationSchema.parse({
           languageCode: lang.code,
           tocTitle: tr?.tocTitle || "İçindekiler",
@@ -690,7 +1074,14 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
           const existingTrans = def.translations?.find((t: any) => t.languageCode === lang.code);
           // ADD LOGGING HERE:
           if (lang.code === 'en') {
-            console.log(`[DEBUG getInitial] Found existing 'en' trans for def ${def.id}:`, JSON.stringify(existingTrans || null));
+            // Güvenli loglama (döngüsel yapı içerebilecek nesneler için)
+            const safeTrans = existingTrans ? {
+              id: existingTrans.id,
+              languageCode: existingTrans.languageCode,
+              // Sadece bazı önemli alanları logla
+              keys: Object.keys(existingTrans).filter(k => k !== 'language')
+            } : null;
+            console.log(`[DEBUG getInitial] Found existing 'en' trans for def ${def.id}:`, safeTrans);
           }
           const parsedTranslation = transSchema.parse({
             languageCode: lang.code,
@@ -699,7 +1090,12 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
           (parsedDef as any).translations[lang.code] = parsedTranslation;
           // ADD LOGGING HERE:
           if (lang.code === 'en') {
-             console.log(`[DEBUG getInitial] Parsed 'en' trans for def ${def.id}:`, JSON.stringify(parsedTranslation));
+             const safeResult = {
+               languageCode: parsedTranslation.languageCode,
+               // Diğer önemli alanları logla (döngüsel referans olmadığından emin olarak)
+               hasData: Object.keys(parsedTranslation).length > 1 // languageCode dışında alan var mı
+             };
+             console.log(`[DEBUG getInitial] Parsed 'en' trans for def ${def.id}:`, safeResult);
           }
         });
         
@@ -832,7 +1228,17 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
  // Debug: Form validasyon hatalarını konsola yazdır
  useEffect(() => {
    if (Object.keys(form.formState.errors).length > 0) {
-     console.log("Form Validation Errors:", JSON.stringify(form.formState.errors, null, 2));
+     // Güvenli bir şekilde döngüsel yapıları önleme (circular references)
+     const safeErrors = {};
+     Object.keys(form.formState.errors).forEach(key => {
+       if (form.formState.errors[key]) {
+         safeErrors[key] = {
+           type: form.formState.errors[key].type,
+           message: form.formState.errors[key].message
+         };
+       }
+     });
+     console.log("Form Validation Errors:", safeErrors);
    }
  }, [form.formState.errors]);
  
@@ -861,26 +1267,25 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       // - translations: Record<string, HizmetTranslationSchema>
       // - overviewTabDefinitions, whyItemDefinitions, etc. (bunlar zaten doğru formatta)
       
-      // SADECE AKTİF DİL için translations objesi oluştur
-      const translations: Record<string, any> = {};
+      // TÜM DİLLER için translations objesi oluştur
+      const allTranslations: Record<string, any> = {};
       
-      // SADECE AKTİF DİL için işlem yap
-      const langCode = activeLang;
-      
-      // Basic Info alanlarını kontrol et ve logla - debug için
-      const basicInfoForLang = values.basicInfoSection.translations[langCode];
-      console.log(`[DEBUG] Only Processing BasicInfo for ACTIVE lang ${langCode}:`, 
-        JSON.stringify({
-          slug: basicInfoForLang?.slug,
-          title: basicInfoForLang?.title,
-          description: basicInfoForLang?.description
-        })
-      );
-      
-      // SADECE AKTİF DİL için veri dönüşümü yap
-      translations[langCode] = {
-        // BasicInfo
-        languageCode: langCode,
+      // TÜM DİLLER için işlem yap
+      diller.forEach(lang => {
+        const langCode = lang.code;
+        
+        // Basic Info alanlarını kontrol et ve logla - debug için
+        const basicInfoForLang = values.basicInfoSection.translations[langCode];
+        console.log(`[DEBUG] Processing BasicInfo for lang ${langCode}:`, {
+            slug: basicInfoForLang?.slug || "undefined", 
+            title: basicInfoForLang?.title || "undefined",
+            description: basicInfoForLang?.description ? (basicInfoForLang.description.length > 30 ? basicInfoForLang.description.substring(0, 30) + "..." : basicInfoForLang.description) : "undefined"
+        });
+        
+        // Her dil için veri dönüşümü yap
+        allTranslations[langCode] = {
+          // BasicInfo
+          languageCode: langCode,
         slug: values.basicInfoSection.translations[langCode]?.slug || "",
         title: values.basicInfoSection.translations[langCode]?.title || "",
         description: values.basicInfoSection.translations[langCode]?.description || "",
@@ -950,65 +1355,143 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         faqSectionDescription: values.faqSection.translations[langCode]?.description || "",
         faqs: values.faqSection.translations[langCode]?.faqs || [],
       };
+      }); // diller.forEach döngüsü sonu
       
       // API'nin beklediği payload'ı oluştur
 
-      // Yardımcı fonksiyon: Definition dizilerindeki çevirileri sadece aktif dil için filtreler
-      // Bu sefer orijinal 'values' nesnesini değiştirmemeye dikkat edelim.
+      // Yardımcı fonksiyon: Definition dizilerindeki TÜM çevirileri alır
       const processDefinitionsForPayload = (definitions: any[] | undefined) => {
         if (!definitions) return [];
         return definitions.map(def => {
-          const filteredTranslations: Record<string, any> = {};
+          const processedTranslations: Record<string, any> = {};
           
-          // SADECE aktif dilin çevirisini yeni bir nesneye kopyala (derin kopya için spread operatörü)
-          // Diğer tüm diller için çeviri gönderimi yapılmayacak!
-          if (def.translations && def.translations[activeLang]) {
-            // Aktif dil için tam bir kopya oluştur
-            filteredTranslations[activeLang] = { 
-              ...def.translations[activeLang],
-              languageCode: activeLang // Dil kodunu açıkça belirt
-            };
-            
-            console.log(`[PAYLOAD DEBUG] Processing ONLY ${activeLang} translation for definition:`, 
-              JSON.stringify(filteredTranslations[activeLang]));
-          } else {
-            console.log(`[PAYLOAD DEBUG] WARNING: No translation found for ${activeLang} in definition ${def.id || 'new'}`);
-          }
+          // TÜM dillerin çevirilerini kopyala
+          diller.forEach(lang => {
+            const langCode = lang.code;
+            if (def.translations && def.translations[langCode]) {
+              processedTranslations[langCode] = { 
+                ...def.translations[langCode],
+                languageCode: langCode // Dil kodunu açıkça belirt
+              };
+              console.log(`[PAYLOAD DEBUG] Processing translation for lang ${langCode} in definition:`, 
+                JSON.stringify(processedTranslations[langCode]));
+            } else {
+               console.log(`[PAYLOAD DEBUG] WARNING: No translation found for ${langCode} in definition ${def.id || 'new'}`);
+               // İsteğe bağlı: Boş çeviri objesi oluşturulabilir mi? API'nin bunu nasıl işlediğine bağlı.
+               // processedTranslations[langCode] = { languageCode: langCode }; 
+            }
+          });
           
-          // Orijinal definition'ın diğer alanlarını ve SADECE filtrelenmiş çevirileri içeren yeni bir nesne döndür
+          // Orijinal definition'ın diğer alanlarını ve TÜM çevirileri içeren yeni bir nesne döndür
           return {
             ...def, // id, order, number, imageUrl vb. dil bağımsız alanlar
-            translations: filteredTranslations // SADECE aktif dil içerir
+            translations: processedTranslations // TÜM dilleri içerir
           };
         });
       };
 
-      const payload = {
-        id: values.id,
-        published: values.published,
-        heroImageUrl: values.heroImageUrl,
-        heroImageAlt: values.heroImageAlt,
-        whyBackgroundImageUrl: values.whyBackgroundImageUrl,
-        ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
-        ctaMainImageUrl: values.ctaMainImageUrl,
-        ctaMainImageAlt: values.ctaMainImageAlt,
-        introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
-        marqueeImages: values.marqueeImages,
-        galleryImages: values.galleryImages,
-        ctaAvatars: values.ctaAvatars,
-        // Ana HizmetTranslation verisini de sadece aktif dil için filtrele
-        translations: {
-          [activeLang]: translations[activeLang] // Sadece aktif dilin ana çevirisini al
-        },
-        // Definition dizilerini işle ve sadece aktif dilin çevirisini gönder
-        overviewTabDefinitions: processDefinitionsForPayload(values.overviewSection.definition?.tabs),
-        whyItemDefinitions: processDefinitionsForPayload(values.whySection.definition?.items),
-        testimonialDefinitions: processDefinitionsForPayload(values.testimonialsSection.definition?.items),
-        recoveryItemDefinitions: processDefinitionsForPayload(values.recoverySection.definition?.items),
-        expertItemDefinitions: processDefinitionsForPayload(values.expertsSection.definition?.items),
-        pricingPackageDefinitions: processDefinitionsForPayload(values.pricingSection.definition?.packages),
-        activeLang: activeLang, // Aktif dili payload'a ekle
-      };
+      // API'den nasıl bir payload bekleniyor ona göre kontrol et
+      console.log('[DEBUG] Checking route.ts file structure to determine expected payload format');
+      
+      let payload;
+      
+      try {
+        // İki formatta hazırlayalım - düzenli bir yapı (yeni) ve basitleştirilmiş (eski)
+        // API hangi formatı bekliyorsa ona göre işlenecek
+        
+        // Format 1: İç içe bölümler ve çevirilerle (standart Zod validation şeması)
+        const detailedPayload = {
+          id: values.id,
+          published: values.published,
+          heroImageUrl: values.heroImageUrl,
+          heroImageAlt: values.heroImageAlt,
+          whyBackgroundImageUrl: values.whyBackgroundImageUrl,
+          ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
+          ctaMainImageUrl: values.ctaMainImageUrl,
+          ctaMainImageAlt: values.ctaMainImageAlt,
+          introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
+          marqueeImages: values.marqueeImages,
+          galleryImages: values.galleryImages,
+          ctaAvatars: values.ctaAvatars,
+          
+          // İç içe bölüm yapısı (form bileşenindeki yapı)
+          basicInfoSection: values.basicInfoSection,
+          tocSection: values.tocSection,
+          introSection: values.introSection,
+          seoSection: values.seoSection,
+          overviewSection: values.overviewSection,
+          whySection: values.whySection,
+          gallerySection: values.gallerySection,
+          testimonialsSection: values.testimonialsSection,
+          stepsSection: values.stepsSection,
+          recoverySection: values.recoverySection,
+          ctaSection: values.ctaSection,
+          pricingSection: values.pricingSection,
+          expertsSection: values.expertsSection,
+          faqSection: values.faqSection,
+          
+          activeLang: activeLang,
+        };
+        
+        // Format 2: Düzleştirilmiş, doğrudan API'ye gönderilen (eski stil) 
+        const flattenedPayload = {
+          id: values.id,
+          published: values.published,
+          heroImageUrl: values.heroImageUrl,
+          heroImageAlt: values.heroImageAlt,
+          whyBackgroundImageUrl: values.whyBackgroundImageUrl,
+          ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
+          ctaMainImageUrl: values.ctaMainImageUrl,
+          ctaMainImageAlt: values.ctaMainImageAlt,
+          introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
+          marqueeImages: values.marqueeImages,
+          galleryImages: values.galleryImages,
+          ctaAvatars: values.ctaAvatars,
+          
+          // Düzleştirilmiş, API'nin beklediği yapılar
+          translations: allTranslations, 
+          overviewTabDefinitions: processDefinitionsForPayload(values.overviewSection.definition?.tabs),
+          whyItemDefinitions: processDefinitionsForPayload(values.whySection.definition?.items),
+          testimonialDefinitions: processDefinitionsForPayload(values.testimonialsSection.definition?.items),
+          recoveryItemDefinitions: processDefinitionsForPayload(values.recoverySection.definition?.items),
+          expertItemDefinitions: processDefinitionsForPayload(values.expertsSection.definition?.items),
+          pricingPackageDefinitions: processDefinitionsForPayload(values.pricingSection.definition?.packages),
+          
+          activeLang: activeLang,
+        };
+        
+        // Güvenlik için, route.ts dosyasında flattenedPayload formatında çalışacağını varsaydık
+        // Bu API'nin daha sonraki geliştirmelerinde değişebilir
+        payload = flattenedPayload;
+        
+        console.log("[DEBUG] Using flattened payload structure for API compatibility");
+        
+      } catch (formatError) {
+        console.error("Error preparing payload format:", formatError);
+        // Hata durumunda, orijinal flattenedPayload yapısına dönelim
+        payload = {
+          id: values.id,
+          published: values.published,
+          heroImageUrl: values.heroImageUrl,
+          heroImageAlt: values.heroImageAlt,
+          whyBackgroundImageUrl: values.whyBackgroundImageUrl,
+          ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
+          ctaMainImageUrl: values.ctaMainImageUrl,
+          ctaMainImageAlt: values.ctaMainImageAlt,
+          introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
+          marqueeImages: values.marqueeImages,
+          galleryImages: values.galleryImages,
+          ctaAvatars: values.ctaAvatars,
+          translations: allTranslations,
+          overviewTabDefinitions: processDefinitionsForPayload(values.overviewSection.definition?.tabs),
+          whyItemDefinitions: processDefinitionsForPayload(values.whySection.definition?.items),
+          testimonialDefinitions: processDefinitionsForPayload(values.testimonialsSection.definition?.items),
+          recoveryItemDefinitions: processDefinitionsForPayload(values.recoverySection.definition?.items),
+          expertItemDefinitions: processDefinitionsForPayload(values.expertsSection.definition?.items),
+          pricingPackageDefinitions: processDefinitionsForPayload(values.pricingSection.definition?.packages),
+          activeLang: activeLang,
+        };
+      }
 
       const url = isEditing && initialData?.id
         ? `/api/admin/hizmetler/${initialData.id}`

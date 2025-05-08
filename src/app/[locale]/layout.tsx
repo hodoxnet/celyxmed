@@ -88,7 +88,7 @@ async function fetchFooterMenus(locale: string): Promise<FooterMenu[] | null> {
 
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
-  const locale = params.locale;
+  const { locale } = params; // params'tan locale'i destruct et
   const settings = await fetchGeneralSettings(locale);
   
   let faviconUrl = "/favicon.ico"; 
@@ -113,7 +113,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const locale = params.locale;
+  const { locale } = params; // params'tan locale'i destruct et
   console.log(`[Layout] Received locale: ${locale}`);
 
   let messages;

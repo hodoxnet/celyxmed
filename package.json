@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run build:locales && next dev",
+    "build:locales": "npx prisma generate && node ./scripts/generate-locales-config.mjs",
+    "build": "npm run build:locales && next build",
     "start": "next start",
     "lint": "next lint",
     "seed": "tsx prisma/seed.ts"

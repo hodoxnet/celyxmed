@@ -1,9 +1,9 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
+import { locales as importedLocales, defaultLocale as importedDefaultLocale } from '@/generated/locales-config'; // Path alias kullanıldı
 
-// Desteklenen dillerin listesi - MANUEL OLARAK GÜNCELLENMELİ!
-export const locales = ['tr', 'en', 'de']; // 'de' eklendi (manuel)
-export const defaultLocale = 'tr'; // Varsayılan dil
+export const locales = importedLocales;
+export const defaultLocale = importedDefaultLocale;
 
 // Mesajları dinamik olarak import et
 async function getMessagesForLocale(locale: string) {

@@ -13,7 +13,8 @@ const hizmetFaqItemSchema = z.object({ id: z.string().optional(), question: z.st
 const hizmetTranslationSchema = z.object({
   languageCode: z.string(), slug: z.string().min(1), title: z.string().min(1), description: z.string().min(1), breadcrumb: z.string().default(""),
   tocTitle: z.string().default("İçindekiler"), tocAuthorInfo: z.string().default(""), tocCtaDescription: z.string().default(""), tocItems: z.array(hizmetTocItemSchema).default([]),
-  introVideoId: z.string().optional().nullable().default(null), introTitle: z.string().default(""), introDescription: z.string().default(""), introPrimaryButtonText: z.string().default(""), introPrimaryButtonLink: z.string().default(""), introSecondaryButtonText: z.string().default(""), introSecondaryButtonLink: z.string().default(""), introLinks: z.array(hizmetIntroLinkSchema).default([]),
+  // introVideoId alanı Hizmet modeline ait olduğu için buradan kaldırıldı.
+  introTitle: z.string().default(""), introDescription: z.string().default(""), introPrimaryButtonText: z.string().default(""), introPrimaryButtonLink: z.string().default(""), introSecondaryButtonText: z.string().default(""), introSecondaryButtonLink: z.string().default(""), introLinks: z.array(hizmetIntroLinkSchema).default([]),
   overviewSectionTitle: z.string().default("Genel Bakış"), overviewSectionDescription: z.string().default(""), whySectionTitle: z.string().default("Neden Biz?"), gallerySectionTitle: z.string().default("Galeri"), gallerySectionDescription: z.string().default(""), testimonialsSectionTitle: z.string().optional().nullable().default("Yorumlar"),
   stepsSectionTitle: z.string().default("Adımlar"), stepsSectionDescription: z.string().default(""), steps: z.array(hizmetStepSchema).default([]), recoverySectionTitle: z.string().default("İyileşme Süreci"), recoverySectionDescription: z.string().default(""),
   ctaTagline: z.string().optional().nullable().default(null), ctaTitle: z.string().default("Bize Ulaşın"), ctaDescription: z.string().default(""), ctaButtonText: z.string().default("Randevu Al"), ctaButtonLink: z.string().optional().nullable().default(null), ctaAvatarText: z.string().optional().nullable().default(null),
@@ -33,11 +34,65 @@ const hizmetExpertItemTranslationSchema = z.object({ languageCode: z.string(), n
 const hizmetExpertItemDefinitionSchema = z.object({ id: z.string().optional(), imageUrl: z.string().min(1), imageAlt: z.string().min(1), order: z.number().default(0), translations: z.record(z.string(), hizmetExpertItemTranslationSchema) });
 const hizmetPricingPackageTranslationSchema = z.object({ languageCode: z.string(), title: z.string().min(1), price: z.string().min(1), features: z.array(z.string()).default([]) });
 const hizmetPricingPackageDefinitionSchema = z.object({ id: z.string().optional(), isFeatured: z.boolean().default(false), order: z.number().default(0), translations: z.record(z.string(), hizmetPricingPackageTranslationSchema) });
+const HizmetBasicInfoSectionTranslationSchema = z.object({ languageCode: z.string(), slug: z.string().min(1), title: z.string().min(1), description: z.string().min(1), breadcrumb: z.string().optional().default("") });
+const HizmetTocSectionTranslationSchema = z.object({ languageCode: z.string(), tocTitle: z.string().default("İçindekiler"), tocAuthorInfo: z.string().optional().default(""), tocCtaDescription: z.string().optional().default(""), tocItems: z.array(hizmetTocItemSchema).default([]) });
+const HizmetIntroSectionDefinitionSchema = z.object({ videoId: z.string().optional().nullable().default(null) });
+const HizmetIntroSectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default(""), description: z.string().default(""), primaryButtonText: z.string().default(""), primaryButtonLink: z.string().default(""), secondaryButtonText: z.string().default(""), secondaryButtonLink: z.string().default(""), introLinks: z.array(hizmetIntroLinkSchema).default([]) });
+const HizmetSeoSectionTranslationSchema = z.object({ languageCode: z.string(), metaTitle: z.string().optional().nullable().default(null), metaDescription: z.string().optional().nullable().default(null), metaKeywords: z.string().optional().nullable().default(null) });
+const HizmetOverviewSectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("Genel Bakış"), description: z.string().optional().default("") });
+const HizmetOverviewSectionDefinitionSchema = z.object({ tabs: z.array(hizmetOverviewTabDefinitionSchema).default([]) });
+const HizmetWhySectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("Neden Biz?") });
+const HizmetWhySectionDefinitionSchema = z.object({ items: z.array(hizmetWhyItemDefinitionSchema).default([]) });
+const HizmetGallerySectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("Galeri"), description: z.string().optional().default("") });
+const HizmetTestimonialsSectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().optional().nullable().default("Yorumlar") });
+const HizmetTestimonialsSectionDefinitionSchema = z.object({ items: z.array(hizmetTestimonialDefinitionSchema).default([]) });
+const HizmetStepsSectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("Adımlar"), description: z.string().optional().default(""), steps: z.array(hizmetStepSchema).default([]) });
+const HizmetRecoverySectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("İyileşme Süreci"), description: z.string().optional().default("") });
+const HizmetRecoverySectionDefinitionSchema = z.object({ items: z.array(hizmetRecoveryItemDefinitionSchema).default([]) });
+const HizmetCtaSectionTranslationSchema = z.object({ languageCode: z.string(), tagline: z.string().optional().nullable().default(null), title: z.string().default("Bize Ulaşın"), description: z.string().default(""), buttonText: z.string().default("Randevu Al"), buttonLink: z.string().optional().nullable().default(null), avatarText: z.string().optional().nullable().default(null) });
+const HizmetPricingSectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("Fiyatlandırma"), description: z.string().optional().default("") });
+const HizmetPricingSectionDefinitionSchema = z.object({ packages: z.array(hizmetPricingPackageDefinitionSchema).default([]) });
+const HizmetExpertsSectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("Uzmanlarımız"), tagline: z.string().optional().nullable().default(null) });
+const HizmetExpertsSectionDefinitionSchema = z.object({ items: z.array(hizmetExpertItemDefinitionSchema).default([]) });
+const HizmetFaqSectionTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default("Sıkça Sorulan Sorular"), description: z.string().optional().default(""), faqs: z.array(hizmetFaqItemSchema).default([]) });
+
 const hizmetFormSchema = z.object({
-  id: z.string().optional(), published: z.boolean().default(false), heroImageUrl: z.string().optional().nullable().default(null), heroImageAlt: z.string().optional().nullable().default(null), whyBackgroundImageUrl: z.string().optional().nullable().default(null), ctaBackgroundImageUrl: z.string().optional().nullable().default(null), ctaMainImageUrl: z.string().optional().nullable().default(null), ctaMainImageAlt: z.string().optional().nullable().default(null),
-  marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
-  translations: z.record(z.string(), hizmetTranslationSchema),
-  overviewTabDefinitions: z.array(hizmetOverviewTabDefinitionSchema).default([]), whyItemDefinitions: z.array(hizmetWhyItemDefinitionSchema).default([]), testimonialDefinitions: z.array(hizmetTestimonialDefinitionSchema).default([]), recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]),
+  id: z.string().optional(),
+  published: z.boolean().default(false),
+  heroImageUrl: z.string().optional().nullable().default(null),
+  heroImageAlt: z.string().optional().nullable().default(null),
+  whyBackgroundImageUrl: z.string().optional().nullable().default(null),
+  ctaBackgroundImageUrl: z.string().optional().nullable().default(null),
+  ctaMainImageUrl: z.string().optional().nullable().default(null),
+  ctaMainImageAlt: z.string().optional().nullable().default(null),
+  marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
+  galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
+  ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
+
+  // Bölüm Bazlı Yapılar (hizmet-form.tsx'deki gibi eklendi)
+  basicInfoSection: z.object({ translations: z.record(z.string(), HizmetBasicInfoSectionTranslationSchema) }).default({ translations: {} }),
+  tocSection: z.object({ translations: z.record(z.string(), HizmetTocSectionTranslationSchema) }).default({ translations: {} }),
+  introSection: z.object({ definition: HizmetIntroSectionDefinitionSchema.default({ videoId: null }), translations: z.record(z.string(), HizmetIntroSectionTranslationSchema) }).default({ definition: { videoId: null }, translations: {} }),
+  seoSection: z.object({ translations: z.record(z.string(), HizmetSeoSectionTranslationSchema) }).default({ translations: {} }),
+  overviewSection: z.object({ definition: HizmetOverviewSectionDefinitionSchema.default({ tabs: [] }), translations: z.record(z.string(), HizmetOverviewSectionTranslationSchema) }).default({ definition: { tabs: [] }, translations: {} }),
+  whySection: z.object({ definition: HizmetWhySectionDefinitionSchema.default({ items: [] }), translations: z.record(z.string(), HizmetWhySectionTranslationSchema) }).default({ definition: { items: [] }, translations: {} }),
+  gallerySection: z.object({ translations: z.record(z.string(), HizmetGallerySectionTranslationSchema) }).default({ translations: {} }),
+  testimonialsSection: z.object({ definition: HizmetTestimonialsSectionDefinitionSchema.default({ items: [] }), translations: z.record(z.string(), HizmetTestimonialsSectionTranslationSchema) }).default({ definition: { items: [] }, translations: {} }),
+  stepsSection: z.object({ translations: z.record(z.string(), HizmetStepsSectionTranslationSchema) }).default({ translations: {} }),
+  recoverySection: z.object({ definition: HizmetRecoverySectionDefinitionSchema.default({ items: [] }), translations: z.record(z.string(), HizmetRecoverySectionTranslationSchema) }).default({ definition: { items: [] }, translations: {} }),
+  ctaSection: z.object({ translations: z.record(z.string(), HizmetCtaSectionTranslationSchema) }).default({ translations: {} }),
+  pricingSection: z.object({ definition: HizmetPricingSectionDefinitionSchema.default({ packages: [] }), translations: z.record(z.string(), HizmetPricingSectionTranslationSchema) }).default({ definition: { packages: [] }, translations: {} }),
+  expertsSection: z.object({ definition: HizmetExpertsSectionDefinitionSchema.default({ items: [] }), translations: z.record(z.string(), HizmetExpertsSectionTranslationSchema) }).default({ definition: { items: [] }, translations: {} }),
+  faqSection: z.object({ translations: z.record(z.string(), HizmetFaqSectionTranslationSchema) }).default({ translations: {} }),
+
+  // Eski translations ve definition dizileri (artık bölümlerin içinde)
+  // translations: z.record(z.string(), hizmetTranslationSchema), // Bu satır kaldırılmalı veya yorumlanmalı
+  // overviewTabDefinitions: z.array(hizmetOverviewTabDefinitionSchema).default([]), // Bu satır kaldırılmalı veya yorumlanmalı
+  // whyItemDefinitions: z.array(hizmetWhyItemDefinitionSchema).default([]), // Bu satır kaldırılmalı veya yorumlanmalı
+  // testimonialDefinitions: z.array(hizmetTestimonialDefinitionSchema).default([]), // Bu satır kaldırılmalı veya yorumlanmalı
+  // recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), // Bu satır kaldırılmalı veya yorumlanmalı
+  // expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), // Bu satır kaldırılmalı veya yorumlanmalı
+  // pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]), // Bu satır kaldırılmalı veya yorumlanmalı
 });
 // --- Şema kopyalama sonu ---
 
@@ -71,16 +126,32 @@ export async function POST(req: Request) {
       ctaBackgroundImageUrl,
       ctaMainImageUrl,
       ctaMainImageAlt,
+      // introVideoId doğrudan burada değil, introSection içinde
       marqueeImages,
       galleryImages,
       ctaAvatars,
-      translations, // Bu bir nesne { tr: {...}, en: {...} }
-      overviewTabDefinitions,
-      whyItemDefinitions,
-      testimonialDefinitions,
-      recoveryItemDefinitions,
-      expertItemDefinitions,
-      pricingPackageDefinitions,
+      // Bölüm bazlı verileri alacağız, ana seviyede değil
+      // translations, 
+      // overviewTabDefinitions,
+      // whyItemDefinitions,
+      // testimonialDefinitions,
+      // recoveryItemDefinitions,
+      // expertItemDefinitions,
+      // pricingPackageDefinitions,
+      basicInfoSection,
+      tocSection,
+      introSection,
+      seoSection,
+      overviewSection,
+      whySection,
+      gallerySection,
+      testimonialsSection,
+      stepsSection,
+      recoverySection,
+      ctaSection,
+      pricingSection,
+      expertsSection,
+      faqSection,
     } = validationResult.data;
 
     // Ana Hizmet verilerini topla
@@ -92,6 +163,7 @@ export async function POST(req: Request) {
       ctaBackgroundImageUrl,
       ctaMainImageUrl,
       ctaMainImageAlt,
+      introVideoId: introSection?.definition?.videoId, // introVideoId'yi introSection'dan al
     };
 
     // 3. Veritabanı işlemi (Transaction içinde)
@@ -107,24 +179,209 @@ export async function POST(req: Request) {
         },
       });
 
-      // Çevirileri oluştur
-      for (const langCode in translations) {
-        const translationData = translations[langCode];
-        // İlişkili listeleri ayır
-        const { tocItems, introLinks, steps, faqs, ...mainTranslationData } = translationData;
-        await tx.hizmetTranslation.create({
-          data: {
-            ...mainTranslationData, // slug, title, description etc.
-            hizmetId: createdHizmet.id,
-            languageCode: langCode,
-            // Nested creates for translation-specific items
-            tocItems: { createMany: { data: tocItems || [] } },
-            introLinks: { createMany: { data: introLinks || [] } },
-            steps: { createMany: { data: steps || [] } },
-            faqs: { createMany: { data: faqs || [] } },
-          },
-        });
-      }
+      // Çevirileri oluştur (Her bölümün çevirisini alarak)
+      const allLanguageCodes = Object.keys(basicInfoSection.translations); // Tüm dilleri al
+      
+      // Tüm mevcut dil kodlarını logla
+      console.log(`[API DEBUG] Found translations for languages:`, allLanguageCodes);
+      
+      for (const langCode of allLanguageCodes) {
+          const basicInfoTrans = basicInfoSection.translations[langCode];
+          const tocTrans = tocSection.translations[langCode];
+          const introTrans = introSection.translations[langCode];
+          const seoTrans = seoSection.translations[langCode];
+          const overviewTrans = overviewSection.translations[langCode];
+          const whyTrans = whySection.translations[langCode];
+          const galleryTrans = gallerySection.translations[langCode];
+          const testimonialsTrans = testimonialsSection.translations[langCode];
+          const stepsTrans = stepsSection.translations[langCode];
+          const recoveryTrans = recoverySection.translations[langCode];
+          const ctaTrans = ctaSection.translations[langCode];
+          const pricingTrans = pricingSection.translations[langCode];
+          const expertsTrans = expertsSection.translations[langCode];
+          const faqTrans = faqSection.translations[langCode];
+          
+          // Her dil için gelen verileri logla
+          console.log(`[API DEBUG] Processing ${langCode} data:`, 
+            JSON.stringify({
+              title: basicInfoTrans?.title || "MISSING TITLE", 
+              slug: basicInfoTrans?.slug || "MISSING SLUG"
+            })
+          );
+
+          // Başlık, slug ve açıklama gibi ana alanlar için özel kontrol
+          if (!basicInfoTrans?.title || !basicInfoTrans?.slug || !basicInfoTrans?.description) {
+            console.warn(`[API WARN] Missing critical fields for language ${langCode}. title: ${!!basicInfoTrans?.title}, slug: ${!!basicInfoTrans?.slug}, description: ${!!basicInfoTrans?.description}`);
+          }
+
+          // Dile göre varsayılan değerleri oluşturan yardımcı fonksiyon
+          const getDefaultValueForLanguage = (langCode: string, key: string): string => {
+                // Desteklenen diller ve varsayılan değerleri
+                const defaults: Record<string, Record<string, string>> = {
+                  // TR - Türkçe
+                  'tr': {
+                    'title': 'Yeni Hizmet',
+                    'description': 'Hizmet açıklaması',
+                    'tocTitle': 'İçindekiler',
+                    'overviewTitle': 'Genel Bakış',
+                    'whyTitle': 'Neden Biz?',
+                    'galleryTitle': 'Galeri',
+                    'testimonialsTitle': 'Müşteri Yorumları',
+                    'stepsTitle': 'Prosedür Adımları',
+                    'recoveryTitle': 'İyileşme Süreci',
+                    'ctaTitle': 'Bize Ulaşın',
+                    'ctaButtonText': 'Randevu Al',
+                    'pricingTitle': 'Fiyatlandırma',
+                    'expertsTitle': 'Uzmanlarımız',
+                    'faqTitle': 'Sıkça Sorulan Sorular',
+                  },
+                  // EN - İngilizce
+                  'en': {
+                    'title': 'New Service',
+                    'description': 'Service description',
+                    'tocTitle': 'Table of Contents',
+                    'overviewTitle': 'Overview',
+                    'whyTitle': 'Why Us?',
+                    'galleryTitle': 'Gallery',
+                    'testimonialsTitle': 'Testimonials',
+                    'stepsTitle': 'Procedure Steps',
+                    'recoveryTitle': 'Recovery Process',
+                    'ctaTitle': 'Contact Us',
+                    'ctaButtonText': 'Book Appointment',
+                    'pricingTitle': 'Pricing',
+                    'expertsTitle': 'Our Experts',
+                    'faqTitle': 'Frequently Asked Questions',
+                  },
+                  // DE - Almanca
+                  'de': {
+                    'title': 'Neuer Service',
+                    'description': 'Servicebeschreibung',
+                    'tocTitle': 'Inhaltsverzeichnis',
+                    'overviewTitle': 'Überblick',
+                    'whyTitle': 'Warum Wir?',
+                    'galleryTitle': 'Galerie',
+                    'testimonialsTitle': 'Kundenbewertungen',
+                    'stepsTitle': 'Verfahrensschritte',
+                    'recoveryTitle': 'Erholungsprozess',
+                    'ctaTitle': 'Kontaktieren Sie uns',
+                    'ctaButtonText': 'Termin Buchen',
+                    'pricingTitle': 'Preisgestaltung',
+                    'expertsTitle': 'Unsere Experten',
+                    'faqTitle': 'Häufig gestellte Fragen',
+                  },
+                  // Daha fazla dil eklenebilir...
+                  
+                  // Fallback/universal değerler
+                  'default': {
+                    'title': 'New Service',
+                    'description': 'Service description',
+                    'tocTitle': 'Table of Contents',
+                    'overviewTitle': 'Overview',
+                    'whyTitle': 'Why Us?',
+                    'galleryTitle': 'Gallery',
+                    'testimonialsTitle': 'Testimonials',
+                    'stepsTitle': 'Procedure Steps',
+                    'recoveryTitle': 'Recovery Process', 
+                    'ctaTitle': 'Contact Us',
+                    'ctaButtonText': 'Book Appointment',
+                    'pricingTitle': 'Pricing',
+                    'expertsTitle': 'Our Experts',
+                    'faqTitle': 'FAQ',
+                  }
+                };
+                
+                // Önce ilgili dilde değer var mı kontrol et
+                if (defaults[langCode] && defaults[langCode][key]) {
+                  return defaults[langCode][key];
+                }
+                
+                // Dile özgü değer yoksa, Türkçe varsayılanını dene
+                if (defaults['tr'] && defaults['tr'][key]) {
+                  return defaults['tr'][key];
+                }
+                
+                // Son çare - genel varsayılan değeri kullan
+                if (defaults['default'] && defaults['default'][key]) {
+                  return defaults['default'][key];
+                }
+                
+                // Hiçbir değer bulunamazsa boş string döndür
+                return '';
+              };
+          
+          const translationCreateData = {
+              hizmetId: createdHizmet.id,
+              languageCode: langCode,
+              
+              // Basic Info - daha güçlü kontroller
+              slug: basicInfoTrans?.slug || `hizmet-${Date.now()}-${langCode}`,
+              title: basicInfoTrans?.title || getDefaultValueForLanguage(langCode, 'title'),
+              description: basicInfoTrans?.description || getDefaultValueForLanguage(langCode, 'description'),
+              breadcrumb: basicInfoTrans?.breadcrumb || "",
+              // TOC
+              tocTitle: tocTrans?.tocTitle || getDefaultValueForLanguage(langCode, 'tocTitle'),
+              tocAuthorInfo: tocTrans?.tocAuthorInfo || "",
+              tocCtaDescription: tocTrans?.tocCtaDescription || "",
+              tocItems: { createMany: { data: tocTrans?.tocItems || [] } },
+              // Intro
+              introTitle: introTrans?.title || "",
+              introDescription: introTrans?.description || "",
+              introPrimaryButtonText: introTrans?.primaryButtonText || "",
+              introPrimaryButtonLink: introTrans?.primaryButtonLink || "",
+              introSecondaryButtonText: introTrans?.secondaryButtonText || "",
+              introSecondaryButtonLink: introTrans?.secondaryButtonLink || "",
+              introLinks: { createMany: { data: introTrans?.introLinks || [] } },
+              // SEO
+              metaTitle: seoTrans?.metaTitle || null,
+              metaDescription: seoTrans?.metaDescription || null,
+              metaKeywords: seoTrans?.metaKeywords || null,
+              // Overview
+              overviewSectionTitle: overviewTrans?.title || getDefaultValueForLanguage(langCode, 'overviewTitle'),
+              overviewSectionDescription: overviewTrans?.description || "",
+              // Why
+              whySectionTitle: whyTrans?.title || getDefaultValueForLanguage(langCode, 'whyTitle'),
+              // Gallery
+              gallerySectionTitle: galleryTrans?.title || getDefaultValueForLanguage(langCode, 'galleryTitle'),
+              gallerySectionDescription: galleryTrans?.description || "",
+              // Testimonials
+              testimonialsSectionTitle: testimonialsTrans?.title || getDefaultValueForLanguage(langCode, 'testimonialsTitle'),
+              // Steps
+              stepsSectionTitle: stepsTrans?.title || getDefaultValueForLanguage(langCode, 'stepsTitle'),
+              stepsSectionDescription: stepsTrans?.description || "",
+              steps: { createMany: { data: stepsTrans?.steps || [] } },
+              // Recovery
+              recoverySectionTitle: recoveryTrans?.title || getDefaultValueForLanguage(langCode, 'recoveryTitle'),
+              recoverySectionDescription: recoveryTrans?.description || "",
+              // CTA
+              ctaTagline: ctaTrans?.tagline || null,
+              ctaTitle: ctaTrans?.title || getDefaultValueForLanguage(langCode, 'ctaTitle'),
+              ctaDescription: ctaTrans?.description || "",
+              ctaButtonText: ctaTrans?.buttonText || getDefaultValueForLanguage(langCode, 'ctaButtonText'),
+              ctaButtonLink: ctaTrans?.buttonLink || null,
+              ctaAvatarText: ctaTrans?.avatarText || null,
+              // Pricing
+              pricingSectionTitle: pricingTrans?.title || getDefaultValueForLanguage(langCode, 'pricingTitle'),
+              pricingSectionDescription: pricingTrans?.description || "",
+              // Experts
+              expertsSectionTitle: expertsTrans?.title || getDefaultValueForLanguage(langCode, 'expertsTitle'),
+              expertsTagline: expertsTrans?.tagline || null,
+              // FAQ
+              faqSectionTitle: faqTrans?.title || getDefaultValueForLanguage(langCode, 'faqTitle'),
+              faqSectionDescription: faqTrans?.description || "",
+              faqs: { createMany: { data: faqTrans?.faqs || [] } },
+          };
+
+          // Veritabanına yazmadan önce logla
+          console.log(`[API DEBUG] Creating HizmetTranslation for ${langCode}:`, JSON.stringify({
+              title: translationCreateData.title,
+              slug: translationCreateData.slug,
+              description: translationCreateData.description.substring(0, 30) + '...'
+          }));
+
+          await tx.hizmetTranslation.create({
+              data: translationCreateData,
+          });
+      } // for döngüsünün doğru kapanışı
 
       // Definition ve Translation'larını oluştur
       const createDefinitionsAndTranslations = async (
@@ -154,12 +411,13 @@ export async function POST(req: Request) {
         }
       };
 
-      await createDefinitionsAndTranslations(overviewTabDefinitions, 'hizmetOverviewTabDefinition', 'hizmetOverviewTabTranslation');
-      await createDefinitionsAndTranslations(whyItemDefinitions, 'hizmetWhyItemDefinition', 'hizmetWhyItemTranslation');
-      await createDefinitionsAndTranslations(testimonialDefinitions, 'hizmetTestimonialDefinition', 'hizmetTestimonialTranslation');
-      await createDefinitionsAndTranslations(recoveryItemDefinitions, 'hizmetRecoveryItemDefinition', 'hizmetRecoveryItemTranslation');
-      await createDefinitionsAndTranslations(expertItemDefinitions, 'hizmetExpertItemDefinition', 'hizmetExpertItemTranslation');
-      await createDefinitionsAndTranslations(pricingPackageDefinitions, 'hizmetPricingPackageDefinition', 'hizmetPricingPackageTranslation');
+      // Definitionları ilgili bölüm objelerinden al
+      await createDefinitionsAndTranslations(overviewSection.definition?.tabs, 'hizmetOverviewTabDefinition', 'hizmetOverviewTabTranslation');
+      await createDefinitionsAndTranslations(whySection.definition?.items, 'hizmetWhyItemDefinition', 'hizmetWhyItemTranslation');
+      await createDefinitionsAndTranslations(testimonialsSection.definition?.items, 'hizmetTestimonialDefinition', 'hizmetTestimonialTranslation');
+      await createDefinitionsAndTranslations(recoverySection.definition?.items, 'hizmetRecoveryItemDefinition', 'hizmetRecoveryItemTranslation');
+      await createDefinitionsAndTranslations(expertsSection.definition?.items, 'hizmetExpertItemDefinition', 'hizmetExpertItemTranslation');
+      await createDefinitionsAndTranslations(pricingSection.definition?.packages, 'hizmetPricingPackageDefinition', 'hizmetPricingPackageTranslation');
 
       // Oluşturulan ana hizmeti döndür
       return createdHizmet;
@@ -181,7 +439,21 @@ export async function POST(req: Request) {
         }
         return new NextResponse(JSON.stringify({ message }), { status: 409 });
     }
-    return new NextResponse('Internal Server Error', { status: 500 });
+    // Daha detaylı hata loglama
+    let errorMessage = 'Internal Server Error';
+    let errorDetails = {};
+    if (error instanceof Error) {
+        errorMessage = error.message;
+        // Prisma'ya özgü hataları yakala
+        if ('code' in error) {
+            errorDetails = { code: error.code, meta: (error as any).meta, clientVersion: (error as any).clientVersion };
+        } else {
+             errorDetails = { name: error.name, stack: error.stack };
+        }
+    }
+    console.error("Detailed Error:", JSON.stringify({ errorMessage, errorDetails }, null, 2));
+    
+    return new NextResponse(JSON.stringify({ message: errorMessage, details: errorDetails }), { status: 500 });
   }
 }
 

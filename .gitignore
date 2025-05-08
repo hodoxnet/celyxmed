@@ -53,3 +53,6 @@ next-env.d.ts
 *.bmp
 *.tiff
 *.tif
+
+# generated files
+src/generated/
