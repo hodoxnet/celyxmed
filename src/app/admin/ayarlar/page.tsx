@@ -183,10 +183,77 @@ const GeneralSettingsPage = () => {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-          {/* Dile Özgü Alanlar (Tabs içinde) */}
-          {initialDataLoaded && availableLanguages.length > 0 && (
-            <Card>
-              <CardHeader><CardTitle className="text-lg">Dil Bazlı Ayarlar</CardTitle></CardHeader>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            {/* Sol Sütun: Temel Bilgiler */}
+            <div className="lg:col-span-1 space-y-6">
+              <Card>
+                <CardHeader><CardTitle className="text-lg">Temel Bilgiler</CardTitle></CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="faviconUrl">Favicon Yükle</Label>
+                    <Controller
+                      name="faviconUrl"
+                      control={control}
+                      render={({ field }) => (
+                        <ImageUpload
+                          initialImage={field.value || ''}
+                          onImageUploaded={(url: string) => field.onChange(url)}
+                          showPreview={true}
+                        />
+                      )}
+                    />
+                    {errors.faviconUrl && <p className="text-red-500 text-sm">{errors.faviconUrl.message}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="logoUrl">Logo Yükle</Label>
+                    <Controller
+                      name="logoUrl"
+                      control={control}
+                      render={({ field }) => (
+                        <ImageUpload
+                          initialImage={field.value || ''}
+                          onImageUploaded={(url: string) => field.onChange(url)}
+                          showPreview={true}
+                        />
+                      )}
+                    />
+                    {errors.logoUrl && <p className="text-red-500 text-sm">{errors.logoUrl.message}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="whatsappNumber">WhatsApp Numarası</Label>
+                    <Controller name="whatsappNumber" control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
+                    {errors.whatsappNumber && <p className="text-red-500 text-sm">{errors.whatsappNumber.message}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="phoneNumber">Telefon Numarası</Label>
+                    <Controller name="phoneNumber" control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
+                    {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="emailAddress">E-posta Adresi</Label>
+                    <Controller name="emailAddress" control={control} render={({ field }) => <Input type="email" {...field} value={field.value || ''} />} />
+                    {errors.emailAddress && <p className="text-red-500 text-sm">{errors.emailAddress.message}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="fullAddress">Açık Adres</Label>
+                    <Controller name="fullAddress" control={control} render={({ field }) => <Textarea {...field} value={field.value || ''} />} />
+                    {errors.fullAddress && <p className="text-red-500 text-sm">{errors.fullAddress.message}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="googleMapsEmbed">Google Maps Embed Kodu</Label>
+                    <Controller name="googleMapsEmbed" control={control} render={({ field }) => <Textarea {...field} value={field.value || ''} placeholder='<iframe src="..."></iframe>' />} />
+                    {errors.googleMapsEmbed && <p className="text-red-500 text-sm">{errors.googleMapsEmbed.message}</p>}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Sağ Sütun: Dil Bazlı Ayarlar */}
+            <div className="lg:col-span-2 space-y-6">
+              {initialDataLoaded && availableLanguages.length > 0 && (
+                <Card>
+                  <CardHeader><CardTitle className="text-lg">Dil Bazlı Ayarlar</CardTitle></CardHeader>
               <CardContent>
                 <Tabs
                   value={activeTab}
@@ -254,70 +321,10 @@ const GeneralSettingsPage = () => {
                 ))}
               </Tabs>
               </CardContent>
-            </Card>
-          )}
-
-          {/* Dil Bağımsız Alanlar */}
-          <Card>
-            <CardHeader><CardTitle className="text-lg">Temel Bilgiler</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <Label htmlFor="faviconUrl">Favicon Yükle</Label>
-                <Controller
-                  name="faviconUrl"
-                  control={control}
-                  render={({ field }) => (
-                    <ImageUpload
-                      initialImage={field.value || ''}
-                      onImageUploaded={(url: string) => field.onChange(url)}
-                      showPreview={true}
-                    />
-                  )}
-                />
-                {errors.faviconUrl && <p className="text-red-500 text-sm">{errors.faviconUrl.message}</p>}
-              </div>
-              <div>
-                <Label htmlFor="logoUrl">Logo Yükle</Label>
-                <Controller
-                  name="logoUrl"
-                  control={control}
-                  render={({ field }) => (
-                    <ImageUpload
-                      initialImage={field.value || ''}
-                      onImageUploaded={(url: string) => field.onChange(url)}
-                      showPreview={true}
-                    />
-                  )}
-                />
-                {errors.logoUrl && <p className="text-red-500 text-sm">{errors.logoUrl.message}</p>}
-              </div>
-              <div>
-                <Label htmlFor="whatsappNumber">WhatsApp Numarası</Label>
-                <Controller name="whatsappNumber" control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                {errors.whatsappNumber && <p className="text-red-500 text-sm">{errors.whatsappNumber.message}</p>}
-              </div>
-              <div>
-                <Label htmlFor="phoneNumber">Telefon Numarası</Label>
-                <Controller name="phoneNumber" control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
-              </div>
-              <div>
-                <Label htmlFor="emailAddress">E-posta Adresi</Label>
-                <Controller name="emailAddress" control={control} render={({ field }) => <Input type="email" {...field} value={field.value || ''} />} />
-                {errors.emailAddress && <p className="text-red-500 text-sm">{errors.emailAddress.message}</p>}
-              </div>
-              <div>
-                <Label htmlFor="fullAddress">Açık Adres</Label>
-                <Controller name="fullAddress" control={control} render={({ field }) => <Textarea {...field} value={field.value || ''} />} />
-                {errors.fullAddress && <p className="text-red-500 text-sm">{errors.fullAddress.message}</p>}
-              </div>
-              <div>
-                <Label htmlFor="googleMapsEmbed">Google Maps Embed Kodu</Label>
-                <Controller name="googleMapsEmbed" control={control} render={({ field }) => <Textarea {...field} value={field.value || ''} placeholder='<iframe src="..."></iframe>' />} />
-                {errors.googleMapsEmbed && <p className="text-red-500 text-sm">{errors.googleMapsEmbed.message}</p>}
-              </div>
-            </CardContent>
-          </Card>
+                </Card>
+              )}
+            </div>
+          </div> {/* Grid sonu */}
 
           <Button type="submit" disabled={isLoading}>
             {isLoading ? 'Kaydediliyor...' : 'Ayarları Kaydet'}
