@@ -77,13 +77,11 @@ interface LookupItem {
   title: string;
 }
 
-// Dil seçenekleri (API'den de çekilebilir)
-const DIL_KODLARI = [
-  { code: 'tr', name: 'Türkçe' },
-  { code: 'en', name: 'English' },
-  { code: 'de', name: 'Deutsch' },
-  // Projedeki diğer diller
-];
+// Aktif dil verisi için tip
+interface ActiveLanguage {
+  code: string;
+  name: string;
+}
 
 const ItemTypes = [
   { value: MenuItemType.LINK, label: 'Normal Link' },
@@ -173,7 +171,8 @@ export default function HeaderMenuItemsPage() {
   const [headerMenu, setHeaderMenu] = useState<HeaderMenuData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentLanguage, setCurrentLanguage] = useState(DIL_KODLARI[0].code);
+  const [activeLanguages, setActiveLanguages] = useState<ActiveLanguage[]>([]); // Aktif diller için state
+  const [currentLanguage, setCurrentLanguage] = useState(''); // Başlangıçta boş, ilk aktif dil atanacak
 
   // Lookup data states
   const [blogLookup, setBlogLookup] = useState<LookupItem[]>([]);
@@ -188,26 +187,41 @@ export default function HeaderMenuItemsPage() {
     linkUrl: '',
     openInNewTab: false,
     isActive: true,
-    translations: DIL_KODLARI.map(lang => ({ languageCode: lang.code, title: '' })),
+    translations: [], // Başlangıçta boş, aktif dillere göre doldurulacak
     parentId: null, // Ana seviye için null
   });
 
-  const fetchMenuItems = useCallback(async () => {
+  // Aktif dilleri ve menü öğelerini çekmek için birleşik fonksiyon
+  const fetchData = useCallback(async () => {
     if (!menuId) return;
     setIsLoading(true);
+    setError(null); // Hataları temizle
     try {
-      // Önce ana menü bilgisini al
-      const menuResponse = await fetch(`/api/admin/header-menus/${menuId}`);
-      if (!menuResponse.ok) throw new Error('Ana header menü bilgisi getirilemedi.');
-      const menuData = await menuResponse.json();
+      // Aktif dilleri, menü detayını ve menü öğelerini paralel çek
+      const [langRes, menuRes, itemsRes] = await Promise.all([
+        fetch('/api/languages'),
+        fetch(`/api/admin/header-menus/${menuId}`),
+        fetch(`/api/admin/header-menus/${menuId}/items`)
+      ]);
+
+      // Dil verisini işle
+      if (!langRes.ok) throw new Error('Aktif diller getirilemedi.');
+      const activeLangData: ActiveLanguage[] = await langRes.json();
+      setActiveLanguages(activeLangData);
+      if (activeLangData.length > 0 && !currentLanguage) {
+        setCurrentLanguage(activeLangData[0].code); // İlk aktif dili varsayılan yap
+      }
+
+      // Menü detayını işle
+      if (!menuRes.ok) throw new Error('Ana header menü bilgisi getirilemedi.');
+      const menuData = await menuRes.json();
       setHeaderMenu(menuData);
 
-      // Sonra menü öğelerini al
-      const itemsResponse = await fetch(`/api/admin/header-menus/${menuId}/items`);
-      if (!itemsResponse.ok) throw new Error('Header menü öğeleri getirilemedi.');
-      const itemsData = await itemsResponse.json();
-      
-      // API'den gelen veriyi parentId'ye göre gruplayıp iç içe yapı oluştur
+      // Menü öğelerini işle
+      if (!itemsRes.ok) throw new Error('Header menü öğeleri getirilemedi.');
+      const itemsData = await itemsRes.json();
+
+      // Hiyerarşiyi oluştur
       const buildHierarchy = (items: HeaderMenuItemData[], parentId: string | null = null): HeaderMenuItemData[] => {
         return items
           .filter(item => item.parentId === parentId)
@@ -222,13 +236,13 @@ export default function HeaderMenuItemsPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [menuId]);
+  }, [menuId, currentLanguage]); // currentLanguage değiştiğinde tekrar çekmeye gerek yok aslında
 
   useEffect(() => {
-    fetchMenuItems();
+    fetchData(); // Verileri çek
 
-    // Fetch lookup data
-    const fetchLookups = async () => {
+    // Lookup verilerini çek (bu ayrı kalabilir)
+     const fetchLookups = async () => {
       setIsLookupLoading(true);
       try {
         const [blogRes, hizmetRes] = await Promise.all([
@@ -251,7 +265,7 @@ export default function HeaderMenuItemsPage() {
     };
     fetchLookups();
 
-  }, [fetchMenuItems]);
+  }, [fetchData]); // fetchData'ya bağımlı hale getir
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -272,14 +286,21 @@ export default function HeaderMenuItemsPage() {
   };
 
   const handleTranslationChange = (langCode: string, value: string) => {
-    setItemFormData(prev => ({
-      ...prev,
-      translations: prev.translations?.map(t =>
-        t.languageCode === langCode ? { ...t, title: value } : t
-      ) || [],
-    }));
+    setItemFormData(prev => {
+      const currentTranslations = prev.translations || [];
+      const existingIndex = currentTranslations.findIndex(t => t.languageCode === langCode);
+      let newTranslations;
+      if (existingIndex > -1) {
+        newTranslations = [...currentTranslations];
+        newTranslations[existingIndex] = { ...newTranslations[existingIndex], title: value };
+      } else {
+        // Bu durum normalde olmamalı çünkü form aktif dillere göre oluşturuluyor
+        newTranslations = [...currentTranslations, { languageCode: langCode, title: value }];
+      }
+      return { ...prev, translations: newTranslations };
+    });
   };
-  
+
   const openNewItemDialog = (parentId: string | null = null) => {
     setEditingItem(null);
     setItemFormData({
@@ -287,7 +308,7 @@ export default function HeaderMenuItemsPage() {
       linkUrl: '',
       openInNewTab: false,
       isActive: true,
-      translations: DIL_KODLARI.map(lang => ({ languageCode: lang.code, title: '' })),
+      translations: activeLanguages.map(lang => ({ languageCode: lang.code, title: '' })), // Aktif dillere göre başlat
       parentId: parentId,
       order: parentId ? (menuItems.find(i=>i.id === parentId)?.children?.length || 0) : (menuItems.filter(i=>!i.parentId).length || 0)
     });
@@ -298,7 +319,8 @@ export default function HeaderMenuItemsPage() {
     setEditingItem(item);
     setItemFormData({
       ...item,
-      translations: DIL_KODLARI.map(lang => {
+      // Mevcut çevirileri al ve eksik aktif diller için boş alan ekle
+      translations: activeLanguages.map(lang => {
         const existingTrans = item.translations.find(t => t.languageCode === lang.code);
         return { languageCode: lang.code, title: existingTrans?.title || '' };
       }),
@@ -339,7 +361,7 @@ export default function HeaderMenuItemsPage() {
       }
       toast.success(`Menü öğesi başarıyla ${editingItem ? 'güncellendi' : 'oluşturuldu'}.`);
       setIsItemDialogOpen(false);
-      fetchMenuItems();
+      fetchData(); // fetchMenuItems yerine fetchData çağır
     } catch (err: any) {
       toast.error(err.message);
     }
@@ -356,7 +378,7 @@ export default function HeaderMenuItemsPage() {
         throw new Error(errorData.message || 'Menü öğesi silinemedi.');
       }
       toast.success("Menü öğesi başarıyla silindi.");
-      fetchMenuItems();
+      fetchData(); // fetchMenuItems yerine fetchData çağır
     } catch (err: any) {
       toast.error(err.message);
     }
@@ -460,7 +482,7 @@ export default function HeaderMenuItemsPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Başlık ({DIL_KODLARI.find(d=>d.code === currentLanguage)?.name})</TableHead>
+                  <TableHead>Başlık ({activeLanguages.find(d=>d.code === currentLanguage)?.name || currentLanguage})</TableHead>
                   <TableHead>Tip</TableHead>
                   <TableHead>Aktif mi?</TableHead>
                   <TableHead className="text-right">İşlemler</TableHead>
@@ -555,7 +577,7 @@ export default function HeaderMenuItemsPage() {
 
               <div className="space-y-2 pt-2">
                 <Label>Çeviriler</Label>
-                {DIL_KODLARI.map(lang => (
+                {activeLanguages.map(lang => ( // Aktif dilleri kullan
                   <div key={lang.code}>
                     <Label htmlFor={`title-${lang.code}`} className="text-sm font-normal">{lang.name} Başlık</Label>
                     <Input

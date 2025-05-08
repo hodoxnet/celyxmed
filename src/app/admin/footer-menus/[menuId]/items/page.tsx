@@ -72,12 +72,11 @@ interface LookupItem {
   title: string;
 }
 
-// Dil seçenekleri
-const DIL_KODLARI = [
-  { code: 'tr', name: 'Türkçe' },
-  { code: 'en', name: 'English' },
-  { code: 'de', name: 'Deutsch' },
-];
+// Aktif dil verisi için tip
+interface ActiveLanguage {
+  code: string;
+  name: string;
+}
 
 const ItemTypes = [
   { value: MenuItemType.LINK, label: 'Normal Link' },
@@ -94,7 +93,8 @@ export default function FooterMenuItemsPage() {
   const [footerMenu, setFooterMenu] = useState<FooterMenuData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentLanguage, setCurrentLanguage] = useState(DIL_KODLARI[0].code);
+  const [activeLanguages, setActiveLanguages] = useState<ActiveLanguage[]>([]); // Aktif diller
+  const [currentLanguage, setCurrentLanguage] = useState(''); // Başlangıçta boş
 
   // Lookup data states
   const [blogLookup, setBlogLookup] = useState<LookupItem[]>([]);
@@ -109,22 +109,39 @@ export default function FooterMenuItemsPage() {
     linkUrl: '',
     openInNewTab: false,
     isActive: true,
-    translations: DIL_KODLARI.map(lang => ({ languageCode: lang.code, title: '' })),
+    translations: [], // Aktif dillere göre doldurulacak
   });
 
-  const fetchMenuItems = useCallback(async () => {
+  // Aktif dilleri ve menü öğelerini çek
+  const fetchData = useCallback(async () => {
     if (!menuId) return;
     setIsLoading(true);
+    setError(null);
     try {
-      const menuResponse = await fetch(`/api/admin/footer-menus/${menuId}`);
-      if (!menuResponse.ok) throw new Error('Ana footer menü grubu bilgisi getirilemedi.');
-      const menuData = await menuResponse.json();
+      // Paralel fetch
+      const [langRes, menuRes, itemsRes] = await Promise.all([
+        fetch('/api/languages'),
+        fetch(`/api/admin/footer-menus/${menuId}`),
+        fetch(`/api/admin/footer-menus/${menuId}/items`)
+      ]);
+
+      // Dilleri işle
+      if (!langRes.ok) throw new Error('Aktif diller getirilemedi.');
+      const activeLangData: ActiveLanguage[] = await langRes.json();
+      setActiveLanguages(activeLangData);
+      if (activeLangData.length > 0 && !currentLanguage) {
+        setCurrentLanguage(activeLangData[0].code);
+      }
+
+      // Menü detayını işle
+      if (!menuRes.ok) throw new Error('Ana footer menü grubu bilgisi getirilemedi.');
+      const menuData = await menuRes.json();
       setFooterMenu(menuData);
 
-      const itemsResponse = await fetch(`/api/admin/footer-menus/${menuId}/items`);
-      if (!itemsResponse.ok) throw new Error('Footer menü öğeleri getirilemedi.');
-      const itemsData = await itemsResponse.json();
-      setMenuItems(itemsData.sort((a: FooterMenuItemData, b: FooterMenuItemData) => a.order - b.order)); // Sıralı getir
+      // Menü öğelerini işle
+      if (!itemsRes.ok) throw new Error('Footer menü öğeleri getirilemedi.');
+      const itemsData = await itemsRes.json();
+      setMenuItems(itemsData.sort((a: FooterMenuItemData, b: FooterMenuItemData) => a.order - b.order));
 
     } catch (err: any) {
       setError(err.message);
@@ -132,13 +149,13 @@ export default function FooterMenuItemsPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [menuId]);
+  }, [menuId, currentLanguage]); // currentLanguage bağımlılığı kaldırılabilir
 
   useEffect(() => {
-    fetchMenuItems();
+    fetchData(); // Verileri çek
 
-    // Fetch lookup data
-    const fetchLookups = async () => {
+    // Lookup verilerini çek
+     const fetchLookups = async () => {
       setIsLookupLoading(true);
       try {
         const [blogRes, hizmetRes] = await Promise.all([
@@ -160,7 +177,7 @@ export default function FooterMenuItemsPage() {
     };
     fetchLookups();
 
-  }, [fetchMenuItems]);
+  }, [fetchData]); // fetchData'ya bağımlı
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -181,12 +198,18 @@ export default function FooterMenuItemsPage() {
   };
 
   const handleTranslationChange = (langCode: string, value: string) => {
-    setItemFormData(prev => ({
-      ...prev,
-      translations: prev.translations?.map(t =>
-        t.languageCode === langCode ? { ...t, title: value } : t
-      ) || [],
-    }));
+    setItemFormData(prev => {
+       const currentTranslations = prev.translations || [];
+       const existingIndex = currentTranslations.findIndex(t => t.languageCode === langCode);
+       let newTranslations;
+       if (existingIndex > -1) {
+         newTranslations = [...currentTranslations];
+         newTranslations[existingIndex] = { ...newTranslations[existingIndex], title: value };
+       } else {
+         newTranslations = [...currentTranslations, { languageCode: langCode, title: value }];
+       }
+       return { ...prev, translations: newTranslations };
+    });
   };
 
   const openNewItemDialog = () => {
@@ -196,8 +219,8 @@ export default function FooterMenuItemsPage() {
       linkUrl: '',
       openInNewTab: false,
       isActive: true,
-      translations: DIL_KODLARI.map(lang => ({ languageCode: lang.code, title: '' })),
-      order: menuItems.length, // Yeni öğeyi sona ekle
+      translations: activeLanguages.map(lang => ({ languageCode: lang.code, title: '' })), // Aktif diller
+      order: menuItems.length,
     });
     setIsItemDialogOpen(true);
   };
@@ -206,7 +229,7 @@ export default function FooterMenuItemsPage() {
     setEditingItem(item);
     setItemFormData({
       ...item,
-      translations: DIL_KODLARI.map(lang => {
+      translations: activeLanguages.map(lang => { // Aktif diller
         const existingTrans = item.translations.find(t => t.languageCode === lang.code);
         return { languageCode: lang.code, title: existingTrans?.title || '' };
       }),
@@ -245,7 +268,7 @@ export default function FooterMenuItemsPage() {
       }
       toast.success(`Menü öğesi başarıyla ${editingItem ? 'güncellendi' : 'oluşturuldu'}.`);
       setIsItemDialogOpen(false);
-      fetchMenuItems();
+      fetchData(); // fetchData çağır
     } catch (err: any) {
       toast.error(err.message);
     }
@@ -262,7 +285,7 @@ export default function FooterMenuItemsPage() {
         throw new Error(errorData.message || 'Menü öğesi silinemedi.');
       }
       toast.success("Menü öğesi başarıyla silindi.");
-      fetchMenuItems();
+      fetchData(); // fetchData çağır
     } catch (err: any) {
       toast.error(err.message);
     }
@@ -297,7 +320,7 @@ export default function FooterMenuItemsPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Sıra</TableHead>
-                <TableHead>Başlık ({DIL_KODLARI.find(d=>d.code === currentLanguage)?.name})</TableHead>
+                <TableHead>Başlık ({activeLanguages.find(d=>d.code === currentLanguage)?.name || currentLanguage})</TableHead>
                 <TableHead>Tip</TableHead>
                 <TableHead>Aktif mi?</TableHead>
                 <TableHead className="text-right">İşlemler</TableHead>
@@ -400,7 +423,7 @@ export default function FooterMenuItemsPage() {
 
             <div className="space-y-2 pt-2">
               <Label>Çeviriler</Label>
-              {DIL_KODLARI.map(lang => (
+              {activeLanguages.map(lang => ( // Aktif dilleri kullan
                 <div key={lang.code}>
                   <Label htmlFor={`title-${lang.code}`} className="text-sm font-normal">{lang.name} Başlık</Label>
                   <Input
