@@ -419,6 +419,27 @@ exports.Prisma.GeneralSettingTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SliderScalarFieldEnum = {
+  id: 'id',
+  backgroundImageUrl: 'backgroundImageUrl',
+  order: 'order',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SliderTranslationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  button1Text: 'button1Text',
+  button1Link: 'button1Link',
+  button2Text: 'button2Text',
+  button2Link: 'button2Link',
+  sliderId: 'sliderId',
+  languageCode: 'languageCode'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -477,7 +498,9 @@ exports.Prisma.ModelName = {
   HizmetExpertItemDefinition: 'HizmetExpertItemDefinition',
   HizmetExpertItemTranslation: 'HizmetExpertItemTranslation',
   GeneralSetting: 'GeneralSetting',
-  GeneralSettingTranslation: 'GeneralSettingTranslation'
+  GeneralSettingTranslation: 'GeneralSettingTranslation',
+  Slider: 'Slider',
+  SliderTranslation: 'SliderTranslation'
 };
 
 /**

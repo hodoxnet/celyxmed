@@ -59,6 +59,7 @@ model Language {
   hizmetExpertItemTranslations  HizmetExpertItemTranslation[]
   hizmetPricingPackageTranslations HizmetPricingPackageTranslation[]
   generalSettingTranslations GeneralSettingTranslation[] // Yeni eklenecek alan
+  sliderTranslations SliderTranslation[] // Slider için yeni ilişki
 }
 
 // Blog modeli
@@ -485,4 +486,32 @@ model GeneralSettingTranslation {
   updatedAt           DateTime       @updatedAt
 
   @@unique([generalSettingId, languageCode])
+}
+
+// Slider modeli
+model Slider {
+  id                String   @id @default(cuid())
+  backgroundImageUrl String?  // Ortak alan: Arka plan resmi
+  order             Int?     @default(0) // Ortak alan: Sıralama
+  isActive          Boolean  @default(true) // Ortak alan: Aktiflik durumu
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  translations      SliderTranslation[]
+}
+
+// Slider çevirileri modeli
+model SliderTranslation {
+  id            String   @id @default(cuid())
+  title         String   // Dile özgü: Ana başlık
+  description   String?  @db.Text // Dile özgü: Açıklama (uzun olabilir)
+  button1Text   String?  // Dile özgü: Buton 1 metni
+  button1Link   String?  // Dile özgü: Buton 1 linki
+  button2Text   String?  // Dile özgü: Buton 2 metni
+  button2Link   String?  // Dile özgü: Buton 2 linki
+
+  slider        Slider   @relation(fields: [sliderId], references: [id], onDelete: Cascade)
+  sliderId      String
+  language      Language @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+  @@unique([sliderId, languageCode])
 }

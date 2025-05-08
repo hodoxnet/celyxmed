@@ -56,6 +56,11 @@ const navItems: NavItem[] = [
     icon: <ClipboardList className="h-5 w-5" />, // Hizmetler için ikon
   },
   {
+    title: "Slider Yönetimi",
+    href: "/admin/sliders",
+    icon: <GalleryHorizontal className="h-5 w-5" />,
+  },
+  {
     title: "Genel Ayarlar",
     href: "/admin/ayarlar",
     icon: <Settings className="h-5 w-5" />,

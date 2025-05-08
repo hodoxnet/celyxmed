@@ -153,6 +153,16 @@ export type GeneralSetting = $Result.DefaultSelection<Prisma.$GeneralSettingPayl
  * 
  */
 export type GeneralSettingTranslation = $Result.DefaultSelection<Prisma.$GeneralSettingTranslationPayload>
+/**
+ * Model Slider
+ * 
+ */
+export type Slider = $Result.DefaultSelection<Prisma.$SliderPayload>
+/**
+ * Model SliderTranslation
+ * 
+ */
+export type SliderTranslation = $Result.DefaultSelection<Prisma.$SliderTranslationPayload>
 
 /**
  * Enums
@@ -575,6 +585,26 @@ export class PrismaClient<
     * ```
     */
   get generalSettingTranslation(): Prisma.GeneralSettingTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.slider`: Exposes CRUD operations for the **Slider** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sliders
+    * const sliders = await prisma.slider.findMany()
+    * ```
+    */
+  get slider(): Prisma.SliderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sliderTranslation`: Exposes CRUD operations for the **SliderTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SliderTranslations
+    * const sliderTranslations = await prisma.sliderTranslation.findMany()
+    * ```
+    */
+  get sliderTranslation(): Prisma.SliderTranslationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1042,7 +1072,9 @@ export namespace Prisma {
     HizmetExpertItemDefinition: 'HizmetExpertItemDefinition',
     HizmetExpertItemTranslation: 'HizmetExpertItemTranslation',
     GeneralSetting: 'GeneralSetting',
-    GeneralSettingTranslation: 'GeneralSettingTranslation'
+    GeneralSettingTranslation: 'GeneralSettingTranslation',
+    Slider: 'Slider',
+    SliderTranslation: 'SliderTranslation'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1061,7 +1093,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation"
+      modelProps: "user" | "session" | "language" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "slider" | "sliderTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3137,6 +3169,154 @@ export namespace Prisma {
           }
         }
       }
+      Slider: {
+        payload: Prisma.$SliderPayload<ExtArgs>
+        fields: Prisma.SliderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SliderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SliderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+          }
+          findFirst: {
+            args: Prisma.SliderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SliderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+          }
+          findMany: {
+            args: Prisma.SliderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>[]
+          }
+          create: {
+            args: Prisma.SliderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+          }
+          createMany: {
+            args: Prisma.SliderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SliderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>[]
+          }
+          delete: {
+            args: Prisma.SliderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+          }
+          update: {
+            args: Prisma.SliderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+          }
+          deleteMany: {
+            args: Prisma.SliderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SliderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SliderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>[]
+          }
+          upsert: {
+            args: Prisma.SliderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+          }
+          aggregate: {
+            args: Prisma.SliderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSlider>
+          }
+          groupBy: {
+            args: Prisma.SliderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SliderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SliderCountArgs<ExtArgs>
+            result: $Utils.Optional<SliderCountAggregateOutputType> | number
+          }
+        }
+      }
+      SliderTranslation: {
+        payload: Prisma.$SliderTranslationPayload<ExtArgs>
+        fields: Prisma.SliderTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SliderTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SliderTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.SliderTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SliderTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.SliderTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.SliderTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.SliderTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SliderTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.SliderTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+          }
+          update: {
+            args: Prisma.SliderTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.SliderTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SliderTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SliderTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.SliderTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.SliderTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSliderTranslation>
+          }
+          groupBy: {
+            args: Prisma.SliderTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SliderTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SliderTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<SliderTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3249,6 +3429,8 @@ export namespace Prisma {
     hizmetExpertItemTranslation?: HizmetExpertItemTranslationOmit
     generalSetting?: GeneralSettingOmit
     generalSettingTranslation?: GeneralSettingTranslationOmit
+    slider?: SliderOmit
+    sliderTranslation?: SliderTranslationOmit
   }
 
   /* Types for Logging */
@@ -3352,6 +3534,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations: number
     hizmetPricingPackageTranslations: number
     generalSettingTranslations: number
+    sliderTranslations: number
   }
 
   export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3364,6 +3547,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: boolean | LanguageCountOutputTypeCountHizmetExpertItemTranslationsArgs
     hizmetPricingPackageTranslations?: boolean | LanguageCountOutputTypeCountHizmetPricingPackageTranslationsArgs
     generalSettingTranslations?: boolean | LanguageCountOutputTypeCountGeneralSettingTranslationsArgs
+    sliderTranslations?: boolean | LanguageCountOutputTypeCountSliderTranslationsArgs
   }
 
   // Custom InputTypes
@@ -3438,6 +3622,13 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountGeneralSettingTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GeneralSettingTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountSliderTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SliderTranslationWhereInput
   }
 
 
@@ -3856,6 +4047,37 @@ export namespace Prisma {
    */
   export type GeneralSettingCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GeneralSettingTranslationWhereInput
+  }
+
+
+  /**
+   * Count Type SliderCountOutputType
+   */
+
+  export type SliderCountOutputType = {
+    translations: number
+  }
+
+  export type SliderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | SliderCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SliderCountOutputType without action
+   */
+  export type SliderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderCountOutputType
+     */
+    select?: SliderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SliderCountOutputType without action
+   */
+  export type SliderCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SliderTranslationWhereInput
   }
 
 
@@ -6081,6 +6303,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: boolean | Language$hizmetExpertItemTranslationsArgs<ExtArgs>
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
+    sliderTranslations?: boolean | Language$sliderTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["language"]>
 
@@ -6125,6 +6348,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: boolean | Language$hizmetExpertItemTranslationsArgs<ExtArgs>
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
+    sliderTranslations?: boolean | Language$sliderTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6142,6 +6366,7 @@ export namespace Prisma {
       hizmetExpertItemTranslations: Prisma.$HizmetExpertItemTranslationPayload<ExtArgs>[]
       hizmetPricingPackageTranslations: Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>[]
       generalSettingTranslations: Prisma.$GeneralSettingTranslationPayload<ExtArgs>[]
+      sliderTranslations: Prisma.$SliderTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6554,6 +6779,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations<T extends Language$hizmetExpertItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetExpertItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetExpertItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hizmetPricingPackageTranslations<T extends Language$hizmetPricingPackageTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetPricingPackageTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     generalSettingTranslations<T extends Language$generalSettingTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$generalSettingTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sliderTranslations<T extends Language$sliderTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$sliderTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7191,6 +7417,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GeneralSettingTranslationScalarFieldEnum | GeneralSettingTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.sliderTranslations
+   */
+  export type Language$sliderTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    where?: SliderTranslationWhereInput
+    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    cursor?: SliderTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
   }
 
   /**
@@ -35669,6 +35919,2241 @@ export namespace Prisma {
 
 
   /**
+   * Model Slider
+   */
+
+  export type AggregateSlider = {
+    _count: SliderCountAggregateOutputType | null
+    _avg: SliderAvgAggregateOutputType | null
+    _sum: SliderSumAggregateOutputType | null
+    _min: SliderMinAggregateOutputType | null
+    _max: SliderMaxAggregateOutputType | null
+  }
+
+  export type SliderAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type SliderSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type SliderMinAggregateOutputType = {
+    id: string | null
+    backgroundImageUrl: string | null
+    order: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SliderMaxAggregateOutputType = {
+    id: string | null
+    backgroundImageUrl: string | null
+    order: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SliderCountAggregateOutputType = {
+    id: number
+    backgroundImageUrl: number
+    order: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SliderAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type SliderSumAggregateInputType = {
+    order?: true
+  }
+
+  export type SliderMinAggregateInputType = {
+    id?: true
+    backgroundImageUrl?: true
+    order?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SliderMaxAggregateInputType = {
+    id?: true
+    backgroundImageUrl?: true
+    order?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SliderCountAggregateInputType = {
+    id?: true
+    backgroundImageUrl?: true
+    order?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SliderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Slider to aggregate.
+     */
+    where?: SliderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sliders to fetch.
+     */
+    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SliderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sliders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sliders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Sliders
+    **/
+    _count?: true | SliderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SliderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SliderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SliderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SliderMaxAggregateInputType
+  }
+
+  export type GetSliderAggregateType<T extends SliderAggregateArgs> = {
+        [P in keyof T & keyof AggregateSlider]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSlider[P]>
+      : GetScalarType<T[P], AggregateSlider[P]>
+  }
+
+
+
+
+  export type SliderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SliderWhereInput
+    orderBy?: SliderOrderByWithAggregationInput | SliderOrderByWithAggregationInput[]
+    by: SliderScalarFieldEnum[] | SliderScalarFieldEnum
+    having?: SliderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SliderCountAggregateInputType | true
+    _avg?: SliderAvgAggregateInputType
+    _sum?: SliderSumAggregateInputType
+    _min?: SliderMinAggregateInputType
+    _max?: SliderMaxAggregateInputType
+  }
+
+  export type SliderGroupByOutputType = {
+    id: string
+    backgroundImageUrl: string | null
+    order: number | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: SliderCountAggregateOutputType | null
+    _avg: SliderAvgAggregateOutputType | null
+    _sum: SliderSumAggregateOutputType | null
+    _min: SliderMinAggregateOutputType | null
+    _max: SliderMaxAggregateOutputType | null
+  }
+
+  type GetSliderGroupByPayload<T extends SliderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SliderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SliderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SliderGroupByOutputType[P]>
+            : GetScalarType<T[P], SliderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SliderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    backgroundImageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    translations?: boolean | Slider$translationsArgs<ExtArgs>
+    _count?: boolean | SliderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["slider"]>
+
+  export type SliderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    backgroundImageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["slider"]>
+
+  export type SliderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    backgroundImageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["slider"]>
+
+  export type SliderSelectScalar = {
+    id?: boolean
+    backgroundImageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SliderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "backgroundImageUrl" | "order" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["slider"]>
+  export type SliderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | Slider$translationsArgs<ExtArgs>
+    _count?: boolean | SliderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SliderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SliderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $SliderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Slider"
+    objects: {
+      translations: Prisma.$SliderTranslationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      backgroundImageUrl: string | null
+      order: number | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["slider"]>
+    composites: {}
+  }
+
+  type SliderGetPayload<S extends boolean | null | undefined | SliderDefaultArgs> = $Result.GetResult<Prisma.$SliderPayload, S>
+
+  type SliderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SliderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SliderCountAggregateInputType | true
+    }
+
+  export interface SliderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Slider'], meta: { name: 'Slider' } }
+    /**
+     * Find zero or one Slider that matches the filter.
+     * @param {SliderFindUniqueArgs} args - Arguments to find a Slider
+     * @example
+     * // Get one Slider
+     * const slider = await prisma.slider.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SliderFindUniqueArgs>(args: SelectSubset<T, SliderFindUniqueArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Slider that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SliderFindUniqueOrThrowArgs} args - Arguments to find a Slider
+     * @example
+     * // Get one Slider
+     * const slider = await prisma.slider.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SliderFindUniqueOrThrowArgs>(args: SelectSubset<T, SliderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Slider that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderFindFirstArgs} args - Arguments to find a Slider
+     * @example
+     * // Get one Slider
+     * const slider = await prisma.slider.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SliderFindFirstArgs>(args?: SelectSubset<T, SliderFindFirstArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Slider that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderFindFirstOrThrowArgs} args - Arguments to find a Slider
+     * @example
+     * // Get one Slider
+     * const slider = await prisma.slider.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SliderFindFirstOrThrowArgs>(args?: SelectSubset<T, SliderFindFirstOrThrowArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sliders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sliders
+     * const sliders = await prisma.slider.findMany()
+     * 
+     * // Get first 10 Sliders
+     * const sliders = await prisma.slider.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sliderWithIdOnly = await prisma.slider.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SliderFindManyArgs>(args?: SelectSubset<T, SliderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Slider.
+     * @param {SliderCreateArgs} args - Arguments to create a Slider.
+     * @example
+     * // Create one Slider
+     * const Slider = await prisma.slider.create({
+     *   data: {
+     *     // ... data to create a Slider
+     *   }
+     * })
+     * 
+     */
+    create<T extends SliderCreateArgs>(args: SelectSubset<T, SliderCreateArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sliders.
+     * @param {SliderCreateManyArgs} args - Arguments to create many Sliders.
+     * @example
+     * // Create many Sliders
+     * const slider = await prisma.slider.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SliderCreateManyArgs>(args?: SelectSubset<T, SliderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Sliders and returns the data saved in the database.
+     * @param {SliderCreateManyAndReturnArgs} args - Arguments to create many Sliders.
+     * @example
+     * // Create many Sliders
+     * const slider = await prisma.slider.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Sliders and only return the `id`
+     * const sliderWithIdOnly = await prisma.slider.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SliderCreateManyAndReturnArgs>(args?: SelectSubset<T, SliderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Slider.
+     * @param {SliderDeleteArgs} args - Arguments to delete one Slider.
+     * @example
+     * // Delete one Slider
+     * const Slider = await prisma.slider.delete({
+     *   where: {
+     *     // ... filter to delete one Slider
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SliderDeleteArgs>(args: SelectSubset<T, SliderDeleteArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Slider.
+     * @param {SliderUpdateArgs} args - Arguments to update one Slider.
+     * @example
+     * // Update one Slider
+     * const slider = await prisma.slider.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SliderUpdateArgs>(args: SelectSubset<T, SliderUpdateArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sliders.
+     * @param {SliderDeleteManyArgs} args - Arguments to filter Sliders to delete.
+     * @example
+     * // Delete a few Sliders
+     * const { count } = await prisma.slider.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SliderDeleteManyArgs>(args?: SelectSubset<T, SliderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sliders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sliders
+     * const slider = await prisma.slider.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SliderUpdateManyArgs>(args: SelectSubset<T, SliderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sliders and returns the data updated in the database.
+     * @param {SliderUpdateManyAndReturnArgs} args - Arguments to update many Sliders.
+     * @example
+     * // Update many Sliders
+     * const slider = await prisma.slider.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Sliders and only return the `id`
+     * const sliderWithIdOnly = await prisma.slider.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SliderUpdateManyAndReturnArgs>(args: SelectSubset<T, SliderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Slider.
+     * @param {SliderUpsertArgs} args - Arguments to update or create a Slider.
+     * @example
+     * // Update or create a Slider
+     * const slider = await prisma.slider.upsert({
+     *   create: {
+     *     // ... data to create a Slider
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Slider we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SliderUpsertArgs>(args: SelectSubset<T, SliderUpsertArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sliders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderCountArgs} args - Arguments to filter Sliders to count.
+     * @example
+     * // Count the number of Sliders
+     * const count = await prisma.slider.count({
+     *   where: {
+     *     // ... the filter for the Sliders we want to count
+     *   }
+     * })
+    **/
+    count<T extends SliderCountArgs>(
+      args?: Subset<T, SliderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SliderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Slider.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SliderAggregateArgs>(args: Subset<T, SliderAggregateArgs>): Prisma.PrismaPromise<GetSliderAggregateType<T>>
+
+    /**
+     * Group by Slider.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SliderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SliderGroupByArgs['orderBy'] }
+        : { orderBy?: SliderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SliderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSliderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Slider model
+   */
+  readonly fields: SliderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Slider.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SliderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends Slider$translationsArgs<ExtArgs> = {}>(args?: Subset<T, Slider$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Slider model
+   */
+  interface SliderFieldRefs {
+    readonly id: FieldRef<"Slider", 'String'>
+    readonly backgroundImageUrl: FieldRef<"Slider", 'String'>
+    readonly order: FieldRef<"Slider", 'Int'>
+    readonly isActive: FieldRef<"Slider", 'Boolean'>
+    readonly createdAt: FieldRef<"Slider", 'DateTime'>
+    readonly updatedAt: FieldRef<"Slider", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Slider findUnique
+   */
+  export type SliderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * Filter, which Slider to fetch.
+     */
+    where: SliderWhereUniqueInput
+  }
+
+  /**
+   * Slider findUniqueOrThrow
+   */
+  export type SliderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * Filter, which Slider to fetch.
+     */
+    where: SliderWhereUniqueInput
+  }
+
+  /**
+   * Slider findFirst
+   */
+  export type SliderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * Filter, which Slider to fetch.
+     */
+    where?: SliderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sliders to fetch.
+     */
+    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sliders.
+     */
+    cursor?: SliderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sliders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sliders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sliders.
+     */
+    distinct?: SliderScalarFieldEnum | SliderScalarFieldEnum[]
+  }
+
+  /**
+   * Slider findFirstOrThrow
+   */
+  export type SliderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * Filter, which Slider to fetch.
+     */
+    where?: SliderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sliders to fetch.
+     */
+    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sliders.
+     */
+    cursor?: SliderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sliders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sliders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sliders.
+     */
+    distinct?: SliderScalarFieldEnum | SliderScalarFieldEnum[]
+  }
+
+  /**
+   * Slider findMany
+   */
+  export type SliderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * Filter, which Sliders to fetch.
+     */
+    where?: SliderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sliders to fetch.
+     */
+    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Sliders.
+     */
+    cursor?: SliderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sliders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sliders.
+     */
+    skip?: number
+    distinct?: SliderScalarFieldEnum | SliderScalarFieldEnum[]
+  }
+
+  /**
+   * Slider create
+   */
+  export type SliderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Slider.
+     */
+    data: XOR<SliderCreateInput, SliderUncheckedCreateInput>
+  }
+
+  /**
+   * Slider createMany
+   */
+  export type SliderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Sliders.
+     */
+    data: SliderCreateManyInput | SliderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Slider createManyAndReturn
+   */
+  export type SliderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * The data used to create many Sliders.
+     */
+    data: SliderCreateManyInput | SliderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Slider update
+   */
+  export type SliderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Slider.
+     */
+    data: XOR<SliderUpdateInput, SliderUncheckedUpdateInput>
+    /**
+     * Choose, which Slider to update.
+     */
+    where: SliderWhereUniqueInput
+  }
+
+  /**
+   * Slider updateMany
+   */
+  export type SliderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Sliders.
+     */
+    data: XOR<SliderUpdateManyMutationInput, SliderUncheckedUpdateManyInput>
+    /**
+     * Filter which Sliders to update
+     */
+    where?: SliderWhereInput
+    /**
+     * Limit how many Sliders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Slider updateManyAndReturn
+   */
+  export type SliderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * The data used to update Sliders.
+     */
+    data: XOR<SliderUpdateManyMutationInput, SliderUncheckedUpdateManyInput>
+    /**
+     * Filter which Sliders to update
+     */
+    where?: SliderWhereInput
+    /**
+     * Limit how many Sliders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Slider upsert
+   */
+  export type SliderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Slider to update in case it exists.
+     */
+    where: SliderWhereUniqueInput
+    /**
+     * In case the Slider found by the `where` argument doesn't exist, create a new Slider with this data.
+     */
+    create: XOR<SliderCreateInput, SliderUncheckedCreateInput>
+    /**
+     * In case the Slider was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SliderUpdateInput, SliderUncheckedUpdateInput>
+  }
+
+  /**
+   * Slider delete
+   */
+  export type SliderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+    /**
+     * Filter which Slider to delete.
+     */
+    where: SliderWhereUniqueInput
+  }
+
+  /**
+   * Slider deleteMany
+   */
+  export type SliderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sliders to delete
+     */
+    where?: SliderWhereInput
+    /**
+     * Limit how many Sliders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Slider.translations
+   */
+  export type Slider$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    where?: SliderTranslationWhereInput
+    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    cursor?: SliderTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Slider without action
+   */
+  export type SliderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slider
+     */
+    select?: SliderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slider
+     */
+    omit?: SliderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SliderTranslation
+   */
+
+  export type AggregateSliderTranslation = {
+    _count: SliderTranslationCountAggregateOutputType | null
+    _min: SliderTranslationMinAggregateOutputType | null
+    _max: SliderTranslationMaxAggregateOutputType | null
+  }
+
+  export type SliderTranslationMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    button1Text: string | null
+    button1Link: string | null
+    button2Text: string | null
+    button2Link: string | null
+    sliderId: string | null
+    languageCode: string | null
+  }
+
+  export type SliderTranslationMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    button1Text: string | null
+    button1Link: string | null
+    button2Text: string | null
+    button2Link: string | null
+    sliderId: string | null
+    languageCode: string | null
+  }
+
+  export type SliderTranslationCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    button1Text: number
+    button1Link: number
+    button2Text: number
+    button2Link: number
+    sliderId: number
+    languageCode: number
+    _all: number
+  }
+
+
+  export type SliderTranslationMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    button1Text?: true
+    button1Link?: true
+    button2Text?: true
+    button2Link?: true
+    sliderId?: true
+    languageCode?: true
+  }
+
+  export type SliderTranslationMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    button1Text?: true
+    button1Link?: true
+    button2Text?: true
+    button2Link?: true
+    sliderId?: true
+    languageCode?: true
+  }
+
+  export type SliderTranslationCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    button1Text?: true
+    button1Link?: true
+    button2Text?: true
+    button2Link?: true
+    sliderId?: true
+    languageCode?: true
+    _all?: true
+  }
+
+  export type SliderTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SliderTranslation to aggregate.
+     */
+    where?: SliderTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SliderTranslations to fetch.
+     */
+    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SliderTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SliderTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SliderTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SliderTranslations
+    **/
+    _count?: true | SliderTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SliderTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SliderTranslationMaxAggregateInputType
+  }
+
+  export type GetSliderTranslationAggregateType<T extends SliderTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateSliderTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSliderTranslation[P]>
+      : GetScalarType<T[P], AggregateSliderTranslation[P]>
+  }
+
+
+
+
+  export type SliderTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SliderTranslationWhereInput
+    orderBy?: SliderTranslationOrderByWithAggregationInput | SliderTranslationOrderByWithAggregationInput[]
+    by: SliderTranslationScalarFieldEnum[] | SliderTranslationScalarFieldEnum
+    having?: SliderTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SliderTranslationCountAggregateInputType | true
+    _min?: SliderTranslationMinAggregateInputType
+    _max?: SliderTranslationMaxAggregateInputType
+  }
+
+  export type SliderTranslationGroupByOutputType = {
+    id: string
+    title: string
+    description: string | null
+    button1Text: string | null
+    button1Link: string | null
+    button2Text: string | null
+    button2Link: string | null
+    sliderId: string
+    languageCode: string
+    _count: SliderTranslationCountAggregateOutputType | null
+    _min: SliderTranslationMinAggregateOutputType | null
+    _max: SliderTranslationMaxAggregateOutputType | null
+  }
+
+  type GetSliderTranslationGroupByPayload<T extends SliderTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SliderTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SliderTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SliderTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], SliderTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SliderTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    sliderId?: boolean
+    languageCode?: boolean
+    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sliderTranslation"]>
+
+  export type SliderTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    sliderId?: boolean
+    languageCode?: boolean
+    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sliderTranslation"]>
+
+  export type SliderTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    sliderId?: boolean
+    languageCode?: boolean
+    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sliderTranslation"]>
+
+  export type SliderTranslationSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    sliderId?: boolean
+    languageCode?: boolean
+  }
+
+  export type SliderTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "button1Text" | "button1Link" | "button2Text" | "button2Link" | "sliderId" | "languageCode", ExtArgs["result"]["sliderTranslation"]>
+  export type SliderTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type SliderTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type SliderTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $SliderTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SliderTranslation"
+    objects: {
+      slider: Prisma.$SliderPayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string | null
+      button1Text: string | null
+      button1Link: string | null
+      button2Text: string | null
+      button2Link: string | null
+      sliderId: string
+      languageCode: string
+    }, ExtArgs["result"]["sliderTranslation"]>
+    composites: {}
+  }
+
+  type SliderTranslationGetPayload<S extends boolean | null | undefined | SliderTranslationDefaultArgs> = $Result.GetResult<Prisma.$SliderTranslationPayload, S>
+
+  type SliderTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SliderTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SliderTranslationCountAggregateInputType | true
+    }
+
+  export interface SliderTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SliderTranslation'], meta: { name: 'SliderTranslation' } }
+    /**
+     * Find zero or one SliderTranslation that matches the filter.
+     * @param {SliderTranslationFindUniqueArgs} args - Arguments to find a SliderTranslation
+     * @example
+     * // Get one SliderTranslation
+     * const sliderTranslation = await prisma.sliderTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SliderTranslationFindUniqueArgs>(args: SelectSubset<T, SliderTranslationFindUniqueArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SliderTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SliderTranslationFindUniqueOrThrowArgs} args - Arguments to find a SliderTranslation
+     * @example
+     * // Get one SliderTranslation
+     * const sliderTranslation = await prisma.sliderTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SliderTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, SliderTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SliderTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderTranslationFindFirstArgs} args - Arguments to find a SliderTranslation
+     * @example
+     * // Get one SliderTranslation
+     * const sliderTranslation = await prisma.sliderTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SliderTranslationFindFirstArgs>(args?: SelectSubset<T, SliderTranslationFindFirstArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SliderTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderTranslationFindFirstOrThrowArgs} args - Arguments to find a SliderTranslation
+     * @example
+     * // Get one SliderTranslation
+     * const sliderTranslation = await prisma.sliderTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SliderTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, SliderTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SliderTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SliderTranslations
+     * const sliderTranslations = await prisma.sliderTranslation.findMany()
+     * 
+     * // Get first 10 SliderTranslations
+     * const sliderTranslations = await prisma.sliderTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sliderTranslationWithIdOnly = await prisma.sliderTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SliderTranslationFindManyArgs>(args?: SelectSubset<T, SliderTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SliderTranslation.
+     * @param {SliderTranslationCreateArgs} args - Arguments to create a SliderTranslation.
+     * @example
+     * // Create one SliderTranslation
+     * const SliderTranslation = await prisma.sliderTranslation.create({
+     *   data: {
+     *     // ... data to create a SliderTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends SliderTranslationCreateArgs>(args: SelectSubset<T, SliderTranslationCreateArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SliderTranslations.
+     * @param {SliderTranslationCreateManyArgs} args - Arguments to create many SliderTranslations.
+     * @example
+     * // Create many SliderTranslations
+     * const sliderTranslation = await prisma.sliderTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SliderTranslationCreateManyArgs>(args?: SelectSubset<T, SliderTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SliderTranslations and returns the data saved in the database.
+     * @param {SliderTranslationCreateManyAndReturnArgs} args - Arguments to create many SliderTranslations.
+     * @example
+     * // Create many SliderTranslations
+     * const sliderTranslation = await prisma.sliderTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SliderTranslations and only return the `id`
+     * const sliderTranslationWithIdOnly = await prisma.sliderTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SliderTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, SliderTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SliderTranslation.
+     * @param {SliderTranslationDeleteArgs} args - Arguments to delete one SliderTranslation.
+     * @example
+     * // Delete one SliderTranslation
+     * const SliderTranslation = await prisma.sliderTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one SliderTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SliderTranslationDeleteArgs>(args: SelectSubset<T, SliderTranslationDeleteArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SliderTranslation.
+     * @param {SliderTranslationUpdateArgs} args - Arguments to update one SliderTranslation.
+     * @example
+     * // Update one SliderTranslation
+     * const sliderTranslation = await prisma.sliderTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SliderTranslationUpdateArgs>(args: SelectSubset<T, SliderTranslationUpdateArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SliderTranslations.
+     * @param {SliderTranslationDeleteManyArgs} args - Arguments to filter SliderTranslations to delete.
+     * @example
+     * // Delete a few SliderTranslations
+     * const { count } = await prisma.sliderTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SliderTranslationDeleteManyArgs>(args?: SelectSubset<T, SliderTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SliderTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SliderTranslations
+     * const sliderTranslation = await prisma.sliderTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SliderTranslationUpdateManyArgs>(args: SelectSubset<T, SliderTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SliderTranslations and returns the data updated in the database.
+     * @param {SliderTranslationUpdateManyAndReturnArgs} args - Arguments to update many SliderTranslations.
+     * @example
+     * // Update many SliderTranslations
+     * const sliderTranslation = await prisma.sliderTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SliderTranslations and only return the `id`
+     * const sliderTranslationWithIdOnly = await prisma.sliderTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SliderTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, SliderTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SliderTranslation.
+     * @param {SliderTranslationUpsertArgs} args - Arguments to update or create a SliderTranslation.
+     * @example
+     * // Update or create a SliderTranslation
+     * const sliderTranslation = await prisma.sliderTranslation.upsert({
+     *   create: {
+     *     // ... data to create a SliderTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SliderTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SliderTranslationUpsertArgs>(args: SelectSubset<T, SliderTranslationUpsertArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SliderTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderTranslationCountArgs} args - Arguments to filter SliderTranslations to count.
+     * @example
+     * // Count the number of SliderTranslations
+     * const count = await prisma.sliderTranslation.count({
+     *   where: {
+     *     // ... the filter for the SliderTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends SliderTranslationCountArgs>(
+      args?: Subset<T, SliderTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SliderTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SliderTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SliderTranslationAggregateArgs>(args: Subset<T, SliderTranslationAggregateArgs>): Prisma.PrismaPromise<GetSliderTranslationAggregateType<T>>
+
+    /**
+     * Group by SliderTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SliderTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SliderTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SliderTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: SliderTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SliderTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSliderTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SliderTranslation model
+   */
+  readonly fields: SliderTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SliderTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SliderTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    slider<T extends SliderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SliderDefaultArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SliderTranslation model
+   */
+  interface SliderTranslationFieldRefs {
+    readonly id: FieldRef<"SliderTranslation", 'String'>
+    readonly title: FieldRef<"SliderTranslation", 'String'>
+    readonly description: FieldRef<"SliderTranslation", 'String'>
+    readonly button1Text: FieldRef<"SliderTranslation", 'String'>
+    readonly button1Link: FieldRef<"SliderTranslation", 'String'>
+    readonly button2Text: FieldRef<"SliderTranslation", 'String'>
+    readonly button2Link: FieldRef<"SliderTranslation", 'String'>
+    readonly sliderId: FieldRef<"SliderTranslation", 'String'>
+    readonly languageCode: FieldRef<"SliderTranslation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SliderTranslation findUnique
+   */
+  export type SliderTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which SliderTranslation to fetch.
+     */
+    where: SliderTranslationWhereUniqueInput
+  }
+
+  /**
+   * SliderTranslation findUniqueOrThrow
+   */
+  export type SliderTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which SliderTranslation to fetch.
+     */
+    where: SliderTranslationWhereUniqueInput
+  }
+
+  /**
+   * SliderTranslation findFirst
+   */
+  export type SliderTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which SliderTranslation to fetch.
+     */
+    where?: SliderTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SliderTranslations to fetch.
+     */
+    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SliderTranslations.
+     */
+    cursor?: SliderTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SliderTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SliderTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SliderTranslations.
+     */
+    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * SliderTranslation findFirstOrThrow
+   */
+  export type SliderTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which SliderTranslation to fetch.
+     */
+    where?: SliderTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SliderTranslations to fetch.
+     */
+    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SliderTranslations.
+     */
+    cursor?: SliderTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SliderTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SliderTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SliderTranslations.
+     */
+    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * SliderTranslation findMany
+   */
+  export type SliderTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which SliderTranslations to fetch.
+     */
+    where?: SliderTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SliderTranslations to fetch.
+     */
+    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SliderTranslations.
+     */
+    cursor?: SliderTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SliderTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SliderTranslations.
+     */
+    skip?: number
+    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * SliderTranslation create
+   */
+  export type SliderTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SliderTranslation.
+     */
+    data: XOR<SliderTranslationCreateInput, SliderTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * SliderTranslation createMany
+   */
+  export type SliderTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SliderTranslations.
+     */
+    data: SliderTranslationCreateManyInput | SliderTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SliderTranslation createManyAndReturn
+   */
+  export type SliderTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many SliderTranslations.
+     */
+    data: SliderTranslationCreateManyInput | SliderTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SliderTranslation update
+   */
+  export type SliderTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SliderTranslation.
+     */
+    data: XOR<SliderTranslationUpdateInput, SliderTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which SliderTranslation to update.
+     */
+    where: SliderTranslationWhereUniqueInput
+  }
+
+  /**
+   * SliderTranslation updateMany
+   */
+  export type SliderTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SliderTranslations.
+     */
+    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which SliderTranslations to update
+     */
+    where?: SliderTranslationWhereInput
+    /**
+     * Limit how many SliderTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SliderTranslation updateManyAndReturn
+   */
+  export type SliderTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update SliderTranslations.
+     */
+    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which SliderTranslations to update
+     */
+    where?: SliderTranslationWhereInput
+    /**
+     * Limit how many SliderTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SliderTranslation upsert
+   */
+  export type SliderTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SliderTranslation to update in case it exists.
+     */
+    where: SliderTranslationWhereUniqueInput
+    /**
+     * In case the SliderTranslation found by the `where` argument doesn't exist, create a new SliderTranslation with this data.
+     */
+    create: XOR<SliderTranslationCreateInput, SliderTranslationUncheckedCreateInput>
+    /**
+     * In case the SliderTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SliderTranslationUpdateInput, SliderTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * SliderTranslation delete
+   */
+  export type SliderTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which SliderTranslation to delete.
+     */
+    where: SliderTranslationWhereUniqueInput
+  }
+
+  /**
+   * SliderTranslation deleteMany
+   */
+  export type SliderTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SliderTranslations to delete
+     */
+    where?: SliderTranslationWhereInput
+    /**
+     * Limit how many SliderTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SliderTranslation without action
+   */
+  export type SliderTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SliderTranslation
+     */
+    select?: SliderTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SliderTranslation
+     */
+    omit?: SliderTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SliderTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -36065,6 +38550,33 @@ export namespace Prisma {
   export type GeneralSettingTranslationScalarFieldEnum = (typeof GeneralSettingTranslationScalarFieldEnum)[keyof typeof GeneralSettingTranslationScalarFieldEnum]
 
 
+  export const SliderScalarFieldEnum: {
+    id: 'id',
+    backgroundImageUrl: 'backgroundImageUrl',
+    order: 'order',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SliderScalarFieldEnum = (typeof SliderScalarFieldEnum)[keyof typeof SliderScalarFieldEnum]
+
+
+  export const SliderTranslationScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    button1Text: 'button1Text',
+    button1Link: 'button1Link',
+    button2Text: 'button2Text',
+    button2Link: 'button2Link',
+    sliderId: 'sliderId',
+    languageCode: 'languageCode'
+  };
+
+  export type SliderTranslationScalarFieldEnum = (typeof SliderTranslationScalarFieldEnum)[keyof typeof SliderTranslationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -36344,6 +38856,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationListRelationFilter
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
+    sliderTranslations?: SliderTranslationListRelationFilter
   }
 
   export type LanguageOrderByWithRelationInput = {
@@ -36363,6 +38876,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationOrderByRelationAggregateInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationOrderByRelationAggregateInput
     generalSettingTranslations?: GeneralSettingTranslationOrderByRelationAggregateInput
+    sliderTranslations?: SliderTranslationOrderByRelationAggregateInput
   }
 
   export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -36385,6 +38899,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationListRelationFilter
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
+    sliderTranslations?: SliderTranslationListRelationFilter
   }, "id" | "code">
 
   export type LanguageOrderByWithAggregationInput = {
@@ -38259,6 +40774,147 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"GeneralSettingTranslation"> | Date | string
   }
 
+  export type SliderWhereInput = {
+    AND?: SliderWhereInput | SliderWhereInput[]
+    OR?: SliderWhereInput[]
+    NOT?: SliderWhereInput | SliderWhereInput[]
+    id?: StringFilter<"Slider"> | string
+    backgroundImageUrl?: StringNullableFilter<"Slider"> | string | null
+    order?: IntNullableFilter<"Slider"> | number | null
+    isActive?: BoolFilter<"Slider"> | boolean
+    createdAt?: DateTimeFilter<"Slider"> | Date | string
+    updatedAt?: DateTimeFilter<"Slider"> | Date | string
+    translations?: SliderTranslationListRelationFilter
+  }
+
+  export type SliderOrderByWithRelationInput = {
+    id?: SortOrder
+    backgroundImageUrl?: SortOrderInput | SortOrder
+    order?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    translations?: SliderTranslationOrderByRelationAggregateInput
+  }
+
+  export type SliderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SliderWhereInput | SliderWhereInput[]
+    OR?: SliderWhereInput[]
+    NOT?: SliderWhereInput | SliderWhereInput[]
+    backgroundImageUrl?: StringNullableFilter<"Slider"> | string | null
+    order?: IntNullableFilter<"Slider"> | number | null
+    isActive?: BoolFilter<"Slider"> | boolean
+    createdAt?: DateTimeFilter<"Slider"> | Date | string
+    updatedAt?: DateTimeFilter<"Slider"> | Date | string
+    translations?: SliderTranslationListRelationFilter
+  }, "id">
+
+  export type SliderOrderByWithAggregationInput = {
+    id?: SortOrder
+    backgroundImageUrl?: SortOrderInput | SortOrder
+    order?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SliderCountOrderByAggregateInput
+    _avg?: SliderAvgOrderByAggregateInput
+    _max?: SliderMaxOrderByAggregateInput
+    _min?: SliderMinOrderByAggregateInput
+    _sum?: SliderSumOrderByAggregateInput
+  }
+
+  export type SliderScalarWhereWithAggregatesInput = {
+    AND?: SliderScalarWhereWithAggregatesInput | SliderScalarWhereWithAggregatesInput[]
+    OR?: SliderScalarWhereWithAggregatesInput[]
+    NOT?: SliderScalarWhereWithAggregatesInput | SliderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Slider"> | string
+    backgroundImageUrl?: StringNullableWithAggregatesFilter<"Slider"> | string | null
+    order?: IntNullableWithAggregatesFilter<"Slider"> | number | null
+    isActive?: BoolWithAggregatesFilter<"Slider"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Slider"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Slider"> | Date | string
+  }
+
+  export type SliderTranslationWhereInput = {
+    AND?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
+    OR?: SliderTranslationWhereInput[]
+    NOT?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
+    id?: StringFilter<"SliderTranslation"> | string
+    title?: StringFilter<"SliderTranslation"> | string
+    description?: StringNullableFilter<"SliderTranslation"> | string | null
+    button1Text?: StringNullableFilter<"SliderTranslation"> | string | null
+    button1Link?: StringNullableFilter<"SliderTranslation"> | string | null
+    button2Text?: StringNullableFilter<"SliderTranslation"> | string | null
+    button2Link?: StringNullableFilter<"SliderTranslation"> | string | null
+    sliderId?: StringFilter<"SliderTranslation"> | string
+    languageCode?: StringFilter<"SliderTranslation"> | string
+    slider?: XOR<SliderScalarRelationFilter, SliderWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type SliderTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    button1Text?: SortOrderInput | SortOrder
+    button1Link?: SortOrderInput | SortOrder
+    button2Text?: SortOrderInput | SortOrder
+    button2Link?: SortOrderInput | SortOrder
+    sliderId?: SortOrder
+    languageCode?: SortOrder
+    slider?: SliderOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type SliderTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    sliderId_languageCode?: SliderTranslationSliderIdLanguageCodeCompoundUniqueInput
+    AND?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
+    OR?: SliderTranslationWhereInput[]
+    NOT?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
+    title?: StringFilter<"SliderTranslation"> | string
+    description?: StringNullableFilter<"SliderTranslation"> | string | null
+    button1Text?: StringNullableFilter<"SliderTranslation"> | string | null
+    button1Link?: StringNullableFilter<"SliderTranslation"> | string | null
+    button2Text?: StringNullableFilter<"SliderTranslation"> | string | null
+    button2Link?: StringNullableFilter<"SliderTranslation"> | string | null
+    sliderId?: StringFilter<"SliderTranslation"> | string
+    languageCode?: StringFilter<"SliderTranslation"> | string
+    slider?: XOR<SliderScalarRelationFilter, SliderWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "sliderId_languageCode">
+
+  export type SliderTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    button1Text?: SortOrderInput | SortOrder
+    button1Link?: SortOrderInput | SortOrder
+    button2Text?: SortOrderInput | SortOrder
+    button2Link?: SortOrderInput | SortOrder
+    sliderId?: SortOrder
+    languageCode?: SortOrder
+    _count?: SliderTranslationCountOrderByAggregateInput
+    _max?: SliderTranslationMaxOrderByAggregateInput
+    _min?: SliderTranslationMinOrderByAggregateInput
+  }
+
+  export type SliderTranslationScalarWhereWithAggregatesInput = {
+    AND?: SliderTranslationScalarWhereWithAggregatesInput | SliderTranslationScalarWhereWithAggregatesInput[]
+    OR?: SliderTranslationScalarWhereWithAggregatesInput[]
+    NOT?: SliderTranslationScalarWhereWithAggregatesInput | SliderTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SliderTranslation"> | string
+    title?: StringWithAggregatesFilter<"SliderTranslation"> | string
+    description?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
+    button1Text?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
+    button1Link?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
+    button2Text?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
+    button2Link?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
+    sliderId?: StringWithAggregatesFilter<"SliderTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"SliderTranslation"> | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -38409,6 +41065,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateInput = {
@@ -38428,6 +41085,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUpdateInput = {
@@ -38447,6 +41105,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateInput = {
@@ -38466,6 +41125,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageCreateManyInput = {
@@ -40445,6 +43105,155 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SliderCreateInput = {
+    id?: string
+    backgroundImageUrl?: string | null
+    order?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: SliderTranslationCreateNestedManyWithoutSliderInput
+  }
+
+  export type SliderUncheckedCreateInput = {
+    id?: string
+    backgroundImageUrl?: string | null
+    order?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: SliderTranslationUncheckedCreateNestedManyWithoutSliderInput
+  }
+
+  export type SliderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: SliderTranslationUpdateManyWithoutSliderNestedInput
+  }
+
+  export type SliderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: SliderTranslationUncheckedUpdateManyWithoutSliderNestedInput
+  }
+
+  export type SliderCreateManyInput = {
+    id?: string
+    backgroundImageUrl?: string | null
+    order?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SliderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SliderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SliderTranslationCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    slider: SliderCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutSliderTranslationsInput
+  }
+
+  export type SliderTranslationUncheckedCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    sliderId: string
+    languageCode: string
+  }
+
+  export type SliderTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    slider?: SliderUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutSliderTranslationsNestedInput
+  }
+
+  export type SliderTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    sliderId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SliderTranslationCreateManyInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    sliderId: string
+    languageCode: string
+  }
+
+  export type SliderTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SliderTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    sliderId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -40674,6 +43483,12 @@ export namespace Prisma {
     none?: GeneralSettingTranslationWhereInput
   }
 
+  export type SliderTranslationListRelationFilter = {
+    every?: SliderTranslationWhereInput
+    some?: SliderTranslationWhereInput
+    none?: SliderTranslationWhereInput
+  }
+
   export type BlogTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -40707,6 +43522,10 @@ export namespace Prisma {
   }
 
   export type GeneralSettingTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SliderTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -42038,6 +44857,87 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type SliderCountOrderByAggregateInput = {
+    id?: SortOrder
+    backgroundImageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SliderAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type SliderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    backgroundImageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SliderMinOrderByAggregateInput = {
+    id?: SortOrder
+    backgroundImageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SliderSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type SliderScalarRelationFilter = {
+    is?: SliderWhereInput
+    isNot?: SliderWhereInput
+  }
+
+  export type SliderTranslationSliderIdLanguageCodeCompoundUniqueInput = {
+    sliderId: string
+    languageCode: string
+  }
+
+  export type SliderTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    sliderId?: SortOrder
+    languageCode?: SortOrder
+  }
+
+  export type SliderTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    sliderId?: SortOrder
+    languageCode?: SortOrder
+  }
+
+  export type SliderTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    sliderId?: SortOrder
+    languageCode?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -42117,6 +45017,13 @@ export namespace Prisma {
     connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
   }
 
+  export type SliderTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+  }
+
   export type BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -42178,6 +45085,13 @@ export namespace Prisma {
     connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutLanguageInput | GeneralSettingTranslationCreateOrConnectWithoutLanguageInput[]
     createMany?: GeneralSettingTranslationCreateManyLanguageInputEnvelope
     connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+  }
+
+  export type SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -42310,6 +45224,20 @@ export namespace Prisma {
     deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
   }
 
+  export type SliderTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput | SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
+    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    update?: SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput | SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: SliderTranslationUpdateManyWithWhereWithoutLanguageInput | SliderTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+  }
+
   export type BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -42434,6 +45362,20 @@ export namespace Prisma {
     update?: GeneralSettingTranslationUpdateWithWhereUniqueWithoutLanguageInput | GeneralSettingTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: GeneralSettingTranslationUpdateManyWithWhereWithoutLanguageInput | GeneralSettingTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
+  }
+
+  export type SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput | SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
+    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    update?: SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput | SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: SliderTranslationUpdateManyWithWhereWithoutLanguageInput | SliderTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
   }
 
   export type BlogTranslationCreateNestedManyWithoutBlogInput = {
@@ -43823,6 +46765,76 @@ export namespace Prisma {
     update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutGeneralSettingTranslationsInput, LanguageUpdateWithoutGeneralSettingTranslationsInput>, LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput>
   }
 
+  export type SliderTranslationCreateNestedManyWithoutSliderInput = {
+    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
+    createMany?: SliderTranslationCreateManySliderInputEnvelope
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+  }
+
+  export type SliderTranslationUncheckedCreateNestedManyWithoutSliderInput = {
+    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
+    createMany?: SliderTranslationCreateManySliderInputEnvelope
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+  }
+
+  export type SliderTranslationUpdateManyWithoutSliderNestedInput = {
+    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
+    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutSliderInput | SliderTranslationUpsertWithWhereUniqueWithoutSliderInput[]
+    createMany?: SliderTranslationCreateManySliderInputEnvelope
+    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    update?: SliderTranslationUpdateWithWhereUniqueWithoutSliderInput | SliderTranslationUpdateWithWhereUniqueWithoutSliderInput[]
+    updateMany?: SliderTranslationUpdateManyWithWhereWithoutSliderInput | SliderTranslationUpdateManyWithWhereWithoutSliderInput[]
+    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+  }
+
+  export type SliderTranslationUncheckedUpdateManyWithoutSliderNestedInput = {
+    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
+    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
+    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutSliderInput | SliderTranslationUpsertWithWhereUniqueWithoutSliderInput[]
+    createMany?: SliderTranslationCreateManySliderInputEnvelope
+    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+    update?: SliderTranslationUpdateWithWhereUniqueWithoutSliderInput | SliderTranslationUpdateWithWhereUniqueWithoutSliderInput[]
+    updateMany?: SliderTranslationUpdateManyWithWhereWithoutSliderInput | SliderTranslationUpdateManyWithWhereWithoutSliderInput[]
+    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+  }
+
+  export type SliderCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: SliderCreateOrConnectWithoutTranslationsInput
+    connect?: SliderWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutSliderTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutSliderTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type SliderUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: SliderCreateOrConnectWithoutTranslationsInput
+    upsert?: SliderUpsertWithoutTranslationsInput
+    connect?: SliderWhereUniqueInput
+    update?: XOR<XOR<SliderUpdateToOneWithWhereWithoutTranslationsInput, SliderUpdateWithoutTranslationsInput>, SliderUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutSliderTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutSliderTranslationsInput
+    upsert?: LanguageUpsertWithoutSliderTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutSliderTranslationsInput, LanguageUpdateWithoutSliderTranslationsInput>, LanguageUncheckedUpdateWithoutSliderTranslationsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -44400,6 +47412,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SliderTranslationCreateWithoutLanguageInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    slider: SliderCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type SliderTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    sliderId: string
+  }
+
+  export type SliderTranslationCreateOrConnectWithoutLanguageInput = {
+    where: SliderTranslationWhereUniqueInput
+    create: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type SliderTranslationCreateManyLanguageInputEnvelope = {
+    data: SliderTranslationCreateManyLanguageInput | SliderTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BlogTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
     where: BlogTranslationWhereUniqueInput
     update: XOR<BlogTranslationUpdateWithoutLanguageInput, BlogTranslationUncheckedUpdateWithoutLanguageInput>
@@ -44699,6 +47743,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
   }
 
+  export type SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: SliderTranslationWhereUniqueInput
+    update: XOR<SliderTranslationUpdateWithoutLanguageInput, SliderTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: SliderTranslationWhereUniqueInput
+    data: XOR<SliderTranslationUpdateWithoutLanguageInput, SliderTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type SliderTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: SliderTranslationScalarWhereInput
+    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type SliderTranslationScalarWhereInput = {
+    AND?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+    OR?: SliderTranslationScalarWhereInput[]
+    NOT?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+    id?: StringFilter<"SliderTranslation"> | string
+    title?: StringFilter<"SliderTranslation"> | string
+    description?: StringNullableFilter<"SliderTranslation"> | string | null
+    button1Text?: StringNullableFilter<"SliderTranslation"> | string | null
+    button1Link?: StringNullableFilter<"SliderTranslation"> | string | null
+    button2Text?: StringNullableFilter<"SliderTranslation"> | string | null
+    button2Link?: StringNullableFilter<"SliderTranslation"> | string | null
+    sliderId?: StringFilter<"SliderTranslation"> | string
+    languageCode?: StringFilter<"SliderTranslation"> | string
+  }
+
   export type BlogTranslationCreateWithoutBlogInput = {
     id?: string
     slug?: string | null
@@ -44784,6 +47859,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutBlogTranslationsInput = {
@@ -44802,6 +47878,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutBlogTranslationsInput = {
@@ -44865,6 +47942,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutBlogTranslationsInput = {
@@ -44883,6 +47961,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetMarqueeImageCreateWithoutHizmetInput = {
@@ -45540,6 +48619,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTranslationsInput = {
@@ -45558,6 +48638,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTranslationsInput = {
@@ -45751,6 +48832,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTranslationsInput = {
@@ -45769,6 +48851,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetTocItemUpsertWithWhereUniqueWithoutHizmetTranslationInput = {
@@ -47215,6 +50298,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetOverviewTabTranslationsInput = {
@@ -47233,6 +50317,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetOverviewTabTranslationsInput = {
@@ -47296,6 +50381,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetOverviewTabTranslationsInput = {
@@ -47314,6 +50400,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutWhyItemDefinitionsInput = {
@@ -47499,6 +50586,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetWhyItemTranslationsInput = {
@@ -47517,6 +50605,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetWhyItemTranslationsInput = {
@@ -47576,6 +50665,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetWhyItemTranslationsInput = {
@@ -47594,6 +50684,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutTestimonialDefinitionsInput = {
@@ -47783,6 +50874,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTestimonialTranslationsInput = {
@@ -47801,6 +50893,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTestimonialTranslationsInput = {
@@ -47862,6 +50955,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTestimonialTranslationsInput = {
@@ -47880,6 +50974,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutRecoveryItemDefinitionsInput = {
@@ -48067,6 +51162,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -48085,6 +51181,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetRecoveryItemTranslationsInput = {
@@ -48146,6 +51243,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -48164,6 +51262,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutPricingPackageDefinitionsInput = {
@@ -48351,6 +51450,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetPricingPackageTranslationsInput = {
@@ -48369,6 +51469,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetPricingPackageTranslationsInput = {
@@ -48428,6 +51529,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetPricingPackageTranslationsInput = {
@@ -48446,6 +51548,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutExpertItemDefinitionsInput = {
@@ -48637,6 +51740,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetExpertItemTranslationsInput = {
@@ -48655,6 +51759,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetExpertItemTranslationsInput = {
@@ -48716,6 +51821,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetExpertItemTranslationsInput = {
@@ -48734,6 +51840,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type GeneralSettingTranslationCreateWithoutGeneralSettingInput = {
@@ -48843,6 +51950,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput = {
@@ -48861,6 +51969,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput = {
@@ -48932,6 +52041,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput = {
@@ -48950,6 +52060,199 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type SliderTranslationCreateWithoutSliderInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    language: LanguageCreateNestedOneWithoutSliderTranslationsInput
+  }
+
+  export type SliderTranslationUncheckedCreateWithoutSliderInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    languageCode: string
+  }
+
+  export type SliderTranslationCreateOrConnectWithoutSliderInput = {
+    where: SliderTranslationWhereUniqueInput
+    create: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput>
+  }
+
+  export type SliderTranslationCreateManySliderInputEnvelope = {
+    data: SliderTranslationCreateManySliderInput | SliderTranslationCreateManySliderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SliderTranslationUpsertWithWhereUniqueWithoutSliderInput = {
+    where: SliderTranslationWhereUniqueInput
+    update: XOR<SliderTranslationUpdateWithoutSliderInput, SliderTranslationUncheckedUpdateWithoutSliderInput>
+    create: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput>
+  }
+
+  export type SliderTranslationUpdateWithWhereUniqueWithoutSliderInput = {
+    where: SliderTranslationWhereUniqueInput
+    data: XOR<SliderTranslationUpdateWithoutSliderInput, SliderTranslationUncheckedUpdateWithoutSliderInput>
+  }
+
+  export type SliderTranslationUpdateManyWithWhereWithoutSliderInput = {
+    where: SliderTranslationScalarWhereInput
+    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyWithoutSliderInput>
+  }
+
+  export type SliderCreateWithoutTranslationsInput = {
+    id?: string
+    backgroundImageUrl?: string | null
+    order?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SliderUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    backgroundImageUrl?: string | null
+    order?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SliderCreateOrConnectWithoutTranslationsInput = {
+    where: SliderWhereUniqueInput
+    create: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutSliderTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutSliderTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutSliderTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
+  }
+
+  export type SliderUpsertWithoutTranslationsInput = {
+    update: XOR<SliderUpdateWithoutTranslationsInput, SliderUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
+    where?: SliderWhereInput
+  }
+
+  export type SliderUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: SliderWhereInput
+    data: XOR<SliderUpdateWithoutTranslationsInput, SliderUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type SliderUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SliderUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LanguageUpsertWithoutSliderTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutSliderTranslationsInput, LanguageUncheckedUpdateWithoutSliderTranslationsInput>
+    create: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutSliderTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutSliderTranslationsInput, LanguageUncheckedUpdateWithoutSliderTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutSliderTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutSliderTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateManyLanguageInput = {
@@ -49069,6 +52372,17 @@ export namespace Prisma {
     stickyButtonLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type SliderTranslationCreateManyLanguageInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    sliderId: string
   }
 
   export type BlogTranslationUpdateWithoutLanguageInput = {
@@ -49434,6 +52748,39 @@ export namespace Prisma {
     stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SliderTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    slider?: SliderUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type SliderTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    sliderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SliderTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    sliderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BlogTranslationCreateManyBlogInput = {
@@ -50302,6 +53649,50 @@ export namespace Prisma {
     stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SliderTranslationCreateManySliderInput = {
+    id?: string
+    title: string
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+    languageCode: string
+  }
+
+  export type SliderTranslationUpdateWithoutSliderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: LanguageUpdateOneRequiredWithoutSliderTranslationsNestedInput
+  }
+
+  export type SliderTranslationUncheckedUpdateWithoutSliderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    languageCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SliderTranslationUncheckedUpdateManyWithoutSliderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    languageCode?: StringFieldUpdateOperationsInput | string
   }
 
 
