@@ -44,16 +44,37 @@ const footerLinks = {
   ]
 };
 
-// Sosyal medya linkleri güncellendi (TikTok ve Facebook eklendi)
-const socialLinks = [
-  { Icon: Youtube, href: "https://www.youtube.com/@Celyxmed", label: "YouTube" },
-  { Icon: Instagram, href: "https://www.instagram.com/celyxmed/", label: "Instagram" },
-  { Icon: TikTokIcon, href: "#", label: "TikTok" }, // TikTok eklendi (href güncellenmeli)
-  { Icon: Facebook, href: "#", label: "Facebook" }, // Facebook eklendi (href güncellenmeli)
-  { Icon: Linkedin, href: "https://www.linkedin.com/company/celyxmed/", label: "LinkedIn" },
+// Sosyal medya linkleri için platform tanımları
+const socialMediaPlatforms = [
+  { key: 'youtube', Icon: Youtube, label: 'YouTube', defaultHref: "https://www.youtube.com/@Celyxmed" },
+  { key: 'instagram', Icon: Instagram, label: 'Instagram', defaultHref: "https://www.instagram.com/celyxmed/" },
+  { key: 'tiktok', Icon: TikTokIcon, label: 'TikTok', defaultHref: "#" },
+  { key: 'facebook', Icon: Facebook, label: 'Facebook', defaultHref: "#" },
+  { key: 'linkedin', Icon: Linkedin, label: 'LinkedIn', defaultHref: "https://www.linkedin.com/company/celyxmed/" },
 ];
 
-const Footer = () => {
+interface FooterProps {
+  socialLinks?: {
+    youtube?: string | null;
+    instagram?: string | null;
+    tiktok?: string | null;
+    facebook?: string | null;
+    linkedin?: string | null;
+  } | null;
+  contactInfo?: { // Bu prop kabul ediliyor ancak mevcut footer yapısında doğrudan kullanılmıyor.
+    whatsapp?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    address?: string | null;
+  } | null;
+  copyrightText?: string | null;
+}
+
+const Footer: React.FC<FooterProps> = ({ 
+  socialLinks: dynamicSocialLinks, 
+  contactInfo, // contactInfo prop'u alındı ama bu bileşende doğrudan kullanılmıyor.
+  copyrightText 
+}) => {
   return (
     // Renk şeması güncellendi: beyaz arka plan, koyu gri metin. Alt boşluk artırıldı.
     <footer className="bg-white text-gray-700 pt-16 pb-24"> {/* pb-8'den pb-24'e çıkarıldı */}
@@ -148,17 +169,27 @@ const Footer = () => {
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
           {/* Metin rengi güncellendi, ayraç ve geliştirici linki kaldırıldı */}
           <div className="text-gray-500 mb-4 md:mb-0">
-            <span>Copyright © {new Date().getFullYear()} Celyxmed</span>
+            <span>{copyrightText || `Copyright © ${new Date().getFullYear()} Celyxmed`}</span>
              {/* Geliştirici bilgisi Türkçeleştirildi */}
             <span className="ml-2">Tasarım & Geliştirme: Yağız Gürbüz</span>
           </div>
           <div className="flex space-x-4">
-            {/* İkon renkleri güncellendi */}
-            {socialLinks.map(({ Icon, href, label }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-gray-700 hover:text-gray-900 transition-colors">
-                <Icon className="h-5 w-5" />
-              </a>
-            ))}
+            {socialMediaPlatforms.map(({ key, Icon, label, defaultHref }) => {
+              const href = dynamicSocialLinks?.[key as keyof typeof dynamicSocialLinks] || defaultHref;
+              if (!href || href === "#") return null; // URL yoksa veya # ise render etme
+              return (
+                <a 
+                  key={label} 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label={label} 
+                  className="text-gray-700 hover:text-gray-900 transition-colors"
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

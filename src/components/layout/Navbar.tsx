@@ -48,8 +48,17 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
+interface NavbarProps {
+  logoUrl?: string | null;
+  headerButtonText?: string | null;
+  headerButtonLink?: string | null;
+}
 
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps> = ({ 
+  logoUrl, 
+  headerButtonText, 
+  headerButtonLink 
+}) => {
   // Mobil menü için state (ayrı yönetilecek)
   const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null);
   const [languages, setLanguages] = useState<{ code: string; name: string }[]>([]); // Dinamik diller için state
@@ -147,11 +156,12 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
-                <div className="relative mr-2">
+                {/* Yıldız ikonu kaldırıldı */}
+                {/* <div className="relative mr-2">
                   <div className="text-amber-400 text-3xl absolute -top-1 -left-1">✦</div>
-                </div>
+                </div> */}
                 <Image
-                  src="https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/676be4d72f148f551550461b_Celyxmed_Logo_88x29.svg"
+                  src={logoUrl || "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/676be4d72f148f551550461b_Celyxmed_Logo_88x29.svg"} // Dinamik logoUrl veya varsayılan
                   alt="Celyxmed Logo"
                   width={180}
                   height={40}
@@ -211,9 +221,17 @@ const Navbar = () => {
                 </NavigationMenuList>
               </NavigationMenu>
 
-              <Button className="bg-teal-700 hover:bg-teal-800 text-white rounded-md px-6 py-2">
-                Consultation
-              </Button>
+              {headerButtonLink ? (
+                <Link href={headerButtonLink}>
+                  <Button className="bg-teal-700 hover:bg-teal-800 text-white rounded-md px-6 py-2">
+                    {headerButtonText || "Consultation"}
+                  </Button>
+                </Link>
+              ) : (
+                <Button className="bg-teal-700 hover:bg-teal-800 text-white rounded-md px-6 py-2">
+                  {headerButtonText || "Consultation"}
+                </Button>
+              )}
             </div>
 
             {/* Mobile Menu Button (Sheet yapısı korunuyor) */}
@@ -231,11 +249,12 @@ const Navbar = () => {
                 <div className="flex flex-col h-full">
                   <div className="p-6 border-b">
                     <Link href="/" className="flex items-center">
-                      <div className="relative mr-2">
+                      {/* Yıldız ikonu kaldırıldı */}
+                      {/* <div className="relative mr-2">
                         <div className="text-amber-400 text-3xl absolute -top-1 -left-1">✦</div>
-                      </div>
+                      </div> */}
                       <Image
-                        src="https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/676be4d72f148f551550461b_Celyxmed_Logo_88x29.svg"
+                        src={logoUrl || "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/676be4d72f148f551550461b_Celyxmed_Logo_88x29.svg"} // Dinamik logoUrl veya varsayılan
                         alt="Celyxmed Logo"
                         width={150}
                         height={40}
@@ -302,9 +321,17 @@ const Navbar = () => {
                     </nav>
                   </div>
                   <div className="p-6 border-t">
-                    <Button className="w-full bg-teal-700 hover:bg-teal-800 text-white py-3">
-                      Consultation
-                    </Button>
+                    {headerButtonLink ? (
+                      <Link href={headerButtonLink}>
+                        <Button className="w-full bg-teal-700 hover:bg-teal-800 text-white py-3">
+                         {headerButtonText || "Consultation"}
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button className="w-full bg-teal-700 hover:bg-teal-800 text-white py-3">
+                        {headerButtonText || "Consultation"}
+                      </Button>
+                    )}
                   </div>
                 </div>
               </SheetContent>
