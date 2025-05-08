@@ -170,8 +170,8 @@ const Footer: React.FC<FooterProps> = ({
           {/* Metin rengi güncellendi, ayraç ve geliştirici linki kaldırıldı */}
           <div className="text-gray-500 mb-4 md:mb-0">
             <span>{copyrightText || `Copyright © ${new Date().getFullYear()} Celyxmed`}</span>
-             {/* Geliştirici bilgisi Türkçeleştirildi */}
-            <span className="ml-2">Tasarım & Geliştirme: Yağız Gürbüz</span>
+            {/* Geliştirici bilgisi kaldırıldı */}
+            {/* <span className="ml-2">Tasarım & Geliştirme: Yağız Gürbüz</span> */}
           </div>
           <div className="flex space-x-4">
             {socialMediaPlatforms.map(({ key, Icon, label, defaultHref }) => {
