@@ -17,7 +17,8 @@ import {
   Languages, // Languages ikonunu import et
   ClipboardList, // Hizmetler için ikon
   Home, // Home ikonu import edildi
-  LayoutGrid // LayoutGrid ikonu import edildi
+  LayoutGrid, // LayoutGrid ikonu import edildi
+  LayoutList // Menü Yönetimi için ikon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -54,6 +55,14 @@ const navItems: NavItem[] = [
     title: "Blog Yönetimi",
     href: "/admin/blog", // Removed /tr
     icon: <FileText className="h-5 w-5" />, // Reverted icon change, kept original
+  },
+  {
+    title: "Menü Yönetimi",
+    icon: <LayoutList className="h-5 w-5" />,
+    subItems: [
+      { title: "Header Menüleri", href: "/admin/header-menus" },
+      { title: "Footer Menüleri", href: "/admin/footer-menus" },
+    ],
   },
   // Removed Sayfalar, Galeri, İletişim, Kullanıcılar, Ayarlar
   {

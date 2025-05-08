@@ -61,6 +61,10 @@ model Language {
   generalSettingTranslations GeneralSettingTranslation[] // Yeni eklenecek alan
   // sliderTranslations SliderTranslation[] // Slider ilişkisi kaldırıldı
   heroContentTranslations HeroContentTranslation[] // Yeni HeroContent ilişkisi
+
+  // Menü Yönetimi İlişkileri
+  headerMenuItemTranslations HeaderMenuItemTranslation[]
+  footerMenuItemTranslations FooterMenuItemTranslation[]
 }
 
 // Blog modeli
@@ -72,6 +76,8 @@ model Blog {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   translations  BlogTranslation[]
+  headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToBlogPost")
+  footerMenuItems FooterMenuItem[] @relation("FooterMenuToBlogPost")
 }
 
 // Blog çevirileri modeli
@@ -123,6 +129,8 @@ model Hizmet {
 
   // --- Çeviriler ---
   translations HizmetTranslation[]
+  headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToHizmet")
+  footerMenuItems FooterMenuItem[] @relation("FooterMenuToHizmet")
 }
 
 // Hizmet Çeviri Modeli (Dile Özgü Metinler)
@@ -529,3 +537,143 @@ model HeroBackgroundImage {
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
 }
+
+// ----- MENÜ YÖNETİMİ MODELLERİ -----
+
+// Blog ve Hizmet modellerine opsiyonel geri dönüş ilişkileri (isteğe bağlı)
+// model Blog {
+//   ...
+//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToBlogPost")
+//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToBlogPost")
+// }
+// model Hizmet {
+//   ...
+//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToHizmet")
+//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToHizmet")
+// }
+
+enum MenuItemType {
+  LINK
+  BLOG_POST
+  SERVICE_PAGE
+  // CATEGORY_PAGE // Gelecekte eklenebilir
+  // CUSTOM_PAGE // Gelecekte eklenebilir
+}
+
+// ----- HEADER MENÜ MODELLERİ -----
+
+model HeaderMenu {
+  id        String    @id @default(cuid())
+  name      String    // Genellikle "Ana Header Menüsü" gibi tek bir kayıt olur
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  items     HeaderMenuItem[]
+}
+
+model HeaderMenuItem {
+  id            String        @id @default(cuid())
+  headerMenu    HeaderMenu    @relation(fields: [headerMenuId], references: [id], onDelete: Cascade)
+  headerMenuId  String
+  order         Int           @default(0)
+  itemType      MenuItemType
+  linkUrl       String?       // itemType LINK ise
+  blogPost      Blog?         @relation("HeaderMenuToBlogPost", fields: [blogPostId], references: [id], onDelete:SetNull)
+  blogPostId    String?       // itemType BLOG_POST ise
+  hizmet        Hizmet?       @relation("HeaderMenuToHizmet", fields: [hizmetId], references: [id], onDelete:SetNull)
+  hizmetId      String?       // itemType SERVICE_PAGE ise
+  openInNewTab  Boolean       @default(false)
+  isActive      Boolean       @default(true)
+  parentId      String?
+  parent        HeaderMenuItem? @relation("HeaderSubMenuItems", fields: [parentId], references: [id], onDelete:Cascade)
+  children      HeaderMenuItem[] @relation("HeaderSubMenuItems")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  translations  HeaderMenuItemTranslation[]
+
+  @@index([headerMenuId])
+  @@index([parentId])
+  @@index([blogPostId])
+  @@index([hizmetId])
+}
+
+model HeaderMenuItemTranslation {
+  id              String          @id @default(cuid())
+  headerMenuItem  HeaderMenuItem  @relation(fields: [headerMenuItemId], references: [id], onDelete: Cascade)
+  headerMenuItemId String
+  language        Language        @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode    String
+  title           String          // Menüde görünecek başlık
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@unique([headerMenuItemId, languageCode])
+}
+
+// ----- FOOTER MENÜ MODELLERİ -----
+
+model FooterMenu {
+  id        String    @id @default(cuid())
+  name      String    // Örn: "Alt Bilgi - Tedaviler", "Alt Bilgi - Hakkımızda"
+  // Footer'da birden fazla menü grubu olabilir, bu yüzden name önemli.
+  // İstenirse bir "column" veya "groupKey" alanı da eklenebilir.
+  // Örneğin: "treatments_column", "about_column"
+  // Şimdilik sadece 'name' ile gruplama varsayılıyor.
+  order     Int       @default(0) // Footer içindeki menülerin sıralaması
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  items     FooterMenuItem[]
+}
+
+model FooterMenuItem {
+  id            String        @id @default(cuid())
+  footerMenu    FooterMenu    @relation(fields: [footerMenuId], references: [id], onDelete: Cascade)
+  footerMenuId  String
+  order         Int           @default(0)
+  itemType      MenuItemType
+  linkUrl       String?
+  blogPost      Blog?         @relation("FooterMenuToBlogPost", fields: [blogPostId], references: [id], onDelete:SetNull)
+  blogPostId    String?
+  hizmet        Hizmet?       @relation("FooterMenuToHizmet", fields: [hizmetId], references: [id], onDelete:SetNull)
+  hizmetId      String?
+  openInNewTab  Boolean       @default(false)
+  isActive      Boolean       @default(true)
+  // Footer'da genellikle derin alt menüler olmaz ama yapısal olarak eklenebilir.
+  // parentId      String?
+  // parent        FooterMenuItem? @relation("FooterSubMenuItems", fields: [parentId], references: [id], onDelete:Cascade)
+  // children      FooterMenuItem[] @relation("FooterSubMenuItems")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  translations  FooterMenuItemTranslation[]
+
+  @@index([footerMenuId])
+  // @@index([parentId])
+  @@index([blogPostId])
+  @@index([hizmetId])
+}
+
+model FooterMenuItemTranslation {
+  id              String          @id @default(cuid())
+  footerMenuItem  FooterMenuItem  @relation(fields: [footerMenuItemId], references: [id], onDelete: Cascade)
+  footerMenuItemId String
+  language        Language        @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode    String
+  title           String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@unique([footerMenuItemId, languageCode])
+}
+
+// Blog ve Hizmet modellerine opsiyonel geri dönüş ilişkileri (isteğe bağlı)
+// model Blog {
+//   ...
+//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToBlogPost")
+//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToBlogPost")
+// }
+// model Hizmet {
+//   ...
+//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToHizmet")
+//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToHizmet")
+// }

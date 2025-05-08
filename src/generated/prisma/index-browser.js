@@ -447,6 +447,70 @@ exports.Prisma.HeroBackgroundImageScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.HeaderMenuScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HeaderMenuItemScalarFieldEnum = {
+  id: 'id',
+  headerMenuId: 'headerMenuId',
+  order: 'order',
+  itemType: 'itemType',
+  linkUrl: 'linkUrl',
+  blogPostId: 'blogPostId',
+  hizmetId: 'hizmetId',
+  openInNewTab: 'openInNewTab',
+  isActive: 'isActive',
+  parentId: 'parentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HeaderMenuItemTranslationScalarFieldEnum = {
+  id: 'id',
+  headerMenuItemId: 'headerMenuItemId',
+  languageCode: 'languageCode',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FooterMenuScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  order: 'order',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FooterMenuItemScalarFieldEnum = {
+  id: 'id',
+  footerMenuId: 'footerMenuId',
+  order: 'order',
+  itemType: 'itemType',
+  linkUrl: 'linkUrl',
+  blogPostId: 'blogPostId',
+  hizmetId: 'hizmetId',
+  openInNewTab: 'openInNewTab',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FooterMenuItemTranslationScalarFieldEnum = {
+  id: 'id',
+  footerMenuItemId: 'footerMenuItemId',
+  languageCode: 'languageCode',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -475,6 +539,12 @@ exports.Prisma.JsonNullValueFilter = {
 exports.Role = exports.$Enums.Role = {
   USER: 'USER',
   ADMIN: 'ADMIN'
+};
+
+exports.MenuItemType = exports.$Enums.MenuItemType = {
+  LINK: 'LINK',
+  BLOG_POST: 'BLOG_POST',
+  SERVICE_PAGE: 'SERVICE_PAGE'
 };
 
 exports.Prisma.ModelName = {
@@ -508,7 +578,13 @@ exports.Prisma.ModelName = {
   GeneralSettingTranslation: 'GeneralSettingTranslation',
   HeroContent: 'HeroContent',
   HeroContentTranslation: 'HeroContentTranslation',
-  HeroBackgroundImage: 'HeroBackgroundImage'
+  HeroBackgroundImage: 'HeroBackgroundImage',
+  HeaderMenu: 'HeaderMenu',
+  HeaderMenuItem: 'HeaderMenuItem',
+  HeaderMenuItemTranslation: 'HeaderMenuItemTranslation',
+  FooterMenu: 'FooterMenu',
+  FooterMenuItem: 'FooterMenuItem',
+  FooterMenuItemTranslation: 'FooterMenuItemTranslation'
 };
 
 /**
