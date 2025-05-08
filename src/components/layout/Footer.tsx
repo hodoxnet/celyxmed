@@ -3,7 +3,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 // Sosyal medya ikonları için lucide-react kullanabiliriz
-import { Youtube, Instagram, Facebook, Linkedin, Twitter, Phone, Mail, MapPin, LucideProps } from 'lucide-react'; // Facebook ve LucideProps eklendi
+import { Youtube, Instagram, Facebook, Linkedin, Twitter, Phone, Mail, MapPin, LucideProps } from 'lucide-react';
+
+// Menü tipleri (RootLayoutClient'tan veya ortak tiplerden)
+interface MenuItem {
+  id: string;
+  title: string;
+  href: string;
+  openInNewTab: boolean;
+  // Footer'da children yok
+}
+interface FooterMenu {
+  id: string;
+  name: string; // Grup adı (örn: "Tedaviler")
+  items: MenuItem[];
+}
+
 
 // TikTok ikonu için özel bir component veya SVG gerekebilir, şimdilik bir placeholder kullanalım
 const TikTokIcon = (props: LucideProps) => (
@@ -15,36 +30,9 @@ const TikTokIcon = (props: LucideProps) => (
   </svg>
 );
 
+// Statik footerLinks objesi kaldırıldı. Veri menuData prop'undan gelecek.
 
-// Link verileri Türkçeleştirildi
-const footerLinks = {
-  treatments: [
-    { title: "Plastik Cerrahi", href: "/plastik-cerrahi" }, // href güncellendi (isteğe bağlı)
-    { title: "Diş Estetiği, Tedavileri", href: "/dis-estetigi" }, // href güncellendi
-    { title: "Saç Ekimi", href: "/sac-ekimi" }, // href güncellendi
-    { title: "Medikal Estetik", href: "/medikal-estetik" }, // href güncellendi
-  ],
-  about: [
-    { title: "Hakkımızda", href: "/hakkimizda" }, // href güncellendi
-    { title: "Kliniğimiz", href: "/klinigimiz" }, // href güncellendi
-    { title: "Doktorlarımız", href: "/doktorlarimiz" }, // href güncellendi
-    { title: "İletişim", href: "/iletisim" }, // href güncellendi
-  ],
-  resources: [
-    { title: "Blog", href: "/blog" },
-    { title: "Başarı Hikayeleri", href: "/basari-hikayeleri" }, // href güncellendi
-    { title: "Hasta Görüşleri", href: "/hasta-gorusleri" }, // href güncellendi
-    { title: "Önce & Sonra Galerisi", href: "/galeri" }, // href güncellendi
-    { title: "Türkiye Sağlık ve Seyahat Rehberi 🇹🇷✈️", href: "/turkiye-saglik-seyahat-rehberi" }, // href güncellendi
-  ],
-  legal: [
-    { title: "Gizlilik Politikası", href: "/gizlilik-politikasi" }, // href güncellendi
-    { title: "Kişisel Verilerin Korunması", href: "/kisisel-verilerin-korunmasi" }, // href güncellendi
-    { title: "Hasta Hakları", href: "/hasta-haklari" }, // href güncellendi
-  ]
-};
-
-// Sosyal medya linkleri için platform tanımları
+// Sosyal medya linkleri için platform tanımları (Bu kısım kalabilir)
 const socialMediaPlatforms = [
   { key: 'youtube', Icon: Youtube, label: 'YouTube', defaultHref: "https://www.youtube.com/@Celyxmed" },
   { key: 'instagram', Icon: Instagram, label: 'Instagram', defaultHref: "https://www.instagram.com/celyxmed/" },
@@ -68,13 +56,17 @@ interface FooterProps {
     address?: string | null;
   } | null;
   copyrightText?: string | null;
+  menuData?: FooterMenu[] | null; // Dinamik footer menü verisi
 }
 
-const Footer: React.FC<FooterProps> = ({ 
-  socialLinks: dynamicSocialLinks, 
-  contactInfo, // contactInfo prop'u alındı ama bu bileşende doğrudan kullanılmıyor.
-  copyrightText 
+const Footer: React.FC<FooterProps> = ({
+  socialLinks: dynamicSocialLinks,
+  contactInfo,
+  copyrightText,
+  menuData // Prop'u al
 }) => {
+  // Dinamik menü gruplarını al veya boş array kullan
+  const footerMenuGroups = menuData || [];
   return (
     // Renk şeması güncellendi: beyaz arka plan, koyu gri metin. Alt boşluk artırıldı.
     <footer className="bg-white text-gray-700 pt-16 pb-24"> {/* pb-8'den pb-24'e çıkarıldı */}
@@ -103,64 +95,27 @@ const Footer: React.FC<FooterProps> = ({
             </Button>
           </div>
 
-          {/* Sağ Kısım: Link Sütunları */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 lg:col-span-3"> {/* 4 sütun yapıldı */}
-            <div>
-              {/* Başlık stili güncellendi */}
-              <h4 className="text-base font-medium text-gray-800 mb-4">Tedaviler</h4>
-              <ul className="space-y-2">
-                {footerLinks.treatments.map(link => (
-                  <li key={link.title}>
-                    {/* Link stili güncellendi */}
-                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              {/* Başlık stili güncellendi */}
-              <h4 className="text-base font-medium text-gray-800 mb-4">Celyxmed Hakkında</h4>
-              <ul className="space-y-2">
-                {footerLinks.about.map(link => (
-                  <li key={link.title}>
-                    {/* Link stili güncellendi */}
-                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              {/* Başlık stili güncellendi */}
-              <h4 className="text-base font-medium text-gray-800 mb-4">Kaynaklar</h4>
-              <ul className="space-y-2">
-                {footerLinks.resources.map(link => (
-                  <li key={link.title}>
-                    {/* Link stili güncellendi */}
-                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-             <div>
-              {/* Başlık stili güncellendi */}
-              <h4 className="text-base font-medium text-gray-800 mb-4">Yasal</h4>
-              <ul className="space-y-2">
-                {footerLinks.legal.map(link => (
-                  <li key={link.title}>
-                    {/* Link stili güncellendi */}
-                    <Link href={link.href} className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Sağ Kısım: Dinamik Link Sütunları */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 lg:col-span-3">
+            {footerMenuGroups.map((group) => (
+              <div key={group.id}>
+                <h4 className="text-base font-medium text-gray-800 mb-4">{group.name}</h4>
+                <ul className="space-y-2">
+                  {group.items.map(item => (
+                    <li key={item.id}>
+                      <Link 
+                        href={item.href} 
+                        className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
+                        target={item.openInNewTab ? "_blank" : undefined}
+                        rel={item.openInNewTab ? "noopener noreferrer" : undefined}
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 

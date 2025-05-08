@@ -8,14 +8,35 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { NextIntlClientProvider } from 'next-intl';
 import { GeneralSettingWithTranslation } from '@/types/form-types'; // Tip tanımını import ediyoruz
 
+// Menü veri tipleri (layout.tsx'den veya ortak tiplerden)
+interface MenuItem {
+  id: string;
+  title: string;
+  href: string;
+  openInNewTab: boolean;
+  children: MenuItem[];
+}
+interface HeaderMenu {
+  id: string;
+  name: string;
+  items: MenuItem[];
+}
+interface FooterMenu {
+  id: string;
+  name: string;
+  items: Omit<MenuItem, 'children'>[];
+}
+
 interface RootLayoutClientProps {
   children: React.ReactNode;
   locale: string;
   messages: any; // Veya daha spesifik bir tip kullanabilirsiniz: AbstractIntlMessages
-  generalSettings: GeneralSettingWithTranslation | null; // Yeni prop
+  generalSettings: GeneralSettingWithTranslation | null;
+  headerMenu: HeaderMenu | null; // Header menü prop'u eklendi
+  footerMenus: FooterMenu[] | null; // Footer menüleri prop'u eklendi
 }
 
-export default function RootLayoutClient({ children, locale, messages, generalSettings }: RootLayoutClientProps) {
+export default function RootLayoutClient({ children, locale, messages, generalSettings, headerMenu, footerMenus }: RootLayoutClientProps) {
   // generalSettings null ise veya bazı temel alanlar eksikse varsayılan değerler kullanılabilir.
   // Örneğin, logoUrl veya diğer kritik bilgiler için.
   // Şimdilik doğrudan prop olarak geçiyoruz.
@@ -29,11 +50,19 @@ export default function RootLayoutClient({ children, locale, messages, generalSe
     >
       <NextIntlClientProvider locale={locale} messages={messages}>
         <div className="flex flex-col min-h-screen">
-          <Navbar logoUrl={generalSettings?.logoUrl} headerButtonText={generalSettings?.translation?.headerButtonText} headerButtonLink={generalSettings?.translation?.headerButtonLink} />
+          {/* Navbar'a headerMenu prop'unu ekle */}
+          <Navbar 
+            logoUrl={generalSettings?.logoUrl} 
+            headerButtonText={generalSettings?.translation?.headerButtonText} 
+            headerButtonLink={generalSettings?.translation?.headerButtonLink} 
+            menuData={headerMenu} // Yeni prop
+          />
           <main className="flex-grow">
             {children}
           </main>
+          {/* Footer'a footerMenus prop'unu ekle */}
           <Footer 
+            menuData={footerMenus} // Yeni prop
             socialLinks={{
               youtube: generalSettings?.translation?.socialYoutubeUrl,
               instagram: generalSettings?.translation?.socialInstagramUrl,
