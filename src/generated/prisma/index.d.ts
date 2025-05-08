@@ -29,6 +29,11 @@ export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
  */
 export type Language = $Result.DefaultSelection<Prisma.$LanguagePayload>
 /**
+ * Model RouteTranslation
+ * 
+ */
+export type RouteTranslation = $Result.DefaultSelection<Prisma.$RouteTranslationPayload>
+/**
  * Model Blog
  * 
  */
@@ -383,6 +388,16 @@ export class PrismaClient<
     * ```
     */
   get language(): Prisma.LanguageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.routeTranslation`: Exposes CRUD operations for the **RouteTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RouteTranslations
+    * const routeTranslations = await prisma.routeTranslation.findMany()
+    * ```
+    */
+  get routeTranslation(): Prisma.RouteTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.blog`: Exposes CRUD operations for the **Blog** model.
@@ -1166,6 +1181,7 @@ export namespace Prisma {
     User: 'User',
     Session: 'Session',
     Language: 'Language',
+    RouteTranslation: 'RouteTranslation',
     Blog: 'Blog',
     BlogTranslation: 'BlogTranslation',
     Hizmet: 'Hizmet',
@@ -1218,7 +1234,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "headerMenu" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuItem" | "footerMenuItemTranslation"
+      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "headerMenu" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuItem" | "footerMenuItemTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1441,6 +1457,80 @@ export namespace Prisma {
           count: {
             args: Prisma.LanguageCountArgs<ExtArgs>
             result: $Utils.Optional<LanguageCountAggregateOutputType> | number
+          }
+        }
+      }
+      RouteTranslation: {
+        payload: Prisma.$RouteTranslationPayload<ExtArgs>
+        fields: Prisma.RouteTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RouteTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RouteTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.RouteTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RouteTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.RouteTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.RouteTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.RouteTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RouteTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.RouteTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>
+          }
+          update: {
+            args: Prisma.RouteTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.RouteTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RouteTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RouteTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.RouteTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RouteTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.RouteTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRouteTranslation>
+          }
+          groupBy: {
+            args: Prisma.RouteTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RouteTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RouteTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<RouteTranslationCountAggregateOutputType> | number
           }
         }
       }
@@ -4047,6 +4137,7 @@ export namespace Prisma {
     user?: UserOmit
     session?: SessionOmit
     language?: LanguageOmit
+    routeTranslation?: RouteTranslationOmit
     blog?: BlogOmit
     blogTranslation?: BlogTranslationOmit
     hizmet?: HizmetOmit
@@ -4185,6 +4276,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations: number
     generalSettingTranslations: number
     heroContentTranslations: number
+    routeTranslations: number
     headerMenuItemTranslations: number
     footerMenuItemTranslations: number
   }
@@ -4200,6 +4292,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: boolean | LanguageCountOutputTypeCountHizmetPricingPackageTranslationsArgs
     generalSettingTranslations?: boolean | LanguageCountOutputTypeCountGeneralSettingTranslationsArgs
     heroContentTranslations?: boolean | LanguageCountOutputTypeCountHeroContentTranslationsArgs
+    routeTranslations?: boolean | LanguageCountOutputTypeCountRouteTranslationsArgs
     headerMenuItemTranslations?: boolean | LanguageCountOutputTypeCountHeaderMenuItemTranslationsArgs
     footerMenuItemTranslations?: boolean | LanguageCountOutputTypeCountFooterMenuItemTranslationsArgs
   }
@@ -4283,6 +4376,13 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountHeroContentTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HeroContentTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountRouteTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RouteTranslationWhereInput
   }
 
   /**
@@ -7150,6 +7250,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
     heroContentTranslations?: boolean | Language$heroContentTranslationsArgs<ExtArgs>
+    routeTranslations?: boolean | Language$routeTranslationsArgs<ExtArgs>
     headerMenuItemTranslations?: boolean | Language$headerMenuItemTranslationsArgs<ExtArgs>
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
@@ -7197,6 +7298,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
     heroContentTranslations?: boolean | Language$heroContentTranslationsArgs<ExtArgs>
+    routeTranslations?: boolean | Language$routeTranslationsArgs<ExtArgs>
     headerMenuItemTranslations?: boolean | Language$headerMenuItemTranslationsArgs<ExtArgs>
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
@@ -7217,6 +7319,7 @@ export namespace Prisma {
       hizmetPricingPackageTranslations: Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>[]
       generalSettingTranslations: Prisma.$GeneralSettingTranslationPayload<ExtArgs>[]
       heroContentTranslations: Prisma.$HeroContentTranslationPayload<ExtArgs>[]
+      routeTranslations: Prisma.$RouteTranslationPayload<ExtArgs>[]
       headerMenuItemTranslations: Prisma.$HeaderMenuItemTranslationPayload<ExtArgs>[]
       footerMenuItemTranslations: Prisma.$FooterMenuItemTranslationPayload<ExtArgs>[]
     }
@@ -7632,6 +7735,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations<T extends Language$hizmetPricingPackageTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetPricingPackageTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     generalSettingTranslations<T extends Language$generalSettingTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$generalSettingTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     heroContentTranslations<T extends Language$heroContentTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$heroContentTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    routeTranslations<T extends Language$routeTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$routeTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     headerMenuItemTranslations<T extends Language$headerMenuItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$headerMenuItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     footerMenuItemTranslations<T extends Language$footerMenuItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$footerMenuItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -8298,6 +8402,30 @@ export namespace Prisma {
   }
 
   /**
+   * Language.routeTranslations
+   */
+  export type Language$routeTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    where?: RouteTranslationWhereInput
+    orderBy?: RouteTranslationOrderByWithRelationInput | RouteTranslationOrderByWithRelationInput[]
+    cursor?: RouteTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RouteTranslationScalarFieldEnum | RouteTranslationScalarFieldEnum[]
+  }
+
+  /**
    * Language.headerMenuItemTranslations
    */
   export type Language$headerMenuItemTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8361,6 +8489,1077 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: LanguageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RouteTranslation
+   */
+
+  export type AggregateRouteTranslation = {
+    _count: RouteTranslationCountAggregateOutputType | null
+    _min: RouteTranslationMinAggregateOutputType | null
+    _max: RouteTranslationMaxAggregateOutputType | null
+  }
+
+  export type RouteTranslationMinAggregateOutputType = {
+    id: string | null
+    routeKey: string | null
+    languageCode: string | null
+    translatedValue: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RouteTranslationMaxAggregateOutputType = {
+    id: string | null
+    routeKey: string | null
+    languageCode: string | null
+    translatedValue: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RouteTranslationCountAggregateOutputType = {
+    id: number
+    routeKey: number
+    languageCode: number
+    translatedValue: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RouteTranslationMinAggregateInputType = {
+    id?: true
+    routeKey?: true
+    languageCode?: true
+    translatedValue?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RouteTranslationMaxAggregateInputType = {
+    id?: true
+    routeKey?: true
+    languageCode?: true
+    translatedValue?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RouteTranslationCountAggregateInputType = {
+    id?: true
+    routeKey?: true
+    languageCode?: true
+    translatedValue?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RouteTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RouteTranslation to aggregate.
+     */
+    where?: RouteTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RouteTranslations to fetch.
+     */
+    orderBy?: RouteTranslationOrderByWithRelationInput | RouteTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RouteTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RouteTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RouteTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RouteTranslations
+    **/
+    _count?: true | RouteTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RouteTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RouteTranslationMaxAggregateInputType
+  }
+
+  export type GetRouteTranslationAggregateType<T extends RouteTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateRouteTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRouteTranslation[P]>
+      : GetScalarType<T[P], AggregateRouteTranslation[P]>
+  }
+
+
+
+
+  export type RouteTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RouteTranslationWhereInput
+    orderBy?: RouteTranslationOrderByWithAggregationInput | RouteTranslationOrderByWithAggregationInput[]
+    by: RouteTranslationScalarFieldEnum[] | RouteTranslationScalarFieldEnum
+    having?: RouteTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RouteTranslationCountAggregateInputType | true
+    _min?: RouteTranslationMinAggregateInputType
+    _max?: RouteTranslationMaxAggregateInputType
+  }
+
+  export type RouteTranslationGroupByOutputType = {
+    id: string
+    routeKey: string
+    languageCode: string
+    translatedValue: string
+    createdAt: Date
+    updatedAt: Date
+    _count: RouteTranslationCountAggregateOutputType | null
+    _min: RouteTranslationMinAggregateOutputType | null
+    _max: RouteTranslationMaxAggregateOutputType | null
+  }
+
+  type GetRouteTranslationGroupByPayload<T extends RouteTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RouteTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RouteTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RouteTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], RouteTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RouteTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    routeKey?: boolean
+    languageCode?: boolean
+    translatedValue?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["routeTranslation"]>
+
+  export type RouteTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    routeKey?: boolean
+    languageCode?: boolean
+    translatedValue?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["routeTranslation"]>
+
+  export type RouteTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    routeKey?: boolean
+    languageCode?: boolean
+    translatedValue?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["routeTranslation"]>
+
+  export type RouteTranslationSelectScalar = {
+    id?: boolean
+    routeKey?: boolean
+    languageCode?: boolean
+    translatedValue?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RouteTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "routeKey" | "languageCode" | "translatedValue" | "createdAt" | "updatedAt", ExtArgs["result"]["routeTranslation"]>
+  export type RouteTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type RouteTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type RouteTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $RouteTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RouteTranslation"
+    objects: {
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      routeKey: string
+      languageCode: string
+      translatedValue: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["routeTranslation"]>
+    composites: {}
+  }
+
+  type RouteTranslationGetPayload<S extends boolean | null | undefined | RouteTranslationDefaultArgs> = $Result.GetResult<Prisma.$RouteTranslationPayload, S>
+
+  type RouteTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RouteTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RouteTranslationCountAggregateInputType | true
+    }
+
+  export interface RouteTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RouteTranslation'], meta: { name: 'RouteTranslation' } }
+    /**
+     * Find zero or one RouteTranslation that matches the filter.
+     * @param {RouteTranslationFindUniqueArgs} args - Arguments to find a RouteTranslation
+     * @example
+     * // Get one RouteTranslation
+     * const routeTranslation = await prisma.routeTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RouteTranslationFindUniqueArgs>(args: SelectSubset<T, RouteTranslationFindUniqueArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RouteTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RouteTranslationFindUniqueOrThrowArgs} args - Arguments to find a RouteTranslation
+     * @example
+     * // Get one RouteTranslation
+     * const routeTranslation = await prisma.routeTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RouteTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, RouteTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RouteTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RouteTranslationFindFirstArgs} args - Arguments to find a RouteTranslation
+     * @example
+     * // Get one RouteTranslation
+     * const routeTranslation = await prisma.routeTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RouteTranslationFindFirstArgs>(args?: SelectSubset<T, RouteTranslationFindFirstArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RouteTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RouteTranslationFindFirstOrThrowArgs} args - Arguments to find a RouteTranslation
+     * @example
+     * // Get one RouteTranslation
+     * const routeTranslation = await prisma.routeTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RouteTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, RouteTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RouteTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RouteTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RouteTranslations
+     * const routeTranslations = await prisma.routeTranslation.findMany()
+     * 
+     * // Get first 10 RouteTranslations
+     * const routeTranslations = await prisma.routeTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const routeTranslationWithIdOnly = await prisma.routeTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RouteTranslationFindManyArgs>(args?: SelectSubset<T, RouteTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RouteTranslation.
+     * @param {RouteTranslationCreateArgs} args - Arguments to create a RouteTranslation.
+     * @example
+     * // Create one RouteTranslation
+     * const RouteTranslation = await prisma.routeTranslation.create({
+     *   data: {
+     *     // ... data to create a RouteTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends RouteTranslationCreateArgs>(args: SelectSubset<T, RouteTranslationCreateArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RouteTranslations.
+     * @param {RouteTranslationCreateManyArgs} args - Arguments to create many RouteTranslations.
+     * @example
+     * // Create many RouteTranslations
+     * const routeTranslation = await prisma.routeTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RouteTranslationCreateManyArgs>(args?: SelectSubset<T, RouteTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RouteTranslations and returns the data saved in the database.
+     * @param {RouteTranslationCreateManyAndReturnArgs} args - Arguments to create many RouteTranslations.
+     * @example
+     * // Create many RouteTranslations
+     * const routeTranslation = await prisma.routeTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RouteTranslations and only return the `id`
+     * const routeTranslationWithIdOnly = await prisma.routeTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RouteTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, RouteTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RouteTranslation.
+     * @param {RouteTranslationDeleteArgs} args - Arguments to delete one RouteTranslation.
+     * @example
+     * // Delete one RouteTranslation
+     * const RouteTranslation = await prisma.routeTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one RouteTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RouteTranslationDeleteArgs>(args: SelectSubset<T, RouteTranslationDeleteArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RouteTranslation.
+     * @param {RouteTranslationUpdateArgs} args - Arguments to update one RouteTranslation.
+     * @example
+     * // Update one RouteTranslation
+     * const routeTranslation = await prisma.routeTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RouteTranslationUpdateArgs>(args: SelectSubset<T, RouteTranslationUpdateArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RouteTranslations.
+     * @param {RouteTranslationDeleteManyArgs} args - Arguments to filter RouteTranslations to delete.
+     * @example
+     * // Delete a few RouteTranslations
+     * const { count } = await prisma.routeTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RouteTranslationDeleteManyArgs>(args?: SelectSubset<T, RouteTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RouteTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RouteTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RouteTranslations
+     * const routeTranslation = await prisma.routeTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RouteTranslationUpdateManyArgs>(args: SelectSubset<T, RouteTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RouteTranslations and returns the data updated in the database.
+     * @param {RouteTranslationUpdateManyAndReturnArgs} args - Arguments to update many RouteTranslations.
+     * @example
+     * // Update many RouteTranslations
+     * const routeTranslation = await prisma.routeTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RouteTranslations and only return the `id`
+     * const routeTranslationWithIdOnly = await prisma.routeTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RouteTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, RouteTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RouteTranslation.
+     * @param {RouteTranslationUpsertArgs} args - Arguments to update or create a RouteTranslation.
+     * @example
+     * // Update or create a RouteTranslation
+     * const routeTranslation = await prisma.routeTranslation.upsert({
+     *   create: {
+     *     // ... data to create a RouteTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RouteTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RouteTranslationUpsertArgs>(args: SelectSubset<T, RouteTranslationUpsertArgs<ExtArgs>>): Prisma__RouteTranslationClient<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RouteTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RouteTranslationCountArgs} args - Arguments to filter RouteTranslations to count.
+     * @example
+     * // Count the number of RouteTranslations
+     * const count = await prisma.routeTranslation.count({
+     *   where: {
+     *     // ... the filter for the RouteTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends RouteTranslationCountArgs>(
+      args?: Subset<T, RouteTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RouteTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RouteTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RouteTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RouteTranslationAggregateArgs>(args: Subset<T, RouteTranslationAggregateArgs>): Prisma.PrismaPromise<GetRouteTranslationAggregateType<T>>
+
+    /**
+     * Group by RouteTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RouteTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RouteTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RouteTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: RouteTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RouteTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRouteTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RouteTranslation model
+   */
+  readonly fields: RouteTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RouteTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RouteTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RouteTranslation model
+   */
+  interface RouteTranslationFieldRefs {
+    readonly id: FieldRef<"RouteTranslation", 'String'>
+    readonly routeKey: FieldRef<"RouteTranslation", 'String'>
+    readonly languageCode: FieldRef<"RouteTranslation", 'String'>
+    readonly translatedValue: FieldRef<"RouteTranslation", 'String'>
+    readonly createdAt: FieldRef<"RouteTranslation", 'DateTime'>
+    readonly updatedAt: FieldRef<"RouteTranslation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RouteTranslation findUnique
+   */
+  export type RouteTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which RouteTranslation to fetch.
+     */
+    where: RouteTranslationWhereUniqueInput
+  }
+
+  /**
+   * RouteTranslation findUniqueOrThrow
+   */
+  export type RouteTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which RouteTranslation to fetch.
+     */
+    where: RouteTranslationWhereUniqueInput
+  }
+
+  /**
+   * RouteTranslation findFirst
+   */
+  export type RouteTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which RouteTranslation to fetch.
+     */
+    where?: RouteTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RouteTranslations to fetch.
+     */
+    orderBy?: RouteTranslationOrderByWithRelationInput | RouteTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RouteTranslations.
+     */
+    cursor?: RouteTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RouteTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RouteTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RouteTranslations.
+     */
+    distinct?: RouteTranslationScalarFieldEnum | RouteTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * RouteTranslation findFirstOrThrow
+   */
+  export type RouteTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which RouteTranslation to fetch.
+     */
+    where?: RouteTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RouteTranslations to fetch.
+     */
+    orderBy?: RouteTranslationOrderByWithRelationInput | RouteTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RouteTranslations.
+     */
+    cursor?: RouteTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RouteTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RouteTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RouteTranslations.
+     */
+    distinct?: RouteTranslationScalarFieldEnum | RouteTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * RouteTranslation findMany
+   */
+  export type RouteTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which RouteTranslations to fetch.
+     */
+    where?: RouteTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RouteTranslations to fetch.
+     */
+    orderBy?: RouteTranslationOrderByWithRelationInput | RouteTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RouteTranslations.
+     */
+    cursor?: RouteTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RouteTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RouteTranslations.
+     */
+    skip?: number
+    distinct?: RouteTranslationScalarFieldEnum | RouteTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * RouteTranslation create
+   */
+  export type RouteTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RouteTranslation.
+     */
+    data: XOR<RouteTranslationCreateInput, RouteTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * RouteTranslation createMany
+   */
+  export type RouteTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RouteTranslations.
+     */
+    data: RouteTranslationCreateManyInput | RouteTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RouteTranslation createManyAndReturn
+   */
+  export type RouteTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many RouteTranslations.
+     */
+    data: RouteTranslationCreateManyInput | RouteTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RouteTranslation update
+   */
+  export type RouteTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RouteTranslation.
+     */
+    data: XOR<RouteTranslationUpdateInput, RouteTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which RouteTranslation to update.
+     */
+    where: RouteTranslationWhereUniqueInput
+  }
+
+  /**
+   * RouteTranslation updateMany
+   */
+  export type RouteTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RouteTranslations.
+     */
+    data: XOR<RouteTranslationUpdateManyMutationInput, RouteTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which RouteTranslations to update
+     */
+    where?: RouteTranslationWhereInput
+    /**
+     * Limit how many RouteTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RouteTranslation updateManyAndReturn
+   */
+  export type RouteTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update RouteTranslations.
+     */
+    data: XOR<RouteTranslationUpdateManyMutationInput, RouteTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which RouteTranslations to update
+     */
+    where?: RouteTranslationWhereInput
+    /**
+     * Limit how many RouteTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RouteTranslation upsert
+   */
+  export type RouteTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RouteTranslation to update in case it exists.
+     */
+    where: RouteTranslationWhereUniqueInput
+    /**
+     * In case the RouteTranslation found by the `where` argument doesn't exist, create a new RouteTranslation with this data.
+     */
+    create: XOR<RouteTranslationCreateInput, RouteTranslationUncheckedCreateInput>
+    /**
+     * In case the RouteTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RouteTranslationUpdateInput, RouteTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * RouteTranslation delete
+   */
+  export type RouteTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which RouteTranslation to delete.
+     */
+    where: RouteTranslationWhereUniqueInput
+  }
+
+  /**
+   * RouteTranslation deleteMany
+   */
+  export type RouteTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RouteTranslations to delete
+     */
+    where?: RouteTranslationWhereInput
+    /**
+     * Limit how many RouteTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RouteTranslation without action
+   */
+  export type RouteTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RouteTranslation
+     */
+    select?: RouteTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RouteTranslation
+     */
+    omit?: RouteTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RouteTranslationInclude<ExtArgs> | null
   }
 
 
@@ -47213,6 +48412,18 @@ export namespace Prisma {
   export type LanguageScalarFieldEnum = (typeof LanguageScalarFieldEnum)[keyof typeof LanguageScalarFieldEnum]
 
 
+  export const RouteTranslationScalarFieldEnum: {
+    id: 'id',
+    routeKey: 'routeKey',
+    languageCode: 'languageCode',
+    translatedValue: 'translatedValue',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RouteTranslationScalarFieldEnum = (typeof RouteTranslationScalarFieldEnum)[keyof typeof RouteTranslationScalarFieldEnum]
+
+
   export const BlogScalarFieldEnum: {
     id: 'id',
     coverImageUrl: 'coverImageUrl',
@@ -47971,6 +49182,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
     heroContentTranslations?: HeroContentTranslationListRelationFilter
+    routeTranslations?: RouteTranslationListRelationFilter
     headerMenuItemTranslations?: HeaderMenuItemTranslationListRelationFilter
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
   }
@@ -47993,6 +49205,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationOrderByRelationAggregateInput
     generalSettingTranslations?: GeneralSettingTranslationOrderByRelationAggregateInput
     heroContentTranslations?: HeroContentTranslationOrderByRelationAggregateInput
+    routeTranslations?: RouteTranslationOrderByRelationAggregateInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationOrderByRelationAggregateInput
     footerMenuItemTranslations?: FooterMenuItemTranslationOrderByRelationAggregateInput
   }
@@ -48018,6 +49231,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
     heroContentTranslations?: HeroContentTranslationListRelationFilter
+    routeTranslations?: RouteTranslationListRelationFilter
     headerMenuItemTranslations?: HeaderMenuItemTranslationListRelationFilter
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
   }, "id" | "code">
@@ -48046,6 +49260,67 @@ export namespace Prisma {
     isDefault?: BoolWithAggregatesFilter<"Language"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Language"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Language"> | Date | string
+  }
+
+  export type RouteTranslationWhereInput = {
+    AND?: RouteTranslationWhereInput | RouteTranslationWhereInput[]
+    OR?: RouteTranslationWhereInput[]
+    NOT?: RouteTranslationWhereInput | RouteTranslationWhereInput[]
+    id?: StringFilter<"RouteTranslation"> | string
+    routeKey?: StringFilter<"RouteTranslation"> | string
+    languageCode?: StringFilter<"RouteTranslation"> | string
+    translatedValue?: StringFilter<"RouteTranslation"> | string
+    createdAt?: DateTimeFilter<"RouteTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"RouteTranslation"> | Date | string
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type RouteTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    routeKey?: SortOrder
+    languageCode?: SortOrder
+    translatedValue?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type RouteTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    routeKey_languageCode?: RouteTranslationRouteKeyLanguageCodeCompoundUniqueInput
+    AND?: RouteTranslationWhereInput | RouteTranslationWhereInput[]
+    OR?: RouteTranslationWhereInput[]
+    NOT?: RouteTranslationWhereInput | RouteTranslationWhereInput[]
+    routeKey?: StringFilter<"RouteTranslation"> | string
+    languageCode?: StringFilter<"RouteTranslation"> | string
+    translatedValue?: StringFilter<"RouteTranslation"> | string
+    createdAt?: DateTimeFilter<"RouteTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"RouteTranslation"> | Date | string
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "routeKey_languageCode">
+
+  export type RouteTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    routeKey?: SortOrder
+    languageCode?: SortOrder
+    translatedValue?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RouteTranslationCountOrderByAggregateInput
+    _max?: RouteTranslationMaxOrderByAggregateInput
+    _min?: RouteTranslationMinOrderByAggregateInput
+  }
+
+  export type RouteTranslationScalarWhereWithAggregatesInput = {
+    AND?: RouteTranslationScalarWhereWithAggregatesInput | RouteTranslationScalarWhereWithAggregatesInput[]
+    OR?: RouteTranslationScalarWhereWithAggregatesInput[]
+    NOT?: RouteTranslationScalarWhereWithAggregatesInput | RouteTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RouteTranslation"> | string
+    routeKey?: StringWithAggregatesFilter<"RouteTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"RouteTranslation"> | string
+    translatedValue?: StringWithAggregatesFilter<"RouteTranslation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"RouteTranslation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RouteTranslation"> | Date | string
   }
 
   export type BlogWhereInput = {
@@ -50699,6 +51974,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -50721,6 +51997,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -50743,6 +52020,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -50765,6 +52043,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -50795,6 +52074,68 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RouteTranslationCreateInput = {
+    id?: string
+    routeKey: string
+    translatedValue: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    language: LanguageCreateNestedOneWithoutRouteTranslationsInput
+  }
+
+  export type RouteTranslationUncheckedCreateInput = {
+    id?: string
+    routeKey: string
+    languageCode: string
+    translatedValue: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RouteTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routeKey?: StringFieldUpdateOperationsInput | string
+    translatedValue?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    language?: LanguageUpdateOneRequiredWithoutRouteTranslationsNestedInput
+  }
+
+  export type RouteTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routeKey?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    translatedValue?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RouteTranslationCreateManyInput = {
+    id?: string
+    routeKey: string
+    languageCode: string
+    translatedValue: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RouteTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routeKey?: StringFieldUpdateOperationsInput | string
+    translatedValue?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RouteTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routeKey?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    translatedValue?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -53655,6 +54996,12 @@ export namespace Prisma {
     none?: HeroContentTranslationWhereInput
   }
 
+  export type RouteTranslationListRelationFilter = {
+    every?: RouteTranslationWhereInput
+    some?: RouteTranslationWhereInput
+    none?: RouteTranslationWhereInput
+  }
+
   export type HeaderMenuItemTranslationListRelationFilter = {
     every?: HeaderMenuItemTranslationWhereInput
     some?: HeaderMenuItemTranslationWhereInput
@@ -53707,6 +55054,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type RouteTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type HeaderMenuItemTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -53751,6 +55102,43 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type LanguageScalarRelationFilter = {
+    is?: LanguageWhereInput
+    isNot?: LanguageWhereInput
+  }
+
+  export type RouteTranslationRouteKeyLanguageCodeCompoundUniqueInput = {
+    routeKey: string
+    languageCode: string
+  }
+
+  export type RouteTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    routeKey?: SortOrder
+    languageCode?: SortOrder
+    translatedValue?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RouteTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    routeKey?: SortOrder
+    languageCode?: SortOrder
+    translatedValue?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RouteTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    routeKey?: SortOrder
+    languageCode?: SortOrder
+    translatedValue?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -53851,11 +55239,6 @@ export namespace Prisma {
   export type BlogScalarRelationFilter = {
     is?: BlogWhereInput
     isNot?: BlogWhereInput
-  }
-
-  export type LanguageScalarRelationFilter = {
-    is?: LanguageWhereInput
-    isNot?: LanguageWhereInput
   }
 
   export type BlogTranslationBlogIdLanguageCodeCompoundUniqueInput = {
@@ -55539,6 +56922,13 @@ export namespace Prisma {
     connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
   }
 
+  export type RouteTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<RouteTranslationCreateWithoutLanguageInput, RouteTranslationUncheckedCreateWithoutLanguageInput> | RouteTranslationCreateWithoutLanguageInput[] | RouteTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: RouteTranslationCreateOrConnectWithoutLanguageInput | RouteTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: RouteTranslationCreateManyLanguageInputEnvelope
+    connect?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+  }
+
   export type HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput = {
     create?: XOR<HeaderMenuItemTranslationCreateWithoutLanguageInput, HeaderMenuItemTranslationUncheckedCreateWithoutLanguageInput> | HeaderMenuItemTranslationCreateWithoutLanguageInput[] | HeaderMenuItemTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: HeaderMenuItemTranslationCreateOrConnectWithoutLanguageInput | HeaderMenuItemTranslationCreateOrConnectWithoutLanguageInput[]
@@ -55621,6 +57011,13 @@ export namespace Prisma {
     connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutLanguageInput | HeroContentTranslationCreateOrConnectWithoutLanguageInput[]
     createMany?: HeroContentTranslationCreateManyLanguageInputEnvelope
     connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+  }
+
+  export type RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<RouteTranslationCreateWithoutLanguageInput, RouteTranslationUncheckedCreateWithoutLanguageInput> | RouteTranslationCreateWithoutLanguageInput[] | RouteTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: RouteTranslationCreateOrConnectWithoutLanguageInput | RouteTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: RouteTranslationCreateManyLanguageInputEnvelope
+    connect?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
   }
 
   export type HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
@@ -55779,6 +57176,20 @@ export namespace Prisma {
     update?: HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput | HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput | HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
+  }
+
+  export type RouteTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<RouteTranslationCreateWithoutLanguageInput, RouteTranslationUncheckedCreateWithoutLanguageInput> | RouteTranslationCreateWithoutLanguageInput[] | RouteTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: RouteTranslationCreateOrConnectWithoutLanguageInput | RouteTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: RouteTranslationUpsertWithWhereUniqueWithoutLanguageInput | RouteTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: RouteTranslationCreateManyLanguageInputEnvelope
+    set?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    disconnect?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    delete?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    connect?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    update?: RouteTranslationUpdateWithWhereUniqueWithoutLanguageInput | RouteTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: RouteTranslationUpdateManyWithWhereWithoutLanguageInput | RouteTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: RouteTranslationScalarWhereInput | RouteTranslationScalarWhereInput[]
   }
 
   export type HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput = {
@@ -55949,6 +57360,20 @@ export namespace Prisma {
     deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
   }
 
+  export type RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<RouteTranslationCreateWithoutLanguageInput, RouteTranslationUncheckedCreateWithoutLanguageInput> | RouteTranslationCreateWithoutLanguageInput[] | RouteTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: RouteTranslationCreateOrConnectWithoutLanguageInput | RouteTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: RouteTranslationUpsertWithWhereUniqueWithoutLanguageInput | RouteTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: RouteTranslationCreateManyLanguageInputEnvelope
+    set?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    disconnect?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    delete?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    connect?: RouteTranslationWhereUniqueInput | RouteTranslationWhereUniqueInput[]
+    update?: RouteTranslationUpdateWithWhereUniqueWithoutLanguageInput | RouteTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: RouteTranslationUpdateManyWithWhereWithoutLanguageInput | RouteTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: RouteTranslationScalarWhereInput | RouteTranslationScalarWhereInput[]
+  }
+
   export type HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
     create?: XOR<HeaderMenuItemTranslationCreateWithoutLanguageInput, HeaderMenuItemTranslationUncheckedCreateWithoutLanguageInput> | HeaderMenuItemTranslationCreateWithoutLanguageInput[] | HeaderMenuItemTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: HeaderMenuItemTranslationCreateOrConnectWithoutLanguageInput | HeaderMenuItemTranslationCreateOrConnectWithoutLanguageInput[]
@@ -55975,6 +57400,20 @@ export namespace Prisma {
     update?: FooterMenuItemTranslationUpdateWithWhereUniqueWithoutLanguageInput | FooterMenuItemTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: FooterMenuItemTranslationUpdateManyWithWhereWithoutLanguageInput | FooterMenuItemTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: FooterMenuItemTranslationScalarWhereInput | FooterMenuItemTranslationScalarWhereInput[]
+  }
+
+  export type LanguageCreateNestedOneWithoutRouteTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutRouteTranslationsInput, LanguageUncheckedCreateWithoutRouteTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutRouteTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type LanguageUpdateOneRequiredWithoutRouteTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutRouteTranslationsInput, LanguageUncheckedCreateWithoutRouteTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutRouteTranslationsInput
+    upsert?: LanguageUpsertWithoutRouteTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutRouteTranslationsInput, LanguageUpdateWithoutRouteTranslationsInput>, LanguageUncheckedUpdateWithoutRouteTranslationsInput>
   }
 
   export type BlogTranslationCreateNestedManyWithoutBlogInput = {
@@ -58662,6 +60101,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RouteTranslationCreateWithoutLanguageInput = {
+    id?: string
+    routeKey: string
+    translatedValue: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RouteTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    routeKey: string
+    translatedValue: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RouteTranslationCreateOrConnectWithoutLanguageInput = {
+    where: RouteTranslationWhereUniqueInput
+    create: XOR<RouteTranslationCreateWithoutLanguageInput, RouteTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type RouteTranslationCreateManyLanguageInputEnvelope = {
+    data: RouteTranslationCreateManyLanguageInput | RouteTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type HeaderMenuItemTranslationCreateWithoutLanguageInput = {
     id?: string
     title: string
@@ -59044,6 +60509,34 @@ export namespace Prisma {
     button2Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
   }
 
+  export type RouteTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: RouteTranslationWhereUniqueInput
+    update: XOR<RouteTranslationUpdateWithoutLanguageInput, RouteTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<RouteTranslationCreateWithoutLanguageInput, RouteTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type RouteTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: RouteTranslationWhereUniqueInput
+    data: XOR<RouteTranslationUpdateWithoutLanguageInput, RouteTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type RouteTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: RouteTranslationScalarWhereInput
+    data: XOR<RouteTranslationUpdateManyMutationInput, RouteTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type RouteTranslationScalarWhereInput = {
+    AND?: RouteTranslationScalarWhereInput | RouteTranslationScalarWhereInput[]
+    OR?: RouteTranslationScalarWhereInput[]
+    NOT?: RouteTranslationScalarWhereInput | RouteTranslationScalarWhereInput[]
+    id?: StringFilter<"RouteTranslation"> | string
+    routeKey?: StringFilter<"RouteTranslation"> | string
+    languageCode?: StringFilter<"RouteTranslation"> | string
+    translatedValue?: StringFilter<"RouteTranslation"> | string
+    createdAt?: DateTimeFilter<"RouteTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"RouteTranslation"> | Date | string
+  }
+
   export type HeaderMenuItemTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
     where: HeaderMenuItemTranslationWhereUniqueInput
     update: XOR<HeaderMenuItemTranslationUpdateWithoutLanguageInput, HeaderMenuItemTranslationUncheckedUpdateWithoutLanguageInput>
@@ -59098,6 +60591,110 @@ export namespace Prisma {
     title?: StringFilter<"FooterMenuItemTranslation"> | string
     createdAt?: DateTimeFilter<"FooterMenuItemTranslation"> | Date | string
     updatedAt?: DateTimeFilter<"FooterMenuItemTranslation"> | Date | string
+  }
+
+  export type LanguageCreateWithoutRouteTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutRouteTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutRouteTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutRouteTranslationsInput, LanguageUncheckedCreateWithoutRouteTranslationsInput>
+  }
+
+  export type LanguageUpsertWithoutRouteTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutRouteTranslationsInput, LanguageUncheckedUpdateWithoutRouteTranslationsInput>
+    create: XOR<LanguageCreateWithoutRouteTranslationsInput, LanguageUncheckedCreateWithoutRouteTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutRouteTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutRouteTranslationsInput, LanguageUncheckedUpdateWithoutRouteTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutRouteTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutRouteTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateWithoutBlogInput = {
@@ -59337,6 +60934,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -59358,6 +60956,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -59428,6 +61027,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -59449,6 +61049,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -60225,6 +61826,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -60246,6 +61848,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -60446,6 +62049,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -60467,6 +62071,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -61948,6 +63553,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -61969,6 +63575,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -62035,6 +63642,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -62056,6 +63664,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -62252,6 +63861,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -62273,6 +63883,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -62335,6 +63946,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -62356,6 +63968,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -62556,6 +64169,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -62577,6 +64191,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -62641,6 +64256,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -62662,6 +64278,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -62860,6 +64477,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -62881,6 +64499,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -62945,6 +64564,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -62966,6 +64586,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -63164,6 +64785,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -63185,6 +64807,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -63247,6 +64870,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -63268,6 +64892,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -63470,6 +65095,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -63491,6 +65117,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -63555,6 +65182,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -63576,6 +65204,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -63688,6 +65317,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -63709,6 +65339,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -63783,6 +65414,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -63804,6 +65436,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -63949,6 +65582,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
@@ -63970,6 +65604,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
@@ -64032,6 +65667,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
@@ -64053,6 +65689,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
@@ -64618,6 +66255,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
@@ -64639,6 +66277,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
@@ -64719,6 +66358,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
@@ -64740,6 +66380,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
@@ -65118,6 +66759,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
@@ -65139,6 +66781,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
@@ -65215,6 +66858,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
@@ -65236,6 +66880,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
@@ -65367,6 +67012,14 @@ export namespace Prisma {
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
+  }
+
+  export type RouteTranslationCreateManyLanguageInput = {
+    id?: string
+    routeKey: string
+    translatedValue: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type HeaderMenuItemTranslationCreateManyLanguageInput = {
@@ -65781,6 +67434,30 @@ export namespace Prisma {
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RouteTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routeKey?: StringFieldUpdateOperationsInput | string
+    translatedValue?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RouteTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routeKey?: StringFieldUpdateOperationsInput | string
+    translatedValue?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RouteTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routeKey?: StringFieldUpdateOperationsInput | string
+    translatedValue?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HeaderMenuItemTranslationUpdateWithoutLanguageInput = {

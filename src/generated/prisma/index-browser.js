@@ -149,6 +149,15 @@ exports.Prisma.LanguageScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RouteTranslationScalarFieldEnum = {
+  id: 'id',
+  routeKey: 'routeKey',
+  languageCode: 'languageCode',
+  translatedValue: 'translatedValue',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.BlogScalarFieldEnum = {
   id: 'id',
   coverImageUrl: 'coverImageUrl',
@@ -551,6 +560,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Language: 'Language',
+  RouteTranslation: 'RouteTranslation',
   Blog: 'Blog',
   BlogTranslation: 'BlogTranslation',
   Hizmet: 'Hizmet',

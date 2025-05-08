@@ -18,7 +18,8 @@ import {
   ClipboardList, // Hizmetler için ikon
   Home, // Home ikonu import edildi
   LayoutGrid, // LayoutGrid ikonu import edildi
-  LayoutList // Menü Yönetimi için ikon
+  LayoutList, // Menü Yönetimi için ikon
+  Globe, // Rota çevirileri için ikon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -79,6 +80,11 @@ const navItems: NavItem[] = [
     title: "Hizmetler", // Yeni menü öğesi
     href: "/admin/hizmetler",
     icon: <ClipboardList className="h-5 w-5" />, // Hizmetler için ikon
+  },
+  {
+    title: "Rota Çevirileri", // Yeni menü öğesi
+    href: "/admin/rota-cevirileri",
+    icon: <Globe className="h-5 w-5" />, // Rota çevirileri için ikon
   },
   {
     title: "Anasayfa Modülleri", // Yeni ana menü

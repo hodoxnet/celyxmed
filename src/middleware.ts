@@ -2,47 +2,16 @@ import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 import { locales, defaultLocale } from './i18n'; // Statik listeyi import et
 import { withAdminMiddleware } from './middleware/withAdmin';
+// Rota çevirilerini import et - bu dosya build sırasında oluşturulur
+import { routeTranslations, slugTranslations } from './generated/route-translations';
 
 // Dile göre yol çevirme (path translation) fonksiyonu
 function getLocalizedPathname(pathname: string, locale: string): string {
-  // Özellikle "hizmetler" ve diğer yolları çevirmek için
+  // URL yollarını ve içerik slug'larını dile göre çevirmek için
   try {
-    // Örnek: /tr/hizmetler/xyz -> /tr/services/xyz (eğer locale 'en' ise)
-    // Dinamik olarak import edilen mesajlara erişemediğimiz için,
-    // burada hardcoded çeviriler kullanıyoruz:
-    const pathTranslations: Record<string, Record<string, string>> = {
-      // Ana hizmetler sayfası için çeviriler
-      'hizmetler': {
-        'en': 'services',
-        'es': 'servicios',
-        'fr': 'services',
-        'de': 'dienstleistungen',
-        'it': 'servizi',
-        'ru': 'услуги',
-        'tr': 'hizmetler'
-      },
-      // Blog sayfası için çeviriler
-      'blog': {
-        'en': 'blog',
-        'es': 'blog',
-        'fr': 'blog',
-        'de': 'blog',
-        'it': 'blog',
-        'ru': 'блог',
-        'tr': 'blog'
-      },
-      // İletişim sayfası için çeviriler
-      'iletisim': {
-        'en': 'contact',
-        'es': 'contacto',
-        'fr': 'contact',
-        'de': 'kontakt',
-        'it': 'contatto',
-        'ru': 'контакты',
-        'tr': 'iletisim'
-      }
-      // Daha fazla sayfa çevirisi buraya eklenebilir
-    };
+    // Artık çevirileri build sırasında oluşturulan dosyadan alıyoruz:
+    const pathTranslations = routeTranslations;
+    const slugMappings = slugTranslations;
 
     // Eğer pathname root ise veya çok kısa ise çevirmeye gerek yok
     if (!pathname || pathname === '/' || pathname.split('/').filter(Boolean).length === 0) {
@@ -65,14 +34,34 @@ function getLocalizedPathname(pathname: string, locale: string): string {
       }
 
       const pathPart = parts[pathPartIndex];
+      let pathChanged = false;
       
-      // Eğer çevrilen bir path ise, yerelleştirilmiş versiyonunu kullan
+      // 1. İlk adım: Ana yol çevirisi (hizmetler -> services)
       if (pathTranslations[pathPart] && pathTranslations[pathPart][locale]) {
         const localizedPathPart = pathTranslations[pathPart][locale];
         
         // Orijinal yolu, çevrilmiş yolla değiştir
         parts[pathPartIndex] = localizedPathPart;
+        pathChanged = true;
+      }
+
+      // 2. İkinci adım: Eğer bir slug varsa, onu da çevir
+      // Slug her zaman path'tan sonraki parçadır (pathPartIndex + 1)
+      const slugIndex = pathPartIndex + 1;
+      
+      // Eğer slug varsa ve çeviri sözlüğünde mevcutsa
+      if (slugIndex < parts.length) {
+        const slug = parts[slugIndex];
         
+        // Slug'ı hedef dile çevirebiliyorsak çevir
+        if (slugMappings[slug] && slugMappings[slug][locale]) {
+          parts[slugIndex] = slugMappings[slug][locale];
+          pathChanged = true;
+        }
+      }
+      
+      // Eğer herhangi bir değişiklik yaptıysak, yeni yolu döndür
+      if (pathChanged) {
         return '/' + parts.join('/');
       }
     }
@@ -110,7 +99,7 @@ export default async function middleware(request: NextRequest) {
   
   // 4. Eğer URL değiştiyse, yeni URL'ye yönlendir
   if (localizedPathname !== pathname) {
-    console.log(`[Middleware] Redirecting to localized path: ${pathname} -> ${localizedPathname}`);
+    console.log(`[Middleware] Redirecting to localized path: ${pathname} -> ${localizedPathname} (using dynamic translations)`);
     const url = request.nextUrl.clone();
     url.pathname = localizedPathname;
     // 302 (Found) ile yönlendirme yaparak tarayıcıların önbelleğe almasını önle
