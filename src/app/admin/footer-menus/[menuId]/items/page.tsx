@@ -66,6 +66,12 @@ enum MenuItemType {
   SERVICE_PAGE = "SERVICE_PAGE",
 }
 
+// Lookup verisi için tip
+interface LookupItem {
+  id: string;
+  title: string;
+}
+
 // Dil seçenekleri
 const DIL_KODLARI = [
   { code: 'tr', name: 'Türkçe' },
@@ -89,6 +95,11 @@ export default function FooterMenuItemsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentLanguage, setCurrentLanguage] = useState(DIL_KODLARI[0].code);
+
+  // Lookup data states
+  const [blogLookup, setBlogLookup] = useState<LookupItem[]>([]);
+  const [hizmetLookup, setHizmetLookup] = useState<LookupItem[]>([]);
+  const [isLookupLoading, setIsLookupLoading] = useState(false);
 
   // Dialog states
   const [isItemDialogOpen, setIsItemDialogOpen] = useState(false);
@@ -125,6 +136,30 @@ export default function FooterMenuItemsPage() {
 
   useEffect(() => {
     fetchMenuItems();
+
+    // Fetch lookup data
+    const fetchLookups = async () => {
+      setIsLookupLoading(true);
+      try {
+        const [blogRes, hizmetRes] = await Promise.all([
+          fetch('/api/admin/blogs/lookup'),
+          fetch('/api/admin/hizmetler/lookup')
+        ]);
+        if (!blogRes.ok || !hizmetRes.ok) {
+          console.error("Lookup verileri getirilemedi.");
+        }
+        const blogData = await blogRes.ok ? await blogRes.json() : [];
+        const hizmetData = await hizmetRes.ok ? await hizmetRes.json() : [];
+        setBlogLookup(blogData);
+        setHizmetLookup(hizmetData);
+      } catch (err) {
+        console.error("Lookup verileri getirilirken hata:", err);
+      } finally {
+        setIsLookupLoading(false);
+      }
+    };
+    fetchLookups();
+
   }, [fetchMenuItems]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -322,18 +357,46 @@ export default function FooterMenuItemsPage() {
                 <Input name="linkUrl" value={itemFormData.linkUrl || ''} onChange={handleInputChange} placeholder="https://example.com" />
               </div>
             )}
-            {itemFormData.itemType === MenuItemType.BLOG_POST && (
-              <div>
-                <Label htmlFor="blogPostId">Blog Yazısı ID</Label>
-                <Input name="blogPostId" value={itemFormData.blogPostId || ''} onChange={handleInputChange} placeholder="Blog ID'si" />
-              </div>
-            )}
-            {itemFormData.itemType === MenuItemType.SERVICE_PAGE && (
-              <div>
-                <Label htmlFor="hizmetId">Hizmet Sayfası ID</Label>
-                <Input name="hizmetId" value={itemFormData.hizmetId || ''} onChange={handleInputChange} placeholder="Hizmet ID'si" />
-              </div>
-            )}
+              {itemFormData.itemType === MenuItemType.BLOG_POST && (
+                <div>
+                  <Label htmlFor="blogPostId">Blog Yazısı Seç</Label>
+                   <Select
+                    name="blogPostId"
+                    value={itemFormData.blogPostId || ''}
+                    onValueChange={(value) => handleSelectChange('blogPostId', value)}
+                    disabled={isLookupLoading}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder={isLookupLoading ? "Yükleniyor..." : "Blog Seçin"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {blogLookup.map(blog => (
+                        <SelectItem key={blog.id} value={blog.id}>{blog.title}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+              {itemFormData.itemType === MenuItemType.SERVICE_PAGE && (
+                <div>
+                  <Label htmlFor="hizmetId">Hizmet Sayfası Seç</Label>
+                  <Select
+                    name="hizmetId"
+                    value={itemFormData.hizmetId || ''}
+                    onValueChange={(value) => handleSelectChange('hizmetId', value)}
+                    disabled={isLookupLoading}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder={isLookupLoading ? "Yükleniyor..." : "Hizmet Seçin"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {hizmetLookup.map(hizmet => (
+                        <SelectItem key={hizmet.id} value={hizmet.id}>{hizmet.title}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
 
             <div className="space-y-2 pt-2">
               <Label>Çeviriler</Label>

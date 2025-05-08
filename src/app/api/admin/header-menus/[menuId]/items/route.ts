@@ -126,8 +126,23 @@ export const POST = withAdmin(async (req: Request, { params }: Params) => {
 
       for (const trans of translations) {
         if (!trans.languageCode || !trans.title) {
-          throw new Error('Her çeviri için languageCode ve title gereklidir.');
+          // Boş başlıkları atla ama logla veya farklı handle et
+          console.warn(`Skipping translation for item ${createdItem.id} due to missing languageCode or title.`);
+          continue; 
         }
+
+        // Dil kodunun geçerliliğini kontrol et
+        const languageExists = await tx.language.findUnique({
+          where: { code: trans.languageCode },
+          select: { code: true } // Sadece varlığını kontrol etmek yeterli
+        });
+
+        if (!languageExists) {
+          // Eğer dil kodu geçersizse, işlemi durdur ve hata fırlat
+          throw new Error(`Geçersiz dil kodu: ${trans.languageCode}. Bu dil sistemde tanımlı değil.`);
+        }
+
+        // Dil kodu geçerliyse çeviriyi oluştur
         await tx.headerMenuItemTranslation.create({
           data: {
             headerMenuItemId: createdItem.id,
