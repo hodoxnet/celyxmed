@@ -13,6 +13,7 @@ export async function GET(req: Request, context: Context) {
     const { slug } = context.params;
     const { searchParams } = new URL(req.url);
     const locale = searchParams.get('locale');
+    const defaultLocale = 'tr'; // Varsayılan dili belirle
 
     if (!locale) {
       return new NextResponse(JSON.stringify({ message: 'Dil parametresi (locale) eksik.' }), { status: 400 });
@@ -20,7 +21,7 @@ export async function GET(req: Request, context: Context) {
 
     // YENİ YAPI: Hizmet ve HizmetTranslation modelleriyle çalışacak şekilde güncellendi
     // Önce belirtilen slug ve locale için çeviriyi bul
-    const hizmetTranslation = await prisma.hizmetTranslation.findUnique({
+    let hizmetTranslation = await prisma.hizmetTranslation.findUnique({
       where: {
         slug_languageCode: { // Unique constraint: slug + language
           slug: slug,
@@ -38,7 +39,7 @@ export async function GET(req: Request, context: Context) {
             ctaBackgroundImageUrl: true,
             ctaMainImageUrl: true,
             ctaMainImageAlt: true,
-            introVideoId: true, // Buraya eklendi
+            introVideoId: true,
             marqueeImages: { orderBy: { order: 'asc' } },
             galleryImages: { orderBy: { order: 'asc' } },
             ctaAvatars: { orderBy: { order: 'asc' } },
@@ -101,7 +102,111 @@ export async function GET(req: Request, context: Context) {
       }
     });
 
+    // Eğer belirtilen dilde çeviri yoksa, içeriği bulmak için slugı kullanarak hizmeti bul
+    if (!hizmetTranslation) {
+      console.log(`[API] ${locale} dilinde "${slug}" slug'ı için içerik bulunamadı. Hizmet ID'sini bulmaya çalışıyorum.`);
+      
+      // Slug'a göre herhangi bir dilde içerik ara
+      const anyTranslation = await prisma.hizmetTranslation.findFirst({
+        where: {
+          slug: slug,
+        },
+        select: {
+          hizmetId: true,
+        }
+      });
+
+      // Eğer herhangi bir dilde bu slug varsa, hizmet ID'sini al ve varsayılan dildeki çevirisini bul
+      if (anyTranslation) {
+        console.log(`[API] Hizmet ID bulundu: ${anyTranslation.hizmetId}. Varsayılan dildeki çeviriyi arıyorum.`);
+        
+        hizmetTranslation = await prisma.hizmetTranslation.findFirst({
+          where: {
+            hizmetId: anyTranslation.hizmetId,
+            languageCode: defaultLocale,
+          },
+          include: {
+            hizmet: {
+              select: {
+                id: true,
+                published: true,
+                heroImageUrl: true,
+                heroImageAlt: true,
+                whyBackgroundImageUrl: true,
+                ctaBackgroundImageUrl: true,
+                ctaMainImageUrl: true,
+                ctaMainImageAlt: true,
+                introVideoId: true,
+                marqueeImages: { orderBy: { order: 'asc' } },
+                galleryImages: { orderBy: { order: 'asc' } },
+                ctaAvatars: { orderBy: { order: 'asc' } },
+                // Definition tipindeki modeller ve çevirileri
+                overviewTabDefinitions: {
+                  orderBy: { order: 'asc' },
+                  include: {
+                    translations: {
+                      where: { languageCode: defaultLocale }
+                    }
+                  }
+                },
+                whyItemDefinitions: {
+                  orderBy: { order: 'asc' },
+                  include: {
+                    translations: {
+                      where: { languageCode: defaultLocale }
+                    }
+                  }
+                },
+                testimonialDefinitions: {
+                  orderBy: { order: 'asc' },
+                  include: {
+                    translations: {
+                      where: { languageCode: defaultLocale }
+                    }
+                  }
+                },
+                recoveryItemDefinitions: {
+                  orderBy: { order: 'asc' },
+                  include: {
+                    translations: {
+                      where: { languageCode: defaultLocale }
+                    }
+                  }
+                },
+                expertItemDefinitions: {
+                  orderBy: { order: 'asc' },
+                  include: {
+                    translations: {
+                      where: { languageCode: defaultLocale }
+                    }
+                  }
+                },
+                pricingPackageDefinitions: {
+                  orderBy: { order: 'asc' },
+                  include: {
+                    translations: {
+                      where: { languageCode: defaultLocale }
+                    }
+                  }
+                },
+              }
+            },
+            // Translation'a bağlı modeller
+            tocItems: { orderBy: { order: 'asc' } },
+            introLinks: { orderBy: { order: 'asc' } },
+            steps: { orderBy: { order: 'asc' } },
+            faqs: { orderBy: { order: 'asc' } },
+          }
+        });
+        
+        if (hizmetTranslation) {
+          console.log(`[API] Varsayılan dilde (${defaultLocale}) içerik bulundu.`);
+        }
+      }
+    }
+
     if (!hizmetTranslation || !hizmetTranslation.hizmet.published) {
+      console.log(`[API] Hizmet bulunamadı veya yayınlanmamış.`);
       return new NextResponse('Not Found', { status: 404 });
     }
 

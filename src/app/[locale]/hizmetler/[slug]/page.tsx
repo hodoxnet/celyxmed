@@ -196,16 +196,29 @@ interface FetchedServiceData {
 // Veri çekme fonksiyonu
 async function getServiceData(slug: string, locale: string): Promise<FetchedServiceData | null> {
   try {
-    // API endpoint URL'sini doğrula/ayarla
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/hizmetler/${slug}?locale=${locale}`;
+    // API endpoint URL'sini doğrula/ayarla - API URL'leri hiçbir zaman çevrilmez
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    const apiUrl = `${baseUrl}/api/hizmetler/${slug}?locale=${locale}`;
+    
+    console.log(`[Page] API'den veri çekiliyor. URL: ${apiUrl}`);
     
     // Sonsuz döngüyü önlemek için 'force-cache' kullan
     // Bu, aynı URL için tekrar tekrar istek yapmak yerine önbellek kullanacak
-    const res = await fetch(apiUrl, { cache: 'force-cache' });
+    const res = await fetch(apiUrl, { 
+      cache: 'force-cache',
+      next: { tags: [`hizmet-${slug}-${locale}`] } // İnvalidasyon için tag ekle
+    });
 
     if (!res.ok) {
-      console.error(`API isteği başarısız: ${res.status} ${res.statusText}`);
-      console.log('API dönüşü alınamadı, yedek veri kullanılıyor.');
+      console.error(`[Page] API isteği başarısız: ${res.status} ${res.statusText}`);
+      
+      // Eğer bu locale için içerik yoksa, varsayılan locale'i deneyelim
+      if (locale !== 'tr' && res.status === 404) {
+        console.log(`[Page] ${locale} dilinde içerik bulunamadı, varsayılan dil (tr) deneniyor.`);
+        return await fetchWithDefaultLocale(slug);
+      }
+      
+      console.log('[Page] API dönüşü alınamadı, yedek veri kullanılıyor.');
       // Eğer API çağrısı başarısız olursa, yedek veri kullan
       return getFallbackData(slug, locale);
     }
@@ -213,10 +226,36 @@ async function getServiceData(slug: string, locale: string): Promise<FetchedServ
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Hizmet verisi çekme hatası:", error);
-    console.log('API çağrısında hata oluştu, yedek veri kullanılıyor.');
+    console.error("[Page] Hizmet verisi çekme hatası:", error);
+    console.log('[Page] API çağrısında hata oluştu, yedek veri kullanılıyor.');
     // Hata durumunda yedek veri kullan
     return getFallbackData(slug, locale);
+  }
+}
+
+// Varsayılan dil ile veri çekme fonksiyonu
+async function fetchWithDefaultLocale(slug: string): Promise<FetchedServiceData | null> {
+  const defaultLocale = 'tr';
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  const apiUrl = `${baseUrl}/api/hizmetler/${slug}?locale=${defaultLocale}`;
+  
+  try {
+    console.log(`[Page] Varsayılan dil (${defaultLocale}) için API'den veri çekiliyor. URL: ${apiUrl}`);
+    const res = await fetch(apiUrl, { 
+      cache: 'force-cache',
+      next: { tags: [`hizmet-${slug}-${defaultLocale}`] }
+    });
+    
+    if (!res.ok) {
+      console.error(`[Page] Varsayılan dil (${defaultLocale}) için API isteği başarısız: ${res.status} ${res.statusText}`);
+      return getFallbackData(slug, defaultLocale);
+    }
+    
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(`[Page] Varsayılan dil (${defaultLocale}) için veri çekme hatası:`, error);
+    return getFallbackData(slug, defaultLocale);
   }
 }
 

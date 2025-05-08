@@ -13,6 +13,11 @@
   "Common": {
     "clickMe": "Bana Tıkla"
   },
+  "Routes": {
+    "services": "hizmetler",
+    "blog": "blog",
+    "contact": "iletisim"
+  },
   "Auth": {
     "login": "Giriş Yap",
     "email": "E-posta Adresi",

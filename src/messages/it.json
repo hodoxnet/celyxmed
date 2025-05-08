@@ -1,1 +1,7 @@
-{}
+{
+  "Routes": {
+    "services": "servizi",
+    "blog": "blog",
+    "contact": "contatto"
+  }
+}
