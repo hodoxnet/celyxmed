@@ -1,4 +1,4 @@
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@/generated/prisma/client';
 
 // PrismaClient global nesnesini declare et (dev hot reload için)
 declare global {

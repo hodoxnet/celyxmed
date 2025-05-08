@@ -55,6 +55,11 @@ const navItems: NavItem[] = [
     href: "/admin/hizmetler",
     icon: <ClipboardList className="h-5 w-5" />, // Hizmetler için ikon
   },
+  {
+    title: "Genel Ayarlar",
+    href: "/admin/ayarlar",
+    icon: <Settings className="h-5 w-5" />,
+  },
 ];
 
 export function Sidebar() {

@@ -388,6 +388,37 @@ exports.Prisma.HizmetExpertItemTranslationScalarFieldEnum = {
   ctaText: 'ctaText'
 };
 
+exports.Prisma.GeneralSettingScalarFieldEnum = {
+  id: 'id',
+  faviconUrl: 'faviconUrl',
+  logoUrl: 'logoUrl',
+  whatsappNumber: 'whatsappNumber',
+  phoneNumber: 'phoneNumber',
+  emailAddress: 'emailAddress',
+  fullAddress: 'fullAddress',
+  googleMapsEmbed: 'googleMapsEmbed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.GeneralSettingTranslationScalarFieldEnum = {
+  id: 'id',
+  generalSettingId: 'generalSettingId',
+  languageCode: 'languageCode',
+  headerButtonText: 'headerButtonText',
+  headerButtonLink: 'headerButtonLink',
+  socialYoutubeUrl: 'socialYoutubeUrl',
+  socialInstagramUrl: 'socialInstagramUrl',
+  socialTiktokUrl: 'socialTiktokUrl',
+  socialFacebookUrl: 'socialFacebookUrl',
+  socialLinkedinUrl: 'socialLinkedinUrl',
+  copyrightText: 'copyrightText',
+  stickyButtonText: 'stickyButtonText',
+  stickyButtonLink: 'stickyButtonLink',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -444,7 +475,9 @@ exports.Prisma.ModelName = {
   HizmetPricingPackageDefinition: 'HizmetPricingPackageDefinition',
   HizmetPricingPackageTranslation: 'HizmetPricingPackageTranslation',
   HizmetExpertItemDefinition: 'HizmetExpertItemDefinition',
-  HizmetExpertItemTranslation: 'HizmetExpertItemTranslation'
+  HizmetExpertItemTranslation: 'HizmetExpertItemTranslation',
+  GeneralSetting: 'GeneralSetting',
+  GeneralSettingTranslation: 'GeneralSettingTranslation'
 };
 
 /**

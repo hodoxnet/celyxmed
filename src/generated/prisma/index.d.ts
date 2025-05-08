@@ -143,6 +143,16 @@ export type HizmetExpertItemDefinition = $Result.DefaultSelection<Prisma.$Hizmet
  * 
  */
 export type HizmetExpertItemTranslation = $Result.DefaultSelection<Prisma.$HizmetExpertItemTranslationPayload>
+/**
+ * Model GeneralSetting
+ * 
+ */
+export type GeneralSetting = $Result.DefaultSelection<Prisma.$GeneralSettingPayload>
+/**
+ * Model GeneralSettingTranslation
+ * 
+ */
+export type GeneralSettingTranslation = $Result.DefaultSelection<Prisma.$GeneralSettingTranslationPayload>
 
 /**
  * Enums
@@ -545,6 +555,26 @@ export class PrismaClient<
     * ```
     */
   get hizmetExpertItemTranslation(): Prisma.HizmetExpertItemTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.generalSetting`: Exposes CRUD operations for the **GeneralSetting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GeneralSettings
+    * const generalSettings = await prisma.generalSetting.findMany()
+    * ```
+    */
+  get generalSetting(): Prisma.GeneralSettingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.generalSettingTranslation`: Exposes CRUD operations for the **GeneralSettingTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GeneralSettingTranslations
+    * const generalSettingTranslations = await prisma.generalSettingTranslation.findMany()
+    * ```
+    */
+  get generalSettingTranslation(): Prisma.GeneralSettingTranslationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1010,7 +1040,9 @@ export namespace Prisma {
     HizmetPricingPackageDefinition: 'HizmetPricingPackageDefinition',
     HizmetPricingPackageTranslation: 'HizmetPricingPackageTranslation',
     HizmetExpertItemDefinition: 'HizmetExpertItemDefinition',
-    HizmetExpertItemTranslation: 'HizmetExpertItemTranslation'
+    HizmetExpertItemTranslation: 'HizmetExpertItemTranslation',
+    GeneralSetting: 'GeneralSetting',
+    GeneralSettingTranslation: 'GeneralSettingTranslation'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1029,7 +1061,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation"
+      modelProps: "user" | "session" | "language" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2957,6 +2989,154 @@ export namespace Prisma {
           }
         }
       }
+      GeneralSetting: {
+        payload: Prisma.$GeneralSettingPayload<ExtArgs>
+        fields: Prisma.GeneralSettingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GeneralSettingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GeneralSettingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>
+          }
+          findFirst: {
+            args: Prisma.GeneralSettingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GeneralSettingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>
+          }
+          findMany: {
+            args: Prisma.GeneralSettingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>[]
+          }
+          create: {
+            args: Prisma.GeneralSettingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>
+          }
+          createMany: {
+            args: Prisma.GeneralSettingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GeneralSettingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>[]
+          }
+          delete: {
+            args: Prisma.GeneralSettingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>
+          }
+          update: {
+            args: Prisma.GeneralSettingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>
+          }
+          deleteMany: {
+            args: Prisma.GeneralSettingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GeneralSettingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GeneralSettingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>[]
+          }
+          upsert: {
+            args: Prisma.GeneralSettingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingPayload>
+          }
+          aggregate: {
+            args: Prisma.GeneralSettingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGeneralSetting>
+          }
+          groupBy: {
+            args: Prisma.GeneralSettingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GeneralSettingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GeneralSettingCountArgs<ExtArgs>
+            result: $Utils.Optional<GeneralSettingCountAggregateOutputType> | number
+          }
+        }
+      }
+      GeneralSettingTranslation: {
+        payload: Prisma.$GeneralSettingTranslationPayload<ExtArgs>
+        fields: Prisma.GeneralSettingTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GeneralSettingTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GeneralSettingTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.GeneralSettingTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GeneralSettingTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.GeneralSettingTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.GeneralSettingTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.GeneralSettingTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GeneralSettingTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.GeneralSettingTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>
+          }
+          update: {
+            args: Prisma.GeneralSettingTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.GeneralSettingTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GeneralSettingTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GeneralSettingTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.GeneralSettingTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralSettingTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.GeneralSettingTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGeneralSettingTranslation>
+          }
+          groupBy: {
+            args: Prisma.GeneralSettingTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GeneralSettingTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GeneralSettingTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<GeneralSettingTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3067,6 +3247,8 @@ export namespace Prisma {
     hizmetPricingPackageTranslation?: HizmetPricingPackageTranslationOmit
     hizmetExpertItemDefinition?: HizmetExpertItemDefinitionOmit
     hizmetExpertItemTranslation?: HizmetExpertItemTranslationOmit
+    generalSetting?: GeneralSettingOmit
+    generalSettingTranslation?: GeneralSettingTranslationOmit
   }
 
   /* Types for Logging */
@@ -3169,6 +3351,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations: number
     hizmetExpertItemTranslations: number
     hizmetPricingPackageTranslations: number
+    generalSettingTranslations: number
   }
 
   export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3180,6 +3363,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: boolean | LanguageCountOutputTypeCountHizmetRecoveryItemTranslationsArgs
     hizmetExpertItemTranslations?: boolean | LanguageCountOutputTypeCountHizmetExpertItemTranslationsArgs
     hizmetPricingPackageTranslations?: boolean | LanguageCountOutputTypeCountHizmetPricingPackageTranslationsArgs
+    generalSettingTranslations?: boolean | LanguageCountOutputTypeCountGeneralSettingTranslationsArgs
   }
 
   // Custom InputTypes
@@ -3247,6 +3431,13 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountHizmetPricingPackageTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HizmetPricingPackageTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountGeneralSettingTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GeneralSettingTranslationWhereInput
   }
 
 
@@ -3634,6 +3825,37 @@ export namespace Prisma {
    */
   export type HizmetExpertItemDefinitionCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HizmetExpertItemTranslationWhereInput
+  }
+
+
+  /**
+   * Count Type GeneralSettingCountOutputType
+   */
+
+  export type GeneralSettingCountOutputType = {
+    translations: number
+  }
+
+  export type GeneralSettingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | GeneralSettingCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GeneralSettingCountOutputType without action
+   */
+  export type GeneralSettingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingCountOutputType
+     */
+    select?: GeneralSettingCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GeneralSettingCountOutputType without action
+   */
+  export type GeneralSettingCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GeneralSettingTranslationWhereInput
   }
 
 
@@ -5858,6 +6080,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: boolean | Language$hizmetRecoveryItemTranslationsArgs<ExtArgs>
     hizmetExpertItemTranslations?: boolean | Language$hizmetExpertItemTranslationsArgs<ExtArgs>
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
+    generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["language"]>
 
@@ -5901,6 +6124,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: boolean | Language$hizmetRecoveryItemTranslationsArgs<ExtArgs>
     hizmetExpertItemTranslations?: boolean | Language$hizmetExpertItemTranslationsArgs<ExtArgs>
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
+    generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5917,6 +6141,7 @@ export namespace Prisma {
       hizmetRecoveryItemTranslations: Prisma.$HizmetRecoveryItemTranslationPayload<ExtArgs>[]
       hizmetExpertItemTranslations: Prisma.$HizmetExpertItemTranslationPayload<ExtArgs>[]
       hizmetPricingPackageTranslations: Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>[]
+      generalSettingTranslations: Prisma.$GeneralSettingTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6328,6 +6553,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations<T extends Language$hizmetRecoveryItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetRecoveryItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetRecoveryItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hizmetExpertItemTranslations<T extends Language$hizmetExpertItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetExpertItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetExpertItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hizmetPricingPackageTranslations<T extends Language$hizmetPricingPackageTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetPricingPackageTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    generalSettingTranslations<T extends Language$generalSettingTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$generalSettingTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6941,6 +7167,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: HizmetPricingPackageTranslationScalarFieldEnum | HizmetPricingPackageTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.generalSettingTranslations
+   */
+  export type Language$generalSettingTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    where?: GeneralSettingTranslationWhereInput
+    orderBy?: GeneralSettingTranslationOrderByWithRelationInput | GeneralSettingTranslationOrderByWithRelationInput[]
+    cursor?: GeneralSettingTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GeneralSettingTranslationScalarFieldEnum | GeneralSettingTranslationScalarFieldEnum[]
   }
 
   /**
@@ -33088,6 +33338,2337 @@ export namespace Prisma {
 
 
   /**
+   * Model GeneralSetting
+   */
+
+  export type AggregateGeneralSetting = {
+    _count: GeneralSettingCountAggregateOutputType | null
+    _min: GeneralSettingMinAggregateOutputType | null
+    _max: GeneralSettingMaxAggregateOutputType | null
+  }
+
+  export type GeneralSettingMinAggregateOutputType = {
+    id: string | null
+    faviconUrl: string | null
+    logoUrl: string | null
+    whatsappNumber: string | null
+    phoneNumber: string | null
+    emailAddress: string | null
+    fullAddress: string | null
+    googleMapsEmbed: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GeneralSettingMaxAggregateOutputType = {
+    id: string | null
+    faviconUrl: string | null
+    logoUrl: string | null
+    whatsappNumber: string | null
+    phoneNumber: string | null
+    emailAddress: string | null
+    fullAddress: string | null
+    googleMapsEmbed: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GeneralSettingCountAggregateOutputType = {
+    id: number
+    faviconUrl: number
+    logoUrl: number
+    whatsappNumber: number
+    phoneNumber: number
+    emailAddress: number
+    fullAddress: number
+    googleMapsEmbed: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type GeneralSettingMinAggregateInputType = {
+    id?: true
+    faviconUrl?: true
+    logoUrl?: true
+    whatsappNumber?: true
+    phoneNumber?: true
+    emailAddress?: true
+    fullAddress?: true
+    googleMapsEmbed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GeneralSettingMaxAggregateInputType = {
+    id?: true
+    faviconUrl?: true
+    logoUrl?: true
+    whatsappNumber?: true
+    phoneNumber?: true
+    emailAddress?: true
+    fullAddress?: true
+    googleMapsEmbed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GeneralSettingCountAggregateInputType = {
+    id?: true
+    faviconUrl?: true
+    logoUrl?: true
+    whatsappNumber?: true
+    phoneNumber?: true
+    emailAddress?: true
+    fullAddress?: true
+    googleMapsEmbed?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type GeneralSettingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralSetting to aggregate.
+     */
+    where?: GeneralSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettings to fetch.
+     */
+    orderBy?: GeneralSettingOrderByWithRelationInput | GeneralSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GeneralSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GeneralSettings
+    **/
+    _count?: true | GeneralSettingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GeneralSettingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GeneralSettingMaxAggregateInputType
+  }
+
+  export type GetGeneralSettingAggregateType<T extends GeneralSettingAggregateArgs> = {
+        [P in keyof T & keyof AggregateGeneralSetting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGeneralSetting[P]>
+      : GetScalarType<T[P], AggregateGeneralSetting[P]>
+  }
+
+
+
+
+  export type GeneralSettingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GeneralSettingWhereInput
+    orderBy?: GeneralSettingOrderByWithAggregationInput | GeneralSettingOrderByWithAggregationInput[]
+    by: GeneralSettingScalarFieldEnum[] | GeneralSettingScalarFieldEnum
+    having?: GeneralSettingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GeneralSettingCountAggregateInputType | true
+    _min?: GeneralSettingMinAggregateInputType
+    _max?: GeneralSettingMaxAggregateInputType
+  }
+
+  export type GeneralSettingGroupByOutputType = {
+    id: string
+    faviconUrl: string | null
+    logoUrl: string | null
+    whatsappNumber: string | null
+    phoneNumber: string | null
+    emailAddress: string | null
+    fullAddress: string | null
+    googleMapsEmbed: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: GeneralSettingCountAggregateOutputType | null
+    _min: GeneralSettingMinAggregateOutputType | null
+    _max: GeneralSettingMaxAggregateOutputType | null
+  }
+
+  type GetGeneralSettingGroupByPayload<T extends GeneralSettingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GeneralSettingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GeneralSettingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GeneralSettingGroupByOutputType[P]>
+            : GetScalarType<T[P], GeneralSettingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GeneralSettingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    faviconUrl?: boolean
+    logoUrl?: boolean
+    whatsappNumber?: boolean
+    phoneNumber?: boolean
+    emailAddress?: boolean
+    fullAddress?: boolean
+    googleMapsEmbed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    translations?: boolean | GeneralSetting$translationsArgs<ExtArgs>
+    _count?: boolean | GeneralSettingCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["generalSetting"]>
+
+  export type GeneralSettingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    faviconUrl?: boolean
+    logoUrl?: boolean
+    whatsappNumber?: boolean
+    phoneNumber?: boolean
+    emailAddress?: boolean
+    fullAddress?: boolean
+    googleMapsEmbed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["generalSetting"]>
+
+  export type GeneralSettingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    faviconUrl?: boolean
+    logoUrl?: boolean
+    whatsappNumber?: boolean
+    phoneNumber?: boolean
+    emailAddress?: boolean
+    fullAddress?: boolean
+    googleMapsEmbed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["generalSetting"]>
+
+  export type GeneralSettingSelectScalar = {
+    id?: boolean
+    faviconUrl?: boolean
+    logoUrl?: boolean
+    whatsappNumber?: boolean
+    phoneNumber?: boolean
+    emailAddress?: boolean
+    fullAddress?: boolean
+    googleMapsEmbed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type GeneralSettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "faviconUrl" | "logoUrl" | "whatsappNumber" | "phoneNumber" | "emailAddress" | "fullAddress" | "googleMapsEmbed" | "createdAt" | "updatedAt", ExtArgs["result"]["generalSetting"]>
+  export type GeneralSettingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | GeneralSetting$translationsArgs<ExtArgs>
+    _count?: boolean | GeneralSettingCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type GeneralSettingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type GeneralSettingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $GeneralSettingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GeneralSetting"
+    objects: {
+      translations: Prisma.$GeneralSettingTranslationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      faviconUrl: string | null
+      logoUrl: string | null
+      whatsappNumber: string | null
+      phoneNumber: string | null
+      emailAddress: string | null
+      fullAddress: string | null
+      googleMapsEmbed: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["generalSetting"]>
+    composites: {}
+  }
+
+  type GeneralSettingGetPayload<S extends boolean | null | undefined | GeneralSettingDefaultArgs> = $Result.GetResult<Prisma.$GeneralSettingPayload, S>
+
+  type GeneralSettingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GeneralSettingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GeneralSettingCountAggregateInputType | true
+    }
+
+  export interface GeneralSettingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GeneralSetting'], meta: { name: 'GeneralSetting' } }
+    /**
+     * Find zero or one GeneralSetting that matches the filter.
+     * @param {GeneralSettingFindUniqueArgs} args - Arguments to find a GeneralSetting
+     * @example
+     * // Get one GeneralSetting
+     * const generalSetting = await prisma.generalSetting.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GeneralSettingFindUniqueArgs>(args: SelectSubset<T, GeneralSettingFindUniqueArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GeneralSetting that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GeneralSettingFindUniqueOrThrowArgs} args - Arguments to find a GeneralSetting
+     * @example
+     * // Get one GeneralSetting
+     * const generalSetting = await prisma.generalSetting.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GeneralSettingFindUniqueOrThrowArgs>(args: SelectSubset<T, GeneralSettingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralSetting that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingFindFirstArgs} args - Arguments to find a GeneralSetting
+     * @example
+     * // Get one GeneralSetting
+     * const generalSetting = await prisma.generalSetting.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GeneralSettingFindFirstArgs>(args?: SelectSubset<T, GeneralSettingFindFirstArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralSetting that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingFindFirstOrThrowArgs} args - Arguments to find a GeneralSetting
+     * @example
+     * // Get one GeneralSetting
+     * const generalSetting = await prisma.generalSetting.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GeneralSettingFindFirstOrThrowArgs>(args?: SelectSubset<T, GeneralSettingFindFirstOrThrowArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GeneralSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GeneralSettings
+     * const generalSettings = await prisma.generalSetting.findMany()
+     * 
+     * // Get first 10 GeneralSettings
+     * const generalSettings = await prisma.generalSetting.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const generalSettingWithIdOnly = await prisma.generalSetting.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GeneralSettingFindManyArgs>(args?: SelectSubset<T, GeneralSettingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GeneralSetting.
+     * @param {GeneralSettingCreateArgs} args - Arguments to create a GeneralSetting.
+     * @example
+     * // Create one GeneralSetting
+     * const GeneralSetting = await prisma.generalSetting.create({
+     *   data: {
+     *     // ... data to create a GeneralSetting
+     *   }
+     * })
+     * 
+     */
+    create<T extends GeneralSettingCreateArgs>(args: SelectSubset<T, GeneralSettingCreateArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GeneralSettings.
+     * @param {GeneralSettingCreateManyArgs} args - Arguments to create many GeneralSettings.
+     * @example
+     * // Create many GeneralSettings
+     * const generalSetting = await prisma.generalSetting.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GeneralSettingCreateManyArgs>(args?: SelectSubset<T, GeneralSettingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GeneralSettings and returns the data saved in the database.
+     * @param {GeneralSettingCreateManyAndReturnArgs} args - Arguments to create many GeneralSettings.
+     * @example
+     * // Create many GeneralSettings
+     * const generalSetting = await prisma.generalSetting.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GeneralSettings and only return the `id`
+     * const generalSettingWithIdOnly = await prisma.generalSetting.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GeneralSettingCreateManyAndReturnArgs>(args?: SelectSubset<T, GeneralSettingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GeneralSetting.
+     * @param {GeneralSettingDeleteArgs} args - Arguments to delete one GeneralSetting.
+     * @example
+     * // Delete one GeneralSetting
+     * const GeneralSetting = await prisma.generalSetting.delete({
+     *   where: {
+     *     // ... filter to delete one GeneralSetting
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GeneralSettingDeleteArgs>(args: SelectSubset<T, GeneralSettingDeleteArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GeneralSetting.
+     * @param {GeneralSettingUpdateArgs} args - Arguments to update one GeneralSetting.
+     * @example
+     * // Update one GeneralSetting
+     * const generalSetting = await prisma.generalSetting.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GeneralSettingUpdateArgs>(args: SelectSubset<T, GeneralSettingUpdateArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GeneralSettings.
+     * @param {GeneralSettingDeleteManyArgs} args - Arguments to filter GeneralSettings to delete.
+     * @example
+     * // Delete a few GeneralSettings
+     * const { count } = await prisma.generalSetting.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GeneralSettingDeleteManyArgs>(args?: SelectSubset<T, GeneralSettingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GeneralSettings
+     * const generalSetting = await prisma.generalSetting.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GeneralSettingUpdateManyArgs>(args: SelectSubset<T, GeneralSettingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralSettings and returns the data updated in the database.
+     * @param {GeneralSettingUpdateManyAndReturnArgs} args - Arguments to update many GeneralSettings.
+     * @example
+     * // Update many GeneralSettings
+     * const generalSetting = await prisma.generalSetting.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GeneralSettings and only return the `id`
+     * const generalSettingWithIdOnly = await prisma.generalSetting.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GeneralSettingUpdateManyAndReturnArgs>(args: SelectSubset<T, GeneralSettingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GeneralSetting.
+     * @param {GeneralSettingUpsertArgs} args - Arguments to update or create a GeneralSetting.
+     * @example
+     * // Update or create a GeneralSetting
+     * const generalSetting = await prisma.generalSetting.upsert({
+     *   create: {
+     *     // ... data to create a GeneralSetting
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GeneralSetting we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GeneralSettingUpsertArgs>(args: SelectSubset<T, GeneralSettingUpsertArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GeneralSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingCountArgs} args - Arguments to filter GeneralSettings to count.
+     * @example
+     * // Count the number of GeneralSettings
+     * const count = await prisma.generalSetting.count({
+     *   where: {
+     *     // ... the filter for the GeneralSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends GeneralSettingCountArgs>(
+      args?: Subset<T, GeneralSettingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GeneralSettingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GeneralSetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GeneralSettingAggregateArgs>(args: Subset<T, GeneralSettingAggregateArgs>): Prisma.PrismaPromise<GetGeneralSettingAggregateType<T>>
+
+    /**
+     * Group by GeneralSetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GeneralSettingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GeneralSettingGroupByArgs['orderBy'] }
+        : { orderBy?: GeneralSettingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GeneralSettingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGeneralSettingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GeneralSetting model
+   */
+  readonly fields: GeneralSettingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GeneralSetting.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GeneralSettingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends GeneralSetting$translationsArgs<ExtArgs> = {}>(args?: Subset<T, GeneralSetting$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GeneralSetting model
+   */
+  interface GeneralSettingFieldRefs {
+    readonly id: FieldRef<"GeneralSetting", 'String'>
+    readonly faviconUrl: FieldRef<"GeneralSetting", 'String'>
+    readonly logoUrl: FieldRef<"GeneralSetting", 'String'>
+    readonly whatsappNumber: FieldRef<"GeneralSetting", 'String'>
+    readonly phoneNumber: FieldRef<"GeneralSetting", 'String'>
+    readonly emailAddress: FieldRef<"GeneralSetting", 'String'>
+    readonly fullAddress: FieldRef<"GeneralSetting", 'String'>
+    readonly googleMapsEmbed: FieldRef<"GeneralSetting", 'String'>
+    readonly createdAt: FieldRef<"GeneralSetting", 'DateTime'>
+    readonly updatedAt: FieldRef<"GeneralSetting", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GeneralSetting findUnique
+   */
+  export type GeneralSettingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSetting to fetch.
+     */
+    where: GeneralSettingWhereUniqueInput
+  }
+
+  /**
+   * GeneralSetting findUniqueOrThrow
+   */
+  export type GeneralSettingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSetting to fetch.
+     */
+    where: GeneralSettingWhereUniqueInput
+  }
+
+  /**
+   * GeneralSetting findFirst
+   */
+  export type GeneralSettingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSetting to fetch.
+     */
+    where?: GeneralSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettings to fetch.
+     */
+    orderBy?: GeneralSettingOrderByWithRelationInput | GeneralSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralSettings.
+     */
+    cursor?: GeneralSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralSettings.
+     */
+    distinct?: GeneralSettingScalarFieldEnum | GeneralSettingScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralSetting findFirstOrThrow
+   */
+  export type GeneralSettingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSetting to fetch.
+     */
+    where?: GeneralSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettings to fetch.
+     */
+    orderBy?: GeneralSettingOrderByWithRelationInput | GeneralSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralSettings.
+     */
+    cursor?: GeneralSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralSettings.
+     */
+    distinct?: GeneralSettingScalarFieldEnum | GeneralSettingScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralSetting findMany
+   */
+  export type GeneralSettingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSettings to fetch.
+     */
+    where?: GeneralSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettings to fetch.
+     */
+    orderBy?: GeneralSettingOrderByWithRelationInput | GeneralSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GeneralSettings.
+     */
+    cursor?: GeneralSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettings.
+     */
+    skip?: number
+    distinct?: GeneralSettingScalarFieldEnum | GeneralSettingScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralSetting create
+   */
+  export type GeneralSettingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GeneralSetting.
+     */
+    data: XOR<GeneralSettingCreateInput, GeneralSettingUncheckedCreateInput>
+  }
+
+  /**
+   * GeneralSetting createMany
+   */
+  export type GeneralSettingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GeneralSettings.
+     */
+    data: GeneralSettingCreateManyInput | GeneralSettingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GeneralSetting createManyAndReturn
+   */
+  export type GeneralSettingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * The data used to create many GeneralSettings.
+     */
+    data: GeneralSettingCreateManyInput | GeneralSettingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GeneralSetting update
+   */
+  export type GeneralSettingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GeneralSetting.
+     */
+    data: XOR<GeneralSettingUpdateInput, GeneralSettingUncheckedUpdateInput>
+    /**
+     * Choose, which GeneralSetting to update.
+     */
+    where: GeneralSettingWhereUniqueInput
+  }
+
+  /**
+   * GeneralSetting updateMany
+   */
+  export type GeneralSettingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GeneralSettings.
+     */
+    data: XOR<GeneralSettingUpdateManyMutationInput, GeneralSettingUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralSettings to update
+     */
+    where?: GeneralSettingWhereInput
+    /**
+     * Limit how many GeneralSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralSetting updateManyAndReturn
+   */
+  export type GeneralSettingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * The data used to update GeneralSettings.
+     */
+    data: XOR<GeneralSettingUpdateManyMutationInput, GeneralSettingUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralSettings to update
+     */
+    where?: GeneralSettingWhereInput
+    /**
+     * Limit how many GeneralSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralSetting upsert
+   */
+  export type GeneralSettingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GeneralSetting to update in case it exists.
+     */
+    where: GeneralSettingWhereUniqueInput
+    /**
+     * In case the GeneralSetting found by the `where` argument doesn't exist, create a new GeneralSetting with this data.
+     */
+    create: XOR<GeneralSettingCreateInput, GeneralSettingUncheckedCreateInput>
+    /**
+     * In case the GeneralSetting was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GeneralSettingUpdateInput, GeneralSettingUncheckedUpdateInput>
+  }
+
+  /**
+   * GeneralSetting delete
+   */
+  export type GeneralSettingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+    /**
+     * Filter which GeneralSetting to delete.
+     */
+    where: GeneralSettingWhereUniqueInput
+  }
+
+  /**
+   * GeneralSetting deleteMany
+   */
+  export type GeneralSettingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralSettings to delete
+     */
+    where?: GeneralSettingWhereInput
+    /**
+     * Limit how many GeneralSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralSetting.translations
+   */
+  export type GeneralSetting$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    where?: GeneralSettingTranslationWhereInput
+    orderBy?: GeneralSettingTranslationOrderByWithRelationInput | GeneralSettingTranslationOrderByWithRelationInput[]
+    cursor?: GeneralSettingTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GeneralSettingTranslationScalarFieldEnum | GeneralSettingTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralSetting without action
+   */
+  export type GeneralSettingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSetting
+     */
+    select?: GeneralSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSetting
+     */
+    omit?: GeneralSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GeneralSettingTranslation
+   */
+
+  export type AggregateGeneralSettingTranslation = {
+    _count: GeneralSettingTranslationCountAggregateOutputType | null
+    _min: GeneralSettingTranslationMinAggregateOutputType | null
+    _max: GeneralSettingTranslationMaxAggregateOutputType | null
+  }
+
+  export type GeneralSettingTranslationMinAggregateOutputType = {
+    id: string | null
+    generalSettingId: string | null
+    languageCode: string | null
+    headerButtonText: string | null
+    headerButtonLink: string | null
+    socialYoutubeUrl: string | null
+    socialInstagramUrl: string | null
+    socialTiktokUrl: string | null
+    socialFacebookUrl: string | null
+    socialLinkedinUrl: string | null
+    copyrightText: string | null
+    stickyButtonText: string | null
+    stickyButtonLink: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GeneralSettingTranslationMaxAggregateOutputType = {
+    id: string | null
+    generalSettingId: string | null
+    languageCode: string | null
+    headerButtonText: string | null
+    headerButtonLink: string | null
+    socialYoutubeUrl: string | null
+    socialInstagramUrl: string | null
+    socialTiktokUrl: string | null
+    socialFacebookUrl: string | null
+    socialLinkedinUrl: string | null
+    copyrightText: string | null
+    stickyButtonText: string | null
+    stickyButtonLink: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GeneralSettingTranslationCountAggregateOutputType = {
+    id: number
+    generalSettingId: number
+    languageCode: number
+    headerButtonText: number
+    headerButtonLink: number
+    socialYoutubeUrl: number
+    socialInstagramUrl: number
+    socialTiktokUrl: number
+    socialFacebookUrl: number
+    socialLinkedinUrl: number
+    copyrightText: number
+    stickyButtonText: number
+    stickyButtonLink: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type GeneralSettingTranslationMinAggregateInputType = {
+    id?: true
+    generalSettingId?: true
+    languageCode?: true
+    headerButtonText?: true
+    headerButtonLink?: true
+    socialYoutubeUrl?: true
+    socialInstagramUrl?: true
+    socialTiktokUrl?: true
+    socialFacebookUrl?: true
+    socialLinkedinUrl?: true
+    copyrightText?: true
+    stickyButtonText?: true
+    stickyButtonLink?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GeneralSettingTranslationMaxAggregateInputType = {
+    id?: true
+    generalSettingId?: true
+    languageCode?: true
+    headerButtonText?: true
+    headerButtonLink?: true
+    socialYoutubeUrl?: true
+    socialInstagramUrl?: true
+    socialTiktokUrl?: true
+    socialFacebookUrl?: true
+    socialLinkedinUrl?: true
+    copyrightText?: true
+    stickyButtonText?: true
+    stickyButtonLink?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GeneralSettingTranslationCountAggregateInputType = {
+    id?: true
+    generalSettingId?: true
+    languageCode?: true
+    headerButtonText?: true
+    headerButtonLink?: true
+    socialYoutubeUrl?: true
+    socialInstagramUrl?: true
+    socialTiktokUrl?: true
+    socialFacebookUrl?: true
+    socialLinkedinUrl?: true
+    copyrightText?: true
+    stickyButtonText?: true
+    stickyButtonLink?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type GeneralSettingTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralSettingTranslation to aggregate.
+     */
+    where?: GeneralSettingTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettingTranslations to fetch.
+     */
+    orderBy?: GeneralSettingTranslationOrderByWithRelationInput | GeneralSettingTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GeneralSettingTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettingTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettingTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GeneralSettingTranslations
+    **/
+    _count?: true | GeneralSettingTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GeneralSettingTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GeneralSettingTranslationMaxAggregateInputType
+  }
+
+  export type GetGeneralSettingTranslationAggregateType<T extends GeneralSettingTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateGeneralSettingTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGeneralSettingTranslation[P]>
+      : GetScalarType<T[P], AggregateGeneralSettingTranslation[P]>
+  }
+
+
+
+
+  export type GeneralSettingTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GeneralSettingTranslationWhereInput
+    orderBy?: GeneralSettingTranslationOrderByWithAggregationInput | GeneralSettingTranslationOrderByWithAggregationInput[]
+    by: GeneralSettingTranslationScalarFieldEnum[] | GeneralSettingTranslationScalarFieldEnum
+    having?: GeneralSettingTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GeneralSettingTranslationCountAggregateInputType | true
+    _min?: GeneralSettingTranslationMinAggregateInputType
+    _max?: GeneralSettingTranslationMaxAggregateInputType
+  }
+
+  export type GeneralSettingTranslationGroupByOutputType = {
+    id: string
+    generalSettingId: string
+    languageCode: string
+    headerButtonText: string | null
+    headerButtonLink: string | null
+    socialYoutubeUrl: string | null
+    socialInstagramUrl: string | null
+    socialTiktokUrl: string | null
+    socialFacebookUrl: string | null
+    socialLinkedinUrl: string | null
+    copyrightText: string | null
+    stickyButtonText: string | null
+    stickyButtonLink: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: GeneralSettingTranslationCountAggregateOutputType | null
+    _min: GeneralSettingTranslationMinAggregateOutputType | null
+    _max: GeneralSettingTranslationMaxAggregateOutputType | null
+  }
+
+  type GetGeneralSettingTranslationGroupByPayload<T extends GeneralSettingTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GeneralSettingTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GeneralSettingTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GeneralSettingTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], GeneralSettingTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GeneralSettingTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    generalSettingId?: boolean
+    languageCode?: boolean
+    headerButtonText?: boolean
+    headerButtonLink?: boolean
+    socialYoutubeUrl?: boolean
+    socialInstagramUrl?: boolean
+    socialTiktokUrl?: boolean
+    socialFacebookUrl?: boolean
+    socialLinkedinUrl?: boolean
+    copyrightText?: boolean
+    stickyButtonText?: boolean
+    stickyButtonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    generalSetting?: boolean | GeneralSettingDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["generalSettingTranslation"]>
+
+  export type GeneralSettingTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    generalSettingId?: boolean
+    languageCode?: boolean
+    headerButtonText?: boolean
+    headerButtonLink?: boolean
+    socialYoutubeUrl?: boolean
+    socialInstagramUrl?: boolean
+    socialTiktokUrl?: boolean
+    socialFacebookUrl?: boolean
+    socialLinkedinUrl?: boolean
+    copyrightText?: boolean
+    stickyButtonText?: boolean
+    stickyButtonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    generalSetting?: boolean | GeneralSettingDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["generalSettingTranslation"]>
+
+  export type GeneralSettingTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    generalSettingId?: boolean
+    languageCode?: boolean
+    headerButtonText?: boolean
+    headerButtonLink?: boolean
+    socialYoutubeUrl?: boolean
+    socialInstagramUrl?: boolean
+    socialTiktokUrl?: boolean
+    socialFacebookUrl?: boolean
+    socialLinkedinUrl?: boolean
+    copyrightText?: boolean
+    stickyButtonText?: boolean
+    stickyButtonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    generalSetting?: boolean | GeneralSettingDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["generalSettingTranslation"]>
+
+  export type GeneralSettingTranslationSelectScalar = {
+    id?: boolean
+    generalSettingId?: boolean
+    languageCode?: boolean
+    headerButtonText?: boolean
+    headerButtonLink?: boolean
+    socialYoutubeUrl?: boolean
+    socialInstagramUrl?: boolean
+    socialTiktokUrl?: boolean
+    socialFacebookUrl?: boolean
+    socialLinkedinUrl?: boolean
+    copyrightText?: boolean
+    stickyButtonText?: boolean
+    stickyButtonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type GeneralSettingTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "generalSettingId" | "languageCode" | "headerButtonText" | "headerButtonLink" | "socialYoutubeUrl" | "socialInstagramUrl" | "socialTiktokUrl" | "socialFacebookUrl" | "socialLinkedinUrl" | "copyrightText" | "stickyButtonText" | "stickyButtonLink" | "createdAt" | "updatedAt", ExtArgs["result"]["generalSettingTranslation"]>
+  export type GeneralSettingTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    generalSetting?: boolean | GeneralSettingDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type GeneralSettingTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    generalSetting?: boolean | GeneralSettingDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type GeneralSettingTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    generalSetting?: boolean | GeneralSettingDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $GeneralSettingTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GeneralSettingTranslation"
+    objects: {
+      generalSetting: Prisma.$GeneralSettingPayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      generalSettingId: string
+      languageCode: string
+      headerButtonText: string | null
+      headerButtonLink: string | null
+      socialYoutubeUrl: string | null
+      socialInstagramUrl: string | null
+      socialTiktokUrl: string | null
+      socialFacebookUrl: string | null
+      socialLinkedinUrl: string | null
+      copyrightText: string | null
+      stickyButtonText: string | null
+      stickyButtonLink: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["generalSettingTranslation"]>
+    composites: {}
+  }
+
+  type GeneralSettingTranslationGetPayload<S extends boolean | null | undefined | GeneralSettingTranslationDefaultArgs> = $Result.GetResult<Prisma.$GeneralSettingTranslationPayload, S>
+
+  type GeneralSettingTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GeneralSettingTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GeneralSettingTranslationCountAggregateInputType | true
+    }
+
+  export interface GeneralSettingTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GeneralSettingTranslation'], meta: { name: 'GeneralSettingTranslation' } }
+    /**
+     * Find zero or one GeneralSettingTranslation that matches the filter.
+     * @param {GeneralSettingTranslationFindUniqueArgs} args - Arguments to find a GeneralSettingTranslation
+     * @example
+     * // Get one GeneralSettingTranslation
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GeneralSettingTranslationFindUniqueArgs>(args: SelectSubset<T, GeneralSettingTranslationFindUniqueArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GeneralSettingTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GeneralSettingTranslationFindUniqueOrThrowArgs} args - Arguments to find a GeneralSettingTranslation
+     * @example
+     * // Get one GeneralSettingTranslation
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GeneralSettingTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, GeneralSettingTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralSettingTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingTranslationFindFirstArgs} args - Arguments to find a GeneralSettingTranslation
+     * @example
+     * // Get one GeneralSettingTranslation
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GeneralSettingTranslationFindFirstArgs>(args?: SelectSubset<T, GeneralSettingTranslationFindFirstArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralSettingTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingTranslationFindFirstOrThrowArgs} args - Arguments to find a GeneralSettingTranslation
+     * @example
+     * // Get one GeneralSettingTranslation
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GeneralSettingTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, GeneralSettingTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GeneralSettingTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GeneralSettingTranslations
+     * const generalSettingTranslations = await prisma.generalSettingTranslation.findMany()
+     * 
+     * // Get first 10 GeneralSettingTranslations
+     * const generalSettingTranslations = await prisma.generalSettingTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const generalSettingTranslationWithIdOnly = await prisma.generalSettingTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GeneralSettingTranslationFindManyArgs>(args?: SelectSubset<T, GeneralSettingTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GeneralSettingTranslation.
+     * @param {GeneralSettingTranslationCreateArgs} args - Arguments to create a GeneralSettingTranslation.
+     * @example
+     * // Create one GeneralSettingTranslation
+     * const GeneralSettingTranslation = await prisma.generalSettingTranslation.create({
+     *   data: {
+     *     // ... data to create a GeneralSettingTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends GeneralSettingTranslationCreateArgs>(args: SelectSubset<T, GeneralSettingTranslationCreateArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GeneralSettingTranslations.
+     * @param {GeneralSettingTranslationCreateManyArgs} args - Arguments to create many GeneralSettingTranslations.
+     * @example
+     * // Create many GeneralSettingTranslations
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GeneralSettingTranslationCreateManyArgs>(args?: SelectSubset<T, GeneralSettingTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GeneralSettingTranslations and returns the data saved in the database.
+     * @param {GeneralSettingTranslationCreateManyAndReturnArgs} args - Arguments to create many GeneralSettingTranslations.
+     * @example
+     * // Create many GeneralSettingTranslations
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GeneralSettingTranslations and only return the `id`
+     * const generalSettingTranslationWithIdOnly = await prisma.generalSettingTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GeneralSettingTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, GeneralSettingTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GeneralSettingTranslation.
+     * @param {GeneralSettingTranslationDeleteArgs} args - Arguments to delete one GeneralSettingTranslation.
+     * @example
+     * // Delete one GeneralSettingTranslation
+     * const GeneralSettingTranslation = await prisma.generalSettingTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one GeneralSettingTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GeneralSettingTranslationDeleteArgs>(args: SelectSubset<T, GeneralSettingTranslationDeleteArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GeneralSettingTranslation.
+     * @param {GeneralSettingTranslationUpdateArgs} args - Arguments to update one GeneralSettingTranslation.
+     * @example
+     * // Update one GeneralSettingTranslation
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GeneralSettingTranslationUpdateArgs>(args: SelectSubset<T, GeneralSettingTranslationUpdateArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GeneralSettingTranslations.
+     * @param {GeneralSettingTranslationDeleteManyArgs} args - Arguments to filter GeneralSettingTranslations to delete.
+     * @example
+     * // Delete a few GeneralSettingTranslations
+     * const { count } = await prisma.generalSettingTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GeneralSettingTranslationDeleteManyArgs>(args?: SelectSubset<T, GeneralSettingTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralSettingTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GeneralSettingTranslations
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GeneralSettingTranslationUpdateManyArgs>(args: SelectSubset<T, GeneralSettingTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralSettingTranslations and returns the data updated in the database.
+     * @param {GeneralSettingTranslationUpdateManyAndReturnArgs} args - Arguments to update many GeneralSettingTranslations.
+     * @example
+     * // Update many GeneralSettingTranslations
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GeneralSettingTranslations and only return the `id`
+     * const generalSettingTranslationWithIdOnly = await prisma.generalSettingTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GeneralSettingTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, GeneralSettingTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GeneralSettingTranslation.
+     * @param {GeneralSettingTranslationUpsertArgs} args - Arguments to update or create a GeneralSettingTranslation.
+     * @example
+     * // Update or create a GeneralSettingTranslation
+     * const generalSettingTranslation = await prisma.generalSettingTranslation.upsert({
+     *   create: {
+     *     // ... data to create a GeneralSettingTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GeneralSettingTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GeneralSettingTranslationUpsertArgs>(args: SelectSubset<T, GeneralSettingTranslationUpsertArgs<ExtArgs>>): Prisma__GeneralSettingTranslationClient<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GeneralSettingTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingTranslationCountArgs} args - Arguments to filter GeneralSettingTranslations to count.
+     * @example
+     * // Count the number of GeneralSettingTranslations
+     * const count = await prisma.generalSettingTranslation.count({
+     *   where: {
+     *     // ... the filter for the GeneralSettingTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends GeneralSettingTranslationCountArgs>(
+      args?: Subset<T, GeneralSettingTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GeneralSettingTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GeneralSettingTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GeneralSettingTranslationAggregateArgs>(args: Subset<T, GeneralSettingTranslationAggregateArgs>): Prisma.PrismaPromise<GetGeneralSettingTranslationAggregateType<T>>
+
+    /**
+     * Group by GeneralSettingTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralSettingTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GeneralSettingTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GeneralSettingTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: GeneralSettingTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GeneralSettingTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGeneralSettingTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GeneralSettingTranslation model
+   */
+  readonly fields: GeneralSettingTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GeneralSettingTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GeneralSettingTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    generalSetting<T extends GeneralSettingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GeneralSettingDefaultArgs<ExtArgs>>): Prisma__GeneralSettingClient<$Result.GetResult<Prisma.$GeneralSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GeneralSettingTranslation model
+   */
+  interface GeneralSettingTranslationFieldRefs {
+    readonly id: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly generalSettingId: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly languageCode: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly headerButtonText: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly headerButtonLink: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly socialYoutubeUrl: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly socialInstagramUrl: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly socialTiktokUrl: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly socialFacebookUrl: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly socialLinkedinUrl: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly copyrightText: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly stickyButtonText: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly stickyButtonLink: FieldRef<"GeneralSettingTranslation", 'String'>
+    readonly createdAt: FieldRef<"GeneralSettingTranslation", 'DateTime'>
+    readonly updatedAt: FieldRef<"GeneralSettingTranslation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GeneralSettingTranslation findUnique
+   */
+  export type GeneralSettingTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSettingTranslation to fetch.
+     */
+    where: GeneralSettingTranslationWhereUniqueInput
+  }
+
+  /**
+   * GeneralSettingTranslation findUniqueOrThrow
+   */
+  export type GeneralSettingTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSettingTranslation to fetch.
+     */
+    where: GeneralSettingTranslationWhereUniqueInput
+  }
+
+  /**
+   * GeneralSettingTranslation findFirst
+   */
+  export type GeneralSettingTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSettingTranslation to fetch.
+     */
+    where?: GeneralSettingTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettingTranslations to fetch.
+     */
+    orderBy?: GeneralSettingTranslationOrderByWithRelationInput | GeneralSettingTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralSettingTranslations.
+     */
+    cursor?: GeneralSettingTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettingTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettingTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralSettingTranslations.
+     */
+    distinct?: GeneralSettingTranslationScalarFieldEnum | GeneralSettingTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralSettingTranslation findFirstOrThrow
+   */
+  export type GeneralSettingTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSettingTranslation to fetch.
+     */
+    where?: GeneralSettingTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettingTranslations to fetch.
+     */
+    orderBy?: GeneralSettingTranslationOrderByWithRelationInput | GeneralSettingTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralSettingTranslations.
+     */
+    cursor?: GeneralSettingTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettingTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettingTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralSettingTranslations.
+     */
+    distinct?: GeneralSettingTranslationScalarFieldEnum | GeneralSettingTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralSettingTranslation findMany
+   */
+  export type GeneralSettingTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralSettingTranslations to fetch.
+     */
+    where?: GeneralSettingTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralSettingTranslations to fetch.
+     */
+    orderBy?: GeneralSettingTranslationOrderByWithRelationInput | GeneralSettingTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GeneralSettingTranslations.
+     */
+    cursor?: GeneralSettingTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralSettingTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralSettingTranslations.
+     */
+    skip?: number
+    distinct?: GeneralSettingTranslationScalarFieldEnum | GeneralSettingTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralSettingTranslation create
+   */
+  export type GeneralSettingTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GeneralSettingTranslation.
+     */
+    data: XOR<GeneralSettingTranslationCreateInput, GeneralSettingTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * GeneralSettingTranslation createMany
+   */
+  export type GeneralSettingTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GeneralSettingTranslations.
+     */
+    data: GeneralSettingTranslationCreateManyInput | GeneralSettingTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GeneralSettingTranslation createManyAndReturn
+   */
+  export type GeneralSettingTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many GeneralSettingTranslations.
+     */
+    data: GeneralSettingTranslationCreateManyInput | GeneralSettingTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GeneralSettingTranslation update
+   */
+  export type GeneralSettingTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GeneralSettingTranslation.
+     */
+    data: XOR<GeneralSettingTranslationUpdateInput, GeneralSettingTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which GeneralSettingTranslation to update.
+     */
+    where: GeneralSettingTranslationWhereUniqueInput
+  }
+
+  /**
+   * GeneralSettingTranslation updateMany
+   */
+  export type GeneralSettingTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GeneralSettingTranslations.
+     */
+    data: XOR<GeneralSettingTranslationUpdateManyMutationInput, GeneralSettingTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralSettingTranslations to update
+     */
+    where?: GeneralSettingTranslationWhereInput
+    /**
+     * Limit how many GeneralSettingTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralSettingTranslation updateManyAndReturn
+   */
+  export type GeneralSettingTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update GeneralSettingTranslations.
+     */
+    data: XOR<GeneralSettingTranslationUpdateManyMutationInput, GeneralSettingTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralSettingTranslations to update
+     */
+    where?: GeneralSettingTranslationWhereInput
+    /**
+     * Limit how many GeneralSettingTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GeneralSettingTranslation upsert
+   */
+  export type GeneralSettingTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GeneralSettingTranslation to update in case it exists.
+     */
+    where: GeneralSettingTranslationWhereUniqueInput
+    /**
+     * In case the GeneralSettingTranslation found by the `where` argument doesn't exist, create a new GeneralSettingTranslation with this data.
+     */
+    create: XOR<GeneralSettingTranslationCreateInput, GeneralSettingTranslationUncheckedCreateInput>
+    /**
+     * In case the GeneralSettingTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GeneralSettingTranslationUpdateInput, GeneralSettingTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * GeneralSettingTranslation delete
+   */
+  export type GeneralSettingTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which GeneralSettingTranslation to delete.
+     */
+    where: GeneralSettingTranslationWhereUniqueInput
+  }
+
+  /**
+   * GeneralSettingTranslation deleteMany
+   */
+  export type GeneralSettingTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralSettingTranslations to delete
+     */
+    where?: GeneralSettingTranslationWhereInput
+    /**
+     * Limit how many GeneralSettingTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralSettingTranslation without action
+   */
+  export type GeneralSettingTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralSettingTranslation
+     */
+    select?: GeneralSettingTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralSettingTranslation
+     */
+    omit?: GeneralSettingTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralSettingTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -33447,6 +36028,43 @@ export namespace Prisma {
   export type HizmetExpertItemTranslationScalarFieldEnum = (typeof HizmetExpertItemTranslationScalarFieldEnum)[keyof typeof HizmetExpertItemTranslationScalarFieldEnum]
 
 
+  export const GeneralSettingScalarFieldEnum: {
+    id: 'id',
+    faviconUrl: 'faviconUrl',
+    logoUrl: 'logoUrl',
+    whatsappNumber: 'whatsappNumber',
+    phoneNumber: 'phoneNumber',
+    emailAddress: 'emailAddress',
+    fullAddress: 'fullAddress',
+    googleMapsEmbed: 'googleMapsEmbed',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type GeneralSettingScalarFieldEnum = (typeof GeneralSettingScalarFieldEnum)[keyof typeof GeneralSettingScalarFieldEnum]
+
+
+  export const GeneralSettingTranslationScalarFieldEnum: {
+    id: 'id',
+    generalSettingId: 'generalSettingId',
+    languageCode: 'languageCode',
+    headerButtonText: 'headerButtonText',
+    headerButtonLink: 'headerButtonLink',
+    socialYoutubeUrl: 'socialYoutubeUrl',
+    socialInstagramUrl: 'socialInstagramUrl',
+    socialTiktokUrl: 'socialTiktokUrl',
+    socialFacebookUrl: 'socialFacebookUrl',
+    socialLinkedinUrl: 'socialLinkedinUrl',
+    copyrightText: 'copyrightText',
+    stickyButtonText: 'stickyButtonText',
+    stickyButtonLink: 'stickyButtonLink',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type GeneralSettingTranslationScalarFieldEnum = (typeof GeneralSettingTranslationScalarFieldEnum)[keyof typeof GeneralSettingTranslationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -33725,6 +36343,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationListRelationFilter
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationListRelationFilter
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
+    generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
   }
 
   export type LanguageOrderByWithRelationInput = {
@@ -33743,6 +36362,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationOrderByRelationAggregateInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationOrderByRelationAggregateInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationOrderByRelationAggregateInput
+    generalSettingTranslations?: GeneralSettingTranslationOrderByRelationAggregateInput
   }
 
   export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -33764,6 +36384,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationListRelationFilter
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationListRelationFilter
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
+    generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
   }, "id" | "code">
 
   export type LanguageOrderByWithAggregationInput = {
@@ -35449,6 +38070,195 @@ export namespace Prisma {
     ctaText?: StringNullableWithAggregatesFilter<"HizmetExpertItemTranslation"> | string | null
   }
 
+  export type GeneralSettingWhereInput = {
+    AND?: GeneralSettingWhereInput | GeneralSettingWhereInput[]
+    OR?: GeneralSettingWhereInput[]
+    NOT?: GeneralSettingWhereInput | GeneralSettingWhereInput[]
+    id?: StringFilter<"GeneralSetting"> | string
+    faviconUrl?: StringNullableFilter<"GeneralSetting"> | string | null
+    logoUrl?: StringNullableFilter<"GeneralSetting"> | string | null
+    whatsappNumber?: StringNullableFilter<"GeneralSetting"> | string | null
+    phoneNumber?: StringNullableFilter<"GeneralSetting"> | string | null
+    emailAddress?: StringNullableFilter<"GeneralSetting"> | string | null
+    fullAddress?: StringNullableFilter<"GeneralSetting"> | string | null
+    googleMapsEmbed?: StringNullableFilter<"GeneralSetting"> | string | null
+    createdAt?: DateTimeFilter<"GeneralSetting"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralSetting"> | Date | string
+    translations?: GeneralSettingTranslationListRelationFilter
+  }
+
+  export type GeneralSettingOrderByWithRelationInput = {
+    id?: SortOrder
+    faviconUrl?: SortOrderInput | SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    whatsappNumber?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    emailAddress?: SortOrderInput | SortOrder
+    fullAddress?: SortOrderInput | SortOrder
+    googleMapsEmbed?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    translations?: GeneralSettingTranslationOrderByRelationAggregateInput
+  }
+
+  export type GeneralSettingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: GeneralSettingWhereInput | GeneralSettingWhereInput[]
+    OR?: GeneralSettingWhereInput[]
+    NOT?: GeneralSettingWhereInput | GeneralSettingWhereInput[]
+    faviconUrl?: StringNullableFilter<"GeneralSetting"> | string | null
+    logoUrl?: StringNullableFilter<"GeneralSetting"> | string | null
+    whatsappNumber?: StringNullableFilter<"GeneralSetting"> | string | null
+    phoneNumber?: StringNullableFilter<"GeneralSetting"> | string | null
+    emailAddress?: StringNullableFilter<"GeneralSetting"> | string | null
+    fullAddress?: StringNullableFilter<"GeneralSetting"> | string | null
+    googleMapsEmbed?: StringNullableFilter<"GeneralSetting"> | string | null
+    createdAt?: DateTimeFilter<"GeneralSetting"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralSetting"> | Date | string
+    translations?: GeneralSettingTranslationListRelationFilter
+  }, "id">
+
+  export type GeneralSettingOrderByWithAggregationInput = {
+    id?: SortOrder
+    faviconUrl?: SortOrderInput | SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    whatsappNumber?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    emailAddress?: SortOrderInput | SortOrder
+    fullAddress?: SortOrderInput | SortOrder
+    googleMapsEmbed?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: GeneralSettingCountOrderByAggregateInput
+    _max?: GeneralSettingMaxOrderByAggregateInput
+    _min?: GeneralSettingMinOrderByAggregateInput
+  }
+
+  export type GeneralSettingScalarWhereWithAggregatesInput = {
+    AND?: GeneralSettingScalarWhereWithAggregatesInput | GeneralSettingScalarWhereWithAggregatesInput[]
+    OR?: GeneralSettingScalarWhereWithAggregatesInput[]
+    NOT?: GeneralSettingScalarWhereWithAggregatesInput | GeneralSettingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GeneralSetting"> | string
+    faviconUrl?: StringNullableWithAggregatesFilter<"GeneralSetting"> | string | null
+    logoUrl?: StringNullableWithAggregatesFilter<"GeneralSetting"> | string | null
+    whatsappNumber?: StringNullableWithAggregatesFilter<"GeneralSetting"> | string | null
+    phoneNumber?: StringNullableWithAggregatesFilter<"GeneralSetting"> | string | null
+    emailAddress?: StringNullableWithAggregatesFilter<"GeneralSetting"> | string | null
+    fullAddress?: StringNullableWithAggregatesFilter<"GeneralSetting"> | string | null
+    googleMapsEmbed?: StringNullableWithAggregatesFilter<"GeneralSetting"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"GeneralSetting"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GeneralSetting"> | Date | string
+  }
+
+  export type GeneralSettingTranslationWhereInput = {
+    AND?: GeneralSettingTranslationWhereInput | GeneralSettingTranslationWhereInput[]
+    OR?: GeneralSettingTranslationWhereInput[]
+    NOT?: GeneralSettingTranslationWhereInput | GeneralSettingTranslationWhereInput[]
+    id?: StringFilter<"GeneralSettingTranslation"> | string
+    generalSettingId?: StringFilter<"GeneralSettingTranslation"> | string
+    languageCode?: StringFilter<"GeneralSettingTranslation"> | string
+    headerButtonText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    headerButtonLink?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialYoutubeUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialInstagramUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialTiktokUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialFacebookUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialLinkedinUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    copyrightText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonLink?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    createdAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
+    generalSetting?: XOR<GeneralSettingScalarRelationFilter, GeneralSettingWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type GeneralSettingTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    generalSettingId?: SortOrder
+    languageCode?: SortOrder
+    headerButtonText?: SortOrderInput | SortOrder
+    headerButtonLink?: SortOrderInput | SortOrder
+    socialYoutubeUrl?: SortOrderInput | SortOrder
+    socialInstagramUrl?: SortOrderInput | SortOrder
+    socialTiktokUrl?: SortOrderInput | SortOrder
+    socialFacebookUrl?: SortOrderInput | SortOrder
+    socialLinkedinUrl?: SortOrderInput | SortOrder
+    copyrightText?: SortOrderInput | SortOrder
+    stickyButtonText?: SortOrderInput | SortOrder
+    stickyButtonLink?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    generalSetting?: GeneralSettingOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type GeneralSettingTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    generalSettingId_languageCode?: GeneralSettingTranslationGeneralSettingIdLanguageCodeCompoundUniqueInput
+    AND?: GeneralSettingTranslationWhereInput | GeneralSettingTranslationWhereInput[]
+    OR?: GeneralSettingTranslationWhereInput[]
+    NOT?: GeneralSettingTranslationWhereInput | GeneralSettingTranslationWhereInput[]
+    generalSettingId?: StringFilter<"GeneralSettingTranslation"> | string
+    languageCode?: StringFilter<"GeneralSettingTranslation"> | string
+    headerButtonText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    headerButtonLink?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialYoutubeUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialInstagramUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialTiktokUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialFacebookUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialLinkedinUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    copyrightText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonLink?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    createdAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
+    generalSetting?: XOR<GeneralSettingScalarRelationFilter, GeneralSettingWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "generalSettingId_languageCode">
+
+  export type GeneralSettingTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    generalSettingId?: SortOrder
+    languageCode?: SortOrder
+    headerButtonText?: SortOrderInput | SortOrder
+    headerButtonLink?: SortOrderInput | SortOrder
+    socialYoutubeUrl?: SortOrderInput | SortOrder
+    socialInstagramUrl?: SortOrderInput | SortOrder
+    socialTiktokUrl?: SortOrderInput | SortOrder
+    socialFacebookUrl?: SortOrderInput | SortOrder
+    socialLinkedinUrl?: SortOrderInput | SortOrder
+    copyrightText?: SortOrderInput | SortOrder
+    stickyButtonText?: SortOrderInput | SortOrder
+    stickyButtonLink?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: GeneralSettingTranslationCountOrderByAggregateInput
+    _max?: GeneralSettingTranslationMaxOrderByAggregateInput
+    _min?: GeneralSettingTranslationMinOrderByAggregateInput
+  }
+
+  export type GeneralSettingTranslationScalarWhereWithAggregatesInput = {
+    AND?: GeneralSettingTranslationScalarWhereWithAggregatesInput | GeneralSettingTranslationScalarWhereWithAggregatesInput[]
+    OR?: GeneralSettingTranslationScalarWhereWithAggregatesInput[]
+    NOT?: GeneralSettingTranslationScalarWhereWithAggregatesInput | GeneralSettingTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GeneralSettingTranslation"> | string
+    generalSettingId?: StringWithAggregatesFilter<"GeneralSettingTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"GeneralSettingTranslation"> | string
+    headerButtonText?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    headerButtonLink?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    socialYoutubeUrl?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    socialInstagramUrl?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    socialTiktokUrl?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    socialFacebookUrl?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    socialLinkedinUrl?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    copyrightText?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonText?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonLink?: StringNullableWithAggregatesFilter<"GeneralSettingTranslation"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"GeneralSettingTranslation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GeneralSettingTranslation"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -35598,6 +38408,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateInput = {
@@ -35616,6 +38427,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUpdateInput = {
@@ -35634,6 +38446,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateInput = {
@@ -35652,6 +38465,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageCreateManyInput = {
@@ -37412,6 +40226,225 @@ export namespace Prisma {
     ctaText?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type GeneralSettingCreateInput = {
+    id?: string
+    faviconUrl?: string | null
+    logoUrl?: string | null
+    whatsappNumber?: string | null
+    phoneNumber?: string | null
+    emailAddress?: string | null
+    fullAddress?: string | null
+    googleMapsEmbed?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: GeneralSettingTranslationCreateNestedManyWithoutGeneralSettingInput
+  }
+
+  export type GeneralSettingUncheckedCreateInput = {
+    id?: string
+    faviconUrl?: string | null
+    logoUrl?: string | null
+    whatsappNumber?: string | null
+    phoneNumber?: string | null
+    emailAddress?: string | null
+    fullAddress?: string | null
+    googleMapsEmbed?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutGeneralSettingInput
+  }
+
+  export type GeneralSettingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsappNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    emailAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    fullAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    googleMapsEmbed?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: GeneralSettingTranslationUpdateManyWithoutGeneralSettingNestedInput
+  }
+
+  export type GeneralSettingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsappNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    emailAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    fullAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    googleMapsEmbed?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: GeneralSettingTranslationUncheckedUpdateManyWithoutGeneralSettingNestedInput
+  }
+
+  export type GeneralSettingCreateManyInput = {
+    id?: string
+    faviconUrl?: string | null
+    logoUrl?: string | null
+    whatsappNumber?: string | null
+    phoneNumber?: string | null
+    emailAddress?: string | null
+    fullAddress?: string | null
+    googleMapsEmbed?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsappNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    emailAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    fullAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    googleMapsEmbed?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GeneralSettingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsappNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    emailAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    fullAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    googleMapsEmbed?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GeneralSettingTranslationCreateInput = {
+    id?: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    generalSetting: GeneralSettingCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutGeneralSettingTranslationsInput
+  }
+
+  export type GeneralSettingTranslationUncheckedCreateInput = {
+    id?: string
+    generalSettingId: string
+    languageCode: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generalSetting?: GeneralSettingUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutGeneralSettingTranslationsNestedInput
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    generalSettingId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GeneralSettingTranslationCreateManyInput = {
+    id?: string
+    generalSettingId: string
+    languageCode: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    generalSettingId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -37635,6 +40668,12 @@ export namespace Prisma {
     none?: HizmetPricingPackageTranslationWhereInput
   }
 
+  export type GeneralSettingTranslationListRelationFilter = {
+    every?: GeneralSettingTranslationWhereInput
+    some?: GeneralSettingTranslationWhereInput
+    none?: GeneralSettingTranslationWhereInput
+  }
+
   export type BlogTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -37664,6 +40703,10 @@ export namespace Prisma {
   }
 
   export type HizmetPricingPackageTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GeneralSettingTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -38892,6 +41935,109 @@ export namespace Prisma {
     ctaText?: SortOrder
   }
 
+  export type GeneralSettingCountOrderByAggregateInput = {
+    id?: SortOrder
+    faviconUrl?: SortOrder
+    logoUrl?: SortOrder
+    whatsappNumber?: SortOrder
+    phoneNumber?: SortOrder
+    emailAddress?: SortOrder
+    fullAddress?: SortOrder
+    googleMapsEmbed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GeneralSettingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    faviconUrl?: SortOrder
+    logoUrl?: SortOrder
+    whatsappNumber?: SortOrder
+    phoneNumber?: SortOrder
+    emailAddress?: SortOrder
+    fullAddress?: SortOrder
+    googleMapsEmbed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GeneralSettingMinOrderByAggregateInput = {
+    id?: SortOrder
+    faviconUrl?: SortOrder
+    logoUrl?: SortOrder
+    whatsappNumber?: SortOrder
+    phoneNumber?: SortOrder
+    emailAddress?: SortOrder
+    fullAddress?: SortOrder
+    googleMapsEmbed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GeneralSettingScalarRelationFilter = {
+    is?: GeneralSettingWhereInput
+    isNot?: GeneralSettingWhereInput
+  }
+
+  export type GeneralSettingTranslationGeneralSettingIdLanguageCodeCompoundUniqueInput = {
+    generalSettingId: string
+    languageCode: string
+  }
+
+  export type GeneralSettingTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    generalSettingId?: SortOrder
+    languageCode?: SortOrder
+    headerButtonText?: SortOrder
+    headerButtonLink?: SortOrder
+    socialYoutubeUrl?: SortOrder
+    socialInstagramUrl?: SortOrder
+    socialTiktokUrl?: SortOrder
+    socialFacebookUrl?: SortOrder
+    socialLinkedinUrl?: SortOrder
+    copyrightText?: SortOrder
+    stickyButtonText?: SortOrder
+    stickyButtonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GeneralSettingTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    generalSettingId?: SortOrder
+    languageCode?: SortOrder
+    headerButtonText?: SortOrder
+    headerButtonLink?: SortOrder
+    socialYoutubeUrl?: SortOrder
+    socialInstagramUrl?: SortOrder
+    socialTiktokUrl?: SortOrder
+    socialFacebookUrl?: SortOrder
+    socialLinkedinUrl?: SortOrder
+    copyrightText?: SortOrder
+    stickyButtonText?: SortOrder
+    stickyButtonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GeneralSettingTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    generalSettingId?: SortOrder
+    languageCode?: SortOrder
+    headerButtonText?: SortOrder
+    headerButtonLink?: SortOrder
+    socialYoutubeUrl?: SortOrder
+    socialInstagramUrl?: SortOrder
+    socialTiktokUrl?: SortOrder
+    socialFacebookUrl?: SortOrder
+    socialLinkedinUrl?: SortOrder
+    copyrightText?: SortOrder
+    stickyButtonText?: SortOrder
+    stickyButtonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -38964,6 +42110,13 @@ export namespace Prisma {
     connect?: HizmetPricingPackageTranslationWhereUniqueInput | HizmetPricingPackageTranslationWhereUniqueInput[]
   }
 
+  export type GeneralSettingTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutLanguageInput, GeneralSettingTranslationUncheckedCreateWithoutLanguageInput> | GeneralSettingTranslationCreateWithoutLanguageInput[] | GeneralSettingTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutLanguageInput | GeneralSettingTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: GeneralSettingTranslationCreateManyLanguageInputEnvelope
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+  }
+
   export type BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -39018,6 +42171,13 @@ export namespace Prisma {
     connectOrCreate?: HizmetPricingPackageTranslationCreateOrConnectWithoutLanguageInput | HizmetPricingPackageTranslationCreateOrConnectWithoutLanguageInput[]
     createMany?: HizmetPricingPackageTranslationCreateManyLanguageInputEnvelope
     connect?: HizmetPricingPackageTranslationWhereUniqueInput | HizmetPricingPackageTranslationWhereUniqueInput[]
+  }
+
+  export type GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutLanguageInput, GeneralSettingTranslationUncheckedCreateWithoutLanguageInput> | GeneralSettingTranslationCreateWithoutLanguageInput[] | GeneralSettingTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutLanguageInput | GeneralSettingTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: GeneralSettingTranslationCreateManyLanguageInputEnvelope
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -39136,6 +42296,20 @@ export namespace Prisma {
     deleteMany?: HizmetPricingPackageTranslationScalarWhereInput | HizmetPricingPackageTranslationScalarWhereInput[]
   }
 
+  export type GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutLanguageInput, GeneralSettingTranslationUncheckedCreateWithoutLanguageInput> | GeneralSettingTranslationCreateWithoutLanguageInput[] | GeneralSettingTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutLanguageInput | GeneralSettingTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: GeneralSettingTranslationUpsertWithWhereUniqueWithoutLanguageInput | GeneralSettingTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: GeneralSettingTranslationCreateManyLanguageInputEnvelope
+    set?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    disconnect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    delete?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    update?: GeneralSettingTranslationUpdateWithWhereUniqueWithoutLanguageInput | GeneralSettingTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: GeneralSettingTranslationUpdateManyWithWhereWithoutLanguageInput | GeneralSettingTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
+  }
+
   export type BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -39246,6 +42420,20 @@ export namespace Prisma {
     update?: HizmetPricingPackageTranslationUpdateWithWhereUniqueWithoutLanguageInput | HizmetPricingPackageTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: HizmetPricingPackageTranslationUpdateManyWithWhereWithoutLanguageInput | HizmetPricingPackageTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: HizmetPricingPackageTranslationScalarWhereInput | HizmetPricingPackageTranslationScalarWhereInput[]
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutLanguageInput, GeneralSettingTranslationUncheckedCreateWithoutLanguageInput> | GeneralSettingTranslationCreateWithoutLanguageInput[] | GeneralSettingTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutLanguageInput | GeneralSettingTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: GeneralSettingTranslationUpsertWithWhereUniqueWithoutLanguageInput | GeneralSettingTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: GeneralSettingTranslationCreateManyLanguageInputEnvelope
+    set?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    disconnect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    delete?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    update?: GeneralSettingTranslationUpdateWithWhereUniqueWithoutLanguageInput | GeneralSettingTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: GeneralSettingTranslationUpdateManyWithWhereWithoutLanguageInput | GeneralSettingTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
   }
 
   export type BlogTranslationCreateNestedManyWithoutBlogInput = {
@@ -40565,6 +43753,76 @@ export namespace Prisma {
     update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutHizmetExpertItemTranslationsInput, LanguageUpdateWithoutHizmetExpertItemTranslationsInput>, LanguageUncheckedUpdateWithoutHizmetExpertItemTranslationsInput>
   }
 
+  export type GeneralSettingTranslationCreateNestedManyWithoutGeneralSettingInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput> | GeneralSettingTranslationCreateWithoutGeneralSettingInput[] | GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput | GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput[]
+    createMany?: GeneralSettingTranslationCreateManyGeneralSettingInputEnvelope
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+  }
+
+  export type GeneralSettingTranslationUncheckedCreateNestedManyWithoutGeneralSettingInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput> | GeneralSettingTranslationCreateWithoutGeneralSettingInput[] | GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput | GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput[]
+    createMany?: GeneralSettingTranslationCreateManyGeneralSettingInputEnvelope
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+  }
+
+  export type GeneralSettingTranslationUpdateManyWithoutGeneralSettingNestedInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput> | GeneralSettingTranslationCreateWithoutGeneralSettingInput[] | GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput | GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput[]
+    upsert?: GeneralSettingTranslationUpsertWithWhereUniqueWithoutGeneralSettingInput | GeneralSettingTranslationUpsertWithWhereUniqueWithoutGeneralSettingInput[]
+    createMany?: GeneralSettingTranslationCreateManyGeneralSettingInputEnvelope
+    set?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    disconnect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    delete?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    update?: GeneralSettingTranslationUpdateWithWhereUniqueWithoutGeneralSettingInput | GeneralSettingTranslationUpdateWithWhereUniqueWithoutGeneralSettingInput[]
+    updateMany?: GeneralSettingTranslationUpdateManyWithWhereWithoutGeneralSettingInput | GeneralSettingTranslationUpdateManyWithWhereWithoutGeneralSettingInput[]
+    deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateManyWithoutGeneralSettingNestedInput = {
+    create?: XOR<GeneralSettingTranslationCreateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput> | GeneralSettingTranslationCreateWithoutGeneralSettingInput[] | GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput[]
+    connectOrCreate?: GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput | GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput[]
+    upsert?: GeneralSettingTranslationUpsertWithWhereUniqueWithoutGeneralSettingInput | GeneralSettingTranslationUpsertWithWhereUniqueWithoutGeneralSettingInput[]
+    createMany?: GeneralSettingTranslationCreateManyGeneralSettingInputEnvelope
+    set?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    disconnect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    delete?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
+    update?: GeneralSettingTranslationUpdateWithWhereUniqueWithoutGeneralSettingInput | GeneralSettingTranslationUpdateWithWhereUniqueWithoutGeneralSettingInput[]
+    updateMany?: GeneralSettingTranslationUpdateManyWithWhereWithoutGeneralSettingInput | GeneralSettingTranslationUpdateManyWithWhereWithoutGeneralSettingInput[]
+    deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
+  }
+
+  export type GeneralSettingCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<GeneralSettingCreateWithoutTranslationsInput, GeneralSettingUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: GeneralSettingCreateOrConnectWithoutTranslationsInput
+    connect?: GeneralSettingWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutGeneralSettingTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutGeneralSettingTranslationsInput, LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type GeneralSettingUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<GeneralSettingCreateWithoutTranslationsInput, GeneralSettingUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: GeneralSettingCreateOrConnectWithoutTranslationsInput
+    upsert?: GeneralSettingUpsertWithoutTranslationsInput
+    connect?: GeneralSettingWhereUniqueInput
+    update?: XOR<XOR<GeneralSettingUpdateToOneWithWhereWithoutTranslationsInput, GeneralSettingUpdateWithoutTranslationsInput>, GeneralSettingUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutGeneralSettingTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutGeneralSettingTranslationsInput, LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput
+    upsert?: LanguageUpsertWithoutGeneralSettingTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutGeneralSettingTranslationsInput, LanguageUpdateWithoutGeneralSettingTranslationsInput>, LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -41098,6 +44356,50 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type GeneralSettingTranslationCreateWithoutLanguageInput = {
+    id?: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    generalSetting: GeneralSettingCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type GeneralSettingTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    generalSettingId: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingTranslationCreateOrConnectWithoutLanguageInput = {
+    where: GeneralSettingTranslationWhereUniqueInput
+    create: XOR<GeneralSettingTranslationCreateWithoutLanguageInput, GeneralSettingTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type GeneralSettingTranslationCreateManyLanguageInputEnvelope = {
+    data: GeneralSettingTranslationCreateManyLanguageInput | GeneralSettingTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BlogTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
     where: BlogTranslationWhereUniqueInput
     update: XOR<BlogTranslationUpdateWithoutLanguageInput, BlogTranslationUncheckedUpdateWithoutLanguageInput>
@@ -41360,6 +44662,43 @@ export namespace Prisma {
     features?: StringNullableListFilter<"HizmetPricingPackageTranslation">
   }
 
+  export type GeneralSettingTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: GeneralSettingTranslationWhereUniqueInput
+    update: XOR<GeneralSettingTranslationUpdateWithoutLanguageInput, GeneralSettingTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<GeneralSettingTranslationCreateWithoutLanguageInput, GeneralSettingTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type GeneralSettingTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: GeneralSettingTranslationWhereUniqueInput
+    data: XOR<GeneralSettingTranslationUpdateWithoutLanguageInput, GeneralSettingTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type GeneralSettingTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: GeneralSettingTranslationScalarWhereInput
+    data: XOR<GeneralSettingTranslationUpdateManyMutationInput, GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type GeneralSettingTranslationScalarWhereInput = {
+    AND?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
+    OR?: GeneralSettingTranslationScalarWhereInput[]
+    NOT?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
+    id?: StringFilter<"GeneralSettingTranslation"> | string
+    generalSettingId?: StringFilter<"GeneralSettingTranslation"> | string
+    languageCode?: StringFilter<"GeneralSettingTranslation"> | string
+    headerButtonText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    headerButtonLink?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialYoutubeUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialInstagramUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialTiktokUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialFacebookUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    socialLinkedinUrl?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    copyrightText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonText?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    stickyButtonLink?: StringNullableFilter<"GeneralSettingTranslation"> | string | null
+    createdAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
+  }
+
   export type BlogTranslationCreateWithoutBlogInput = {
     id?: string
     slug?: string | null
@@ -41444,6 +44783,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutBlogTranslationsInput = {
@@ -41461,6 +44801,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutBlogTranslationsInput = {
@@ -41523,6 +44864,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutBlogTranslationsInput = {
@@ -41540,6 +44882,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetMarqueeImageCreateWithoutHizmetInput = {
@@ -42196,6 +45539,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTranslationsInput = {
@@ -42213,6 +45557,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTranslationsInput = {
@@ -42405,6 +45750,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTranslationsInput = {
@@ -42422,6 +45768,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetTocItemUpsertWithWhereUniqueWithoutHizmetTranslationInput = {
@@ -43867,6 +47214,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetOverviewTabTranslationsInput = {
@@ -43884,6 +47232,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetOverviewTabTranslationsInput = {
@@ -43946,6 +47295,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetOverviewTabTranslationsInput = {
@@ -43963,6 +47313,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutWhyItemDefinitionsInput = {
@@ -44147,6 +47498,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetWhyItemTranslationsInput = {
@@ -44164,6 +47516,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetWhyItemTranslationsInput = {
@@ -44222,6 +47575,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetWhyItemTranslationsInput = {
@@ -44239,6 +47593,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutTestimonialDefinitionsInput = {
@@ -44427,6 +47782,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTestimonialTranslationsInput = {
@@ -44444,6 +47800,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTestimonialTranslationsInput = {
@@ -44504,6 +47861,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTestimonialTranslationsInput = {
@@ -44521,6 +47879,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutRecoveryItemDefinitionsInput = {
@@ -44707,6 +48066,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -44724,6 +48084,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetRecoveryItemTranslationsInput = {
@@ -44784,6 +48145,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -44801,6 +48163,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutPricingPackageDefinitionsInput = {
@@ -44987,6 +48350,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetPricingPackageTranslationsInput = {
@@ -45004,6 +48368,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetPricingPackageTranslationsInput = {
@@ -45062,6 +48427,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetPricingPackageTranslationsInput = {
@@ -45079,6 +48445,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutExpertItemDefinitionsInput = {
@@ -45269,6 +48636,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetExpertItemTranslationsInput = {
@@ -45286,6 +48654,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetExpertItemTranslationsInput = {
@@ -45346,6 +48715,7 @@ export namespace Prisma {
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetExpertItemTranslationsInput = {
@@ -45362,6 +48732,223 @@ export namespace Prisma {
     hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type GeneralSettingTranslationCreateWithoutGeneralSettingInput = {
+    id?: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    language: LanguageCreateNestedOneWithoutGeneralSettingTranslationsInput
+  }
+
+  export type GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput = {
+    id?: string
+    languageCode: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingTranslationCreateOrConnectWithoutGeneralSettingInput = {
+    where: GeneralSettingTranslationWhereUniqueInput
+    create: XOR<GeneralSettingTranslationCreateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput>
+  }
+
+  export type GeneralSettingTranslationCreateManyGeneralSettingInputEnvelope = {
+    data: GeneralSettingTranslationCreateManyGeneralSettingInput | GeneralSettingTranslationCreateManyGeneralSettingInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GeneralSettingTranslationUpsertWithWhereUniqueWithoutGeneralSettingInput = {
+    where: GeneralSettingTranslationWhereUniqueInput
+    update: XOR<GeneralSettingTranslationUpdateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedUpdateWithoutGeneralSettingInput>
+    create: XOR<GeneralSettingTranslationCreateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedCreateWithoutGeneralSettingInput>
+  }
+
+  export type GeneralSettingTranslationUpdateWithWhereUniqueWithoutGeneralSettingInput = {
+    where: GeneralSettingTranslationWhereUniqueInput
+    data: XOR<GeneralSettingTranslationUpdateWithoutGeneralSettingInput, GeneralSettingTranslationUncheckedUpdateWithoutGeneralSettingInput>
+  }
+
+  export type GeneralSettingTranslationUpdateManyWithWhereWithoutGeneralSettingInput = {
+    where: GeneralSettingTranslationScalarWhereInput
+    data: XOR<GeneralSettingTranslationUpdateManyMutationInput, GeneralSettingTranslationUncheckedUpdateManyWithoutGeneralSettingInput>
+  }
+
+  export type GeneralSettingCreateWithoutTranslationsInput = {
+    id?: string
+    faviconUrl?: string | null
+    logoUrl?: string | null
+    whatsappNumber?: string | null
+    phoneNumber?: string | null
+    emailAddress?: string | null
+    fullAddress?: string | null
+    googleMapsEmbed?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    faviconUrl?: string | null
+    logoUrl?: string | null
+    whatsappNumber?: string | null
+    phoneNumber?: string | null
+    emailAddress?: string | null
+    fullAddress?: string | null
+    googleMapsEmbed?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingCreateOrConnectWithoutTranslationsInput = {
+    where: GeneralSettingWhereUniqueInput
+    create: XOR<GeneralSettingCreateWithoutTranslationsInput, GeneralSettingUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutGeneralSettingTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutGeneralSettingTranslationsInput, LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput>
+  }
+
+  export type GeneralSettingUpsertWithoutTranslationsInput = {
+    update: XOR<GeneralSettingUpdateWithoutTranslationsInput, GeneralSettingUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<GeneralSettingCreateWithoutTranslationsInput, GeneralSettingUncheckedCreateWithoutTranslationsInput>
+    where?: GeneralSettingWhereInput
+  }
+
+  export type GeneralSettingUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: GeneralSettingWhereInput
+    data: XOR<GeneralSettingUpdateWithoutTranslationsInput, GeneralSettingUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type GeneralSettingUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsappNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    emailAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    fullAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    googleMapsEmbed?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GeneralSettingUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsappNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    emailAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    fullAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    googleMapsEmbed?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LanguageUpsertWithoutGeneralSettingTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutGeneralSettingTranslationsInput, LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput>
+    create: XOR<LanguageCreateWithoutGeneralSettingTranslationsInput, LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutGeneralSettingTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutGeneralSettingTranslationsInput, LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutGeneralSettingTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
@@ -45465,6 +49052,23 @@ export namespace Prisma {
     title: string
     price: string
     features?: HizmetPricingPackageTranslationCreatefeaturesInput | string[]
+  }
+
+  export type GeneralSettingTranslationCreateManyLanguageInput = {
+    id?: string
+    generalSettingId: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type BlogTranslationUpdateWithoutLanguageInput = {
@@ -45779,6 +49383,57 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     price?: StringFieldUpdateOperationsInput | string
     features?: HizmetPricingPackageTranslationUpdatefeaturesInput | string[]
+  }
+
+  export type GeneralSettingTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generalSetting?: GeneralSettingUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    generalSettingId?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    generalSettingId?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BlogTranslationCreateManyBlogInput = {
@@ -46579,6 +50234,74 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     ctaText?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type GeneralSettingTranslationCreateManyGeneralSettingInput = {
+    id?: string
+    languageCode: string
+    headerButtonText?: string | null
+    headerButtonLink?: string | null
+    socialYoutubeUrl?: string | null
+    socialInstagramUrl?: string | null
+    socialTiktokUrl?: string | null
+    socialFacebookUrl?: string | null
+    socialLinkedinUrl?: string | null
+    copyrightText?: string | null
+    stickyButtonText?: string | null
+    stickyButtonLink?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GeneralSettingTranslationUpdateWithoutGeneralSettingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    language?: LanguageUpdateOneRequiredWithoutGeneralSettingTranslationsNestedInput
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateWithoutGeneralSettingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GeneralSettingTranslationUncheckedUpdateManyWithoutGeneralSettingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    headerButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    headerButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    socialYoutubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInstagramUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialTiktokUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialFacebookUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    socialLinkedinUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    copyrightText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonText?: NullableStringFieldUpdateOperationsInput | string | null
+    stickyButtonLink?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

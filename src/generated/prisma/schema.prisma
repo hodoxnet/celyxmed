@@ -58,6 +58,7 @@ model Language {
   hizmetRecoveryItemTranslations   HizmetRecoveryItemTranslation[]
   hizmetExpertItemTranslations     HizmetExpertItemTranslation[]
   hizmetPricingPackageTranslations HizmetPricingPackageTranslation[]
+  generalSettingTranslations       GeneralSettingTranslation[] // Yeni eklenecek alan
 }
 
 // Blog modeli
@@ -444,4 +445,55 @@ model HizmetExpertItemTranslation {
   ctaText      String?
 
   @@unique([definitionId, languageCode])
+}
+
+// ----- GENEL AYARLAR MODELLERİ -----
+
+// Genel Ayarlar Ana Modeli (Dil Bağımsız)
+model GeneralSetting {
+  id              String  @id @default(cuid())
+  faviconUrl      String? // Favicon dosyasının URL'si
+  logoUrl         String? // Logo dosyasının URL'si
+  whatsappNumber  String?
+  phoneNumber     String?
+  emailAddress    String?
+  fullAddress     String? @db.Text
+  googleMapsEmbed String? @db.Text // Google Maps iframe kodu
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations GeneralSettingTranslation[]
+}
+
+// Genel Ayarlar Çeviri Modeli (Dile Özgü Metinler ve Linkler)
+model GeneralSettingTranslation {
+  id               String         @id @default(cuid())
+  generalSetting   GeneralSetting @relation(fields: [generalSettingId], references: [id], onDelete: Cascade)
+  generalSettingId String
+  language         Language       @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode     String
+
+  // Header Buton Alanı
+  headerButtonText String?
+  headerButtonLink String?
+
+  // Sosyal Medya Alanları
+  socialYoutubeUrl   String?
+  socialInstagramUrl String?
+  socialTiktokUrl    String?
+  socialFacebookUrl  String?
+  socialLinkedinUrl  String?
+
+  // Copyright Alanı
+  copyrightText String?
+
+  // Anasayfa Sticky İletişim Butonu
+  stickyButtonText String?
+  stickyButtonLink String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([generalSettingId, languageCode])
 }
