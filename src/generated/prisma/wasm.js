@@ -419,25 +419,32 @@ exports.Prisma.GeneralSettingTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.SliderScalarFieldEnum = {
+exports.Prisma.HeroContentScalarFieldEnum = {
   id: 'id',
-  backgroundImageUrl: 'backgroundImageUrl',
-  order: 'order',
-  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.SliderTranslationScalarFieldEnum = {
+exports.Prisma.HeroContentTranslationScalarFieldEnum = {
   id: 'id',
+  heroContentId: 'heroContentId',
+  languageCode: 'languageCode',
   title: 'title',
   description: 'description',
   button1Text: 'button1Text',
   button1Link: 'button1Link',
   button2Text: 'button2Text',
-  button2Link: 'button2Link',
-  sliderId: 'sliderId',
-  languageCode: 'languageCode'
+  button2Link: 'button2Link'
+};
+
+exports.Prisma.HeroBackgroundImageScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  order: 'order',
+  isActive: 'isActive',
+  heroContentId: 'heroContentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -499,8 +506,9 @@ exports.Prisma.ModelName = {
   HizmetExpertItemTranslation: 'HizmetExpertItemTranslation',
   GeneralSetting: 'GeneralSetting',
   GeneralSettingTranslation: 'GeneralSettingTranslation',
-  Slider: 'Slider',
-  SliderTranslation: 'SliderTranslation'
+  HeroContent: 'HeroContent',
+  HeroContentTranslation: 'HeroContentTranslation',
+  HeroBackgroundImage: 'HeroBackgroundImage'
 };
 
 /**

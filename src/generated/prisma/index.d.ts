@@ -154,15 +154,20 @@ export type GeneralSetting = $Result.DefaultSelection<Prisma.$GeneralSettingPayl
  */
 export type GeneralSettingTranslation = $Result.DefaultSelection<Prisma.$GeneralSettingTranslationPayload>
 /**
- * Model Slider
+ * Model HeroContent
  * 
  */
-export type Slider = $Result.DefaultSelection<Prisma.$SliderPayload>
+export type HeroContent = $Result.DefaultSelection<Prisma.$HeroContentPayload>
 /**
- * Model SliderTranslation
+ * Model HeroContentTranslation
  * 
  */
-export type SliderTranslation = $Result.DefaultSelection<Prisma.$SliderTranslationPayload>
+export type HeroContentTranslation = $Result.DefaultSelection<Prisma.$HeroContentTranslationPayload>
+/**
+ * Model HeroBackgroundImage
+ * 
+ */
+export type HeroBackgroundImage = $Result.DefaultSelection<Prisma.$HeroBackgroundImagePayload>
 
 /**
  * Enums
@@ -587,24 +592,34 @@ export class PrismaClient<
   get generalSettingTranslation(): Prisma.GeneralSettingTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.slider`: Exposes CRUD operations for the **Slider** model.
+   * `prisma.heroContent`: Exposes CRUD operations for the **HeroContent** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Sliders
-    * const sliders = await prisma.slider.findMany()
+    * // Fetch zero or more HeroContents
+    * const heroContents = await prisma.heroContent.findMany()
     * ```
     */
-  get slider(): Prisma.SliderDelegate<ExtArgs, ClientOptions>;
+  get heroContent(): Prisma.HeroContentDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.sliderTranslation`: Exposes CRUD operations for the **SliderTranslation** model.
+   * `prisma.heroContentTranslation`: Exposes CRUD operations for the **HeroContentTranslation** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more SliderTranslations
-    * const sliderTranslations = await prisma.sliderTranslation.findMany()
+    * // Fetch zero or more HeroContentTranslations
+    * const heroContentTranslations = await prisma.heroContentTranslation.findMany()
     * ```
     */
-  get sliderTranslation(): Prisma.SliderTranslationDelegate<ExtArgs, ClientOptions>;
+  get heroContentTranslation(): Prisma.HeroContentTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.heroBackgroundImage`: Exposes CRUD operations for the **HeroBackgroundImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HeroBackgroundImages
+    * const heroBackgroundImages = await prisma.heroBackgroundImage.findMany()
+    * ```
+    */
+  get heroBackgroundImage(): Prisma.HeroBackgroundImageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1073,8 +1088,9 @@ export namespace Prisma {
     HizmetExpertItemTranslation: 'HizmetExpertItemTranslation',
     GeneralSetting: 'GeneralSetting',
     GeneralSettingTranslation: 'GeneralSettingTranslation',
-    Slider: 'Slider',
-    SliderTranslation: 'SliderTranslation'
+    HeroContent: 'HeroContent',
+    HeroContentTranslation: 'HeroContentTranslation',
+    HeroBackgroundImage: 'HeroBackgroundImage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1093,7 +1109,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "slider" | "sliderTranslation"
+      modelProps: "user" | "session" | "language" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3169,151 +3185,225 @@ export namespace Prisma {
           }
         }
       }
-      Slider: {
-        payload: Prisma.$SliderPayload<ExtArgs>
-        fields: Prisma.SliderFieldRefs
+      HeroContent: {
+        payload: Prisma.$HeroContentPayload<ExtArgs>
+        fields: Prisma.HeroContentFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.SliderFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload> | null
+            args: Prisma.HeroContentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.SliderFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+            args: Prisma.HeroContentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>
           }
           findFirst: {
-            args: Prisma.SliderFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload> | null
+            args: Prisma.HeroContentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.SliderFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+            args: Prisma.HeroContentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>
           }
           findMany: {
-            args: Prisma.SliderFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>[]
+            args: Prisma.HeroContentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>[]
           }
           create: {
-            args: Prisma.SliderCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+            args: Prisma.HeroContentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>
           }
           createMany: {
-            args: Prisma.SliderCreateManyArgs<ExtArgs>
+            args: Prisma.HeroContentCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.SliderCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>[]
+            args: Prisma.HeroContentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>[]
           }
           delete: {
-            args: Prisma.SliderDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+            args: Prisma.HeroContentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>
           }
           update: {
-            args: Prisma.SliderUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+            args: Prisma.HeroContentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>
           }
           deleteMany: {
-            args: Prisma.SliderDeleteManyArgs<ExtArgs>
+            args: Prisma.HeroContentDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.SliderUpdateManyArgs<ExtArgs>
+            args: Prisma.HeroContentUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.SliderUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>[]
+            args: Prisma.HeroContentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>[]
           }
           upsert: {
-            args: Prisma.SliderUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderPayload>
+            args: Prisma.HeroContentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentPayload>
           }
           aggregate: {
-            args: Prisma.SliderAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSlider>
+            args: Prisma.HeroContentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHeroContent>
           }
           groupBy: {
-            args: Prisma.SliderGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SliderGroupByOutputType>[]
+            args: Prisma.HeroContentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HeroContentGroupByOutputType>[]
           }
           count: {
-            args: Prisma.SliderCountArgs<ExtArgs>
-            result: $Utils.Optional<SliderCountAggregateOutputType> | number
+            args: Prisma.HeroContentCountArgs<ExtArgs>
+            result: $Utils.Optional<HeroContentCountAggregateOutputType> | number
           }
         }
       }
-      SliderTranslation: {
-        payload: Prisma.$SliderTranslationPayload<ExtArgs>
-        fields: Prisma.SliderTranslationFieldRefs
+      HeroContentTranslation: {
+        payload: Prisma.$HeroContentTranslationPayload<ExtArgs>
+        fields: Prisma.HeroContentTranslationFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.SliderTranslationFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload> | null
+            args: Prisma.HeroContentTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.SliderTranslationFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+            args: Prisma.HeroContentTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>
           }
           findFirst: {
-            args: Prisma.SliderTranslationFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload> | null
+            args: Prisma.HeroContentTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.SliderTranslationFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+            args: Prisma.HeroContentTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>
           }
           findMany: {
-            args: Prisma.SliderTranslationFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>[]
+            args: Prisma.HeroContentTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>[]
           }
           create: {
-            args: Prisma.SliderTranslationCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+            args: Prisma.HeroContentTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>
           }
           createMany: {
-            args: Prisma.SliderTranslationCreateManyArgs<ExtArgs>
+            args: Prisma.HeroContentTranslationCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.SliderTranslationCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>[]
+            args: Prisma.HeroContentTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>[]
           }
           delete: {
-            args: Prisma.SliderTranslationDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+            args: Prisma.HeroContentTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>
           }
           update: {
-            args: Prisma.SliderTranslationUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+            args: Prisma.HeroContentTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>
           }
           deleteMany: {
-            args: Prisma.SliderTranslationDeleteManyArgs<ExtArgs>
+            args: Prisma.HeroContentTranslationDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.SliderTranslationUpdateManyArgs<ExtArgs>
+            args: Prisma.HeroContentTranslationUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.SliderTranslationUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>[]
+            args: Prisma.HeroContentTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>[]
           }
           upsert: {
-            args: Prisma.SliderTranslationUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SliderTranslationPayload>
+            args: Prisma.HeroContentTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroContentTranslationPayload>
           }
           aggregate: {
-            args: Prisma.SliderTranslationAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSliderTranslation>
+            args: Prisma.HeroContentTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHeroContentTranslation>
           }
           groupBy: {
-            args: Prisma.SliderTranslationGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SliderTranslationGroupByOutputType>[]
+            args: Prisma.HeroContentTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HeroContentTranslationGroupByOutputType>[]
           }
           count: {
-            args: Prisma.SliderTranslationCountArgs<ExtArgs>
-            result: $Utils.Optional<SliderTranslationCountAggregateOutputType> | number
+            args: Prisma.HeroContentTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<HeroContentTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
+      HeroBackgroundImage: {
+        payload: Prisma.$HeroBackgroundImagePayload<ExtArgs>
+        fields: Prisma.HeroBackgroundImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HeroBackgroundImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HeroBackgroundImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>
+          }
+          findFirst: {
+            args: Prisma.HeroBackgroundImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HeroBackgroundImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>
+          }
+          findMany: {
+            args: Prisma.HeroBackgroundImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>[]
+          }
+          create: {
+            args: Prisma.HeroBackgroundImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>
+          }
+          createMany: {
+            args: Prisma.HeroBackgroundImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HeroBackgroundImageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>[]
+          }
+          delete: {
+            args: Prisma.HeroBackgroundImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>
+          }
+          update: {
+            args: Prisma.HeroBackgroundImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.HeroBackgroundImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HeroBackgroundImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HeroBackgroundImageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>[]
+          }
+          upsert: {
+            args: Prisma.HeroBackgroundImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroBackgroundImagePayload>
+          }
+          aggregate: {
+            args: Prisma.HeroBackgroundImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHeroBackgroundImage>
+          }
+          groupBy: {
+            args: Prisma.HeroBackgroundImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HeroBackgroundImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HeroBackgroundImageCountArgs<ExtArgs>
+            result: $Utils.Optional<HeroBackgroundImageCountAggregateOutputType> | number
           }
         }
       }
@@ -3429,8 +3519,9 @@ export namespace Prisma {
     hizmetExpertItemTranslation?: HizmetExpertItemTranslationOmit
     generalSetting?: GeneralSettingOmit
     generalSettingTranslation?: GeneralSettingTranslationOmit
-    slider?: SliderOmit
-    sliderTranslation?: SliderTranslationOmit
+    heroContent?: HeroContentOmit
+    heroContentTranslation?: HeroContentTranslationOmit
+    heroBackgroundImage?: HeroBackgroundImageOmit
   }
 
   /* Types for Logging */
@@ -3534,7 +3625,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations: number
     hizmetPricingPackageTranslations: number
     generalSettingTranslations: number
-    sliderTranslations: number
+    heroContentTranslations: number
   }
 
   export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3547,7 +3638,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: boolean | LanguageCountOutputTypeCountHizmetExpertItemTranslationsArgs
     hizmetPricingPackageTranslations?: boolean | LanguageCountOutputTypeCountHizmetPricingPackageTranslationsArgs
     generalSettingTranslations?: boolean | LanguageCountOutputTypeCountGeneralSettingTranslationsArgs
-    sliderTranslations?: boolean | LanguageCountOutputTypeCountSliderTranslationsArgs
+    heroContentTranslations?: boolean | LanguageCountOutputTypeCountHeroContentTranslationsArgs
   }
 
   // Custom InputTypes
@@ -3627,8 +3718,8 @@ export namespace Prisma {
   /**
    * LanguageCountOutputType without action
    */
-  export type LanguageCountOutputTypeCountSliderTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SliderTranslationWhereInput
+  export type LanguageCountOutputTypeCountHeroContentTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroContentTranslationWhereInput
   }
 
 
@@ -4051,33 +4142,42 @@ export namespace Prisma {
 
 
   /**
-   * Count Type SliderCountOutputType
+   * Count Type HeroContentCountOutputType
    */
 
-  export type SliderCountOutputType = {
+  export type HeroContentCountOutputType = {
     translations: number
+    images: number
   }
 
-  export type SliderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    translations?: boolean | SliderCountOutputTypeCountTranslationsArgs
+  export type HeroContentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | HeroContentCountOutputTypeCountTranslationsArgs
+    images?: boolean | HeroContentCountOutputTypeCountImagesArgs
   }
 
   // Custom InputTypes
   /**
-   * SliderCountOutputType without action
+   * HeroContentCountOutputType without action
    */
-  export type SliderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderCountOutputType
+     * Select specific fields to fetch from the HeroContentCountOutputType
      */
-    select?: SliderCountOutputTypeSelect<ExtArgs> | null
+    select?: HeroContentCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * SliderCountOutputType without action
+   * HeroContentCountOutputType without action
    */
-  export type SliderCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SliderTranslationWhereInput
+  export type HeroContentCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroContentTranslationWhereInput
+  }
+
+  /**
+   * HeroContentCountOutputType without action
+   */
+  export type HeroContentCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroBackgroundImageWhereInput
   }
 
 
@@ -6303,7 +6403,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: boolean | Language$hizmetExpertItemTranslationsArgs<ExtArgs>
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
-    sliderTranslations?: boolean | Language$sliderTranslationsArgs<ExtArgs>
+    heroContentTranslations?: boolean | Language$heroContentTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["language"]>
 
@@ -6348,7 +6448,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: boolean | Language$hizmetExpertItemTranslationsArgs<ExtArgs>
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
-    sliderTranslations?: boolean | Language$sliderTranslationsArgs<ExtArgs>
+    heroContentTranslations?: boolean | Language$heroContentTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6366,7 +6466,7 @@ export namespace Prisma {
       hizmetExpertItemTranslations: Prisma.$HizmetExpertItemTranslationPayload<ExtArgs>[]
       hizmetPricingPackageTranslations: Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>[]
       generalSettingTranslations: Prisma.$GeneralSettingTranslationPayload<ExtArgs>[]
-      sliderTranslations: Prisma.$SliderTranslationPayload<ExtArgs>[]
+      heroContentTranslations: Prisma.$HeroContentTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6779,7 +6879,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations<T extends Language$hizmetExpertItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetExpertItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetExpertItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hizmetPricingPackageTranslations<T extends Language$hizmetPricingPackageTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetPricingPackageTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     generalSettingTranslations<T extends Language$generalSettingTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$generalSettingTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    sliderTranslations<T extends Language$sliderTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$sliderTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    heroContentTranslations<T extends Language$heroContentTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$heroContentTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7420,27 +7520,27 @@ export namespace Prisma {
   }
 
   /**
-   * Language.sliderTranslations
+   * Language.heroContentTranslations
    */
-  export type Language$sliderTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Language$heroContentTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
-    where?: SliderTranslationWhereInput
-    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
-    cursor?: SliderTranslationWhereUniqueInput
+    include?: HeroContentTranslationInclude<ExtArgs> | null
+    where?: HeroContentTranslationWhereInput
+    orderBy?: HeroContentTranslationOrderByWithRelationInput | HeroContentTranslationOrderByWithRelationInput[]
+    cursor?: HeroContentTranslationWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+    distinct?: HeroContentTranslationScalarFieldEnum | HeroContentTranslationScalarFieldEnum[]
   }
 
   /**
@@ -35919,392 +36019,325 @@ export namespace Prisma {
 
 
   /**
-   * Model Slider
+   * Model HeroContent
    */
 
-  export type AggregateSlider = {
-    _count: SliderCountAggregateOutputType | null
-    _avg: SliderAvgAggregateOutputType | null
-    _sum: SliderSumAggregateOutputType | null
-    _min: SliderMinAggregateOutputType | null
-    _max: SliderMaxAggregateOutputType | null
+  export type AggregateHeroContent = {
+    _count: HeroContentCountAggregateOutputType | null
+    _min: HeroContentMinAggregateOutputType | null
+    _max: HeroContentMaxAggregateOutputType | null
   }
 
-  export type SliderAvgAggregateOutputType = {
-    order: number | null
-  }
-
-  export type SliderSumAggregateOutputType = {
-    order: number | null
-  }
-
-  export type SliderMinAggregateOutputType = {
+  export type HeroContentMinAggregateOutputType = {
     id: string | null
-    backgroundImageUrl: string | null
-    order: number | null
-    isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type SliderMaxAggregateOutputType = {
+  export type HeroContentMaxAggregateOutputType = {
     id: string | null
-    backgroundImageUrl: string | null
-    order: number | null
-    isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type SliderCountAggregateOutputType = {
+  export type HeroContentCountAggregateOutputType = {
     id: number
-    backgroundImageUrl: number
-    order: number
-    isActive: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type SliderAvgAggregateInputType = {
-    order?: true
-  }
-
-  export type SliderSumAggregateInputType = {
-    order?: true
-  }
-
-  export type SliderMinAggregateInputType = {
+  export type HeroContentMinAggregateInputType = {
     id?: true
-    backgroundImageUrl?: true
-    order?: true
-    isActive?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type SliderMaxAggregateInputType = {
+  export type HeroContentMaxAggregateInputType = {
     id?: true
-    backgroundImageUrl?: true
-    order?: true
-    isActive?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type SliderCountAggregateInputType = {
+  export type HeroContentCountAggregateInputType = {
     id?: true
-    backgroundImageUrl?: true
-    order?: true
-    isActive?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type SliderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Slider to aggregate.
+     * Filter which HeroContent to aggregate.
      */
-    where?: SliderWhereInput
+    where?: HeroContentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sliders to fetch.
+     * Determine the order of HeroContents to fetch.
      */
-    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    orderBy?: HeroContentOrderByWithRelationInput | HeroContentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SliderWhereUniqueInput
+    cursor?: HeroContentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sliders from the position of the cursor.
+     * Take `±n` HeroContents from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sliders.
+     * Skip the first `n` HeroContents.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Sliders
+     * Count returned HeroContents
     **/
-    _count?: true | SliderCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: SliderAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SliderSumAggregateInputType
+    _count?: true | HeroContentCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SliderMinAggregateInputType
+    _min?: HeroContentMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SliderMaxAggregateInputType
+    _max?: HeroContentMaxAggregateInputType
   }
 
-  export type GetSliderAggregateType<T extends SliderAggregateArgs> = {
-        [P in keyof T & keyof AggregateSlider]: P extends '_count' | 'count'
+  export type GetHeroContentAggregateType<T extends HeroContentAggregateArgs> = {
+        [P in keyof T & keyof AggregateHeroContent]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSlider[P]>
-      : GetScalarType<T[P], AggregateSlider[P]>
+        : GetScalarType<T[P], AggregateHeroContent[P]>
+      : GetScalarType<T[P], AggregateHeroContent[P]>
   }
 
 
 
 
-  export type SliderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SliderWhereInput
-    orderBy?: SliderOrderByWithAggregationInput | SliderOrderByWithAggregationInput[]
-    by: SliderScalarFieldEnum[] | SliderScalarFieldEnum
-    having?: SliderScalarWhereWithAggregatesInput
+  export type HeroContentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroContentWhereInput
+    orderBy?: HeroContentOrderByWithAggregationInput | HeroContentOrderByWithAggregationInput[]
+    by: HeroContentScalarFieldEnum[] | HeroContentScalarFieldEnum
+    having?: HeroContentScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SliderCountAggregateInputType | true
-    _avg?: SliderAvgAggregateInputType
-    _sum?: SliderSumAggregateInputType
-    _min?: SliderMinAggregateInputType
-    _max?: SliderMaxAggregateInputType
+    _count?: HeroContentCountAggregateInputType | true
+    _min?: HeroContentMinAggregateInputType
+    _max?: HeroContentMaxAggregateInputType
   }
 
-  export type SliderGroupByOutputType = {
+  export type HeroContentGroupByOutputType = {
     id: string
-    backgroundImageUrl: string | null
-    order: number | null
-    isActive: boolean
     createdAt: Date
     updatedAt: Date
-    _count: SliderCountAggregateOutputType | null
-    _avg: SliderAvgAggregateOutputType | null
-    _sum: SliderSumAggregateOutputType | null
-    _min: SliderMinAggregateOutputType | null
-    _max: SliderMaxAggregateOutputType | null
+    _count: HeroContentCountAggregateOutputType | null
+    _min: HeroContentMinAggregateOutputType | null
+    _max: HeroContentMaxAggregateOutputType | null
   }
 
-  type GetSliderGroupByPayload<T extends SliderGroupByArgs> = Prisma.PrismaPromise<
+  type GetHeroContentGroupByPayload<T extends HeroContentGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SliderGroupByOutputType, T['by']> &
+      PickEnumerable<HeroContentGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SliderGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof HeroContentGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SliderGroupByOutputType[P]>
-            : GetScalarType<T[P], SliderGroupByOutputType[P]>
+              : GetScalarType<T[P], HeroContentGroupByOutputType[P]>
+            : GetScalarType<T[P], HeroContentGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SliderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type HeroContentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    backgroundImageUrl?: boolean
-    order?: boolean
-    isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    translations?: boolean | Slider$translationsArgs<ExtArgs>
-    _count?: boolean | SliderCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["slider"]>
+    translations?: boolean | HeroContent$translationsArgs<ExtArgs>
+    images?: boolean | HeroContent$imagesArgs<ExtArgs>
+    _count?: boolean | HeroContentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["heroContent"]>
 
-  export type SliderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type HeroContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    backgroundImageUrl?: boolean
-    order?: boolean
-    isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-  }, ExtArgs["result"]["slider"]>
+  }, ExtArgs["result"]["heroContent"]>
 
-  export type SliderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type HeroContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    backgroundImageUrl?: boolean
-    order?: boolean
-    isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-  }, ExtArgs["result"]["slider"]>
+  }, ExtArgs["result"]["heroContent"]>
 
-  export type SliderSelectScalar = {
+  export type HeroContentSelectScalar = {
     id?: boolean
-    backgroundImageUrl?: boolean
-    order?: boolean
-    isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SliderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "backgroundImageUrl" | "order" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["slider"]>
-  export type SliderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    translations?: boolean | Slider$translationsArgs<ExtArgs>
-    _count?: boolean | SliderCountOutputTypeDefaultArgs<ExtArgs>
+  export type HeroContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt", ExtArgs["result"]["heroContent"]>
+  export type HeroContentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | HeroContent$translationsArgs<ExtArgs>
+    images?: boolean | HeroContent$imagesArgs<ExtArgs>
+    _count?: boolean | HeroContentCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type SliderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type SliderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type HeroContentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type HeroContentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $SliderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Slider"
+  export type $HeroContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HeroContent"
     objects: {
-      translations: Prisma.$SliderTranslationPayload<ExtArgs>[]
+      translations: Prisma.$HeroContentTranslationPayload<ExtArgs>[]
+      images: Prisma.$HeroBackgroundImagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      backgroundImageUrl: string | null
-      order: number | null
-      isActive: boolean
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["slider"]>
+    }, ExtArgs["result"]["heroContent"]>
     composites: {}
   }
 
-  type SliderGetPayload<S extends boolean | null | undefined | SliderDefaultArgs> = $Result.GetResult<Prisma.$SliderPayload, S>
+  type HeroContentGetPayload<S extends boolean | null | undefined | HeroContentDefaultArgs> = $Result.GetResult<Prisma.$HeroContentPayload, S>
 
-  type SliderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SliderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SliderCountAggregateInputType | true
+  type HeroContentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HeroContentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HeroContentCountAggregateInputType | true
     }
 
-  export interface SliderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Slider'], meta: { name: 'Slider' } }
+  export interface HeroContentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HeroContent'], meta: { name: 'HeroContent' } }
     /**
-     * Find zero or one Slider that matches the filter.
-     * @param {SliderFindUniqueArgs} args - Arguments to find a Slider
+     * Find zero or one HeroContent that matches the filter.
+     * @param {HeroContentFindUniqueArgs} args - Arguments to find a HeroContent
      * @example
-     * // Get one Slider
-     * const slider = await prisma.slider.findUnique({
+     * // Get one HeroContent
+     * const heroContent = await prisma.heroContent.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends SliderFindUniqueArgs>(args: SelectSubset<T, SliderFindUniqueArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends HeroContentFindUniqueArgs>(args: SelectSubset<T, HeroContentFindUniqueArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Slider that matches the filter or throw an error with `error.code='P2025'`
+     * Find one HeroContent that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {SliderFindUniqueOrThrowArgs} args - Arguments to find a Slider
+     * @param {HeroContentFindUniqueOrThrowArgs} args - Arguments to find a HeroContent
      * @example
-     * // Get one Slider
-     * const slider = await prisma.slider.findUniqueOrThrow({
+     * // Get one HeroContent
+     * const heroContent = await prisma.heroContent.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SliderFindUniqueOrThrowArgs>(args: SelectSubset<T, SliderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends HeroContentFindUniqueOrThrowArgs>(args: SelectSubset<T, HeroContentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Slider that matches the filter.
+     * Find the first HeroContent that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderFindFirstArgs} args - Arguments to find a Slider
+     * @param {HeroContentFindFirstArgs} args - Arguments to find a HeroContent
      * @example
-     * // Get one Slider
-     * const slider = await prisma.slider.findFirst({
+     * // Get one HeroContent
+     * const heroContent = await prisma.heroContent.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends SliderFindFirstArgs>(args?: SelectSubset<T, SliderFindFirstArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends HeroContentFindFirstArgs>(args?: SelectSubset<T, HeroContentFindFirstArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Slider that matches the filter or
+     * Find the first HeroContent that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderFindFirstOrThrowArgs} args - Arguments to find a Slider
+     * @param {HeroContentFindFirstOrThrowArgs} args - Arguments to find a HeroContent
      * @example
-     * // Get one Slider
-     * const slider = await prisma.slider.findFirstOrThrow({
+     * // Get one HeroContent
+     * const heroContent = await prisma.heroContent.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends SliderFindFirstOrThrowArgs>(args?: SelectSubset<T, SliderFindFirstOrThrowArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends HeroContentFindFirstOrThrowArgs>(args?: SelectSubset<T, HeroContentFindFirstOrThrowArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Sliders that matches the filter.
+     * Find zero or more HeroContents that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {HeroContentFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Sliders
-     * const sliders = await prisma.slider.findMany()
+     * // Get all HeroContents
+     * const heroContents = await prisma.heroContent.findMany()
      * 
-     * // Get first 10 Sliders
-     * const sliders = await prisma.slider.findMany({ take: 10 })
+     * // Get first 10 HeroContents
+     * const heroContents = await prisma.heroContent.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const sliderWithIdOnly = await prisma.slider.findMany({ select: { id: true } })
+     * const heroContentWithIdOnly = await prisma.heroContent.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends SliderFindManyArgs>(args?: SelectSubset<T, SliderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends HeroContentFindManyArgs>(args?: SelectSubset<T, HeroContentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Slider.
-     * @param {SliderCreateArgs} args - Arguments to create a Slider.
+     * Create a HeroContent.
+     * @param {HeroContentCreateArgs} args - Arguments to create a HeroContent.
      * @example
-     * // Create one Slider
-     * const Slider = await prisma.slider.create({
+     * // Create one HeroContent
+     * const HeroContent = await prisma.heroContent.create({
      *   data: {
-     *     // ... data to create a Slider
+     *     // ... data to create a HeroContent
      *   }
      * })
      * 
      */
-    create<T extends SliderCreateArgs>(args: SelectSubset<T, SliderCreateArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends HeroContentCreateArgs>(args: SelectSubset<T, HeroContentCreateArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Sliders.
-     * @param {SliderCreateManyArgs} args - Arguments to create many Sliders.
+     * Create many HeroContents.
+     * @param {HeroContentCreateManyArgs} args - Arguments to create many HeroContents.
      * @example
-     * // Create many Sliders
-     * const slider = await prisma.slider.createMany({
+     * // Create many HeroContents
+     * const heroContent = await prisma.heroContent.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends SliderCreateManyArgs>(args?: SelectSubset<T, SliderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends HeroContentCreateManyArgs>(args?: SelectSubset<T, HeroContentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Sliders and returns the data saved in the database.
-     * @param {SliderCreateManyAndReturnArgs} args - Arguments to create many Sliders.
+     * Create many HeroContents and returns the data saved in the database.
+     * @param {HeroContentCreateManyAndReturnArgs} args - Arguments to create many HeroContents.
      * @example
-     * // Create many Sliders
-     * const slider = await prisma.slider.createManyAndReturn({
+     * // Create many HeroContents
+     * const heroContent = await prisma.heroContent.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Sliders and only return the `id`
-     * const sliderWithIdOnly = await prisma.slider.createManyAndReturn({
+     * // Create many HeroContents and only return the `id`
+     * const heroContentWithIdOnly = await prisma.heroContent.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -36314,28 +36347,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends SliderCreateManyAndReturnArgs>(args?: SelectSubset<T, SliderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends HeroContentCreateManyAndReturnArgs>(args?: SelectSubset<T, HeroContentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Slider.
-     * @param {SliderDeleteArgs} args - Arguments to delete one Slider.
+     * Delete a HeroContent.
+     * @param {HeroContentDeleteArgs} args - Arguments to delete one HeroContent.
      * @example
-     * // Delete one Slider
-     * const Slider = await prisma.slider.delete({
+     * // Delete one HeroContent
+     * const HeroContent = await prisma.heroContent.delete({
      *   where: {
-     *     // ... filter to delete one Slider
+     *     // ... filter to delete one HeroContent
      *   }
      * })
      * 
      */
-    delete<T extends SliderDeleteArgs>(args: SelectSubset<T, SliderDeleteArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends HeroContentDeleteArgs>(args: SelectSubset<T, HeroContentDeleteArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Slider.
-     * @param {SliderUpdateArgs} args - Arguments to update one Slider.
+     * Update one HeroContent.
+     * @param {HeroContentUpdateArgs} args - Arguments to update one HeroContent.
      * @example
-     * // Update one Slider
-     * const slider = await prisma.slider.update({
+     * // Update one HeroContent
+     * const heroContent = await prisma.heroContent.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -36345,30 +36378,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends SliderUpdateArgs>(args: SelectSubset<T, SliderUpdateArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends HeroContentUpdateArgs>(args: SelectSubset<T, HeroContentUpdateArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Sliders.
-     * @param {SliderDeleteManyArgs} args - Arguments to filter Sliders to delete.
+     * Delete zero or more HeroContents.
+     * @param {HeroContentDeleteManyArgs} args - Arguments to filter HeroContents to delete.
      * @example
-     * // Delete a few Sliders
-     * const { count } = await prisma.slider.deleteMany({
+     * // Delete a few HeroContents
+     * const { count } = await prisma.heroContent.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends SliderDeleteManyArgs>(args?: SelectSubset<T, SliderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends HeroContentDeleteManyArgs>(args?: SelectSubset<T, HeroContentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Sliders.
+     * Update zero or more HeroContents.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {HeroContentUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Sliders
-     * const slider = await prisma.slider.updateMany({
+     * // Update many HeroContents
+     * const heroContent = await prisma.heroContent.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -36378,14 +36411,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends SliderUpdateManyArgs>(args: SelectSubset<T, SliderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends HeroContentUpdateManyArgs>(args: SelectSubset<T, HeroContentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Sliders and returns the data updated in the database.
-     * @param {SliderUpdateManyAndReturnArgs} args - Arguments to update many Sliders.
+     * Update zero or more HeroContents and returns the data updated in the database.
+     * @param {HeroContentUpdateManyAndReturnArgs} args - Arguments to update many HeroContents.
      * @example
-     * // Update many Sliders
-     * const slider = await prisma.slider.updateManyAndReturn({
+     * // Update many HeroContents
+     * const heroContent = await prisma.heroContent.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -36394,8 +36427,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Sliders and only return the `id`
-     * const sliderWithIdOnly = await prisma.slider.updateManyAndReturn({
+     * // Update zero or more HeroContents and only return the `id`
+     * const heroContentWithIdOnly = await prisma.heroContent.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -36408,56 +36441,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends SliderUpdateManyAndReturnArgs>(args: SelectSubset<T, SliderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends HeroContentUpdateManyAndReturnArgs>(args: SelectSubset<T, HeroContentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Slider.
-     * @param {SliderUpsertArgs} args - Arguments to update or create a Slider.
+     * Create or update one HeroContent.
+     * @param {HeroContentUpsertArgs} args - Arguments to update or create a HeroContent.
      * @example
-     * // Update or create a Slider
-     * const slider = await prisma.slider.upsert({
+     * // Update or create a HeroContent
+     * const heroContent = await prisma.heroContent.upsert({
      *   create: {
-     *     // ... data to create a Slider
+     *     // ... data to create a HeroContent
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Slider we want to update
+     *     // ... the filter for the HeroContent we want to update
      *   }
      * })
      */
-    upsert<T extends SliderUpsertArgs>(args: SelectSubset<T, SliderUpsertArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends HeroContentUpsertArgs>(args: SelectSubset<T, HeroContentUpsertArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Sliders.
+     * Count the number of HeroContents.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderCountArgs} args - Arguments to filter Sliders to count.
+     * @param {HeroContentCountArgs} args - Arguments to filter HeroContents to count.
      * @example
-     * // Count the number of Sliders
-     * const count = await prisma.slider.count({
+     * // Count the number of HeroContents
+     * const count = await prisma.heroContent.count({
      *   where: {
-     *     // ... the filter for the Sliders we want to count
+     *     // ... the filter for the HeroContents we want to count
      *   }
      * })
     **/
-    count<T extends SliderCountArgs>(
-      args?: Subset<T, SliderCountArgs>,
+    count<T extends HeroContentCountArgs>(
+      args?: Subset<T, HeroContentCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SliderCountAggregateOutputType>
+          : GetScalarType<T['select'], HeroContentCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Slider.
+     * Allows you to perform aggregations operations on a HeroContent.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {HeroContentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -36477,13 +36510,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SliderAggregateArgs>(args: Subset<T, SliderAggregateArgs>): Prisma.PrismaPromise<GetSliderAggregateType<T>>
+    aggregate<T extends HeroContentAggregateArgs>(args: Subset<T, HeroContentAggregateArgs>): Prisma.PrismaPromise<GetHeroContentAggregateType<T>>
 
     /**
-     * Group by Slider.
+     * Group by HeroContent.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderGroupByArgs} args - Group by arguments.
+     * @param {HeroContentGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -36498,14 +36531,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SliderGroupByArgs,
+      T extends HeroContentGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SliderGroupByArgs['orderBy'] }
-        : { orderBy?: SliderGroupByArgs['orderBy'] },
+        ? { orderBy: HeroContentGroupByArgs['orderBy'] }
+        : { orderBy?: HeroContentGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -36554,22 +36587,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SliderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSliderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, HeroContentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHeroContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Slider model
+   * Fields of the HeroContent model
    */
-  readonly fields: SliderFieldRefs;
+  readonly fields: HeroContentFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Slider.
+   * The delegate class that acts as a "Promise-like" for HeroContent.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SliderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__HeroContentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    translations<T extends Slider$translationsArgs<ExtArgs> = {}>(args?: Subset<T, Slider$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    translations<T extends HeroContent$translationsArgs<ExtArgs> = {}>(args?: Subset<T, HeroContent$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    images<T extends HeroContent$imagesArgs<ExtArgs> = {}>(args?: Subset<T, HeroContent$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -36596,845 +36630,866 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Slider model
+   * Fields of the HeroContent model
    */
-  interface SliderFieldRefs {
-    readonly id: FieldRef<"Slider", 'String'>
-    readonly backgroundImageUrl: FieldRef<"Slider", 'String'>
-    readonly order: FieldRef<"Slider", 'Int'>
-    readonly isActive: FieldRef<"Slider", 'Boolean'>
-    readonly createdAt: FieldRef<"Slider", 'DateTime'>
-    readonly updatedAt: FieldRef<"Slider", 'DateTime'>
+  interface HeroContentFieldRefs {
+    readonly id: FieldRef<"HeroContent", 'String'>
+    readonly createdAt: FieldRef<"HeroContent", 'DateTime'>
+    readonly updatedAt: FieldRef<"HeroContent", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Slider findUnique
+   * HeroContent findUnique
    */
-  export type SliderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * Filter, which Slider to fetch.
+     * Filter, which HeroContent to fetch.
      */
-    where: SliderWhereUniqueInput
+    where: HeroContentWhereUniqueInput
   }
 
   /**
-   * Slider findUniqueOrThrow
+   * HeroContent findUniqueOrThrow
    */
-  export type SliderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * Filter, which Slider to fetch.
+     * Filter, which HeroContent to fetch.
      */
-    where: SliderWhereUniqueInput
+    where: HeroContentWhereUniqueInput
   }
 
   /**
-   * Slider findFirst
+   * HeroContent findFirst
    */
-  export type SliderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * Filter, which Slider to fetch.
+     * Filter, which HeroContent to fetch.
      */
-    where?: SliderWhereInput
+    where?: HeroContentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sliders to fetch.
+     * Determine the order of HeroContents to fetch.
      */
-    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    orderBy?: HeroContentOrderByWithRelationInput | HeroContentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Sliders.
+     * Sets the position for searching for HeroContents.
      */
-    cursor?: SliderWhereUniqueInput
+    cursor?: HeroContentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sliders from the position of the cursor.
+     * Take `±n` HeroContents from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sliders.
+     * Skip the first `n` HeroContents.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Sliders.
+     * Filter by unique combinations of HeroContents.
      */
-    distinct?: SliderScalarFieldEnum | SliderScalarFieldEnum[]
+    distinct?: HeroContentScalarFieldEnum | HeroContentScalarFieldEnum[]
   }
 
   /**
-   * Slider findFirstOrThrow
+   * HeroContent findFirstOrThrow
    */
-  export type SliderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * Filter, which Slider to fetch.
+     * Filter, which HeroContent to fetch.
      */
-    where?: SliderWhereInput
+    where?: HeroContentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sliders to fetch.
+     * Determine the order of HeroContents to fetch.
      */
-    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    orderBy?: HeroContentOrderByWithRelationInput | HeroContentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Sliders.
+     * Sets the position for searching for HeroContents.
      */
-    cursor?: SliderWhereUniqueInput
+    cursor?: HeroContentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sliders from the position of the cursor.
+     * Take `±n` HeroContents from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sliders.
+     * Skip the first `n` HeroContents.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Sliders.
+     * Filter by unique combinations of HeroContents.
      */
-    distinct?: SliderScalarFieldEnum | SliderScalarFieldEnum[]
+    distinct?: HeroContentScalarFieldEnum | HeroContentScalarFieldEnum[]
   }
 
   /**
-   * Slider findMany
+   * HeroContent findMany
    */
-  export type SliderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * Filter, which Sliders to fetch.
+     * Filter, which HeroContents to fetch.
      */
-    where?: SliderWhereInput
+    where?: HeroContentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sliders to fetch.
+     * Determine the order of HeroContents to fetch.
      */
-    orderBy?: SliderOrderByWithRelationInput | SliderOrderByWithRelationInput[]
+    orderBy?: HeroContentOrderByWithRelationInput | HeroContentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Sliders.
+     * Sets the position for listing HeroContents.
      */
-    cursor?: SliderWhereUniqueInput
+    cursor?: HeroContentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sliders from the position of the cursor.
+     * Take `±n` HeroContents from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sliders.
+     * Skip the first `n` HeroContents.
      */
     skip?: number
-    distinct?: SliderScalarFieldEnum | SliderScalarFieldEnum[]
+    distinct?: HeroContentScalarFieldEnum | HeroContentScalarFieldEnum[]
   }
 
   /**
-   * Slider create
+   * HeroContent create
    */
-  export type SliderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * The data needed to create a Slider.
+     * The data needed to create a HeroContent.
      */
-    data: XOR<SliderCreateInput, SliderUncheckedCreateInput>
+    data: XOR<HeroContentCreateInput, HeroContentUncheckedCreateInput>
   }
 
   /**
-   * Slider createMany
+   * HeroContent createMany
    */
-  export type SliderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Sliders.
+     * The data used to create many HeroContents.
      */
-    data: SliderCreateManyInput | SliderCreateManyInput[]
+    data: HeroContentCreateManyInput | HeroContentCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Slider createManyAndReturn
+   * HeroContent createManyAndReturn
    */
-  export type SliderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelectCreateManyAndReturn<ExtArgs> | null
+    select?: HeroContentSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
-     * The data used to create many Sliders.
+     * The data used to create many HeroContents.
      */
-    data: SliderCreateManyInput | SliderCreateManyInput[]
+    data: HeroContentCreateManyInput | HeroContentCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Slider update
+   * HeroContent update
    */
-  export type SliderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * The data needed to update a Slider.
+     * The data needed to update a HeroContent.
      */
-    data: XOR<SliderUpdateInput, SliderUncheckedUpdateInput>
+    data: XOR<HeroContentUpdateInput, HeroContentUncheckedUpdateInput>
     /**
-     * Choose, which Slider to update.
+     * Choose, which HeroContent to update.
      */
-    where: SliderWhereUniqueInput
+    where: HeroContentWhereUniqueInput
   }
 
   /**
-   * Slider updateMany
+   * HeroContent updateMany
    */
-  export type SliderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Sliders.
+     * The data used to update HeroContents.
      */
-    data: XOR<SliderUpdateManyMutationInput, SliderUncheckedUpdateManyInput>
+    data: XOR<HeroContentUpdateManyMutationInput, HeroContentUncheckedUpdateManyInput>
     /**
-     * Filter which Sliders to update
+     * Filter which HeroContents to update
      */
-    where?: SliderWhereInput
+    where?: HeroContentWhereInput
     /**
-     * Limit how many Sliders to update.
+     * Limit how many HeroContents to update.
      */
     limit?: number
   }
 
   /**
-   * Slider updateManyAndReturn
+   * HeroContent updateManyAndReturn
    */
-  export type SliderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: HeroContentSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
-     * The data used to update Sliders.
+     * The data used to update HeroContents.
      */
-    data: XOR<SliderUpdateManyMutationInput, SliderUncheckedUpdateManyInput>
+    data: XOR<HeroContentUpdateManyMutationInput, HeroContentUncheckedUpdateManyInput>
     /**
-     * Filter which Sliders to update
+     * Filter which HeroContents to update
      */
-    where?: SliderWhereInput
+    where?: HeroContentWhereInput
     /**
-     * Limit how many Sliders to update.
+     * Limit how many HeroContents to update.
      */
     limit?: number
   }
 
   /**
-   * Slider upsert
+   * HeroContent upsert
    */
-  export type SliderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * The filter to search for the Slider to update in case it exists.
+     * The filter to search for the HeroContent to update in case it exists.
      */
-    where: SliderWhereUniqueInput
+    where: HeroContentWhereUniqueInput
     /**
-     * In case the Slider found by the `where` argument doesn't exist, create a new Slider with this data.
+     * In case the HeroContent found by the `where` argument doesn't exist, create a new HeroContent with this data.
      */
-    create: XOR<SliderCreateInput, SliderUncheckedCreateInput>
+    create: XOR<HeroContentCreateInput, HeroContentUncheckedCreateInput>
     /**
-     * In case the Slider was found with the provided `where` argument, update it with this data.
+     * In case the HeroContent was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SliderUpdateInput, SliderUncheckedUpdateInput>
+    update: XOR<HeroContentUpdateInput, HeroContentUncheckedUpdateInput>
   }
 
   /**
-   * Slider delete
+   * HeroContent delete
    */
-  export type SliderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroContent
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroContent
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroContentInclude<ExtArgs> | null
     /**
-     * Filter which Slider to delete.
+     * Filter which HeroContent to delete.
      */
-    where: SliderWhereUniqueInput
+    where: HeroContentWhereUniqueInput
   }
 
   /**
-   * Slider deleteMany
+   * HeroContent deleteMany
    */
-  export type SliderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Sliders to delete
+     * Filter which HeroContents to delete
      */
-    where?: SliderWhereInput
+    where?: HeroContentWhereInput
     /**
-     * Limit how many Sliders to delete.
+     * Limit how many HeroContents to delete.
      */
     limit?: number
   }
 
   /**
-   * Slider.translations
+   * HeroContent.translations
    */
-  export type Slider$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContent$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
-    where?: SliderTranslationWhereInput
-    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
-    cursor?: SliderTranslationWhereUniqueInput
+    include?: HeroContentTranslationInclude<ExtArgs> | null
+    where?: HeroContentTranslationWhereInput
+    orderBy?: HeroContentTranslationOrderByWithRelationInput | HeroContentTranslationOrderByWithRelationInput[]
+    cursor?: HeroContentTranslationWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+    distinct?: HeroContentTranslationScalarFieldEnum | HeroContentTranslationScalarFieldEnum[]
   }
 
   /**
-   * Slider without action
+   * HeroContent.images
    */
-  export type SliderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContent$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Slider
+     * Select specific fields to fetch from the HeroBackgroundImage
      */
-    select?: SliderSelect<ExtArgs> | null
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Slider
+     * Omit specific fields from the HeroBackgroundImage
      */
-    omit?: SliderOmit<ExtArgs> | null
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderInclude<ExtArgs> | null
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    where?: HeroBackgroundImageWhereInput
+    orderBy?: HeroBackgroundImageOrderByWithRelationInput | HeroBackgroundImageOrderByWithRelationInput[]
+    cursor?: HeroBackgroundImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HeroBackgroundImageScalarFieldEnum | HeroBackgroundImageScalarFieldEnum[]
+  }
+
+  /**
+   * HeroContent without action
+   */
+  export type HeroContentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroContent
+     */
+    select?: HeroContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroContent
+     */
+    omit?: HeroContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroContentInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model SliderTranslation
+   * Model HeroContentTranslation
    */
 
-  export type AggregateSliderTranslation = {
-    _count: SliderTranslationCountAggregateOutputType | null
-    _min: SliderTranslationMinAggregateOutputType | null
-    _max: SliderTranslationMaxAggregateOutputType | null
+  export type AggregateHeroContentTranslation = {
+    _count: HeroContentTranslationCountAggregateOutputType | null
+    _min: HeroContentTranslationMinAggregateOutputType | null
+    _max: HeroContentTranslationMaxAggregateOutputType | null
   }
 
-  export type SliderTranslationMinAggregateOutputType = {
+  export type HeroContentTranslationMinAggregateOutputType = {
     id: string | null
+    heroContentId: string | null
+    languageCode: string | null
     title: string | null
     description: string | null
     button1Text: string | null
     button1Link: string | null
     button2Text: string | null
     button2Link: string | null
-    sliderId: string | null
-    languageCode: string | null
   }
 
-  export type SliderTranslationMaxAggregateOutputType = {
+  export type HeroContentTranslationMaxAggregateOutputType = {
     id: string | null
+    heroContentId: string | null
+    languageCode: string | null
     title: string | null
     description: string | null
     button1Text: string | null
     button1Link: string | null
     button2Text: string | null
     button2Link: string | null
-    sliderId: string | null
-    languageCode: string | null
   }
 
-  export type SliderTranslationCountAggregateOutputType = {
+  export type HeroContentTranslationCountAggregateOutputType = {
     id: number
+    heroContentId: number
+    languageCode: number
     title: number
     description: number
     button1Text: number
     button1Link: number
     button2Text: number
     button2Link: number
-    sliderId: number
-    languageCode: number
     _all: number
   }
 
 
-  export type SliderTranslationMinAggregateInputType = {
+  export type HeroContentTranslationMinAggregateInputType = {
     id?: true
+    heroContentId?: true
+    languageCode?: true
     title?: true
     description?: true
     button1Text?: true
     button1Link?: true
     button2Text?: true
     button2Link?: true
-    sliderId?: true
-    languageCode?: true
   }
 
-  export type SliderTranslationMaxAggregateInputType = {
+  export type HeroContentTranslationMaxAggregateInputType = {
     id?: true
+    heroContentId?: true
+    languageCode?: true
     title?: true
     description?: true
     button1Text?: true
     button1Link?: true
     button2Text?: true
     button2Link?: true
-    sliderId?: true
-    languageCode?: true
   }
 
-  export type SliderTranslationCountAggregateInputType = {
+  export type HeroContentTranslationCountAggregateInputType = {
     id?: true
+    heroContentId?: true
+    languageCode?: true
     title?: true
     description?: true
     button1Text?: true
     button1Link?: true
     button2Text?: true
     button2Link?: true
-    sliderId?: true
-    languageCode?: true
     _all?: true
   }
 
-  export type SliderTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which SliderTranslation to aggregate.
+     * Filter which HeroContentTranslation to aggregate.
      */
-    where?: SliderTranslationWhereInput
+    where?: HeroContentTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SliderTranslations to fetch.
+     * Determine the order of HeroContentTranslations to fetch.
      */
-    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    orderBy?: HeroContentTranslationOrderByWithRelationInput | HeroContentTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SliderTranslationWhereUniqueInput
+    cursor?: HeroContentTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SliderTranslations from the position of the cursor.
+     * Take `±n` HeroContentTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SliderTranslations.
+     * Skip the first `n` HeroContentTranslations.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned SliderTranslations
+     * Count returned HeroContentTranslations
     **/
-    _count?: true | SliderTranslationCountAggregateInputType
+    _count?: true | HeroContentTranslationCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SliderTranslationMinAggregateInputType
+    _min?: HeroContentTranslationMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SliderTranslationMaxAggregateInputType
+    _max?: HeroContentTranslationMaxAggregateInputType
   }
 
-  export type GetSliderTranslationAggregateType<T extends SliderTranslationAggregateArgs> = {
-        [P in keyof T & keyof AggregateSliderTranslation]: P extends '_count' | 'count'
+  export type GetHeroContentTranslationAggregateType<T extends HeroContentTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateHeroContentTranslation]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSliderTranslation[P]>
-      : GetScalarType<T[P], AggregateSliderTranslation[P]>
+        : GetScalarType<T[P], AggregateHeroContentTranslation[P]>
+      : GetScalarType<T[P], AggregateHeroContentTranslation[P]>
   }
 
 
 
 
-  export type SliderTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SliderTranslationWhereInput
-    orderBy?: SliderTranslationOrderByWithAggregationInput | SliderTranslationOrderByWithAggregationInput[]
-    by: SliderTranslationScalarFieldEnum[] | SliderTranslationScalarFieldEnum
-    having?: SliderTranslationScalarWhereWithAggregatesInput
+  export type HeroContentTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroContentTranslationWhereInput
+    orderBy?: HeroContentTranslationOrderByWithAggregationInput | HeroContentTranslationOrderByWithAggregationInput[]
+    by: HeroContentTranslationScalarFieldEnum[] | HeroContentTranslationScalarFieldEnum
+    having?: HeroContentTranslationScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SliderTranslationCountAggregateInputType | true
-    _min?: SliderTranslationMinAggregateInputType
-    _max?: SliderTranslationMaxAggregateInputType
+    _count?: HeroContentTranslationCountAggregateInputType | true
+    _min?: HeroContentTranslationMinAggregateInputType
+    _max?: HeroContentTranslationMaxAggregateInputType
   }
 
-  export type SliderTranslationGroupByOutputType = {
+  export type HeroContentTranslationGroupByOutputType = {
     id: string
-    title: string
+    heroContentId: string
+    languageCode: string
+    title: string | null
     description: string | null
     button1Text: string | null
     button1Link: string | null
     button2Text: string | null
     button2Link: string | null
-    sliderId: string
-    languageCode: string
-    _count: SliderTranslationCountAggregateOutputType | null
-    _min: SliderTranslationMinAggregateOutputType | null
-    _max: SliderTranslationMaxAggregateOutputType | null
+    _count: HeroContentTranslationCountAggregateOutputType | null
+    _min: HeroContentTranslationMinAggregateOutputType | null
+    _max: HeroContentTranslationMaxAggregateOutputType | null
   }
 
-  type GetSliderTranslationGroupByPayload<T extends SliderTranslationGroupByArgs> = Prisma.PrismaPromise<
+  type GetHeroContentTranslationGroupByPayload<T extends HeroContentTranslationGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SliderTranslationGroupByOutputType, T['by']> &
+      PickEnumerable<HeroContentTranslationGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SliderTranslationGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof HeroContentTranslationGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SliderTranslationGroupByOutputType[P]>
-            : GetScalarType<T[P], SliderTranslationGroupByOutputType[P]>
+              : GetScalarType<T[P], HeroContentTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], HeroContentTranslationGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SliderTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type HeroContentTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    heroContentId?: boolean
+    languageCode?: boolean
     title?: boolean
     description?: boolean
     button1Text?: boolean
     button1Link?: boolean
     button2Text?: boolean
     button2Link?: boolean
-    sliderId?: boolean
-    languageCode?: boolean
-    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["sliderTranslation"]>
+  }, ExtArgs["result"]["heroContentTranslation"]>
 
-  export type SliderTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type HeroContentTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    heroContentId?: boolean
+    languageCode?: boolean
     title?: boolean
     description?: boolean
     button1Text?: boolean
     button1Link?: boolean
     button2Text?: boolean
     button2Link?: boolean
-    sliderId?: boolean
-    languageCode?: boolean
-    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["sliderTranslation"]>
+  }, ExtArgs["result"]["heroContentTranslation"]>
 
-  export type SliderTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type HeroContentTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    heroContentId?: boolean
+    languageCode?: boolean
     title?: boolean
     description?: boolean
     button1Text?: boolean
     button1Link?: boolean
     button2Text?: boolean
     button2Link?: boolean
-    sliderId?: boolean
-    languageCode?: boolean
-    slider?: boolean | SliderDefaultArgs<ExtArgs>
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["sliderTranslation"]>
+  }, ExtArgs["result"]["heroContentTranslation"]>
 
-  export type SliderTranslationSelectScalar = {
+  export type HeroContentTranslationSelectScalar = {
     id?: boolean
+    heroContentId?: boolean
+    languageCode?: boolean
     title?: boolean
     description?: boolean
     button1Text?: boolean
     button1Link?: boolean
     button2Text?: boolean
     button2Link?: boolean
-    sliderId?: boolean
-    languageCode?: boolean
   }
 
-  export type SliderTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "button1Text" | "button1Link" | "button2Text" | "button2Link" | "sliderId" | "languageCode", ExtArgs["result"]["sliderTranslation"]>
-  export type SliderTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    slider?: boolean | SliderDefaultArgs<ExtArgs>
+  export type HeroContentTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heroContentId" | "languageCode" | "title" | "description" | "button1Text" | "button1Link" | "button2Text" | "button2Link", ExtArgs["result"]["heroContentTranslation"]>
+  export type HeroContentTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
   }
-  export type SliderTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    slider?: boolean | SliderDefaultArgs<ExtArgs>
+  export type HeroContentTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
   }
-  export type SliderTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    slider?: boolean | SliderDefaultArgs<ExtArgs>
+  export type HeroContentTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
     language?: boolean | LanguageDefaultArgs<ExtArgs>
   }
 
-  export type $SliderTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "SliderTranslation"
+  export type $HeroContentTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HeroContentTranslation"
     objects: {
-      slider: Prisma.$SliderPayload<ExtArgs>
+      heroContent: Prisma.$HeroContentPayload<ExtArgs>
       language: Prisma.$LanguagePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      title: string
+      heroContentId: string
+      languageCode: string
+      title: string | null
       description: string | null
       button1Text: string | null
       button1Link: string | null
       button2Text: string | null
       button2Link: string | null
-      sliderId: string
-      languageCode: string
-    }, ExtArgs["result"]["sliderTranslation"]>
+    }, ExtArgs["result"]["heroContentTranslation"]>
     composites: {}
   }
 
-  type SliderTranslationGetPayload<S extends boolean | null | undefined | SliderTranslationDefaultArgs> = $Result.GetResult<Prisma.$SliderTranslationPayload, S>
+  type HeroContentTranslationGetPayload<S extends boolean | null | undefined | HeroContentTranslationDefaultArgs> = $Result.GetResult<Prisma.$HeroContentTranslationPayload, S>
 
-  type SliderTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SliderTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SliderTranslationCountAggregateInputType | true
+  type HeroContentTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HeroContentTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HeroContentTranslationCountAggregateInputType | true
     }
 
-  export interface SliderTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SliderTranslation'], meta: { name: 'SliderTranslation' } }
+  export interface HeroContentTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HeroContentTranslation'], meta: { name: 'HeroContentTranslation' } }
     /**
-     * Find zero or one SliderTranslation that matches the filter.
-     * @param {SliderTranslationFindUniqueArgs} args - Arguments to find a SliderTranslation
+     * Find zero or one HeroContentTranslation that matches the filter.
+     * @param {HeroContentTranslationFindUniqueArgs} args - Arguments to find a HeroContentTranslation
      * @example
-     * // Get one SliderTranslation
-     * const sliderTranslation = await prisma.sliderTranslation.findUnique({
+     * // Get one HeroContentTranslation
+     * const heroContentTranslation = await prisma.heroContentTranslation.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends SliderTranslationFindUniqueArgs>(args: SelectSubset<T, SliderTranslationFindUniqueArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends HeroContentTranslationFindUniqueArgs>(args: SelectSubset<T, HeroContentTranslationFindUniqueArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one SliderTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * Find one HeroContentTranslation that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {SliderTranslationFindUniqueOrThrowArgs} args - Arguments to find a SliderTranslation
+     * @param {HeroContentTranslationFindUniqueOrThrowArgs} args - Arguments to find a HeroContentTranslation
      * @example
-     * // Get one SliderTranslation
-     * const sliderTranslation = await prisma.sliderTranslation.findUniqueOrThrow({
+     * // Get one HeroContentTranslation
+     * const heroContentTranslation = await prisma.heroContentTranslation.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SliderTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, SliderTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends HeroContentTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, HeroContentTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first SliderTranslation that matches the filter.
+     * Find the first HeroContentTranslation that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderTranslationFindFirstArgs} args - Arguments to find a SliderTranslation
+     * @param {HeroContentTranslationFindFirstArgs} args - Arguments to find a HeroContentTranslation
      * @example
-     * // Get one SliderTranslation
-     * const sliderTranslation = await prisma.sliderTranslation.findFirst({
+     * // Get one HeroContentTranslation
+     * const heroContentTranslation = await prisma.heroContentTranslation.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends SliderTranslationFindFirstArgs>(args?: SelectSubset<T, SliderTranslationFindFirstArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends HeroContentTranslationFindFirstArgs>(args?: SelectSubset<T, HeroContentTranslationFindFirstArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first SliderTranslation that matches the filter or
+     * Find the first HeroContentTranslation that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderTranslationFindFirstOrThrowArgs} args - Arguments to find a SliderTranslation
+     * @param {HeroContentTranslationFindFirstOrThrowArgs} args - Arguments to find a HeroContentTranslation
      * @example
-     * // Get one SliderTranslation
-     * const sliderTranslation = await prisma.sliderTranslation.findFirstOrThrow({
+     * // Get one HeroContentTranslation
+     * const heroContentTranslation = await prisma.heroContentTranslation.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends SliderTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, SliderTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends HeroContentTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, HeroContentTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more SliderTranslations that matches the filter.
+     * Find zero or more HeroContentTranslations that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {HeroContentTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all SliderTranslations
-     * const sliderTranslations = await prisma.sliderTranslation.findMany()
+     * // Get all HeroContentTranslations
+     * const heroContentTranslations = await prisma.heroContentTranslation.findMany()
      * 
-     * // Get first 10 SliderTranslations
-     * const sliderTranslations = await prisma.sliderTranslation.findMany({ take: 10 })
+     * // Get first 10 HeroContentTranslations
+     * const heroContentTranslations = await prisma.heroContentTranslation.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const sliderTranslationWithIdOnly = await prisma.sliderTranslation.findMany({ select: { id: true } })
+     * const heroContentTranslationWithIdOnly = await prisma.heroContentTranslation.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends SliderTranslationFindManyArgs>(args?: SelectSubset<T, SliderTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends HeroContentTranslationFindManyArgs>(args?: SelectSubset<T, HeroContentTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a SliderTranslation.
-     * @param {SliderTranslationCreateArgs} args - Arguments to create a SliderTranslation.
+     * Create a HeroContentTranslation.
+     * @param {HeroContentTranslationCreateArgs} args - Arguments to create a HeroContentTranslation.
      * @example
-     * // Create one SliderTranslation
-     * const SliderTranslation = await prisma.sliderTranslation.create({
+     * // Create one HeroContentTranslation
+     * const HeroContentTranslation = await prisma.heroContentTranslation.create({
      *   data: {
-     *     // ... data to create a SliderTranslation
+     *     // ... data to create a HeroContentTranslation
      *   }
      * })
      * 
      */
-    create<T extends SliderTranslationCreateArgs>(args: SelectSubset<T, SliderTranslationCreateArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends HeroContentTranslationCreateArgs>(args: SelectSubset<T, HeroContentTranslationCreateArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many SliderTranslations.
-     * @param {SliderTranslationCreateManyArgs} args - Arguments to create many SliderTranslations.
+     * Create many HeroContentTranslations.
+     * @param {HeroContentTranslationCreateManyArgs} args - Arguments to create many HeroContentTranslations.
      * @example
-     * // Create many SliderTranslations
-     * const sliderTranslation = await prisma.sliderTranslation.createMany({
+     * // Create many HeroContentTranslations
+     * const heroContentTranslation = await prisma.heroContentTranslation.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends SliderTranslationCreateManyArgs>(args?: SelectSubset<T, SliderTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends HeroContentTranslationCreateManyArgs>(args?: SelectSubset<T, HeroContentTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many SliderTranslations and returns the data saved in the database.
-     * @param {SliderTranslationCreateManyAndReturnArgs} args - Arguments to create many SliderTranslations.
+     * Create many HeroContentTranslations and returns the data saved in the database.
+     * @param {HeroContentTranslationCreateManyAndReturnArgs} args - Arguments to create many HeroContentTranslations.
      * @example
-     * // Create many SliderTranslations
-     * const sliderTranslation = await prisma.sliderTranslation.createManyAndReturn({
+     * // Create many HeroContentTranslations
+     * const heroContentTranslation = await prisma.heroContentTranslation.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many SliderTranslations and only return the `id`
-     * const sliderTranslationWithIdOnly = await prisma.sliderTranslation.createManyAndReturn({
+     * // Create many HeroContentTranslations and only return the `id`
+     * const heroContentTranslationWithIdOnly = await prisma.heroContentTranslation.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -37444,28 +37499,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends SliderTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, SliderTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends HeroContentTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, HeroContentTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a SliderTranslation.
-     * @param {SliderTranslationDeleteArgs} args - Arguments to delete one SliderTranslation.
+     * Delete a HeroContentTranslation.
+     * @param {HeroContentTranslationDeleteArgs} args - Arguments to delete one HeroContentTranslation.
      * @example
-     * // Delete one SliderTranslation
-     * const SliderTranslation = await prisma.sliderTranslation.delete({
+     * // Delete one HeroContentTranslation
+     * const HeroContentTranslation = await prisma.heroContentTranslation.delete({
      *   where: {
-     *     // ... filter to delete one SliderTranslation
+     *     // ... filter to delete one HeroContentTranslation
      *   }
      * })
      * 
      */
-    delete<T extends SliderTranslationDeleteArgs>(args: SelectSubset<T, SliderTranslationDeleteArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends HeroContentTranslationDeleteArgs>(args: SelectSubset<T, HeroContentTranslationDeleteArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one SliderTranslation.
-     * @param {SliderTranslationUpdateArgs} args - Arguments to update one SliderTranslation.
+     * Update one HeroContentTranslation.
+     * @param {HeroContentTranslationUpdateArgs} args - Arguments to update one HeroContentTranslation.
      * @example
-     * // Update one SliderTranslation
-     * const sliderTranslation = await prisma.sliderTranslation.update({
+     * // Update one HeroContentTranslation
+     * const heroContentTranslation = await prisma.heroContentTranslation.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -37475,30 +37530,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends SliderTranslationUpdateArgs>(args: SelectSubset<T, SliderTranslationUpdateArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends HeroContentTranslationUpdateArgs>(args: SelectSubset<T, HeroContentTranslationUpdateArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more SliderTranslations.
-     * @param {SliderTranslationDeleteManyArgs} args - Arguments to filter SliderTranslations to delete.
+     * Delete zero or more HeroContentTranslations.
+     * @param {HeroContentTranslationDeleteManyArgs} args - Arguments to filter HeroContentTranslations to delete.
      * @example
-     * // Delete a few SliderTranslations
-     * const { count } = await prisma.sliderTranslation.deleteMany({
+     * // Delete a few HeroContentTranslations
+     * const { count } = await prisma.heroContentTranslation.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends SliderTranslationDeleteManyArgs>(args?: SelectSubset<T, SliderTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends HeroContentTranslationDeleteManyArgs>(args?: SelectSubset<T, HeroContentTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more SliderTranslations.
+     * Update zero or more HeroContentTranslations.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {HeroContentTranslationUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many SliderTranslations
-     * const sliderTranslation = await prisma.sliderTranslation.updateMany({
+     * // Update many HeroContentTranslations
+     * const heroContentTranslation = await prisma.heroContentTranslation.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -37508,14 +37563,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends SliderTranslationUpdateManyArgs>(args: SelectSubset<T, SliderTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends HeroContentTranslationUpdateManyArgs>(args: SelectSubset<T, HeroContentTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more SliderTranslations and returns the data updated in the database.
-     * @param {SliderTranslationUpdateManyAndReturnArgs} args - Arguments to update many SliderTranslations.
+     * Update zero or more HeroContentTranslations and returns the data updated in the database.
+     * @param {HeroContentTranslationUpdateManyAndReturnArgs} args - Arguments to update many HeroContentTranslations.
      * @example
-     * // Update many SliderTranslations
-     * const sliderTranslation = await prisma.sliderTranslation.updateManyAndReturn({
+     * // Update many HeroContentTranslations
+     * const heroContentTranslation = await prisma.heroContentTranslation.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -37524,8 +37579,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more SliderTranslations and only return the `id`
-     * const sliderTranslationWithIdOnly = await prisma.sliderTranslation.updateManyAndReturn({
+     * // Update zero or more HeroContentTranslations and only return the `id`
+     * const heroContentTranslationWithIdOnly = await prisma.heroContentTranslation.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -37538,56 +37593,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends SliderTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, SliderTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends HeroContentTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, HeroContentTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one SliderTranslation.
-     * @param {SliderTranslationUpsertArgs} args - Arguments to update or create a SliderTranslation.
+     * Create or update one HeroContentTranslation.
+     * @param {HeroContentTranslationUpsertArgs} args - Arguments to update or create a HeroContentTranslation.
      * @example
-     * // Update or create a SliderTranslation
-     * const sliderTranslation = await prisma.sliderTranslation.upsert({
+     * // Update or create a HeroContentTranslation
+     * const heroContentTranslation = await prisma.heroContentTranslation.upsert({
      *   create: {
-     *     // ... data to create a SliderTranslation
+     *     // ... data to create a HeroContentTranslation
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the SliderTranslation we want to update
+     *     // ... the filter for the HeroContentTranslation we want to update
      *   }
      * })
      */
-    upsert<T extends SliderTranslationUpsertArgs>(args: SelectSubset<T, SliderTranslationUpsertArgs<ExtArgs>>): Prisma__SliderTranslationClient<$Result.GetResult<Prisma.$SliderTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends HeroContentTranslationUpsertArgs>(args: SelectSubset<T, HeroContentTranslationUpsertArgs<ExtArgs>>): Prisma__HeroContentTranslationClient<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of SliderTranslations.
+     * Count the number of HeroContentTranslations.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderTranslationCountArgs} args - Arguments to filter SliderTranslations to count.
+     * @param {HeroContentTranslationCountArgs} args - Arguments to filter HeroContentTranslations to count.
      * @example
-     * // Count the number of SliderTranslations
-     * const count = await prisma.sliderTranslation.count({
+     * // Count the number of HeroContentTranslations
+     * const count = await prisma.heroContentTranslation.count({
      *   where: {
-     *     // ... the filter for the SliderTranslations we want to count
+     *     // ... the filter for the HeroContentTranslations we want to count
      *   }
      * })
     **/
-    count<T extends SliderTranslationCountArgs>(
-      args?: Subset<T, SliderTranslationCountArgs>,
+    count<T extends HeroContentTranslationCountArgs>(
+      args?: Subset<T, HeroContentTranslationCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SliderTranslationCountAggregateOutputType>
+          : GetScalarType<T['select'], HeroContentTranslationCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a SliderTranslation.
+     * Allows you to perform aggregations operations on a HeroContentTranslation.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {HeroContentTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -37607,13 +37662,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SliderTranslationAggregateArgs>(args: Subset<T, SliderTranslationAggregateArgs>): Prisma.PrismaPromise<GetSliderTranslationAggregateType<T>>
+    aggregate<T extends HeroContentTranslationAggregateArgs>(args: Subset<T, HeroContentTranslationAggregateArgs>): Prisma.PrismaPromise<GetHeroContentTranslationAggregateType<T>>
 
     /**
-     * Group by SliderTranslation.
+     * Group by HeroContentTranslation.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SliderTranslationGroupByArgs} args - Group by arguments.
+     * @param {HeroContentTranslationGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -37628,14 +37683,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SliderTranslationGroupByArgs,
+      T extends HeroContentTranslationGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SliderTranslationGroupByArgs['orderBy'] }
-        : { orderBy?: SliderTranslationGroupByArgs['orderBy'] },
+        ? { orderBy: HeroContentTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: HeroContentTranslationGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -37684,22 +37739,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SliderTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSliderTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, HeroContentTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHeroContentTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the SliderTranslation model
+   * Fields of the HeroContentTranslation model
    */
-  readonly fields: SliderTranslationFieldRefs;
+  readonly fields: HeroContentTranslationFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for SliderTranslation.
+   * The delegate class that acts as a "Promise-like" for HeroContentTranslation.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SliderTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__HeroContentTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    slider<T extends SliderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SliderDefaultArgs<ExtArgs>>): Prisma__SliderClient<$Result.GetResult<Prisma.$SliderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    heroContent<T extends HeroContentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HeroContentDefaultArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -37727,429 +37782,1547 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the SliderTranslation model
+   * Fields of the HeroContentTranslation model
    */
-  interface SliderTranslationFieldRefs {
-    readonly id: FieldRef<"SliderTranslation", 'String'>
-    readonly title: FieldRef<"SliderTranslation", 'String'>
-    readonly description: FieldRef<"SliderTranslation", 'String'>
-    readonly button1Text: FieldRef<"SliderTranslation", 'String'>
-    readonly button1Link: FieldRef<"SliderTranslation", 'String'>
-    readonly button2Text: FieldRef<"SliderTranslation", 'String'>
-    readonly button2Link: FieldRef<"SliderTranslation", 'String'>
-    readonly sliderId: FieldRef<"SliderTranslation", 'String'>
-    readonly languageCode: FieldRef<"SliderTranslation", 'String'>
+  interface HeroContentTranslationFieldRefs {
+    readonly id: FieldRef<"HeroContentTranslation", 'String'>
+    readonly heroContentId: FieldRef<"HeroContentTranslation", 'String'>
+    readonly languageCode: FieldRef<"HeroContentTranslation", 'String'>
+    readonly title: FieldRef<"HeroContentTranslation", 'String'>
+    readonly description: FieldRef<"HeroContentTranslation", 'String'>
+    readonly button1Text: FieldRef<"HeroContentTranslation", 'String'>
+    readonly button1Link: FieldRef<"HeroContentTranslation", 'String'>
+    readonly button2Text: FieldRef<"HeroContentTranslation", 'String'>
+    readonly button2Link: FieldRef<"HeroContentTranslation", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * SliderTranslation findUnique
+   * HeroContentTranslation findUnique
    */
-  export type SliderTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * Filter, which SliderTranslation to fetch.
+     * Filter, which HeroContentTranslation to fetch.
      */
-    where: SliderTranslationWhereUniqueInput
+    where: HeroContentTranslationWhereUniqueInput
   }
 
   /**
-   * SliderTranslation findUniqueOrThrow
+   * HeroContentTranslation findUniqueOrThrow
    */
-  export type SliderTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * Filter, which SliderTranslation to fetch.
+     * Filter, which HeroContentTranslation to fetch.
      */
-    where: SliderTranslationWhereUniqueInput
+    where: HeroContentTranslationWhereUniqueInput
   }
 
   /**
-   * SliderTranslation findFirst
+   * HeroContentTranslation findFirst
    */
-  export type SliderTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * Filter, which SliderTranslation to fetch.
+     * Filter, which HeroContentTranslation to fetch.
      */
-    where?: SliderTranslationWhereInput
+    where?: HeroContentTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SliderTranslations to fetch.
+     * Determine the order of HeroContentTranslations to fetch.
      */
-    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    orderBy?: HeroContentTranslationOrderByWithRelationInput | HeroContentTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for SliderTranslations.
+     * Sets the position for searching for HeroContentTranslations.
      */
-    cursor?: SliderTranslationWhereUniqueInput
+    cursor?: HeroContentTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SliderTranslations from the position of the cursor.
+     * Take `±n` HeroContentTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SliderTranslations.
+     * Skip the first `n` HeroContentTranslations.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of SliderTranslations.
+     * Filter by unique combinations of HeroContentTranslations.
      */
-    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+    distinct?: HeroContentTranslationScalarFieldEnum | HeroContentTranslationScalarFieldEnum[]
   }
 
   /**
-   * SliderTranslation findFirstOrThrow
+   * HeroContentTranslation findFirstOrThrow
    */
-  export type SliderTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * Filter, which SliderTranslation to fetch.
+     * Filter, which HeroContentTranslation to fetch.
      */
-    where?: SliderTranslationWhereInput
+    where?: HeroContentTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SliderTranslations to fetch.
+     * Determine the order of HeroContentTranslations to fetch.
      */
-    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    orderBy?: HeroContentTranslationOrderByWithRelationInput | HeroContentTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for SliderTranslations.
+     * Sets the position for searching for HeroContentTranslations.
      */
-    cursor?: SliderTranslationWhereUniqueInput
+    cursor?: HeroContentTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SliderTranslations from the position of the cursor.
+     * Take `±n` HeroContentTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SliderTranslations.
+     * Skip the first `n` HeroContentTranslations.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of SliderTranslations.
+     * Filter by unique combinations of HeroContentTranslations.
      */
-    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+    distinct?: HeroContentTranslationScalarFieldEnum | HeroContentTranslationScalarFieldEnum[]
   }
 
   /**
-   * SliderTranslation findMany
+   * HeroContentTranslation findMany
    */
-  export type SliderTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * Filter, which SliderTranslations to fetch.
+     * Filter, which HeroContentTranslations to fetch.
      */
-    where?: SliderTranslationWhereInput
+    where?: HeroContentTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SliderTranslations to fetch.
+     * Determine the order of HeroContentTranslations to fetch.
      */
-    orderBy?: SliderTranslationOrderByWithRelationInput | SliderTranslationOrderByWithRelationInput[]
+    orderBy?: HeroContentTranslationOrderByWithRelationInput | HeroContentTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing SliderTranslations.
+     * Sets the position for listing HeroContentTranslations.
      */
-    cursor?: SliderTranslationWhereUniqueInput
+    cursor?: HeroContentTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SliderTranslations from the position of the cursor.
+     * Take `±n` HeroContentTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SliderTranslations.
+     * Skip the first `n` HeroContentTranslations.
      */
     skip?: number
-    distinct?: SliderTranslationScalarFieldEnum | SliderTranslationScalarFieldEnum[]
+    distinct?: HeroContentTranslationScalarFieldEnum | HeroContentTranslationScalarFieldEnum[]
   }
 
   /**
-   * SliderTranslation create
+   * HeroContentTranslation create
    */
-  export type SliderTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * The data needed to create a SliderTranslation.
+     * The data needed to create a HeroContentTranslation.
      */
-    data: XOR<SliderTranslationCreateInput, SliderTranslationUncheckedCreateInput>
+    data: XOR<HeroContentTranslationCreateInput, HeroContentTranslationUncheckedCreateInput>
   }
 
   /**
-   * SliderTranslation createMany
+   * HeroContentTranslation createMany
    */
-  export type SliderTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many SliderTranslations.
+     * The data used to create many HeroContentTranslations.
      */
-    data: SliderTranslationCreateManyInput | SliderTranslationCreateManyInput[]
+    data: HeroContentTranslationCreateManyInput | HeroContentTranslationCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * SliderTranslation createManyAndReturn
+   * HeroContentTranslation createManyAndReturn
    */
-  export type SliderTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    select?: HeroContentTranslationSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
-     * The data used to create many SliderTranslations.
+     * The data used to create many HeroContentTranslations.
      */
-    data: SliderTranslationCreateManyInput | SliderTranslationCreateManyInput[]
+    data: HeroContentTranslationCreateManyInput | HeroContentTranslationCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: HeroContentTranslationIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * SliderTranslation update
+   * HeroContentTranslation update
    */
-  export type SliderTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * The data needed to update a SliderTranslation.
+     * The data needed to update a HeroContentTranslation.
      */
-    data: XOR<SliderTranslationUpdateInput, SliderTranslationUncheckedUpdateInput>
+    data: XOR<HeroContentTranslationUpdateInput, HeroContentTranslationUncheckedUpdateInput>
     /**
-     * Choose, which SliderTranslation to update.
+     * Choose, which HeroContentTranslation to update.
      */
-    where: SliderTranslationWhereUniqueInput
+    where: HeroContentTranslationWhereUniqueInput
   }
 
   /**
-   * SliderTranslation updateMany
+   * HeroContentTranslation updateMany
    */
-  export type SliderTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update SliderTranslations.
+     * The data used to update HeroContentTranslations.
      */
-    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyInput>
+    data: XOR<HeroContentTranslationUpdateManyMutationInput, HeroContentTranslationUncheckedUpdateManyInput>
     /**
-     * Filter which SliderTranslations to update
+     * Filter which HeroContentTranslations to update
      */
-    where?: SliderTranslationWhereInput
+    where?: HeroContentTranslationWhereInput
     /**
-     * Limit how many SliderTranslations to update.
+     * Limit how many HeroContentTranslations to update.
      */
     limit?: number
   }
 
   /**
-   * SliderTranslation updateManyAndReturn
+   * HeroContentTranslation updateManyAndReturn
    */
-  export type SliderTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: HeroContentTranslationSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
-     * The data used to update SliderTranslations.
+     * The data used to update HeroContentTranslations.
      */
-    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyInput>
+    data: XOR<HeroContentTranslationUpdateManyMutationInput, HeroContentTranslationUncheckedUpdateManyInput>
     /**
-     * Filter which SliderTranslations to update
+     * Filter which HeroContentTranslations to update
      */
-    where?: SliderTranslationWhereInput
+    where?: HeroContentTranslationWhereInput
     /**
-     * Limit how many SliderTranslations to update.
+     * Limit how many HeroContentTranslations to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: HeroContentTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * SliderTranslation upsert
+   * HeroContentTranslation upsert
    */
-  export type SliderTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * The filter to search for the SliderTranslation to update in case it exists.
+     * The filter to search for the HeroContentTranslation to update in case it exists.
      */
-    where: SliderTranslationWhereUniqueInput
+    where: HeroContentTranslationWhereUniqueInput
     /**
-     * In case the SliderTranslation found by the `where` argument doesn't exist, create a new SliderTranslation with this data.
+     * In case the HeroContentTranslation found by the `where` argument doesn't exist, create a new HeroContentTranslation with this data.
      */
-    create: XOR<SliderTranslationCreateInput, SliderTranslationUncheckedCreateInput>
+    create: XOR<HeroContentTranslationCreateInput, HeroContentTranslationUncheckedCreateInput>
     /**
-     * In case the SliderTranslation was found with the provided `where` argument, update it with this data.
+     * In case the HeroContentTranslation was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SliderTranslationUpdateInput, SliderTranslationUncheckedUpdateInput>
+    update: XOR<HeroContentTranslationUpdateInput, HeroContentTranslationUncheckedUpdateInput>
   }
 
   /**
-   * SliderTranslation delete
+   * HeroContentTranslation delete
    */
-  export type SliderTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
     /**
-     * Filter which SliderTranslation to delete.
+     * Filter which HeroContentTranslation to delete.
      */
-    where: SliderTranslationWhereUniqueInput
+    where: HeroContentTranslationWhereUniqueInput
   }
 
   /**
-   * SliderTranslation deleteMany
+   * HeroContentTranslation deleteMany
    */
-  export type SliderTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which SliderTranslations to delete
+     * Filter which HeroContentTranslations to delete
      */
-    where?: SliderTranslationWhereInput
+    where?: HeroContentTranslationWhereInput
     /**
-     * Limit how many SliderTranslations to delete.
+     * Limit how many HeroContentTranslations to delete.
      */
     limit?: number
   }
 
   /**
-   * SliderTranslation without action
+   * HeroContentTranslation without action
    */
-  export type SliderTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HeroContentTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SliderTranslation
+     * Select specific fields to fetch from the HeroContentTranslation
      */
-    select?: SliderTranslationSelect<ExtArgs> | null
+    select?: HeroContentTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SliderTranslation
+     * Omit specific fields from the HeroContentTranslation
      */
-    omit?: SliderTranslationOmit<ExtArgs> | null
+    omit?: HeroContentTranslationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SliderTranslationInclude<ExtArgs> | null
+    include?: HeroContentTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HeroBackgroundImage
+   */
+
+  export type AggregateHeroBackgroundImage = {
+    _count: HeroBackgroundImageCountAggregateOutputType | null
+    _avg: HeroBackgroundImageAvgAggregateOutputType | null
+    _sum: HeroBackgroundImageSumAggregateOutputType | null
+    _min: HeroBackgroundImageMinAggregateOutputType | null
+    _max: HeroBackgroundImageMaxAggregateOutputType | null
+  }
+
+  export type HeroBackgroundImageAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type HeroBackgroundImageSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type HeroBackgroundImageMinAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    order: number | null
+    isActive: boolean | null
+    heroContentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HeroBackgroundImageMaxAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    order: number | null
+    isActive: boolean | null
+    heroContentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HeroBackgroundImageCountAggregateOutputType = {
+    id: number
+    imageUrl: number
+    order: number
+    isActive: number
+    heroContentId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HeroBackgroundImageAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type HeroBackgroundImageSumAggregateInputType = {
+    order?: true
+  }
+
+  export type HeroBackgroundImageMinAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    order?: true
+    isActive?: true
+    heroContentId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HeroBackgroundImageMaxAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    order?: true
+    isActive?: true
+    heroContentId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HeroBackgroundImageCountAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    order?: true
+    isActive?: true
+    heroContentId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HeroBackgroundImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HeroBackgroundImage to aggregate.
+     */
+    where?: HeroBackgroundImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroBackgroundImages to fetch.
+     */
+    orderBy?: HeroBackgroundImageOrderByWithRelationInput | HeroBackgroundImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HeroBackgroundImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroBackgroundImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroBackgroundImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HeroBackgroundImages
+    **/
+    _count?: true | HeroBackgroundImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HeroBackgroundImageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HeroBackgroundImageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HeroBackgroundImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HeroBackgroundImageMaxAggregateInputType
+  }
+
+  export type GetHeroBackgroundImageAggregateType<T extends HeroBackgroundImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateHeroBackgroundImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHeroBackgroundImage[P]>
+      : GetScalarType<T[P], AggregateHeroBackgroundImage[P]>
+  }
+
+
+
+
+  export type HeroBackgroundImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroBackgroundImageWhereInput
+    orderBy?: HeroBackgroundImageOrderByWithAggregationInput | HeroBackgroundImageOrderByWithAggregationInput[]
+    by: HeroBackgroundImageScalarFieldEnum[] | HeroBackgroundImageScalarFieldEnum
+    having?: HeroBackgroundImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HeroBackgroundImageCountAggregateInputType | true
+    _avg?: HeroBackgroundImageAvgAggregateInputType
+    _sum?: HeroBackgroundImageSumAggregateInputType
+    _min?: HeroBackgroundImageMinAggregateInputType
+    _max?: HeroBackgroundImageMaxAggregateInputType
+  }
+
+  export type HeroBackgroundImageGroupByOutputType = {
+    id: string
+    imageUrl: string
+    order: number
+    isActive: boolean
+    heroContentId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: HeroBackgroundImageCountAggregateOutputType | null
+    _avg: HeroBackgroundImageAvgAggregateOutputType | null
+    _sum: HeroBackgroundImageSumAggregateOutputType | null
+    _min: HeroBackgroundImageMinAggregateOutputType | null
+    _max: HeroBackgroundImageMaxAggregateOutputType | null
+  }
+
+  type GetHeroBackgroundImageGroupByPayload<T extends HeroBackgroundImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HeroBackgroundImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HeroBackgroundImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HeroBackgroundImageGroupByOutputType[P]>
+            : GetScalarType<T[P], HeroBackgroundImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HeroBackgroundImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    heroContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["heroBackgroundImage"]>
+
+  export type HeroBackgroundImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    heroContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["heroBackgroundImage"]>
+
+  export type HeroBackgroundImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    heroContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["heroBackgroundImage"]>
+
+  export type HeroBackgroundImageSelectScalar = {
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    heroContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HeroBackgroundImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "order" | "isActive" | "heroContentId" | "createdAt" | "updatedAt", ExtArgs["result"]["heroBackgroundImage"]>
+  export type HeroBackgroundImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
+  }
+  export type HeroBackgroundImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
+  }
+  export type HeroBackgroundImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heroContent?: boolean | HeroContentDefaultArgs<ExtArgs>
+  }
+
+  export type $HeroBackgroundImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HeroBackgroundImage"
+    objects: {
+      heroContent: Prisma.$HeroContentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      imageUrl: string
+      order: number
+      isActive: boolean
+      heroContentId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["heroBackgroundImage"]>
+    composites: {}
+  }
+
+  type HeroBackgroundImageGetPayload<S extends boolean | null | undefined | HeroBackgroundImageDefaultArgs> = $Result.GetResult<Prisma.$HeroBackgroundImagePayload, S>
+
+  type HeroBackgroundImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HeroBackgroundImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HeroBackgroundImageCountAggregateInputType | true
+    }
+
+  export interface HeroBackgroundImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HeroBackgroundImage'], meta: { name: 'HeroBackgroundImage' } }
+    /**
+     * Find zero or one HeroBackgroundImage that matches the filter.
+     * @param {HeroBackgroundImageFindUniqueArgs} args - Arguments to find a HeroBackgroundImage
+     * @example
+     * // Get one HeroBackgroundImage
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HeroBackgroundImageFindUniqueArgs>(args: SelectSubset<T, HeroBackgroundImageFindUniqueArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HeroBackgroundImage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HeroBackgroundImageFindUniqueOrThrowArgs} args - Arguments to find a HeroBackgroundImage
+     * @example
+     * // Get one HeroBackgroundImage
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HeroBackgroundImageFindUniqueOrThrowArgs>(args: SelectSubset<T, HeroBackgroundImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HeroBackgroundImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroBackgroundImageFindFirstArgs} args - Arguments to find a HeroBackgroundImage
+     * @example
+     * // Get one HeroBackgroundImage
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HeroBackgroundImageFindFirstArgs>(args?: SelectSubset<T, HeroBackgroundImageFindFirstArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HeroBackgroundImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroBackgroundImageFindFirstOrThrowArgs} args - Arguments to find a HeroBackgroundImage
+     * @example
+     * // Get one HeroBackgroundImage
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HeroBackgroundImageFindFirstOrThrowArgs>(args?: SelectSubset<T, HeroBackgroundImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HeroBackgroundImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroBackgroundImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HeroBackgroundImages
+     * const heroBackgroundImages = await prisma.heroBackgroundImage.findMany()
+     * 
+     * // Get first 10 HeroBackgroundImages
+     * const heroBackgroundImages = await prisma.heroBackgroundImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const heroBackgroundImageWithIdOnly = await prisma.heroBackgroundImage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HeroBackgroundImageFindManyArgs>(args?: SelectSubset<T, HeroBackgroundImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HeroBackgroundImage.
+     * @param {HeroBackgroundImageCreateArgs} args - Arguments to create a HeroBackgroundImage.
+     * @example
+     * // Create one HeroBackgroundImage
+     * const HeroBackgroundImage = await prisma.heroBackgroundImage.create({
+     *   data: {
+     *     // ... data to create a HeroBackgroundImage
+     *   }
+     * })
+     * 
+     */
+    create<T extends HeroBackgroundImageCreateArgs>(args: SelectSubset<T, HeroBackgroundImageCreateArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HeroBackgroundImages.
+     * @param {HeroBackgroundImageCreateManyArgs} args - Arguments to create many HeroBackgroundImages.
+     * @example
+     * // Create many HeroBackgroundImages
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HeroBackgroundImageCreateManyArgs>(args?: SelectSubset<T, HeroBackgroundImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HeroBackgroundImages and returns the data saved in the database.
+     * @param {HeroBackgroundImageCreateManyAndReturnArgs} args - Arguments to create many HeroBackgroundImages.
+     * @example
+     * // Create many HeroBackgroundImages
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HeroBackgroundImages and only return the `id`
+     * const heroBackgroundImageWithIdOnly = await prisma.heroBackgroundImage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HeroBackgroundImageCreateManyAndReturnArgs>(args?: SelectSubset<T, HeroBackgroundImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HeroBackgroundImage.
+     * @param {HeroBackgroundImageDeleteArgs} args - Arguments to delete one HeroBackgroundImage.
+     * @example
+     * // Delete one HeroBackgroundImage
+     * const HeroBackgroundImage = await prisma.heroBackgroundImage.delete({
+     *   where: {
+     *     // ... filter to delete one HeroBackgroundImage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HeroBackgroundImageDeleteArgs>(args: SelectSubset<T, HeroBackgroundImageDeleteArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HeroBackgroundImage.
+     * @param {HeroBackgroundImageUpdateArgs} args - Arguments to update one HeroBackgroundImage.
+     * @example
+     * // Update one HeroBackgroundImage
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HeroBackgroundImageUpdateArgs>(args: SelectSubset<T, HeroBackgroundImageUpdateArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HeroBackgroundImages.
+     * @param {HeroBackgroundImageDeleteManyArgs} args - Arguments to filter HeroBackgroundImages to delete.
+     * @example
+     * // Delete a few HeroBackgroundImages
+     * const { count } = await prisma.heroBackgroundImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HeroBackgroundImageDeleteManyArgs>(args?: SelectSubset<T, HeroBackgroundImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HeroBackgroundImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroBackgroundImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HeroBackgroundImages
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HeroBackgroundImageUpdateManyArgs>(args: SelectSubset<T, HeroBackgroundImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HeroBackgroundImages and returns the data updated in the database.
+     * @param {HeroBackgroundImageUpdateManyAndReturnArgs} args - Arguments to update many HeroBackgroundImages.
+     * @example
+     * // Update many HeroBackgroundImages
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HeroBackgroundImages and only return the `id`
+     * const heroBackgroundImageWithIdOnly = await prisma.heroBackgroundImage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HeroBackgroundImageUpdateManyAndReturnArgs>(args: SelectSubset<T, HeroBackgroundImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HeroBackgroundImage.
+     * @param {HeroBackgroundImageUpsertArgs} args - Arguments to update or create a HeroBackgroundImage.
+     * @example
+     * // Update or create a HeroBackgroundImage
+     * const heroBackgroundImage = await prisma.heroBackgroundImage.upsert({
+     *   create: {
+     *     // ... data to create a HeroBackgroundImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HeroBackgroundImage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HeroBackgroundImageUpsertArgs>(args: SelectSubset<T, HeroBackgroundImageUpsertArgs<ExtArgs>>): Prisma__HeroBackgroundImageClient<$Result.GetResult<Prisma.$HeroBackgroundImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HeroBackgroundImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroBackgroundImageCountArgs} args - Arguments to filter HeroBackgroundImages to count.
+     * @example
+     * // Count the number of HeroBackgroundImages
+     * const count = await prisma.heroBackgroundImage.count({
+     *   where: {
+     *     // ... the filter for the HeroBackgroundImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends HeroBackgroundImageCountArgs>(
+      args?: Subset<T, HeroBackgroundImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HeroBackgroundImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HeroBackgroundImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroBackgroundImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HeroBackgroundImageAggregateArgs>(args: Subset<T, HeroBackgroundImageAggregateArgs>): Prisma.PrismaPromise<GetHeroBackgroundImageAggregateType<T>>
+
+    /**
+     * Group by HeroBackgroundImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroBackgroundImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HeroBackgroundImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HeroBackgroundImageGroupByArgs['orderBy'] }
+        : { orderBy?: HeroBackgroundImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HeroBackgroundImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHeroBackgroundImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HeroBackgroundImage model
+   */
+  readonly fields: HeroBackgroundImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HeroBackgroundImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HeroBackgroundImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    heroContent<T extends HeroContentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HeroContentDefaultArgs<ExtArgs>>): Prisma__HeroContentClient<$Result.GetResult<Prisma.$HeroContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HeroBackgroundImage model
+   */
+  interface HeroBackgroundImageFieldRefs {
+    readonly id: FieldRef<"HeroBackgroundImage", 'String'>
+    readonly imageUrl: FieldRef<"HeroBackgroundImage", 'String'>
+    readonly order: FieldRef<"HeroBackgroundImage", 'Int'>
+    readonly isActive: FieldRef<"HeroBackgroundImage", 'Boolean'>
+    readonly heroContentId: FieldRef<"HeroBackgroundImage", 'String'>
+    readonly createdAt: FieldRef<"HeroBackgroundImage", 'DateTime'>
+    readonly updatedAt: FieldRef<"HeroBackgroundImage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HeroBackgroundImage findUnique
+   */
+  export type HeroBackgroundImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * Filter, which HeroBackgroundImage to fetch.
+     */
+    where: HeroBackgroundImageWhereUniqueInput
+  }
+
+  /**
+   * HeroBackgroundImage findUniqueOrThrow
+   */
+  export type HeroBackgroundImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * Filter, which HeroBackgroundImage to fetch.
+     */
+    where: HeroBackgroundImageWhereUniqueInput
+  }
+
+  /**
+   * HeroBackgroundImage findFirst
+   */
+  export type HeroBackgroundImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * Filter, which HeroBackgroundImage to fetch.
+     */
+    where?: HeroBackgroundImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroBackgroundImages to fetch.
+     */
+    orderBy?: HeroBackgroundImageOrderByWithRelationInput | HeroBackgroundImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HeroBackgroundImages.
+     */
+    cursor?: HeroBackgroundImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroBackgroundImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroBackgroundImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HeroBackgroundImages.
+     */
+    distinct?: HeroBackgroundImageScalarFieldEnum | HeroBackgroundImageScalarFieldEnum[]
+  }
+
+  /**
+   * HeroBackgroundImage findFirstOrThrow
+   */
+  export type HeroBackgroundImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * Filter, which HeroBackgroundImage to fetch.
+     */
+    where?: HeroBackgroundImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroBackgroundImages to fetch.
+     */
+    orderBy?: HeroBackgroundImageOrderByWithRelationInput | HeroBackgroundImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HeroBackgroundImages.
+     */
+    cursor?: HeroBackgroundImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroBackgroundImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroBackgroundImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HeroBackgroundImages.
+     */
+    distinct?: HeroBackgroundImageScalarFieldEnum | HeroBackgroundImageScalarFieldEnum[]
+  }
+
+  /**
+   * HeroBackgroundImage findMany
+   */
+  export type HeroBackgroundImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * Filter, which HeroBackgroundImages to fetch.
+     */
+    where?: HeroBackgroundImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroBackgroundImages to fetch.
+     */
+    orderBy?: HeroBackgroundImageOrderByWithRelationInput | HeroBackgroundImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HeroBackgroundImages.
+     */
+    cursor?: HeroBackgroundImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroBackgroundImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroBackgroundImages.
+     */
+    skip?: number
+    distinct?: HeroBackgroundImageScalarFieldEnum | HeroBackgroundImageScalarFieldEnum[]
+  }
+
+  /**
+   * HeroBackgroundImage create
+   */
+  export type HeroBackgroundImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HeroBackgroundImage.
+     */
+    data: XOR<HeroBackgroundImageCreateInput, HeroBackgroundImageUncheckedCreateInput>
+  }
+
+  /**
+   * HeroBackgroundImage createMany
+   */
+  export type HeroBackgroundImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HeroBackgroundImages.
+     */
+    data: HeroBackgroundImageCreateManyInput | HeroBackgroundImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HeroBackgroundImage createManyAndReturn
+   */
+  export type HeroBackgroundImageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * The data used to create many HeroBackgroundImages.
+     */
+    data: HeroBackgroundImageCreateManyInput | HeroBackgroundImageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HeroBackgroundImage update
+   */
+  export type HeroBackgroundImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HeroBackgroundImage.
+     */
+    data: XOR<HeroBackgroundImageUpdateInput, HeroBackgroundImageUncheckedUpdateInput>
+    /**
+     * Choose, which HeroBackgroundImage to update.
+     */
+    where: HeroBackgroundImageWhereUniqueInput
+  }
+
+  /**
+   * HeroBackgroundImage updateMany
+   */
+  export type HeroBackgroundImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HeroBackgroundImages.
+     */
+    data: XOR<HeroBackgroundImageUpdateManyMutationInput, HeroBackgroundImageUncheckedUpdateManyInput>
+    /**
+     * Filter which HeroBackgroundImages to update
+     */
+    where?: HeroBackgroundImageWhereInput
+    /**
+     * Limit how many HeroBackgroundImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HeroBackgroundImage updateManyAndReturn
+   */
+  export type HeroBackgroundImageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * The data used to update HeroBackgroundImages.
+     */
+    data: XOR<HeroBackgroundImageUpdateManyMutationInput, HeroBackgroundImageUncheckedUpdateManyInput>
+    /**
+     * Filter which HeroBackgroundImages to update
+     */
+    where?: HeroBackgroundImageWhereInput
+    /**
+     * Limit how many HeroBackgroundImages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HeroBackgroundImage upsert
+   */
+  export type HeroBackgroundImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HeroBackgroundImage to update in case it exists.
+     */
+    where: HeroBackgroundImageWhereUniqueInput
+    /**
+     * In case the HeroBackgroundImage found by the `where` argument doesn't exist, create a new HeroBackgroundImage with this data.
+     */
+    create: XOR<HeroBackgroundImageCreateInput, HeroBackgroundImageUncheckedCreateInput>
+    /**
+     * In case the HeroBackgroundImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HeroBackgroundImageUpdateInput, HeroBackgroundImageUncheckedUpdateInput>
+  }
+
+  /**
+   * HeroBackgroundImage delete
+   */
+  export type HeroBackgroundImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
+    /**
+     * Filter which HeroBackgroundImage to delete.
+     */
+    where: HeroBackgroundImageWhereUniqueInput
+  }
+
+  /**
+   * HeroBackgroundImage deleteMany
+   */
+  export type HeroBackgroundImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HeroBackgroundImages to delete
+     */
+    where?: HeroBackgroundImageWhereInput
+    /**
+     * Limit how many HeroBackgroundImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HeroBackgroundImage without action
+   */
+  export type HeroBackgroundImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroBackgroundImage
+     */
+    select?: HeroBackgroundImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroBackgroundImage
+     */
+    omit?: HeroBackgroundImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroBackgroundImageInclude<ExtArgs> | null
   }
 
 
@@ -38550,31 +39723,41 @@ export namespace Prisma {
   export type GeneralSettingTranslationScalarFieldEnum = (typeof GeneralSettingTranslationScalarFieldEnum)[keyof typeof GeneralSettingTranslationScalarFieldEnum]
 
 
-  export const SliderScalarFieldEnum: {
+  export const HeroContentScalarFieldEnum: {
     id: 'id',
-    backgroundImageUrl: 'backgroundImageUrl',
-    order: 'order',
-    isActive: 'isActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type SliderScalarFieldEnum = (typeof SliderScalarFieldEnum)[keyof typeof SliderScalarFieldEnum]
+  export type HeroContentScalarFieldEnum = (typeof HeroContentScalarFieldEnum)[keyof typeof HeroContentScalarFieldEnum]
 
 
-  export const SliderTranslationScalarFieldEnum: {
+  export const HeroContentTranslationScalarFieldEnum: {
     id: 'id',
+    heroContentId: 'heroContentId',
+    languageCode: 'languageCode',
     title: 'title',
     description: 'description',
     button1Text: 'button1Text',
     button1Link: 'button1Link',
     button2Text: 'button2Text',
-    button2Link: 'button2Link',
-    sliderId: 'sliderId',
-    languageCode: 'languageCode'
+    button2Link: 'button2Link'
   };
 
-  export type SliderTranslationScalarFieldEnum = (typeof SliderTranslationScalarFieldEnum)[keyof typeof SliderTranslationScalarFieldEnum]
+  export type HeroContentTranslationScalarFieldEnum = (typeof HeroContentTranslationScalarFieldEnum)[keyof typeof HeroContentTranslationScalarFieldEnum]
+
+
+  export const HeroBackgroundImageScalarFieldEnum: {
+    id: 'id',
+    imageUrl: 'imageUrl',
+    order: 'order',
+    isActive: 'isActive',
+    heroContentId: 'heroContentId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HeroBackgroundImageScalarFieldEnum = (typeof HeroBackgroundImageScalarFieldEnum)[keyof typeof HeroBackgroundImageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -38856,7 +40039,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationListRelationFilter
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
-    sliderTranslations?: SliderTranslationListRelationFilter
+    heroContentTranslations?: HeroContentTranslationListRelationFilter
   }
 
   export type LanguageOrderByWithRelationInput = {
@@ -38876,7 +40059,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationOrderByRelationAggregateInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationOrderByRelationAggregateInput
     generalSettingTranslations?: GeneralSettingTranslationOrderByRelationAggregateInput
-    sliderTranslations?: SliderTranslationOrderByRelationAggregateInput
+    heroContentTranslations?: HeroContentTranslationOrderByRelationAggregateInput
   }
 
   export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -38899,7 +40082,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationListRelationFilter
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
-    sliderTranslations?: SliderTranslationListRelationFilter
+    heroContentTranslations?: HeroContentTranslationListRelationFilter
   }, "id" | "code">
 
   export type LanguageOrderByWithAggregationInput = {
@@ -40774,145 +41957,198 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"GeneralSettingTranslation"> | Date | string
   }
 
-  export type SliderWhereInput = {
-    AND?: SliderWhereInput | SliderWhereInput[]
-    OR?: SliderWhereInput[]
-    NOT?: SliderWhereInput | SliderWhereInput[]
-    id?: StringFilter<"Slider"> | string
-    backgroundImageUrl?: StringNullableFilter<"Slider"> | string | null
-    order?: IntNullableFilter<"Slider"> | number | null
-    isActive?: BoolFilter<"Slider"> | boolean
-    createdAt?: DateTimeFilter<"Slider"> | Date | string
-    updatedAt?: DateTimeFilter<"Slider"> | Date | string
-    translations?: SliderTranslationListRelationFilter
+  export type HeroContentWhereInput = {
+    AND?: HeroContentWhereInput | HeroContentWhereInput[]
+    OR?: HeroContentWhereInput[]
+    NOT?: HeroContentWhereInput | HeroContentWhereInput[]
+    id?: StringFilter<"HeroContent"> | string
+    createdAt?: DateTimeFilter<"HeroContent"> | Date | string
+    updatedAt?: DateTimeFilter<"HeroContent"> | Date | string
+    translations?: HeroContentTranslationListRelationFilter
+    images?: HeroBackgroundImageListRelationFilter
   }
 
-  export type SliderOrderByWithRelationInput = {
+  export type HeroContentOrderByWithRelationInput = {
     id?: SortOrder
-    backgroundImageUrl?: SortOrderInput | SortOrder
-    order?: SortOrderInput | SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    translations?: SliderTranslationOrderByRelationAggregateInput
+    translations?: HeroContentTranslationOrderByRelationAggregateInput
+    images?: HeroBackgroundImageOrderByRelationAggregateInput
   }
 
-  export type SliderWhereUniqueInput = Prisma.AtLeast<{
+  export type HeroContentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: SliderWhereInput | SliderWhereInput[]
-    OR?: SliderWhereInput[]
-    NOT?: SliderWhereInput | SliderWhereInput[]
-    backgroundImageUrl?: StringNullableFilter<"Slider"> | string | null
-    order?: IntNullableFilter<"Slider"> | number | null
-    isActive?: BoolFilter<"Slider"> | boolean
-    createdAt?: DateTimeFilter<"Slider"> | Date | string
-    updatedAt?: DateTimeFilter<"Slider"> | Date | string
-    translations?: SliderTranslationListRelationFilter
+    AND?: HeroContentWhereInput | HeroContentWhereInput[]
+    OR?: HeroContentWhereInput[]
+    NOT?: HeroContentWhereInput | HeroContentWhereInput[]
+    createdAt?: DateTimeFilter<"HeroContent"> | Date | string
+    updatedAt?: DateTimeFilter<"HeroContent"> | Date | string
+    translations?: HeroContentTranslationListRelationFilter
+    images?: HeroBackgroundImageListRelationFilter
   }, "id">
 
-  export type SliderOrderByWithAggregationInput = {
+  export type HeroContentOrderByWithAggregationInput = {
     id?: SortOrder
-    backgroundImageUrl?: SortOrderInput | SortOrder
-    order?: SortOrderInput | SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: SliderCountOrderByAggregateInput
-    _avg?: SliderAvgOrderByAggregateInput
-    _max?: SliderMaxOrderByAggregateInput
-    _min?: SliderMinOrderByAggregateInput
-    _sum?: SliderSumOrderByAggregateInput
+    _count?: HeroContentCountOrderByAggregateInput
+    _max?: HeroContentMaxOrderByAggregateInput
+    _min?: HeroContentMinOrderByAggregateInput
   }
 
-  export type SliderScalarWhereWithAggregatesInput = {
-    AND?: SliderScalarWhereWithAggregatesInput | SliderScalarWhereWithAggregatesInput[]
-    OR?: SliderScalarWhereWithAggregatesInput[]
-    NOT?: SliderScalarWhereWithAggregatesInput | SliderScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Slider"> | string
-    backgroundImageUrl?: StringNullableWithAggregatesFilter<"Slider"> | string | null
-    order?: IntNullableWithAggregatesFilter<"Slider"> | number | null
-    isActive?: BoolWithAggregatesFilter<"Slider"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"Slider"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Slider"> | Date | string
+  export type HeroContentScalarWhereWithAggregatesInput = {
+    AND?: HeroContentScalarWhereWithAggregatesInput | HeroContentScalarWhereWithAggregatesInput[]
+    OR?: HeroContentScalarWhereWithAggregatesInput[]
+    NOT?: HeroContentScalarWhereWithAggregatesInput | HeroContentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HeroContent"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"HeroContent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HeroContent"> | Date | string
   }
 
-  export type SliderTranslationWhereInput = {
-    AND?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
-    OR?: SliderTranslationWhereInput[]
-    NOT?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
-    id?: StringFilter<"SliderTranslation"> | string
-    title?: StringFilter<"SliderTranslation"> | string
-    description?: StringNullableFilter<"SliderTranslation"> | string | null
-    button1Text?: StringNullableFilter<"SliderTranslation"> | string | null
-    button1Link?: StringNullableFilter<"SliderTranslation"> | string | null
-    button2Text?: StringNullableFilter<"SliderTranslation"> | string | null
-    button2Link?: StringNullableFilter<"SliderTranslation"> | string | null
-    sliderId?: StringFilter<"SliderTranslation"> | string
-    languageCode?: StringFilter<"SliderTranslation"> | string
-    slider?: XOR<SliderScalarRelationFilter, SliderWhereInput>
+  export type HeroContentTranslationWhereInput = {
+    AND?: HeroContentTranslationWhereInput | HeroContentTranslationWhereInput[]
+    OR?: HeroContentTranslationWhereInput[]
+    NOT?: HeroContentTranslationWhereInput | HeroContentTranslationWhereInput[]
+    id?: StringFilter<"HeroContentTranslation"> | string
+    heroContentId?: StringFilter<"HeroContentTranslation"> | string
+    languageCode?: StringFilter<"HeroContentTranslation"> | string
+    title?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    description?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button1Text?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button1Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button2Text?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button2Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    heroContent?: XOR<HeroContentScalarRelationFilter, HeroContentWhereInput>
     language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
   }
 
-  export type SliderTranslationOrderByWithRelationInput = {
+  export type HeroContentTranslationOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
+    heroContentId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     button1Text?: SortOrderInput | SortOrder
     button1Link?: SortOrderInput | SortOrder
     button2Text?: SortOrderInput | SortOrder
     button2Link?: SortOrderInput | SortOrder
-    sliderId?: SortOrder
-    languageCode?: SortOrder
-    slider?: SliderOrderByWithRelationInput
+    heroContent?: HeroContentOrderByWithRelationInput
     language?: LanguageOrderByWithRelationInput
   }
 
-  export type SliderTranslationWhereUniqueInput = Prisma.AtLeast<{
+  export type HeroContentTranslationWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    sliderId_languageCode?: SliderTranslationSliderIdLanguageCodeCompoundUniqueInput
-    AND?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
-    OR?: SliderTranslationWhereInput[]
-    NOT?: SliderTranslationWhereInput | SliderTranslationWhereInput[]
-    title?: StringFilter<"SliderTranslation"> | string
-    description?: StringNullableFilter<"SliderTranslation"> | string | null
-    button1Text?: StringNullableFilter<"SliderTranslation"> | string | null
-    button1Link?: StringNullableFilter<"SliderTranslation"> | string | null
-    button2Text?: StringNullableFilter<"SliderTranslation"> | string | null
-    button2Link?: StringNullableFilter<"SliderTranslation"> | string | null
-    sliderId?: StringFilter<"SliderTranslation"> | string
-    languageCode?: StringFilter<"SliderTranslation"> | string
-    slider?: XOR<SliderScalarRelationFilter, SliderWhereInput>
+    heroContentId_languageCode?: HeroContentTranslationHeroContentIdLanguageCodeCompoundUniqueInput
+    AND?: HeroContentTranslationWhereInput | HeroContentTranslationWhereInput[]
+    OR?: HeroContentTranslationWhereInput[]
+    NOT?: HeroContentTranslationWhereInput | HeroContentTranslationWhereInput[]
+    heroContentId?: StringFilter<"HeroContentTranslation"> | string
+    languageCode?: StringFilter<"HeroContentTranslation"> | string
+    title?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    description?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button1Text?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button1Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button2Text?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button2Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    heroContent?: XOR<HeroContentScalarRelationFilter, HeroContentWhereInput>
     language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
-  }, "id" | "sliderId_languageCode">
+  }, "id" | "heroContentId_languageCode">
 
-  export type SliderTranslationOrderByWithAggregationInput = {
+  export type HeroContentTranslationOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
+    heroContentId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     button1Text?: SortOrderInput | SortOrder
     button1Link?: SortOrderInput | SortOrder
     button2Text?: SortOrderInput | SortOrder
     button2Link?: SortOrderInput | SortOrder
-    sliderId?: SortOrder
-    languageCode?: SortOrder
-    _count?: SliderTranslationCountOrderByAggregateInput
-    _max?: SliderTranslationMaxOrderByAggregateInput
-    _min?: SliderTranslationMinOrderByAggregateInput
+    _count?: HeroContentTranslationCountOrderByAggregateInput
+    _max?: HeroContentTranslationMaxOrderByAggregateInput
+    _min?: HeroContentTranslationMinOrderByAggregateInput
   }
 
-  export type SliderTranslationScalarWhereWithAggregatesInput = {
-    AND?: SliderTranslationScalarWhereWithAggregatesInput | SliderTranslationScalarWhereWithAggregatesInput[]
-    OR?: SliderTranslationScalarWhereWithAggregatesInput[]
-    NOT?: SliderTranslationScalarWhereWithAggregatesInput | SliderTranslationScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"SliderTranslation"> | string
-    title?: StringWithAggregatesFilter<"SliderTranslation"> | string
-    description?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
-    button1Text?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
-    button1Link?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
-    button2Text?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
-    button2Link?: StringNullableWithAggregatesFilter<"SliderTranslation"> | string | null
-    sliderId?: StringWithAggregatesFilter<"SliderTranslation"> | string
-    languageCode?: StringWithAggregatesFilter<"SliderTranslation"> | string
+  export type HeroContentTranslationScalarWhereWithAggregatesInput = {
+    AND?: HeroContentTranslationScalarWhereWithAggregatesInput | HeroContentTranslationScalarWhereWithAggregatesInput[]
+    OR?: HeroContentTranslationScalarWhereWithAggregatesInput[]
+    NOT?: HeroContentTranslationScalarWhereWithAggregatesInput | HeroContentTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HeroContentTranslation"> | string
+    heroContentId?: StringWithAggregatesFilter<"HeroContentTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"HeroContentTranslation"> | string
+    title?: StringNullableWithAggregatesFilter<"HeroContentTranslation"> | string | null
+    description?: StringNullableWithAggregatesFilter<"HeroContentTranslation"> | string | null
+    button1Text?: StringNullableWithAggregatesFilter<"HeroContentTranslation"> | string | null
+    button1Link?: StringNullableWithAggregatesFilter<"HeroContentTranslation"> | string | null
+    button2Text?: StringNullableWithAggregatesFilter<"HeroContentTranslation"> | string | null
+    button2Link?: StringNullableWithAggregatesFilter<"HeroContentTranslation"> | string | null
+  }
+
+  export type HeroBackgroundImageWhereInput = {
+    AND?: HeroBackgroundImageWhereInput | HeroBackgroundImageWhereInput[]
+    OR?: HeroBackgroundImageWhereInput[]
+    NOT?: HeroBackgroundImageWhereInput | HeroBackgroundImageWhereInput[]
+    id?: StringFilter<"HeroBackgroundImage"> | string
+    imageUrl?: StringFilter<"HeroBackgroundImage"> | string
+    order?: IntFilter<"HeroBackgroundImage"> | number
+    isActive?: BoolFilter<"HeroBackgroundImage"> | boolean
+    heroContentId?: StringFilter<"HeroBackgroundImage"> | string
+    createdAt?: DateTimeFilter<"HeroBackgroundImage"> | Date | string
+    updatedAt?: DateTimeFilter<"HeroBackgroundImage"> | Date | string
+    heroContent?: XOR<HeroContentScalarRelationFilter, HeroContentWhereInput>
+  }
+
+  export type HeroBackgroundImageOrderByWithRelationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    heroContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    heroContent?: HeroContentOrderByWithRelationInput
+  }
+
+  export type HeroBackgroundImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HeroBackgroundImageWhereInput | HeroBackgroundImageWhereInput[]
+    OR?: HeroBackgroundImageWhereInput[]
+    NOT?: HeroBackgroundImageWhereInput | HeroBackgroundImageWhereInput[]
+    imageUrl?: StringFilter<"HeroBackgroundImage"> | string
+    order?: IntFilter<"HeroBackgroundImage"> | number
+    isActive?: BoolFilter<"HeroBackgroundImage"> | boolean
+    heroContentId?: StringFilter<"HeroBackgroundImage"> | string
+    createdAt?: DateTimeFilter<"HeroBackgroundImage"> | Date | string
+    updatedAt?: DateTimeFilter<"HeroBackgroundImage"> | Date | string
+    heroContent?: XOR<HeroContentScalarRelationFilter, HeroContentWhereInput>
+  }, "id">
+
+  export type HeroBackgroundImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    heroContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HeroBackgroundImageCountOrderByAggregateInput
+    _avg?: HeroBackgroundImageAvgOrderByAggregateInput
+    _max?: HeroBackgroundImageMaxOrderByAggregateInput
+    _min?: HeroBackgroundImageMinOrderByAggregateInput
+    _sum?: HeroBackgroundImageSumOrderByAggregateInput
+  }
+
+  export type HeroBackgroundImageScalarWhereWithAggregatesInput = {
+    AND?: HeroBackgroundImageScalarWhereWithAggregatesInput | HeroBackgroundImageScalarWhereWithAggregatesInput[]
+    OR?: HeroBackgroundImageScalarWhereWithAggregatesInput[]
+    NOT?: HeroBackgroundImageScalarWhereWithAggregatesInput | HeroBackgroundImageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HeroBackgroundImage"> | string
+    imageUrl?: StringWithAggregatesFilter<"HeroBackgroundImage"> | string
+    order?: IntWithAggregatesFilter<"HeroBackgroundImage"> | number
+    isActive?: BoolWithAggregatesFilter<"HeroBackgroundImage"> | boolean
+    heroContentId?: StringWithAggregatesFilter<"HeroBackgroundImage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"HeroBackgroundImage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HeroBackgroundImage"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -41065,7 +42301,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateInput = {
@@ -41085,7 +42321,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUpdateInput = {
@@ -41105,7 +42341,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateInput = {
@@ -41125,7 +42361,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageCreateManyInput = {
@@ -43105,153 +44341,205 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SliderCreateInput = {
+  export type HeroContentCreateInput = {
     id?: string
-    backgroundImageUrl?: string | null
-    order?: number | null
-    isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    translations?: SliderTranslationCreateNestedManyWithoutSliderInput
+    translations?: HeroContentTranslationCreateNestedManyWithoutHeroContentInput
+    images?: HeroBackgroundImageCreateNestedManyWithoutHeroContentInput
   }
 
-  export type SliderUncheckedCreateInput = {
+  export type HeroContentUncheckedCreateInput = {
     id?: string
-    backgroundImageUrl?: string | null
-    order?: number | null
-    isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    translations?: SliderTranslationUncheckedCreateNestedManyWithoutSliderInput
+    translations?: HeroContentTranslationUncheckedCreateNestedManyWithoutHeroContentInput
+    images?: HeroBackgroundImageUncheckedCreateNestedManyWithoutHeroContentInput
   }
 
-  export type SliderUpdateInput = {
+  export type HeroContentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    translations?: SliderTranslationUpdateManyWithoutSliderNestedInput
+    translations?: HeroContentTranslationUpdateManyWithoutHeroContentNestedInput
+    images?: HeroBackgroundImageUpdateManyWithoutHeroContentNestedInput
   }
 
-  export type SliderUncheckedUpdateInput = {
+  export type HeroContentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    translations?: SliderTranslationUncheckedUpdateManyWithoutSliderNestedInput
+    translations?: HeroContentTranslationUncheckedUpdateManyWithoutHeroContentNestedInput
+    images?: HeroBackgroundImageUncheckedUpdateManyWithoutHeroContentNestedInput
   }
 
-  export type SliderCreateManyInput = {
+  export type HeroContentCreateManyInput = {
     id?: string
-    backgroundImageUrl?: string | null
-    order?: number | null
-    isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type SliderUpdateManyMutationInput = {
+  export type HeroContentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SliderUncheckedUpdateManyInput = {
+  export type HeroContentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SliderTranslationCreateInput = {
+  export type HeroContentTranslationCreateInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     button1Text?: string | null
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
-    slider: SliderCreateNestedOneWithoutTranslationsInput
-    language: LanguageCreateNestedOneWithoutSliderTranslationsInput
+    heroContent: HeroContentCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutHeroContentTranslationsInput
   }
 
-  export type SliderTranslationUncheckedCreateInput = {
+  export type HeroContentTranslationUncheckedCreateInput = {
     id?: string
-    title: string
-    description?: string | null
-    button1Text?: string | null
-    button1Link?: string | null
-    button2Text?: string | null
-    button2Link?: string | null
-    sliderId: string
+    heroContentId: string
     languageCode: string
-  }
-
-  export type SliderTranslationUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
-    slider?: SliderUpdateOneRequiredWithoutTranslationsNestedInput
-    language?: LanguageUpdateOneRequiredWithoutSliderTranslationsNestedInput
-  }
-
-  export type SliderTranslationUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
-    sliderId?: StringFieldUpdateOperationsInput | string
-    languageCode?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SliderTranslationCreateManyInput = {
-    id?: string
-    title: string
+    title?: string | null
     description?: string | null
     button1Text?: string | null
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
-    sliderId: string
-    languageCode: string
   }
 
-  export type SliderTranslationUpdateManyMutationInput = {
+  export type HeroContentTranslationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     button1Text?: NullableStringFieldUpdateOperationsInput | string | null
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+    heroContent?: HeroContentUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutHeroContentTranslationsNestedInput
   }
 
-  export type SliderTranslationUncheckedUpdateManyInput = {
+  export type HeroContentTranslationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
-    sliderId?: StringFieldUpdateOperationsInput | string
+    heroContentId?: StringFieldUpdateOperationsInput | string
     languageCode?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HeroContentTranslationCreateManyInput = {
+    id?: string
+    heroContentId: string
+    languageCode: string
+    title?: string | null
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
+  }
+
+  export type HeroContentTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HeroContentTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heroContentId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HeroBackgroundImageCreateInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    heroContent: HeroContentCreateNestedOneWithoutImagesInput
+  }
+
+  export type HeroBackgroundImageUncheckedCreateInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isActive?: boolean
+    heroContentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeroBackgroundImageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    heroContent?: HeroContentUpdateOneRequiredWithoutImagesNestedInput
+  }
+
+  export type HeroBackgroundImageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    heroContentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroBackgroundImageCreateManyInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isActive?: boolean
+    heroContentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeroBackgroundImageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroBackgroundImageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    heroContentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -43483,10 +44771,10 @@ export namespace Prisma {
     none?: GeneralSettingTranslationWhereInput
   }
 
-  export type SliderTranslationListRelationFilter = {
-    every?: SliderTranslationWhereInput
-    some?: SliderTranslationWhereInput
-    none?: SliderTranslationWhereInput
+  export type HeroContentTranslationListRelationFilter = {
+    every?: HeroContentTranslationWhereInput
+    some?: HeroContentTranslationWhereInput
+    none?: HeroContentTranslationWhereInput
   }
 
   export type BlogTranslationOrderByRelationAggregateInput = {
@@ -43525,7 +44813,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type SliderTranslationOrderByRelationAggregateInput = {
+  export type HeroContentTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -44857,85 +46145,116 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type SliderCountOrderByAggregateInput = {
+  export type HeroBackgroundImageListRelationFilter = {
+    every?: HeroBackgroundImageWhereInput
+    some?: HeroBackgroundImageWhereInput
+    none?: HeroBackgroundImageWhereInput
+  }
+
+  export type HeroBackgroundImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HeroContentCountOrderByAggregateInput = {
     id?: SortOrder
-    backgroundImageUrl?: SortOrder
-    order?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type SliderAvgOrderByAggregateInput = {
-    order?: SortOrder
-  }
-
-  export type SliderMaxOrderByAggregateInput = {
+  export type HeroContentMaxOrderByAggregateInput = {
     id?: SortOrder
-    backgroundImageUrl?: SortOrder
-    order?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type SliderMinOrderByAggregateInput = {
+  export type HeroContentMinOrderByAggregateInput = {
     id?: SortOrder
-    backgroundImageUrl?: SortOrder
-    order?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type SliderSumOrderByAggregateInput = {
-    order?: SortOrder
+  export type HeroContentScalarRelationFilter = {
+    is?: HeroContentWhereInput
+    isNot?: HeroContentWhereInput
   }
 
-  export type SliderScalarRelationFilter = {
-    is?: SliderWhereInput
-    isNot?: SliderWhereInput
-  }
-
-  export type SliderTranslationSliderIdLanguageCodeCompoundUniqueInput = {
-    sliderId: string
+  export type HeroContentTranslationHeroContentIdLanguageCodeCompoundUniqueInput = {
+    heroContentId: string
     languageCode: string
   }
 
-  export type SliderTranslationCountOrderByAggregateInput = {
+  export type HeroContentTranslationCountOrderByAggregateInput = {
     id?: SortOrder
+    heroContentId?: SortOrder
+    languageCode?: SortOrder
     title?: SortOrder
     description?: SortOrder
     button1Text?: SortOrder
     button1Link?: SortOrder
     button2Text?: SortOrder
     button2Link?: SortOrder
-    sliderId?: SortOrder
-    languageCode?: SortOrder
   }
 
-  export type SliderTranslationMaxOrderByAggregateInput = {
+  export type HeroContentTranslationMaxOrderByAggregateInput = {
     id?: SortOrder
+    heroContentId?: SortOrder
+    languageCode?: SortOrder
     title?: SortOrder
     description?: SortOrder
     button1Text?: SortOrder
     button1Link?: SortOrder
     button2Text?: SortOrder
     button2Link?: SortOrder
-    sliderId?: SortOrder
-    languageCode?: SortOrder
   }
 
-  export type SliderTranslationMinOrderByAggregateInput = {
+  export type HeroContentTranslationMinOrderByAggregateInput = {
     id?: SortOrder
+    heroContentId?: SortOrder
+    languageCode?: SortOrder
     title?: SortOrder
     description?: SortOrder
     button1Text?: SortOrder
     button1Link?: SortOrder
     button2Text?: SortOrder
     button2Link?: SortOrder
-    sliderId?: SortOrder
-    languageCode?: SortOrder
+  }
+
+  export type HeroBackgroundImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    heroContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HeroBackgroundImageAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type HeroBackgroundImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    heroContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HeroBackgroundImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    heroContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HeroBackgroundImageSumOrderByAggregateInput = {
+    order?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -45017,11 +46336,11 @@ export namespace Prisma {
     connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
   }
 
-  export type SliderTranslationCreateNestedManyWithoutLanguageInput = {
-    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
-    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+  export type HeroContentTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutLanguageInput, HeroContentTranslationUncheckedCreateWithoutLanguageInput> | HeroContentTranslationCreateWithoutLanguageInput[] | HeroContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutLanguageInput | HeroContentTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: HeroContentTranslationCreateManyLanguageInputEnvelope
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
   }
 
   export type BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
@@ -45087,11 +46406,11 @@ export namespace Prisma {
     connect?: GeneralSettingTranslationWhereUniqueInput | GeneralSettingTranslationWhereUniqueInput[]
   }
 
-  export type SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
-    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
-    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+  export type HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutLanguageInput, HeroContentTranslationUncheckedCreateWithoutLanguageInput> | HeroContentTranslationCreateWithoutLanguageInput[] | HeroContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutLanguageInput | HeroContentTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: HeroContentTranslationCreateManyLanguageInputEnvelope
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -45224,18 +46543,18 @@ export namespace Prisma {
     deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
   }
 
-  export type SliderTranslationUpdateManyWithoutLanguageNestedInput = {
-    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
-    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput | SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
-    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
-    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    update?: SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput | SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
-    updateMany?: SliderTranslationUpdateManyWithWhereWithoutLanguageInput | SliderTranslationUpdateManyWithWhereWithoutLanguageInput[]
-    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+  export type HeroContentTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutLanguageInput, HeroContentTranslationUncheckedCreateWithoutLanguageInput> | HeroContentTranslationCreateWithoutLanguageInput[] | HeroContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutLanguageInput | HeroContentTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: HeroContentTranslationUpsertWithWhereUniqueWithoutLanguageInput | HeroContentTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: HeroContentTranslationCreateManyLanguageInputEnvelope
+    set?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    disconnect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    delete?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    update?: HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput | HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput | HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
   }
 
   export type BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
@@ -45364,18 +46683,18 @@ export namespace Prisma {
     deleteMany?: GeneralSettingTranslationScalarWhereInput | GeneralSettingTranslationScalarWhereInput[]
   }
 
-  export type SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
-    create?: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput> | SliderTranslationCreateWithoutLanguageInput[] | SliderTranslationUncheckedCreateWithoutLanguageInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutLanguageInput | SliderTranslationCreateOrConnectWithoutLanguageInput[]
-    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput | SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
-    createMany?: SliderTranslationCreateManyLanguageInputEnvelope
-    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    update?: SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput | SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
-    updateMany?: SliderTranslationUpdateManyWithWhereWithoutLanguageInput | SliderTranslationUpdateManyWithWhereWithoutLanguageInput[]
-    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+  export type HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutLanguageInput, HeroContentTranslationUncheckedCreateWithoutLanguageInput> | HeroContentTranslationCreateWithoutLanguageInput[] | HeroContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutLanguageInput | HeroContentTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: HeroContentTranslationUpsertWithWhereUniqueWithoutLanguageInput | HeroContentTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: HeroContentTranslationCreateManyLanguageInputEnvelope
+    set?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    disconnect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    delete?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    update?: HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput | HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput | HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
   }
 
   export type BlogTranslationCreateNestedManyWithoutBlogInput = {
@@ -46765,74 +48084,130 @@ export namespace Prisma {
     update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutGeneralSettingTranslationsInput, LanguageUpdateWithoutGeneralSettingTranslationsInput>, LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput>
   }
 
-  export type SliderTranslationCreateNestedManyWithoutSliderInput = {
-    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
-    createMany?: SliderTranslationCreateManySliderInputEnvelope
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+  export type HeroContentTranslationCreateNestedManyWithoutHeroContentInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutHeroContentInput, HeroContentTranslationUncheckedCreateWithoutHeroContentInput> | HeroContentTranslationCreateWithoutHeroContentInput[] | HeroContentTranslationUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutHeroContentInput | HeroContentTranslationCreateOrConnectWithoutHeroContentInput[]
+    createMany?: HeroContentTranslationCreateManyHeroContentInputEnvelope
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
   }
 
-  export type SliderTranslationUncheckedCreateNestedManyWithoutSliderInput = {
-    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
-    createMany?: SliderTranslationCreateManySliderInputEnvelope
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
+  export type HeroBackgroundImageCreateNestedManyWithoutHeroContentInput = {
+    create?: XOR<HeroBackgroundImageCreateWithoutHeroContentInput, HeroBackgroundImageUncheckedCreateWithoutHeroContentInput> | HeroBackgroundImageCreateWithoutHeroContentInput[] | HeroBackgroundImageUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroBackgroundImageCreateOrConnectWithoutHeroContentInput | HeroBackgroundImageCreateOrConnectWithoutHeroContentInput[]
+    createMany?: HeroBackgroundImageCreateManyHeroContentInputEnvelope
+    connect?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
   }
 
-  export type SliderTranslationUpdateManyWithoutSliderNestedInput = {
-    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
-    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutSliderInput | SliderTranslationUpsertWithWhereUniqueWithoutSliderInput[]
-    createMany?: SliderTranslationCreateManySliderInputEnvelope
-    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    update?: SliderTranslationUpdateWithWhereUniqueWithoutSliderInput | SliderTranslationUpdateWithWhereUniqueWithoutSliderInput[]
-    updateMany?: SliderTranslationUpdateManyWithWhereWithoutSliderInput | SliderTranslationUpdateManyWithWhereWithoutSliderInput[]
-    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+  export type HeroContentTranslationUncheckedCreateNestedManyWithoutHeroContentInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutHeroContentInput, HeroContentTranslationUncheckedCreateWithoutHeroContentInput> | HeroContentTranslationCreateWithoutHeroContentInput[] | HeroContentTranslationUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutHeroContentInput | HeroContentTranslationCreateOrConnectWithoutHeroContentInput[]
+    createMany?: HeroContentTranslationCreateManyHeroContentInputEnvelope
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
   }
 
-  export type SliderTranslationUncheckedUpdateManyWithoutSliderNestedInput = {
-    create?: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput> | SliderTranslationCreateWithoutSliderInput[] | SliderTranslationUncheckedCreateWithoutSliderInput[]
-    connectOrCreate?: SliderTranslationCreateOrConnectWithoutSliderInput | SliderTranslationCreateOrConnectWithoutSliderInput[]
-    upsert?: SliderTranslationUpsertWithWhereUniqueWithoutSliderInput | SliderTranslationUpsertWithWhereUniqueWithoutSliderInput[]
-    createMany?: SliderTranslationCreateManySliderInputEnvelope
-    set?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    disconnect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    delete?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    connect?: SliderTranslationWhereUniqueInput | SliderTranslationWhereUniqueInput[]
-    update?: SliderTranslationUpdateWithWhereUniqueWithoutSliderInput | SliderTranslationUpdateWithWhereUniqueWithoutSliderInput[]
-    updateMany?: SliderTranslationUpdateManyWithWhereWithoutSliderInput | SliderTranslationUpdateManyWithWhereWithoutSliderInput[]
-    deleteMany?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
+  export type HeroBackgroundImageUncheckedCreateNestedManyWithoutHeroContentInput = {
+    create?: XOR<HeroBackgroundImageCreateWithoutHeroContentInput, HeroBackgroundImageUncheckedCreateWithoutHeroContentInput> | HeroBackgroundImageCreateWithoutHeroContentInput[] | HeroBackgroundImageUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroBackgroundImageCreateOrConnectWithoutHeroContentInput | HeroBackgroundImageCreateOrConnectWithoutHeroContentInput[]
+    createMany?: HeroBackgroundImageCreateManyHeroContentInputEnvelope
+    connect?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
   }
 
-  export type SliderCreateNestedOneWithoutTranslationsInput = {
-    create?: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
-    connectOrCreate?: SliderCreateOrConnectWithoutTranslationsInput
-    connect?: SliderWhereUniqueInput
+  export type HeroContentTranslationUpdateManyWithoutHeroContentNestedInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutHeroContentInput, HeroContentTranslationUncheckedCreateWithoutHeroContentInput> | HeroContentTranslationCreateWithoutHeroContentInput[] | HeroContentTranslationUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutHeroContentInput | HeroContentTranslationCreateOrConnectWithoutHeroContentInput[]
+    upsert?: HeroContentTranslationUpsertWithWhereUniqueWithoutHeroContentInput | HeroContentTranslationUpsertWithWhereUniqueWithoutHeroContentInput[]
+    createMany?: HeroContentTranslationCreateManyHeroContentInputEnvelope
+    set?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    disconnect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    delete?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    update?: HeroContentTranslationUpdateWithWhereUniqueWithoutHeroContentInput | HeroContentTranslationUpdateWithWhereUniqueWithoutHeroContentInput[]
+    updateMany?: HeroContentTranslationUpdateManyWithWhereWithoutHeroContentInput | HeroContentTranslationUpdateManyWithWhereWithoutHeroContentInput[]
+    deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
   }
 
-  export type LanguageCreateNestedOneWithoutSliderTranslationsInput = {
-    create?: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
-    connectOrCreate?: LanguageCreateOrConnectWithoutSliderTranslationsInput
+  export type HeroBackgroundImageUpdateManyWithoutHeroContentNestedInput = {
+    create?: XOR<HeroBackgroundImageCreateWithoutHeroContentInput, HeroBackgroundImageUncheckedCreateWithoutHeroContentInput> | HeroBackgroundImageCreateWithoutHeroContentInput[] | HeroBackgroundImageUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroBackgroundImageCreateOrConnectWithoutHeroContentInput | HeroBackgroundImageCreateOrConnectWithoutHeroContentInput[]
+    upsert?: HeroBackgroundImageUpsertWithWhereUniqueWithoutHeroContentInput | HeroBackgroundImageUpsertWithWhereUniqueWithoutHeroContentInput[]
+    createMany?: HeroBackgroundImageCreateManyHeroContentInputEnvelope
+    set?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    disconnect?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    delete?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    connect?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    update?: HeroBackgroundImageUpdateWithWhereUniqueWithoutHeroContentInput | HeroBackgroundImageUpdateWithWhereUniqueWithoutHeroContentInput[]
+    updateMany?: HeroBackgroundImageUpdateManyWithWhereWithoutHeroContentInput | HeroBackgroundImageUpdateManyWithWhereWithoutHeroContentInput[]
+    deleteMany?: HeroBackgroundImageScalarWhereInput | HeroBackgroundImageScalarWhereInput[]
+  }
+
+  export type HeroContentTranslationUncheckedUpdateManyWithoutHeroContentNestedInput = {
+    create?: XOR<HeroContentTranslationCreateWithoutHeroContentInput, HeroContentTranslationUncheckedCreateWithoutHeroContentInput> | HeroContentTranslationCreateWithoutHeroContentInput[] | HeroContentTranslationUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutHeroContentInput | HeroContentTranslationCreateOrConnectWithoutHeroContentInput[]
+    upsert?: HeroContentTranslationUpsertWithWhereUniqueWithoutHeroContentInput | HeroContentTranslationUpsertWithWhereUniqueWithoutHeroContentInput[]
+    createMany?: HeroContentTranslationCreateManyHeroContentInputEnvelope
+    set?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    disconnect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    delete?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+    update?: HeroContentTranslationUpdateWithWhereUniqueWithoutHeroContentInput | HeroContentTranslationUpdateWithWhereUniqueWithoutHeroContentInput[]
+    updateMany?: HeroContentTranslationUpdateManyWithWhereWithoutHeroContentInput | HeroContentTranslationUpdateManyWithWhereWithoutHeroContentInput[]
+    deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
+  }
+
+  export type HeroBackgroundImageUncheckedUpdateManyWithoutHeroContentNestedInput = {
+    create?: XOR<HeroBackgroundImageCreateWithoutHeroContentInput, HeroBackgroundImageUncheckedCreateWithoutHeroContentInput> | HeroBackgroundImageCreateWithoutHeroContentInput[] | HeroBackgroundImageUncheckedCreateWithoutHeroContentInput[]
+    connectOrCreate?: HeroBackgroundImageCreateOrConnectWithoutHeroContentInput | HeroBackgroundImageCreateOrConnectWithoutHeroContentInput[]
+    upsert?: HeroBackgroundImageUpsertWithWhereUniqueWithoutHeroContentInput | HeroBackgroundImageUpsertWithWhereUniqueWithoutHeroContentInput[]
+    createMany?: HeroBackgroundImageCreateManyHeroContentInputEnvelope
+    set?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    disconnect?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    delete?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    connect?: HeroBackgroundImageWhereUniqueInput | HeroBackgroundImageWhereUniqueInput[]
+    update?: HeroBackgroundImageUpdateWithWhereUniqueWithoutHeroContentInput | HeroBackgroundImageUpdateWithWhereUniqueWithoutHeroContentInput[]
+    updateMany?: HeroBackgroundImageUpdateManyWithWhereWithoutHeroContentInput | HeroBackgroundImageUpdateManyWithWhereWithoutHeroContentInput[]
+    deleteMany?: HeroBackgroundImageScalarWhereInput | HeroBackgroundImageScalarWhereInput[]
+  }
+
+  export type HeroContentCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<HeroContentCreateWithoutTranslationsInput, HeroContentUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: HeroContentCreateOrConnectWithoutTranslationsInput
+    connect?: HeroContentWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutHeroContentTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutHeroContentTranslationsInput, LanguageUncheckedCreateWithoutHeroContentTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutHeroContentTranslationsInput
     connect?: LanguageWhereUniqueInput
   }
 
-  export type SliderUpdateOneRequiredWithoutTranslationsNestedInput = {
-    create?: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
-    connectOrCreate?: SliderCreateOrConnectWithoutTranslationsInput
-    upsert?: SliderUpsertWithoutTranslationsInput
-    connect?: SliderWhereUniqueInput
-    update?: XOR<XOR<SliderUpdateToOneWithWhereWithoutTranslationsInput, SliderUpdateWithoutTranslationsInput>, SliderUncheckedUpdateWithoutTranslationsInput>
+  export type HeroContentUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<HeroContentCreateWithoutTranslationsInput, HeroContentUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: HeroContentCreateOrConnectWithoutTranslationsInput
+    upsert?: HeroContentUpsertWithoutTranslationsInput
+    connect?: HeroContentWhereUniqueInput
+    update?: XOR<XOR<HeroContentUpdateToOneWithWhereWithoutTranslationsInput, HeroContentUpdateWithoutTranslationsInput>, HeroContentUncheckedUpdateWithoutTranslationsInput>
   }
 
-  export type LanguageUpdateOneRequiredWithoutSliderTranslationsNestedInput = {
-    create?: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
-    connectOrCreate?: LanguageCreateOrConnectWithoutSliderTranslationsInput
-    upsert?: LanguageUpsertWithoutSliderTranslationsInput
+  export type LanguageUpdateOneRequiredWithoutHeroContentTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutHeroContentTranslationsInput, LanguageUncheckedCreateWithoutHeroContentTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutHeroContentTranslationsInput
+    upsert?: LanguageUpsertWithoutHeroContentTranslationsInput
     connect?: LanguageWhereUniqueInput
-    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutSliderTranslationsInput, LanguageUpdateWithoutSliderTranslationsInput>, LanguageUncheckedUpdateWithoutSliderTranslationsInput>
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutHeroContentTranslationsInput, LanguageUpdateWithoutHeroContentTranslationsInput>, LanguageUncheckedUpdateWithoutHeroContentTranslationsInput>
+  }
+
+  export type HeroContentCreateNestedOneWithoutImagesInput = {
+    create?: XOR<HeroContentCreateWithoutImagesInput, HeroContentUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: HeroContentCreateOrConnectWithoutImagesInput
+    connect?: HeroContentWhereUniqueInput
+  }
+
+  export type HeroContentUpdateOneRequiredWithoutImagesNestedInput = {
+    create?: XOR<HeroContentCreateWithoutImagesInput, HeroContentUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: HeroContentCreateOrConnectWithoutImagesInput
+    upsert?: HeroContentUpsertWithoutImagesInput
+    connect?: HeroContentWhereUniqueInput
+    update?: XOR<XOR<HeroContentUpdateToOneWithWhereWithoutImagesInput, HeroContentUpdateWithoutImagesInput>, HeroContentUncheckedUpdateWithoutImagesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -47412,35 +48787,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SliderTranslationCreateWithoutLanguageInput = {
+  export type HeroContentTranslationCreateWithoutLanguageInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     button1Text?: string | null
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
-    slider: SliderCreateNestedOneWithoutTranslationsInput
+    heroContent: HeroContentCreateNestedOneWithoutTranslationsInput
   }
 
-  export type SliderTranslationUncheckedCreateWithoutLanguageInput = {
+  export type HeroContentTranslationUncheckedCreateWithoutLanguageInput = {
     id?: string
-    title: string
+    heroContentId: string
+    title?: string | null
     description?: string | null
     button1Text?: string | null
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
-    sliderId: string
   }
 
-  export type SliderTranslationCreateOrConnectWithoutLanguageInput = {
-    where: SliderTranslationWhereUniqueInput
-    create: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput>
+  export type HeroContentTranslationCreateOrConnectWithoutLanguageInput = {
+    where: HeroContentTranslationWhereUniqueInput
+    create: XOR<HeroContentTranslationCreateWithoutLanguageInput, HeroContentTranslationUncheckedCreateWithoutLanguageInput>
   }
 
-  export type SliderTranslationCreateManyLanguageInputEnvelope = {
-    data: SliderTranslationCreateManyLanguageInput | SliderTranslationCreateManyLanguageInput[]
+  export type HeroContentTranslationCreateManyLanguageInputEnvelope = {
+    data: HeroContentTranslationCreateManyLanguageInput | HeroContentTranslationCreateManyLanguageInput[]
     skipDuplicates?: boolean
   }
 
@@ -47743,35 +49118,35 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"GeneralSettingTranslation"> | Date | string
   }
 
-  export type SliderTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
-    where: SliderTranslationWhereUniqueInput
-    update: XOR<SliderTranslationUpdateWithoutLanguageInput, SliderTranslationUncheckedUpdateWithoutLanguageInput>
-    create: XOR<SliderTranslationCreateWithoutLanguageInput, SliderTranslationUncheckedCreateWithoutLanguageInput>
+  export type HeroContentTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: HeroContentTranslationWhereUniqueInput
+    update: XOR<HeroContentTranslationUpdateWithoutLanguageInput, HeroContentTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<HeroContentTranslationCreateWithoutLanguageInput, HeroContentTranslationUncheckedCreateWithoutLanguageInput>
   }
 
-  export type SliderTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
-    where: SliderTranslationWhereUniqueInput
-    data: XOR<SliderTranslationUpdateWithoutLanguageInput, SliderTranslationUncheckedUpdateWithoutLanguageInput>
+  export type HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: HeroContentTranslationWhereUniqueInput
+    data: XOR<HeroContentTranslationUpdateWithoutLanguageInput, HeroContentTranslationUncheckedUpdateWithoutLanguageInput>
   }
 
-  export type SliderTranslationUpdateManyWithWhereWithoutLanguageInput = {
-    where: SliderTranslationScalarWhereInput
-    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyWithoutLanguageInput>
+  export type HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: HeroContentTranslationScalarWhereInput
+    data: XOR<HeroContentTranslationUpdateManyMutationInput, HeroContentTranslationUncheckedUpdateManyWithoutLanguageInput>
   }
 
-  export type SliderTranslationScalarWhereInput = {
-    AND?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
-    OR?: SliderTranslationScalarWhereInput[]
-    NOT?: SliderTranslationScalarWhereInput | SliderTranslationScalarWhereInput[]
-    id?: StringFilter<"SliderTranslation"> | string
-    title?: StringFilter<"SliderTranslation"> | string
-    description?: StringNullableFilter<"SliderTranslation"> | string | null
-    button1Text?: StringNullableFilter<"SliderTranslation"> | string | null
-    button1Link?: StringNullableFilter<"SliderTranslation"> | string | null
-    button2Text?: StringNullableFilter<"SliderTranslation"> | string | null
-    button2Link?: StringNullableFilter<"SliderTranslation"> | string | null
-    sliderId?: StringFilter<"SliderTranslation"> | string
-    languageCode?: StringFilter<"SliderTranslation"> | string
+  export type HeroContentTranslationScalarWhereInput = {
+    AND?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
+    OR?: HeroContentTranslationScalarWhereInput[]
+    NOT?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
+    id?: StringFilter<"HeroContentTranslation"> | string
+    heroContentId?: StringFilter<"HeroContentTranslation"> | string
+    languageCode?: StringFilter<"HeroContentTranslation"> | string
+    title?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    description?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button1Text?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button1Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button2Text?: StringNullableFilter<"HeroContentTranslation"> | string | null
+    button2Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
   }
 
   export type BlogTranslationCreateWithoutBlogInput = {
@@ -47859,7 +49234,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutBlogTranslationsInput = {
@@ -47878,7 +49253,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutBlogTranslationsInput = {
@@ -47942,7 +49317,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutBlogTranslationsInput = {
@@ -47961,7 +49336,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetMarqueeImageCreateWithoutHizmetInput = {
@@ -48619,7 +49994,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTranslationsInput = {
@@ -48638,7 +50013,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTranslationsInput = {
@@ -48832,7 +50207,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTranslationsInput = {
@@ -48851,7 +50226,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetTocItemUpsertWithWhereUniqueWithoutHizmetTranslationInput = {
@@ -50298,7 +51673,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetOverviewTabTranslationsInput = {
@@ -50317,7 +51692,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetOverviewTabTranslationsInput = {
@@ -50381,7 +51756,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetOverviewTabTranslationsInput = {
@@ -50400,7 +51775,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutWhyItemDefinitionsInput = {
@@ -50586,7 +51961,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetWhyItemTranslationsInput = {
@@ -50605,7 +51980,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetWhyItemTranslationsInput = {
@@ -50665,7 +52040,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetWhyItemTranslationsInput = {
@@ -50684,7 +52059,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutTestimonialDefinitionsInput = {
@@ -50874,7 +52249,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTestimonialTranslationsInput = {
@@ -50893,7 +52268,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTestimonialTranslationsInput = {
@@ -50955,7 +52330,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTestimonialTranslationsInput = {
@@ -50974,7 +52349,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutRecoveryItemDefinitionsInput = {
@@ -51162,7 +52537,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -51181,7 +52556,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetRecoveryItemTranslationsInput = {
@@ -51243,7 +52618,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -51262,7 +52637,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutPricingPackageDefinitionsInput = {
@@ -51450,7 +52825,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetPricingPackageTranslationsInput = {
@@ -51469,7 +52844,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetPricingPackageTranslationsInput = {
@@ -51529,7 +52904,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetPricingPackageTranslationsInput = {
@@ -51548,7 +52923,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutExpertItemDefinitionsInput = {
@@ -51740,7 +53115,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetExpertItemTranslationsInput = {
@@ -51759,7 +53134,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetExpertItemTranslationsInput = {
@@ -51821,7 +53196,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetExpertItemTranslationsInput = {
@@ -51840,7 +53215,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type GeneralSettingTranslationCreateWithoutGeneralSettingInput = {
@@ -51950,7 +53325,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput = {
@@ -51969,7 +53344,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
-    sliderTranslations?: SliderTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput = {
@@ -52041,7 +53416,7 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput = {
@@ -52060,81 +53435,134 @@ export namespace Prisma {
     hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
-    sliderTranslations?: SliderTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
-  export type SliderTranslationCreateWithoutSliderInput = {
+  export type HeroContentTranslationCreateWithoutHeroContentInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     button1Text?: string | null
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
-    language: LanguageCreateNestedOneWithoutSliderTranslationsInput
+    language: LanguageCreateNestedOneWithoutHeroContentTranslationsInput
   }
 
-  export type SliderTranslationUncheckedCreateWithoutSliderInput = {
+  export type HeroContentTranslationUncheckedCreateWithoutHeroContentInput = {
     id?: string
-    title: string
-    description?: string | null
-    button1Text?: string | null
-    button1Link?: string | null
-    button2Text?: string | null
-    button2Link?: string | null
     languageCode: string
+    title?: string | null
+    description?: string | null
+    button1Text?: string | null
+    button1Link?: string | null
+    button2Text?: string | null
+    button2Link?: string | null
   }
 
-  export type SliderTranslationCreateOrConnectWithoutSliderInput = {
-    where: SliderTranslationWhereUniqueInput
-    create: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput>
+  export type HeroContentTranslationCreateOrConnectWithoutHeroContentInput = {
+    where: HeroContentTranslationWhereUniqueInput
+    create: XOR<HeroContentTranslationCreateWithoutHeroContentInput, HeroContentTranslationUncheckedCreateWithoutHeroContentInput>
   }
 
-  export type SliderTranslationCreateManySliderInputEnvelope = {
-    data: SliderTranslationCreateManySliderInput | SliderTranslationCreateManySliderInput[]
+  export type HeroContentTranslationCreateManyHeroContentInputEnvelope = {
+    data: HeroContentTranslationCreateManyHeroContentInput | HeroContentTranslationCreateManyHeroContentInput[]
     skipDuplicates?: boolean
   }
 
-  export type SliderTranslationUpsertWithWhereUniqueWithoutSliderInput = {
-    where: SliderTranslationWhereUniqueInput
-    update: XOR<SliderTranslationUpdateWithoutSliderInput, SliderTranslationUncheckedUpdateWithoutSliderInput>
-    create: XOR<SliderTranslationCreateWithoutSliderInput, SliderTranslationUncheckedCreateWithoutSliderInput>
-  }
-
-  export type SliderTranslationUpdateWithWhereUniqueWithoutSliderInput = {
-    where: SliderTranslationWhereUniqueInput
-    data: XOR<SliderTranslationUpdateWithoutSliderInput, SliderTranslationUncheckedUpdateWithoutSliderInput>
-  }
-
-  export type SliderTranslationUpdateManyWithWhereWithoutSliderInput = {
-    where: SliderTranslationScalarWhereInput
-    data: XOR<SliderTranslationUpdateManyMutationInput, SliderTranslationUncheckedUpdateManyWithoutSliderInput>
-  }
-
-  export type SliderCreateWithoutTranslationsInput = {
+  export type HeroBackgroundImageCreateWithoutHeroContentInput = {
     id?: string
-    backgroundImageUrl?: string | null
-    order?: number | null
+    imageUrl: string
+    order?: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type SliderUncheckedCreateWithoutTranslationsInput = {
+  export type HeroBackgroundImageUncheckedCreateWithoutHeroContentInput = {
     id?: string
-    backgroundImageUrl?: string | null
-    order?: number | null
+    imageUrl: string
+    order?: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type SliderCreateOrConnectWithoutTranslationsInput = {
-    where: SliderWhereUniqueInput
-    create: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
+  export type HeroBackgroundImageCreateOrConnectWithoutHeroContentInput = {
+    where: HeroBackgroundImageWhereUniqueInput
+    create: XOR<HeroBackgroundImageCreateWithoutHeroContentInput, HeroBackgroundImageUncheckedCreateWithoutHeroContentInput>
   }
 
-  export type LanguageCreateWithoutSliderTranslationsInput = {
+  export type HeroBackgroundImageCreateManyHeroContentInputEnvelope = {
+    data: HeroBackgroundImageCreateManyHeroContentInput | HeroBackgroundImageCreateManyHeroContentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HeroContentTranslationUpsertWithWhereUniqueWithoutHeroContentInput = {
+    where: HeroContentTranslationWhereUniqueInput
+    update: XOR<HeroContentTranslationUpdateWithoutHeroContentInput, HeroContentTranslationUncheckedUpdateWithoutHeroContentInput>
+    create: XOR<HeroContentTranslationCreateWithoutHeroContentInput, HeroContentTranslationUncheckedCreateWithoutHeroContentInput>
+  }
+
+  export type HeroContentTranslationUpdateWithWhereUniqueWithoutHeroContentInput = {
+    where: HeroContentTranslationWhereUniqueInput
+    data: XOR<HeroContentTranslationUpdateWithoutHeroContentInput, HeroContentTranslationUncheckedUpdateWithoutHeroContentInput>
+  }
+
+  export type HeroContentTranslationUpdateManyWithWhereWithoutHeroContentInput = {
+    where: HeroContentTranslationScalarWhereInput
+    data: XOR<HeroContentTranslationUpdateManyMutationInput, HeroContentTranslationUncheckedUpdateManyWithoutHeroContentInput>
+  }
+
+  export type HeroBackgroundImageUpsertWithWhereUniqueWithoutHeroContentInput = {
+    where: HeroBackgroundImageWhereUniqueInput
+    update: XOR<HeroBackgroundImageUpdateWithoutHeroContentInput, HeroBackgroundImageUncheckedUpdateWithoutHeroContentInput>
+    create: XOR<HeroBackgroundImageCreateWithoutHeroContentInput, HeroBackgroundImageUncheckedCreateWithoutHeroContentInput>
+  }
+
+  export type HeroBackgroundImageUpdateWithWhereUniqueWithoutHeroContentInput = {
+    where: HeroBackgroundImageWhereUniqueInput
+    data: XOR<HeroBackgroundImageUpdateWithoutHeroContentInput, HeroBackgroundImageUncheckedUpdateWithoutHeroContentInput>
+  }
+
+  export type HeroBackgroundImageUpdateManyWithWhereWithoutHeroContentInput = {
+    where: HeroBackgroundImageScalarWhereInput
+    data: XOR<HeroBackgroundImageUpdateManyMutationInput, HeroBackgroundImageUncheckedUpdateManyWithoutHeroContentInput>
+  }
+
+  export type HeroBackgroundImageScalarWhereInput = {
+    AND?: HeroBackgroundImageScalarWhereInput | HeroBackgroundImageScalarWhereInput[]
+    OR?: HeroBackgroundImageScalarWhereInput[]
+    NOT?: HeroBackgroundImageScalarWhereInput | HeroBackgroundImageScalarWhereInput[]
+    id?: StringFilter<"HeroBackgroundImage"> | string
+    imageUrl?: StringFilter<"HeroBackgroundImage"> | string
+    order?: IntFilter<"HeroBackgroundImage"> | number
+    isActive?: BoolFilter<"HeroBackgroundImage"> | boolean
+    heroContentId?: StringFilter<"HeroBackgroundImage"> | string
+    createdAt?: DateTimeFilter<"HeroBackgroundImage"> | Date | string
+    updatedAt?: DateTimeFilter<"HeroBackgroundImage"> | Date | string
+  }
+
+  export type HeroContentCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: HeroBackgroundImageCreateNestedManyWithoutHeroContentInput
+  }
+
+  export type HeroContentUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: HeroBackgroundImageUncheckedCreateNestedManyWithoutHeroContentInput
+  }
+
+  export type HeroContentCreateOrConnectWithoutTranslationsInput = {
+    where: HeroContentWhereUniqueInput
+    create: XOR<HeroContentCreateWithoutTranslationsInput, HeroContentUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutHeroContentTranslationsInput = {
     id?: string
     code: string
     name: string
@@ -52153,7 +53581,7 @@ export namespace Prisma {
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
   }
 
-  export type LanguageUncheckedCreateWithoutSliderTranslationsInput = {
+  export type LanguageUncheckedCreateWithoutHeroContentTranslationsInput = {
     id?: string
     code: string
     name: string
@@ -52172,52 +53600,48 @@ export namespace Prisma {
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
-  export type LanguageCreateOrConnectWithoutSliderTranslationsInput = {
+  export type LanguageCreateOrConnectWithoutHeroContentTranslationsInput = {
     where: LanguageWhereUniqueInput
-    create: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
+    create: XOR<LanguageCreateWithoutHeroContentTranslationsInput, LanguageUncheckedCreateWithoutHeroContentTranslationsInput>
   }
 
-  export type SliderUpsertWithoutTranslationsInput = {
-    update: XOR<SliderUpdateWithoutTranslationsInput, SliderUncheckedUpdateWithoutTranslationsInput>
-    create: XOR<SliderCreateWithoutTranslationsInput, SliderUncheckedCreateWithoutTranslationsInput>
-    where?: SliderWhereInput
+  export type HeroContentUpsertWithoutTranslationsInput = {
+    update: XOR<HeroContentUpdateWithoutTranslationsInput, HeroContentUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<HeroContentCreateWithoutTranslationsInput, HeroContentUncheckedCreateWithoutTranslationsInput>
+    where?: HeroContentWhereInput
   }
 
-  export type SliderUpdateToOneWithWhereWithoutTranslationsInput = {
-    where?: SliderWhereInput
-    data: XOR<SliderUpdateWithoutTranslationsInput, SliderUncheckedUpdateWithoutTranslationsInput>
+  export type HeroContentUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: HeroContentWhereInput
+    data: XOR<HeroContentUpdateWithoutTranslationsInput, HeroContentUncheckedUpdateWithoutTranslationsInput>
   }
 
-  export type SliderUpdateWithoutTranslationsInput = {
+  export type HeroContentUpdateWithoutTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: HeroBackgroundImageUpdateManyWithoutHeroContentNestedInput
   }
 
-  export type SliderUncheckedUpdateWithoutTranslationsInput = {
+  export type HeroContentUncheckedUpdateWithoutTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    backgroundImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: HeroBackgroundImageUncheckedUpdateManyWithoutHeroContentNestedInput
   }
 
-  export type LanguageUpsertWithoutSliderTranslationsInput = {
-    update: XOR<LanguageUpdateWithoutSliderTranslationsInput, LanguageUncheckedUpdateWithoutSliderTranslationsInput>
-    create: XOR<LanguageCreateWithoutSliderTranslationsInput, LanguageUncheckedCreateWithoutSliderTranslationsInput>
+  export type LanguageUpsertWithoutHeroContentTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutHeroContentTranslationsInput, LanguageUncheckedUpdateWithoutHeroContentTranslationsInput>
+    create: XOR<LanguageCreateWithoutHeroContentTranslationsInput, LanguageUncheckedCreateWithoutHeroContentTranslationsInput>
     where?: LanguageWhereInput
   }
 
-  export type LanguageUpdateToOneWithWhereWithoutSliderTranslationsInput = {
+  export type LanguageUpdateToOneWithWhereWithoutHeroContentTranslationsInput = {
     where?: LanguageWhereInput
-    data: XOR<LanguageUpdateWithoutSliderTranslationsInput, LanguageUncheckedUpdateWithoutSliderTranslationsInput>
+    data: XOR<LanguageUpdateWithoutHeroContentTranslationsInput, LanguageUncheckedUpdateWithoutHeroContentTranslationsInput>
   }
 
-  export type LanguageUpdateWithoutSliderTranslationsInput = {
+  export type LanguageUpdateWithoutHeroContentTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -52236,7 +53660,7 @@ export namespace Prisma {
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
   }
 
-  export type LanguageUncheckedUpdateWithoutSliderTranslationsInput = {
+  export type LanguageUncheckedUpdateWithoutHeroContentTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -52253,6 +53677,50 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type HeroContentCreateWithoutImagesInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: HeroContentTranslationCreateNestedManyWithoutHeroContentInput
+  }
+
+  export type HeroContentUncheckedCreateWithoutImagesInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: HeroContentTranslationUncheckedCreateNestedManyWithoutHeroContentInput
+  }
+
+  export type HeroContentCreateOrConnectWithoutImagesInput = {
+    where: HeroContentWhereUniqueInput
+    create: XOR<HeroContentCreateWithoutImagesInput, HeroContentUncheckedCreateWithoutImagesInput>
+  }
+
+  export type HeroContentUpsertWithoutImagesInput = {
+    update: XOR<HeroContentUpdateWithoutImagesInput, HeroContentUncheckedUpdateWithoutImagesInput>
+    create: XOR<HeroContentCreateWithoutImagesInput, HeroContentUncheckedCreateWithoutImagesInput>
+    where?: HeroContentWhereInput
+  }
+
+  export type HeroContentUpdateToOneWithWhereWithoutImagesInput = {
+    where?: HeroContentWhereInput
+    data: XOR<HeroContentUpdateWithoutImagesInput, HeroContentUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type HeroContentUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: HeroContentTranslationUpdateManyWithoutHeroContentNestedInput
+  }
+
+  export type HeroContentUncheckedUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: HeroContentTranslationUncheckedUpdateManyWithoutHeroContentNestedInput
   }
 
   export type BlogTranslationCreateManyLanguageInput = {
@@ -52374,15 +53842,15 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type SliderTranslationCreateManyLanguageInput = {
+  export type HeroContentTranslationCreateManyLanguageInput = {
     id?: string
-    title: string
+    heroContentId: string
+    title?: string | null
     description?: string | null
     button1Text?: string | null
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
-    sliderId: string
   }
 
   export type BlogTranslationUpdateWithoutLanguageInput = {
@@ -52750,37 +54218,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SliderTranslationUpdateWithoutLanguageInput = {
+  export type HeroContentTranslationUpdateWithoutLanguageInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     button1Text?: NullableStringFieldUpdateOperationsInput | string | null
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
-    slider?: SliderUpdateOneRequiredWithoutTranslationsNestedInput
+    heroContent?: HeroContentUpdateOneRequiredWithoutTranslationsNestedInput
   }
 
-  export type SliderTranslationUncheckedUpdateWithoutLanguageInput = {
+  export type HeroContentTranslationUncheckedUpdateWithoutLanguageInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    heroContentId?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     button1Text?: NullableStringFieldUpdateOperationsInput | string | null
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
-    sliderId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type SliderTranslationUncheckedUpdateManyWithoutLanguageInput = {
+  export type HeroContentTranslationUncheckedUpdateManyWithoutLanguageInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    heroContentId?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     button1Text?: NullableStringFieldUpdateOperationsInput | string | null
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
-    sliderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BlogTranslationCreateManyBlogInput = {
@@ -53651,48 +55119,84 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SliderTranslationCreateManySliderInput = {
+  export type HeroContentTranslationCreateManyHeroContentInput = {
     id?: string
-    title: string
+    languageCode: string
+    title?: string | null
     description?: string | null
     button1Text?: string | null
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
-    languageCode: string
   }
 
-  export type SliderTranslationUpdateWithoutSliderInput = {
+  export type HeroBackgroundImageCreateManyHeroContentInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeroContentTranslationUpdateWithoutHeroContentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     button1Text?: NullableStringFieldUpdateOperationsInput | string | null
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
-    language?: LanguageUpdateOneRequiredWithoutSliderTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutHeroContentTranslationsNestedInput
   }
 
-  export type SliderTranslationUncheckedUpdateWithoutSliderInput = {
+  export type HeroContentTranslationUncheckedUpdateWithoutHeroContentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
-    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
     languageCode?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SliderTranslationUncheckedUpdateManyWithoutSliderInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     button1Text?: NullableStringFieldUpdateOperationsInput | string | null
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HeroContentTranslationUncheckedUpdateManyWithoutHeroContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
     languageCode?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button1Link?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Text?: NullableStringFieldUpdateOperationsInput | string | null
+    button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HeroBackgroundImageUpdateWithoutHeroContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroBackgroundImageUncheckedUpdateWithoutHeroContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroBackgroundImageUncheckedUpdateManyWithoutHeroContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

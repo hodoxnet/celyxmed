@@ -13,8 +13,32 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Language } from '@/generated/prisma/client'; // Prisma'dan Language tipini import ediyoruz
 import ImageUpload from '@/components/admin/image-upload'; // Mevcut ImageUpload componentini kullanacağız
+import { Trash2, GripVertical } from 'lucide-react'; // İkonlar eklendi
+import { Switch } from '@/components/ui/switch'; // Switch eklendi
+import Image from 'next/image'; // Image importu eklendi
 
 // Zod şemaları (API ile aynı olmalı, gerekirse import edilebilir)
+
+// Hero Alanı Çevirisi Şeması
+const heroContentTranslationSchemaClient = z.object({
+  languageCode: z.string().min(1),
+  title: z.string().optional().nullable(),
+  description: z.string().optional().nullable(),
+  button1Text: z.string().optional().nullable(),
+  button1Link: z.string().optional().nullable().refine(val => !val || val.startsWith('/') || val.startsWith('http'), { message: "Link / veya http(s):// ile başlamalıdır" }),
+  button2Text: z.string().optional().nullable(),
+  button2Link: z.string().optional().nullable().refine(val => !val || val.startsWith('/') || val.startsWith('http'), { message: "Link / veya http(s):// ile başlamalıdır" }),
+});
+
+// Hero Alanı Resim Şeması
+const heroBackgroundImageSchemaClient = z.object({
+  id: z.string().optional(), // Mevcut resimler için ID
+  imageUrl: z.string().min(1, "Resim URL'si gereklidir"),
+  order: z.number().int().nonnegative(), // .default(0) kaldırıldı
+  isActive: z.boolean(), // .default(true) kaldırıldı
+});
+
+// Genel Ayarlar Çevirisi Şeması
 const generalSettingTranslationSchemaClient = z.object({
   languageCode: z.string().min(1),
   headerButtonText: z.string().optional().nullable(),
@@ -39,9 +63,13 @@ const generalSettingSchemaClient = z.object({
   fullAddress: z.string().optional().nullable(),
   googleMapsEmbed: z.string().optional().nullable(),
   translations: z.array(generalSettingTranslationSchemaClient).optional(),
+  // Yeni Hero Alanı alanları
+  heroContentTranslations: z.array(heroContentTranslationSchemaClient).optional(),
+  heroImages: z.array(heroBackgroundImageSchemaClient).optional(),
 });
 
-type GeneralSettingsFormData = z.infer<typeof generalSettingSchemaClient>;
+// Form Veri Tipi (GeneralSettingsFormData yerine daha genel bir isim)
+type SettingsFormData = z.infer<typeof generalSettingSchemaClient>; 
 
 const GeneralSettingsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -55,22 +83,41 @@ const GeneralSettingsPage = () => {
     reset,
     setValue,
     formState: { errors },
-  } = useForm<GeneralSettingsFormData>({
+  } = useForm<SettingsFormData>({ // Tip güncellendi
     resolver: zodResolver(generalSettingSchemaClient),
     defaultValues: {
       translations: [],
+      heroContentTranslations: [], // Yeni default
+      heroImages: [], // Yeni default
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  // Genel Ayarlar Çevirileri için Field Array
+  const { fields: generalTranslationsFields } = useFieldArray({
     control,
     name: "translations",
   });
 
-  // Form state'ini izlemek için
-  const watchedTranslations = useWatch({ control, name: 'translations' });
-  console.log("Render - Fields length:", fields.length);
-  console.log("Render - Watched Translations length:", watchedTranslations?.length);
+  // Hero İçerik Çevirileri için Field Array
+  const { fields: heroTranslationsFields } = useFieldArray({
+    control,
+    name: "heroContentTranslations",
+  });
+
+  // Hero Resimleri için Field Array
+  const { fields: heroImageFields, append: appendHeroImage, remove: removeHeroImage, move: moveHeroImage } = useFieldArray({
+    control,
+    name: "heroImages",
+  });
+
+
+  // Form state'ini izlemek için (opsiyonel, debug için kalabilir)
+  // const watchedTranslations = useWatch({ control, name: 'translations' });
+  // const watchedHeroTranslations = useWatch({ control, name: 'heroContentTranslations' });
+  // const watchedHeroImages = useWatch({ control, name: 'heroImages' });
+  // console.log("Render - General Fields length:", generalTranslationsFields.length);
+  // console.log("Render - Hero Trans Fields length:", heroTranslationsFields.length);
+  // console.log("Render - Hero Image Fields length:", heroImageFields.length);
   console.log("Render - Active Tab:", activeTab);
   console.log("Render - Available Languages:", availableLanguages.length);
   console.log("Render - Initial Data Loaded:", initialDataLoaded);
@@ -86,29 +133,54 @@ const GeneralSettingsPage = () => {
         const activeLanguages = allLangs.filter(lang => lang.isActive);
         setAvailableLanguages(activeLanguages);
 
+        // Genel Ayarları Getir
         const settingsRes = await fetch('/api/admin/general-settings');
-        const settingsDataFromApi: GeneralSettingsFormData | null = await settingsRes.json();
+        const settingsDataFromApi: SettingsFormData | null = await settingsRes.json(); // Tip güncellendi
         
-        // Her aktif dil için bir çeviri nesnesi olduğundan emin olalım
-        const processedTranslations = activeLanguages.map(lang => {
+        // Hero İçeriğini Getir
+        const heroRes = await fetch('/api/admin/hero-content');
+        const heroDataFromApi: { translations: any[], images: any[] } | null = await heroRes.json();
+
+        // Genel Ayarlar Çevirilerini İşle
+        const processedGeneralTranslations = activeLanguages.map(lang => {
           const existingTranslation = settingsDataFromApi?.translations?.find(t => t.languageCode === lang.code);
           return existingTranslation || {
             languageCode: lang.code,
-            headerButtonText: '',
-            headerButtonLink: '',
-            socialYoutubeUrl: '',
-            socialInstagramUrl: '',
-            socialTiktokUrl: '',
-            socialFacebookUrl: '',
-            socialLinkedinUrl: '',
-            copyrightText: '',
-            stickyButtonText: '',
-            stickyButtonLink: '',
+            // Diğer genel ayar çeviri alanları için varsayılanlar...
+            headerButtonText: null,
+            headerButtonLink: null,
+            socialYoutubeUrl: null,
+            socialInstagramUrl: null,
+            socialTiktokUrl: null,
+            socialFacebookUrl: null,
+            socialLinkedinUrl: null,
+            copyrightText: null,
+            stickyButtonText: null,
+            stickyButtonLink: null,
           };
         });
 
-        const dataToReset: GeneralSettingsFormData = {
-          id: settingsDataFromApi?.id,
+        // Hero İçerik Çevirilerini İşle
+        const processedHeroTranslations = activeLanguages.map(lang => {
+          const existingTranslation = heroDataFromApi?.translations?.find(t => t.languageCode === lang.code);
+          return existingTranslation || {
+            languageCode: lang.code,
+            title: null,
+            description: null,
+            button1Text: null,
+            button1Link: null,
+            button2Text: null,
+            button2Link: null,
+          };
+        });
+
+        // Hero Resimlerini İşle (API'den geldiği gibi alalım)
+        const processedHeroImages = heroDataFromApi?.images || [];
+
+
+        const dataToReset: SettingsFormData = { // Tip güncellendi
+          // Genel Ayarlar
+          id: settingsDataFromApi?.id, // Bu ID aslında gereksiz olabilir formda
           faviconUrl: settingsDataFromApi?.faviconUrl || null,
           logoUrl: settingsDataFromApi?.logoUrl || null,
           whatsappNumber: settingsDataFromApi?.whatsappNumber || null,
@@ -116,25 +188,20 @@ const GeneralSettingsPage = () => {
           emailAddress: settingsDataFromApi?.emailAddress || null,
           fullAddress: settingsDataFromApi?.fullAddress || null,
           googleMapsEmbed: settingsDataFromApi?.googleMapsEmbed || null,
-          translations: processedTranslations,
+          translations: processedGeneralTranslations,
+          // Hero Alanı
+          heroContentTranslations: processedHeroTranslations,
+          heroImages: processedHeroImages,
         };
         
         reset(dataToReset);
-        console.log("useEffect - Reset called with translations:", dataToReset.translations?.length);
+        // console.log("useEffect - Reset called with data:", dataToReset);
 
-        // Aktif sekmeyi ayarla
-        if (activeLanguages.length > 0) {
-          const defaultLang = activeLanguages.find(lang => lang.isDefault);
-          if (defaultLang) {
-            setActiveTab(defaultLang.code);
-          } else {
-            // processedTranslations'daki ilk dilin kodunu kullan
-            const newActiveTab = processedTranslations.length > 0 ? processedTranslations[0].languageCode : activeLanguages[0].code;
-            setActiveTab(newActiveTab);
-            console.log("useEffect - Setting active tab to (else branch):", newActiveTab);
-          }
-        } else {
-           console.log("useEffect - No active languages found to set active tab.");
+        // Aktif sekmeyi ayarla (Genel Ayarlar ve Hero için ayrı sekmeler olacak)
+        if (activeLanguages.length > 0 && !activeTab) { // Sadece başlangıçta ayarla
+             const defaultLang = activeLanguages.find(lang => lang.isDefault);
+             setActiveTab(defaultLang?.code || activeLanguages[0].code);
+             // console.log("useEffect - Setting active tab:", defaultLang?.code || activeLanguages[0].code);
         }
         
       } catch (error) {
@@ -148,25 +215,59 @@ const GeneralSettingsPage = () => {
     fetchData();
   }, [reset]);
 
-  // Form verilerini API'ye gönder
-  const onSubmit = async (data: GeneralSettingsFormData) => {
+  // Form verilerini API'lere gönder
+  const onSubmit = async (data: SettingsFormData) => { // Tip güncellendi
     setIsLoading(true);
     try {
-      const response = await fetch('/api/admin/general-settings', {
-        method: 'POST',
+      // 1. Genel Ayarları Kaydet
+      const generalSettingsPayload = {
+        faviconUrl: data.faviconUrl,
+        logoUrl: data.logoUrl,
+        whatsappNumber: data.whatsappNumber,
+        phoneNumber: data.phoneNumber,
+        emailAddress: data.emailAddress,
+        fullAddress: data.fullAddress,
+        googleMapsEmbed: data.googleMapsEmbed,
+        translations: data.translations,
+      };
+      const settingsResponse = await fetch('/api/admin/general-settings', {
+        method: 'POST', // Bu API PUT olmalıydı ama mevcut kod POST kullanıyor, şimdilik bırakalım
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(generalSettingsPayload),
+      });
+      if (!settingsResponse.ok) {
+        const errorData = await settingsResponse.json();
+        throw new Error(errorData.message || 'Genel ayarlar kaydedilemedi.');
+      }
+      const savedSettings = await settingsResponse.json();
+      toast.success('Genel ayarlar başarıyla kaydedildi!');
+
+      // 2. Hero İçeriğini Kaydet
+      const heroContentPayload = {
+        translations: data.heroContentTranslations,
+        images: data.heroImages,
+      };
+      const heroResponse = await fetch('/api/admin/hero-content', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(heroContentPayload),
+      });
+       if (!heroResponse.ok) {
+        const errorData = await heroResponse.json();
+        throw new Error(errorData.message || 'Hero alanı kaydedilemedi.');
+      }
+      const savedHeroContent = await heroResponse.json();
+      toast.success('Ana sayfa hero alanı başarıyla kaydedildi!');
+
+      // Formu birleştirilmiş son veriyle güncelle (dikkatli olmalı)
+      reset({
+        ...savedSettings, // Genel ayarlar
+        heroContentTranslations: savedHeroContent.translations, // Hero çevirileri
+        heroImages: savedHeroContent.images, // Hero resimleri
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Ayarlar kaydedilemedi.');
-      }
-      toast.success('Genel ayarlar başarıyla kaydedildi!');
-      const savedData = await response.json();
-      reset(savedData); // Formu sunucudan gelen son veriyle güncelle
     } catch (error: any) {
-      toast.error(`Hata: ${error.message}`);
+      toast.error(`Kaydetme hatası: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -200,6 +301,7 @@ const GeneralSettingsPage = () => {
                           initialImage={field.value || ''}
                           onImageUploaded={(url: string) => field.onChange(url)}
                           showPreview={true}
+                          uploadFolder="genel" // Klasör belirtildi
                         />
                       )}
                     />
@@ -215,6 +317,7 @@ const GeneralSettingsPage = () => {
                           initialImage={field.value || ''}
                           onImageUploaded={(url: string) => field.onChange(url)}
                           showPreview={true}
+                          uploadFolder="genel" // Klasör belirtildi
                         />
                       )}
                     />
@@ -267,8 +370,9 @@ const GeneralSettingsPage = () => {
                       </TabsTrigger>
                     ))}
                   </TabsList>
-                  {fields.map((item, index) => (
+                  {generalTranslationsFields.map((item, index) => ( // fields -> generalTranslationsFields
                     <TabsContent key={item.id} value={item.languageCode} className="space-y-4 pt-4">
+                      {/* item tipini belirtmek daha iyi olurdu ama şimdilik any kalabilir */}
                       <input type="hidden" {...control.register(`translations.${index}.languageCode`)} />
                       <h3 className="font-semibold text-md mb-2">Header Butonu</h3>
                     <div>
@@ -323,6 +427,138 @@ const GeneralSettingsPage = () => {
               </CardContent>
                 </Card>
               )}
+              
+              {/* Yeni Kart: Ana Sayfa Hero Alanı */}
+              <Card>
+                <CardHeader><CardTitle className="text-lg">Ana Sayfa Hero Alanı</CardTitle></CardHeader>
+                <CardContent>
+                  {/* Hero Alanı Dil Bazlı Metinler */}
+                  <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+                    <TabsList>
+                      {availableLanguages.map((lang) => (
+                        <TabsTrigger key={lang.code} value={lang.code}>
+                          {lang.name} İçerik
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                    {heroTranslationsFields.map((item, index) => (
+                      <TabsContent key={item.id} value={item.languageCode} className="space-y-4 pt-4">
+                        <input type="hidden" {...control.register(`heroContentTranslations.${index}.languageCode`)} />
+                        <div>
+                          <Label htmlFor={`heroContentTranslations.${index}.title`}>Başlık</Label>
+                          <Controller name={`heroContentTranslations.${index}.title`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
+                        </div>
+                        <div>
+                          <Label htmlFor={`heroContentTranslations.${index}.description`}>Açıklama</Label>
+                          <Controller name={`heroContentTranslations.${index}.description`} control={control} render={({ field }) => <Textarea {...field} value={field.value || ''} />} />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor={`heroContentTranslations.${index}.button1Text`}>Buton 1 Metni</Label>
+                            <Controller name={`heroContentTranslations.${index}.button1Text`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
+                          </div>
+                          <div>
+                            <Label htmlFor={`heroContentTranslations.${index}.button1Link`}>Buton 1 Linki</Label>
+                            <Controller name={`heroContentTranslations.${index}.button1Link`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} placeholder="/link veya https://..." />} />
+                          </div>
+                        </div>
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor={`heroContentTranslations.${index}.button2Text`}>Buton 2 Metni</Label>
+                            <Controller name={`heroContentTranslations.${index}.button2Text`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
+                          </div>
+                          <div>
+                            <Label htmlFor={`heroContentTranslations.${index}.button2Link`}>Buton 2 Linki</Label>
+                            <Controller name={`heroContentTranslations.${index}.button2Link`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} placeholder="/link veya https://..." />} />
+                          </div>
+                        </div>
+                      </TabsContent>
+                    ))}
+                  </Tabs>
+
+                  {/* Hero Alanı Arka Plan Resimleri */}
+                  <div>
+                    <h3 className="font-semibold text-md mb-4">Arka Plan Resimleri</h3>
+                    <div className="space-y-4">
+                      {heroImageFields.map((imageField, index) => (
+                        <div key={imageField.id} className="flex items-center gap-4 p-3 border rounded">
+                           {/* Sıralama için sürükle ikonu (fonksiyonellik eklenmedi) */}
+                           {/* <GripVertical className="cursor-grab text-gray-400" />  */}
+                           
+                           <input type="hidden" {...control.register(`heroImages.${index}.order`)} value={index} /> {/* Sırayı indekse göre ayarla */}
+
+                           <div className="w-20 h-12 relative flex-shrink-0">
+                             <Controller
+                                name={`heroImages.${index}.imageUrl`}
+                                control={control}
+                                render={({ field }) => (
+                                  field.value ? (
+                                    <Image src={field.value} alt={`Hero Resmi ${index + 1}`} fill style={{ objectFit: 'cover' }} className="rounded" /> // layout="fill" objectFit="cover" yerine fill ve style
+                                  ) : (
+                                    <div className="w-full h-full bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500">Resim Yok</div>
+                                  )
+                                )}
+                              />
+                           </div>
+                           
+                           <div className="flex-grow">
+                             {/* Resim URL'sini göstermek yerine doğrudan yükleme/değiştirme butonu daha iyi olabilir */}
+                             <Controller
+                                name={`heroImages.${index}.imageUrl`}
+                                control={control}
+                                render={({ field }) => (
+                                  <ImageUpload
+                                    initialImage={field.value || ''}
+                                    onImageUploaded={(url) => {
+                                      setValue(`heroImages.${index}.imageUrl`, url, { shouldDirty: true });
+                                    }}
+                                    showPreview={false} // Önizleme yukarıda zaten var
+                                    buttonText="Resmi Değiştir"
+                                    className="w-full"
+                                    uploadFolder="hero" // Klasör belirtildi
+                                  />
+                                )}
+                              />
+                           </div>
+
+                           <div className="flex items-center gap-2 flex-shrink-0">
+                             <Controller
+                                name={`heroImages.${index}.isActive`}
+                                control={control}
+                                render={({ field }) => (
+                                  <Switch
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                    aria-label="Resim Aktif mi?"
+                                  />
+                                )}
+                              />
+                             <Button
+                                type="button"
+                                variant="destructive"
+                                size="icon"
+                                onClick={() => removeHeroImage(index)}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                           </div>
+                        </div>
+                      ))}
+                    </div>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="mt-4"
+                      onClick={() => appendHeroImage({ imageUrl: '', order: heroImageFields.length, isActive: true })}
+                    >
+                      Yeni Resim Ekle
+                    </Button>
+                     {errors.heroImages && <p className="text-red-500 text-sm mt-1">{errors.heroImages.message || errors.heroImages.root?.message}</p>}
+                  </div>
+
+                </CardContent>
+              </Card>
+
             </div>
           </div> {/* Grid sonu */}
 

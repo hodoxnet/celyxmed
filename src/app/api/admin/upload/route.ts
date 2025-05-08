@@ -38,16 +38,28 @@ export const POST = withAdmin(async (req: Request) => {
       );
     }
 
+    // Query parametresinden hedef klasörü al
+    const { searchParams } = new URL(req.url);
+    let targetFolder = searchParams.get('folder') || 'diger'; // Varsayılan 'diger'
+
+    // Güvenlik için klasör adını temizle (sadece harf, rakam, tire, alt çizgi)
+    targetFolder = targetFolder.replace(/[^a-zA-Z0-9-_]/g, ''); 
+    if (!targetFolder) {
+      targetFolder = 'diger'; // Temizleme sonrası boş kalırsa varsayılana dön
+    }
+
     // Yükleme yolu (static directory)
     const staticDir = join(process.cwd(), 'public');
-    // Yükleme dizinini 'hizmetler' olarak değiştir
-    const uploadDir = join(staticDir, 'uploads', 'hizmetler');
+    const uploadDir = join(staticDir, 'uploads', targetFolder); // Dinamik klasör
 
     // Klasörün varlığını kontrol et, yoksa oluştur
     try {
       await mkdir(uploadDir, { recursive: true });
     } catch (err) {
       console.error('Upload directory creation error:', err);
+      console.error(`Upload directory creation error for ${uploadDir}:`, err);
+      // Hata durumunda işlemi durdurabilir veya loglayıp devam edebiliriz. Şimdilik durduralım.
+      return NextResponse.json({ message: 'Yükleme klasörü oluşturulamadı.' }, { status: 500 });
     }
     
     // Benzersiz bir dosya adı oluştur
@@ -59,8 +71,8 @@ export const POST = withAdmin(async (req: Request) => {
     const buffer = Buffer.from(bytes);
     await writeFile(filePath, buffer);
 
-    // Dosya yolu ve URL döndür (yolu 'hizmetler' olarak güncelle)
-    const fileUrl = `/uploads/hizmetler/${fileName}`;
+    // Dosya yolu ve URL döndür (dinamik klasör ile)
+    const fileUrl = `/uploads/${targetFolder}/${fileName}`;
 
     return NextResponse.json({ url: fileUrl, message: 'Dosya başarıyla yüklendi' });
   } catch (error) {

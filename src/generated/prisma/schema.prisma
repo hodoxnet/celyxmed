@@ -59,7 +59,8 @@ model Language {
   hizmetExpertItemTranslations     HizmetExpertItemTranslation[]
   hizmetPricingPackageTranslations HizmetPricingPackageTranslation[]
   generalSettingTranslations       GeneralSettingTranslation[] // Yeni eklenecek alan
-  sliderTranslations               SliderTranslation[] // Slider için yeni ilişki
+  // sliderTranslations SliderTranslation[] // Slider ilişkisi kaldırıldı
+  heroContentTranslations          HeroContentTranslation[] // Yeni HeroContent ilişkisi
 }
 
 // Blog modeli
@@ -499,31 +500,43 @@ model GeneralSettingTranslation {
   @@unique([generalSettingId, languageCode])
 }
 
-// Slider modeli
-model Slider {
-  id                 String              @id @default(cuid())
-  backgroundImageUrl String? // Ortak alan: Arka plan resmi
-  order              Int?                @default(0) // Ortak alan: Sıralama
-  isActive           Boolean             @default(true) // Ortak alan: Aktiflik durumu
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  translations       SliderTranslation[]
+// ----- ANA SAYFA HERO ALANI MODELLERİ -----
+
+// Ana Sayfa Hero Alanı İçeriği (Tek Kayıt Olacak)
+model HeroContent {
+  id           String                   @id @default("main") // Sabit ID, sadece bir tane olacak
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+  translations HeroContentTranslation[]
+  images       HeroBackgroundImage[]
 }
 
-// Slider çevirileri modeli
-model SliderTranslation {
-  id          String  @id @default(cuid())
-  title       String // Dile özgü: Ana başlık
-  description String? @db.Text // Dile özgü: Açıklama (uzun olabilir)
-  button1Text String? // Dile özgü: Buton 1 metni
-  button1Link String? // Dile özgü: Buton 1 linki
-  button2Text String? // Dile özgü: Buton 2 metni
-  button2Link String? // Dile özgü: Buton 2 linki
+// Hero Alanı Çevirileri (Dile özgü metinler)
+model HeroContentTranslation {
+  id            String      @id @default(cuid())
+  heroContent   HeroContent @relation(fields: [heroContentId], references: [id], onDelete: Cascade)
+  heroContentId String // Sabit olarak "main" olacak
+  language      Language    @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
 
-  slider       Slider   @relation(fields: [sliderId], references: [id], onDelete: Cascade)
-  sliderId     String
-  language     Language @relation(fields: [languageCode], references: [code], onDelete: Cascade)
-  languageCode String
+  title       String? // Başlık (opsiyonel olabilir, statik bileşenden alınabilir)
+  description String? @db.Text // Açıklama (opsiyonel)
+  button1Text String?
+  button1Link String?
+  button2Text String?
+  button2Link String?
 
-  @@unique([sliderId, languageCode])
+  @@unique([heroContentId, languageCode])
+}
+
+// Hero Alanı Arka Plan Resimleri (Çoklu resim)
+model HeroBackgroundImage {
+  id            String      @id @default(cuid())
+  imageUrl      String // Resim URL'si
+  order         Int         @default(0) // Sıralama
+  isActive      Boolean     @default(true) // Resmin aktif olup olmadığı
+  heroContent   HeroContent @relation(fields: [heroContentId], references: [id], onDelete: Cascade)
+  heroContentId String // Sabit olarak "main" olacak
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }

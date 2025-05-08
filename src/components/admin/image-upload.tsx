@@ -13,6 +13,7 @@ interface ImageUploadProps {
   buttonText?: string;
   showPreview?: boolean;
   initialImage?: string;
+  uploadFolder?: string; // Hedef klasör prop'u eklendi
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({
@@ -20,7 +21,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   className,
   buttonText = "Resim Yükle",
   showPreview = false,
-  initialImage = ""
+  initialImage = "",
+  uploadFolder // Prop alındı
 }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -82,7 +84,12 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         });
       }, 300);
 
-      const response = await fetch('/api/admin/upload', {
+      // API endpoint URL'ini dinamik yap
+      const uploadUrl = uploadFolder 
+        ? `/api/admin/upload?folder=${encodeURIComponent(uploadFolder)}` 
+        : '/api/admin/upload'; // Folder yoksa varsayılan
+
+      const response = await fetch(uploadUrl, { // Güncellenmiş URL kullanıldı
         method: 'POST',
         body: formData,
       });
