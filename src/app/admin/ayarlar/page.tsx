@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { useForm, Controller, useFieldArray, useWatch } from 'react-hook-form'; // useWatch eklendi
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
@@ -67,6 +67,15 @@ const GeneralSettingsPage = () => {
     name: "translations",
   });
 
+  // Form state'ini izlemek için
+  const watchedTranslations = useWatch({ control, name: 'translations' });
+  console.log("Render - Fields length:", fields.length);
+  console.log("Render - Watched Translations length:", watchedTranslations?.length);
+  console.log("Render - Active Tab:", activeTab);
+  console.log("Render - Available Languages:", availableLanguages.length);
+  console.log("Render - Initial Data Loaded:", initialDataLoaded);
+
+
   // Mevcut dilleri ve ayarları yükle
   useEffect(() => {
     const fetchData = async () => {
@@ -111,6 +120,7 @@ const GeneralSettingsPage = () => {
         };
         
         reset(dataToReset);
+        console.log("useEffect - Reset called with translations:", dataToReset.translations?.length);
 
         // Aktif sekmeyi ayarla
         if (activeLanguages.length > 0) {
@@ -118,9 +128,13 @@ const GeneralSettingsPage = () => {
           if (defaultLang) {
             setActiveTab(defaultLang.code);
           } else {
-            // processedTranslations'daki ilk dilin kodunu kullan (fields henüz güncellenmemiş olabilir)
-            setActiveTab(processedTranslations.length > 0 ? processedTranslations[0].languageCode : activeLanguages[0].code);
+            // processedTranslations'daki ilk dilin kodunu kullan
+            const newActiveTab = processedTranslations.length > 0 ? processedTranslations[0].languageCode : activeLanguages[0].code;
+            setActiveTab(newActiveTab);
+            console.log("useEffect - Setting active tab to (else branch):", newActiveTab);
           }
+        } else {
+           console.log("useEffect - No active languages found to set active tab.");
         }
         
       } catch (error) {
@@ -177,7 +191,7 @@ const GeneralSettingsPage = () => {
                 <Tabs
                   value={activeTab}
                   onValueChange={setActiveTab}
-                  key={activeTab || 'no-tabs'} // activeTab değiştiğinde yeniden render'ı tetikle
+                  key={activeTab || 'no-tabs-yet'} // Basit key
                 >
                   <TabsList>
                     {availableLanguages.map((lang) => (
@@ -302,80 +316,6 @@ const GeneralSettingsPage = () => {
                 <Controller name="googleMapsEmbed" control={control} render={({ field }) => <Textarea {...field} value={field.value || ''} placeholder='<iframe src="..."></iframe>' />} />
                 {errors.googleMapsEmbed && <p className="text-red-500 text-sm">{errors.googleMapsEmbed.message}</p>}
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Dile Özgü Alanlar (Tabs içinde) */}
-          <Card>
-            <CardHeader><CardTitle className="text-lg">Dil Bazlı Ayarlar</CardTitle></CardHeader>
-            <CardContent>
-              <Tabs 
-                defaultValue={
-                  fields.length > 0 
-                    ? availableLanguages.find(lang => lang.isDefault)?.code || fields[0]?.languageCode 
-                    : undefined
-                }
-              >
-                <TabsList>
-                  {availableLanguages.map((lang) => (
-                    <TabsTrigger key={lang.code} value={lang.code}>
-                      {lang.name}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-                {fields.map((item, index) => (
-                  <TabsContent key={item.id} value={item.languageCode} className="space-y-4 pt-4">
-                    <input type="hidden" {...control.register(`translations.${index}.languageCode`)} />
-                    <h3 className="font-semibold text-md mb-2">Header Butonu</h3>
-                    <div>
-                      <Label htmlFor={`translations.${index}.headerButtonText`}>Header Buton Metni</Label>
-                      <Controller name={`translations.${index}.headerButtonText`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-                    <div>
-                      <Label htmlFor={`translations.${index}.headerButtonLink`}>Header Buton Linki</Label>
-                      <Controller name={`translations.${index}.headerButtonLink`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-
-                    <h3 className="font-semibold text-md mb-2 mt-6">Sosyal Medya Linkleri</h3>
-                    <div>
-                      <Label htmlFor={`translations.${index}.socialYoutubeUrl`}>YouTube Linki</Label>
-                      <Controller name={`translations.${index}.socialYoutubeUrl`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-                    <div>
-                      <Label htmlFor={`translations.${index}.socialInstagramUrl`}>Instagram Linki</Label>
-                      <Controller name={`translations.${index}.socialInstagramUrl`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-                    <div>
-                      <Label htmlFor={`translations.${index}.socialTiktokUrl`}>TikTok Linki</Label>
-                      <Controller name={`translations.${index}.socialTiktokUrl`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-                    <div>
-                      <Label htmlFor={`translations.${index}.socialFacebookUrl`}>Facebook Linki</Label>
-                      <Controller name={`translations.${index}.socialFacebookUrl`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-                    <div>
-                      <Label htmlFor={`translations.${index}.socialLinkedinUrl`}>LinkedIn Linki</Label>
-                      <Controller name={`translations.${index}.socialLinkedinUrl`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-
-                    <h3 className="font-semibold text-md mb-2 mt-6">Footer</h3>
-                    <div>
-                      <Label htmlFor={`translations.${index}.copyrightText`}>Copyright Metni</Label>
-                      <Controller name={`translations.${index}.copyrightText`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-
-                    <h3 className="font-semibold text-md mb-2 mt-6">Sticky İletişim Butonu</h3>
-                    <div>
-                      <Label htmlFor={`translations.${index}.stickyButtonText`}>Buton Metni</Label>
-                      <Controller name={`translations.${index}.stickyButtonText`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-                    <div>
-                      <Label htmlFor={`translations.${index}.stickyButtonLink`}>Buton Linki</Label>
-                      <Controller name={`translations.${index}.stickyButtonLink`} control={control} render={({ field }) => <Input {...field} value={field.value || ''} />} />
-                    </div>
-                  </TabsContent>
-                ))}
-              </Tabs>
             </CardContent>
           </Card>
 

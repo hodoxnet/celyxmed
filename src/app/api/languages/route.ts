@@ -11,12 +11,15 @@ export async function GET() {
       select: {
         code: true, // Dil kodunu seç
         name: true, // Dil adını seç
+        isActive: true, // Debugging/future use
+        isDefault: true, // Debugging/future use
       },
       orderBy: {
         // İsteğe bağlı: Dilleri kodlarına göre sırala
         code: 'asc', 
       },
     });
+    console.log("[API/LANGUAGES] Found active languages:", activeLanguages); // Add log here
 
     // Başarılı yanıtı JSON olarak döndür
     return NextResponse.json(activeLanguages);
