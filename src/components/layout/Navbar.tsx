@@ -159,15 +159,16 @@ const Navbar: React.FC<NavbarProps> = ({
                         </>
                       ) : (
                         // Alt menüsü yoksa direkt Link kullan
-                        <Link href={item.href} legacyBehavior passHref>
-                          <NavigationMenuLink
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href={item.href}
                             className={navigationMenuTriggerStyle() + " bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent py-2 px-3 text-base font-normal"}
                             target={item.openInNewTab ? "_blank" : undefined}
                             rel={item.openInNewTab ? "noopener noreferrer" : undefined}
                           >
                             {item.title}
-                          </NavigationMenuLink>
-                        </Link>
+                          </Link>
+                        </NavigationMenuLink>
                       )}
                     </NavigationMenuItem>
                   ))}

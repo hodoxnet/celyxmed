@@ -39,10 +39,6 @@ const nextConfig: NextConfig = {
     "destination": "/it/hizmetler/:path*"
   },
   {
-    "source": "/po/portekizhizmet/:path*",
-    "destination": "/po/hizmetler/:path*"
-  },
-  {
     "source": "/ru/услуги/:path*",
     "destination": "/ru/hizmetler/:path*"
   },
