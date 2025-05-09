@@ -174,6 +174,16 @@ export type HeroContentTranslation = $Result.DefaultSelection<Prisma.$HeroConten
  */
 export type HeroBackgroundImage = $Result.DefaultSelection<Prisma.$HeroBackgroundImagePayload>
 /**
+ * Model WhyChooseSection
+ * 
+ */
+export type WhyChooseSection = $Result.DefaultSelection<Prisma.$WhyChooseSectionPayload>
+/**
+ * Model WhyChooseSectionTranslation
+ * 
+ */
+export type WhyChooseSectionTranslation = $Result.DefaultSelection<Prisma.$WhyChooseSectionTranslationPayload>
+/**
  * Model HeaderMenu
  * 
  */
@@ -688,6 +698,26 @@ export class PrismaClient<
     * ```
     */
   get heroBackgroundImage(): Prisma.HeroBackgroundImageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.whyChooseSection`: Exposes CRUD operations for the **WhyChooseSection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WhyChooseSections
+    * const whyChooseSections = await prisma.whyChooseSection.findMany()
+    * ```
+    */
+  get whyChooseSection(): Prisma.WhyChooseSectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.whyChooseSectionTranslation`: Exposes CRUD operations for the **WhyChooseSectionTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WhyChooseSectionTranslations
+    * const whyChooseSectionTranslations = await prisma.whyChooseSectionTranslation.findMany()
+    * ```
+    */
+  get whyChooseSectionTranslation(): Prisma.WhyChooseSectionTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.headerMenu`: Exposes CRUD operations for the **HeaderMenu** model.
@@ -1240,6 +1270,8 @@ export namespace Prisma {
     HeroContent: 'HeroContent',
     HeroContentTranslation: 'HeroContentTranslation',
     HeroBackgroundImage: 'HeroBackgroundImage',
+    WhyChooseSection: 'WhyChooseSection',
+    WhyChooseSectionTranslation: 'WhyChooseSectionTranslation',
     HeaderMenu: 'HeaderMenu',
     HeaderMenuTranslation: 'HeaderMenuTranslation',
     HeaderMenuItem: 'HeaderMenuItem',
@@ -1266,7 +1298,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "headerMenu" | "headerMenuTranslation" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuTranslation" | "footerMenuItem" | "footerMenuItemTranslation"
+      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "whyChooseSection" | "whyChooseSectionTranslation" | "headerMenu" | "headerMenuTranslation" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuTranslation" | "footerMenuItem" | "footerMenuItemTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3638,6 +3670,154 @@ export namespace Prisma {
           }
         }
       }
+      WhyChooseSection: {
+        payload: Prisma.$WhyChooseSectionPayload<ExtArgs>
+        fields: Prisma.WhyChooseSectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WhyChooseSectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WhyChooseSectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>
+          }
+          findFirst: {
+            args: Prisma.WhyChooseSectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WhyChooseSectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>
+          }
+          findMany: {
+            args: Prisma.WhyChooseSectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>[]
+          }
+          create: {
+            args: Prisma.WhyChooseSectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>
+          }
+          createMany: {
+            args: Prisma.WhyChooseSectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WhyChooseSectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>[]
+          }
+          delete: {
+            args: Prisma.WhyChooseSectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>
+          }
+          update: {
+            args: Prisma.WhyChooseSectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.WhyChooseSectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WhyChooseSectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WhyChooseSectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.WhyChooseSectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionPayload>
+          }
+          aggregate: {
+            args: Prisma.WhyChooseSectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWhyChooseSection>
+          }
+          groupBy: {
+            args: Prisma.WhyChooseSectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WhyChooseSectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WhyChooseSectionCountArgs<ExtArgs>
+            result: $Utils.Optional<WhyChooseSectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      WhyChooseSectionTranslation: {
+        payload: Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>
+        fields: Prisma.WhyChooseSectionTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WhyChooseSectionTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WhyChooseSectionTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.WhyChooseSectionTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WhyChooseSectionTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.WhyChooseSectionTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.WhyChooseSectionTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.WhyChooseSectionTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WhyChooseSectionTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.WhyChooseSectionTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>
+          }
+          update: {
+            args: Prisma.WhyChooseSectionTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.WhyChooseSectionTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WhyChooseSectionTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WhyChooseSectionTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.WhyChooseSectionTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WhyChooseSectionTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.WhyChooseSectionTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWhyChooseSectionTranslation>
+          }
+          groupBy: {
+            args: Prisma.WhyChooseSectionTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WhyChooseSectionTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WhyChooseSectionTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<WhyChooseSectionTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
       HeaderMenu: {
         payload: Prisma.$HeaderMenuPayload<ExtArgs>
         fields: Prisma.HeaderMenuFieldRefs
@@ -4346,6 +4526,8 @@ export namespace Prisma {
     heroContent?: HeroContentOmit
     heroContentTranslation?: HeroContentTranslationOmit
     heroBackgroundImage?: HeroBackgroundImageOmit
+    whyChooseSection?: WhyChooseSectionOmit
+    whyChooseSectionTranslation?: WhyChooseSectionTranslationOmit
     headerMenu?: HeaderMenuOmit
     headerMenuTranslation?: HeaderMenuTranslationOmit
     headerMenuItem?: HeaderMenuItemOmit
@@ -4458,6 +4640,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations: number
     generalSettingTranslations: number
     heroContentTranslations: number
+    whyChooseSectionTranslations: number
     routeTranslations: number
     headerMenuItemTranslations: number
     footerMenuItemTranslations: number
@@ -4476,6 +4659,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: boolean | LanguageCountOutputTypeCountHizmetPricingPackageTranslationsArgs
     generalSettingTranslations?: boolean | LanguageCountOutputTypeCountGeneralSettingTranslationsArgs
     heroContentTranslations?: boolean | LanguageCountOutputTypeCountHeroContentTranslationsArgs
+    whyChooseSectionTranslations?: boolean | LanguageCountOutputTypeCountWhyChooseSectionTranslationsArgs
     routeTranslations?: boolean | LanguageCountOutputTypeCountRouteTranslationsArgs
     headerMenuItemTranslations?: boolean | LanguageCountOutputTypeCountHeaderMenuItemTranslationsArgs
     footerMenuItemTranslations?: boolean | LanguageCountOutputTypeCountFooterMenuItemTranslationsArgs
@@ -4562,6 +4746,13 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountHeroContentTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HeroContentTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountWhyChooseSectionTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WhyChooseSectionTranslationWhereInput
   }
 
   /**
@@ -5091,6 +5282,37 @@ export namespace Prisma {
    */
   export type HeroContentCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HeroBackgroundImageWhereInput
+  }
+
+
+  /**
+   * Count Type WhyChooseSectionCountOutputType
+   */
+
+  export type WhyChooseSectionCountOutputType = {
+    translations: number
+  }
+
+  export type WhyChooseSectionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | WhyChooseSectionCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * WhyChooseSectionCountOutputType without action
+   */
+  export type WhyChooseSectionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionCountOutputType
+     */
+    select?: WhyChooseSectionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * WhyChooseSectionCountOutputType without action
+   */
+  export type WhyChooseSectionCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WhyChooseSectionTranslationWhereInput
   }
 
 
@@ -7468,6 +7690,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
     heroContentTranslations?: boolean | Language$heroContentTranslationsArgs<ExtArgs>
+    whyChooseSectionTranslations?: boolean | Language$whyChooseSectionTranslationsArgs<ExtArgs>
     routeTranslations?: boolean | Language$routeTranslationsArgs<ExtArgs>
     headerMenuItemTranslations?: boolean | Language$headerMenuItemTranslationsArgs<ExtArgs>
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
@@ -7518,6 +7741,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: boolean | Language$hizmetPricingPackageTranslationsArgs<ExtArgs>
     generalSettingTranslations?: boolean | Language$generalSettingTranslationsArgs<ExtArgs>
     heroContentTranslations?: boolean | Language$heroContentTranslationsArgs<ExtArgs>
+    whyChooseSectionTranslations?: boolean | Language$whyChooseSectionTranslationsArgs<ExtArgs>
     routeTranslations?: boolean | Language$routeTranslationsArgs<ExtArgs>
     headerMenuItemTranslations?: boolean | Language$headerMenuItemTranslationsArgs<ExtArgs>
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
@@ -7541,6 +7765,7 @@ export namespace Prisma {
       hizmetPricingPackageTranslations: Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>[]
       generalSettingTranslations: Prisma.$GeneralSettingTranslationPayload<ExtArgs>[]
       heroContentTranslations: Prisma.$HeroContentTranslationPayload<ExtArgs>[]
+      whyChooseSectionTranslations: Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>[]
       routeTranslations: Prisma.$RouteTranslationPayload<ExtArgs>[]
       headerMenuItemTranslations: Prisma.$HeaderMenuItemTranslationPayload<ExtArgs>[]
       footerMenuItemTranslations: Prisma.$FooterMenuItemTranslationPayload<ExtArgs>[]
@@ -7959,6 +8184,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations<T extends Language$hizmetPricingPackageTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$hizmetPricingPackageTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HizmetPricingPackageTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     generalSettingTranslations<T extends Language$generalSettingTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$generalSettingTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralSettingTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     heroContentTranslations<T extends Language$heroContentTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$heroContentTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    whyChooseSectionTranslations<T extends Language$whyChooseSectionTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$whyChooseSectionTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     routeTranslations<T extends Language$routeTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$routeTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     headerMenuItemTranslations<T extends Language$headerMenuItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$headerMenuItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     footerMenuItemTranslations<T extends Language$footerMenuItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$footerMenuItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8625,6 +8851,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: HeroContentTranslationScalarFieldEnum | HeroContentTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.whyChooseSectionTranslations
+   */
+  export type Language$whyChooseSectionTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    where?: WhyChooseSectionTranslationWhereInput
+    orderBy?: WhyChooseSectionTranslationOrderByWithRelationInput | WhyChooseSectionTranslationOrderByWithRelationInput[]
+    cursor?: WhyChooseSectionTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WhyChooseSectionTranslationScalarFieldEnum | WhyChooseSectionTranslationScalarFieldEnum[]
   }
 
   /**
@@ -41714,6 +41964,2181 @@ export namespace Prisma {
 
 
   /**
+   * Model WhyChooseSection
+   */
+
+  export type AggregateWhyChooseSection = {
+    _count: WhyChooseSectionCountAggregateOutputType | null
+    _min: WhyChooseSectionMinAggregateOutputType | null
+    _max: WhyChooseSectionMaxAggregateOutputType | null
+  }
+
+  export type WhyChooseSectionMinAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WhyChooseSectionMaxAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WhyChooseSectionCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type WhyChooseSectionMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WhyChooseSectionMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WhyChooseSectionCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type WhyChooseSectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WhyChooseSection to aggregate.
+     */
+    where?: WhyChooseSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSections to fetch.
+     */
+    orderBy?: WhyChooseSectionOrderByWithRelationInput | WhyChooseSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WhyChooseSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WhyChooseSections
+    **/
+    _count?: true | WhyChooseSectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WhyChooseSectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WhyChooseSectionMaxAggregateInputType
+  }
+
+  export type GetWhyChooseSectionAggregateType<T extends WhyChooseSectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateWhyChooseSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWhyChooseSection[P]>
+      : GetScalarType<T[P], AggregateWhyChooseSection[P]>
+  }
+
+
+
+
+  export type WhyChooseSectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WhyChooseSectionWhereInput
+    orderBy?: WhyChooseSectionOrderByWithAggregationInput | WhyChooseSectionOrderByWithAggregationInput[]
+    by: WhyChooseSectionScalarFieldEnum[] | WhyChooseSectionScalarFieldEnum
+    having?: WhyChooseSectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WhyChooseSectionCountAggregateInputType | true
+    _min?: WhyChooseSectionMinAggregateInputType
+    _max?: WhyChooseSectionMaxAggregateInputType
+  }
+
+  export type WhyChooseSectionGroupByOutputType = {
+    id: string
+    createdAt: Date
+    updatedAt: Date
+    _count: WhyChooseSectionCountAggregateOutputType | null
+    _min: WhyChooseSectionMinAggregateOutputType | null
+    _max: WhyChooseSectionMaxAggregateOutputType | null
+  }
+
+  type GetWhyChooseSectionGroupByPayload<T extends WhyChooseSectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WhyChooseSectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WhyChooseSectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WhyChooseSectionGroupByOutputType[P]>
+            : GetScalarType<T[P], WhyChooseSectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WhyChooseSectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    translations?: boolean | WhyChooseSection$translationsArgs<ExtArgs>
+    _count?: boolean | WhyChooseSectionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["whyChooseSection"]>
+
+  export type WhyChooseSectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["whyChooseSection"]>
+
+  export type WhyChooseSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["whyChooseSection"]>
+
+  export type WhyChooseSectionSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type WhyChooseSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt", ExtArgs["result"]["whyChooseSection"]>
+  export type WhyChooseSectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | WhyChooseSection$translationsArgs<ExtArgs>
+    _count?: boolean | WhyChooseSectionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type WhyChooseSectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type WhyChooseSectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $WhyChooseSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WhyChooseSection"
+    objects: {
+      translations: Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["whyChooseSection"]>
+    composites: {}
+  }
+
+  type WhyChooseSectionGetPayload<S extends boolean | null | undefined | WhyChooseSectionDefaultArgs> = $Result.GetResult<Prisma.$WhyChooseSectionPayload, S>
+
+  type WhyChooseSectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WhyChooseSectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WhyChooseSectionCountAggregateInputType | true
+    }
+
+  export interface WhyChooseSectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WhyChooseSection'], meta: { name: 'WhyChooseSection' } }
+    /**
+     * Find zero or one WhyChooseSection that matches the filter.
+     * @param {WhyChooseSectionFindUniqueArgs} args - Arguments to find a WhyChooseSection
+     * @example
+     * // Get one WhyChooseSection
+     * const whyChooseSection = await prisma.whyChooseSection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WhyChooseSectionFindUniqueArgs>(args: SelectSubset<T, WhyChooseSectionFindUniqueArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WhyChooseSection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WhyChooseSectionFindUniqueOrThrowArgs} args - Arguments to find a WhyChooseSection
+     * @example
+     * // Get one WhyChooseSection
+     * const whyChooseSection = await prisma.whyChooseSection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WhyChooseSectionFindUniqueOrThrowArgs>(args: SelectSubset<T, WhyChooseSectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WhyChooseSection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionFindFirstArgs} args - Arguments to find a WhyChooseSection
+     * @example
+     * // Get one WhyChooseSection
+     * const whyChooseSection = await prisma.whyChooseSection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WhyChooseSectionFindFirstArgs>(args?: SelectSubset<T, WhyChooseSectionFindFirstArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WhyChooseSection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionFindFirstOrThrowArgs} args - Arguments to find a WhyChooseSection
+     * @example
+     * // Get one WhyChooseSection
+     * const whyChooseSection = await prisma.whyChooseSection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WhyChooseSectionFindFirstOrThrowArgs>(args?: SelectSubset<T, WhyChooseSectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WhyChooseSections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WhyChooseSections
+     * const whyChooseSections = await prisma.whyChooseSection.findMany()
+     * 
+     * // Get first 10 WhyChooseSections
+     * const whyChooseSections = await prisma.whyChooseSection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const whyChooseSectionWithIdOnly = await prisma.whyChooseSection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WhyChooseSectionFindManyArgs>(args?: SelectSubset<T, WhyChooseSectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WhyChooseSection.
+     * @param {WhyChooseSectionCreateArgs} args - Arguments to create a WhyChooseSection.
+     * @example
+     * // Create one WhyChooseSection
+     * const WhyChooseSection = await prisma.whyChooseSection.create({
+     *   data: {
+     *     // ... data to create a WhyChooseSection
+     *   }
+     * })
+     * 
+     */
+    create<T extends WhyChooseSectionCreateArgs>(args: SelectSubset<T, WhyChooseSectionCreateArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WhyChooseSections.
+     * @param {WhyChooseSectionCreateManyArgs} args - Arguments to create many WhyChooseSections.
+     * @example
+     * // Create many WhyChooseSections
+     * const whyChooseSection = await prisma.whyChooseSection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WhyChooseSectionCreateManyArgs>(args?: SelectSubset<T, WhyChooseSectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WhyChooseSections and returns the data saved in the database.
+     * @param {WhyChooseSectionCreateManyAndReturnArgs} args - Arguments to create many WhyChooseSections.
+     * @example
+     * // Create many WhyChooseSections
+     * const whyChooseSection = await prisma.whyChooseSection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WhyChooseSections and only return the `id`
+     * const whyChooseSectionWithIdOnly = await prisma.whyChooseSection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WhyChooseSectionCreateManyAndReturnArgs>(args?: SelectSubset<T, WhyChooseSectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WhyChooseSection.
+     * @param {WhyChooseSectionDeleteArgs} args - Arguments to delete one WhyChooseSection.
+     * @example
+     * // Delete one WhyChooseSection
+     * const WhyChooseSection = await prisma.whyChooseSection.delete({
+     *   where: {
+     *     // ... filter to delete one WhyChooseSection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WhyChooseSectionDeleteArgs>(args: SelectSubset<T, WhyChooseSectionDeleteArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WhyChooseSection.
+     * @param {WhyChooseSectionUpdateArgs} args - Arguments to update one WhyChooseSection.
+     * @example
+     * // Update one WhyChooseSection
+     * const whyChooseSection = await prisma.whyChooseSection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WhyChooseSectionUpdateArgs>(args: SelectSubset<T, WhyChooseSectionUpdateArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WhyChooseSections.
+     * @param {WhyChooseSectionDeleteManyArgs} args - Arguments to filter WhyChooseSections to delete.
+     * @example
+     * // Delete a few WhyChooseSections
+     * const { count } = await prisma.whyChooseSection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WhyChooseSectionDeleteManyArgs>(args?: SelectSubset<T, WhyChooseSectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WhyChooseSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WhyChooseSections
+     * const whyChooseSection = await prisma.whyChooseSection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WhyChooseSectionUpdateManyArgs>(args: SelectSubset<T, WhyChooseSectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WhyChooseSections and returns the data updated in the database.
+     * @param {WhyChooseSectionUpdateManyAndReturnArgs} args - Arguments to update many WhyChooseSections.
+     * @example
+     * // Update many WhyChooseSections
+     * const whyChooseSection = await prisma.whyChooseSection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WhyChooseSections and only return the `id`
+     * const whyChooseSectionWithIdOnly = await prisma.whyChooseSection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WhyChooseSectionUpdateManyAndReturnArgs>(args: SelectSubset<T, WhyChooseSectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WhyChooseSection.
+     * @param {WhyChooseSectionUpsertArgs} args - Arguments to update or create a WhyChooseSection.
+     * @example
+     * // Update or create a WhyChooseSection
+     * const whyChooseSection = await prisma.whyChooseSection.upsert({
+     *   create: {
+     *     // ... data to create a WhyChooseSection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WhyChooseSection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WhyChooseSectionUpsertArgs>(args: SelectSubset<T, WhyChooseSectionUpsertArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WhyChooseSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionCountArgs} args - Arguments to filter WhyChooseSections to count.
+     * @example
+     * // Count the number of WhyChooseSections
+     * const count = await prisma.whyChooseSection.count({
+     *   where: {
+     *     // ... the filter for the WhyChooseSections we want to count
+     *   }
+     * })
+    **/
+    count<T extends WhyChooseSectionCountArgs>(
+      args?: Subset<T, WhyChooseSectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WhyChooseSectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WhyChooseSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WhyChooseSectionAggregateArgs>(args: Subset<T, WhyChooseSectionAggregateArgs>): Prisma.PrismaPromise<GetWhyChooseSectionAggregateType<T>>
+
+    /**
+     * Group by WhyChooseSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WhyChooseSectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WhyChooseSectionGroupByArgs['orderBy'] }
+        : { orderBy?: WhyChooseSectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WhyChooseSectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWhyChooseSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WhyChooseSection model
+   */
+  readonly fields: WhyChooseSectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WhyChooseSection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WhyChooseSectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends WhyChooseSection$translationsArgs<ExtArgs> = {}>(args?: Subset<T, WhyChooseSection$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WhyChooseSection model
+   */
+  interface WhyChooseSectionFieldRefs {
+    readonly id: FieldRef<"WhyChooseSection", 'String'>
+    readonly createdAt: FieldRef<"WhyChooseSection", 'DateTime'>
+    readonly updatedAt: FieldRef<"WhyChooseSection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WhyChooseSection findUnique
+   */
+  export type WhyChooseSectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSection to fetch.
+     */
+    where: WhyChooseSectionWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSection findUniqueOrThrow
+   */
+  export type WhyChooseSectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSection to fetch.
+     */
+    where: WhyChooseSectionWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSection findFirst
+   */
+  export type WhyChooseSectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSection to fetch.
+     */
+    where?: WhyChooseSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSections to fetch.
+     */
+    orderBy?: WhyChooseSectionOrderByWithRelationInput | WhyChooseSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WhyChooseSections.
+     */
+    cursor?: WhyChooseSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WhyChooseSections.
+     */
+    distinct?: WhyChooseSectionScalarFieldEnum | WhyChooseSectionScalarFieldEnum[]
+  }
+
+  /**
+   * WhyChooseSection findFirstOrThrow
+   */
+  export type WhyChooseSectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSection to fetch.
+     */
+    where?: WhyChooseSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSections to fetch.
+     */
+    orderBy?: WhyChooseSectionOrderByWithRelationInput | WhyChooseSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WhyChooseSections.
+     */
+    cursor?: WhyChooseSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WhyChooseSections.
+     */
+    distinct?: WhyChooseSectionScalarFieldEnum | WhyChooseSectionScalarFieldEnum[]
+  }
+
+  /**
+   * WhyChooseSection findMany
+   */
+  export type WhyChooseSectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSections to fetch.
+     */
+    where?: WhyChooseSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSections to fetch.
+     */
+    orderBy?: WhyChooseSectionOrderByWithRelationInput | WhyChooseSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WhyChooseSections.
+     */
+    cursor?: WhyChooseSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSections.
+     */
+    skip?: number
+    distinct?: WhyChooseSectionScalarFieldEnum | WhyChooseSectionScalarFieldEnum[]
+  }
+
+  /**
+   * WhyChooseSection create
+   */
+  export type WhyChooseSectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WhyChooseSection.
+     */
+    data: XOR<WhyChooseSectionCreateInput, WhyChooseSectionUncheckedCreateInput>
+  }
+
+  /**
+   * WhyChooseSection createMany
+   */
+  export type WhyChooseSectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WhyChooseSections.
+     */
+    data: WhyChooseSectionCreateManyInput | WhyChooseSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WhyChooseSection createManyAndReturn
+   */
+  export type WhyChooseSectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many WhyChooseSections.
+     */
+    data: WhyChooseSectionCreateManyInput | WhyChooseSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WhyChooseSection update
+   */
+  export type WhyChooseSectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WhyChooseSection.
+     */
+    data: XOR<WhyChooseSectionUpdateInput, WhyChooseSectionUncheckedUpdateInput>
+    /**
+     * Choose, which WhyChooseSection to update.
+     */
+    where: WhyChooseSectionWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSection updateMany
+   */
+  export type WhyChooseSectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WhyChooseSections.
+     */
+    data: XOR<WhyChooseSectionUpdateManyMutationInput, WhyChooseSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which WhyChooseSections to update
+     */
+    where?: WhyChooseSectionWhereInput
+    /**
+     * Limit how many WhyChooseSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WhyChooseSection updateManyAndReturn
+   */
+  export type WhyChooseSectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * The data used to update WhyChooseSections.
+     */
+    data: XOR<WhyChooseSectionUpdateManyMutationInput, WhyChooseSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which WhyChooseSections to update
+     */
+    where?: WhyChooseSectionWhereInput
+    /**
+     * Limit how many WhyChooseSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WhyChooseSection upsert
+   */
+  export type WhyChooseSectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WhyChooseSection to update in case it exists.
+     */
+    where: WhyChooseSectionWhereUniqueInput
+    /**
+     * In case the WhyChooseSection found by the `where` argument doesn't exist, create a new WhyChooseSection with this data.
+     */
+    create: XOR<WhyChooseSectionCreateInput, WhyChooseSectionUncheckedCreateInput>
+    /**
+     * In case the WhyChooseSection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WhyChooseSectionUpdateInput, WhyChooseSectionUncheckedUpdateInput>
+  }
+
+  /**
+   * WhyChooseSection delete
+   */
+  export type WhyChooseSectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+    /**
+     * Filter which WhyChooseSection to delete.
+     */
+    where: WhyChooseSectionWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSection deleteMany
+   */
+  export type WhyChooseSectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WhyChooseSections to delete
+     */
+    where?: WhyChooseSectionWhereInput
+    /**
+     * Limit how many WhyChooseSections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WhyChooseSection.translations
+   */
+  export type WhyChooseSection$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    where?: WhyChooseSectionTranslationWhereInput
+    orderBy?: WhyChooseSectionTranslationOrderByWithRelationInput | WhyChooseSectionTranslationOrderByWithRelationInput[]
+    cursor?: WhyChooseSectionTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WhyChooseSectionTranslationScalarFieldEnum | WhyChooseSectionTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * WhyChooseSection without action
+   */
+  export type WhyChooseSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSection
+     */
+    select?: WhyChooseSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSection
+     */
+    omit?: WhyChooseSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WhyChooseSectionTranslation
+   */
+
+  export type AggregateWhyChooseSectionTranslation = {
+    _count: WhyChooseSectionTranslationCountAggregateOutputType | null
+    _min: WhyChooseSectionTranslationMinAggregateOutputType | null
+    _max: WhyChooseSectionTranslationMaxAggregateOutputType | null
+  }
+
+  export type WhyChooseSectionTranslationMinAggregateOutputType = {
+    id: string | null
+    whyChooseSectionId: string | null
+    languageCode: string | null
+    youtubeVideoId: string | null
+    title: string | null
+    description: string | null
+    primaryButtonText: string | null
+    primaryButtonLink: string | null
+    secondaryButtonText: string | null
+    secondaryButtonLink: string | null
+  }
+
+  export type WhyChooseSectionTranslationMaxAggregateOutputType = {
+    id: string | null
+    whyChooseSectionId: string | null
+    languageCode: string | null
+    youtubeVideoId: string | null
+    title: string | null
+    description: string | null
+    primaryButtonText: string | null
+    primaryButtonLink: string | null
+    secondaryButtonText: string | null
+    secondaryButtonLink: string | null
+  }
+
+  export type WhyChooseSectionTranslationCountAggregateOutputType = {
+    id: number
+    whyChooseSectionId: number
+    languageCode: number
+    youtubeVideoId: number
+    title: number
+    description: number
+    primaryButtonText: number
+    primaryButtonLink: number
+    secondaryButtonText: number
+    secondaryButtonLink: number
+    _all: number
+  }
+
+
+  export type WhyChooseSectionTranslationMinAggregateInputType = {
+    id?: true
+    whyChooseSectionId?: true
+    languageCode?: true
+    youtubeVideoId?: true
+    title?: true
+    description?: true
+    primaryButtonText?: true
+    primaryButtonLink?: true
+    secondaryButtonText?: true
+    secondaryButtonLink?: true
+  }
+
+  export type WhyChooseSectionTranslationMaxAggregateInputType = {
+    id?: true
+    whyChooseSectionId?: true
+    languageCode?: true
+    youtubeVideoId?: true
+    title?: true
+    description?: true
+    primaryButtonText?: true
+    primaryButtonLink?: true
+    secondaryButtonText?: true
+    secondaryButtonLink?: true
+  }
+
+  export type WhyChooseSectionTranslationCountAggregateInputType = {
+    id?: true
+    whyChooseSectionId?: true
+    languageCode?: true
+    youtubeVideoId?: true
+    title?: true
+    description?: true
+    primaryButtonText?: true
+    primaryButtonLink?: true
+    secondaryButtonText?: true
+    secondaryButtonLink?: true
+    _all?: true
+  }
+
+  export type WhyChooseSectionTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WhyChooseSectionTranslation to aggregate.
+     */
+    where?: WhyChooseSectionTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSectionTranslations to fetch.
+     */
+    orderBy?: WhyChooseSectionTranslationOrderByWithRelationInput | WhyChooseSectionTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WhyChooseSectionTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSectionTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSectionTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WhyChooseSectionTranslations
+    **/
+    _count?: true | WhyChooseSectionTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WhyChooseSectionTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WhyChooseSectionTranslationMaxAggregateInputType
+  }
+
+  export type GetWhyChooseSectionTranslationAggregateType<T extends WhyChooseSectionTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateWhyChooseSectionTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWhyChooseSectionTranslation[P]>
+      : GetScalarType<T[P], AggregateWhyChooseSectionTranslation[P]>
+  }
+
+
+
+
+  export type WhyChooseSectionTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WhyChooseSectionTranslationWhereInput
+    orderBy?: WhyChooseSectionTranslationOrderByWithAggregationInput | WhyChooseSectionTranslationOrderByWithAggregationInput[]
+    by: WhyChooseSectionTranslationScalarFieldEnum[] | WhyChooseSectionTranslationScalarFieldEnum
+    having?: WhyChooseSectionTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WhyChooseSectionTranslationCountAggregateInputType | true
+    _min?: WhyChooseSectionTranslationMinAggregateInputType
+    _max?: WhyChooseSectionTranslationMaxAggregateInputType
+  }
+
+  export type WhyChooseSectionTranslationGroupByOutputType = {
+    id: string
+    whyChooseSectionId: string
+    languageCode: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+    _count: WhyChooseSectionTranslationCountAggregateOutputType | null
+    _min: WhyChooseSectionTranslationMinAggregateOutputType | null
+    _max: WhyChooseSectionTranslationMaxAggregateOutputType | null
+  }
+
+  type GetWhyChooseSectionTranslationGroupByPayload<T extends WhyChooseSectionTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WhyChooseSectionTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WhyChooseSectionTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WhyChooseSectionTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], WhyChooseSectionTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WhyChooseSectionTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    whyChooseSectionId?: boolean
+    languageCode?: boolean
+    youtubeVideoId?: boolean
+    title?: boolean
+    description?: boolean
+    primaryButtonText?: boolean
+    primaryButtonLink?: boolean
+    secondaryButtonText?: boolean
+    secondaryButtonLink?: boolean
+    whyChooseSection?: boolean | WhyChooseSectionDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["whyChooseSectionTranslation"]>
+
+  export type WhyChooseSectionTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    whyChooseSectionId?: boolean
+    languageCode?: boolean
+    youtubeVideoId?: boolean
+    title?: boolean
+    description?: boolean
+    primaryButtonText?: boolean
+    primaryButtonLink?: boolean
+    secondaryButtonText?: boolean
+    secondaryButtonLink?: boolean
+    whyChooseSection?: boolean | WhyChooseSectionDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["whyChooseSectionTranslation"]>
+
+  export type WhyChooseSectionTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    whyChooseSectionId?: boolean
+    languageCode?: boolean
+    youtubeVideoId?: boolean
+    title?: boolean
+    description?: boolean
+    primaryButtonText?: boolean
+    primaryButtonLink?: boolean
+    secondaryButtonText?: boolean
+    secondaryButtonLink?: boolean
+    whyChooseSection?: boolean | WhyChooseSectionDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["whyChooseSectionTranslation"]>
+
+  export type WhyChooseSectionTranslationSelectScalar = {
+    id?: boolean
+    whyChooseSectionId?: boolean
+    languageCode?: boolean
+    youtubeVideoId?: boolean
+    title?: boolean
+    description?: boolean
+    primaryButtonText?: boolean
+    primaryButtonLink?: boolean
+    secondaryButtonText?: boolean
+    secondaryButtonLink?: boolean
+  }
+
+  export type WhyChooseSectionTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "whyChooseSectionId" | "languageCode" | "youtubeVideoId" | "title" | "description" | "primaryButtonText" | "primaryButtonLink" | "secondaryButtonText" | "secondaryButtonLink", ExtArgs["result"]["whyChooseSectionTranslation"]>
+  export type WhyChooseSectionTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    whyChooseSection?: boolean | WhyChooseSectionDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type WhyChooseSectionTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    whyChooseSection?: boolean | WhyChooseSectionDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type WhyChooseSectionTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    whyChooseSection?: boolean | WhyChooseSectionDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $WhyChooseSectionTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WhyChooseSectionTranslation"
+    objects: {
+      whyChooseSection: Prisma.$WhyChooseSectionPayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      whyChooseSectionId: string
+      languageCode: string
+      youtubeVideoId: string
+      title: string
+      description: string
+      primaryButtonText: string
+      primaryButtonLink: string
+      secondaryButtonText: string
+      secondaryButtonLink: string
+    }, ExtArgs["result"]["whyChooseSectionTranslation"]>
+    composites: {}
+  }
+
+  type WhyChooseSectionTranslationGetPayload<S extends boolean | null | undefined | WhyChooseSectionTranslationDefaultArgs> = $Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload, S>
+
+  type WhyChooseSectionTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WhyChooseSectionTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WhyChooseSectionTranslationCountAggregateInputType | true
+    }
+
+  export interface WhyChooseSectionTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WhyChooseSectionTranslation'], meta: { name: 'WhyChooseSectionTranslation' } }
+    /**
+     * Find zero or one WhyChooseSectionTranslation that matches the filter.
+     * @param {WhyChooseSectionTranslationFindUniqueArgs} args - Arguments to find a WhyChooseSectionTranslation
+     * @example
+     * // Get one WhyChooseSectionTranslation
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WhyChooseSectionTranslationFindUniqueArgs>(args: SelectSubset<T, WhyChooseSectionTranslationFindUniqueArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WhyChooseSectionTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WhyChooseSectionTranslationFindUniqueOrThrowArgs} args - Arguments to find a WhyChooseSectionTranslation
+     * @example
+     * // Get one WhyChooseSectionTranslation
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WhyChooseSectionTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, WhyChooseSectionTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WhyChooseSectionTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionTranslationFindFirstArgs} args - Arguments to find a WhyChooseSectionTranslation
+     * @example
+     * // Get one WhyChooseSectionTranslation
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WhyChooseSectionTranslationFindFirstArgs>(args?: SelectSubset<T, WhyChooseSectionTranslationFindFirstArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WhyChooseSectionTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionTranslationFindFirstOrThrowArgs} args - Arguments to find a WhyChooseSectionTranslation
+     * @example
+     * // Get one WhyChooseSectionTranslation
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WhyChooseSectionTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, WhyChooseSectionTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WhyChooseSectionTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WhyChooseSectionTranslations
+     * const whyChooseSectionTranslations = await prisma.whyChooseSectionTranslation.findMany()
+     * 
+     * // Get first 10 WhyChooseSectionTranslations
+     * const whyChooseSectionTranslations = await prisma.whyChooseSectionTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const whyChooseSectionTranslationWithIdOnly = await prisma.whyChooseSectionTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WhyChooseSectionTranslationFindManyArgs>(args?: SelectSubset<T, WhyChooseSectionTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WhyChooseSectionTranslation.
+     * @param {WhyChooseSectionTranslationCreateArgs} args - Arguments to create a WhyChooseSectionTranslation.
+     * @example
+     * // Create one WhyChooseSectionTranslation
+     * const WhyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.create({
+     *   data: {
+     *     // ... data to create a WhyChooseSectionTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends WhyChooseSectionTranslationCreateArgs>(args: SelectSubset<T, WhyChooseSectionTranslationCreateArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WhyChooseSectionTranslations.
+     * @param {WhyChooseSectionTranslationCreateManyArgs} args - Arguments to create many WhyChooseSectionTranslations.
+     * @example
+     * // Create many WhyChooseSectionTranslations
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WhyChooseSectionTranslationCreateManyArgs>(args?: SelectSubset<T, WhyChooseSectionTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WhyChooseSectionTranslations and returns the data saved in the database.
+     * @param {WhyChooseSectionTranslationCreateManyAndReturnArgs} args - Arguments to create many WhyChooseSectionTranslations.
+     * @example
+     * // Create many WhyChooseSectionTranslations
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WhyChooseSectionTranslations and only return the `id`
+     * const whyChooseSectionTranslationWithIdOnly = await prisma.whyChooseSectionTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WhyChooseSectionTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, WhyChooseSectionTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WhyChooseSectionTranslation.
+     * @param {WhyChooseSectionTranslationDeleteArgs} args - Arguments to delete one WhyChooseSectionTranslation.
+     * @example
+     * // Delete one WhyChooseSectionTranslation
+     * const WhyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one WhyChooseSectionTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WhyChooseSectionTranslationDeleteArgs>(args: SelectSubset<T, WhyChooseSectionTranslationDeleteArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WhyChooseSectionTranslation.
+     * @param {WhyChooseSectionTranslationUpdateArgs} args - Arguments to update one WhyChooseSectionTranslation.
+     * @example
+     * // Update one WhyChooseSectionTranslation
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WhyChooseSectionTranslationUpdateArgs>(args: SelectSubset<T, WhyChooseSectionTranslationUpdateArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WhyChooseSectionTranslations.
+     * @param {WhyChooseSectionTranslationDeleteManyArgs} args - Arguments to filter WhyChooseSectionTranslations to delete.
+     * @example
+     * // Delete a few WhyChooseSectionTranslations
+     * const { count } = await prisma.whyChooseSectionTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WhyChooseSectionTranslationDeleteManyArgs>(args?: SelectSubset<T, WhyChooseSectionTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WhyChooseSectionTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WhyChooseSectionTranslations
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WhyChooseSectionTranslationUpdateManyArgs>(args: SelectSubset<T, WhyChooseSectionTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WhyChooseSectionTranslations and returns the data updated in the database.
+     * @param {WhyChooseSectionTranslationUpdateManyAndReturnArgs} args - Arguments to update many WhyChooseSectionTranslations.
+     * @example
+     * // Update many WhyChooseSectionTranslations
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WhyChooseSectionTranslations and only return the `id`
+     * const whyChooseSectionTranslationWithIdOnly = await prisma.whyChooseSectionTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WhyChooseSectionTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, WhyChooseSectionTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WhyChooseSectionTranslation.
+     * @param {WhyChooseSectionTranslationUpsertArgs} args - Arguments to update or create a WhyChooseSectionTranslation.
+     * @example
+     * // Update or create a WhyChooseSectionTranslation
+     * const whyChooseSectionTranslation = await prisma.whyChooseSectionTranslation.upsert({
+     *   create: {
+     *     // ... data to create a WhyChooseSectionTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WhyChooseSectionTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WhyChooseSectionTranslationUpsertArgs>(args: SelectSubset<T, WhyChooseSectionTranslationUpsertArgs<ExtArgs>>): Prisma__WhyChooseSectionTranslationClient<$Result.GetResult<Prisma.$WhyChooseSectionTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WhyChooseSectionTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionTranslationCountArgs} args - Arguments to filter WhyChooseSectionTranslations to count.
+     * @example
+     * // Count the number of WhyChooseSectionTranslations
+     * const count = await prisma.whyChooseSectionTranslation.count({
+     *   where: {
+     *     // ... the filter for the WhyChooseSectionTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends WhyChooseSectionTranslationCountArgs>(
+      args?: Subset<T, WhyChooseSectionTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WhyChooseSectionTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WhyChooseSectionTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WhyChooseSectionTranslationAggregateArgs>(args: Subset<T, WhyChooseSectionTranslationAggregateArgs>): Prisma.PrismaPromise<GetWhyChooseSectionTranslationAggregateType<T>>
+
+    /**
+     * Group by WhyChooseSectionTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WhyChooseSectionTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WhyChooseSectionTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WhyChooseSectionTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: WhyChooseSectionTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WhyChooseSectionTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWhyChooseSectionTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WhyChooseSectionTranslation model
+   */
+  readonly fields: WhyChooseSectionTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WhyChooseSectionTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WhyChooseSectionTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    whyChooseSection<T extends WhyChooseSectionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WhyChooseSectionDefaultArgs<ExtArgs>>): Prisma__WhyChooseSectionClient<$Result.GetResult<Prisma.$WhyChooseSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WhyChooseSectionTranslation model
+   */
+  interface WhyChooseSectionTranslationFieldRefs {
+    readonly id: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly whyChooseSectionId: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly languageCode: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly youtubeVideoId: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly title: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly description: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly primaryButtonText: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly primaryButtonLink: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly secondaryButtonText: FieldRef<"WhyChooseSectionTranslation", 'String'>
+    readonly secondaryButtonLink: FieldRef<"WhyChooseSectionTranslation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WhyChooseSectionTranslation findUnique
+   */
+  export type WhyChooseSectionTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSectionTranslation to fetch.
+     */
+    where: WhyChooseSectionTranslationWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSectionTranslation findUniqueOrThrow
+   */
+  export type WhyChooseSectionTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSectionTranslation to fetch.
+     */
+    where: WhyChooseSectionTranslationWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSectionTranslation findFirst
+   */
+  export type WhyChooseSectionTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSectionTranslation to fetch.
+     */
+    where?: WhyChooseSectionTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSectionTranslations to fetch.
+     */
+    orderBy?: WhyChooseSectionTranslationOrderByWithRelationInput | WhyChooseSectionTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WhyChooseSectionTranslations.
+     */
+    cursor?: WhyChooseSectionTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSectionTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSectionTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WhyChooseSectionTranslations.
+     */
+    distinct?: WhyChooseSectionTranslationScalarFieldEnum | WhyChooseSectionTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * WhyChooseSectionTranslation findFirstOrThrow
+   */
+  export type WhyChooseSectionTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSectionTranslation to fetch.
+     */
+    where?: WhyChooseSectionTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSectionTranslations to fetch.
+     */
+    orderBy?: WhyChooseSectionTranslationOrderByWithRelationInput | WhyChooseSectionTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WhyChooseSectionTranslations.
+     */
+    cursor?: WhyChooseSectionTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSectionTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSectionTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WhyChooseSectionTranslations.
+     */
+    distinct?: WhyChooseSectionTranslationScalarFieldEnum | WhyChooseSectionTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * WhyChooseSectionTranslation findMany
+   */
+  export type WhyChooseSectionTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which WhyChooseSectionTranslations to fetch.
+     */
+    where?: WhyChooseSectionTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WhyChooseSectionTranslations to fetch.
+     */
+    orderBy?: WhyChooseSectionTranslationOrderByWithRelationInput | WhyChooseSectionTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WhyChooseSectionTranslations.
+     */
+    cursor?: WhyChooseSectionTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WhyChooseSectionTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WhyChooseSectionTranslations.
+     */
+    skip?: number
+    distinct?: WhyChooseSectionTranslationScalarFieldEnum | WhyChooseSectionTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * WhyChooseSectionTranslation create
+   */
+  export type WhyChooseSectionTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WhyChooseSectionTranslation.
+     */
+    data: XOR<WhyChooseSectionTranslationCreateInput, WhyChooseSectionTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * WhyChooseSectionTranslation createMany
+   */
+  export type WhyChooseSectionTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WhyChooseSectionTranslations.
+     */
+    data: WhyChooseSectionTranslationCreateManyInput | WhyChooseSectionTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WhyChooseSectionTranslation createManyAndReturn
+   */
+  export type WhyChooseSectionTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many WhyChooseSectionTranslations.
+     */
+    data: WhyChooseSectionTranslationCreateManyInput | WhyChooseSectionTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WhyChooseSectionTranslation update
+   */
+  export type WhyChooseSectionTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WhyChooseSectionTranslation.
+     */
+    data: XOR<WhyChooseSectionTranslationUpdateInput, WhyChooseSectionTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which WhyChooseSectionTranslation to update.
+     */
+    where: WhyChooseSectionTranslationWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSectionTranslation updateMany
+   */
+  export type WhyChooseSectionTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WhyChooseSectionTranslations.
+     */
+    data: XOR<WhyChooseSectionTranslationUpdateManyMutationInput, WhyChooseSectionTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which WhyChooseSectionTranslations to update
+     */
+    where?: WhyChooseSectionTranslationWhereInput
+    /**
+     * Limit how many WhyChooseSectionTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WhyChooseSectionTranslation updateManyAndReturn
+   */
+  export type WhyChooseSectionTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update WhyChooseSectionTranslations.
+     */
+    data: XOR<WhyChooseSectionTranslationUpdateManyMutationInput, WhyChooseSectionTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which WhyChooseSectionTranslations to update
+     */
+    where?: WhyChooseSectionTranslationWhereInput
+    /**
+     * Limit how many WhyChooseSectionTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WhyChooseSectionTranslation upsert
+   */
+  export type WhyChooseSectionTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WhyChooseSectionTranslation to update in case it exists.
+     */
+    where: WhyChooseSectionTranslationWhereUniqueInput
+    /**
+     * In case the WhyChooseSectionTranslation found by the `where` argument doesn't exist, create a new WhyChooseSectionTranslation with this data.
+     */
+    create: XOR<WhyChooseSectionTranslationCreateInput, WhyChooseSectionTranslationUncheckedCreateInput>
+    /**
+     * In case the WhyChooseSectionTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WhyChooseSectionTranslationUpdateInput, WhyChooseSectionTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * WhyChooseSectionTranslation delete
+   */
+  export type WhyChooseSectionTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which WhyChooseSectionTranslation to delete.
+     */
+    where: WhyChooseSectionTranslationWhereUniqueInput
+  }
+
+  /**
+   * WhyChooseSectionTranslation deleteMany
+   */
+  export type WhyChooseSectionTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WhyChooseSectionTranslations to delete
+     */
+    where?: WhyChooseSectionTranslationWhereInput
+    /**
+     * Limit how many WhyChooseSectionTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WhyChooseSectionTranslation without action
+   */
+  export type WhyChooseSectionTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WhyChooseSectionTranslation
+     */
+    select?: WhyChooseSectionTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WhyChooseSectionTranslation
+     */
+    omit?: WhyChooseSectionTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WhyChooseSectionTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model HeaderMenu
    */
 
@@ -51268,6 +53693,31 @@ export namespace Prisma {
   export type HeroBackgroundImageScalarFieldEnum = (typeof HeroBackgroundImageScalarFieldEnum)[keyof typeof HeroBackgroundImageScalarFieldEnum]
 
 
+  export const WhyChooseSectionScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type WhyChooseSectionScalarFieldEnum = (typeof WhyChooseSectionScalarFieldEnum)[keyof typeof WhyChooseSectionScalarFieldEnum]
+
+
+  export const WhyChooseSectionTranslationScalarFieldEnum: {
+    id: 'id',
+    whyChooseSectionId: 'whyChooseSectionId',
+    languageCode: 'languageCode',
+    youtubeVideoId: 'youtubeVideoId',
+    title: 'title',
+    description: 'description',
+    primaryButtonText: 'primaryButtonText',
+    primaryButtonLink: 'primaryButtonLink',
+    secondaryButtonText: 'secondaryButtonText',
+    secondaryButtonLink: 'secondaryButtonLink'
+  };
+
+  export type WhyChooseSectionTranslationScalarFieldEnum = (typeof WhyChooseSectionTranslationScalarFieldEnum)[keyof typeof WhyChooseSectionTranslationScalarFieldEnum]
+
+
   export const HeaderMenuScalarFieldEnum: {
     id: 'id',
     isActive: 'isActive',
@@ -51666,6 +54116,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
     heroContentTranslations?: HeroContentTranslationListRelationFilter
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationListRelationFilter
     routeTranslations?: RouteTranslationListRelationFilter
     headerMenuItemTranslations?: HeaderMenuItemTranslationListRelationFilter
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
@@ -51691,6 +54142,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationOrderByRelationAggregateInput
     generalSettingTranslations?: GeneralSettingTranslationOrderByRelationAggregateInput
     heroContentTranslations?: HeroContentTranslationOrderByRelationAggregateInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationOrderByRelationAggregateInput
     routeTranslations?: RouteTranslationOrderByRelationAggregateInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationOrderByRelationAggregateInput
     footerMenuItemTranslations?: FooterMenuItemTranslationOrderByRelationAggregateInput
@@ -51719,6 +54171,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationListRelationFilter
     generalSettingTranslations?: GeneralSettingTranslationListRelationFilter
     heroContentTranslations?: HeroContentTranslationListRelationFilter
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationListRelationFilter
     routeTranslations?: RouteTranslationListRelationFilter
     headerMenuItemTranslations?: HeaderMenuItemTranslationListRelationFilter
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
@@ -53865,6 +56318,135 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"HeroBackgroundImage"> | Date | string
   }
 
+  export type WhyChooseSectionWhereInput = {
+    AND?: WhyChooseSectionWhereInput | WhyChooseSectionWhereInput[]
+    OR?: WhyChooseSectionWhereInput[]
+    NOT?: WhyChooseSectionWhereInput | WhyChooseSectionWhereInput[]
+    id?: StringFilter<"WhyChooseSection"> | string
+    createdAt?: DateTimeFilter<"WhyChooseSection"> | Date | string
+    updatedAt?: DateTimeFilter<"WhyChooseSection"> | Date | string
+    translations?: WhyChooseSectionTranslationListRelationFilter
+  }
+
+  export type WhyChooseSectionOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    translations?: WhyChooseSectionTranslationOrderByRelationAggregateInput
+  }
+
+  export type WhyChooseSectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WhyChooseSectionWhereInput | WhyChooseSectionWhereInput[]
+    OR?: WhyChooseSectionWhereInput[]
+    NOT?: WhyChooseSectionWhereInput | WhyChooseSectionWhereInput[]
+    createdAt?: DateTimeFilter<"WhyChooseSection"> | Date | string
+    updatedAt?: DateTimeFilter<"WhyChooseSection"> | Date | string
+    translations?: WhyChooseSectionTranslationListRelationFilter
+  }, "id">
+
+  export type WhyChooseSectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: WhyChooseSectionCountOrderByAggregateInput
+    _max?: WhyChooseSectionMaxOrderByAggregateInput
+    _min?: WhyChooseSectionMinOrderByAggregateInput
+  }
+
+  export type WhyChooseSectionScalarWhereWithAggregatesInput = {
+    AND?: WhyChooseSectionScalarWhereWithAggregatesInput | WhyChooseSectionScalarWhereWithAggregatesInput[]
+    OR?: WhyChooseSectionScalarWhereWithAggregatesInput[]
+    NOT?: WhyChooseSectionScalarWhereWithAggregatesInput | WhyChooseSectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WhyChooseSection"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"WhyChooseSection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"WhyChooseSection"> | Date | string
+  }
+
+  export type WhyChooseSectionTranslationWhereInput = {
+    AND?: WhyChooseSectionTranslationWhereInput | WhyChooseSectionTranslationWhereInput[]
+    OR?: WhyChooseSectionTranslationWhereInput[]
+    NOT?: WhyChooseSectionTranslationWhereInput | WhyChooseSectionTranslationWhereInput[]
+    id?: StringFilter<"WhyChooseSectionTranslation"> | string
+    whyChooseSectionId?: StringFilter<"WhyChooseSectionTranslation"> | string
+    languageCode?: StringFilter<"WhyChooseSectionTranslation"> | string
+    youtubeVideoId?: StringFilter<"WhyChooseSectionTranslation"> | string
+    title?: StringFilter<"WhyChooseSectionTranslation"> | string
+    description?: StringFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonText?: StringFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonLink?: StringFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonText?: StringFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonLink?: StringFilter<"WhyChooseSectionTranslation"> | string
+    whyChooseSection?: XOR<WhyChooseSectionScalarRelationFilter, WhyChooseSectionWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type WhyChooseSectionTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    whyChooseSectionId?: SortOrder
+    languageCode?: SortOrder
+    youtubeVideoId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    primaryButtonText?: SortOrder
+    primaryButtonLink?: SortOrder
+    secondaryButtonText?: SortOrder
+    secondaryButtonLink?: SortOrder
+    whyChooseSection?: WhyChooseSectionOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type WhyChooseSectionTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    whyChooseSectionId_languageCode?: WhyChooseSectionTranslationWhyChooseSectionIdLanguageCodeCompoundUniqueInput
+    AND?: WhyChooseSectionTranslationWhereInput | WhyChooseSectionTranslationWhereInput[]
+    OR?: WhyChooseSectionTranslationWhereInput[]
+    NOT?: WhyChooseSectionTranslationWhereInput | WhyChooseSectionTranslationWhereInput[]
+    whyChooseSectionId?: StringFilter<"WhyChooseSectionTranslation"> | string
+    languageCode?: StringFilter<"WhyChooseSectionTranslation"> | string
+    youtubeVideoId?: StringFilter<"WhyChooseSectionTranslation"> | string
+    title?: StringFilter<"WhyChooseSectionTranslation"> | string
+    description?: StringFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonText?: StringFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonLink?: StringFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonText?: StringFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonLink?: StringFilter<"WhyChooseSectionTranslation"> | string
+    whyChooseSection?: XOR<WhyChooseSectionScalarRelationFilter, WhyChooseSectionWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "whyChooseSectionId_languageCode">
+
+  export type WhyChooseSectionTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    whyChooseSectionId?: SortOrder
+    languageCode?: SortOrder
+    youtubeVideoId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    primaryButtonText?: SortOrder
+    primaryButtonLink?: SortOrder
+    secondaryButtonText?: SortOrder
+    secondaryButtonLink?: SortOrder
+    _count?: WhyChooseSectionTranslationCountOrderByAggregateInput
+    _max?: WhyChooseSectionTranslationMaxOrderByAggregateInput
+    _min?: WhyChooseSectionTranslationMinOrderByAggregateInput
+  }
+
+  export type WhyChooseSectionTranslationScalarWhereWithAggregatesInput = {
+    AND?: WhyChooseSectionTranslationScalarWhereWithAggregatesInput | WhyChooseSectionTranslationScalarWhereWithAggregatesInput[]
+    OR?: WhyChooseSectionTranslationScalarWhereWithAggregatesInput[]
+    NOT?: WhyChooseSectionTranslationScalarWhereWithAggregatesInput | WhyChooseSectionTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    whyChooseSectionId?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    youtubeVideoId?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    title?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    description?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonText?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonLink?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonText?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonLink?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
+  }
+
   export type HeaderMenuWhereInput = {
     AND?: HeaderMenuWhereInput | HeaderMenuWhereInput[]
     OR?: HeaderMenuWhereInput[]
@@ -54588,6 +57170,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -54613,6 +57196,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -54638,6 +57222,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -54663,6 +57248,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -56926,6 +59512,141 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type WhyChooseSectionCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: WhyChooseSectionTranslationCreateNestedManyWithoutWhyChooseSectionInput
+  }
+
+  export type WhyChooseSectionUncheckedCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutWhyChooseSectionInput
+  }
+
+  export type WhyChooseSectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: WhyChooseSectionTranslationUpdateManyWithoutWhyChooseSectionNestedInput
+  }
+
+  export type WhyChooseSectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutWhyChooseSectionNestedInput
+  }
+
+  export type WhyChooseSectionCreateManyInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WhyChooseSectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WhyChooseSectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WhyChooseSectionTranslationCreateInput = {
+    id?: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+    whyChooseSection: WhyChooseSectionCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutWhyChooseSectionTranslationsInput
+  }
+
+  export type WhyChooseSectionTranslationUncheckedCreateInput = {
+    id?: string
+    whyChooseSectionId: string
+    languageCode: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+  }
+
+  export type WhyChooseSectionTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+    whyChooseSection?: WhyChooseSectionUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutWhyChooseSectionTranslationsNestedInput
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    whyChooseSectionId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WhyChooseSectionTranslationCreateManyInput = {
+    id?: string
+    whyChooseSectionId: string
+    languageCode: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+  }
+
+  export type WhyChooseSectionTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    whyChooseSectionId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+  }
+
   export type HeaderMenuCreateInput = {
     id?: string
     isActive?: boolean
@@ -57734,6 +60455,12 @@ export namespace Prisma {
     none?: HeroContentTranslationWhereInput
   }
 
+  export type WhyChooseSectionTranslationListRelationFilter = {
+    every?: WhyChooseSectionTranslationWhereInput
+    some?: WhyChooseSectionTranslationWhereInput
+    none?: WhyChooseSectionTranslationWhereInput
+  }
+
   export type RouteTranslationListRelationFilter = {
     every?: RouteTranslationWhereInput
     some?: RouteTranslationWhereInput
@@ -57801,6 +60528,10 @@ export namespace Prisma {
   }
 
   export type HeroContentTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WhyChooseSectionTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -59316,6 +62047,73 @@ export namespace Prisma {
     order?: SortOrder
   }
 
+  export type WhyChooseSectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WhyChooseSectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WhyChooseSectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WhyChooseSectionScalarRelationFilter = {
+    is?: WhyChooseSectionWhereInput
+    isNot?: WhyChooseSectionWhereInput
+  }
+
+  export type WhyChooseSectionTranslationWhyChooseSectionIdLanguageCodeCompoundUniqueInput = {
+    whyChooseSectionId: string
+    languageCode: string
+  }
+
+  export type WhyChooseSectionTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    whyChooseSectionId?: SortOrder
+    languageCode?: SortOrder
+    youtubeVideoId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    primaryButtonText?: SortOrder
+    primaryButtonLink?: SortOrder
+    secondaryButtonText?: SortOrder
+    secondaryButtonLink?: SortOrder
+  }
+
+  export type WhyChooseSectionTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    whyChooseSectionId?: SortOrder
+    languageCode?: SortOrder
+    youtubeVideoId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    primaryButtonText?: SortOrder
+    primaryButtonLink?: SortOrder
+    secondaryButtonText?: SortOrder
+    secondaryButtonLink?: SortOrder
+  }
+
+  export type WhyChooseSectionTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    whyChooseSectionId?: SortOrder
+    languageCode?: SortOrder
+    youtubeVideoId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    primaryButtonText?: SortOrder
+    primaryButtonLink?: SortOrder
+    secondaryButtonText?: SortOrder
+    secondaryButtonLink?: SortOrder
+  }
+
   export type HeaderMenuCountOrderByAggregateInput = {
     id?: SortOrder
     isActive?: SortOrder
@@ -59738,6 +62536,13 @@ export namespace Prisma {
     connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
   }
 
+  export type WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput> | WhyChooseSectionTranslationCreateWithoutLanguageInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput | WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyLanguageInputEnvelope
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+  }
+
   export type RouteTranslationCreateNestedManyWithoutLanguageInput = {
     create?: XOR<RouteTranslationCreateWithoutLanguageInput, RouteTranslationUncheckedCreateWithoutLanguageInput> | RouteTranslationCreateWithoutLanguageInput[] | RouteTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: RouteTranslationCreateOrConnectWithoutLanguageInput | RouteTranslationCreateOrConnectWithoutLanguageInput[]
@@ -59841,6 +62646,13 @@ export namespace Prisma {
     connectOrCreate?: HeroContentTranslationCreateOrConnectWithoutLanguageInput | HeroContentTranslationCreateOrConnectWithoutLanguageInput[]
     createMany?: HeroContentTranslationCreateManyLanguageInputEnvelope
     connect?: HeroContentTranslationWhereUniqueInput | HeroContentTranslationWhereUniqueInput[]
+  }
+
+  export type WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput> | WhyChooseSectionTranslationCreateWithoutLanguageInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput | WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyLanguageInputEnvelope
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
   }
 
   export type RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
@@ -60020,6 +62832,20 @@ export namespace Prisma {
     update?: HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput | HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput | HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
+  }
+
+  export type WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput> | WhyChooseSectionTranslationCreateWithoutLanguageInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput | WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutLanguageInput | WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyLanguageInputEnvelope
+    set?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    disconnect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    delete?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    update?: WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutLanguageInput | WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: WhyChooseSectionTranslationUpdateManyWithWhereWithoutLanguageInput | WhyChooseSectionTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: WhyChooseSectionTranslationScalarWhereInput | WhyChooseSectionTranslationScalarWhereInput[]
   }
 
   export type RouteTranslationUpdateManyWithoutLanguageNestedInput = {
@@ -60230,6 +63056,20 @@ export namespace Prisma {
     update?: HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput | HeroContentTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput | HeroContentTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: HeroContentTranslationScalarWhereInput | HeroContentTranslationScalarWhereInput[]
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput> | WhyChooseSectionTranslationCreateWithoutLanguageInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput | WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutLanguageInput | WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyLanguageInputEnvelope
+    set?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    disconnect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    delete?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    update?: WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutLanguageInput | WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: WhyChooseSectionTranslationUpdateManyWithWhereWithoutLanguageInput | WhyChooseSectionTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: WhyChooseSectionTranslationScalarWhereInput | WhyChooseSectionTranslationScalarWhereInput[]
   }
 
   export type RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
@@ -61997,6 +64837,76 @@ export namespace Prisma {
     update?: XOR<XOR<HeroContentUpdateToOneWithWhereWithoutImagesInput, HeroContentUpdateWithoutImagesInput>, HeroContentUncheckedUpdateWithoutImagesInput>
   }
 
+  export type WhyChooseSectionTranslationCreateNestedManyWithoutWhyChooseSectionInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput> | WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput | WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyWhyChooseSectionInputEnvelope
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+  }
+
+  export type WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutWhyChooseSectionInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput> | WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput | WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyWhyChooseSectionInputEnvelope
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+  }
+
+  export type WhyChooseSectionTranslationUpdateManyWithoutWhyChooseSectionNestedInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput> | WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput | WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput[]
+    upsert?: WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutWhyChooseSectionInput | WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutWhyChooseSectionInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyWhyChooseSectionInputEnvelope
+    set?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    disconnect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    delete?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    update?: WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutWhyChooseSectionInput | WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutWhyChooseSectionInput[]
+    updateMany?: WhyChooseSectionTranslationUpdateManyWithWhereWithoutWhyChooseSectionInput | WhyChooseSectionTranslationUpdateManyWithWhereWithoutWhyChooseSectionInput[]
+    deleteMany?: WhyChooseSectionTranslationScalarWhereInput | WhyChooseSectionTranslationScalarWhereInput[]
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateManyWithoutWhyChooseSectionNestedInput = {
+    create?: XOR<WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput> | WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput[] | WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput[]
+    connectOrCreate?: WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput | WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput[]
+    upsert?: WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutWhyChooseSectionInput | WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutWhyChooseSectionInput[]
+    createMany?: WhyChooseSectionTranslationCreateManyWhyChooseSectionInputEnvelope
+    set?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    disconnect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    delete?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    connect?: WhyChooseSectionTranslationWhereUniqueInput | WhyChooseSectionTranslationWhereUniqueInput[]
+    update?: WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutWhyChooseSectionInput | WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutWhyChooseSectionInput[]
+    updateMany?: WhyChooseSectionTranslationUpdateManyWithWhereWithoutWhyChooseSectionInput | WhyChooseSectionTranslationUpdateManyWithWhereWithoutWhyChooseSectionInput[]
+    deleteMany?: WhyChooseSectionTranslationScalarWhereInput | WhyChooseSectionTranslationScalarWhereInput[]
+  }
+
+  export type WhyChooseSectionCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<WhyChooseSectionCreateWithoutTranslationsInput, WhyChooseSectionUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: WhyChooseSectionCreateOrConnectWithoutTranslationsInput
+    connect?: WhyChooseSectionWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutWhyChooseSectionTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutWhyChooseSectionTranslationsInput, LanguageUncheckedCreateWithoutWhyChooseSectionTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutWhyChooseSectionTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type WhyChooseSectionUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<WhyChooseSectionCreateWithoutTranslationsInput, WhyChooseSectionUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: WhyChooseSectionCreateOrConnectWithoutTranslationsInput
+    upsert?: WhyChooseSectionUpsertWithoutTranslationsInput
+    connect?: WhyChooseSectionWhereUniqueInput
+    update?: XOR<XOR<WhyChooseSectionUpdateToOneWithWhereWithoutTranslationsInput, WhyChooseSectionUpdateWithoutTranslationsInput>, WhyChooseSectionUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutWhyChooseSectionTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutWhyChooseSectionTranslationsInput, LanguageUncheckedCreateWithoutWhyChooseSectionTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutWhyChooseSectionTranslationsInput
+    upsert?: LanguageUpsertWithoutWhyChooseSectionTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutWhyChooseSectionTranslationsInput, LanguageUpdateWithoutWhyChooseSectionTranslationsInput>, LanguageUncheckedUpdateWithoutWhyChooseSectionTranslationsInput>
+  }
+
   export type HeaderMenuItemCreateNestedManyWithoutHeaderMenuInput = {
     create?: XOR<HeaderMenuItemCreateWithoutHeaderMenuInput, HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuItemCreateWithoutHeaderMenuInput[] | HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput[]
     connectOrCreate?: HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput | HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput[]
@@ -63141,6 +66051,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type WhyChooseSectionTranslationCreateWithoutLanguageInput = {
+    id?: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+    whyChooseSection: WhyChooseSectionCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    whyChooseSectionId: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+  }
+
+  export type WhyChooseSectionTranslationCreateOrConnectWithoutLanguageInput = {
+    where: WhyChooseSectionTranslationWhereUniqueInput
+    create: XOR<WhyChooseSectionTranslationCreateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type WhyChooseSectionTranslationCreateManyLanguageInputEnvelope = {
+    data: WhyChooseSectionTranslationCreateManyLanguageInput | WhyChooseSectionTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type RouteTranslationCreateWithoutLanguageInput = {
     id?: string
     routeKey: string
@@ -63601,6 +66545,38 @@ export namespace Prisma {
     button2Link?: StringNullableFilter<"HeroContentTranslation"> | string | null
   }
 
+  export type WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: WhyChooseSectionTranslationWhereUniqueInput
+    update: XOR<WhyChooseSectionTranslationUpdateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<WhyChooseSectionTranslationCreateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: WhyChooseSectionTranslationWhereUniqueInput
+    data: XOR<WhyChooseSectionTranslationUpdateWithoutLanguageInput, WhyChooseSectionTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type WhyChooseSectionTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: WhyChooseSectionTranslationScalarWhereInput
+    data: XOR<WhyChooseSectionTranslationUpdateManyMutationInput, WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type WhyChooseSectionTranslationScalarWhereInput = {
+    AND?: WhyChooseSectionTranslationScalarWhereInput | WhyChooseSectionTranslationScalarWhereInput[]
+    OR?: WhyChooseSectionTranslationScalarWhereInput[]
+    NOT?: WhyChooseSectionTranslationScalarWhereInput | WhyChooseSectionTranslationScalarWhereInput[]
+    id?: StringFilter<"WhyChooseSectionTranslation"> | string
+    whyChooseSectionId?: StringFilter<"WhyChooseSectionTranslation"> | string
+    languageCode?: StringFilter<"WhyChooseSectionTranslation"> | string
+    youtubeVideoId?: StringFilter<"WhyChooseSectionTranslation"> | string
+    title?: StringFilter<"WhyChooseSectionTranslation"> | string
+    description?: StringFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonText?: StringFilter<"WhyChooseSectionTranslation"> | string
+    primaryButtonLink?: StringFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonText?: StringFilter<"WhyChooseSectionTranslation"> | string
+    secondaryButtonLink?: StringFilter<"WhyChooseSectionTranslation"> | string
+  }
+
   export type RouteTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
     where: RouteTranslationWhereUniqueInput
     update: XOR<RouteTranslationUpdateWithoutLanguageInput, RouteTranslationUncheckedUpdateWithoutLanguageInput>
@@ -63759,6 +66735,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
@@ -63783,6 +66760,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -63823,6 +66801,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
@@ -63847,6 +66826,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -64090,6 +67070,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -64114,6 +67095,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -64187,6 +67169,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -64211,6 +67194,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -64990,6 +67974,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -65014,6 +67999,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -65217,6 +68203,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -65241,6 +68228,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -66725,6 +69713,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -66749,6 +69738,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -66818,6 +69808,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -66842,6 +69833,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -67041,6 +70033,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -67065,6 +70058,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -67130,6 +70124,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -67154,6 +70149,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -67357,6 +70353,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -67381,6 +70378,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -67448,6 +70446,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -67472,6 +70471,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -67673,6 +70673,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -67697,6 +70698,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -67764,6 +70766,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -67788,6 +70791,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -67989,6 +70993,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -68013,6 +71018,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -68078,6 +71084,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -68102,6 +71109,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -68307,6 +71315,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -68331,6 +71340,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -68398,6 +71408,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -68422,6 +71433,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -68537,6 +71549,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -68561,6 +71574,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -68638,6 +71652,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -68662,6 +71677,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -68810,6 +71826,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -68834,6 +71851,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -68899,6 +71917,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -68923,6 +71942,7 @@ export namespace Prisma {
     hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -68972,6 +71992,212 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     translations?: HeroContentTranslationUncheckedUpdateManyWithoutHeroContentNestedInput
+  }
+
+  export type WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput = {
+    id?: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+    language: LanguageCreateNestedOneWithoutWhyChooseSectionTranslationsInput
+  }
+
+  export type WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput = {
+    id?: string
+    languageCode: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+  }
+
+  export type WhyChooseSectionTranslationCreateOrConnectWithoutWhyChooseSectionInput = {
+    where: WhyChooseSectionTranslationWhereUniqueInput
+    create: XOR<WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput>
+  }
+
+  export type WhyChooseSectionTranslationCreateManyWhyChooseSectionInputEnvelope = {
+    data: WhyChooseSectionTranslationCreateManyWhyChooseSectionInput | WhyChooseSectionTranslationCreateManyWhyChooseSectionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type WhyChooseSectionTranslationUpsertWithWhereUniqueWithoutWhyChooseSectionInput = {
+    where: WhyChooseSectionTranslationWhereUniqueInput
+    update: XOR<WhyChooseSectionTranslationUpdateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedUpdateWithoutWhyChooseSectionInput>
+    create: XOR<WhyChooseSectionTranslationCreateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedCreateWithoutWhyChooseSectionInput>
+  }
+
+  export type WhyChooseSectionTranslationUpdateWithWhereUniqueWithoutWhyChooseSectionInput = {
+    where: WhyChooseSectionTranslationWhereUniqueInput
+    data: XOR<WhyChooseSectionTranslationUpdateWithoutWhyChooseSectionInput, WhyChooseSectionTranslationUncheckedUpdateWithoutWhyChooseSectionInput>
+  }
+
+  export type WhyChooseSectionTranslationUpdateManyWithWhereWithoutWhyChooseSectionInput = {
+    where: WhyChooseSectionTranslationScalarWhereInput
+    data: XOR<WhyChooseSectionTranslationUpdateManyMutationInput, WhyChooseSectionTranslationUncheckedUpdateManyWithoutWhyChooseSectionInput>
+  }
+
+  export type WhyChooseSectionCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WhyChooseSectionUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WhyChooseSectionCreateOrConnectWithoutTranslationsInput = {
+    where: WhyChooseSectionWhereUniqueInput
+    create: XOR<WhyChooseSectionCreateWithoutTranslationsInput, WhyChooseSectionUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutWhyChooseSectionTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutWhyChooseSectionTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutWhyChooseSectionTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutWhyChooseSectionTranslationsInput, LanguageUncheckedCreateWithoutWhyChooseSectionTranslationsInput>
+  }
+
+  export type WhyChooseSectionUpsertWithoutTranslationsInput = {
+    update: XOR<WhyChooseSectionUpdateWithoutTranslationsInput, WhyChooseSectionUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<WhyChooseSectionCreateWithoutTranslationsInput, WhyChooseSectionUncheckedCreateWithoutTranslationsInput>
+    where?: WhyChooseSectionWhereInput
+  }
+
+  export type WhyChooseSectionUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: WhyChooseSectionWhereInput
+    data: XOR<WhyChooseSectionUpdateWithoutTranslationsInput, WhyChooseSectionUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type WhyChooseSectionUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WhyChooseSectionUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LanguageUpsertWithoutWhyChooseSectionTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutWhyChooseSectionTranslationsInput, LanguageUncheckedUpdateWithoutWhyChooseSectionTranslationsInput>
+    create: XOR<LanguageCreateWithoutWhyChooseSectionTranslationsInput, LanguageUncheckedCreateWithoutWhyChooseSectionTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutWhyChooseSectionTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutWhyChooseSectionTranslationsInput, LanguageUncheckedUpdateWithoutWhyChooseSectionTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutWhyChooseSectionTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutWhyChooseSectionTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeaderMenuItemCreateWithoutHeaderMenuInput = {
@@ -69113,6 +72339,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -69137,6 +72364,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -69204,6 +72432,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -69228,6 +72457,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -69693,6 +72923,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
@@ -69717,6 +72948,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -69800,6 +73032,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
@@ -69824,6 +73057,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -69967,6 +73201,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
@@ -69991,6 +73226,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -70060,6 +73296,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
@@ -70084,6 +73321,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -70411,6 +73649,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
@@ -70435,6 +73674,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
@@ -70514,6 +73754,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
@@ -70538,6 +73779,7 @@ export namespace Prisma {
     hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
@@ -70672,6 +73914,18 @@ export namespace Prisma {
     button1Link?: string | null
     button2Text?: string | null
     button2Link?: string | null
+  }
+
+  export type WhyChooseSectionTranslationCreateManyLanguageInput = {
+    id?: string
+    whyChooseSectionId: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
   }
 
   export type RouteTranslationCreateManyLanguageInput = {
@@ -71110,6 +74364,42 @@ export namespace Prisma {
     button1Link?: NullableStringFieldUpdateOperationsInput | string | null
     button2Text?: NullableStringFieldUpdateOperationsInput | string | null
     button2Link?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type WhyChooseSectionTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+    whyChooseSection?: WhyChooseSectionUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    whyChooseSectionId?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    whyChooseSectionId?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
   }
 
   export type RouteTranslationUpdateWithoutLanguageInput = {
@@ -72406,6 +75696,54 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WhyChooseSectionTranslationCreateManyWhyChooseSectionInput = {
+    id?: string
+    languageCode: string
+    youtubeVideoId: string
+    title: string
+    description: string
+    primaryButtonText: string
+    primaryButtonLink: string
+    secondaryButtonText: string
+    secondaryButtonLink: string
+  }
+
+  export type WhyChooseSectionTranslationUpdateWithoutWhyChooseSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+    language?: LanguageUpdateOneRequiredWithoutWhyChooseSectionTranslationsNestedInput
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateWithoutWhyChooseSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WhyChooseSectionTranslationUncheckedUpdateManyWithoutWhyChooseSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    youtubeVideoId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    primaryButtonText?: StringFieldUpdateOperationsInput | string
+    primaryButtonLink?: StringFieldUpdateOperationsInput | string
+    secondaryButtonText?: StringFieldUpdateOperationsInput | string
+    secondaryButtonLink?: StringFieldUpdateOperationsInput | string
   }
 
   export type HeaderMenuItemCreateManyHeaderMenuInput = {

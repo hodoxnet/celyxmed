@@ -88,9 +88,10 @@ const navItems: NavItem[] = [
   },
   {
     title: "Anasayfa Modülleri", // Yeni ana menü
-    icon: <LayoutGrid className="h-5 w-5" />, 
+    icon: <LayoutGrid className="h-5 w-5" />,
     subItems: [ // Alt menüler
       { title: "Hero Alanı Yönetimi", href: "/admin/hero" },
+      { title: "Neden Celyxmed Bölümü", href: "/admin/why-choose-section" },
       // Gelecekteki anasayfa modülleri buraya eklenebilir
     ],
   },

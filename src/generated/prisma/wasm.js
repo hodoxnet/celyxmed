@@ -456,6 +456,25 @@ exports.Prisma.HeroBackgroundImageScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.WhyChooseSectionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WhyChooseSectionTranslationScalarFieldEnum = {
+  id: 'id',
+  whyChooseSectionId: 'whyChooseSectionId',
+  languageCode: 'languageCode',
+  youtubeVideoId: 'youtubeVideoId',
+  title: 'title',
+  description: 'description',
+  primaryButtonText: 'primaryButtonText',
+  primaryButtonLink: 'primaryButtonLink',
+  secondaryButtonText: 'secondaryButtonText',
+  secondaryButtonLink: 'secondaryButtonLink'
+};
+
 exports.Prisma.HeaderMenuScalarFieldEnum = {
   id: 'id',
   isActive: 'isActive',
@@ -605,6 +624,8 @@ exports.Prisma.ModelName = {
   HeroContent: 'HeroContent',
   HeroContentTranslation: 'HeroContentTranslation',
   HeroBackgroundImage: 'HeroBackgroundImage',
+  WhyChooseSection: 'WhyChooseSection',
+  WhyChooseSectionTranslation: 'WhyChooseSectionTranslation',
   HeaderMenu: 'HeaderMenu',
   HeaderMenuTranslation: 'HeaderMenuTranslation',
   HeaderMenuItem: 'HeaderMenuItem',

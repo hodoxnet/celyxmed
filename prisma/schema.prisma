@@ -61,6 +61,7 @@ model Language {
   generalSettingTranslations GeneralSettingTranslation[] // Yeni eklenecek alan
   // sliderTranslations SliderTranslation[] // Slider ilişkisi kaldırıldı
   heroContentTranslations HeroContentTranslation[] // Yeni HeroContent ilişkisi
+  whyChooseSectionTranslations WhyChooseSectionTranslation[] // Neden Celyxmed bölümü ilişkisi
 
   // Rota çevirileri ilişkisi
   routeTranslations RouteTranslation[]
@@ -524,7 +525,7 @@ model HeroContent {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   translations HeroContentTranslation[]
-  images       HeroBackgroundImage[] 
+  images       HeroBackgroundImage[]
 }
 
 // Hero Alanı Çevirileri (Dile özgü metinler)
@@ -551,10 +552,42 @@ model HeroBackgroundImage {
   imageUrl      String      // Resim URL'si
   order         Int         @default(0) // Sıralama
   isActive      Boolean     @default(true) // Resmin aktif olup olmadığı
-  heroContent   HeroContent @relation(fields: [heroContentId], references: [id], onDelete: Cascade) 
+  heroContent   HeroContent @relation(fields: [heroContentId], references: [id], onDelete: Cascade)
   heroContentId String      // Sabit olarak "main" olacak
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+}
+
+// Ana Sayfa Why Choose Section (Tek Kayıt Olacak)
+model WhyChooseSection {
+  id           String   @id @default("main") // Sabit ID, sadece bir tane olacak
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  translations WhyChooseSectionTranslation[]
+}
+
+// Why Choose Section Çevirileri (Dile özgü metinler)
+model WhyChooseSectionTranslation {
+  id                    String            @id @default(cuid())
+  whyChooseSection      WhyChooseSection  @relation(fields: [whyChooseSectionId], references: [id], onDelete: Cascade)
+  whyChooseSectionId    String            // Sabit olarak "main" olacak
+  language              Language          @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode          String
+
+  // Video
+  youtubeVideoId        String            // YouTube video ID'si (embed için)
+
+  // Başlık ve Açıklama
+  title                 String            // Bölüm başlığı
+  description           String            @db.Text // Bölüm açıklaması
+
+  // Butonlar
+  primaryButtonText     String            // İlk buton metni
+  primaryButtonLink     String            // İlk buton bağlantısı
+  secondaryButtonText   String            // İkinci buton metni
+  secondaryButtonLink   String            // İkinci buton bağlantısı
+
+  @@unique([whyChooseSectionId, languageCode])
 }
 
 // ----- MENÜ YÖNETİMİ MODELLERİ -----
