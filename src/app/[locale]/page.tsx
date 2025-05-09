@@ -6,7 +6,7 @@
 // Ana sayfa bölüm bileşenlerini import et
 import HeroSection from '@/components/home/HeroSection';
 import TreatmentsSection from '@/components/home/TreatmentsSection';
-import ClinicShowcaseDynamic from '@/components/home/ClinicShowcaseDynamic'; // Dinamik sürüm kullanılıyor
+import ClinicShowcaseCarousel from '@/components/home/ClinicShowcaseCarousel'; // Carousel sürümü kullanılıyor
 import WhyTrustSection from '@/components/home/WhyTrustSection';
 import SuccessStories from '@/components/home/SuccessStories';
 import FeaturesTabs from '@/components/home/FeaturesTabs';
@@ -22,7 +22,7 @@ export default function HomePage() {
         <HeroSection />
         <WhyChooseSection /> {/* index.html'deki video ve açıklama bölümü */}
         <TreatmentsSection />
-        <ClinicShowcaseDynamic />
+        <ClinicShowcaseCarousel />
         <WhyTrustSection />
         <SuccessStories />
         <FeaturesTabs />
