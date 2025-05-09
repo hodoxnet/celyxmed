@@ -61,8 +61,16 @@ interface HeaderMenuItemData {
 
 interface HeaderMenuData {
   id: string;
+  // name: string; // Eski yapı, kaldırıldı
+  translations: ApiHeaderMenuTranslation[]; // Yeni yapı (ApiHeaderMenuTranslation tipi bu dosyada tanımlı olmalı veya import edilmeli)
+}
+
+// ApiHeaderMenuTranslation tipini tanımla (eğer import edilmiyorsa)
+interface ApiHeaderMenuTranslation { 
+  languageCode: string;
   name: string;
 }
+
 
 // MenuItemType enum'ı (API ile aynı olmalı)
 enum MenuItemType {
@@ -171,8 +179,8 @@ export default function HeaderMenuItemsPage() {
   const [headerMenu, setHeaderMenu] = useState<HeaderMenuData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeLanguages, setActiveLanguages] = useState<ActiveLanguage[]>([]); // Aktif diller için state
-  const [currentLanguage, setCurrentLanguage] = useState(''); // Başlangıçta boş, ilk aktif dil atanacak
+  const [activeLanguages, setActiveLanguages] = useState<ActiveLanguage[]>([]);
+  const [currentLanguage, setCurrentLanguage] = useState(''); // Liste için varsayılan dil
 
   // Lookup data states
   const [blogLookup, setBlogLookup] = useState<LookupItem[]>([]);
@@ -419,6 +427,15 @@ export default function HeaderMenuItemsPage() {
     [] // menuItems bağımlılığı sorun yaratabilir, dikkatli olunmalı.
   );
 
+  const getMenuDisplayName = (currentMenu: HeaderMenuData | null) => {
+    if (!currentMenu || !currentMenu.translations || currentMenu.translations.length === 0) {
+      return 'Header Menüsü';
+    }
+    const trTranslation = currentMenu.translations.find(t => t.languageCode === 'tr');
+    if (trTranslation) return trTranslation.name;
+    return currentMenu.translations[0]?.name || 'İsimsiz Menü';
+  };
+
   const renderMenuItems = (items: HeaderMenuItemData[], level = 0): JSX.Element[] => {
     return items.map((item, index) => (
       <React.Fragment key={item.id}>
@@ -441,13 +458,15 @@ export default function HeaderMenuItemsPage() {
 
   if (isLoading) return <p className="text-center py-10">Yükleniyor...</p>;
   if (error) return <p className="text-center py-10 text-red-500">Hata: {error}</p>;
+  if (!headerMenu && !isLoading) return <p className="text-center py-10">Header menüsü bulunamadı.</p>; // Menü null ise göster
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="container mx-auto py-8 px-4 md:px-6">
+        {/* getMenuDisplayName fonksiyonu buraya yanlışlıkla eklenmişti, yukarı taşındı */}
         <div className="flex justify-between items-center mb-2">
           <h1 className="text-3xl font-bold">
-            Header Menü Öğeleri: {headerMenu?.name || 'Yükleniyor...'}
+            Header Menü Öğeleri: {getMenuDisplayName(headerMenu)} {/* Fonksiyonu burada çağır */}
           </h1>
           <Button onClick={() => openNewItemDialog(null)}>
             <PlusCircle className="mr-2 h-5 w-5" /> Yeni Ana Menü Öğesi Ekle

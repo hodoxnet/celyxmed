@@ -458,8 +458,16 @@ exports.Prisma.HeroBackgroundImageScalarFieldEnum = {
 
 exports.Prisma.HeaderMenuScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HeaderMenuTranslationScalarFieldEnum = {
+  id: 'id',
+  headerMenuId: 'headerMenuId',
+  languageCode: 'languageCode',
+  name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -490,9 +498,17 @@ exports.Prisma.HeaderMenuItemTranslationScalarFieldEnum = {
 
 exports.Prisma.FooterMenuScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   order: 'order',
   isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FooterMenuTranslationScalarFieldEnum = {
+  id: 'id',
+  footerMenuId: 'footerMenuId',
+  languageCode: 'languageCode',
+  name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -590,9 +606,11 @@ exports.Prisma.ModelName = {
   HeroContentTranslation: 'HeroContentTranslation',
   HeroBackgroundImage: 'HeroBackgroundImage',
   HeaderMenu: 'HeaderMenu',
+  HeaderMenuTranslation: 'HeaderMenuTranslation',
   HeaderMenuItem: 'HeaderMenuItem',
   HeaderMenuItemTranslation: 'HeaderMenuItemTranslation',
   FooterMenu: 'FooterMenu',
+  FooterMenuTranslation: 'FooterMenuTranslation',
   FooterMenuItem: 'FooterMenuItem',
   FooterMenuItemTranslation: 'FooterMenuItemTranslation'
 };

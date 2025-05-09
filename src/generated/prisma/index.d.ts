@@ -179,6 +179,11 @@ export type HeroBackgroundImage = $Result.DefaultSelection<Prisma.$HeroBackgroun
  */
 export type HeaderMenu = $Result.DefaultSelection<Prisma.$HeaderMenuPayload>
 /**
+ * Model HeaderMenuTranslation
+ * 
+ */
+export type HeaderMenuTranslation = $Result.DefaultSelection<Prisma.$HeaderMenuTranslationPayload>
+/**
  * Model HeaderMenuItem
  * 
  */
@@ -193,6 +198,11 @@ export type HeaderMenuItemTranslation = $Result.DefaultSelection<Prisma.$HeaderM
  * 
  */
 export type FooterMenu = $Result.DefaultSelection<Prisma.$FooterMenuPayload>
+/**
+ * Model FooterMenuTranslation
+ * 
+ */
+export type FooterMenuTranslation = $Result.DefaultSelection<Prisma.$FooterMenuTranslationPayload>
 /**
  * Model FooterMenuItem
  * 
@@ -690,6 +700,16 @@ export class PrismaClient<
   get headerMenu(): Prisma.HeaderMenuDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.headerMenuTranslation`: Exposes CRUD operations for the **HeaderMenuTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HeaderMenuTranslations
+    * const headerMenuTranslations = await prisma.headerMenuTranslation.findMany()
+    * ```
+    */
+  get headerMenuTranslation(): Prisma.HeaderMenuTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.headerMenuItem`: Exposes CRUD operations for the **HeaderMenuItem** model.
     * Example usage:
     * ```ts
@@ -718,6 +738,16 @@ export class PrismaClient<
     * ```
     */
   get footerMenu(): Prisma.FooterMenuDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.footerMenuTranslation`: Exposes CRUD operations for the **FooterMenuTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FooterMenuTranslations
+    * const footerMenuTranslations = await prisma.footerMenuTranslation.findMany()
+    * ```
+    */
+  get footerMenuTranslation(): Prisma.FooterMenuTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.footerMenuItem`: Exposes CRUD operations for the **FooterMenuItem** model.
@@ -1211,9 +1241,11 @@ export namespace Prisma {
     HeroContentTranslation: 'HeroContentTranslation',
     HeroBackgroundImage: 'HeroBackgroundImage',
     HeaderMenu: 'HeaderMenu',
+    HeaderMenuTranslation: 'HeaderMenuTranslation',
     HeaderMenuItem: 'HeaderMenuItem',
     HeaderMenuItemTranslation: 'HeaderMenuItemTranslation',
     FooterMenu: 'FooterMenu',
+    FooterMenuTranslation: 'FooterMenuTranslation',
     FooterMenuItem: 'FooterMenuItem',
     FooterMenuItemTranslation: 'FooterMenuItemTranslation'
   };
@@ -1234,7 +1266,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "headerMenu" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuItem" | "footerMenuItemTranslation"
+      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "headerMenu" | "headerMenuTranslation" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuTranslation" | "footerMenuItem" | "footerMenuItemTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3680,6 +3712,80 @@ export namespace Prisma {
           }
         }
       }
+      HeaderMenuTranslation: {
+        payload: Prisma.$HeaderMenuTranslationPayload<ExtArgs>
+        fields: Prisma.HeaderMenuTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HeaderMenuTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HeaderMenuTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.HeaderMenuTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HeaderMenuTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.HeaderMenuTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.HeaderMenuTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.HeaderMenuTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HeaderMenuTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.HeaderMenuTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>
+          }
+          update: {
+            args: Prisma.HeaderMenuTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.HeaderMenuTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HeaderMenuTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HeaderMenuTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.HeaderMenuTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeaderMenuTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.HeaderMenuTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHeaderMenuTranslation>
+          }
+          groupBy: {
+            args: Prisma.HeaderMenuTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HeaderMenuTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HeaderMenuTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<HeaderMenuTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
       HeaderMenuItem: {
         payload: Prisma.$HeaderMenuItemPayload<ExtArgs>
         fields: Prisma.HeaderMenuItemFieldRefs
@@ -3899,6 +4005,80 @@ export namespace Prisma {
           count: {
             args: Prisma.FooterMenuCountArgs<ExtArgs>
             result: $Utils.Optional<FooterMenuCountAggregateOutputType> | number
+          }
+        }
+      }
+      FooterMenuTranslation: {
+        payload: Prisma.$FooterMenuTranslationPayload<ExtArgs>
+        fields: Prisma.FooterMenuTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FooterMenuTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FooterMenuTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.FooterMenuTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FooterMenuTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.FooterMenuTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.FooterMenuTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.FooterMenuTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FooterMenuTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.FooterMenuTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>
+          }
+          update: {
+            args: Prisma.FooterMenuTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.FooterMenuTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FooterMenuTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FooterMenuTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.FooterMenuTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FooterMenuTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.FooterMenuTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFooterMenuTranslation>
+          }
+          groupBy: {
+            args: Prisma.FooterMenuTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FooterMenuTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FooterMenuTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<FooterMenuTranslationCountAggregateOutputType> | number
           }
         }
       }
@@ -4167,9 +4347,11 @@ export namespace Prisma {
     heroContentTranslation?: HeroContentTranslationOmit
     heroBackgroundImage?: HeroBackgroundImageOmit
     headerMenu?: HeaderMenuOmit
+    headerMenuTranslation?: HeaderMenuTranslationOmit
     headerMenuItem?: HeaderMenuItemOmit
     headerMenuItemTranslation?: HeaderMenuItemTranslationOmit
     footerMenu?: FooterMenuOmit
+    footerMenuTranslation?: FooterMenuTranslationOmit
     footerMenuItem?: FooterMenuItemOmit
     footerMenuItemTranslation?: FooterMenuItemTranslationOmit
   }
@@ -4279,6 +4461,8 @@ export namespace Prisma {
     routeTranslations: number
     headerMenuItemTranslations: number
     footerMenuItemTranslations: number
+    headerMenuTranslations: number
+    footerMenuTranslations: number
   }
 
   export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4295,6 +4479,8 @@ export namespace Prisma {
     routeTranslations?: boolean | LanguageCountOutputTypeCountRouteTranslationsArgs
     headerMenuItemTranslations?: boolean | LanguageCountOutputTypeCountHeaderMenuItemTranslationsArgs
     footerMenuItemTranslations?: boolean | LanguageCountOutputTypeCountFooterMenuItemTranslationsArgs
+    headerMenuTranslations?: boolean | LanguageCountOutputTypeCountHeaderMenuTranslationsArgs
+    footerMenuTranslations?: boolean | LanguageCountOutputTypeCountFooterMenuTranslationsArgs
   }
 
   // Custom InputTypes
@@ -4397,6 +4583,20 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountFooterMenuItemTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FooterMenuItemTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountHeaderMenuTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeaderMenuTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountFooterMenuTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FooterMenuTranslationWhereInput
   }
 
 
@@ -4900,10 +5100,12 @@ export namespace Prisma {
 
   export type HeaderMenuCountOutputType = {
     items: number
+    translations: number
   }
 
   export type HeaderMenuCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | HeaderMenuCountOutputTypeCountItemsArgs
+    translations?: boolean | HeaderMenuCountOutputTypeCountTranslationsArgs
   }
 
   // Custom InputTypes
@@ -4922,6 +5124,13 @@ export namespace Prisma {
    */
   export type HeaderMenuCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HeaderMenuItemWhereInput
+  }
+
+  /**
+   * HeaderMenuCountOutputType without action
+   */
+  export type HeaderMenuCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeaderMenuTranslationWhereInput
   }
 
 
@@ -4971,10 +5180,12 @@ export namespace Prisma {
 
   export type FooterMenuCountOutputType = {
     items: number
+    translations: number
   }
 
   export type FooterMenuCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | FooterMenuCountOutputTypeCountItemsArgs
+    translations?: boolean | FooterMenuCountOutputTypeCountTranslationsArgs
   }
 
   // Custom InputTypes
@@ -4993,6 +5204,13 @@ export namespace Prisma {
    */
   export type FooterMenuCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FooterMenuItemWhereInput
+  }
+
+  /**
+   * FooterMenuCountOutputType without action
+   */
+  export type FooterMenuCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FooterMenuTranslationWhereInput
   }
 
 
@@ -7253,6 +7471,8 @@ export namespace Prisma {
     routeTranslations?: boolean | Language$routeTranslationsArgs<ExtArgs>
     headerMenuItemTranslations?: boolean | Language$headerMenuItemTranslationsArgs<ExtArgs>
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
+    headerMenuTranslations?: boolean | Language$headerMenuTranslationsArgs<ExtArgs>
+    footerMenuTranslations?: boolean | Language$footerMenuTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["language"]>
 
@@ -7301,6 +7521,8 @@ export namespace Prisma {
     routeTranslations?: boolean | Language$routeTranslationsArgs<ExtArgs>
     headerMenuItemTranslations?: boolean | Language$headerMenuItemTranslationsArgs<ExtArgs>
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
+    headerMenuTranslations?: boolean | Language$headerMenuTranslationsArgs<ExtArgs>
+    footerMenuTranslations?: boolean | Language$footerMenuTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7322,6 +7544,8 @@ export namespace Prisma {
       routeTranslations: Prisma.$RouteTranslationPayload<ExtArgs>[]
       headerMenuItemTranslations: Prisma.$HeaderMenuItemTranslationPayload<ExtArgs>[]
       footerMenuItemTranslations: Prisma.$FooterMenuItemTranslationPayload<ExtArgs>[]
+      headerMenuTranslations: Prisma.$HeaderMenuTranslationPayload<ExtArgs>[]
+      footerMenuTranslations: Prisma.$FooterMenuTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7738,6 +7962,8 @@ export namespace Prisma {
     routeTranslations<T extends Language$routeTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$routeTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RouteTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     headerMenuItemTranslations<T extends Language$headerMenuItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$headerMenuItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     footerMenuItemTranslations<T extends Language$footerMenuItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$footerMenuItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    headerMenuTranslations<T extends Language$headerMenuTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$headerMenuTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    footerMenuTranslations<T extends Language$footerMenuTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$footerMenuTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8471,6 +8697,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FooterMenuItemTranslationScalarFieldEnum | FooterMenuItemTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.headerMenuTranslations
+   */
+  export type Language$headerMenuTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    where?: HeaderMenuTranslationWhereInput
+    orderBy?: HeaderMenuTranslationOrderByWithRelationInput | HeaderMenuTranslationOrderByWithRelationInput[]
+    cursor?: HeaderMenuTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HeaderMenuTranslationScalarFieldEnum | HeaderMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.footerMenuTranslations
+   */
+  export type Language$footerMenuTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    where?: FooterMenuTranslationWhereInput
+    orderBy?: FooterMenuTranslationOrderByWithRelationInput | FooterMenuTranslationOrderByWithRelationInput[]
+    cursor?: FooterMenuTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FooterMenuTranslationScalarFieldEnum | FooterMenuTranslationScalarFieldEnum[]
   }
 
   /**
@@ -41451,7 +41725,6 @@ export namespace Prisma {
 
   export type HeaderMenuMinAggregateOutputType = {
     id: string | null
-    name: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -41459,7 +41732,6 @@ export namespace Prisma {
 
   export type HeaderMenuMaxAggregateOutputType = {
     id: string | null
-    name: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -41467,7 +41739,6 @@ export namespace Prisma {
 
   export type HeaderMenuCountAggregateOutputType = {
     id: number
-    name: number
     isActive: number
     createdAt: number
     updatedAt: number
@@ -41477,7 +41748,6 @@ export namespace Prisma {
 
   export type HeaderMenuMinAggregateInputType = {
     id?: true
-    name?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -41485,7 +41755,6 @@ export namespace Prisma {
 
   export type HeaderMenuMaxAggregateInputType = {
     id?: true
-    name?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -41493,7 +41762,6 @@ export namespace Prisma {
 
   export type HeaderMenuCountAggregateInputType = {
     id?: true
-    name?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -41574,7 +41842,6 @@ export namespace Prisma {
 
   export type HeaderMenuGroupByOutputType = {
     id: string
-    name: string
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -41599,17 +41866,16 @@ export namespace Prisma {
 
   export type HeaderMenuSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     items?: boolean | HeaderMenu$itemsArgs<ExtArgs>
+    translations?: boolean | HeaderMenu$translationsArgs<ExtArgs>
     _count?: boolean | HeaderMenuCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["headerMenu"]>
 
   export type HeaderMenuSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -41617,7 +41883,6 @@ export namespace Prisma {
 
   export type HeaderMenuSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -41625,15 +41890,15 @@ export namespace Prisma {
 
   export type HeaderMenuSelectScalar = {
     id?: boolean
-    name?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type HeaderMenuOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["headerMenu"]>
+  export type HeaderMenuOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["headerMenu"]>
   export type HeaderMenuInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | HeaderMenu$itemsArgs<ExtArgs>
+    translations?: boolean | HeaderMenu$translationsArgs<ExtArgs>
     _count?: boolean | HeaderMenuCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type HeaderMenuIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -41643,10 +41908,10 @@ export namespace Prisma {
     name: "HeaderMenu"
     objects: {
       items: Prisma.$HeaderMenuItemPayload<ExtArgs>[]
+      translations: Prisma.$HeaderMenuTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
       isActive: boolean
       createdAt: Date
       updatedAt: Date
@@ -42045,6 +42310,7 @@ export namespace Prisma {
   export interface Prisma__HeaderMenuClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     items<T extends HeaderMenu$itemsArgs<ExtArgs> = {}>(args?: Subset<T, HeaderMenu$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    translations<T extends HeaderMenu$translationsArgs<ExtArgs> = {}>(args?: Subset<T, HeaderMenu$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -42075,7 +42341,6 @@ export namespace Prisma {
    */
   interface HeaderMenuFieldRefs {
     readonly id: FieldRef<"HeaderMenu", 'String'>
-    readonly name: FieldRef<"HeaderMenu", 'String'>
     readonly isActive: FieldRef<"HeaderMenu", 'Boolean'>
     readonly createdAt: FieldRef<"HeaderMenu", 'DateTime'>
     readonly updatedAt: FieldRef<"HeaderMenu", 'DateTime'>
@@ -42491,6 +42756,30 @@ export namespace Prisma {
   }
 
   /**
+   * HeaderMenu.translations
+   */
+  export type HeaderMenu$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    where?: HeaderMenuTranslationWhereInput
+    orderBy?: HeaderMenuTranslationOrderByWithRelationInput | HeaderMenuTranslationOrderByWithRelationInput[]
+    cursor?: HeaderMenuTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HeaderMenuTranslationScalarFieldEnum | HeaderMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
    * HeaderMenu without action
    */
   export type HeaderMenuDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -42506,6 +42795,1085 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: HeaderMenuInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HeaderMenuTranslation
+   */
+
+  export type AggregateHeaderMenuTranslation = {
+    _count: HeaderMenuTranslationCountAggregateOutputType | null
+    _min: HeaderMenuTranslationMinAggregateOutputType | null
+    _max: HeaderMenuTranslationMaxAggregateOutputType | null
+  }
+
+  export type HeaderMenuTranslationMinAggregateOutputType = {
+    id: string | null
+    headerMenuId: string | null
+    languageCode: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HeaderMenuTranslationMaxAggregateOutputType = {
+    id: string | null
+    headerMenuId: string | null
+    languageCode: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HeaderMenuTranslationCountAggregateOutputType = {
+    id: number
+    headerMenuId: number
+    languageCode: number
+    name: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HeaderMenuTranslationMinAggregateInputType = {
+    id?: true
+    headerMenuId?: true
+    languageCode?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HeaderMenuTranslationMaxAggregateInputType = {
+    id?: true
+    headerMenuId?: true
+    languageCode?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HeaderMenuTranslationCountAggregateInputType = {
+    id?: true
+    headerMenuId?: true
+    languageCode?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HeaderMenuTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HeaderMenuTranslation to aggregate.
+     */
+    where?: HeaderMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeaderMenuTranslations to fetch.
+     */
+    orderBy?: HeaderMenuTranslationOrderByWithRelationInput | HeaderMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HeaderMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeaderMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeaderMenuTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HeaderMenuTranslations
+    **/
+    _count?: true | HeaderMenuTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HeaderMenuTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HeaderMenuTranslationMaxAggregateInputType
+  }
+
+  export type GetHeaderMenuTranslationAggregateType<T extends HeaderMenuTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateHeaderMenuTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHeaderMenuTranslation[P]>
+      : GetScalarType<T[P], AggregateHeaderMenuTranslation[P]>
+  }
+
+
+
+
+  export type HeaderMenuTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeaderMenuTranslationWhereInput
+    orderBy?: HeaderMenuTranslationOrderByWithAggregationInput | HeaderMenuTranslationOrderByWithAggregationInput[]
+    by: HeaderMenuTranslationScalarFieldEnum[] | HeaderMenuTranslationScalarFieldEnum
+    having?: HeaderMenuTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HeaderMenuTranslationCountAggregateInputType | true
+    _min?: HeaderMenuTranslationMinAggregateInputType
+    _max?: HeaderMenuTranslationMaxAggregateInputType
+  }
+
+  export type HeaderMenuTranslationGroupByOutputType = {
+    id: string
+    headerMenuId: string
+    languageCode: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
+    _count: HeaderMenuTranslationCountAggregateOutputType | null
+    _min: HeaderMenuTranslationMinAggregateOutputType | null
+    _max: HeaderMenuTranslationMaxAggregateOutputType | null
+  }
+
+  type GetHeaderMenuTranslationGroupByPayload<T extends HeaderMenuTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HeaderMenuTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HeaderMenuTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HeaderMenuTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], HeaderMenuTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HeaderMenuTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    headerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    headerMenu?: boolean | HeaderMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["headerMenuTranslation"]>
+
+  export type HeaderMenuTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    headerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    headerMenu?: boolean | HeaderMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["headerMenuTranslation"]>
+
+  export type HeaderMenuTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    headerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    headerMenu?: boolean | HeaderMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["headerMenuTranslation"]>
+
+  export type HeaderMenuTranslationSelectScalar = {
+    id?: boolean
+    headerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HeaderMenuTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "headerMenuId" | "languageCode" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["headerMenuTranslation"]>
+  export type HeaderMenuTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headerMenu?: boolean | HeaderMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type HeaderMenuTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headerMenu?: boolean | HeaderMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type HeaderMenuTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headerMenu?: boolean | HeaderMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $HeaderMenuTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HeaderMenuTranslation"
+    objects: {
+      headerMenu: Prisma.$HeaderMenuPayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      headerMenuId: string
+      languageCode: string
+      name: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["headerMenuTranslation"]>
+    composites: {}
+  }
+
+  type HeaderMenuTranslationGetPayload<S extends boolean | null | undefined | HeaderMenuTranslationDefaultArgs> = $Result.GetResult<Prisma.$HeaderMenuTranslationPayload, S>
+
+  type HeaderMenuTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HeaderMenuTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HeaderMenuTranslationCountAggregateInputType | true
+    }
+
+  export interface HeaderMenuTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HeaderMenuTranslation'], meta: { name: 'HeaderMenuTranslation' } }
+    /**
+     * Find zero or one HeaderMenuTranslation that matches the filter.
+     * @param {HeaderMenuTranslationFindUniqueArgs} args - Arguments to find a HeaderMenuTranslation
+     * @example
+     * // Get one HeaderMenuTranslation
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HeaderMenuTranslationFindUniqueArgs>(args: SelectSubset<T, HeaderMenuTranslationFindUniqueArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HeaderMenuTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HeaderMenuTranslationFindUniqueOrThrowArgs} args - Arguments to find a HeaderMenuTranslation
+     * @example
+     * // Get one HeaderMenuTranslation
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HeaderMenuTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, HeaderMenuTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HeaderMenuTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeaderMenuTranslationFindFirstArgs} args - Arguments to find a HeaderMenuTranslation
+     * @example
+     * // Get one HeaderMenuTranslation
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HeaderMenuTranslationFindFirstArgs>(args?: SelectSubset<T, HeaderMenuTranslationFindFirstArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HeaderMenuTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeaderMenuTranslationFindFirstOrThrowArgs} args - Arguments to find a HeaderMenuTranslation
+     * @example
+     * // Get one HeaderMenuTranslation
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HeaderMenuTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, HeaderMenuTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HeaderMenuTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeaderMenuTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HeaderMenuTranslations
+     * const headerMenuTranslations = await prisma.headerMenuTranslation.findMany()
+     * 
+     * // Get first 10 HeaderMenuTranslations
+     * const headerMenuTranslations = await prisma.headerMenuTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const headerMenuTranslationWithIdOnly = await prisma.headerMenuTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HeaderMenuTranslationFindManyArgs>(args?: SelectSubset<T, HeaderMenuTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HeaderMenuTranslation.
+     * @param {HeaderMenuTranslationCreateArgs} args - Arguments to create a HeaderMenuTranslation.
+     * @example
+     * // Create one HeaderMenuTranslation
+     * const HeaderMenuTranslation = await prisma.headerMenuTranslation.create({
+     *   data: {
+     *     // ... data to create a HeaderMenuTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends HeaderMenuTranslationCreateArgs>(args: SelectSubset<T, HeaderMenuTranslationCreateArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HeaderMenuTranslations.
+     * @param {HeaderMenuTranslationCreateManyArgs} args - Arguments to create many HeaderMenuTranslations.
+     * @example
+     * // Create many HeaderMenuTranslations
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HeaderMenuTranslationCreateManyArgs>(args?: SelectSubset<T, HeaderMenuTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HeaderMenuTranslations and returns the data saved in the database.
+     * @param {HeaderMenuTranslationCreateManyAndReturnArgs} args - Arguments to create many HeaderMenuTranslations.
+     * @example
+     * // Create many HeaderMenuTranslations
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HeaderMenuTranslations and only return the `id`
+     * const headerMenuTranslationWithIdOnly = await prisma.headerMenuTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HeaderMenuTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, HeaderMenuTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HeaderMenuTranslation.
+     * @param {HeaderMenuTranslationDeleteArgs} args - Arguments to delete one HeaderMenuTranslation.
+     * @example
+     * // Delete one HeaderMenuTranslation
+     * const HeaderMenuTranslation = await prisma.headerMenuTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one HeaderMenuTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HeaderMenuTranslationDeleteArgs>(args: SelectSubset<T, HeaderMenuTranslationDeleteArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HeaderMenuTranslation.
+     * @param {HeaderMenuTranslationUpdateArgs} args - Arguments to update one HeaderMenuTranslation.
+     * @example
+     * // Update one HeaderMenuTranslation
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HeaderMenuTranslationUpdateArgs>(args: SelectSubset<T, HeaderMenuTranslationUpdateArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HeaderMenuTranslations.
+     * @param {HeaderMenuTranslationDeleteManyArgs} args - Arguments to filter HeaderMenuTranslations to delete.
+     * @example
+     * // Delete a few HeaderMenuTranslations
+     * const { count } = await prisma.headerMenuTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HeaderMenuTranslationDeleteManyArgs>(args?: SelectSubset<T, HeaderMenuTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HeaderMenuTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeaderMenuTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HeaderMenuTranslations
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HeaderMenuTranslationUpdateManyArgs>(args: SelectSubset<T, HeaderMenuTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HeaderMenuTranslations and returns the data updated in the database.
+     * @param {HeaderMenuTranslationUpdateManyAndReturnArgs} args - Arguments to update many HeaderMenuTranslations.
+     * @example
+     * // Update many HeaderMenuTranslations
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HeaderMenuTranslations and only return the `id`
+     * const headerMenuTranslationWithIdOnly = await prisma.headerMenuTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HeaderMenuTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, HeaderMenuTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HeaderMenuTranslation.
+     * @param {HeaderMenuTranslationUpsertArgs} args - Arguments to update or create a HeaderMenuTranslation.
+     * @example
+     * // Update or create a HeaderMenuTranslation
+     * const headerMenuTranslation = await prisma.headerMenuTranslation.upsert({
+     *   create: {
+     *     // ... data to create a HeaderMenuTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HeaderMenuTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HeaderMenuTranslationUpsertArgs>(args: SelectSubset<T, HeaderMenuTranslationUpsertArgs<ExtArgs>>): Prisma__HeaderMenuTranslationClient<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HeaderMenuTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeaderMenuTranslationCountArgs} args - Arguments to filter HeaderMenuTranslations to count.
+     * @example
+     * // Count the number of HeaderMenuTranslations
+     * const count = await prisma.headerMenuTranslation.count({
+     *   where: {
+     *     // ... the filter for the HeaderMenuTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends HeaderMenuTranslationCountArgs>(
+      args?: Subset<T, HeaderMenuTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HeaderMenuTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HeaderMenuTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeaderMenuTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HeaderMenuTranslationAggregateArgs>(args: Subset<T, HeaderMenuTranslationAggregateArgs>): Prisma.PrismaPromise<GetHeaderMenuTranslationAggregateType<T>>
+
+    /**
+     * Group by HeaderMenuTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeaderMenuTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HeaderMenuTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HeaderMenuTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: HeaderMenuTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HeaderMenuTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHeaderMenuTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HeaderMenuTranslation model
+   */
+  readonly fields: HeaderMenuTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HeaderMenuTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HeaderMenuTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    headerMenu<T extends HeaderMenuDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HeaderMenuDefaultArgs<ExtArgs>>): Prisma__HeaderMenuClient<$Result.GetResult<Prisma.$HeaderMenuPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HeaderMenuTranslation model
+   */
+  interface HeaderMenuTranslationFieldRefs {
+    readonly id: FieldRef<"HeaderMenuTranslation", 'String'>
+    readonly headerMenuId: FieldRef<"HeaderMenuTranslation", 'String'>
+    readonly languageCode: FieldRef<"HeaderMenuTranslation", 'String'>
+    readonly name: FieldRef<"HeaderMenuTranslation", 'String'>
+    readonly createdAt: FieldRef<"HeaderMenuTranslation", 'DateTime'>
+    readonly updatedAt: FieldRef<"HeaderMenuTranslation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HeaderMenuTranslation findUnique
+   */
+  export type HeaderMenuTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which HeaderMenuTranslation to fetch.
+     */
+    where: HeaderMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * HeaderMenuTranslation findUniqueOrThrow
+   */
+  export type HeaderMenuTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which HeaderMenuTranslation to fetch.
+     */
+    where: HeaderMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * HeaderMenuTranslation findFirst
+   */
+  export type HeaderMenuTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which HeaderMenuTranslation to fetch.
+     */
+    where?: HeaderMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeaderMenuTranslations to fetch.
+     */
+    orderBy?: HeaderMenuTranslationOrderByWithRelationInput | HeaderMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HeaderMenuTranslations.
+     */
+    cursor?: HeaderMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeaderMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeaderMenuTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HeaderMenuTranslations.
+     */
+    distinct?: HeaderMenuTranslationScalarFieldEnum | HeaderMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * HeaderMenuTranslation findFirstOrThrow
+   */
+  export type HeaderMenuTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which HeaderMenuTranslation to fetch.
+     */
+    where?: HeaderMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeaderMenuTranslations to fetch.
+     */
+    orderBy?: HeaderMenuTranslationOrderByWithRelationInput | HeaderMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HeaderMenuTranslations.
+     */
+    cursor?: HeaderMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeaderMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeaderMenuTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HeaderMenuTranslations.
+     */
+    distinct?: HeaderMenuTranslationScalarFieldEnum | HeaderMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * HeaderMenuTranslation findMany
+   */
+  export type HeaderMenuTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which HeaderMenuTranslations to fetch.
+     */
+    where?: HeaderMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeaderMenuTranslations to fetch.
+     */
+    orderBy?: HeaderMenuTranslationOrderByWithRelationInput | HeaderMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HeaderMenuTranslations.
+     */
+    cursor?: HeaderMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeaderMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeaderMenuTranslations.
+     */
+    skip?: number
+    distinct?: HeaderMenuTranslationScalarFieldEnum | HeaderMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * HeaderMenuTranslation create
+   */
+  export type HeaderMenuTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HeaderMenuTranslation.
+     */
+    data: XOR<HeaderMenuTranslationCreateInput, HeaderMenuTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * HeaderMenuTranslation createMany
+   */
+  export type HeaderMenuTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HeaderMenuTranslations.
+     */
+    data: HeaderMenuTranslationCreateManyInput | HeaderMenuTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HeaderMenuTranslation createManyAndReturn
+   */
+  export type HeaderMenuTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many HeaderMenuTranslations.
+     */
+    data: HeaderMenuTranslationCreateManyInput | HeaderMenuTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HeaderMenuTranslation update
+   */
+  export type HeaderMenuTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HeaderMenuTranslation.
+     */
+    data: XOR<HeaderMenuTranslationUpdateInput, HeaderMenuTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which HeaderMenuTranslation to update.
+     */
+    where: HeaderMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * HeaderMenuTranslation updateMany
+   */
+  export type HeaderMenuTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HeaderMenuTranslations.
+     */
+    data: XOR<HeaderMenuTranslationUpdateManyMutationInput, HeaderMenuTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which HeaderMenuTranslations to update
+     */
+    where?: HeaderMenuTranslationWhereInput
+    /**
+     * Limit how many HeaderMenuTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HeaderMenuTranslation updateManyAndReturn
+   */
+  export type HeaderMenuTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update HeaderMenuTranslations.
+     */
+    data: XOR<HeaderMenuTranslationUpdateManyMutationInput, HeaderMenuTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which HeaderMenuTranslations to update
+     */
+    where?: HeaderMenuTranslationWhereInput
+    /**
+     * Limit how many HeaderMenuTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HeaderMenuTranslation upsert
+   */
+  export type HeaderMenuTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HeaderMenuTranslation to update in case it exists.
+     */
+    where: HeaderMenuTranslationWhereUniqueInput
+    /**
+     * In case the HeaderMenuTranslation found by the `where` argument doesn't exist, create a new HeaderMenuTranslation with this data.
+     */
+    create: XOR<HeaderMenuTranslationCreateInput, HeaderMenuTranslationUncheckedCreateInput>
+    /**
+     * In case the HeaderMenuTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HeaderMenuTranslationUpdateInput, HeaderMenuTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * HeaderMenuTranslation delete
+   */
+  export type HeaderMenuTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which HeaderMenuTranslation to delete.
+     */
+    where: HeaderMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * HeaderMenuTranslation deleteMany
+   */
+  export type HeaderMenuTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HeaderMenuTranslations to delete
+     */
+    where?: HeaderMenuTranslationWhereInput
+    /**
+     * Limit how many HeaderMenuTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HeaderMenuTranslation without action
+   */
+  export type HeaderMenuTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeaderMenuTranslation
+     */
+    select?: HeaderMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeaderMenuTranslation
+     */
+    omit?: HeaderMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeaderMenuTranslationInclude<ExtArgs> | null
   }
 
 
@@ -44932,7 +46300,6 @@ export namespace Prisma {
 
   export type FooterMenuMinAggregateOutputType = {
     id: string | null
-    name: string | null
     order: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -44941,7 +46308,6 @@ export namespace Prisma {
 
   export type FooterMenuMaxAggregateOutputType = {
     id: string | null
-    name: string | null
     order: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -44950,7 +46316,6 @@ export namespace Prisma {
 
   export type FooterMenuCountAggregateOutputType = {
     id: number
-    name: number
     order: number
     isActive: number
     createdAt: number
@@ -44969,7 +46334,6 @@ export namespace Prisma {
 
   export type FooterMenuMinAggregateInputType = {
     id?: true
-    name?: true
     order?: true
     isActive?: true
     createdAt?: true
@@ -44978,7 +46342,6 @@ export namespace Prisma {
 
   export type FooterMenuMaxAggregateInputType = {
     id?: true
-    name?: true
     order?: true
     isActive?: true
     createdAt?: true
@@ -44987,7 +46350,6 @@ export namespace Prisma {
 
   export type FooterMenuCountAggregateInputType = {
     id?: true
-    name?: true
     order?: true
     isActive?: true
     createdAt?: true
@@ -45083,7 +46445,6 @@ export namespace Prisma {
 
   export type FooterMenuGroupByOutputType = {
     id: string
-    name: string
     order: number
     isActive: boolean
     createdAt: Date
@@ -45111,18 +46472,17 @@ export namespace Prisma {
 
   export type FooterMenuSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     order?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     items?: boolean | FooterMenu$itemsArgs<ExtArgs>
+    translations?: boolean | FooterMenu$translationsArgs<ExtArgs>
     _count?: boolean | FooterMenuCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["footerMenu"]>
 
   export type FooterMenuSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     order?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -45131,7 +46491,6 @@ export namespace Prisma {
 
   export type FooterMenuSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     order?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -45140,16 +46499,16 @@ export namespace Prisma {
 
   export type FooterMenuSelectScalar = {
     id?: boolean
-    name?: boolean
     order?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type FooterMenuOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "order" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["footerMenu"]>
+  export type FooterMenuOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "order" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["footerMenu"]>
   export type FooterMenuInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | FooterMenu$itemsArgs<ExtArgs>
+    translations?: boolean | FooterMenu$translationsArgs<ExtArgs>
     _count?: boolean | FooterMenuCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FooterMenuIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -45159,10 +46518,10 @@ export namespace Prisma {
     name: "FooterMenu"
     objects: {
       items: Prisma.$FooterMenuItemPayload<ExtArgs>[]
+      translations: Prisma.$FooterMenuTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
       order: number
       isActive: boolean
       createdAt: Date
@@ -45562,6 +46921,7 @@ export namespace Prisma {
   export interface Prisma__FooterMenuClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     items<T extends FooterMenu$itemsArgs<ExtArgs> = {}>(args?: Subset<T, FooterMenu$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    translations<T extends FooterMenu$translationsArgs<ExtArgs> = {}>(args?: Subset<T, FooterMenu$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -45592,7 +46952,6 @@ export namespace Prisma {
    */
   interface FooterMenuFieldRefs {
     readonly id: FieldRef<"FooterMenu", 'String'>
-    readonly name: FieldRef<"FooterMenu", 'String'>
     readonly order: FieldRef<"FooterMenu", 'Int'>
     readonly isActive: FieldRef<"FooterMenu", 'Boolean'>
     readonly createdAt: FieldRef<"FooterMenu", 'DateTime'>
@@ -46009,6 +47368,30 @@ export namespace Prisma {
   }
 
   /**
+   * FooterMenu.translations
+   */
+  export type FooterMenu$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    where?: FooterMenuTranslationWhereInput
+    orderBy?: FooterMenuTranslationOrderByWithRelationInput | FooterMenuTranslationOrderByWithRelationInput[]
+    cursor?: FooterMenuTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FooterMenuTranslationScalarFieldEnum | FooterMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
    * FooterMenu without action
    */
   export type FooterMenuDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -46024,6 +47407,1085 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FooterMenuInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FooterMenuTranslation
+   */
+
+  export type AggregateFooterMenuTranslation = {
+    _count: FooterMenuTranslationCountAggregateOutputType | null
+    _min: FooterMenuTranslationMinAggregateOutputType | null
+    _max: FooterMenuTranslationMaxAggregateOutputType | null
+  }
+
+  export type FooterMenuTranslationMinAggregateOutputType = {
+    id: string | null
+    footerMenuId: string | null
+    languageCode: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FooterMenuTranslationMaxAggregateOutputType = {
+    id: string | null
+    footerMenuId: string | null
+    languageCode: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FooterMenuTranslationCountAggregateOutputType = {
+    id: number
+    footerMenuId: number
+    languageCode: number
+    name: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FooterMenuTranslationMinAggregateInputType = {
+    id?: true
+    footerMenuId?: true
+    languageCode?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FooterMenuTranslationMaxAggregateInputType = {
+    id?: true
+    footerMenuId?: true
+    languageCode?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FooterMenuTranslationCountAggregateInputType = {
+    id?: true
+    footerMenuId?: true
+    languageCode?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FooterMenuTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FooterMenuTranslation to aggregate.
+     */
+    where?: FooterMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FooterMenuTranslations to fetch.
+     */
+    orderBy?: FooterMenuTranslationOrderByWithRelationInput | FooterMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FooterMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FooterMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FooterMenuTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FooterMenuTranslations
+    **/
+    _count?: true | FooterMenuTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FooterMenuTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FooterMenuTranslationMaxAggregateInputType
+  }
+
+  export type GetFooterMenuTranslationAggregateType<T extends FooterMenuTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateFooterMenuTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFooterMenuTranslation[P]>
+      : GetScalarType<T[P], AggregateFooterMenuTranslation[P]>
+  }
+
+
+
+
+  export type FooterMenuTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FooterMenuTranslationWhereInput
+    orderBy?: FooterMenuTranslationOrderByWithAggregationInput | FooterMenuTranslationOrderByWithAggregationInput[]
+    by: FooterMenuTranslationScalarFieldEnum[] | FooterMenuTranslationScalarFieldEnum
+    having?: FooterMenuTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FooterMenuTranslationCountAggregateInputType | true
+    _min?: FooterMenuTranslationMinAggregateInputType
+    _max?: FooterMenuTranslationMaxAggregateInputType
+  }
+
+  export type FooterMenuTranslationGroupByOutputType = {
+    id: string
+    footerMenuId: string
+    languageCode: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
+    _count: FooterMenuTranslationCountAggregateOutputType | null
+    _min: FooterMenuTranslationMinAggregateOutputType | null
+    _max: FooterMenuTranslationMaxAggregateOutputType | null
+  }
+
+  type GetFooterMenuTranslationGroupByPayload<T extends FooterMenuTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FooterMenuTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FooterMenuTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FooterMenuTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], FooterMenuTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FooterMenuTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    footerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    footerMenu?: boolean | FooterMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footerMenuTranslation"]>
+
+  export type FooterMenuTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    footerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    footerMenu?: boolean | FooterMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footerMenuTranslation"]>
+
+  export type FooterMenuTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    footerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    footerMenu?: boolean | FooterMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footerMenuTranslation"]>
+
+  export type FooterMenuTranslationSelectScalar = {
+    id?: boolean
+    footerMenuId?: boolean
+    languageCode?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FooterMenuTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "footerMenuId" | "languageCode" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["footerMenuTranslation"]>
+  export type FooterMenuTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    footerMenu?: boolean | FooterMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type FooterMenuTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    footerMenu?: boolean | FooterMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type FooterMenuTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    footerMenu?: boolean | FooterMenuDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $FooterMenuTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FooterMenuTranslation"
+    objects: {
+      footerMenu: Prisma.$FooterMenuPayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      footerMenuId: string
+      languageCode: string
+      name: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["footerMenuTranslation"]>
+    composites: {}
+  }
+
+  type FooterMenuTranslationGetPayload<S extends boolean | null | undefined | FooterMenuTranslationDefaultArgs> = $Result.GetResult<Prisma.$FooterMenuTranslationPayload, S>
+
+  type FooterMenuTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FooterMenuTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FooterMenuTranslationCountAggregateInputType | true
+    }
+
+  export interface FooterMenuTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FooterMenuTranslation'], meta: { name: 'FooterMenuTranslation' } }
+    /**
+     * Find zero or one FooterMenuTranslation that matches the filter.
+     * @param {FooterMenuTranslationFindUniqueArgs} args - Arguments to find a FooterMenuTranslation
+     * @example
+     * // Get one FooterMenuTranslation
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FooterMenuTranslationFindUniqueArgs>(args: SelectSubset<T, FooterMenuTranslationFindUniqueArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FooterMenuTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FooterMenuTranslationFindUniqueOrThrowArgs} args - Arguments to find a FooterMenuTranslation
+     * @example
+     * // Get one FooterMenuTranslation
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FooterMenuTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, FooterMenuTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FooterMenuTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FooterMenuTranslationFindFirstArgs} args - Arguments to find a FooterMenuTranslation
+     * @example
+     * // Get one FooterMenuTranslation
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FooterMenuTranslationFindFirstArgs>(args?: SelectSubset<T, FooterMenuTranslationFindFirstArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FooterMenuTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FooterMenuTranslationFindFirstOrThrowArgs} args - Arguments to find a FooterMenuTranslation
+     * @example
+     * // Get one FooterMenuTranslation
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FooterMenuTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, FooterMenuTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FooterMenuTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FooterMenuTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FooterMenuTranslations
+     * const footerMenuTranslations = await prisma.footerMenuTranslation.findMany()
+     * 
+     * // Get first 10 FooterMenuTranslations
+     * const footerMenuTranslations = await prisma.footerMenuTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const footerMenuTranslationWithIdOnly = await prisma.footerMenuTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FooterMenuTranslationFindManyArgs>(args?: SelectSubset<T, FooterMenuTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FooterMenuTranslation.
+     * @param {FooterMenuTranslationCreateArgs} args - Arguments to create a FooterMenuTranslation.
+     * @example
+     * // Create one FooterMenuTranslation
+     * const FooterMenuTranslation = await prisma.footerMenuTranslation.create({
+     *   data: {
+     *     // ... data to create a FooterMenuTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends FooterMenuTranslationCreateArgs>(args: SelectSubset<T, FooterMenuTranslationCreateArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FooterMenuTranslations.
+     * @param {FooterMenuTranslationCreateManyArgs} args - Arguments to create many FooterMenuTranslations.
+     * @example
+     * // Create many FooterMenuTranslations
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FooterMenuTranslationCreateManyArgs>(args?: SelectSubset<T, FooterMenuTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FooterMenuTranslations and returns the data saved in the database.
+     * @param {FooterMenuTranslationCreateManyAndReturnArgs} args - Arguments to create many FooterMenuTranslations.
+     * @example
+     * // Create many FooterMenuTranslations
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FooterMenuTranslations and only return the `id`
+     * const footerMenuTranslationWithIdOnly = await prisma.footerMenuTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FooterMenuTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, FooterMenuTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FooterMenuTranslation.
+     * @param {FooterMenuTranslationDeleteArgs} args - Arguments to delete one FooterMenuTranslation.
+     * @example
+     * // Delete one FooterMenuTranslation
+     * const FooterMenuTranslation = await prisma.footerMenuTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one FooterMenuTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FooterMenuTranslationDeleteArgs>(args: SelectSubset<T, FooterMenuTranslationDeleteArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FooterMenuTranslation.
+     * @param {FooterMenuTranslationUpdateArgs} args - Arguments to update one FooterMenuTranslation.
+     * @example
+     * // Update one FooterMenuTranslation
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FooterMenuTranslationUpdateArgs>(args: SelectSubset<T, FooterMenuTranslationUpdateArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FooterMenuTranslations.
+     * @param {FooterMenuTranslationDeleteManyArgs} args - Arguments to filter FooterMenuTranslations to delete.
+     * @example
+     * // Delete a few FooterMenuTranslations
+     * const { count } = await prisma.footerMenuTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FooterMenuTranslationDeleteManyArgs>(args?: SelectSubset<T, FooterMenuTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FooterMenuTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FooterMenuTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FooterMenuTranslations
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FooterMenuTranslationUpdateManyArgs>(args: SelectSubset<T, FooterMenuTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FooterMenuTranslations and returns the data updated in the database.
+     * @param {FooterMenuTranslationUpdateManyAndReturnArgs} args - Arguments to update many FooterMenuTranslations.
+     * @example
+     * // Update many FooterMenuTranslations
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FooterMenuTranslations and only return the `id`
+     * const footerMenuTranslationWithIdOnly = await prisma.footerMenuTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FooterMenuTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, FooterMenuTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FooterMenuTranslation.
+     * @param {FooterMenuTranslationUpsertArgs} args - Arguments to update or create a FooterMenuTranslation.
+     * @example
+     * // Update or create a FooterMenuTranslation
+     * const footerMenuTranslation = await prisma.footerMenuTranslation.upsert({
+     *   create: {
+     *     // ... data to create a FooterMenuTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FooterMenuTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FooterMenuTranslationUpsertArgs>(args: SelectSubset<T, FooterMenuTranslationUpsertArgs<ExtArgs>>): Prisma__FooterMenuTranslationClient<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FooterMenuTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FooterMenuTranslationCountArgs} args - Arguments to filter FooterMenuTranslations to count.
+     * @example
+     * // Count the number of FooterMenuTranslations
+     * const count = await prisma.footerMenuTranslation.count({
+     *   where: {
+     *     // ... the filter for the FooterMenuTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends FooterMenuTranslationCountArgs>(
+      args?: Subset<T, FooterMenuTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FooterMenuTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FooterMenuTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FooterMenuTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FooterMenuTranslationAggregateArgs>(args: Subset<T, FooterMenuTranslationAggregateArgs>): Prisma.PrismaPromise<GetFooterMenuTranslationAggregateType<T>>
+
+    /**
+     * Group by FooterMenuTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FooterMenuTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FooterMenuTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FooterMenuTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: FooterMenuTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FooterMenuTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFooterMenuTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FooterMenuTranslation model
+   */
+  readonly fields: FooterMenuTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FooterMenuTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FooterMenuTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    footerMenu<T extends FooterMenuDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FooterMenuDefaultArgs<ExtArgs>>): Prisma__FooterMenuClient<$Result.GetResult<Prisma.$FooterMenuPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FooterMenuTranslation model
+   */
+  interface FooterMenuTranslationFieldRefs {
+    readonly id: FieldRef<"FooterMenuTranslation", 'String'>
+    readonly footerMenuId: FieldRef<"FooterMenuTranslation", 'String'>
+    readonly languageCode: FieldRef<"FooterMenuTranslation", 'String'>
+    readonly name: FieldRef<"FooterMenuTranslation", 'String'>
+    readonly createdAt: FieldRef<"FooterMenuTranslation", 'DateTime'>
+    readonly updatedAt: FieldRef<"FooterMenuTranslation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FooterMenuTranslation findUnique
+   */
+  export type FooterMenuTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FooterMenuTranslation to fetch.
+     */
+    where: FooterMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * FooterMenuTranslation findUniqueOrThrow
+   */
+  export type FooterMenuTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FooterMenuTranslation to fetch.
+     */
+    where: FooterMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * FooterMenuTranslation findFirst
+   */
+  export type FooterMenuTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FooterMenuTranslation to fetch.
+     */
+    where?: FooterMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FooterMenuTranslations to fetch.
+     */
+    orderBy?: FooterMenuTranslationOrderByWithRelationInput | FooterMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FooterMenuTranslations.
+     */
+    cursor?: FooterMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FooterMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FooterMenuTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FooterMenuTranslations.
+     */
+    distinct?: FooterMenuTranslationScalarFieldEnum | FooterMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * FooterMenuTranslation findFirstOrThrow
+   */
+  export type FooterMenuTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FooterMenuTranslation to fetch.
+     */
+    where?: FooterMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FooterMenuTranslations to fetch.
+     */
+    orderBy?: FooterMenuTranslationOrderByWithRelationInput | FooterMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FooterMenuTranslations.
+     */
+    cursor?: FooterMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FooterMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FooterMenuTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FooterMenuTranslations.
+     */
+    distinct?: FooterMenuTranslationScalarFieldEnum | FooterMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * FooterMenuTranslation findMany
+   */
+  export type FooterMenuTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FooterMenuTranslations to fetch.
+     */
+    where?: FooterMenuTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FooterMenuTranslations to fetch.
+     */
+    orderBy?: FooterMenuTranslationOrderByWithRelationInput | FooterMenuTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FooterMenuTranslations.
+     */
+    cursor?: FooterMenuTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FooterMenuTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FooterMenuTranslations.
+     */
+    skip?: number
+    distinct?: FooterMenuTranslationScalarFieldEnum | FooterMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * FooterMenuTranslation create
+   */
+  export type FooterMenuTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FooterMenuTranslation.
+     */
+    data: XOR<FooterMenuTranslationCreateInput, FooterMenuTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * FooterMenuTranslation createMany
+   */
+  export type FooterMenuTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FooterMenuTranslations.
+     */
+    data: FooterMenuTranslationCreateManyInput | FooterMenuTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FooterMenuTranslation createManyAndReturn
+   */
+  export type FooterMenuTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many FooterMenuTranslations.
+     */
+    data: FooterMenuTranslationCreateManyInput | FooterMenuTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FooterMenuTranslation update
+   */
+  export type FooterMenuTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FooterMenuTranslation.
+     */
+    data: XOR<FooterMenuTranslationUpdateInput, FooterMenuTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which FooterMenuTranslation to update.
+     */
+    where: FooterMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * FooterMenuTranslation updateMany
+   */
+  export type FooterMenuTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FooterMenuTranslations.
+     */
+    data: XOR<FooterMenuTranslationUpdateManyMutationInput, FooterMenuTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which FooterMenuTranslations to update
+     */
+    where?: FooterMenuTranslationWhereInput
+    /**
+     * Limit how many FooterMenuTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FooterMenuTranslation updateManyAndReturn
+   */
+  export type FooterMenuTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update FooterMenuTranslations.
+     */
+    data: XOR<FooterMenuTranslationUpdateManyMutationInput, FooterMenuTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which FooterMenuTranslations to update
+     */
+    where?: FooterMenuTranslationWhereInput
+    /**
+     * Limit how many FooterMenuTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FooterMenuTranslation upsert
+   */
+  export type FooterMenuTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FooterMenuTranslation to update in case it exists.
+     */
+    where: FooterMenuTranslationWhereUniqueInput
+    /**
+     * In case the FooterMenuTranslation found by the `where` argument doesn't exist, create a new FooterMenuTranslation with this data.
+     */
+    create: XOR<FooterMenuTranslationCreateInput, FooterMenuTranslationUncheckedCreateInput>
+    /**
+     * In case the FooterMenuTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FooterMenuTranslationUpdateInput, FooterMenuTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * FooterMenuTranslation delete
+   */
+  export type FooterMenuTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which FooterMenuTranslation to delete.
+     */
+    where: FooterMenuTranslationWhereUniqueInput
+  }
+
+  /**
+   * FooterMenuTranslation deleteMany
+   */
+  export type FooterMenuTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FooterMenuTranslations to delete
+     */
+    where?: FooterMenuTranslationWhereInput
+    /**
+     * Limit how many FooterMenuTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FooterMenuTranslation without action
+   */
+  export type FooterMenuTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FooterMenuTranslation
+     */
+    select?: FooterMenuTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FooterMenuTranslation
+     */
+    omit?: FooterMenuTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FooterMenuTranslationInclude<ExtArgs> | null
   }
 
 
@@ -48808,13 +51270,24 @@ export namespace Prisma {
 
   export const HeaderMenuScalarFieldEnum: {
     id: 'id',
-    name: 'name',
     isActive: 'isActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type HeaderMenuScalarFieldEnum = (typeof HeaderMenuScalarFieldEnum)[keyof typeof HeaderMenuScalarFieldEnum]
+
+
+  export const HeaderMenuTranslationScalarFieldEnum: {
+    id: 'id',
+    headerMenuId: 'headerMenuId',
+    languageCode: 'languageCode',
+    name: 'name',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HeaderMenuTranslationScalarFieldEnum = (typeof HeaderMenuTranslationScalarFieldEnum)[keyof typeof HeaderMenuTranslationScalarFieldEnum]
 
 
   export const HeaderMenuItemScalarFieldEnum: {
@@ -48849,7 +51322,6 @@ export namespace Prisma {
 
   export const FooterMenuScalarFieldEnum: {
     id: 'id',
-    name: 'name',
     order: 'order',
     isActive: 'isActive',
     createdAt: 'createdAt',
@@ -48857,6 +51329,18 @@ export namespace Prisma {
   };
 
   export type FooterMenuScalarFieldEnum = (typeof FooterMenuScalarFieldEnum)[keyof typeof FooterMenuScalarFieldEnum]
+
+
+  export const FooterMenuTranslationScalarFieldEnum: {
+    id: 'id',
+    footerMenuId: 'footerMenuId',
+    languageCode: 'languageCode',
+    name: 'name',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FooterMenuTranslationScalarFieldEnum = (typeof FooterMenuTranslationScalarFieldEnum)[keyof typeof FooterMenuTranslationScalarFieldEnum]
 
 
   export const FooterMenuItemScalarFieldEnum: {
@@ -49185,6 +51669,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationListRelationFilter
     headerMenuItemTranslations?: HeaderMenuItemTranslationListRelationFilter
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
+    headerMenuTranslations?: HeaderMenuTranslationListRelationFilter
+    footerMenuTranslations?: FooterMenuTranslationListRelationFilter
   }
 
   export type LanguageOrderByWithRelationInput = {
@@ -49208,6 +51694,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationOrderByRelationAggregateInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationOrderByRelationAggregateInput
     footerMenuItemTranslations?: FooterMenuItemTranslationOrderByRelationAggregateInput
+    headerMenuTranslations?: HeaderMenuTranslationOrderByRelationAggregateInput
+    footerMenuTranslations?: FooterMenuTranslationOrderByRelationAggregateInput
   }
 
   export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -49234,6 +51722,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationListRelationFilter
     headerMenuItemTranslations?: HeaderMenuItemTranslationListRelationFilter
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
+    headerMenuTranslations?: HeaderMenuTranslationListRelationFilter
+    footerMenuTranslations?: FooterMenuTranslationListRelationFilter
   }, "id" | "code">
 
   export type LanguageOrderByWithAggregationInput = {
@@ -51380,20 +53870,20 @@ export namespace Prisma {
     OR?: HeaderMenuWhereInput[]
     NOT?: HeaderMenuWhereInput | HeaderMenuWhereInput[]
     id?: StringFilter<"HeaderMenu"> | string
-    name?: StringFilter<"HeaderMenu"> | string
     isActive?: BoolFilter<"HeaderMenu"> | boolean
     createdAt?: DateTimeFilter<"HeaderMenu"> | Date | string
     updatedAt?: DateTimeFilter<"HeaderMenu"> | Date | string
     items?: HeaderMenuItemListRelationFilter
+    translations?: HeaderMenuTranslationListRelationFilter
   }
 
   export type HeaderMenuOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     items?: HeaderMenuItemOrderByRelationAggregateInput
+    translations?: HeaderMenuTranslationOrderByRelationAggregateInput
   }
 
   export type HeaderMenuWhereUniqueInput = Prisma.AtLeast<{
@@ -51401,16 +53891,15 @@ export namespace Prisma {
     AND?: HeaderMenuWhereInput | HeaderMenuWhereInput[]
     OR?: HeaderMenuWhereInput[]
     NOT?: HeaderMenuWhereInput | HeaderMenuWhereInput[]
-    name?: StringFilter<"HeaderMenu"> | string
     isActive?: BoolFilter<"HeaderMenu"> | boolean
     createdAt?: DateTimeFilter<"HeaderMenu"> | Date | string
     updatedAt?: DateTimeFilter<"HeaderMenu"> | Date | string
     items?: HeaderMenuItemListRelationFilter
+    translations?: HeaderMenuTranslationListRelationFilter
   }, "id">
 
   export type HeaderMenuOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -51424,10 +53913,73 @@ export namespace Prisma {
     OR?: HeaderMenuScalarWhereWithAggregatesInput[]
     NOT?: HeaderMenuScalarWhereWithAggregatesInput | HeaderMenuScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"HeaderMenu"> | string
-    name?: StringWithAggregatesFilter<"HeaderMenu"> | string
     isActive?: BoolWithAggregatesFilter<"HeaderMenu"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"HeaderMenu"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"HeaderMenu"> | Date | string
+  }
+
+  export type HeaderMenuTranslationWhereInput = {
+    AND?: HeaderMenuTranslationWhereInput | HeaderMenuTranslationWhereInput[]
+    OR?: HeaderMenuTranslationWhereInput[]
+    NOT?: HeaderMenuTranslationWhereInput | HeaderMenuTranslationWhereInput[]
+    id?: StringFilter<"HeaderMenuTranslation"> | string
+    headerMenuId?: StringFilter<"HeaderMenuTranslation"> | string
+    languageCode?: StringFilter<"HeaderMenuTranslation"> | string
+    name?: StringFilter<"HeaderMenuTranslation"> | string
+    createdAt?: DateTimeFilter<"HeaderMenuTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"HeaderMenuTranslation"> | Date | string
+    headerMenu?: XOR<HeaderMenuScalarRelationFilter, HeaderMenuWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type HeaderMenuTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    headerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    headerMenu?: HeaderMenuOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type HeaderMenuTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    headerMenuId_languageCode?: HeaderMenuTranslationHeaderMenuIdLanguageCodeCompoundUniqueInput
+    AND?: HeaderMenuTranslationWhereInput | HeaderMenuTranslationWhereInput[]
+    OR?: HeaderMenuTranslationWhereInput[]
+    NOT?: HeaderMenuTranslationWhereInput | HeaderMenuTranslationWhereInput[]
+    headerMenuId?: StringFilter<"HeaderMenuTranslation"> | string
+    languageCode?: StringFilter<"HeaderMenuTranslation"> | string
+    name?: StringFilter<"HeaderMenuTranslation"> | string
+    createdAt?: DateTimeFilter<"HeaderMenuTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"HeaderMenuTranslation"> | Date | string
+    headerMenu?: XOR<HeaderMenuScalarRelationFilter, HeaderMenuWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "headerMenuId_languageCode">
+
+  export type HeaderMenuTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    headerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HeaderMenuTranslationCountOrderByAggregateInput
+    _max?: HeaderMenuTranslationMaxOrderByAggregateInput
+    _min?: HeaderMenuTranslationMinOrderByAggregateInput
+  }
+
+  export type HeaderMenuTranslationScalarWhereWithAggregatesInput = {
+    AND?: HeaderMenuTranslationScalarWhereWithAggregatesInput | HeaderMenuTranslationScalarWhereWithAggregatesInput[]
+    OR?: HeaderMenuTranslationScalarWhereWithAggregatesInput[]
+    NOT?: HeaderMenuTranslationScalarWhereWithAggregatesInput | HeaderMenuTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HeaderMenuTranslation"> | string
+    headerMenuId?: StringWithAggregatesFilter<"HeaderMenuTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"HeaderMenuTranslation"> | string
+    name?: StringWithAggregatesFilter<"HeaderMenuTranslation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"HeaderMenuTranslation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HeaderMenuTranslation"> | Date | string
   }
 
   export type HeaderMenuItemWhereInput = {
@@ -51606,22 +54158,22 @@ export namespace Prisma {
     OR?: FooterMenuWhereInput[]
     NOT?: FooterMenuWhereInput | FooterMenuWhereInput[]
     id?: StringFilter<"FooterMenu"> | string
-    name?: StringFilter<"FooterMenu"> | string
     order?: IntFilter<"FooterMenu"> | number
     isActive?: BoolFilter<"FooterMenu"> | boolean
     createdAt?: DateTimeFilter<"FooterMenu"> | Date | string
     updatedAt?: DateTimeFilter<"FooterMenu"> | Date | string
     items?: FooterMenuItemListRelationFilter
+    translations?: FooterMenuTranslationListRelationFilter
   }
 
   export type FooterMenuOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     items?: FooterMenuItemOrderByRelationAggregateInput
+    translations?: FooterMenuTranslationOrderByRelationAggregateInput
   }
 
   export type FooterMenuWhereUniqueInput = Prisma.AtLeast<{
@@ -51629,17 +54181,16 @@ export namespace Prisma {
     AND?: FooterMenuWhereInput | FooterMenuWhereInput[]
     OR?: FooterMenuWhereInput[]
     NOT?: FooterMenuWhereInput | FooterMenuWhereInput[]
-    name?: StringFilter<"FooterMenu"> | string
     order?: IntFilter<"FooterMenu"> | number
     isActive?: BoolFilter<"FooterMenu"> | boolean
     createdAt?: DateTimeFilter<"FooterMenu"> | Date | string
     updatedAt?: DateTimeFilter<"FooterMenu"> | Date | string
     items?: FooterMenuItemListRelationFilter
+    translations?: FooterMenuTranslationListRelationFilter
   }, "id">
 
   export type FooterMenuOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -51656,11 +54207,74 @@ export namespace Prisma {
     OR?: FooterMenuScalarWhereWithAggregatesInput[]
     NOT?: FooterMenuScalarWhereWithAggregatesInput | FooterMenuScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"FooterMenu"> | string
-    name?: StringWithAggregatesFilter<"FooterMenu"> | string
     order?: IntWithAggregatesFilter<"FooterMenu"> | number
     isActive?: BoolWithAggregatesFilter<"FooterMenu"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"FooterMenu"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FooterMenu"> | Date | string
+  }
+
+  export type FooterMenuTranslationWhereInput = {
+    AND?: FooterMenuTranslationWhereInput | FooterMenuTranslationWhereInput[]
+    OR?: FooterMenuTranslationWhereInput[]
+    NOT?: FooterMenuTranslationWhereInput | FooterMenuTranslationWhereInput[]
+    id?: StringFilter<"FooterMenuTranslation"> | string
+    footerMenuId?: StringFilter<"FooterMenuTranslation"> | string
+    languageCode?: StringFilter<"FooterMenuTranslation"> | string
+    name?: StringFilter<"FooterMenuTranslation"> | string
+    createdAt?: DateTimeFilter<"FooterMenuTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"FooterMenuTranslation"> | Date | string
+    footerMenu?: XOR<FooterMenuScalarRelationFilter, FooterMenuWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type FooterMenuTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    footerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    footerMenu?: FooterMenuOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type FooterMenuTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    footerMenuId_languageCode?: FooterMenuTranslationFooterMenuIdLanguageCodeCompoundUniqueInput
+    AND?: FooterMenuTranslationWhereInput | FooterMenuTranslationWhereInput[]
+    OR?: FooterMenuTranslationWhereInput[]
+    NOT?: FooterMenuTranslationWhereInput | FooterMenuTranslationWhereInput[]
+    footerMenuId?: StringFilter<"FooterMenuTranslation"> | string
+    languageCode?: StringFilter<"FooterMenuTranslation"> | string
+    name?: StringFilter<"FooterMenuTranslation"> | string
+    createdAt?: DateTimeFilter<"FooterMenuTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"FooterMenuTranslation"> | Date | string
+    footerMenu?: XOR<FooterMenuScalarRelationFilter, FooterMenuWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "footerMenuId_languageCode">
+
+  export type FooterMenuTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    footerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FooterMenuTranslationCountOrderByAggregateInput
+    _max?: FooterMenuTranslationMaxOrderByAggregateInput
+    _min?: FooterMenuTranslationMinOrderByAggregateInput
+  }
+
+  export type FooterMenuTranslationScalarWhereWithAggregatesInput = {
+    AND?: FooterMenuTranslationScalarWhereWithAggregatesInput | FooterMenuTranslationScalarWhereWithAggregatesInput[]
+    OR?: FooterMenuTranslationScalarWhereWithAggregatesInput[]
+    NOT?: FooterMenuTranslationScalarWhereWithAggregatesInput | FooterMenuTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FooterMenuTranslation"> | string
+    footerMenuId?: StringWithAggregatesFilter<"FooterMenuTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"FooterMenuTranslation"> | string
+    name?: StringWithAggregatesFilter<"FooterMenuTranslation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FooterMenuTranslation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FooterMenuTranslation"> | Date | string
   }
 
   export type FooterMenuItemWhereInput = {
@@ -51977,6 +54591,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateInput = {
@@ -52000,6 +54616,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUpdateInput = {
@@ -52023,6 +54641,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateInput = {
@@ -52046,6 +54666,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageCreateManyInput = {
@@ -54306,43 +56928,42 @@ export namespace Prisma {
 
   export type HeaderMenuCreateInput = {
     id?: string
-    name: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     items?: HeaderMenuItemCreateNestedManyWithoutHeaderMenuInput
+    translations?: HeaderMenuTranslationCreateNestedManyWithoutHeaderMenuInput
   }
 
   export type HeaderMenuUncheckedCreateInput = {
     id?: string
-    name: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     items?: HeaderMenuItemUncheckedCreateNestedManyWithoutHeaderMenuInput
+    translations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutHeaderMenuInput
   }
 
   export type HeaderMenuUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: HeaderMenuItemUpdateManyWithoutHeaderMenuNestedInput
+    translations?: HeaderMenuTranslationUpdateManyWithoutHeaderMenuNestedInput
   }
 
   export type HeaderMenuUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: HeaderMenuItemUncheckedUpdateManyWithoutHeaderMenuNestedInput
+    translations?: HeaderMenuTranslationUncheckedUpdateManyWithoutHeaderMenuNestedInput
   }
 
   export type HeaderMenuCreateManyInput = {
     id?: string
-    name: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -54350,7 +56971,6 @@ export namespace Prisma {
 
   export type HeaderMenuUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -54358,8 +56978,68 @@ export namespace Prisma {
 
   export type HeaderMenuUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeaderMenuTranslationCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    headerMenu: HeaderMenuCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutHeaderMenuTranslationsInput
+  }
+
+  export type HeaderMenuTranslationUncheckedCreateInput = {
+    id?: string
+    headerMenuId: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeaderMenuTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    headerMenu?: HeaderMenuUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutHeaderMenuTranslationsNestedInput
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerMenuId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeaderMenuTranslationCreateManyInput = {
+    id?: string
+    headerMenuId: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeaderMenuTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerMenuId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -54536,47 +57216,46 @@ export namespace Prisma {
 
   export type FooterMenuCreateInput = {
     id?: string
-    name: string
     order?: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     items?: FooterMenuItemCreateNestedManyWithoutFooterMenuInput
+    translations?: FooterMenuTranslationCreateNestedManyWithoutFooterMenuInput
   }
 
   export type FooterMenuUncheckedCreateInput = {
     id?: string
-    name: string
     order?: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     items?: FooterMenuItemUncheckedCreateNestedManyWithoutFooterMenuInput
+    translations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutFooterMenuInput
   }
 
   export type FooterMenuUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: FooterMenuItemUpdateManyWithoutFooterMenuNestedInput
+    translations?: FooterMenuTranslationUpdateManyWithoutFooterMenuNestedInput
   }
 
   export type FooterMenuUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: FooterMenuItemUncheckedUpdateManyWithoutFooterMenuNestedInput
+    translations?: FooterMenuTranslationUncheckedUpdateManyWithoutFooterMenuNestedInput
   }
 
   export type FooterMenuCreateManyInput = {
     id?: string
-    name: string
     order?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -54585,7 +57264,6 @@ export namespace Prisma {
 
   export type FooterMenuUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -54594,9 +57272,69 @@ export namespace Prisma {
 
   export type FooterMenuUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FooterMenuTranslationCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    footerMenu: FooterMenuCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutFooterMenuTranslationsInput
+  }
+
+  export type FooterMenuTranslationUncheckedCreateInput = {
+    id?: string
+    footerMenuId: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FooterMenuTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    footerMenu?: FooterMenuUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutFooterMenuTranslationsNestedInput
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    footerMenuId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FooterMenuTranslationCreateManyInput = {
+    id?: string
+    footerMenuId: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FooterMenuTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    footerMenuId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -55014,6 +57752,18 @@ export namespace Prisma {
     none?: FooterMenuItemTranslationWhereInput
   }
 
+  export type HeaderMenuTranslationListRelationFilter = {
+    every?: HeaderMenuTranslationWhereInput
+    some?: HeaderMenuTranslationWhereInput
+    none?: HeaderMenuTranslationWhereInput
+  }
+
+  export type FooterMenuTranslationListRelationFilter = {
+    every?: FooterMenuTranslationWhereInput
+    some?: FooterMenuTranslationWhereInput
+    none?: FooterMenuTranslationWhereInput
+  }
+
   export type BlogTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -55063,6 +57813,14 @@ export namespace Prisma {
   }
 
   export type FooterMenuItemTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HeaderMenuTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FooterMenuTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -56560,7 +59318,6 @@ export namespace Prisma {
 
   export type HeaderMenuCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -56568,7 +59325,6 @@ export namespace Prisma {
 
   export type HeaderMenuMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -56576,8 +59332,44 @@ export namespace Prisma {
 
   export type HeaderMenuMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HeaderMenuScalarRelationFilter = {
+    is?: HeaderMenuWhereInput
+    isNot?: HeaderMenuWhereInput
+  }
+
+  export type HeaderMenuTranslationHeaderMenuIdLanguageCodeCompoundUniqueInput = {
+    headerMenuId: string
+    languageCode: string
+  }
+
+  export type HeaderMenuTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    headerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HeaderMenuTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    headerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HeaderMenuTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    headerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -56587,11 +59379,6 @@ export namespace Prisma {
     in?: $Enums.MenuItemType[] | ListEnumMenuItemTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.MenuItemType[] | ListEnumMenuItemTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumMenuItemTypeFilter<$PrismaModel> | $Enums.MenuItemType
-  }
-
-  export type HeaderMenuScalarRelationFilter = {
-    is?: HeaderMenuWhereInput
-    isNot?: HeaderMenuWhereInput
   }
 
   export type BlogNullableScalarRelationFilter = {
@@ -56711,7 +59498,6 @@ export namespace Prisma {
 
   export type FooterMenuCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -56724,7 +59510,6 @@ export namespace Prisma {
 
   export type FooterMenuMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -56733,7 +59518,6 @@ export namespace Prisma {
 
   export type FooterMenuMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -56747,6 +59531,38 @@ export namespace Prisma {
   export type FooterMenuScalarRelationFilter = {
     is?: FooterMenuWhereInput
     isNot?: FooterMenuWhereInput
+  }
+
+  export type FooterMenuTranslationFooterMenuIdLanguageCodeCompoundUniqueInput = {
+    footerMenuId: string
+    languageCode: string
+  }
+
+  export type FooterMenuTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    footerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FooterMenuTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    footerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FooterMenuTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    footerMenuId?: SortOrder
+    languageCode?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type FooterMenuItemCountOrderByAggregateInput = {
@@ -56943,6 +59759,20 @@ export namespace Prisma {
     connect?: FooterMenuItemTranslationWhereUniqueInput | FooterMenuItemTranslationWhereUniqueInput[]
   }
 
+  export type HeaderMenuTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutLanguageInput, HeaderMenuTranslationUncheckedCreateWithoutLanguageInput> | HeaderMenuTranslationCreateWithoutLanguageInput[] | HeaderMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutLanguageInput | HeaderMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: HeaderMenuTranslationCreateManyLanguageInputEnvelope
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+  }
+
+  export type FooterMenuTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutLanguageInput, FooterMenuTranslationUncheckedCreateWithoutLanguageInput> | FooterMenuTranslationCreateWithoutLanguageInput[] | FooterMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutLanguageInput | FooterMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: FooterMenuTranslationCreateManyLanguageInputEnvelope
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+  }
+
   export type BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -57032,6 +59862,20 @@ export namespace Prisma {
     connectOrCreate?: FooterMenuItemTranslationCreateOrConnectWithoutLanguageInput | FooterMenuItemTranslationCreateOrConnectWithoutLanguageInput[]
     createMany?: FooterMenuItemTranslationCreateManyLanguageInputEnvelope
     connect?: FooterMenuItemTranslationWhereUniqueInput | FooterMenuItemTranslationWhereUniqueInput[]
+  }
+
+  export type HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutLanguageInput, HeaderMenuTranslationUncheckedCreateWithoutLanguageInput> | HeaderMenuTranslationCreateWithoutLanguageInput[] | HeaderMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutLanguageInput | HeaderMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: HeaderMenuTranslationCreateManyLanguageInputEnvelope
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+  }
+
+  export type FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutLanguageInput, FooterMenuTranslationUncheckedCreateWithoutLanguageInput> | FooterMenuTranslationCreateWithoutLanguageInput[] | FooterMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutLanguageInput | FooterMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: FooterMenuTranslationCreateManyLanguageInputEnvelope
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -57220,6 +60064,34 @@ export namespace Prisma {
     deleteMany?: FooterMenuItemTranslationScalarWhereInput | FooterMenuItemTranslationScalarWhereInput[]
   }
 
+  export type HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutLanguageInput, HeaderMenuTranslationUncheckedCreateWithoutLanguageInput> | HeaderMenuTranslationCreateWithoutLanguageInput[] | HeaderMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutLanguageInput | HeaderMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: HeaderMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput | HeaderMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: HeaderMenuTranslationCreateManyLanguageInputEnvelope
+    set?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    disconnect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    delete?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    update?: HeaderMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput | HeaderMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: HeaderMenuTranslationUpdateManyWithWhereWithoutLanguageInput | HeaderMenuTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: HeaderMenuTranslationScalarWhereInput | HeaderMenuTranslationScalarWhereInput[]
+  }
+
+  export type FooterMenuTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutLanguageInput, FooterMenuTranslationUncheckedCreateWithoutLanguageInput> | FooterMenuTranslationCreateWithoutLanguageInput[] | FooterMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutLanguageInput | FooterMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: FooterMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput | FooterMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: FooterMenuTranslationCreateManyLanguageInputEnvelope
+    set?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    disconnect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    delete?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    update?: FooterMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput | FooterMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: FooterMenuTranslationUpdateManyWithWhereWithoutLanguageInput | FooterMenuTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
+  }
+
   export type BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -57400,6 +60272,34 @@ export namespace Prisma {
     update?: FooterMenuItemTranslationUpdateWithWhereUniqueWithoutLanguageInput | FooterMenuItemTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: FooterMenuItemTranslationUpdateManyWithWhereWithoutLanguageInput | FooterMenuItemTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: FooterMenuItemTranslationScalarWhereInput | FooterMenuItemTranslationScalarWhereInput[]
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutLanguageInput, HeaderMenuTranslationUncheckedCreateWithoutLanguageInput> | HeaderMenuTranslationCreateWithoutLanguageInput[] | HeaderMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutLanguageInput | HeaderMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: HeaderMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput | HeaderMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: HeaderMenuTranslationCreateManyLanguageInputEnvelope
+    set?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    disconnect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    delete?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    update?: HeaderMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput | HeaderMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: HeaderMenuTranslationUpdateManyWithWhereWithoutLanguageInput | HeaderMenuTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: HeaderMenuTranslationScalarWhereInput | HeaderMenuTranslationScalarWhereInput[]
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutLanguageInput, FooterMenuTranslationUncheckedCreateWithoutLanguageInput> | FooterMenuTranslationCreateWithoutLanguageInput[] | FooterMenuTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutLanguageInput | FooterMenuTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: FooterMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput | FooterMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: FooterMenuTranslationCreateManyLanguageInputEnvelope
+    set?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    disconnect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    delete?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    update?: FooterMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput | FooterMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: FooterMenuTranslationUpdateManyWithWhereWithoutLanguageInput | FooterMenuTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
   }
 
   export type LanguageCreateNestedOneWithoutRouteTranslationsInput = {
@@ -59104,11 +62004,25 @@ export namespace Prisma {
     connect?: HeaderMenuItemWhereUniqueInput | HeaderMenuItemWhereUniqueInput[]
   }
 
+  export type HeaderMenuTranslationCreateNestedManyWithoutHeaderMenuInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuTranslationCreateWithoutHeaderMenuInput[] | HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput | HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput[]
+    createMany?: HeaderMenuTranslationCreateManyHeaderMenuInputEnvelope
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+  }
+
   export type HeaderMenuItemUncheckedCreateNestedManyWithoutHeaderMenuInput = {
     create?: XOR<HeaderMenuItemCreateWithoutHeaderMenuInput, HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuItemCreateWithoutHeaderMenuInput[] | HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput[]
     connectOrCreate?: HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput | HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput[]
     createMany?: HeaderMenuItemCreateManyHeaderMenuInputEnvelope
     connect?: HeaderMenuItemWhereUniqueInput | HeaderMenuItemWhereUniqueInput[]
+  }
+
+  export type HeaderMenuTranslationUncheckedCreateNestedManyWithoutHeaderMenuInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuTranslationCreateWithoutHeaderMenuInput[] | HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput | HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput[]
+    createMany?: HeaderMenuTranslationCreateManyHeaderMenuInputEnvelope
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
   }
 
   export type HeaderMenuItemUpdateManyWithoutHeaderMenuNestedInput = {
@@ -59125,6 +62039,20 @@ export namespace Prisma {
     deleteMany?: HeaderMenuItemScalarWhereInput | HeaderMenuItemScalarWhereInput[]
   }
 
+  export type HeaderMenuTranslationUpdateManyWithoutHeaderMenuNestedInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuTranslationCreateWithoutHeaderMenuInput[] | HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput | HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput[]
+    upsert?: HeaderMenuTranslationUpsertWithWhereUniqueWithoutHeaderMenuInput | HeaderMenuTranslationUpsertWithWhereUniqueWithoutHeaderMenuInput[]
+    createMany?: HeaderMenuTranslationCreateManyHeaderMenuInputEnvelope
+    set?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    disconnect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    delete?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    update?: HeaderMenuTranslationUpdateWithWhereUniqueWithoutHeaderMenuInput | HeaderMenuTranslationUpdateWithWhereUniqueWithoutHeaderMenuInput[]
+    updateMany?: HeaderMenuTranslationUpdateManyWithWhereWithoutHeaderMenuInput | HeaderMenuTranslationUpdateManyWithWhereWithoutHeaderMenuInput[]
+    deleteMany?: HeaderMenuTranslationScalarWhereInput | HeaderMenuTranslationScalarWhereInput[]
+  }
+
   export type HeaderMenuItemUncheckedUpdateManyWithoutHeaderMenuNestedInput = {
     create?: XOR<HeaderMenuItemCreateWithoutHeaderMenuInput, HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuItemCreateWithoutHeaderMenuInput[] | HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput[]
     connectOrCreate?: HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput | HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput[]
@@ -59137,6 +62065,48 @@ export namespace Prisma {
     update?: HeaderMenuItemUpdateWithWhereUniqueWithoutHeaderMenuInput | HeaderMenuItemUpdateWithWhereUniqueWithoutHeaderMenuInput[]
     updateMany?: HeaderMenuItemUpdateManyWithWhereWithoutHeaderMenuInput | HeaderMenuItemUpdateManyWithWhereWithoutHeaderMenuInput[]
     deleteMany?: HeaderMenuItemScalarWhereInput | HeaderMenuItemScalarWhereInput[]
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateManyWithoutHeaderMenuNestedInput = {
+    create?: XOR<HeaderMenuTranslationCreateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuTranslationCreateWithoutHeaderMenuInput[] | HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput[]
+    connectOrCreate?: HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput | HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput[]
+    upsert?: HeaderMenuTranslationUpsertWithWhereUniqueWithoutHeaderMenuInput | HeaderMenuTranslationUpsertWithWhereUniqueWithoutHeaderMenuInput[]
+    createMany?: HeaderMenuTranslationCreateManyHeaderMenuInputEnvelope
+    set?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    disconnect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    delete?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    connect?: HeaderMenuTranslationWhereUniqueInput | HeaderMenuTranslationWhereUniqueInput[]
+    update?: HeaderMenuTranslationUpdateWithWhereUniqueWithoutHeaderMenuInput | HeaderMenuTranslationUpdateWithWhereUniqueWithoutHeaderMenuInput[]
+    updateMany?: HeaderMenuTranslationUpdateManyWithWhereWithoutHeaderMenuInput | HeaderMenuTranslationUpdateManyWithWhereWithoutHeaderMenuInput[]
+    deleteMany?: HeaderMenuTranslationScalarWhereInput | HeaderMenuTranslationScalarWhereInput[]
+  }
+
+  export type HeaderMenuCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<HeaderMenuCreateWithoutTranslationsInput, HeaderMenuUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: HeaderMenuCreateOrConnectWithoutTranslationsInput
+    connect?: HeaderMenuWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutHeaderMenuTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutHeaderMenuTranslationsInput, LanguageUncheckedCreateWithoutHeaderMenuTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutHeaderMenuTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type HeaderMenuUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<HeaderMenuCreateWithoutTranslationsInput, HeaderMenuUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: HeaderMenuCreateOrConnectWithoutTranslationsInput
+    upsert?: HeaderMenuUpsertWithoutTranslationsInput
+    connect?: HeaderMenuWhereUniqueInput
+    update?: XOR<XOR<HeaderMenuUpdateToOneWithWhereWithoutTranslationsInput, HeaderMenuUpdateWithoutTranslationsInput>, HeaderMenuUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutHeaderMenuTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutHeaderMenuTranslationsInput, LanguageUncheckedCreateWithoutHeaderMenuTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutHeaderMenuTranslationsInput
+    upsert?: LanguageUpsertWithoutHeaderMenuTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutHeaderMenuTranslationsInput, LanguageUpdateWithoutHeaderMenuTranslationsInput>, LanguageUncheckedUpdateWithoutHeaderMenuTranslationsInput>
   }
 
   export type HeaderMenuCreateNestedOneWithoutItemsInput = {
@@ -59324,11 +62294,25 @@ export namespace Prisma {
     connect?: FooterMenuItemWhereUniqueInput | FooterMenuItemWhereUniqueInput[]
   }
 
+  export type FooterMenuTranslationCreateNestedManyWithoutFooterMenuInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutFooterMenuInput, FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput> | FooterMenuTranslationCreateWithoutFooterMenuInput[] | FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput | FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput[]
+    createMany?: FooterMenuTranslationCreateManyFooterMenuInputEnvelope
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+  }
+
   export type FooterMenuItemUncheckedCreateNestedManyWithoutFooterMenuInput = {
     create?: XOR<FooterMenuItemCreateWithoutFooterMenuInput, FooterMenuItemUncheckedCreateWithoutFooterMenuInput> | FooterMenuItemCreateWithoutFooterMenuInput[] | FooterMenuItemUncheckedCreateWithoutFooterMenuInput[]
     connectOrCreate?: FooterMenuItemCreateOrConnectWithoutFooterMenuInput | FooterMenuItemCreateOrConnectWithoutFooterMenuInput[]
     createMany?: FooterMenuItemCreateManyFooterMenuInputEnvelope
     connect?: FooterMenuItemWhereUniqueInput | FooterMenuItemWhereUniqueInput[]
+  }
+
+  export type FooterMenuTranslationUncheckedCreateNestedManyWithoutFooterMenuInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutFooterMenuInput, FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput> | FooterMenuTranslationCreateWithoutFooterMenuInput[] | FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput | FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput[]
+    createMany?: FooterMenuTranslationCreateManyFooterMenuInputEnvelope
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
   }
 
   export type FooterMenuItemUpdateManyWithoutFooterMenuNestedInput = {
@@ -59345,6 +62329,20 @@ export namespace Prisma {
     deleteMany?: FooterMenuItemScalarWhereInput | FooterMenuItemScalarWhereInput[]
   }
 
+  export type FooterMenuTranslationUpdateManyWithoutFooterMenuNestedInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutFooterMenuInput, FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput> | FooterMenuTranslationCreateWithoutFooterMenuInput[] | FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput | FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput[]
+    upsert?: FooterMenuTranslationUpsertWithWhereUniqueWithoutFooterMenuInput | FooterMenuTranslationUpsertWithWhereUniqueWithoutFooterMenuInput[]
+    createMany?: FooterMenuTranslationCreateManyFooterMenuInputEnvelope
+    set?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    disconnect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    delete?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    update?: FooterMenuTranslationUpdateWithWhereUniqueWithoutFooterMenuInput | FooterMenuTranslationUpdateWithWhereUniqueWithoutFooterMenuInput[]
+    updateMany?: FooterMenuTranslationUpdateManyWithWhereWithoutFooterMenuInput | FooterMenuTranslationUpdateManyWithWhereWithoutFooterMenuInput[]
+    deleteMany?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
+  }
+
   export type FooterMenuItemUncheckedUpdateManyWithoutFooterMenuNestedInput = {
     create?: XOR<FooterMenuItemCreateWithoutFooterMenuInput, FooterMenuItemUncheckedCreateWithoutFooterMenuInput> | FooterMenuItemCreateWithoutFooterMenuInput[] | FooterMenuItemUncheckedCreateWithoutFooterMenuInput[]
     connectOrCreate?: FooterMenuItemCreateOrConnectWithoutFooterMenuInput | FooterMenuItemCreateOrConnectWithoutFooterMenuInput[]
@@ -59357,6 +62355,48 @@ export namespace Prisma {
     update?: FooterMenuItemUpdateWithWhereUniqueWithoutFooterMenuInput | FooterMenuItemUpdateWithWhereUniqueWithoutFooterMenuInput[]
     updateMany?: FooterMenuItemUpdateManyWithWhereWithoutFooterMenuInput | FooterMenuItemUpdateManyWithWhereWithoutFooterMenuInput[]
     deleteMany?: FooterMenuItemScalarWhereInput | FooterMenuItemScalarWhereInput[]
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateManyWithoutFooterMenuNestedInput = {
+    create?: XOR<FooterMenuTranslationCreateWithoutFooterMenuInput, FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput> | FooterMenuTranslationCreateWithoutFooterMenuInput[] | FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput[]
+    connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput | FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput[]
+    upsert?: FooterMenuTranslationUpsertWithWhereUniqueWithoutFooterMenuInput | FooterMenuTranslationUpsertWithWhereUniqueWithoutFooterMenuInput[]
+    createMany?: FooterMenuTranslationCreateManyFooterMenuInputEnvelope
+    set?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    disconnect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    delete?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+    update?: FooterMenuTranslationUpdateWithWhereUniqueWithoutFooterMenuInput | FooterMenuTranslationUpdateWithWhereUniqueWithoutFooterMenuInput[]
+    updateMany?: FooterMenuTranslationUpdateManyWithWhereWithoutFooterMenuInput | FooterMenuTranslationUpdateManyWithWhereWithoutFooterMenuInput[]
+    deleteMany?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
+  }
+
+  export type FooterMenuCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<FooterMenuCreateWithoutTranslationsInput, FooterMenuUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: FooterMenuCreateOrConnectWithoutTranslationsInput
+    connect?: FooterMenuWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutFooterMenuTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutFooterMenuTranslationsInput, LanguageUncheckedCreateWithoutFooterMenuTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutFooterMenuTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type FooterMenuUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<FooterMenuCreateWithoutTranslationsInput, FooterMenuUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: FooterMenuCreateOrConnectWithoutTranslationsInput
+    upsert?: FooterMenuUpsertWithoutTranslationsInput
+    connect?: FooterMenuWhereUniqueInput
+    update?: XOR<XOR<FooterMenuUpdateToOneWithWhereWithoutTranslationsInput, FooterMenuUpdateWithoutTranslationsInput>, FooterMenuUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutFooterMenuTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutFooterMenuTranslationsInput, LanguageUncheckedCreateWithoutFooterMenuTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutFooterMenuTranslationsInput
+    upsert?: LanguageUpsertWithoutFooterMenuTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutFooterMenuTranslationsInput, LanguageUpdateWithoutFooterMenuTranslationsInput>, LanguageUncheckedUpdateWithoutFooterMenuTranslationsInput>
   }
 
   export type FooterMenuCreateNestedOneWithoutItemsInput = {
@@ -60179,6 +63219,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type HeaderMenuTranslationCreateWithoutLanguageInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    headerMenu: HeaderMenuCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type HeaderMenuTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    headerMenuId: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeaderMenuTranslationCreateOrConnectWithoutLanguageInput = {
+    where: HeaderMenuTranslationWhereUniqueInput
+    create: XOR<HeaderMenuTranslationCreateWithoutLanguageInput, HeaderMenuTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type HeaderMenuTranslationCreateManyLanguageInputEnvelope = {
+    data: HeaderMenuTranslationCreateManyLanguageInput | HeaderMenuTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FooterMenuTranslationCreateWithoutLanguageInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    footerMenu: FooterMenuCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type FooterMenuTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    footerMenuId: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FooterMenuTranslationCreateOrConnectWithoutLanguageInput = {
+    where: FooterMenuTranslationWhereUniqueInput
+    create: XOR<FooterMenuTranslationCreateWithoutLanguageInput, FooterMenuTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type FooterMenuTranslationCreateManyLanguageInputEnvelope = {
+    data: FooterMenuTranslationCreateManyLanguageInput | FooterMenuTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BlogTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
     where: BlogTranslationWhereUniqueInput
     update: XOR<BlogTranslationUpdateWithoutLanguageInput, BlogTranslationUncheckedUpdateWithoutLanguageInput>
@@ -60593,6 +63685,62 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"FooterMenuItemTranslation"> | Date | string
   }
 
+  export type HeaderMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: HeaderMenuTranslationWhereUniqueInput
+    update: XOR<HeaderMenuTranslationUpdateWithoutLanguageInput, HeaderMenuTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<HeaderMenuTranslationCreateWithoutLanguageInput, HeaderMenuTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type HeaderMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: HeaderMenuTranslationWhereUniqueInput
+    data: XOR<HeaderMenuTranslationUpdateWithoutLanguageInput, HeaderMenuTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type HeaderMenuTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: HeaderMenuTranslationScalarWhereInput
+    data: XOR<HeaderMenuTranslationUpdateManyMutationInput, HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type HeaderMenuTranslationScalarWhereInput = {
+    AND?: HeaderMenuTranslationScalarWhereInput | HeaderMenuTranslationScalarWhereInput[]
+    OR?: HeaderMenuTranslationScalarWhereInput[]
+    NOT?: HeaderMenuTranslationScalarWhereInput | HeaderMenuTranslationScalarWhereInput[]
+    id?: StringFilter<"HeaderMenuTranslation"> | string
+    headerMenuId?: StringFilter<"HeaderMenuTranslation"> | string
+    languageCode?: StringFilter<"HeaderMenuTranslation"> | string
+    name?: StringFilter<"HeaderMenuTranslation"> | string
+    createdAt?: DateTimeFilter<"HeaderMenuTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"HeaderMenuTranslation"> | Date | string
+  }
+
+  export type FooterMenuTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: FooterMenuTranslationWhereUniqueInput
+    update: XOR<FooterMenuTranslationUpdateWithoutLanguageInput, FooterMenuTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<FooterMenuTranslationCreateWithoutLanguageInput, FooterMenuTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type FooterMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: FooterMenuTranslationWhereUniqueInput
+    data: XOR<FooterMenuTranslationUpdateWithoutLanguageInput, FooterMenuTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type FooterMenuTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: FooterMenuTranslationScalarWhereInput
+    data: XOR<FooterMenuTranslationUpdateManyMutationInput, FooterMenuTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type FooterMenuTranslationScalarWhereInput = {
+    AND?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
+    OR?: FooterMenuTranslationScalarWhereInput[]
+    NOT?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
+    id?: StringFilter<"FooterMenuTranslation"> | string
+    footerMenuId?: StringFilter<"FooterMenuTranslation"> | string
+    languageCode?: StringFilter<"FooterMenuTranslation"> | string
+    name?: StringFilter<"FooterMenuTranslation"> | string
+    createdAt?: DateTimeFilter<"FooterMenuTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"FooterMenuTranslation"> | Date | string
+  }
+
   export type LanguageCreateWithoutRouteTranslationsInput = {
     id?: string
     code: string
@@ -60613,6 +63761,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutRouteTranslationsInput = {
@@ -60635,6 +63785,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutRouteTranslationsInput = {
@@ -60673,6 +63825,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutRouteTranslationsInput = {
@@ -60695,6 +63849,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateWithoutBlogInput = {
@@ -60937,6 +64093,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutBlogTranslationsInput = {
@@ -60959,6 +64117,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutBlogTranslationsInput = {
@@ -61030,6 +64190,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutBlogTranslationsInput = {
@@ -61052,6 +64214,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetMarqueeImageCreateWithoutHizmetInput = {
@@ -61829,6 +64993,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTranslationsInput = {
@@ -61851,6 +65017,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTranslationsInput = {
@@ -62052,6 +65220,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTranslationsInput = {
@@ -62074,6 +65244,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetTocItemUpsertWithWhereUniqueWithoutHizmetTranslationInput = {
@@ -63556,6 +66728,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetOverviewTabTranslationsInput = {
@@ -63578,6 +66752,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetOverviewTabTranslationsInput = {
@@ -63645,6 +66821,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetOverviewTabTranslationsInput = {
@@ -63667,6 +66845,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutWhyItemDefinitionsInput = {
@@ -63864,6 +67044,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetWhyItemTranslationsInput = {
@@ -63886,6 +67068,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetWhyItemTranslationsInput = {
@@ -63949,6 +67133,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetWhyItemTranslationsInput = {
@@ -63971,6 +67157,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutTestimonialDefinitionsInput = {
@@ -64172,6 +67360,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTestimonialTranslationsInput = {
@@ -64194,6 +67384,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTestimonialTranslationsInput = {
@@ -64259,6 +67451,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTestimonialTranslationsInput = {
@@ -64281,6 +67475,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutRecoveryItemDefinitionsInput = {
@@ -64480,6 +67676,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -64502,6 +67700,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetRecoveryItemTranslationsInput = {
@@ -64567,6 +67767,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -64589,6 +67791,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutPricingPackageDefinitionsInput = {
@@ -64788,6 +67992,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetPricingPackageTranslationsInput = {
@@ -64810,6 +68016,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetPricingPackageTranslationsInput = {
@@ -64873,6 +68081,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetPricingPackageTranslationsInput = {
@@ -64895,6 +68105,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutExpertItemDefinitionsInput = {
@@ -65098,6 +68310,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetExpertItemTranslationsInput = {
@@ -65120,6 +68334,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetExpertItemTranslationsInput = {
@@ -65185,6 +68401,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetExpertItemTranslationsInput = {
@@ -65207,6 +68425,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type GeneralSettingTranslationCreateWithoutGeneralSettingInput = {
@@ -65320,6 +68540,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput = {
@@ -65342,6 +68564,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput = {
@@ -65417,6 +68641,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput = {
@@ -65439,6 +68665,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeroContentTranslationCreateWithoutHeroContentInput = {
@@ -65585,6 +68813,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeroContentTranslationsInput = {
@@ -65607,6 +68837,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeroContentTranslationsInput = {
@@ -65670,6 +68902,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeroContentTranslationsInput = {
@@ -65692,6 +68926,8 @@ export namespace Prisma {
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeroContentCreateWithoutImagesInput = {
@@ -65780,6 +69016,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type HeaderMenuTranslationCreateWithoutHeaderMenuInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    language: LanguageCreateNestedOneWithoutHeaderMenuTranslationsInput
+  }
+
+  export type HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput = {
+    id?: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeaderMenuTranslationCreateOrConnectWithoutHeaderMenuInput = {
+    where: HeaderMenuTranslationWhereUniqueInput
+    create: XOR<HeaderMenuTranslationCreateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput>
+  }
+
+  export type HeaderMenuTranslationCreateManyHeaderMenuInputEnvelope = {
+    data: HeaderMenuTranslationCreateManyHeaderMenuInput | HeaderMenuTranslationCreateManyHeaderMenuInput[]
+    skipDuplicates?: boolean
+  }
+
   export type HeaderMenuItemUpsertWithWhereUniqueWithoutHeaderMenuInput = {
     where: HeaderMenuItemWhereUniqueInput
     update: XOR<HeaderMenuItemUpdateWithoutHeaderMenuInput, HeaderMenuItemUncheckedUpdateWithoutHeaderMenuInput>
@@ -65796,20 +69058,196 @@ export namespace Prisma {
     data: XOR<HeaderMenuItemUpdateManyMutationInput, HeaderMenuItemUncheckedUpdateManyWithoutHeaderMenuInput>
   }
 
-  export type HeaderMenuCreateWithoutItemsInput = {
+  export type HeaderMenuTranslationUpsertWithWhereUniqueWithoutHeaderMenuInput = {
+    where: HeaderMenuTranslationWhereUniqueInput
+    update: XOR<HeaderMenuTranslationUpdateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedUpdateWithoutHeaderMenuInput>
+    create: XOR<HeaderMenuTranslationCreateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedCreateWithoutHeaderMenuInput>
+  }
+
+  export type HeaderMenuTranslationUpdateWithWhereUniqueWithoutHeaderMenuInput = {
+    where: HeaderMenuTranslationWhereUniqueInput
+    data: XOR<HeaderMenuTranslationUpdateWithoutHeaderMenuInput, HeaderMenuTranslationUncheckedUpdateWithoutHeaderMenuInput>
+  }
+
+  export type HeaderMenuTranslationUpdateManyWithWhereWithoutHeaderMenuInput = {
+    where: HeaderMenuTranslationScalarWhereInput
+    data: XOR<HeaderMenuTranslationUpdateManyMutationInput, HeaderMenuTranslationUncheckedUpdateManyWithoutHeaderMenuInput>
+  }
+
+  export type HeaderMenuCreateWithoutTranslationsInput = {
     id?: string
-    name: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    items?: HeaderMenuItemCreateNestedManyWithoutHeaderMenuInput
+  }
+
+  export type HeaderMenuUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    items?: HeaderMenuItemUncheckedCreateNestedManyWithoutHeaderMenuInput
+  }
+
+  export type HeaderMenuCreateOrConnectWithoutTranslationsInput = {
+    where: HeaderMenuWhereUniqueInput
+    create: XOR<HeaderMenuCreateWithoutTranslationsInput, HeaderMenuUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutHeaderMenuTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutHeaderMenuTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutHeaderMenuTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutHeaderMenuTranslationsInput, LanguageUncheckedCreateWithoutHeaderMenuTranslationsInput>
+  }
+
+  export type HeaderMenuUpsertWithoutTranslationsInput = {
+    update: XOR<HeaderMenuUpdateWithoutTranslationsInput, HeaderMenuUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<HeaderMenuCreateWithoutTranslationsInput, HeaderMenuUncheckedCreateWithoutTranslationsInput>
+    where?: HeaderMenuWhereInput
+  }
+
+  export type HeaderMenuUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: HeaderMenuWhereInput
+    data: XOR<HeaderMenuUpdateWithoutTranslationsInput, HeaderMenuUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type HeaderMenuUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: HeaderMenuItemUpdateManyWithoutHeaderMenuNestedInput
+  }
+
+  export type HeaderMenuUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: HeaderMenuItemUncheckedUpdateManyWithoutHeaderMenuNestedInput
+  }
+
+  export type LanguageUpsertWithoutHeaderMenuTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutHeaderMenuTranslationsInput, LanguageUncheckedUpdateWithoutHeaderMenuTranslationsInput>
+    create: XOR<LanguageCreateWithoutHeaderMenuTranslationsInput, LanguageUncheckedCreateWithoutHeaderMenuTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutHeaderMenuTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutHeaderMenuTranslationsInput, LanguageUncheckedUpdateWithoutHeaderMenuTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutHeaderMenuTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutHeaderMenuTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type HeaderMenuCreateWithoutItemsInput = {
+    id?: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: HeaderMenuTranslationCreateNestedManyWithoutHeaderMenuInput
   }
 
   export type HeaderMenuUncheckedCreateWithoutItemsInput = {
     id?: string
-    name: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    translations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutHeaderMenuInput
   }
 
   export type HeaderMenuCreateOrConnectWithoutItemsInput = {
@@ -66017,18 +69455,18 @@ export namespace Prisma {
 
   export type HeaderMenuUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: HeaderMenuTranslationUpdateManyWithoutHeaderMenuNestedInput
   }
 
   export type HeaderMenuUncheckedUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: HeaderMenuTranslationUncheckedUpdateManyWithoutHeaderMenuNestedInput
   }
 
   export type BlogUpsertWithoutHeaderMenuItemsInput = {
@@ -66257,6 +69695,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeaderMenuItemTranslationsInput = {
@@ -66279,6 +69719,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeaderMenuItemTranslationsInput = {
@@ -66360,6 +69802,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeaderMenuItemTranslationsInput = {
@@ -66382,6 +69826,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type FooterMenuItemCreateWithoutFooterMenuInput = {
@@ -66422,6 +69868,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FooterMenuTranslationCreateWithoutFooterMenuInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    language: LanguageCreateNestedOneWithoutFooterMenuTranslationsInput
+  }
+
+  export type FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput = {
+    id?: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FooterMenuTranslationCreateOrConnectWithoutFooterMenuInput = {
+    where: FooterMenuTranslationWhereUniqueInput
+    create: XOR<FooterMenuTranslationCreateWithoutFooterMenuInput, FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput>
+  }
+
+  export type FooterMenuTranslationCreateManyFooterMenuInputEnvelope = {
+    data: FooterMenuTranslationCreateManyFooterMenuInput | FooterMenuTranslationCreateManyFooterMenuInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FooterMenuItemUpsertWithWhereUniqueWithoutFooterMenuInput = {
     where: FooterMenuItemWhereUniqueInput
     update: XOR<FooterMenuItemUpdateWithoutFooterMenuInput, FooterMenuItemUncheckedUpdateWithoutFooterMenuInput>
@@ -66438,22 +69910,202 @@ export namespace Prisma {
     data: XOR<FooterMenuItemUpdateManyMutationInput, FooterMenuItemUncheckedUpdateManyWithoutFooterMenuInput>
   }
 
-  export type FooterMenuCreateWithoutItemsInput = {
+  export type FooterMenuTranslationUpsertWithWhereUniqueWithoutFooterMenuInput = {
+    where: FooterMenuTranslationWhereUniqueInput
+    update: XOR<FooterMenuTranslationUpdateWithoutFooterMenuInput, FooterMenuTranslationUncheckedUpdateWithoutFooterMenuInput>
+    create: XOR<FooterMenuTranslationCreateWithoutFooterMenuInput, FooterMenuTranslationUncheckedCreateWithoutFooterMenuInput>
+  }
+
+  export type FooterMenuTranslationUpdateWithWhereUniqueWithoutFooterMenuInput = {
+    where: FooterMenuTranslationWhereUniqueInput
+    data: XOR<FooterMenuTranslationUpdateWithoutFooterMenuInput, FooterMenuTranslationUncheckedUpdateWithoutFooterMenuInput>
+  }
+
+  export type FooterMenuTranslationUpdateManyWithWhereWithoutFooterMenuInput = {
+    where: FooterMenuTranslationScalarWhereInput
+    data: XOR<FooterMenuTranslationUpdateManyMutationInput, FooterMenuTranslationUncheckedUpdateManyWithoutFooterMenuInput>
+  }
+
+  export type FooterMenuCreateWithoutTranslationsInput = {
     id?: string
-    name: string
     order?: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    items?: FooterMenuItemCreateNestedManyWithoutFooterMenuInput
+  }
+
+  export type FooterMenuUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    order?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    items?: FooterMenuItemUncheckedCreateNestedManyWithoutFooterMenuInput
+  }
+
+  export type FooterMenuCreateOrConnectWithoutTranslationsInput = {
+    where: FooterMenuWhereUniqueInput
+    create: XOR<FooterMenuCreateWithoutTranslationsInput, FooterMenuUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutFooterMenuTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutFooterMenuTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutFooterMenuTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutFooterMenuTranslationsInput, LanguageUncheckedCreateWithoutFooterMenuTranslationsInput>
+  }
+
+  export type FooterMenuUpsertWithoutTranslationsInput = {
+    update: XOR<FooterMenuUpdateWithoutTranslationsInput, FooterMenuUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<FooterMenuCreateWithoutTranslationsInput, FooterMenuUncheckedCreateWithoutTranslationsInput>
+    where?: FooterMenuWhereInput
+  }
+
+  export type FooterMenuUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: FooterMenuWhereInput
+    data: XOR<FooterMenuUpdateWithoutTranslationsInput, FooterMenuUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type FooterMenuUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: FooterMenuItemUpdateManyWithoutFooterMenuNestedInput
+  }
+
+  export type FooterMenuUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: FooterMenuItemUncheckedUpdateManyWithoutFooterMenuNestedInput
+  }
+
+  export type LanguageUpsertWithoutFooterMenuTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutFooterMenuTranslationsInput, LanguageUncheckedUpdateWithoutFooterMenuTranslationsInput>
+    create: XOR<LanguageCreateWithoutFooterMenuTranslationsInput, LanguageUncheckedCreateWithoutFooterMenuTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutFooterMenuTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutFooterMenuTranslationsInput, LanguageUncheckedUpdateWithoutFooterMenuTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutFooterMenuTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutFooterMenuTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type FooterMenuCreateWithoutItemsInput = {
+    id?: string
+    order?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: FooterMenuTranslationCreateNestedManyWithoutFooterMenuInput
   }
 
   export type FooterMenuUncheckedCreateWithoutItemsInput = {
     id?: string
-    name: string
     order?: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    translations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutFooterMenuInput
   }
 
   export type FooterMenuCreateOrConnectWithoutItemsInput = {
@@ -66582,20 +70234,20 @@ export namespace Prisma {
 
   export type FooterMenuUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: FooterMenuTranslationUpdateManyWithoutFooterMenuNestedInput
   }
 
   export type FooterMenuUncheckedUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: FooterMenuTranslationUncheckedUpdateManyWithoutFooterMenuNestedInput
   }
 
   export type BlogUpsertWithoutFooterMenuItemsInput = {
@@ -66761,6 +70413,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutFooterMenuItemTranslationsInput = {
@@ -66783,6 +70437,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutFooterMenuItemTranslationsInput = {
@@ -66860,6 +70516,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutFooterMenuItemTranslationsInput = {
@@ -66882,6 +70540,8 @@ export namespace Prisma {
     heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateManyLanguageInput = {
@@ -67034,6 +70694,22 @@ export namespace Prisma {
     id?: string
     footerMenuItemId: string
     title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HeaderMenuTranslationCreateManyLanguageInput = {
+    id?: string
+    headerMenuId: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FooterMenuTranslationCreateManyLanguageInput = {
+    id?: string
+    footerMenuId: string
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -67504,6 +71180,54 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     footerMenuItemId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeaderMenuTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    headerMenu?: HeaderMenuUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerMenuId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headerMenuId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FooterMenuTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    footerMenu?: FooterMenuUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    footerMenuId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    footerMenuId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -68698,6 +72422,14 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type HeaderMenuTranslationCreateManyHeaderMenuInput = {
+    id?: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type HeaderMenuItemUpdateWithoutHeaderMenuInput = {
     id?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
@@ -68740,6 +72472,30 @@ export namespace Prisma {
     openInNewTab?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeaderMenuTranslationUpdateWithoutHeaderMenuInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    language?: LanguageUpdateOneRequiredWithoutHeaderMenuTranslationsNestedInput
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateWithoutHeaderMenuInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeaderMenuTranslationUncheckedUpdateManyWithoutHeaderMenuInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -68849,6 +72605,14 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type FooterMenuTranslationCreateManyFooterMenuInput = {
+    id?: string
+    languageCode: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type FooterMenuItemUpdateWithoutFooterMenuInput = {
     id?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
@@ -68886,6 +72650,30 @@ export namespace Prisma {
     hizmetId?: NullableStringFieldUpdateOperationsInput | string | null
     openInNewTab?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FooterMenuTranslationUpdateWithoutFooterMenuInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    language?: LanguageUpdateOneRequiredWithoutFooterMenuTranslationsNestedInput
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateWithoutFooterMenuInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FooterMenuTranslationUncheckedUpdateManyWithoutFooterMenuInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

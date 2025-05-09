@@ -36,7 +36,12 @@ import {
 import { toast } from "sonner";
 
 // Tipler
-interface FooterMenuTranslation {
+interface ApiFooterMenuTranslation { // Ana menü grubu adı çevirisi için tip
+  languageCode: string;
+  name: string;
+}
+
+interface FooterMenuTranslation { // Menü öğesi başlığı çevirisi için tip
   languageCode: string;
   title: string;
 }
@@ -56,7 +61,8 @@ interface FooterMenuItemData {
 
 interface FooterMenuData {
   id: string;
-  name: string;
+  // name: string; // Eski yapı, kaldırıldı
+  translations: ApiFooterMenuTranslation[]; // Yeni yapı
 }
 
 // MenuItemType enum'ı (API ile aynı olmalı)
@@ -93,8 +99,8 @@ export default function FooterMenuItemsPage() {
   const [footerMenu, setFooterMenu] = useState<FooterMenuData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeLanguages, setActiveLanguages] = useState<ActiveLanguage[]>([]); // Aktif diller
-  const [currentLanguage, setCurrentLanguage] = useState(''); // Başlangıçta boş
+  const [activeLanguages, setActiveLanguages] = useState<ActiveLanguage[]>([]);
+  const [currentLanguage, setCurrentLanguage] = useState(''); // Liste için varsayılan dil
 
   // Lookup data states
   const [blogLookup, setBlogLookup] = useState<LookupItem[]>([]);
@@ -274,7 +280,8 @@ export default function FooterMenuItemsPage() {
     }
   };
 
-  const handleDeleteItem = async (itemId: string) => {
+  // handleDeleteItem fonksiyonu sadece bir kez tanımlanmalı
+  const handleDeleteItem = async (itemId: string) => { 
     if (!confirm("Bu menü öğesini silmek istediğinizden emin misiniz?")) {
       return;
     }
@@ -291,16 +298,26 @@ export default function FooterMenuItemsPage() {
     }
   };
 
+  const getMenuDisplayName = (currentMenu: FooterMenuData | null) => {
+    if (!currentMenu || !currentMenu.translations || currentMenu.translations.length === 0) {
+      return 'Menü Grubu';
+    }
+    const trTranslation = currentMenu.translations.find(t => t.languageCode === 'tr');
+    if (trTranslation) return trTranslation.name;
+    return currentMenu.translations[0]?.name || 'İsimsiz Grup';
+  };
+
   // Footer için sürükle-bırak genellikle gerekmez, basit tablo yeterli.
 
   if (isLoading) return <p className="text-center py-10">Yükleniyor...</p>;
   if (error) return <p className="text-center py-10 text-red-500">Hata: {error}</p>;
+  if (!footerMenu && !isLoading) return <p className="text-center py-10">Menü grubu bulunamadı.</p>; // Menü null ise göster
 
   return (
     <div className="container mx-auto py-8 px-4 md:px-6">
       <div className="flex justify-between items-center mb-2">
         <h1 className="text-3xl font-bold">
-          Footer Menü Öğeleri: {footerMenu?.name || 'Yükleniyor...'}
+          Footer Menü Öğeleri: {getMenuDisplayName(footerMenu)}
         </h1>
         <Button onClick={openNewItemDialog}>
           <PlusCircle className="mr-2 h-5 w-5" /> Yeni Menü Öğesi Ekle

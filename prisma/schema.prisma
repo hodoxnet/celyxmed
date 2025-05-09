@@ -68,6 +68,9 @@ model Language {
   // Menü Yönetimi İlişkileri
   headerMenuItemTranslations HeaderMenuItemTranslation[]
   footerMenuItemTranslations FooterMenuItemTranslation[]
+  // Ana Menü Çevirileri İçin Geri İlişkiler
+  headerMenuTranslations HeaderMenuTranslation[]
+  footerMenuTranslations FooterMenuTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -580,11 +583,25 @@ enum MenuItemType {
 
 model HeaderMenu {
   id        String    @id @default(cuid())
-  name      String    // Genellikle "Ana Header Menüsü" gibi tek bir kayıt olur
+  // name      String    // Bu alan kaldırıldı, HeaderMenuTranslation'a taşındı
   isActive  Boolean   @default(true)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   items     HeaderMenuItem[]
+  translations HeaderMenuTranslation[]
+}
+
+model HeaderMenuTranslation {
+  id            String     @id @default(cuid())
+  headerMenu    HeaderMenu @relation(fields: [headerMenuId], references: [id], onDelete: Cascade)
+  headerMenuId  String
+  language      Language   @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+  name          String     // Çevrilmiş menü adı
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@unique([headerMenuId, languageCode])
 }
 
 model HeaderMenuItem {
@@ -630,16 +647,30 @@ model HeaderMenuItemTranslation {
 
 model FooterMenu {
   id        String    @id @default(cuid())
-  name      String    // Örn: "Alt Bilgi - Tedaviler", "Alt Bilgi - Hakkımızda"
+  // name      String    // Bu alan kaldırıldı, FooterMenuTranslation'a taşındı
   // Footer'da birden fazla menü grubu olabilir, bu yüzden name önemli.
   // İstenirse bir "column" veya "groupKey" alanı da eklenebilir.
   // Örneğin: "treatments_column", "about_column"
-  // Şimdilik sadece 'name' ile gruplama varsayılıyor.
+  // Şimdilik sadece çevrilmiş 'name' ile gruplama varsayılıyor.
   order     Int       @default(0) // Footer içindeki menülerin sıralaması
   isActive  Boolean   @default(true)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   items     FooterMenuItem[]
+  translations FooterMenuTranslation[]
+}
+
+model FooterMenuTranslation {
+  id            String     @id @default(cuid())
+  footerMenu    FooterMenu @relation(fields: [footerMenuId], references: [id], onDelete: Cascade)
+  footerMenuId  String
+  language      Language   @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+  name          String     // Çevrilmiş menü adı
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@unique([footerMenuId, languageCode])
 }
 
 model FooterMenuItem {

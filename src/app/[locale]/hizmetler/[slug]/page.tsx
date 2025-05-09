@@ -1,9 +1,7 @@
 // src/app/[locale]/hizmetler/[slug]/page.tsx
 // Server Component olarak kalmalı
 
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import FloatingButtons from '@/components/layout/FloatingButtons';
+// Navbar, Footer ve FloatingButtons RootLayoutClient'tan geleceği için kaldırıldı.
 import HeroSection from '@/components/hizmet-detay/HeroSection';
 // TableOfContents importu kaldırıldı, yerine TocAndCtaSection gelecek
 import TocAndCtaSection from '@/components/hizmet-detay/TocAndCtaSection'; // Yeni bileşeni import et
@@ -377,21 +375,19 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   // Veri bulunamazsa gösterilecek içerik
   if (!serviceData) {
     return (
+      // Navbar, Footer ve FloatingButtons RootLayoutClient'tan gelecek
       <div className="flex flex-col min-h-screen">
-        <Navbar />
         <main className="flex-grow flex items-center justify-center">
           <p>Hizmet bulunamadı.</p>
         </main>
-        <Footer />
-        <FloatingButtons />
       </div>
     );
   }
 
   // Ana render fonksiyonu - Veri varsa içeriği gösterir
   return (
+    // Navbar RootLayoutClient'tan gelecek
     <div className="flex flex-col min-h-screen">
-      <Navbar />
       <main className="flex-grow">
         {/* Hero Bölümü - API'den gelen veri ile */}
         <HeroSection
@@ -515,9 +511,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         <BlogPreview /> {/* BlogPreview en alta taşındı */}
 
       </main>
-      {/* Footer layout'tan geldiği için buradan kaldırıldı */}
-      {/* <Footer /> */}
-      <FloatingButtons /> {/* FloatingButtons layout'ta da var, burada da kalabilir veya kaldırılabilir. Şimdilik kalsın. */}
+      {/* Footer ve FloatingButtons RootLayoutClient'tan gelecek */}
     </div>
   );
 }

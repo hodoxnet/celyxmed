@@ -2,11 +2,16 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 // import { getLocaleFromRequest } from '@/lib/utils'; // Bu helper varsayımsaldı, kaldırıldı. Locale query'den alınacak.
 
+import { z } from 'zod';
+
 // Helper function to build the menu hierarchy and resolve links
 async function buildHeaderMenu(locale: string) {
   const headerMenu = await prisma.headerMenu.findFirst({
     where: { isActive: true }, // Genellikle tek bir aktif header menüsü olur
     include: {
+      translations: { // Ana menü çevirileri
+        where: { languageCode: locale },
+      },
       items: {
         where: { isActive: true }, // Sadece aktif öğeler
         orderBy: { order: 'asc' },
@@ -46,6 +51,14 @@ async function buildHeaderMenu(locale: string) {
     return null;
   }
 
+  const menuNameTranslation = headerMenu.translations[0];
+  if (!menuNameTranslation) {
+    // İstenen dilde ana menü adı çevirisi yoksa, menüyü geçersiz sayabiliriz veya bir fallback kullanabiliriz.
+    // Şimdilik null dönüyoruz, bu da 404'e yol açacak.
+    // Alternatif olarak: console.warn(`HeaderMenu ID ${headerMenu.id} için '${locale}' dilinde isim çevirisi bulunamadı.`);
+    return null;
+  }
+
   // Veriyi frontend için formatla ve linkleri oluştur
   const formatItems = (items: any[]): any[] => {
     return items
@@ -76,7 +89,7 @@ async function buildHeaderMenu(locale: string) {
 
   return {
     id: headerMenu.id,
-    name: headerMenu.name,
+    name: menuNameTranslation.name, // Çevrilmiş menü adını kullan
     items: formatItems(headerMenu.items.filter(item => !item.parentId)), // Sadece ana seviye öğelerle başla
   };
 }
@@ -101,5 +114,70 @@ export async function GET(req: Request) {
   } catch (error) {
     console.error('[API/menus/header] Error fetching header menu:', error);
     return NextResponse.json({ message: 'Header menüsü getirilirken bir hata oluştu.' }, { status: 500 });
+  }
+}
+
+// Zod şeması: Gelen veriyi doğrulamak için
+const createHeaderMenuSchema = z.object({
+  translations: z.record(z.string().min(1), z.string().min(1, "Menü adı boş olamaz.")), // { "en": "Menu Name", "tr": "Menü Adı" }
+  isActive: z.boolean().optional().default(true),
+});
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+    const validation = createHeaderMenuSchema.safeParse(body);
+
+    if (!validation.success) {
+      return NextResponse.json({ message: 'Geçersiz veri.', errors: validation.error.errors }, { status: 400 });
+    }
+
+    const { translations, isActive } = validation.data;
+
+    // Aktif dilleri veritabanından çek (opsiyonel, gelen translation key'lerine güvenebiliriz)
+    // const activeLanguages = await prisma.language.findMany({ where: { isActive: true }, select: { code: true } });
+    // const activeLangCodes = activeLanguages.map(lang => lang.code);
+
+    // Gelen çevirilerin dil kodlarının geçerli olup olmadığını kontrol et (opsiyonel ama iyi bir pratik)
+    const providedLangCodes = Object.keys(translations);
+    // for (const code of providedLangCodes) {
+    //   if (!activeLangCodes.includes(code)) {
+    //     return NextResponse.json({ message: `Geçersiz dil kodu: ${code}` }, { status: 400 });
+    //   }
+    // }
+    if (providedLangCodes.length === 0) {
+        return NextResponse.json({ message: 'En az bir çeviri sağlanmalıdır.' }, { status: 400 });
+    }
+
+
+    const newHeaderMenu = await prisma.headerMenu.create({
+      data: {
+        isActive: isActive,
+        translations: {
+          createMany: {
+            data: providedLangCodes.map(langCode => ({
+              languageCode: langCode,
+              name: translations[langCode],
+            })),
+          },
+        },
+      },
+      include: {
+        translations: true, // Oluşturulan çevirileri de yanıtla dön
+      },
+    });
+
+    return NextResponse.json(newHeaderMenu, { status: 201 });
+
+  } catch (error) {
+    console.error('[API/menus/header] Error creating header menu:', error);
+    if (error instanceof z.ZodError) { // Zod kendi hata formatını kullanır
+      return NextResponse.json({ message: 'Veri doğrulama hatası.', errors: error.errors }, { status: 400 });
+    }
+    // Prisma veya diğer beklenmedik hatalar
+    if (error instanceof Error && 'code' in error && error.code === 'P2002') { // Unique constraint hatası (örneğin aynı dil için tekrar çeviri)
+        return NextResponse.json({ message: 'Benzersizlik kısıtlaması ihlal edildi. Dil başına bir çeviri olmalıdır.' }, { status: 409 }); // Conflict
+    }
+    return NextResponse.json({ message: 'Header menüsü oluşturulurken bir hata oluştu.' }, { status: 500 });
   }
 }

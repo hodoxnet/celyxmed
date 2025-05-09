@@ -27,8 +27,13 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { toast } from "sonner"; // Assuming sonner is used for toasts
 
-// Tipleri API yanıtlarına göre tanımla (şimdilik genel)
-interface HeaderMenuTranslation {
+// Tipleri API yanıtlarına göre tanımla
+interface ApiHeaderMenuTranslation { // Ana menü adı çevirisi için
+  languageCode: string;
+  name: string;
+}
+
+interface HeaderMenuItemTranslation { // Menü öğesi başlığı çevirisi için
   languageCode: string;
   title: string;
 }
@@ -41,14 +46,15 @@ interface HeaderMenuItem {
   openInNewTab: boolean;
   isActive: boolean;
   parentId?: string | null;
-  translations: HeaderMenuTranslation[];
+  translations: HeaderMenuItemTranslation[]; // Öğelerin çevirileri
   children: HeaderMenuItem[]; // Alt öğeler
   // blogPostId, hizmetId gibi alanlar da olabilir
 }
 
 interface HeaderMenu {
   id: string;
-  name: string;
+  // name: string; // Bu alan API'dan artık gelmeyecek, translations kullanılacak
+  translations: ApiHeaderMenuTranslation[]; // Ana menünün kendi adının çevirileri
   isActive: boolean;
   items: HeaderMenuItem[];
   createdAt: string;
@@ -71,13 +77,33 @@ export default function HeaderMenusPage() {
   // Dialog states for creating/editing HeaderMenu (ana menü tanımı)
   const [isMenuDialogOpen, setIsMenuDialogOpen] = useState(false);
   const [editingMenu, setEditingMenu] = useState<HeaderMenu | null>(null);
-  const [menuName, setMenuName] = useState('');
+  // const [menuName, setMenuName] = useState(''); // Yerine menuTranslations kullanılacak
+  const [menuTranslations, setMenuTranslations] = useState<Record<string, string>>({});
   const [menuIsActive, setMenuIsActive] = useState(true);
+  const [activeLanguages, setActiveLanguages] = useState<Array<{ code: string; name: string }>>([]);
+
+  const fetchActiveLanguages = async () => {
+    try {
+      // Bu endpoint'in aktif dilleri { code: string, name: string }[] formatında döndürdüğünü varsayıyoruz.
+      // Admin API'leri genellikle /api/admin/ altında olur, bu yüzden /api/admin/languages olabilir.
+      // Şimdilik /api/languages kullanıyoruz, gerekirse güncellenir.
+      const response = await fetch('/api/languages?active=true'); // Sadece aktif dilleri çekmek için bir query param eklenebilir
+      if (!response.ok) {
+        throw new Error('Aktif diller getirilemedi.');
+      }
+      const data = await response.json();
+      setActiveLanguages(data.languages || data); // API yanıtına göre data.languages veya data olabilir
+    } catch (err: any) {
+      toast.error(err.message || "Aktif diller yüklenirken bir hata oluştu.");
+    }
+  };
 
   const fetchHeaderMenus = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/admin/header-menus');
+      // API'nin /api/admin/header-menus olduğunu varsayıyoruz, bu endpoint'in
+      // HeaderMenu[] döndürdüğünü ve her HeaderMenu'nün translations içerdiğini varsayıyoruz.
+      const response = await fetch('/api/admin/header-menus'); 
       if (!response.ok) {
         throw new Error('Header menüleri getirilemedi.');
       }
@@ -93,24 +119,42 @@ export default function HeaderMenusPage() {
 
   useEffect(() => {
     fetchHeaderMenus();
+    fetchActiveLanguages(); // Aktif dilleri çek
   }, []);
+
+  const handleTranslationChange = (langCode: string, value: string) => {
+    setMenuTranslations(prev => ({ ...prev, [langCode]: value }));
+  };
 
   const handleMenuDialogSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // API endpoint'inin /api/menus/header olduğunu varsayıyoruz (admin değil, genel API)
+    // Eğer admin için ayrı bir endpoint varsa (örn: /api/admin/menus/header), o kullanılmalı.
+    // Şimdilik /api/menus/header kullanıyoruz.
     const apiUrl = editingMenu 
-      ? `/api/admin/header-menus/${editingMenu.id}` 
-      : '/api/admin/header-menus';
+      ? `/api/menus/header/${editingMenu.id}` // PUT için ID gerekebilir, API tasarımına bağlı
+      : '/api/menus/header';
     const method = editingMenu ? 'PUT' : 'POST';
+
+    // Frontend'den gönderilecek body'nin API'ın POST ve PUT metodlarının beklediği formatta olması gerekir.
+    // API'mız `translations: Record<string, string>` ve `isActive: boolean` bekliyor.
+    const payload = {
+      translations: menuTranslations,
+      isActive: menuIsActive,
+    };
+    
+    // Düzenleme modunda, eğer API sadece değişen alanları kabul ediyorsa, payload'ı ona göre ayarlamak gerekebilir.
+    // Şimdilik tüm alanları gönderiyoruz.
 
     try {
       const response = await fetch(apiUrl, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: menuName, isActive: menuIsActive }),
+        body: JSON.stringify(payload),
       });
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Header menüsü kaydedilemedi.');
+        throw new Error(errorData.message || errorData.errors?.[0]?.message || 'Header menüsü kaydedilemedi.');
       }
       toast.success(`Header menüsü başarıyla ${editingMenu ? 'güncellendi' : 'oluşturuldu'}.`);
       setIsMenuDialogOpen(false);
@@ -123,24 +167,32 @@ export default function HeaderMenusPage() {
 
   const openNewMenuDialog = () => {
     setEditingMenu(null);
-    setMenuName('');
+    setMenuTranslations({}); // Çevirileri sıfırla
     setMenuIsActive(true);
     setIsMenuDialogOpen(true);
   };
 
   const openEditMenuDialog = (menu: HeaderMenu) => {
     setEditingMenu(menu);
-    setMenuName(menu.name);
+    // Mevcut çevirileri forma yükle
+    const initialTranslations: Record<string, string> = {};
+    menu.translations.forEach(t => {
+      initialTranslations[t.languageCode] = t.name;
+    });
+    setMenuTranslations(initialTranslations);
     setMenuIsActive(menu.isActive);
     setIsMenuDialogOpen(true);
   };
   
   const handleDeleteMenu = async (menuId: string) => {
+    // Silme API endpoint'inin /api/menus/header/:id olduğunu varsayıyoruz.
+    // Admin için /api/admin/menus/header/:id olabilir.
     if (!confirm("Bu header menüsünü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.")) {
       return;
     }
     try {
-      const response = await fetch(`/api/admin/header-menus/${menuId}`, { method: 'DELETE' });
+      // API endpoint'ini kontrol et
+      const response = await fetch(`/api/menus/header/${menuId}`, { method: 'DELETE' });
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Header menüsü silinemedi.');
@@ -152,8 +204,31 @@ export default function HeaderMenusPage() {
     }
   };
 
+  const getMenuDisplayName = (menu: HeaderMenu) => {
+    // menu.translations var mı ve boş değil mi diye kontrol et
+    if (!menu.translations || menu.translations.length === 0) {
+      // Eğer admin panelinde menü adı doğrudan düzenlenmiyorsa ve sadece çevirilerle yönetiliyorsa,
+      // bu durum genellikle bir veri tutarsızlığına veya API'dan eksik veri gelmesine işaret eder.
+      // Eski 'name' alanı artık olmadığı için bir fallback göstermek zor.
+      // Belki menu.id veya genel bir uyarı gösterilebilir.
+      // Şimdilik, API'dan gelen verinin her zaman translations içereceğini varsayarak,
+      // bu kontrolü daha çok bir güvenlik önlemi olarak ekliyoruz.
+      // Eğer /api/admin/header-menus endpoint'i translations'ı içermiyorsa, asıl sorun oradadır.
+      console.warn(`HeaderMenu ID ${menu.id} için translations dizisi bulunamadı veya boş.`);
+      return `Menü ID: ${menu.id} (Çeviri Eksik)`; 
+    }
+    // Varsayılan dil olarak 'tr' veya ilk bulunan çeviriyi göster
+    const trTranslation = menu.translations.find(t => t.languageCode === 'tr');
+    if (trTranslation && trTranslation.name) return trTranslation.name;
+    
+    const firstAvailableTranslation = menu.translations[0];
+    if (firstAvailableTranslation && firstAvailableTranslation.name) return `${firstAvailableTranslation.name} (${firstAvailableTranslation.languageCode})`;
+    
+    return 'İsimsiz Menü';
+  };
 
-  if (isLoading) return <p className="text-center py-10">Yükleniyor...</p>;
+
+  if (isLoading && activeLanguages.length === 0) return <p className="text-center py-10">Yükleniyor...</p>;
   if (error) return <p className="text-center py-10 text-red-500">Hata: {error}</p>;
 
   // Genellikle tek bir "Ana Header Menüsü" olur.
@@ -170,14 +245,14 @@ export default function HeaderMenusPage() {
         </Button>
       </div>
 
-      {menus.length === 0 ? (
+      {menus.length === 0 && !isLoading ? ( // isLoading kontrolü eklendi
         <p>Henüz header menüsü oluşturulmamış.</p>
       ) : (
         <div className="bg-white shadow rounded-lg">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Menü Adı</TableHead>
+                <TableHead>Menü Adı (Varsayılan Dil)</TableHead>
                 <TableHead>Aktif mi?</TableHead>
                 <TableHead>Öğe Sayısı</TableHead>
                 <TableHead className="text-right">İşlemler</TableHead>
@@ -186,11 +261,12 @@ export default function HeaderMenusPage() {
             <TableBody>
               {menus.map((menu) => (
                 <TableRow key={menu.id}>
-                  <TableCell className="font-medium">{menu.name}</TableCell>
+                  <TableCell className="font-medium">{getMenuDisplayName(menu)}</TableCell>
                   <TableCell>{menu.isActive ? 'Evet' : 'Hayır'}</TableCell>
                   <TableCell>{menu.items?.length || 0}</TableCell>
                   <TableCell className="text-right space-x-2">
-                    <Link href={`/admin/header-menus/${menu.id}/items`}>
+                    {/* Öğeleri yönetme linki, /items alt yoluna gitmeli */}
+                    <Link href={`/admin/header-menus/${menu.id}/items`}> 
                        <Button variant="outline" size="sm">
                          <Eye className="mr-1 h-4 w-4" /> Öğeleri Yönet
                        </Button>
@@ -211,27 +287,35 @@ export default function HeaderMenusPage() {
 
       {/* HeaderMenu Create/Edit Dialog */}
       <Dialog open={isMenuDialogOpen} onOpenChange={setIsMenuDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>{editingMenu ? 'Header Menüsünü Düzenle' : 'Yeni Header Menüsü Oluştur'}</DialogTitle>
             <DialogDescription>
-              {editingMenu ? `"${editingMenu.name}" adlı header menüsünün detaylarını düzenleyin.` : 'Yeni bir header menüsü tanımı oluşturun.'}
+              {editingMenu 
+                ? `"${getMenuDisplayName(editingMenu)}" adlı header menüsünün detaylarını düzenleyin.` 
+                : 'Yeni bir header menüsü tanımı oluşturun. Her aktif dil için menü adını girin.'}
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleMenuDialogSubmit}>
             <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="menuName" className="text-right">
-                  Menü Adı
-                </Label>
-                <Input
-                  id="menuName"
-                  value={menuName}
-                  onChange={(e) => setMenuName(e.target.value)}
-                  className="col-span-3"
-                  required
-                />
-              </div>
+              {activeLanguages.length > 0 ? (
+                activeLanguages.map(lang => (
+                  <div className="grid grid-cols-4 items-center gap-4" key={lang.code}>
+                    <Label htmlFor={`menuName-${lang.code}`} className="text-right">
+                      Menü Adı ({lang.name})
+                    </Label>
+                    <Input
+                      id={`menuName-${lang.code}`}
+                      value={menuTranslations[lang.code] || ''}
+                      onChange={(e) => handleTranslationChange(lang.code, e.target.value)}
+                      className="col-span-3"
+                      required
+                    />
+                  </div>
+                ))
+              ) : (
+                <p className="text-sm text-muted-foreground col-span-4">Aktif dil bulunamadı veya yüklenemedi.</p>
+              )}
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="menuIsActive" className="text-right">
                   Aktif mi?
