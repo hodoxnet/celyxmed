@@ -75,7 +75,7 @@ export const PUT = withAdmin(async (req: Request, { params }: Params) => {
 
       if (translations && Array.isArray(translations)) {
         for (const translation of translations) {
-          if (translation.languageCode && translation.title && translation.description && translation.linkUrl) {
+          if (translation.languageCode) {
             const existingTranslation = await tx.treatmentSectionItemTranslation.findUnique({
               where: {
                 treatmentSectionItemId_languageCode: {
@@ -89,9 +89,9 @@ export const PUT = withAdmin(async (req: Request, { params }: Params) => {
               await tx.treatmentSectionItemTranslation.update({
                 where: { id: existingTranslation.id },
                 data: {
-                  title: translation.title,
-                  description: translation.description,
-                  linkUrl: translation.linkUrl,
+                  title: translation.title || "",
+                  description: translation.description || "",
+                  linkUrl: translation.linkUrl || "",
                 },
               });
             } else {
@@ -99,9 +99,9 @@ export const PUT = withAdmin(async (req: Request, { params }: Params) => {
                 data: {
                   treatmentSectionItemId: cardId,
                   languageCode: translation.languageCode,
-                  title: translation.title,
-                  description: translation.description,
-                  linkUrl: translation.linkUrl,
+                  title: translation.title || "",
+                  description: translation.description || "",
+                  linkUrl: translation.linkUrl || "",
                 },
               });
             }

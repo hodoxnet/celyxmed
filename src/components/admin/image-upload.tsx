@@ -35,13 +35,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     setPreviewUrl(initialImage);
   }, [initialImage]);
 
-  // Dosya seçilince Data URL önizlemesi oluştur (next/image için gerekli değil ama geçici görsel için kalabilir)
+  // Dosya seçilince Data URL önizlemesi oluştur
   const createPreview = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       if (e.target?.result) {
-        // Data URL'i sadece geçici olarak kullan, asıl src initialImage veya yüklenen URL olacak
-        // setPreviewUrl(e.target.result as string); // Bu satır kaldırılabilir veya farklı yönetilebilir
+        // Data URL'i geçici önizleme için kullan
+        setPreviewUrl(e.target.result as string);
       }
     };
     reader.readAsDataURL(file);
@@ -62,10 +62,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       return;
     }
 
-    // Geçici Data URL önizlemesi (opsiyonel)
-    // if (showPreview) {
-    //   createPreview(file);
-    // }
+    // Geçici Data URL önizlemesi
+    if (showPreview) {
+      createPreview(file);
+    }
 
     setIsUploading(true);
     setUploadProgress(10);
@@ -107,10 +107,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       onImageUploaded(data.url); // Yüklenen göreceli yolu bildir
       toast.success('Resim başarıyla yüklendi');
 
-      // previewUrl'i yüklenen göreceli yol ile güncelle
-      if (showPreview && data.url) {
-         setPreviewUrl(data.url);
-      }
+      // Başarılı yükleme sonrası sunucudan dönen göreceli yolu previewUrl olarak ayarla
+      setPreviewUrl(data.url);
 
     } catch (error: any) {
       console.error('Error uploading image:', error);
@@ -136,18 +134,30 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     <div className={`${className} space-y-2`}>
       {/* Resim önizleme alanı (next/image ile) */}
       {showPreview && hasValidPreview && (
-        <div className="relative rounded-md overflow-hidden border mb-2 aspect-video max-h-48"> {/* aspect-video veya uygun bir boyut */}
-          <Image
-            src={previewUrl} // Göreceli yol (/uploads/...) veya tam URL olabilir
-            alt="Yüklenen resim önizlemesi"
-            fill // Konteyneri doldur
-            style={{ objectFit: 'cover' }} // Resmi kapla
-            onError={() => {
-              console.warn(`Önizleme yüklenemedi: ${previewUrl}`);
-              setPreviewUrl(''); // Hata durumunda temizle
-            }}
-            unoptimized={previewUrl.startsWith('blob:') || previewUrl.startsWith('data:')} // Data URL veya Blob URL ise optimizasyonu kapat
-          />
+        <div className="relative rounded-md overflow-hidden border mb-2 h-48 w-full"> {/* Sabit yükseklik ve genişlik belirlendi */}
+          {previewUrl.startsWith('data:') ? (
+            // Data URL ise img kullan
+            <div className="w-full h-full relative">
+              <img
+                src={previewUrl}
+                alt="Yüklenen resim önizlemesi"
+                className="object-cover w-full h-full"
+              />
+            </div>
+          ) : (
+            // Normal URL ise next/image kullan
+            <Image
+              src={previewUrl} // Göreceli yol (/uploads/...) veya tam URL olabilir
+              alt="Yüklenen resim önizlemesi"
+              fill // Konteyneri doldur
+              style={{ objectFit: 'cover' }} // Resmi kapla
+              onError={() => {
+                console.warn(`Önizleme yüklenemedi: ${previewUrl}`);
+                setPreviewUrl(''); // Hata durumunda temizle
+              }}
+              unoptimized={previewUrl.startsWith('blob:')} // Blob URL ise optimizasyonu kapat
+            />
+          )}
           <Button
             type="button"
             variant="destructive"

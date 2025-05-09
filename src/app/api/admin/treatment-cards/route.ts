@@ -6,36 +6,40 @@ import { withAdmin } from '@/middleware/withAdmin';
 export const GET = withAdmin(async (req: Request) => {
   try {
     const { searchParams } = new URL(req.url);
-    const languageCode = searchParams.get('lang') || 'tr'; // Varsayılan dil
+    const languageCode = searchParams.get('lang');
 
     const items = await prisma.treatmentSectionItem.findMany({
       include: {
-        translations: {
-          where: { languageCode },
-          take: 1,
-        },
+        translations: languageCode
+          ? { where: { languageCode } }
+          : true, // Eğer belirli bir dil belirtilmemişse tüm çevirileri getir
       },
       orderBy: { order: 'asc' },
     });
 
-    const formattedItems = items.map(item => {
-      const translation = item.translations[0];
-      return {
-        id: item.id,
-        imageUrl: item.imageUrl,
-        order: item.order,
-        isPublished: item.isPublished,
-        createdAt: item.createdAt,
-        updatedAt: item.updatedAt,
-        title: translation?.title || null,
-        description: translation?.description || null,
-        linkUrl: translation?.linkUrl || null,
-        hasTranslation: !!translation,
-        languageCode: translation?.languageCode || languageCode,
-      };
-    });
+    // Eğer belirli bir dil belirtilmişse eski formatı koru
+    if (languageCode) {
+      const formattedItems = items.map(item => {
+        const translation = item.translations[0];
+        return {
+          id: item.id,
+          imageUrl: item.imageUrl,
+          order: item.order,
+          isPublished: item.isPublished,
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt,
+          title: translation?.title || null,
+          description: translation?.description || null,
+          linkUrl: translation?.linkUrl || null,
+          hasTranslation: !!translation,
+          languageCode: translation?.languageCode || languageCode,
+        };
+      });
+      return NextResponse.json(formattedItems);
+    }
 
-    return NextResponse.json(formattedItems);
+    // Eğer dil belirtilmemişse, tüm çeviriler içeren tam kayıtları döndür
+    return NextResponse.json(items);
   } catch (error) {
     console.error("Error fetching treatment cards:", error);
     return NextResponse.json({ message: 'Tedavi kartları getirilirken bir hata oluştu.' }, { status: 500 });
@@ -63,18 +67,18 @@ export const POST = withAdmin(async (req: Request) => {
 
       if (translations && Array.isArray(translations)) {
         for (const translation of translations) {
-          if (translation.languageCode && translation.title && translation.description && translation.linkUrl) {
+          if (translation.languageCode) {
             await tx.treatmentSectionItemTranslation.create({
               data: {
                 treatmentSectionItemId: newItem.id,
                 languageCode: translation.languageCode,
-                title: translation.title,
-                description: translation.description,
-                linkUrl: translation.linkUrl,
+                title: translation.title || "",
+                description: translation.description || "",
+                linkUrl: translation.linkUrl || "",
               },
             });
           } else {
-            console.warn(`Skipping translation for item ${newItem.id} due to missing fields for lang ${translation.languageCode}`);
+            console.warn(`Skipping translation for item ${newItem.id} due to missing language code`);
           }
         }
       }

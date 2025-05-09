@@ -22,14 +22,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 // Zod Şemaları (Sadece Tedavi Kartları için)
 const treatmentSectionItemTranslationSchema = z.object({
   languageCode: z.string().min(1),
-  title: z.string().min(1, "Başlık gereklidir"),
-  description: z.string().min(1, "Açıklama gereklidir"),
-  linkUrl: z.string().min(1, "Link URL gereklidir").refine(val => val.startsWith('/') || val.startsWith('http'), { message: "Link / veya http(s):// ile başlamalıdır" }),
+  title: z.string().optional().nullable(), // .min(1) kaldırıldı, optional ve nullable eklendi
+  description: z.string().optional().nullable(), // .min(1) kaldırıldı, optional ve nullable eklendi
+  linkUrl: z.string().optional().nullable().refine(val => !val || val.startsWith('/') || val.startsWith('http'), { message: "Link / veya http(s):// ile başlamalıdır" }), // .min(1) kaldırıldı, refine güncellendi
 });
 
 const treatmentSectionItemFormSchema = z.object({
   id: z.string().optional(),
-  imageUrl: z.string().min(1, "Resim URL'si gereklidir"),
+  imageUrl: z.string().min(1, "Resim URL'si gereklidir"), // Resim URL'si zorunlu kalmalı
   order: z.number().int().nonnegative().optional(),
   isPublished: z.boolean().optional(),
   translations: z.array(treatmentSectionItemTranslationSchema),
@@ -84,11 +84,19 @@ const TreatmentCardsAdminPage = () => {
       setIsLoading(false);
       setInitialDataLoaded(true);
     }
-  }, [activeItemFormTab]);
+  }, []); // Bağımlılık dizisi boşaltıldı
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [fetchData]); // Bu useEffect fetchData'yı sadece mount'ta çağırır
+
+  // activeItemFormTab'ı ayarlamak için yeni useEffect
+  useEffect(() => {
+    if (availableLanguages.length > 0 && !activeItemFormTab) {
+      const defaultLang = availableLanguages.find(lang => lang.isDefault);
+      setActiveItemFormTab(defaultLang?.code || availableLanguages[0].code);
+    }
+  }, [availableLanguages, activeItemFormTab]); // availableLanguages veya activeItemFormTab değiştiğinde çalışır
 
   const onItemSubmit = async (data: TreatmentSectionItemFormData) => {
     setIsLoading(true);
@@ -141,17 +149,29 @@ const TreatmentCardsAdminPage = () => {
 
   const openEditItemDialog = (item: any) => {
     setEditingItemId(item.id);
+    // Mevcut çevirileri almak için translations dizisini kullan
+    // Eğer her bir dil için çeviri yoksa boş değerlerle oluştur
     const itemTranslations = availableLanguages.map(lang => {
-        const existing = item.translations?.find((t: any) => t.languageCode === lang.code);
-        return existing || { languageCode: lang.code, title: '', description: '', linkUrl: '' };
+        // translations dizisi varsa kullan, yoksa boş dizi olarak kabul et
+        const translations = Array.isArray(item.translations) ? item.translations : [];
+        const existingTranslation = translations.find((t: any) => t.languageCode === lang.code);
+
+        return {
+            languageCode: lang.code,
+            title: existingTranslation?.title || '',
+            description: existingTranslation?.description || '',
+            linkUrl: existingTranslation?.linkUrl || '',
+        };
     });
+
     itemFormMethods.reset({
       id: item.id,
-      imageUrl: item.imageUrl,
+      imageUrl: item.imageUrl || '', // Ensure imageUrl is always a string
       order: item.order,
       isPublished: item.isPublished,
       translations: itemTranslations,
     });
+
     if (availableLanguages.length > 0) {
         const defaultLang = availableLanguages.find(lang => lang.isDefault);
         setActiveItemFormTab(defaultLang?.code || availableLanguages[0].code);
@@ -208,7 +228,15 @@ const TreatmentCardsAdminPage = () => {
               </TableHeader>
               <TableBody>
                 {treatmentItems.map((item) => {
-                  const defaultTranslation = item.translations?.find((t:any) => t.languageCode === (availableLanguages.find(l=>l.isDefault)?.code || 'tr')) || item.translations?.[0];
+                  // Varsayılan dili veya ilk dili bul
+                  const defaultLangCode = availableLanguages.find(l => l.isDefault)?.code || 'tr';
+
+                  // item.translations dizisi olup olmadığını kontrol et
+                  const translations = Array.isArray(item.translations) ? item.translations : [];
+
+                  // Önce varsayılan dildeki çeviriyi bul, yoksa ilk çeviriyi al
+                  const defaultTranslation = translations.find((t:any) => t.languageCode === defaultLangCode) || translations[0];
+
                   return (
                     <TableRow key={item.id}>
                       <TableCell>
@@ -250,8 +278,13 @@ const TreatmentCardsAdminPage = () => {
                     control={itemFormMethods.control}
                     render={({ field }) => (
                         <ImageUpload
+                        key={editingItemId || 'new-item'} // Key prop'u eklendi
                         initialImage={field.value}
-                        onImageUploaded={(url) => itemFormMethods.setValue('imageUrl', url, {shouldDirty: true})}
+                        showPreview={true} // Önizleme özelliği etkinleştirildi
+                        onImageUploaded={(url) => {
+                            field.onChange(url); // Controller'ın onChange'i çağrıldı
+                            itemFormMethods.setValue('imageUrl', url, {shouldDirty: true, shouldValidate: true}); // Ekstra seçenekler için setValue korunabilir
+                        }}
                         uploadFolder="treatment_cards" // Klasör adı güncellendi
                         />
                     )}
