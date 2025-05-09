@@ -184,6 +184,31 @@ export type WhyChooseSection = $Result.DefaultSelection<Prisma.$WhyChooseSection
  */
 export type WhyChooseSectionTranslation = $Result.DefaultSelection<Prisma.$WhyChooseSectionTranslationPayload>
 /**
+ * Model TreatmentSectionContent
+ * 
+ */
+export type TreatmentSectionContent = $Result.DefaultSelection<Prisma.$TreatmentSectionContentPayload>
+/**
+ * Model TreatmentSectionContentTranslation
+ * 
+ */
+export type TreatmentSectionContentTranslation = $Result.DefaultSelection<Prisma.$TreatmentSectionContentTranslationPayload>
+/**
+ * Model TreatmentSectionAvatar
+ * 
+ */
+export type TreatmentSectionAvatar = $Result.DefaultSelection<Prisma.$TreatmentSectionAvatarPayload>
+/**
+ * Model TreatmentSectionItem
+ * 
+ */
+export type TreatmentSectionItem = $Result.DefaultSelection<Prisma.$TreatmentSectionItemPayload>
+/**
+ * Model TreatmentSectionItemTranslation
+ * 
+ */
+export type TreatmentSectionItemTranslation = $Result.DefaultSelection<Prisma.$TreatmentSectionItemTranslationPayload>
+/**
  * Model HeaderMenu
  * 
  */
@@ -718,6 +743,56 @@ export class PrismaClient<
     * ```
     */
   get whyChooseSectionTranslation(): Prisma.WhyChooseSectionTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.treatmentSectionContent`: Exposes CRUD operations for the **TreatmentSectionContent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TreatmentSectionContents
+    * const treatmentSectionContents = await prisma.treatmentSectionContent.findMany()
+    * ```
+    */
+  get treatmentSectionContent(): Prisma.TreatmentSectionContentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.treatmentSectionContentTranslation`: Exposes CRUD operations for the **TreatmentSectionContentTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TreatmentSectionContentTranslations
+    * const treatmentSectionContentTranslations = await prisma.treatmentSectionContentTranslation.findMany()
+    * ```
+    */
+  get treatmentSectionContentTranslation(): Prisma.TreatmentSectionContentTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.treatmentSectionAvatar`: Exposes CRUD operations for the **TreatmentSectionAvatar** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TreatmentSectionAvatars
+    * const treatmentSectionAvatars = await prisma.treatmentSectionAvatar.findMany()
+    * ```
+    */
+  get treatmentSectionAvatar(): Prisma.TreatmentSectionAvatarDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.treatmentSectionItem`: Exposes CRUD operations for the **TreatmentSectionItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TreatmentSectionItems
+    * const treatmentSectionItems = await prisma.treatmentSectionItem.findMany()
+    * ```
+    */
+  get treatmentSectionItem(): Prisma.TreatmentSectionItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.treatmentSectionItemTranslation`: Exposes CRUD operations for the **TreatmentSectionItemTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TreatmentSectionItemTranslations
+    * const treatmentSectionItemTranslations = await prisma.treatmentSectionItemTranslation.findMany()
+    * ```
+    */
+  get treatmentSectionItemTranslation(): Prisma.TreatmentSectionItemTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.headerMenu`: Exposes CRUD operations for the **HeaderMenu** model.
@@ -1272,6 +1347,11 @@ export namespace Prisma {
     HeroBackgroundImage: 'HeroBackgroundImage',
     WhyChooseSection: 'WhyChooseSection',
     WhyChooseSectionTranslation: 'WhyChooseSectionTranslation',
+    TreatmentSectionContent: 'TreatmentSectionContent',
+    TreatmentSectionContentTranslation: 'TreatmentSectionContentTranslation',
+    TreatmentSectionAvatar: 'TreatmentSectionAvatar',
+    TreatmentSectionItem: 'TreatmentSectionItem',
+    TreatmentSectionItemTranslation: 'TreatmentSectionItemTranslation',
     HeaderMenu: 'HeaderMenu',
     HeaderMenuTranslation: 'HeaderMenuTranslation',
     HeaderMenuItem: 'HeaderMenuItem',
@@ -1298,7 +1378,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "whyChooseSection" | "whyChooseSectionTranslation" | "headerMenu" | "headerMenuTranslation" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuTranslation" | "footerMenuItem" | "footerMenuItemTranslation"
+      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "whyChooseSection" | "whyChooseSectionTranslation" | "treatmentSectionContent" | "treatmentSectionContentTranslation" | "treatmentSectionAvatar" | "treatmentSectionItem" | "treatmentSectionItemTranslation" | "headerMenu" | "headerMenuTranslation" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuTranslation" | "footerMenuItem" | "footerMenuItemTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3818,6 +3898,376 @@ export namespace Prisma {
           }
         }
       }
+      TreatmentSectionContent: {
+        payload: Prisma.$TreatmentSectionContentPayload<ExtArgs>
+        fields: Prisma.TreatmentSectionContentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TreatmentSectionContentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TreatmentSectionContentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>
+          }
+          findFirst: {
+            args: Prisma.TreatmentSectionContentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TreatmentSectionContentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>
+          }
+          findMany: {
+            args: Prisma.TreatmentSectionContentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>[]
+          }
+          create: {
+            args: Prisma.TreatmentSectionContentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>
+          }
+          createMany: {
+            args: Prisma.TreatmentSectionContentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TreatmentSectionContentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>[]
+          }
+          delete: {
+            args: Prisma.TreatmentSectionContentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>
+          }
+          update: {
+            args: Prisma.TreatmentSectionContentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>
+          }
+          deleteMany: {
+            args: Prisma.TreatmentSectionContentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TreatmentSectionContentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TreatmentSectionContentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>[]
+          }
+          upsert: {
+            args: Prisma.TreatmentSectionContentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentPayload>
+          }
+          aggregate: {
+            args: Prisma.TreatmentSectionContentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTreatmentSectionContent>
+          }
+          groupBy: {
+            args: Prisma.TreatmentSectionContentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionContentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TreatmentSectionContentCountArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionContentCountAggregateOutputType> | number
+          }
+        }
+      }
+      TreatmentSectionContentTranslation: {
+        payload: Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>
+        fields: Prisma.TreatmentSectionContentTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TreatmentSectionContentTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TreatmentSectionContentTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.TreatmentSectionContentTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TreatmentSectionContentTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.TreatmentSectionContentTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.TreatmentSectionContentTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.TreatmentSectionContentTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TreatmentSectionContentTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.TreatmentSectionContentTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>
+          }
+          update: {
+            args: Prisma.TreatmentSectionContentTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.TreatmentSectionContentTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TreatmentSectionContentTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TreatmentSectionContentTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.TreatmentSectionContentTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionContentTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.TreatmentSectionContentTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTreatmentSectionContentTranslation>
+          }
+          groupBy: {
+            args: Prisma.TreatmentSectionContentTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionContentTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TreatmentSectionContentTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionContentTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
+      TreatmentSectionAvatar: {
+        payload: Prisma.$TreatmentSectionAvatarPayload<ExtArgs>
+        fields: Prisma.TreatmentSectionAvatarFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TreatmentSectionAvatarFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TreatmentSectionAvatarFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>
+          }
+          findFirst: {
+            args: Prisma.TreatmentSectionAvatarFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TreatmentSectionAvatarFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>
+          }
+          findMany: {
+            args: Prisma.TreatmentSectionAvatarFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>[]
+          }
+          create: {
+            args: Prisma.TreatmentSectionAvatarCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>
+          }
+          createMany: {
+            args: Prisma.TreatmentSectionAvatarCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TreatmentSectionAvatarCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>[]
+          }
+          delete: {
+            args: Prisma.TreatmentSectionAvatarDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>
+          }
+          update: {
+            args: Prisma.TreatmentSectionAvatarUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>
+          }
+          deleteMany: {
+            args: Prisma.TreatmentSectionAvatarDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TreatmentSectionAvatarUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TreatmentSectionAvatarUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>[]
+          }
+          upsert: {
+            args: Prisma.TreatmentSectionAvatarUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionAvatarPayload>
+          }
+          aggregate: {
+            args: Prisma.TreatmentSectionAvatarAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTreatmentSectionAvatar>
+          }
+          groupBy: {
+            args: Prisma.TreatmentSectionAvatarGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionAvatarGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TreatmentSectionAvatarCountArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionAvatarCountAggregateOutputType> | number
+          }
+        }
+      }
+      TreatmentSectionItem: {
+        payload: Prisma.$TreatmentSectionItemPayload<ExtArgs>
+        fields: Prisma.TreatmentSectionItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TreatmentSectionItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TreatmentSectionItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>
+          }
+          findFirst: {
+            args: Prisma.TreatmentSectionItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TreatmentSectionItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>
+          }
+          findMany: {
+            args: Prisma.TreatmentSectionItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>[]
+          }
+          create: {
+            args: Prisma.TreatmentSectionItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>
+          }
+          createMany: {
+            args: Prisma.TreatmentSectionItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TreatmentSectionItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>[]
+          }
+          delete: {
+            args: Prisma.TreatmentSectionItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>
+          }
+          update: {
+            args: Prisma.TreatmentSectionItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.TreatmentSectionItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TreatmentSectionItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TreatmentSectionItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.TreatmentSectionItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemPayload>
+          }
+          aggregate: {
+            args: Prisma.TreatmentSectionItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTreatmentSectionItem>
+          }
+          groupBy: {
+            args: Prisma.TreatmentSectionItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TreatmentSectionItemCountArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      TreatmentSectionItemTranslation: {
+        payload: Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>
+        fields: Prisma.TreatmentSectionItemTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TreatmentSectionItemTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TreatmentSectionItemTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.TreatmentSectionItemTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TreatmentSectionItemTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.TreatmentSectionItemTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.TreatmentSectionItemTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.TreatmentSectionItemTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TreatmentSectionItemTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.TreatmentSectionItemTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>
+          }
+          update: {
+            args: Prisma.TreatmentSectionItemTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.TreatmentSectionItemTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TreatmentSectionItemTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TreatmentSectionItemTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.TreatmentSectionItemTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TreatmentSectionItemTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.TreatmentSectionItemTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTreatmentSectionItemTranslation>
+          }
+          groupBy: {
+            args: Prisma.TreatmentSectionItemTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionItemTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TreatmentSectionItemTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<TreatmentSectionItemTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
       HeaderMenu: {
         payload: Prisma.$HeaderMenuPayload<ExtArgs>
         fields: Prisma.HeaderMenuFieldRefs
@@ -4528,6 +4978,11 @@ export namespace Prisma {
     heroBackgroundImage?: HeroBackgroundImageOmit
     whyChooseSection?: WhyChooseSectionOmit
     whyChooseSectionTranslation?: WhyChooseSectionTranslationOmit
+    treatmentSectionContent?: TreatmentSectionContentOmit
+    treatmentSectionContentTranslation?: TreatmentSectionContentTranslationOmit
+    treatmentSectionAvatar?: TreatmentSectionAvatarOmit
+    treatmentSectionItem?: TreatmentSectionItemOmit
+    treatmentSectionItemTranslation?: TreatmentSectionItemTranslationOmit
     headerMenu?: HeaderMenuOmit
     headerMenuTranslation?: HeaderMenuTranslationOmit
     headerMenuItem?: HeaderMenuItemOmit
@@ -4646,6 +5101,8 @@ export namespace Prisma {
     footerMenuItemTranslations: number
     headerMenuTranslations: number
     footerMenuTranslations: number
+    treatmentSectionContentTranslations: number
+    treatmentSectionItemTranslations: number
   }
 
   export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4665,6 +5122,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: boolean | LanguageCountOutputTypeCountFooterMenuItemTranslationsArgs
     headerMenuTranslations?: boolean | LanguageCountOutputTypeCountHeaderMenuTranslationsArgs
     footerMenuTranslations?: boolean | LanguageCountOutputTypeCountFooterMenuTranslationsArgs
+    treatmentSectionContentTranslations?: boolean | LanguageCountOutputTypeCountTreatmentSectionContentTranslationsArgs
+    treatmentSectionItemTranslations?: boolean | LanguageCountOutputTypeCountTreatmentSectionItemTranslationsArgs
   }
 
   // Custom InputTypes
@@ -4788,6 +5247,20 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountFooterMenuTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FooterMenuTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountTreatmentSectionContentTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionContentTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountTreatmentSectionItemTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionItemTranslationWhereInput
   }
 
 
@@ -5313,6 +5786,77 @@ export namespace Prisma {
    */
   export type WhyChooseSectionCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WhyChooseSectionTranslationWhereInput
+  }
+
+
+  /**
+   * Count Type TreatmentSectionContentCountOutputType
+   */
+
+  export type TreatmentSectionContentCountOutputType = {
+    avatars: number
+    translations: number
+  }
+
+  export type TreatmentSectionContentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    avatars?: boolean | TreatmentSectionContentCountOutputTypeCountAvatarsArgs
+    translations?: boolean | TreatmentSectionContentCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TreatmentSectionContentCountOutputType without action
+   */
+  export type TreatmentSectionContentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentCountOutputType
+     */
+    select?: TreatmentSectionContentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionContentCountOutputType without action
+   */
+  export type TreatmentSectionContentCountOutputTypeCountAvatarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionAvatarWhereInput
+  }
+
+  /**
+   * TreatmentSectionContentCountOutputType without action
+   */
+  export type TreatmentSectionContentCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionContentTranslationWhereInput
+  }
+
+
+  /**
+   * Count Type TreatmentSectionItemCountOutputType
+   */
+
+  export type TreatmentSectionItemCountOutputType = {
+    translations: number
+  }
+
+  export type TreatmentSectionItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | TreatmentSectionItemCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TreatmentSectionItemCountOutputType without action
+   */
+  export type TreatmentSectionItemCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemCountOutputType
+     */
+    select?: TreatmentSectionItemCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionItemCountOutputType without action
+   */
+  export type TreatmentSectionItemCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionItemTranslationWhereInput
   }
 
 
@@ -7696,6 +8240,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
     headerMenuTranslations?: boolean | Language$headerMenuTranslationsArgs<ExtArgs>
     footerMenuTranslations?: boolean | Language$footerMenuTranslationsArgs<ExtArgs>
+    treatmentSectionContentTranslations?: boolean | Language$treatmentSectionContentTranslationsArgs<ExtArgs>
+    treatmentSectionItemTranslations?: boolean | Language$treatmentSectionItemTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["language"]>
 
@@ -7747,6 +8293,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: boolean | Language$footerMenuItemTranslationsArgs<ExtArgs>
     headerMenuTranslations?: boolean | Language$headerMenuTranslationsArgs<ExtArgs>
     footerMenuTranslations?: boolean | Language$footerMenuTranslationsArgs<ExtArgs>
+    treatmentSectionContentTranslations?: boolean | Language$treatmentSectionContentTranslationsArgs<ExtArgs>
+    treatmentSectionItemTranslations?: boolean | Language$treatmentSectionItemTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7771,6 +8319,8 @@ export namespace Prisma {
       footerMenuItemTranslations: Prisma.$FooterMenuItemTranslationPayload<ExtArgs>[]
       headerMenuTranslations: Prisma.$HeaderMenuTranslationPayload<ExtArgs>[]
       footerMenuTranslations: Prisma.$FooterMenuTranslationPayload<ExtArgs>[]
+      treatmentSectionContentTranslations: Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>[]
+      treatmentSectionItemTranslations: Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8190,6 +8740,8 @@ export namespace Prisma {
     footerMenuItemTranslations<T extends Language$footerMenuItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$footerMenuItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     headerMenuTranslations<T extends Language$headerMenuTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$headerMenuTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeaderMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     footerMenuTranslations<T extends Language$footerMenuTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$footerMenuTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    treatmentSectionContentTranslations<T extends Language$treatmentSectionContentTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$treatmentSectionContentTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    treatmentSectionItemTranslations<T extends Language$treatmentSectionItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$treatmentSectionItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8995,6 +9547,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FooterMenuTranslationScalarFieldEnum | FooterMenuTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.treatmentSectionContentTranslations
+   */
+  export type Language$treatmentSectionContentTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    where?: TreatmentSectionContentTranslationWhereInput
+    orderBy?: TreatmentSectionContentTranslationOrderByWithRelationInput | TreatmentSectionContentTranslationOrderByWithRelationInput[]
+    cursor?: TreatmentSectionContentTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TreatmentSectionContentTranslationScalarFieldEnum | TreatmentSectionContentTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.treatmentSectionItemTranslations
+   */
+  export type Language$treatmentSectionItemTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    where?: TreatmentSectionItemTranslationWhereInput
+    orderBy?: TreatmentSectionItemTranslationOrderByWithRelationInput | TreatmentSectionItemTranslationOrderByWithRelationInput[]
+    cursor?: TreatmentSectionItemTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TreatmentSectionItemTranslationScalarFieldEnum | TreatmentSectionItemTranslationScalarFieldEnum[]
   }
 
   /**
@@ -44139,6 +44739,5549 @@ export namespace Prisma {
 
 
   /**
+   * Model TreatmentSectionContent
+   */
+
+  export type AggregateTreatmentSectionContent = {
+    _count: TreatmentSectionContentCountAggregateOutputType | null
+    _min: TreatmentSectionContentMinAggregateOutputType | null
+    _max: TreatmentSectionContentMaxAggregateOutputType | null
+  }
+
+  export type TreatmentSectionContentMinAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionContentMaxAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionContentCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TreatmentSectionContentMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionContentMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionContentCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TreatmentSectionContentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionContent to aggregate.
+     */
+    where?: TreatmentSectionContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContents to fetch.
+     */
+    orderBy?: TreatmentSectionContentOrderByWithRelationInput | TreatmentSectionContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TreatmentSectionContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TreatmentSectionContents
+    **/
+    _count?: true | TreatmentSectionContentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TreatmentSectionContentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TreatmentSectionContentMaxAggregateInputType
+  }
+
+  export type GetTreatmentSectionContentAggregateType<T extends TreatmentSectionContentAggregateArgs> = {
+        [P in keyof T & keyof AggregateTreatmentSectionContent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTreatmentSectionContent[P]>
+      : GetScalarType<T[P], AggregateTreatmentSectionContent[P]>
+  }
+
+
+
+
+  export type TreatmentSectionContentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionContentWhereInput
+    orderBy?: TreatmentSectionContentOrderByWithAggregationInput | TreatmentSectionContentOrderByWithAggregationInput[]
+    by: TreatmentSectionContentScalarFieldEnum[] | TreatmentSectionContentScalarFieldEnum
+    having?: TreatmentSectionContentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TreatmentSectionContentCountAggregateInputType | true
+    _min?: TreatmentSectionContentMinAggregateInputType
+    _max?: TreatmentSectionContentMaxAggregateInputType
+  }
+
+  export type TreatmentSectionContentGroupByOutputType = {
+    id: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TreatmentSectionContentCountAggregateOutputType | null
+    _min: TreatmentSectionContentMinAggregateOutputType | null
+    _max: TreatmentSectionContentMaxAggregateOutputType | null
+  }
+
+  type GetTreatmentSectionContentGroupByPayload<T extends TreatmentSectionContentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TreatmentSectionContentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TreatmentSectionContentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TreatmentSectionContentGroupByOutputType[P]>
+            : GetScalarType<T[P], TreatmentSectionContentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TreatmentSectionContentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    avatars?: boolean | TreatmentSectionContent$avatarsArgs<ExtArgs>
+    translations?: boolean | TreatmentSectionContent$translationsArgs<ExtArgs>
+    _count?: boolean | TreatmentSectionContentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionContent"]>
+
+  export type TreatmentSectionContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["treatmentSectionContent"]>
+
+  export type TreatmentSectionContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["treatmentSectionContent"]>
+
+  export type TreatmentSectionContentSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TreatmentSectionContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt", ExtArgs["result"]["treatmentSectionContent"]>
+  export type TreatmentSectionContentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    avatars?: boolean | TreatmentSectionContent$avatarsArgs<ExtArgs>
+    translations?: boolean | TreatmentSectionContent$translationsArgs<ExtArgs>
+    _count?: boolean | TreatmentSectionContentCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionContentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type TreatmentSectionContentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $TreatmentSectionContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TreatmentSectionContent"
+    objects: {
+      avatars: Prisma.$TreatmentSectionAvatarPayload<ExtArgs>[]
+      translations: Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["treatmentSectionContent"]>
+    composites: {}
+  }
+
+  type TreatmentSectionContentGetPayload<S extends boolean | null | undefined | TreatmentSectionContentDefaultArgs> = $Result.GetResult<Prisma.$TreatmentSectionContentPayload, S>
+
+  type TreatmentSectionContentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TreatmentSectionContentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TreatmentSectionContentCountAggregateInputType | true
+    }
+
+  export interface TreatmentSectionContentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TreatmentSectionContent'], meta: { name: 'TreatmentSectionContent' } }
+    /**
+     * Find zero or one TreatmentSectionContent that matches the filter.
+     * @param {TreatmentSectionContentFindUniqueArgs} args - Arguments to find a TreatmentSectionContent
+     * @example
+     * // Get one TreatmentSectionContent
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TreatmentSectionContentFindUniqueArgs>(args: SelectSubset<T, TreatmentSectionContentFindUniqueArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TreatmentSectionContent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TreatmentSectionContentFindUniqueOrThrowArgs} args - Arguments to find a TreatmentSectionContent
+     * @example
+     * // Get one TreatmentSectionContent
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TreatmentSectionContentFindUniqueOrThrowArgs>(args: SelectSubset<T, TreatmentSectionContentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionContent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentFindFirstArgs} args - Arguments to find a TreatmentSectionContent
+     * @example
+     * // Get one TreatmentSectionContent
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TreatmentSectionContentFindFirstArgs>(args?: SelectSubset<T, TreatmentSectionContentFindFirstArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionContent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentFindFirstOrThrowArgs} args - Arguments to find a TreatmentSectionContent
+     * @example
+     * // Get one TreatmentSectionContent
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TreatmentSectionContentFindFirstOrThrowArgs>(args?: SelectSubset<T, TreatmentSectionContentFindFirstOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TreatmentSectionContents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TreatmentSectionContents
+     * const treatmentSectionContents = await prisma.treatmentSectionContent.findMany()
+     * 
+     * // Get first 10 TreatmentSectionContents
+     * const treatmentSectionContents = await prisma.treatmentSectionContent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const treatmentSectionContentWithIdOnly = await prisma.treatmentSectionContent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TreatmentSectionContentFindManyArgs>(args?: SelectSubset<T, TreatmentSectionContentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TreatmentSectionContent.
+     * @param {TreatmentSectionContentCreateArgs} args - Arguments to create a TreatmentSectionContent.
+     * @example
+     * // Create one TreatmentSectionContent
+     * const TreatmentSectionContent = await prisma.treatmentSectionContent.create({
+     *   data: {
+     *     // ... data to create a TreatmentSectionContent
+     *   }
+     * })
+     * 
+     */
+    create<T extends TreatmentSectionContentCreateArgs>(args: SelectSubset<T, TreatmentSectionContentCreateArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TreatmentSectionContents.
+     * @param {TreatmentSectionContentCreateManyArgs} args - Arguments to create many TreatmentSectionContents.
+     * @example
+     * // Create many TreatmentSectionContents
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TreatmentSectionContentCreateManyArgs>(args?: SelectSubset<T, TreatmentSectionContentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TreatmentSectionContents and returns the data saved in the database.
+     * @param {TreatmentSectionContentCreateManyAndReturnArgs} args - Arguments to create many TreatmentSectionContents.
+     * @example
+     * // Create many TreatmentSectionContents
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TreatmentSectionContents and only return the `id`
+     * const treatmentSectionContentWithIdOnly = await prisma.treatmentSectionContent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TreatmentSectionContentCreateManyAndReturnArgs>(args?: SelectSubset<T, TreatmentSectionContentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TreatmentSectionContent.
+     * @param {TreatmentSectionContentDeleteArgs} args - Arguments to delete one TreatmentSectionContent.
+     * @example
+     * // Delete one TreatmentSectionContent
+     * const TreatmentSectionContent = await prisma.treatmentSectionContent.delete({
+     *   where: {
+     *     // ... filter to delete one TreatmentSectionContent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TreatmentSectionContentDeleteArgs>(args: SelectSubset<T, TreatmentSectionContentDeleteArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TreatmentSectionContent.
+     * @param {TreatmentSectionContentUpdateArgs} args - Arguments to update one TreatmentSectionContent.
+     * @example
+     * // Update one TreatmentSectionContent
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TreatmentSectionContentUpdateArgs>(args: SelectSubset<T, TreatmentSectionContentUpdateArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TreatmentSectionContents.
+     * @param {TreatmentSectionContentDeleteManyArgs} args - Arguments to filter TreatmentSectionContents to delete.
+     * @example
+     * // Delete a few TreatmentSectionContents
+     * const { count } = await prisma.treatmentSectionContent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TreatmentSectionContentDeleteManyArgs>(args?: SelectSubset<T, TreatmentSectionContentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TreatmentSectionContents
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TreatmentSectionContentUpdateManyArgs>(args: SelectSubset<T, TreatmentSectionContentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionContents and returns the data updated in the database.
+     * @param {TreatmentSectionContentUpdateManyAndReturnArgs} args - Arguments to update many TreatmentSectionContents.
+     * @example
+     * // Update many TreatmentSectionContents
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TreatmentSectionContents and only return the `id`
+     * const treatmentSectionContentWithIdOnly = await prisma.treatmentSectionContent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TreatmentSectionContentUpdateManyAndReturnArgs>(args: SelectSubset<T, TreatmentSectionContentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TreatmentSectionContent.
+     * @param {TreatmentSectionContentUpsertArgs} args - Arguments to update or create a TreatmentSectionContent.
+     * @example
+     * // Update or create a TreatmentSectionContent
+     * const treatmentSectionContent = await prisma.treatmentSectionContent.upsert({
+     *   create: {
+     *     // ... data to create a TreatmentSectionContent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TreatmentSectionContent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TreatmentSectionContentUpsertArgs>(args: SelectSubset<T, TreatmentSectionContentUpsertArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TreatmentSectionContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentCountArgs} args - Arguments to filter TreatmentSectionContents to count.
+     * @example
+     * // Count the number of TreatmentSectionContents
+     * const count = await prisma.treatmentSectionContent.count({
+     *   where: {
+     *     // ... the filter for the TreatmentSectionContents we want to count
+     *   }
+     * })
+    **/
+    count<T extends TreatmentSectionContentCountArgs>(
+      args?: Subset<T, TreatmentSectionContentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TreatmentSectionContentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TreatmentSectionContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TreatmentSectionContentAggregateArgs>(args: Subset<T, TreatmentSectionContentAggregateArgs>): Prisma.PrismaPromise<GetTreatmentSectionContentAggregateType<T>>
+
+    /**
+     * Group by TreatmentSectionContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TreatmentSectionContentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TreatmentSectionContentGroupByArgs['orderBy'] }
+        : { orderBy?: TreatmentSectionContentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TreatmentSectionContentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTreatmentSectionContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TreatmentSectionContent model
+   */
+  readonly fields: TreatmentSectionContentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TreatmentSectionContent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TreatmentSectionContentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    avatars<T extends TreatmentSectionContent$avatarsArgs<ExtArgs> = {}>(args?: Subset<T, TreatmentSectionContent$avatarsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    translations<T extends TreatmentSectionContent$translationsArgs<ExtArgs> = {}>(args?: Subset<T, TreatmentSectionContent$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TreatmentSectionContent model
+   */
+  interface TreatmentSectionContentFieldRefs {
+    readonly id: FieldRef<"TreatmentSectionContent", 'String'>
+    readonly createdAt: FieldRef<"TreatmentSectionContent", 'DateTime'>
+    readonly updatedAt: FieldRef<"TreatmentSectionContent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TreatmentSectionContent findUnique
+   */
+  export type TreatmentSectionContentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContent to fetch.
+     */
+    where: TreatmentSectionContentWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContent findUniqueOrThrow
+   */
+  export type TreatmentSectionContentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContent to fetch.
+     */
+    where: TreatmentSectionContentWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContent findFirst
+   */
+  export type TreatmentSectionContentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContent to fetch.
+     */
+    where?: TreatmentSectionContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContents to fetch.
+     */
+    orderBy?: TreatmentSectionContentOrderByWithRelationInput | TreatmentSectionContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionContents.
+     */
+    cursor?: TreatmentSectionContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionContents.
+     */
+    distinct?: TreatmentSectionContentScalarFieldEnum | TreatmentSectionContentScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContent findFirstOrThrow
+   */
+  export type TreatmentSectionContentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContent to fetch.
+     */
+    where?: TreatmentSectionContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContents to fetch.
+     */
+    orderBy?: TreatmentSectionContentOrderByWithRelationInput | TreatmentSectionContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionContents.
+     */
+    cursor?: TreatmentSectionContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionContents.
+     */
+    distinct?: TreatmentSectionContentScalarFieldEnum | TreatmentSectionContentScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContent findMany
+   */
+  export type TreatmentSectionContentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContents to fetch.
+     */
+    where?: TreatmentSectionContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContents to fetch.
+     */
+    orderBy?: TreatmentSectionContentOrderByWithRelationInput | TreatmentSectionContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TreatmentSectionContents.
+     */
+    cursor?: TreatmentSectionContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContents.
+     */
+    skip?: number
+    distinct?: TreatmentSectionContentScalarFieldEnum | TreatmentSectionContentScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContent create
+   */
+  export type TreatmentSectionContentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TreatmentSectionContent.
+     */
+    data: XOR<TreatmentSectionContentCreateInput, TreatmentSectionContentUncheckedCreateInput>
+  }
+
+  /**
+   * TreatmentSectionContent createMany
+   */
+  export type TreatmentSectionContentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TreatmentSectionContents.
+     */
+    data: TreatmentSectionContentCreateManyInput | TreatmentSectionContentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TreatmentSectionContent createManyAndReturn
+   */
+  export type TreatmentSectionContentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * The data used to create many TreatmentSectionContents.
+     */
+    data: TreatmentSectionContentCreateManyInput | TreatmentSectionContentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TreatmentSectionContent update
+   */
+  export type TreatmentSectionContentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TreatmentSectionContent.
+     */
+    data: XOR<TreatmentSectionContentUpdateInput, TreatmentSectionContentUncheckedUpdateInput>
+    /**
+     * Choose, which TreatmentSectionContent to update.
+     */
+    where: TreatmentSectionContentWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContent updateMany
+   */
+  export type TreatmentSectionContentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TreatmentSectionContents.
+     */
+    data: XOR<TreatmentSectionContentUpdateManyMutationInput, TreatmentSectionContentUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionContents to update
+     */
+    where?: TreatmentSectionContentWhereInput
+    /**
+     * Limit how many TreatmentSectionContents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionContent updateManyAndReturn
+   */
+  export type TreatmentSectionContentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * The data used to update TreatmentSectionContents.
+     */
+    data: XOR<TreatmentSectionContentUpdateManyMutationInput, TreatmentSectionContentUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionContents to update
+     */
+    where?: TreatmentSectionContentWhereInput
+    /**
+     * Limit how many TreatmentSectionContents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionContent upsert
+   */
+  export type TreatmentSectionContentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TreatmentSectionContent to update in case it exists.
+     */
+    where: TreatmentSectionContentWhereUniqueInput
+    /**
+     * In case the TreatmentSectionContent found by the `where` argument doesn't exist, create a new TreatmentSectionContent with this data.
+     */
+    create: XOR<TreatmentSectionContentCreateInput, TreatmentSectionContentUncheckedCreateInput>
+    /**
+     * In case the TreatmentSectionContent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TreatmentSectionContentUpdateInput, TreatmentSectionContentUncheckedUpdateInput>
+  }
+
+  /**
+   * TreatmentSectionContent delete
+   */
+  export type TreatmentSectionContentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+    /**
+     * Filter which TreatmentSectionContent to delete.
+     */
+    where: TreatmentSectionContentWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContent deleteMany
+   */
+  export type TreatmentSectionContentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionContents to delete
+     */
+    where?: TreatmentSectionContentWhereInput
+    /**
+     * Limit how many TreatmentSectionContents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionContent.avatars
+   */
+  export type TreatmentSectionContent$avatarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    where?: TreatmentSectionAvatarWhereInput
+    orderBy?: TreatmentSectionAvatarOrderByWithRelationInput | TreatmentSectionAvatarOrderByWithRelationInput[]
+    cursor?: TreatmentSectionAvatarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TreatmentSectionAvatarScalarFieldEnum | TreatmentSectionAvatarScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContent.translations
+   */
+  export type TreatmentSectionContent$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    where?: TreatmentSectionContentTranslationWhereInput
+    orderBy?: TreatmentSectionContentTranslationOrderByWithRelationInput | TreatmentSectionContentTranslationOrderByWithRelationInput[]
+    cursor?: TreatmentSectionContentTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TreatmentSectionContentTranslationScalarFieldEnum | TreatmentSectionContentTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContent without action
+   */
+  export type TreatmentSectionContentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContent
+     */
+    select?: TreatmentSectionContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContent
+     */
+    omit?: TreatmentSectionContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TreatmentSectionContentTranslation
+   */
+
+  export type AggregateTreatmentSectionContentTranslation = {
+    _count: TreatmentSectionContentTranslationCountAggregateOutputType | null
+    _min: TreatmentSectionContentTranslationMinAggregateOutputType | null
+    _max: TreatmentSectionContentTranslationMaxAggregateOutputType | null
+  }
+
+  export type TreatmentSectionContentTranslationMinAggregateOutputType = {
+    id: string | null
+    treatmentSectionContentId: string | null
+    languageCode: string | null
+    mainTitle: string | null
+    mainDescription: string | null
+    exploreButtonText: string | null
+    exploreButtonLink: string | null
+    avatarGroupText: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionContentTranslationMaxAggregateOutputType = {
+    id: string | null
+    treatmentSectionContentId: string | null
+    languageCode: string | null
+    mainTitle: string | null
+    mainDescription: string | null
+    exploreButtonText: string | null
+    exploreButtonLink: string | null
+    avatarGroupText: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionContentTranslationCountAggregateOutputType = {
+    id: number
+    treatmentSectionContentId: number
+    languageCode: number
+    mainTitle: number
+    mainDescription: number
+    exploreButtonText: number
+    exploreButtonLink: number
+    avatarGroupText: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TreatmentSectionContentTranslationMinAggregateInputType = {
+    id?: true
+    treatmentSectionContentId?: true
+    languageCode?: true
+    mainTitle?: true
+    mainDescription?: true
+    exploreButtonText?: true
+    exploreButtonLink?: true
+    avatarGroupText?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionContentTranslationMaxAggregateInputType = {
+    id?: true
+    treatmentSectionContentId?: true
+    languageCode?: true
+    mainTitle?: true
+    mainDescription?: true
+    exploreButtonText?: true
+    exploreButtonLink?: true
+    avatarGroupText?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionContentTranslationCountAggregateInputType = {
+    id?: true
+    treatmentSectionContentId?: true
+    languageCode?: true
+    mainTitle?: true
+    mainDescription?: true
+    exploreButtonText?: true
+    exploreButtonLink?: true
+    avatarGroupText?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TreatmentSectionContentTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionContentTranslation to aggregate.
+     */
+    where?: TreatmentSectionContentTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContentTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionContentTranslationOrderByWithRelationInput | TreatmentSectionContentTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TreatmentSectionContentTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContentTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContentTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TreatmentSectionContentTranslations
+    **/
+    _count?: true | TreatmentSectionContentTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TreatmentSectionContentTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TreatmentSectionContentTranslationMaxAggregateInputType
+  }
+
+  export type GetTreatmentSectionContentTranslationAggregateType<T extends TreatmentSectionContentTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateTreatmentSectionContentTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTreatmentSectionContentTranslation[P]>
+      : GetScalarType<T[P], AggregateTreatmentSectionContentTranslation[P]>
+  }
+
+
+
+
+  export type TreatmentSectionContentTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionContentTranslationWhereInput
+    orderBy?: TreatmentSectionContentTranslationOrderByWithAggregationInput | TreatmentSectionContentTranslationOrderByWithAggregationInput[]
+    by: TreatmentSectionContentTranslationScalarFieldEnum[] | TreatmentSectionContentTranslationScalarFieldEnum
+    having?: TreatmentSectionContentTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TreatmentSectionContentTranslationCountAggregateInputType | true
+    _min?: TreatmentSectionContentTranslationMinAggregateInputType
+    _max?: TreatmentSectionContentTranslationMaxAggregateInputType
+  }
+
+  export type TreatmentSectionContentTranslationGroupByOutputType = {
+    id: string
+    treatmentSectionContentId: string
+    languageCode: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TreatmentSectionContentTranslationCountAggregateOutputType | null
+    _min: TreatmentSectionContentTranslationMinAggregateOutputType | null
+    _max: TreatmentSectionContentTranslationMaxAggregateOutputType | null
+  }
+
+  type GetTreatmentSectionContentTranslationGroupByPayload<T extends TreatmentSectionContentTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TreatmentSectionContentTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TreatmentSectionContentTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TreatmentSectionContentTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], TreatmentSectionContentTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TreatmentSectionContentTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    treatmentSectionContentId?: boolean
+    languageCode?: boolean
+    mainTitle?: boolean
+    mainDescription?: boolean
+    exploreButtonText?: boolean
+    exploreButtonLink?: boolean
+    avatarGroupText?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionContentTranslation"]>
+
+  export type TreatmentSectionContentTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    treatmentSectionContentId?: boolean
+    languageCode?: boolean
+    mainTitle?: boolean
+    mainDescription?: boolean
+    exploreButtonText?: boolean
+    exploreButtonLink?: boolean
+    avatarGroupText?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionContentTranslation"]>
+
+  export type TreatmentSectionContentTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    treatmentSectionContentId?: boolean
+    languageCode?: boolean
+    mainTitle?: boolean
+    mainDescription?: boolean
+    exploreButtonText?: boolean
+    exploreButtonLink?: boolean
+    avatarGroupText?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionContentTranslation"]>
+
+  export type TreatmentSectionContentTranslationSelectScalar = {
+    id?: boolean
+    treatmentSectionContentId?: boolean
+    languageCode?: boolean
+    mainTitle?: boolean
+    mainDescription?: boolean
+    exploreButtonText?: boolean
+    exploreButtonLink?: boolean
+    avatarGroupText?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TreatmentSectionContentTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "treatmentSectionContentId" | "languageCode" | "mainTitle" | "mainDescription" | "exploreButtonText" | "exploreButtonLink" | "avatarGroupText" | "createdAt" | "updatedAt", ExtArgs["result"]["treatmentSectionContentTranslation"]>
+  export type TreatmentSectionContentTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionContentTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionContentTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $TreatmentSectionContentTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TreatmentSectionContentTranslation"
+    objects: {
+      treatmentSectionContent: Prisma.$TreatmentSectionContentPayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      treatmentSectionContentId: string
+      languageCode: string
+      mainTitle: string
+      mainDescription: string
+      exploreButtonText: string
+      exploreButtonLink: string
+      avatarGroupText: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["treatmentSectionContentTranslation"]>
+    composites: {}
+  }
+
+  type TreatmentSectionContentTranslationGetPayload<S extends boolean | null | undefined | TreatmentSectionContentTranslationDefaultArgs> = $Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload, S>
+
+  type TreatmentSectionContentTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TreatmentSectionContentTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TreatmentSectionContentTranslationCountAggregateInputType | true
+    }
+
+  export interface TreatmentSectionContentTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TreatmentSectionContentTranslation'], meta: { name: 'TreatmentSectionContentTranslation' } }
+    /**
+     * Find zero or one TreatmentSectionContentTranslation that matches the filter.
+     * @param {TreatmentSectionContentTranslationFindUniqueArgs} args - Arguments to find a TreatmentSectionContentTranslation
+     * @example
+     * // Get one TreatmentSectionContentTranslation
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TreatmentSectionContentTranslationFindUniqueArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationFindUniqueArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TreatmentSectionContentTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TreatmentSectionContentTranslationFindUniqueOrThrowArgs} args - Arguments to find a TreatmentSectionContentTranslation
+     * @example
+     * // Get one TreatmentSectionContentTranslation
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TreatmentSectionContentTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionContentTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentTranslationFindFirstArgs} args - Arguments to find a TreatmentSectionContentTranslation
+     * @example
+     * // Get one TreatmentSectionContentTranslation
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TreatmentSectionContentTranslationFindFirstArgs>(args?: SelectSubset<T, TreatmentSectionContentTranslationFindFirstArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionContentTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentTranslationFindFirstOrThrowArgs} args - Arguments to find a TreatmentSectionContentTranslation
+     * @example
+     * // Get one TreatmentSectionContentTranslation
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TreatmentSectionContentTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, TreatmentSectionContentTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TreatmentSectionContentTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TreatmentSectionContentTranslations
+     * const treatmentSectionContentTranslations = await prisma.treatmentSectionContentTranslation.findMany()
+     * 
+     * // Get first 10 TreatmentSectionContentTranslations
+     * const treatmentSectionContentTranslations = await prisma.treatmentSectionContentTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const treatmentSectionContentTranslationWithIdOnly = await prisma.treatmentSectionContentTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TreatmentSectionContentTranslationFindManyArgs>(args?: SelectSubset<T, TreatmentSectionContentTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TreatmentSectionContentTranslation.
+     * @param {TreatmentSectionContentTranslationCreateArgs} args - Arguments to create a TreatmentSectionContentTranslation.
+     * @example
+     * // Create one TreatmentSectionContentTranslation
+     * const TreatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.create({
+     *   data: {
+     *     // ... data to create a TreatmentSectionContentTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends TreatmentSectionContentTranslationCreateArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationCreateArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TreatmentSectionContentTranslations.
+     * @param {TreatmentSectionContentTranslationCreateManyArgs} args - Arguments to create many TreatmentSectionContentTranslations.
+     * @example
+     * // Create many TreatmentSectionContentTranslations
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TreatmentSectionContentTranslationCreateManyArgs>(args?: SelectSubset<T, TreatmentSectionContentTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TreatmentSectionContentTranslations and returns the data saved in the database.
+     * @param {TreatmentSectionContentTranslationCreateManyAndReturnArgs} args - Arguments to create many TreatmentSectionContentTranslations.
+     * @example
+     * // Create many TreatmentSectionContentTranslations
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TreatmentSectionContentTranslations and only return the `id`
+     * const treatmentSectionContentTranslationWithIdOnly = await prisma.treatmentSectionContentTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TreatmentSectionContentTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, TreatmentSectionContentTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TreatmentSectionContentTranslation.
+     * @param {TreatmentSectionContentTranslationDeleteArgs} args - Arguments to delete one TreatmentSectionContentTranslation.
+     * @example
+     * // Delete one TreatmentSectionContentTranslation
+     * const TreatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one TreatmentSectionContentTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TreatmentSectionContentTranslationDeleteArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationDeleteArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TreatmentSectionContentTranslation.
+     * @param {TreatmentSectionContentTranslationUpdateArgs} args - Arguments to update one TreatmentSectionContentTranslation.
+     * @example
+     * // Update one TreatmentSectionContentTranslation
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TreatmentSectionContentTranslationUpdateArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationUpdateArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TreatmentSectionContentTranslations.
+     * @param {TreatmentSectionContentTranslationDeleteManyArgs} args - Arguments to filter TreatmentSectionContentTranslations to delete.
+     * @example
+     * // Delete a few TreatmentSectionContentTranslations
+     * const { count } = await prisma.treatmentSectionContentTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TreatmentSectionContentTranslationDeleteManyArgs>(args?: SelectSubset<T, TreatmentSectionContentTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionContentTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TreatmentSectionContentTranslations
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TreatmentSectionContentTranslationUpdateManyArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionContentTranslations and returns the data updated in the database.
+     * @param {TreatmentSectionContentTranslationUpdateManyAndReturnArgs} args - Arguments to update many TreatmentSectionContentTranslations.
+     * @example
+     * // Update many TreatmentSectionContentTranslations
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TreatmentSectionContentTranslations and only return the `id`
+     * const treatmentSectionContentTranslationWithIdOnly = await prisma.treatmentSectionContentTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TreatmentSectionContentTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TreatmentSectionContentTranslation.
+     * @param {TreatmentSectionContentTranslationUpsertArgs} args - Arguments to update or create a TreatmentSectionContentTranslation.
+     * @example
+     * // Update or create a TreatmentSectionContentTranslation
+     * const treatmentSectionContentTranslation = await prisma.treatmentSectionContentTranslation.upsert({
+     *   create: {
+     *     // ... data to create a TreatmentSectionContentTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TreatmentSectionContentTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TreatmentSectionContentTranslationUpsertArgs>(args: SelectSubset<T, TreatmentSectionContentTranslationUpsertArgs<ExtArgs>>): Prisma__TreatmentSectionContentTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TreatmentSectionContentTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentTranslationCountArgs} args - Arguments to filter TreatmentSectionContentTranslations to count.
+     * @example
+     * // Count the number of TreatmentSectionContentTranslations
+     * const count = await prisma.treatmentSectionContentTranslation.count({
+     *   where: {
+     *     // ... the filter for the TreatmentSectionContentTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends TreatmentSectionContentTranslationCountArgs>(
+      args?: Subset<T, TreatmentSectionContentTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TreatmentSectionContentTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TreatmentSectionContentTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TreatmentSectionContentTranslationAggregateArgs>(args: Subset<T, TreatmentSectionContentTranslationAggregateArgs>): Prisma.PrismaPromise<GetTreatmentSectionContentTranslationAggregateType<T>>
+
+    /**
+     * Group by TreatmentSectionContentTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionContentTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TreatmentSectionContentTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TreatmentSectionContentTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: TreatmentSectionContentTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TreatmentSectionContentTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTreatmentSectionContentTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TreatmentSectionContentTranslation model
+   */
+  readonly fields: TreatmentSectionContentTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TreatmentSectionContentTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TreatmentSectionContentTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    treatmentSectionContent<T extends TreatmentSectionContentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TreatmentSectionContentDefaultArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TreatmentSectionContentTranslation model
+   */
+  interface TreatmentSectionContentTranslationFieldRefs {
+    readonly id: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly treatmentSectionContentId: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly languageCode: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly mainTitle: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly mainDescription: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly exploreButtonText: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly exploreButtonLink: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly avatarGroupText: FieldRef<"TreatmentSectionContentTranslation", 'String'>
+    readonly createdAt: FieldRef<"TreatmentSectionContentTranslation", 'DateTime'>
+    readonly updatedAt: FieldRef<"TreatmentSectionContentTranslation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TreatmentSectionContentTranslation findUnique
+   */
+  export type TreatmentSectionContentTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContentTranslation to fetch.
+     */
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContentTranslation findUniqueOrThrow
+   */
+  export type TreatmentSectionContentTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContentTranslation to fetch.
+     */
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContentTranslation findFirst
+   */
+  export type TreatmentSectionContentTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContentTranslation to fetch.
+     */
+    where?: TreatmentSectionContentTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContentTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionContentTranslationOrderByWithRelationInput | TreatmentSectionContentTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionContentTranslations.
+     */
+    cursor?: TreatmentSectionContentTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContentTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContentTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionContentTranslations.
+     */
+    distinct?: TreatmentSectionContentTranslationScalarFieldEnum | TreatmentSectionContentTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContentTranslation findFirstOrThrow
+   */
+  export type TreatmentSectionContentTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContentTranslation to fetch.
+     */
+    where?: TreatmentSectionContentTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContentTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionContentTranslationOrderByWithRelationInput | TreatmentSectionContentTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionContentTranslations.
+     */
+    cursor?: TreatmentSectionContentTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContentTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContentTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionContentTranslations.
+     */
+    distinct?: TreatmentSectionContentTranslationScalarFieldEnum | TreatmentSectionContentTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContentTranslation findMany
+   */
+  export type TreatmentSectionContentTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionContentTranslations to fetch.
+     */
+    where?: TreatmentSectionContentTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionContentTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionContentTranslationOrderByWithRelationInput | TreatmentSectionContentTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TreatmentSectionContentTranslations.
+     */
+    cursor?: TreatmentSectionContentTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionContentTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionContentTranslations.
+     */
+    skip?: number
+    distinct?: TreatmentSectionContentTranslationScalarFieldEnum | TreatmentSectionContentTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionContentTranslation create
+   */
+  export type TreatmentSectionContentTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TreatmentSectionContentTranslation.
+     */
+    data: XOR<TreatmentSectionContentTranslationCreateInput, TreatmentSectionContentTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * TreatmentSectionContentTranslation createMany
+   */
+  export type TreatmentSectionContentTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TreatmentSectionContentTranslations.
+     */
+    data: TreatmentSectionContentTranslationCreateManyInput | TreatmentSectionContentTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TreatmentSectionContentTranslation createManyAndReturn
+   */
+  export type TreatmentSectionContentTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many TreatmentSectionContentTranslations.
+     */
+    data: TreatmentSectionContentTranslationCreateManyInput | TreatmentSectionContentTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionContentTranslation update
+   */
+  export type TreatmentSectionContentTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TreatmentSectionContentTranslation.
+     */
+    data: XOR<TreatmentSectionContentTranslationUpdateInput, TreatmentSectionContentTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which TreatmentSectionContentTranslation to update.
+     */
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContentTranslation updateMany
+   */
+  export type TreatmentSectionContentTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TreatmentSectionContentTranslations.
+     */
+    data: XOR<TreatmentSectionContentTranslationUpdateManyMutationInput, TreatmentSectionContentTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionContentTranslations to update
+     */
+    where?: TreatmentSectionContentTranslationWhereInput
+    /**
+     * Limit how many TreatmentSectionContentTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionContentTranslation updateManyAndReturn
+   */
+  export type TreatmentSectionContentTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update TreatmentSectionContentTranslations.
+     */
+    data: XOR<TreatmentSectionContentTranslationUpdateManyMutationInput, TreatmentSectionContentTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionContentTranslations to update
+     */
+    where?: TreatmentSectionContentTranslationWhereInput
+    /**
+     * Limit how many TreatmentSectionContentTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionContentTranslation upsert
+   */
+  export type TreatmentSectionContentTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TreatmentSectionContentTranslation to update in case it exists.
+     */
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+    /**
+     * In case the TreatmentSectionContentTranslation found by the `where` argument doesn't exist, create a new TreatmentSectionContentTranslation with this data.
+     */
+    create: XOR<TreatmentSectionContentTranslationCreateInput, TreatmentSectionContentTranslationUncheckedCreateInput>
+    /**
+     * In case the TreatmentSectionContentTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TreatmentSectionContentTranslationUpdateInput, TreatmentSectionContentTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * TreatmentSectionContentTranslation delete
+   */
+  export type TreatmentSectionContentTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which TreatmentSectionContentTranslation to delete.
+     */
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionContentTranslation deleteMany
+   */
+  export type TreatmentSectionContentTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionContentTranslations to delete
+     */
+    where?: TreatmentSectionContentTranslationWhereInput
+    /**
+     * Limit how many TreatmentSectionContentTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionContentTranslation without action
+   */
+  export type TreatmentSectionContentTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionContentTranslation
+     */
+    select?: TreatmentSectionContentTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionContentTranslation
+     */
+    omit?: TreatmentSectionContentTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionContentTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TreatmentSectionAvatar
+   */
+
+  export type AggregateTreatmentSectionAvatar = {
+    _count: TreatmentSectionAvatarCountAggregateOutputType | null
+    _avg: TreatmentSectionAvatarAvgAggregateOutputType | null
+    _sum: TreatmentSectionAvatarSumAggregateOutputType | null
+    _min: TreatmentSectionAvatarMinAggregateOutputType | null
+    _max: TreatmentSectionAvatarMaxAggregateOutputType | null
+  }
+
+  export type TreatmentSectionAvatarAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type TreatmentSectionAvatarSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type TreatmentSectionAvatarMinAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    altText: string | null
+    order: number | null
+    treatmentSectionContentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionAvatarMaxAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    altText: string | null
+    order: number | null
+    treatmentSectionContentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionAvatarCountAggregateOutputType = {
+    id: number
+    imageUrl: number
+    altText: number
+    order: number
+    treatmentSectionContentId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TreatmentSectionAvatarAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type TreatmentSectionAvatarSumAggregateInputType = {
+    order?: true
+  }
+
+  export type TreatmentSectionAvatarMinAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    altText?: true
+    order?: true
+    treatmentSectionContentId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionAvatarMaxAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    altText?: true
+    order?: true
+    treatmentSectionContentId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionAvatarCountAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    altText?: true
+    order?: true
+    treatmentSectionContentId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TreatmentSectionAvatarAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionAvatar to aggregate.
+     */
+    where?: TreatmentSectionAvatarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionAvatars to fetch.
+     */
+    orderBy?: TreatmentSectionAvatarOrderByWithRelationInput | TreatmentSectionAvatarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TreatmentSectionAvatarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionAvatars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionAvatars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TreatmentSectionAvatars
+    **/
+    _count?: true | TreatmentSectionAvatarCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TreatmentSectionAvatarAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TreatmentSectionAvatarSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TreatmentSectionAvatarMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TreatmentSectionAvatarMaxAggregateInputType
+  }
+
+  export type GetTreatmentSectionAvatarAggregateType<T extends TreatmentSectionAvatarAggregateArgs> = {
+        [P in keyof T & keyof AggregateTreatmentSectionAvatar]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTreatmentSectionAvatar[P]>
+      : GetScalarType<T[P], AggregateTreatmentSectionAvatar[P]>
+  }
+
+
+
+
+  export type TreatmentSectionAvatarGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionAvatarWhereInput
+    orderBy?: TreatmentSectionAvatarOrderByWithAggregationInput | TreatmentSectionAvatarOrderByWithAggregationInput[]
+    by: TreatmentSectionAvatarScalarFieldEnum[] | TreatmentSectionAvatarScalarFieldEnum
+    having?: TreatmentSectionAvatarScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TreatmentSectionAvatarCountAggregateInputType | true
+    _avg?: TreatmentSectionAvatarAvgAggregateInputType
+    _sum?: TreatmentSectionAvatarSumAggregateInputType
+    _min?: TreatmentSectionAvatarMinAggregateInputType
+    _max?: TreatmentSectionAvatarMaxAggregateInputType
+  }
+
+  export type TreatmentSectionAvatarGroupByOutputType = {
+    id: string
+    imageUrl: string
+    altText: string | null
+    order: number
+    treatmentSectionContentId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TreatmentSectionAvatarCountAggregateOutputType | null
+    _avg: TreatmentSectionAvatarAvgAggregateOutputType | null
+    _sum: TreatmentSectionAvatarSumAggregateOutputType | null
+    _min: TreatmentSectionAvatarMinAggregateOutputType | null
+    _max: TreatmentSectionAvatarMaxAggregateOutputType | null
+  }
+
+  type GetTreatmentSectionAvatarGroupByPayload<T extends TreatmentSectionAvatarGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TreatmentSectionAvatarGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TreatmentSectionAvatarGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TreatmentSectionAvatarGroupByOutputType[P]>
+            : GetScalarType<T[P], TreatmentSectionAvatarGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TreatmentSectionAvatarSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    treatmentSectionContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionAvatar"]>
+
+  export type TreatmentSectionAvatarSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    treatmentSectionContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionAvatar"]>
+
+  export type TreatmentSectionAvatarSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    treatmentSectionContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionAvatar"]>
+
+  export type TreatmentSectionAvatarSelectScalar = {
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    treatmentSectionContentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TreatmentSectionAvatarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "altText" | "order" | "treatmentSectionContentId" | "createdAt" | "updatedAt", ExtArgs["result"]["treatmentSectionAvatar"]>
+  export type TreatmentSectionAvatarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionAvatarIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionAvatarIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionContent?: boolean | TreatmentSectionContentDefaultArgs<ExtArgs>
+  }
+
+  export type $TreatmentSectionAvatarPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TreatmentSectionAvatar"
+    objects: {
+      treatmentSectionContent: Prisma.$TreatmentSectionContentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      imageUrl: string
+      altText: string | null
+      order: number
+      treatmentSectionContentId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["treatmentSectionAvatar"]>
+    composites: {}
+  }
+
+  type TreatmentSectionAvatarGetPayload<S extends boolean | null | undefined | TreatmentSectionAvatarDefaultArgs> = $Result.GetResult<Prisma.$TreatmentSectionAvatarPayload, S>
+
+  type TreatmentSectionAvatarCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TreatmentSectionAvatarFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TreatmentSectionAvatarCountAggregateInputType | true
+    }
+
+  export interface TreatmentSectionAvatarDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TreatmentSectionAvatar'], meta: { name: 'TreatmentSectionAvatar' } }
+    /**
+     * Find zero or one TreatmentSectionAvatar that matches the filter.
+     * @param {TreatmentSectionAvatarFindUniqueArgs} args - Arguments to find a TreatmentSectionAvatar
+     * @example
+     * // Get one TreatmentSectionAvatar
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TreatmentSectionAvatarFindUniqueArgs>(args: SelectSubset<T, TreatmentSectionAvatarFindUniqueArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TreatmentSectionAvatar that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TreatmentSectionAvatarFindUniqueOrThrowArgs} args - Arguments to find a TreatmentSectionAvatar
+     * @example
+     * // Get one TreatmentSectionAvatar
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TreatmentSectionAvatarFindUniqueOrThrowArgs>(args: SelectSubset<T, TreatmentSectionAvatarFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionAvatar that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionAvatarFindFirstArgs} args - Arguments to find a TreatmentSectionAvatar
+     * @example
+     * // Get one TreatmentSectionAvatar
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TreatmentSectionAvatarFindFirstArgs>(args?: SelectSubset<T, TreatmentSectionAvatarFindFirstArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionAvatar that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionAvatarFindFirstOrThrowArgs} args - Arguments to find a TreatmentSectionAvatar
+     * @example
+     * // Get one TreatmentSectionAvatar
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TreatmentSectionAvatarFindFirstOrThrowArgs>(args?: SelectSubset<T, TreatmentSectionAvatarFindFirstOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TreatmentSectionAvatars that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionAvatarFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TreatmentSectionAvatars
+     * const treatmentSectionAvatars = await prisma.treatmentSectionAvatar.findMany()
+     * 
+     * // Get first 10 TreatmentSectionAvatars
+     * const treatmentSectionAvatars = await prisma.treatmentSectionAvatar.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const treatmentSectionAvatarWithIdOnly = await prisma.treatmentSectionAvatar.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TreatmentSectionAvatarFindManyArgs>(args?: SelectSubset<T, TreatmentSectionAvatarFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TreatmentSectionAvatar.
+     * @param {TreatmentSectionAvatarCreateArgs} args - Arguments to create a TreatmentSectionAvatar.
+     * @example
+     * // Create one TreatmentSectionAvatar
+     * const TreatmentSectionAvatar = await prisma.treatmentSectionAvatar.create({
+     *   data: {
+     *     // ... data to create a TreatmentSectionAvatar
+     *   }
+     * })
+     * 
+     */
+    create<T extends TreatmentSectionAvatarCreateArgs>(args: SelectSubset<T, TreatmentSectionAvatarCreateArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TreatmentSectionAvatars.
+     * @param {TreatmentSectionAvatarCreateManyArgs} args - Arguments to create many TreatmentSectionAvatars.
+     * @example
+     * // Create many TreatmentSectionAvatars
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TreatmentSectionAvatarCreateManyArgs>(args?: SelectSubset<T, TreatmentSectionAvatarCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TreatmentSectionAvatars and returns the data saved in the database.
+     * @param {TreatmentSectionAvatarCreateManyAndReturnArgs} args - Arguments to create many TreatmentSectionAvatars.
+     * @example
+     * // Create many TreatmentSectionAvatars
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TreatmentSectionAvatars and only return the `id`
+     * const treatmentSectionAvatarWithIdOnly = await prisma.treatmentSectionAvatar.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TreatmentSectionAvatarCreateManyAndReturnArgs>(args?: SelectSubset<T, TreatmentSectionAvatarCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TreatmentSectionAvatar.
+     * @param {TreatmentSectionAvatarDeleteArgs} args - Arguments to delete one TreatmentSectionAvatar.
+     * @example
+     * // Delete one TreatmentSectionAvatar
+     * const TreatmentSectionAvatar = await prisma.treatmentSectionAvatar.delete({
+     *   where: {
+     *     // ... filter to delete one TreatmentSectionAvatar
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TreatmentSectionAvatarDeleteArgs>(args: SelectSubset<T, TreatmentSectionAvatarDeleteArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TreatmentSectionAvatar.
+     * @param {TreatmentSectionAvatarUpdateArgs} args - Arguments to update one TreatmentSectionAvatar.
+     * @example
+     * // Update one TreatmentSectionAvatar
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TreatmentSectionAvatarUpdateArgs>(args: SelectSubset<T, TreatmentSectionAvatarUpdateArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TreatmentSectionAvatars.
+     * @param {TreatmentSectionAvatarDeleteManyArgs} args - Arguments to filter TreatmentSectionAvatars to delete.
+     * @example
+     * // Delete a few TreatmentSectionAvatars
+     * const { count } = await prisma.treatmentSectionAvatar.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TreatmentSectionAvatarDeleteManyArgs>(args?: SelectSubset<T, TreatmentSectionAvatarDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionAvatars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionAvatarUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TreatmentSectionAvatars
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TreatmentSectionAvatarUpdateManyArgs>(args: SelectSubset<T, TreatmentSectionAvatarUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionAvatars and returns the data updated in the database.
+     * @param {TreatmentSectionAvatarUpdateManyAndReturnArgs} args - Arguments to update many TreatmentSectionAvatars.
+     * @example
+     * // Update many TreatmentSectionAvatars
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TreatmentSectionAvatars and only return the `id`
+     * const treatmentSectionAvatarWithIdOnly = await prisma.treatmentSectionAvatar.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TreatmentSectionAvatarUpdateManyAndReturnArgs>(args: SelectSubset<T, TreatmentSectionAvatarUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TreatmentSectionAvatar.
+     * @param {TreatmentSectionAvatarUpsertArgs} args - Arguments to update or create a TreatmentSectionAvatar.
+     * @example
+     * // Update or create a TreatmentSectionAvatar
+     * const treatmentSectionAvatar = await prisma.treatmentSectionAvatar.upsert({
+     *   create: {
+     *     // ... data to create a TreatmentSectionAvatar
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TreatmentSectionAvatar we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TreatmentSectionAvatarUpsertArgs>(args: SelectSubset<T, TreatmentSectionAvatarUpsertArgs<ExtArgs>>): Prisma__TreatmentSectionAvatarClient<$Result.GetResult<Prisma.$TreatmentSectionAvatarPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TreatmentSectionAvatars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionAvatarCountArgs} args - Arguments to filter TreatmentSectionAvatars to count.
+     * @example
+     * // Count the number of TreatmentSectionAvatars
+     * const count = await prisma.treatmentSectionAvatar.count({
+     *   where: {
+     *     // ... the filter for the TreatmentSectionAvatars we want to count
+     *   }
+     * })
+    **/
+    count<T extends TreatmentSectionAvatarCountArgs>(
+      args?: Subset<T, TreatmentSectionAvatarCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TreatmentSectionAvatarCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TreatmentSectionAvatar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionAvatarAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TreatmentSectionAvatarAggregateArgs>(args: Subset<T, TreatmentSectionAvatarAggregateArgs>): Prisma.PrismaPromise<GetTreatmentSectionAvatarAggregateType<T>>
+
+    /**
+     * Group by TreatmentSectionAvatar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionAvatarGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TreatmentSectionAvatarGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TreatmentSectionAvatarGroupByArgs['orderBy'] }
+        : { orderBy?: TreatmentSectionAvatarGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TreatmentSectionAvatarGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTreatmentSectionAvatarGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TreatmentSectionAvatar model
+   */
+  readonly fields: TreatmentSectionAvatarFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TreatmentSectionAvatar.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TreatmentSectionAvatarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    treatmentSectionContent<T extends TreatmentSectionContentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TreatmentSectionContentDefaultArgs<ExtArgs>>): Prisma__TreatmentSectionContentClient<$Result.GetResult<Prisma.$TreatmentSectionContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TreatmentSectionAvatar model
+   */
+  interface TreatmentSectionAvatarFieldRefs {
+    readonly id: FieldRef<"TreatmentSectionAvatar", 'String'>
+    readonly imageUrl: FieldRef<"TreatmentSectionAvatar", 'String'>
+    readonly altText: FieldRef<"TreatmentSectionAvatar", 'String'>
+    readonly order: FieldRef<"TreatmentSectionAvatar", 'Int'>
+    readonly treatmentSectionContentId: FieldRef<"TreatmentSectionAvatar", 'String'>
+    readonly createdAt: FieldRef<"TreatmentSectionAvatar", 'DateTime'>
+    readonly updatedAt: FieldRef<"TreatmentSectionAvatar", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TreatmentSectionAvatar findUnique
+   */
+  export type TreatmentSectionAvatarFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionAvatar to fetch.
+     */
+    where: TreatmentSectionAvatarWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionAvatar findUniqueOrThrow
+   */
+  export type TreatmentSectionAvatarFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionAvatar to fetch.
+     */
+    where: TreatmentSectionAvatarWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionAvatar findFirst
+   */
+  export type TreatmentSectionAvatarFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionAvatar to fetch.
+     */
+    where?: TreatmentSectionAvatarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionAvatars to fetch.
+     */
+    orderBy?: TreatmentSectionAvatarOrderByWithRelationInput | TreatmentSectionAvatarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionAvatars.
+     */
+    cursor?: TreatmentSectionAvatarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionAvatars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionAvatars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionAvatars.
+     */
+    distinct?: TreatmentSectionAvatarScalarFieldEnum | TreatmentSectionAvatarScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionAvatar findFirstOrThrow
+   */
+  export type TreatmentSectionAvatarFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionAvatar to fetch.
+     */
+    where?: TreatmentSectionAvatarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionAvatars to fetch.
+     */
+    orderBy?: TreatmentSectionAvatarOrderByWithRelationInput | TreatmentSectionAvatarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionAvatars.
+     */
+    cursor?: TreatmentSectionAvatarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionAvatars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionAvatars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionAvatars.
+     */
+    distinct?: TreatmentSectionAvatarScalarFieldEnum | TreatmentSectionAvatarScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionAvatar findMany
+   */
+  export type TreatmentSectionAvatarFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionAvatars to fetch.
+     */
+    where?: TreatmentSectionAvatarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionAvatars to fetch.
+     */
+    orderBy?: TreatmentSectionAvatarOrderByWithRelationInput | TreatmentSectionAvatarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TreatmentSectionAvatars.
+     */
+    cursor?: TreatmentSectionAvatarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionAvatars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionAvatars.
+     */
+    skip?: number
+    distinct?: TreatmentSectionAvatarScalarFieldEnum | TreatmentSectionAvatarScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionAvatar create
+   */
+  export type TreatmentSectionAvatarCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TreatmentSectionAvatar.
+     */
+    data: XOR<TreatmentSectionAvatarCreateInput, TreatmentSectionAvatarUncheckedCreateInput>
+  }
+
+  /**
+   * TreatmentSectionAvatar createMany
+   */
+  export type TreatmentSectionAvatarCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TreatmentSectionAvatars.
+     */
+    data: TreatmentSectionAvatarCreateManyInput | TreatmentSectionAvatarCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TreatmentSectionAvatar createManyAndReturn
+   */
+  export type TreatmentSectionAvatarCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * The data used to create many TreatmentSectionAvatars.
+     */
+    data: TreatmentSectionAvatarCreateManyInput | TreatmentSectionAvatarCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionAvatar update
+   */
+  export type TreatmentSectionAvatarUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TreatmentSectionAvatar.
+     */
+    data: XOR<TreatmentSectionAvatarUpdateInput, TreatmentSectionAvatarUncheckedUpdateInput>
+    /**
+     * Choose, which TreatmentSectionAvatar to update.
+     */
+    where: TreatmentSectionAvatarWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionAvatar updateMany
+   */
+  export type TreatmentSectionAvatarUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TreatmentSectionAvatars.
+     */
+    data: XOR<TreatmentSectionAvatarUpdateManyMutationInput, TreatmentSectionAvatarUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionAvatars to update
+     */
+    where?: TreatmentSectionAvatarWhereInput
+    /**
+     * Limit how many TreatmentSectionAvatars to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionAvatar updateManyAndReturn
+   */
+  export type TreatmentSectionAvatarUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * The data used to update TreatmentSectionAvatars.
+     */
+    data: XOR<TreatmentSectionAvatarUpdateManyMutationInput, TreatmentSectionAvatarUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionAvatars to update
+     */
+    where?: TreatmentSectionAvatarWhereInput
+    /**
+     * Limit how many TreatmentSectionAvatars to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionAvatar upsert
+   */
+  export type TreatmentSectionAvatarUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TreatmentSectionAvatar to update in case it exists.
+     */
+    where: TreatmentSectionAvatarWhereUniqueInput
+    /**
+     * In case the TreatmentSectionAvatar found by the `where` argument doesn't exist, create a new TreatmentSectionAvatar with this data.
+     */
+    create: XOR<TreatmentSectionAvatarCreateInput, TreatmentSectionAvatarUncheckedCreateInput>
+    /**
+     * In case the TreatmentSectionAvatar was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TreatmentSectionAvatarUpdateInput, TreatmentSectionAvatarUncheckedUpdateInput>
+  }
+
+  /**
+   * TreatmentSectionAvatar delete
+   */
+  export type TreatmentSectionAvatarDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+    /**
+     * Filter which TreatmentSectionAvatar to delete.
+     */
+    where: TreatmentSectionAvatarWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionAvatar deleteMany
+   */
+  export type TreatmentSectionAvatarDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionAvatars to delete
+     */
+    where?: TreatmentSectionAvatarWhereInput
+    /**
+     * Limit how many TreatmentSectionAvatars to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionAvatar without action
+   */
+  export type TreatmentSectionAvatarDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionAvatar
+     */
+    select?: TreatmentSectionAvatarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionAvatar
+     */
+    omit?: TreatmentSectionAvatarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionAvatarInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TreatmentSectionItem
+   */
+
+  export type AggregateTreatmentSectionItem = {
+    _count: TreatmentSectionItemCountAggregateOutputType | null
+    _avg: TreatmentSectionItemAvgAggregateOutputType | null
+    _sum: TreatmentSectionItemSumAggregateOutputType | null
+    _min: TreatmentSectionItemMinAggregateOutputType | null
+    _max: TreatmentSectionItemMaxAggregateOutputType | null
+  }
+
+  export type TreatmentSectionItemAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type TreatmentSectionItemSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type TreatmentSectionItemMinAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    order: number | null
+    isPublished: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionItemMaxAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    order: number | null
+    isPublished: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionItemCountAggregateOutputType = {
+    id: number
+    imageUrl: number
+    order: number
+    isPublished: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TreatmentSectionItemAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type TreatmentSectionItemSumAggregateInputType = {
+    order?: true
+  }
+
+  export type TreatmentSectionItemMinAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    order?: true
+    isPublished?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionItemMaxAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    order?: true
+    isPublished?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionItemCountAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    order?: true
+    isPublished?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TreatmentSectionItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionItem to aggregate.
+     */
+    where?: TreatmentSectionItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItems to fetch.
+     */
+    orderBy?: TreatmentSectionItemOrderByWithRelationInput | TreatmentSectionItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TreatmentSectionItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TreatmentSectionItems
+    **/
+    _count?: true | TreatmentSectionItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TreatmentSectionItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TreatmentSectionItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TreatmentSectionItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TreatmentSectionItemMaxAggregateInputType
+  }
+
+  export type GetTreatmentSectionItemAggregateType<T extends TreatmentSectionItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateTreatmentSectionItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTreatmentSectionItem[P]>
+      : GetScalarType<T[P], AggregateTreatmentSectionItem[P]>
+  }
+
+
+
+
+  export type TreatmentSectionItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionItemWhereInput
+    orderBy?: TreatmentSectionItemOrderByWithAggregationInput | TreatmentSectionItemOrderByWithAggregationInput[]
+    by: TreatmentSectionItemScalarFieldEnum[] | TreatmentSectionItemScalarFieldEnum
+    having?: TreatmentSectionItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TreatmentSectionItemCountAggregateInputType | true
+    _avg?: TreatmentSectionItemAvgAggregateInputType
+    _sum?: TreatmentSectionItemSumAggregateInputType
+    _min?: TreatmentSectionItemMinAggregateInputType
+    _max?: TreatmentSectionItemMaxAggregateInputType
+  }
+
+  export type TreatmentSectionItemGroupByOutputType = {
+    id: string
+    imageUrl: string
+    order: number
+    isPublished: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: TreatmentSectionItemCountAggregateOutputType | null
+    _avg: TreatmentSectionItemAvgAggregateOutputType | null
+    _sum: TreatmentSectionItemSumAggregateOutputType | null
+    _min: TreatmentSectionItemMinAggregateOutputType | null
+    _max: TreatmentSectionItemMaxAggregateOutputType | null
+  }
+
+  type GetTreatmentSectionItemGroupByPayload<T extends TreatmentSectionItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TreatmentSectionItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TreatmentSectionItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TreatmentSectionItemGroupByOutputType[P]>
+            : GetScalarType<T[P], TreatmentSectionItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TreatmentSectionItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isPublished?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    translations?: boolean | TreatmentSectionItem$translationsArgs<ExtArgs>
+    _count?: boolean | TreatmentSectionItemCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionItem"]>
+
+  export type TreatmentSectionItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isPublished?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["treatmentSectionItem"]>
+
+  export type TreatmentSectionItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isPublished?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["treatmentSectionItem"]>
+
+  export type TreatmentSectionItemSelectScalar = {
+    id?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    isPublished?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TreatmentSectionItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "order" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["treatmentSectionItem"]>
+  export type TreatmentSectionItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | TreatmentSectionItem$translationsArgs<ExtArgs>
+    _count?: boolean | TreatmentSectionItemCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type TreatmentSectionItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $TreatmentSectionItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TreatmentSectionItem"
+    objects: {
+      translations: Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      imageUrl: string
+      order: number
+      isPublished: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["treatmentSectionItem"]>
+    composites: {}
+  }
+
+  type TreatmentSectionItemGetPayload<S extends boolean | null | undefined | TreatmentSectionItemDefaultArgs> = $Result.GetResult<Prisma.$TreatmentSectionItemPayload, S>
+
+  type TreatmentSectionItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TreatmentSectionItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TreatmentSectionItemCountAggregateInputType | true
+    }
+
+  export interface TreatmentSectionItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TreatmentSectionItem'], meta: { name: 'TreatmentSectionItem' } }
+    /**
+     * Find zero or one TreatmentSectionItem that matches the filter.
+     * @param {TreatmentSectionItemFindUniqueArgs} args - Arguments to find a TreatmentSectionItem
+     * @example
+     * // Get one TreatmentSectionItem
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TreatmentSectionItemFindUniqueArgs>(args: SelectSubset<T, TreatmentSectionItemFindUniqueArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TreatmentSectionItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TreatmentSectionItemFindUniqueOrThrowArgs} args - Arguments to find a TreatmentSectionItem
+     * @example
+     * // Get one TreatmentSectionItem
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TreatmentSectionItemFindUniqueOrThrowArgs>(args: SelectSubset<T, TreatmentSectionItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemFindFirstArgs} args - Arguments to find a TreatmentSectionItem
+     * @example
+     * // Get one TreatmentSectionItem
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TreatmentSectionItemFindFirstArgs>(args?: SelectSubset<T, TreatmentSectionItemFindFirstArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemFindFirstOrThrowArgs} args - Arguments to find a TreatmentSectionItem
+     * @example
+     * // Get one TreatmentSectionItem
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TreatmentSectionItemFindFirstOrThrowArgs>(args?: SelectSubset<T, TreatmentSectionItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TreatmentSectionItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TreatmentSectionItems
+     * const treatmentSectionItems = await prisma.treatmentSectionItem.findMany()
+     * 
+     * // Get first 10 TreatmentSectionItems
+     * const treatmentSectionItems = await prisma.treatmentSectionItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const treatmentSectionItemWithIdOnly = await prisma.treatmentSectionItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TreatmentSectionItemFindManyArgs>(args?: SelectSubset<T, TreatmentSectionItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TreatmentSectionItem.
+     * @param {TreatmentSectionItemCreateArgs} args - Arguments to create a TreatmentSectionItem.
+     * @example
+     * // Create one TreatmentSectionItem
+     * const TreatmentSectionItem = await prisma.treatmentSectionItem.create({
+     *   data: {
+     *     // ... data to create a TreatmentSectionItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends TreatmentSectionItemCreateArgs>(args: SelectSubset<T, TreatmentSectionItemCreateArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TreatmentSectionItems.
+     * @param {TreatmentSectionItemCreateManyArgs} args - Arguments to create many TreatmentSectionItems.
+     * @example
+     * // Create many TreatmentSectionItems
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TreatmentSectionItemCreateManyArgs>(args?: SelectSubset<T, TreatmentSectionItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TreatmentSectionItems and returns the data saved in the database.
+     * @param {TreatmentSectionItemCreateManyAndReturnArgs} args - Arguments to create many TreatmentSectionItems.
+     * @example
+     * // Create many TreatmentSectionItems
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TreatmentSectionItems and only return the `id`
+     * const treatmentSectionItemWithIdOnly = await prisma.treatmentSectionItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TreatmentSectionItemCreateManyAndReturnArgs>(args?: SelectSubset<T, TreatmentSectionItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TreatmentSectionItem.
+     * @param {TreatmentSectionItemDeleteArgs} args - Arguments to delete one TreatmentSectionItem.
+     * @example
+     * // Delete one TreatmentSectionItem
+     * const TreatmentSectionItem = await prisma.treatmentSectionItem.delete({
+     *   where: {
+     *     // ... filter to delete one TreatmentSectionItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TreatmentSectionItemDeleteArgs>(args: SelectSubset<T, TreatmentSectionItemDeleteArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TreatmentSectionItem.
+     * @param {TreatmentSectionItemUpdateArgs} args - Arguments to update one TreatmentSectionItem.
+     * @example
+     * // Update one TreatmentSectionItem
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TreatmentSectionItemUpdateArgs>(args: SelectSubset<T, TreatmentSectionItemUpdateArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TreatmentSectionItems.
+     * @param {TreatmentSectionItemDeleteManyArgs} args - Arguments to filter TreatmentSectionItems to delete.
+     * @example
+     * // Delete a few TreatmentSectionItems
+     * const { count } = await prisma.treatmentSectionItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TreatmentSectionItemDeleteManyArgs>(args?: SelectSubset<T, TreatmentSectionItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TreatmentSectionItems
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TreatmentSectionItemUpdateManyArgs>(args: SelectSubset<T, TreatmentSectionItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionItems and returns the data updated in the database.
+     * @param {TreatmentSectionItemUpdateManyAndReturnArgs} args - Arguments to update many TreatmentSectionItems.
+     * @example
+     * // Update many TreatmentSectionItems
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TreatmentSectionItems and only return the `id`
+     * const treatmentSectionItemWithIdOnly = await prisma.treatmentSectionItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TreatmentSectionItemUpdateManyAndReturnArgs>(args: SelectSubset<T, TreatmentSectionItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TreatmentSectionItem.
+     * @param {TreatmentSectionItemUpsertArgs} args - Arguments to update or create a TreatmentSectionItem.
+     * @example
+     * // Update or create a TreatmentSectionItem
+     * const treatmentSectionItem = await prisma.treatmentSectionItem.upsert({
+     *   create: {
+     *     // ... data to create a TreatmentSectionItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TreatmentSectionItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TreatmentSectionItemUpsertArgs>(args: SelectSubset<T, TreatmentSectionItemUpsertArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TreatmentSectionItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemCountArgs} args - Arguments to filter TreatmentSectionItems to count.
+     * @example
+     * // Count the number of TreatmentSectionItems
+     * const count = await prisma.treatmentSectionItem.count({
+     *   where: {
+     *     // ... the filter for the TreatmentSectionItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends TreatmentSectionItemCountArgs>(
+      args?: Subset<T, TreatmentSectionItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TreatmentSectionItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TreatmentSectionItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TreatmentSectionItemAggregateArgs>(args: Subset<T, TreatmentSectionItemAggregateArgs>): Prisma.PrismaPromise<GetTreatmentSectionItemAggregateType<T>>
+
+    /**
+     * Group by TreatmentSectionItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TreatmentSectionItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TreatmentSectionItemGroupByArgs['orderBy'] }
+        : { orderBy?: TreatmentSectionItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TreatmentSectionItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTreatmentSectionItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TreatmentSectionItem model
+   */
+  readonly fields: TreatmentSectionItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TreatmentSectionItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TreatmentSectionItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends TreatmentSectionItem$translationsArgs<ExtArgs> = {}>(args?: Subset<T, TreatmentSectionItem$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TreatmentSectionItem model
+   */
+  interface TreatmentSectionItemFieldRefs {
+    readonly id: FieldRef<"TreatmentSectionItem", 'String'>
+    readonly imageUrl: FieldRef<"TreatmentSectionItem", 'String'>
+    readonly order: FieldRef<"TreatmentSectionItem", 'Int'>
+    readonly isPublished: FieldRef<"TreatmentSectionItem", 'Boolean'>
+    readonly createdAt: FieldRef<"TreatmentSectionItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"TreatmentSectionItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TreatmentSectionItem findUnique
+   */
+  export type TreatmentSectionItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItem to fetch.
+     */
+    where: TreatmentSectionItemWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItem findUniqueOrThrow
+   */
+  export type TreatmentSectionItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItem to fetch.
+     */
+    where: TreatmentSectionItemWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItem findFirst
+   */
+  export type TreatmentSectionItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItem to fetch.
+     */
+    where?: TreatmentSectionItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItems to fetch.
+     */
+    orderBy?: TreatmentSectionItemOrderByWithRelationInput | TreatmentSectionItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionItems.
+     */
+    cursor?: TreatmentSectionItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionItems.
+     */
+    distinct?: TreatmentSectionItemScalarFieldEnum | TreatmentSectionItemScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionItem findFirstOrThrow
+   */
+  export type TreatmentSectionItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItem to fetch.
+     */
+    where?: TreatmentSectionItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItems to fetch.
+     */
+    orderBy?: TreatmentSectionItemOrderByWithRelationInput | TreatmentSectionItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionItems.
+     */
+    cursor?: TreatmentSectionItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionItems.
+     */
+    distinct?: TreatmentSectionItemScalarFieldEnum | TreatmentSectionItemScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionItem findMany
+   */
+  export type TreatmentSectionItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItems to fetch.
+     */
+    where?: TreatmentSectionItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItems to fetch.
+     */
+    orderBy?: TreatmentSectionItemOrderByWithRelationInput | TreatmentSectionItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TreatmentSectionItems.
+     */
+    cursor?: TreatmentSectionItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItems.
+     */
+    skip?: number
+    distinct?: TreatmentSectionItemScalarFieldEnum | TreatmentSectionItemScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionItem create
+   */
+  export type TreatmentSectionItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TreatmentSectionItem.
+     */
+    data: XOR<TreatmentSectionItemCreateInput, TreatmentSectionItemUncheckedCreateInput>
+  }
+
+  /**
+   * TreatmentSectionItem createMany
+   */
+  export type TreatmentSectionItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TreatmentSectionItems.
+     */
+    data: TreatmentSectionItemCreateManyInput | TreatmentSectionItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TreatmentSectionItem createManyAndReturn
+   */
+  export type TreatmentSectionItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many TreatmentSectionItems.
+     */
+    data: TreatmentSectionItemCreateManyInput | TreatmentSectionItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TreatmentSectionItem update
+   */
+  export type TreatmentSectionItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TreatmentSectionItem.
+     */
+    data: XOR<TreatmentSectionItemUpdateInput, TreatmentSectionItemUncheckedUpdateInput>
+    /**
+     * Choose, which TreatmentSectionItem to update.
+     */
+    where: TreatmentSectionItemWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItem updateMany
+   */
+  export type TreatmentSectionItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TreatmentSectionItems.
+     */
+    data: XOR<TreatmentSectionItemUpdateManyMutationInput, TreatmentSectionItemUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionItems to update
+     */
+    where?: TreatmentSectionItemWhereInput
+    /**
+     * Limit how many TreatmentSectionItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionItem updateManyAndReturn
+   */
+  export type TreatmentSectionItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * The data used to update TreatmentSectionItems.
+     */
+    data: XOR<TreatmentSectionItemUpdateManyMutationInput, TreatmentSectionItemUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionItems to update
+     */
+    where?: TreatmentSectionItemWhereInput
+    /**
+     * Limit how many TreatmentSectionItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionItem upsert
+   */
+  export type TreatmentSectionItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TreatmentSectionItem to update in case it exists.
+     */
+    where: TreatmentSectionItemWhereUniqueInput
+    /**
+     * In case the TreatmentSectionItem found by the `where` argument doesn't exist, create a new TreatmentSectionItem with this data.
+     */
+    create: XOR<TreatmentSectionItemCreateInput, TreatmentSectionItemUncheckedCreateInput>
+    /**
+     * In case the TreatmentSectionItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TreatmentSectionItemUpdateInput, TreatmentSectionItemUncheckedUpdateInput>
+  }
+
+  /**
+   * TreatmentSectionItem delete
+   */
+  export type TreatmentSectionItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+    /**
+     * Filter which TreatmentSectionItem to delete.
+     */
+    where: TreatmentSectionItemWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItem deleteMany
+   */
+  export type TreatmentSectionItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionItems to delete
+     */
+    where?: TreatmentSectionItemWhereInput
+    /**
+     * Limit how many TreatmentSectionItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionItem.translations
+   */
+  export type TreatmentSectionItem$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    where?: TreatmentSectionItemTranslationWhereInput
+    orderBy?: TreatmentSectionItemTranslationOrderByWithRelationInput | TreatmentSectionItemTranslationOrderByWithRelationInput[]
+    cursor?: TreatmentSectionItemTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TreatmentSectionItemTranslationScalarFieldEnum | TreatmentSectionItemTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionItem without action
+   */
+  export type TreatmentSectionItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItem
+     */
+    select?: TreatmentSectionItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItem
+     */
+    omit?: TreatmentSectionItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TreatmentSectionItemTranslation
+   */
+
+  export type AggregateTreatmentSectionItemTranslation = {
+    _count: TreatmentSectionItemTranslationCountAggregateOutputType | null
+    _min: TreatmentSectionItemTranslationMinAggregateOutputType | null
+    _max: TreatmentSectionItemTranslationMaxAggregateOutputType | null
+  }
+
+  export type TreatmentSectionItemTranslationMinAggregateOutputType = {
+    id: string | null
+    treatmentSectionItemId: string | null
+    languageCode: string | null
+    title: string | null
+    description: string | null
+    linkUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionItemTranslationMaxAggregateOutputType = {
+    id: string | null
+    treatmentSectionItemId: string | null
+    languageCode: string | null
+    title: string | null
+    description: string | null
+    linkUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TreatmentSectionItemTranslationCountAggregateOutputType = {
+    id: number
+    treatmentSectionItemId: number
+    languageCode: number
+    title: number
+    description: number
+    linkUrl: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TreatmentSectionItemTranslationMinAggregateInputType = {
+    id?: true
+    treatmentSectionItemId?: true
+    languageCode?: true
+    title?: true
+    description?: true
+    linkUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionItemTranslationMaxAggregateInputType = {
+    id?: true
+    treatmentSectionItemId?: true
+    languageCode?: true
+    title?: true
+    description?: true
+    linkUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TreatmentSectionItemTranslationCountAggregateInputType = {
+    id?: true
+    treatmentSectionItemId?: true
+    languageCode?: true
+    title?: true
+    description?: true
+    linkUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TreatmentSectionItemTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionItemTranslation to aggregate.
+     */
+    where?: TreatmentSectionItemTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItemTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionItemTranslationOrderByWithRelationInput | TreatmentSectionItemTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TreatmentSectionItemTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItemTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItemTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TreatmentSectionItemTranslations
+    **/
+    _count?: true | TreatmentSectionItemTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TreatmentSectionItemTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TreatmentSectionItemTranslationMaxAggregateInputType
+  }
+
+  export type GetTreatmentSectionItemTranslationAggregateType<T extends TreatmentSectionItemTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateTreatmentSectionItemTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTreatmentSectionItemTranslation[P]>
+      : GetScalarType<T[P], AggregateTreatmentSectionItemTranslation[P]>
+  }
+
+
+
+
+  export type TreatmentSectionItemTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TreatmentSectionItemTranslationWhereInput
+    orderBy?: TreatmentSectionItemTranslationOrderByWithAggregationInput | TreatmentSectionItemTranslationOrderByWithAggregationInput[]
+    by: TreatmentSectionItemTranslationScalarFieldEnum[] | TreatmentSectionItemTranslationScalarFieldEnum
+    having?: TreatmentSectionItemTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TreatmentSectionItemTranslationCountAggregateInputType | true
+    _min?: TreatmentSectionItemTranslationMinAggregateInputType
+    _max?: TreatmentSectionItemTranslationMaxAggregateInputType
+  }
+
+  export type TreatmentSectionItemTranslationGroupByOutputType = {
+    id: string
+    treatmentSectionItemId: string
+    languageCode: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TreatmentSectionItemTranslationCountAggregateOutputType | null
+    _min: TreatmentSectionItemTranslationMinAggregateOutputType | null
+    _max: TreatmentSectionItemTranslationMaxAggregateOutputType | null
+  }
+
+  type GetTreatmentSectionItemTranslationGroupByPayload<T extends TreatmentSectionItemTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TreatmentSectionItemTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TreatmentSectionItemTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TreatmentSectionItemTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], TreatmentSectionItemTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TreatmentSectionItemTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    treatmentSectionItemId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    linkUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionItem?: boolean | TreatmentSectionItemDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionItemTranslation"]>
+
+  export type TreatmentSectionItemTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    treatmentSectionItemId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    linkUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionItem?: boolean | TreatmentSectionItemDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionItemTranslation"]>
+
+  export type TreatmentSectionItemTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    treatmentSectionItemId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    linkUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    treatmentSectionItem?: boolean | TreatmentSectionItemDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["treatmentSectionItemTranslation"]>
+
+  export type TreatmentSectionItemTranslationSelectScalar = {
+    id?: boolean
+    treatmentSectionItemId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    linkUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TreatmentSectionItemTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "treatmentSectionItemId" | "languageCode" | "title" | "description" | "linkUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["treatmentSectionItemTranslation"]>
+  export type TreatmentSectionItemTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionItem?: boolean | TreatmentSectionItemDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionItemTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionItem?: boolean | TreatmentSectionItemDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type TreatmentSectionItemTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    treatmentSectionItem?: boolean | TreatmentSectionItemDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $TreatmentSectionItemTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TreatmentSectionItemTranslation"
+    objects: {
+      treatmentSectionItem: Prisma.$TreatmentSectionItemPayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      treatmentSectionItemId: string
+      languageCode: string
+      title: string
+      description: string
+      linkUrl: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["treatmentSectionItemTranslation"]>
+    composites: {}
+  }
+
+  type TreatmentSectionItemTranslationGetPayload<S extends boolean | null | undefined | TreatmentSectionItemTranslationDefaultArgs> = $Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload, S>
+
+  type TreatmentSectionItemTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TreatmentSectionItemTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TreatmentSectionItemTranslationCountAggregateInputType | true
+    }
+
+  export interface TreatmentSectionItemTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TreatmentSectionItemTranslation'], meta: { name: 'TreatmentSectionItemTranslation' } }
+    /**
+     * Find zero or one TreatmentSectionItemTranslation that matches the filter.
+     * @param {TreatmentSectionItemTranslationFindUniqueArgs} args - Arguments to find a TreatmentSectionItemTranslation
+     * @example
+     * // Get one TreatmentSectionItemTranslation
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TreatmentSectionItemTranslationFindUniqueArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationFindUniqueArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TreatmentSectionItemTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TreatmentSectionItemTranslationFindUniqueOrThrowArgs} args - Arguments to find a TreatmentSectionItemTranslation
+     * @example
+     * // Get one TreatmentSectionItemTranslation
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TreatmentSectionItemTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionItemTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemTranslationFindFirstArgs} args - Arguments to find a TreatmentSectionItemTranslation
+     * @example
+     * // Get one TreatmentSectionItemTranslation
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TreatmentSectionItemTranslationFindFirstArgs>(args?: SelectSubset<T, TreatmentSectionItemTranslationFindFirstArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TreatmentSectionItemTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemTranslationFindFirstOrThrowArgs} args - Arguments to find a TreatmentSectionItemTranslation
+     * @example
+     * // Get one TreatmentSectionItemTranslation
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TreatmentSectionItemTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, TreatmentSectionItemTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TreatmentSectionItemTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TreatmentSectionItemTranslations
+     * const treatmentSectionItemTranslations = await prisma.treatmentSectionItemTranslation.findMany()
+     * 
+     * // Get first 10 TreatmentSectionItemTranslations
+     * const treatmentSectionItemTranslations = await prisma.treatmentSectionItemTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const treatmentSectionItemTranslationWithIdOnly = await prisma.treatmentSectionItemTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TreatmentSectionItemTranslationFindManyArgs>(args?: SelectSubset<T, TreatmentSectionItemTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TreatmentSectionItemTranslation.
+     * @param {TreatmentSectionItemTranslationCreateArgs} args - Arguments to create a TreatmentSectionItemTranslation.
+     * @example
+     * // Create one TreatmentSectionItemTranslation
+     * const TreatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.create({
+     *   data: {
+     *     // ... data to create a TreatmentSectionItemTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends TreatmentSectionItemTranslationCreateArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationCreateArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TreatmentSectionItemTranslations.
+     * @param {TreatmentSectionItemTranslationCreateManyArgs} args - Arguments to create many TreatmentSectionItemTranslations.
+     * @example
+     * // Create many TreatmentSectionItemTranslations
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TreatmentSectionItemTranslationCreateManyArgs>(args?: SelectSubset<T, TreatmentSectionItemTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TreatmentSectionItemTranslations and returns the data saved in the database.
+     * @param {TreatmentSectionItemTranslationCreateManyAndReturnArgs} args - Arguments to create many TreatmentSectionItemTranslations.
+     * @example
+     * // Create many TreatmentSectionItemTranslations
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TreatmentSectionItemTranslations and only return the `id`
+     * const treatmentSectionItemTranslationWithIdOnly = await prisma.treatmentSectionItemTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TreatmentSectionItemTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, TreatmentSectionItemTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TreatmentSectionItemTranslation.
+     * @param {TreatmentSectionItemTranslationDeleteArgs} args - Arguments to delete one TreatmentSectionItemTranslation.
+     * @example
+     * // Delete one TreatmentSectionItemTranslation
+     * const TreatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one TreatmentSectionItemTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TreatmentSectionItemTranslationDeleteArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationDeleteArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TreatmentSectionItemTranslation.
+     * @param {TreatmentSectionItemTranslationUpdateArgs} args - Arguments to update one TreatmentSectionItemTranslation.
+     * @example
+     * // Update one TreatmentSectionItemTranslation
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TreatmentSectionItemTranslationUpdateArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationUpdateArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TreatmentSectionItemTranslations.
+     * @param {TreatmentSectionItemTranslationDeleteManyArgs} args - Arguments to filter TreatmentSectionItemTranslations to delete.
+     * @example
+     * // Delete a few TreatmentSectionItemTranslations
+     * const { count } = await prisma.treatmentSectionItemTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TreatmentSectionItemTranslationDeleteManyArgs>(args?: SelectSubset<T, TreatmentSectionItemTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionItemTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TreatmentSectionItemTranslations
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TreatmentSectionItemTranslationUpdateManyArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TreatmentSectionItemTranslations and returns the data updated in the database.
+     * @param {TreatmentSectionItemTranslationUpdateManyAndReturnArgs} args - Arguments to update many TreatmentSectionItemTranslations.
+     * @example
+     * // Update many TreatmentSectionItemTranslations
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TreatmentSectionItemTranslations and only return the `id`
+     * const treatmentSectionItemTranslationWithIdOnly = await prisma.treatmentSectionItemTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TreatmentSectionItemTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TreatmentSectionItemTranslation.
+     * @param {TreatmentSectionItemTranslationUpsertArgs} args - Arguments to update or create a TreatmentSectionItemTranslation.
+     * @example
+     * // Update or create a TreatmentSectionItemTranslation
+     * const treatmentSectionItemTranslation = await prisma.treatmentSectionItemTranslation.upsert({
+     *   create: {
+     *     // ... data to create a TreatmentSectionItemTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TreatmentSectionItemTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TreatmentSectionItemTranslationUpsertArgs>(args: SelectSubset<T, TreatmentSectionItemTranslationUpsertArgs<ExtArgs>>): Prisma__TreatmentSectionItemTranslationClient<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TreatmentSectionItemTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemTranslationCountArgs} args - Arguments to filter TreatmentSectionItemTranslations to count.
+     * @example
+     * // Count the number of TreatmentSectionItemTranslations
+     * const count = await prisma.treatmentSectionItemTranslation.count({
+     *   where: {
+     *     // ... the filter for the TreatmentSectionItemTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends TreatmentSectionItemTranslationCountArgs>(
+      args?: Subset<T, TreatmentSectionItemTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TreatmentSectionItemTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TreatmentSectionItemTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TreatmentSectionItemTranslationAggregateArgs>(args: Subset<T, TreatmentSectionItemTranslationAggregateArgs>): Prisma.PrismaPromise<GetTreatmentSectionItemTranslationAggregateType<T>>
+
+    /**
+     * Group by TreatmentSectionItemTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TreatmentSectionItemTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TreatmentSectionItemTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TreatmentSectionItemTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: TreatmentSectionItemTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TreatmentSectionItemTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTreatmentSectionItemTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TreatmentSectionItemTranslation model
+   */
+  readonly fields: TreatmentSectionItemTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TreatmentSectionItemTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TreatmentSectionItemTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    treatmentSectionItem<T extends TreatmentSectionItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TreatmentSectionItemDefaultArgs<ExtArgs>>): Prisma__TreatmentSectionItemClient<$Result.GetResult<Prisma.$TreatmentSectionItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TreatmentSectionItemTranslation model
+   */
+  interface TreatmentSectionItemTranslationFieldRefs {
+    readonly id: FieldRef<"TreatmentSectionItemTranslation", 'String'>
+    readonly treatmentSectionItemId: FieldRef<"TreatmentSectionItemTranslation", 'String'>
+    readonly languageCode: FieldRef<"TreatmentSectionItemTranslation", 'String'>
+    readonly title: FieldRef<"TreatmentSectionItemTranslation", 'String'>
+    readonly description: FieldRef<"TreatmentSectionItemTranslation", 'String'>
+    readonly linkUrl: FieldRef<"TreatmentSectionItemTranslation", 'String'>
+    readonly createdAt: FieldRef<"TreatmentSectionItemTranslation", 'DateTime'>
+    readonly updatedAt: FieldRef<"TreatmentSectionItemTranslation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TreatmentSectionItemTranslation findUnique
+   */
+  export type TreatmentSectionItemTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItemTranslation to fetch.
+     */
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItemTranslation findUniqueOrThrow
+   */
+  export type TreatmentSectionItemTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItemTranslation to fetch.
+     */
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItemTranslation findFirst
+   */
+  export type TreatmentSectionItemTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItemTranslation to fetch.
+     */
+    where?: TreatmentSectionItemTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItemTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionItemTranslationOrderByWithRelationInput | TreatmentSectionItemTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionItemTranslations.
+     */
+    cursor?: TreatmentSectionItemTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItemTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItemTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionItemTranslations.
+     */
+    distinct?: TreatmentSectionItemTranslationScalarFieldEnum | TreatmentSectionItemTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionItemTranslation findFirstOrThrow
+   */
+  export type TreatmentSectionItemTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItemTranslation to fetch.
+     */
+    where?: TreatmentSectionItemTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItemTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionItemTranslationOrderByWithRelationInput | TreatmentSectionItemTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TreatmentSectionItemTranslations.
+     */
+    cursor?: TreatmentSectionItemTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItemTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItemTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TreatmentSectionItemTranslations.
+     */
+    distinct?: TreatmentSectionItemTranslationScalarFieldEnum | TreatmentSectionItemTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionItemTranslation findMany
+   */
+  export type TreatmentSectionItemTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TreatmentSectionItemTranslations to fetch.
+     */
+    where?: TreatmentSectionItemTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TreatmentSectionItemTranslations to fetch.
+     */
+    orderBy?: TreatmentSectionItemTranslationOrderByWithRelationInput | TreatmentSectionItemTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TreatmentSectionItemTranslations.
+     */
+    cursor?: TreatmentSectionItemTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TreatmentSectionItemTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TreatmentSectionItemTranslations.
+     */
+    skip?: number
+    distinct?: TreatmentSectionItemTranslationScalarFieldEnum | TreatmentSectionItemTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TreatmentSectionItemTranslation create
+   */
+  export type TreatmentSectionItemTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TreatmentSectionItemTranslation.
+     */
+    data: XOR<TreatmentSectionItemTranslationCreateInput, TreatmentSectionItemTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * TreatmentSectionItemTranslation createMany
+   */
+  export type TreatmentSectionItemTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TreatmentSectionItemTranslations.
+     */
+    data: TreatmentSectionItemTranslationCreateManyInput | TreatmentSectionItemTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TreatmentSectionItemTranslation createManyAndReturn
+   */
+  export type TreatmentSectionItemTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many TreatmentSectionItemTranslations.
+     */
+    data: TreatmentSectionItemTranslationCreateManyInput | TreatmentSectionItemTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionItemTranslation update
+   */
+  export type TreatmentSectionItemTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TreatmentSectionItemTranslation.
+     */
+    data: XOR<TreatmentSectionItemTranslationUpdateInput, TreatmentSectionItemTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which TreatmentSectionItemTranslation to update.
+     */
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItemTranslation updateMany
+   */
+  export type TreatmentSectionItemTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TreatmentSectionItemTranslations.
+     */
+    data: XOR<TreatmentSectionItemTranslationUpdateManyMutationInput, TreatmentSectionItemTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionItemTranslations to update
+     */
+    where?: TreatmentSectionItemTranslationWhereInput
+    /**
+     * Limit how many TreatmentSectionItemTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionItemTranslation updateManyAndReturn
+   */
+  export type TreatmentSectionItemTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update TreatmentSectionItemTranslations.
+     */
+    data: XOR<TreatmentSectionItemTranslationUpdateManyMutationInput, TreatmentSectionItemTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which TreatmentSectionItemTranslations to update
+     */
+    where?: TreatmentSectionItemTranslationWhereInput
+    /**
+     * Limit how many TreatmentSectionItemTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TreatmentSectionItemTranslation upsert
+   */
+  export type TreatmentSectionItemTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TreatmentSectionItemTranslation to update in case it exists.
+     */
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+    /**
+     * In case the TreatmentSectionItemTranslation found by the `where` argument doesn't exist, create a new TreatmentSectionItemTranslation with this data.
+     */
+    create: XOR<TreatmentSectionItemTranslationCreateInput, TreatmentSectionItemTranslationUncheckedCreateInput>
+    /**
+     * In case the TreatmentSectionItemTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TreatmentSectionItemTranslationUpdateInput, TreatmentSectionItemTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * TreatmentSectionItemTranslation delete
+   */
+  export type TreatmentSectionItemTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which TreatmentSectionItemTranslation to delete.
+     */
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+  }
+
+  /**
+   * TreatmentSectionItemTranslation deleteMany
+   */
+  export type TreatmentSectionItemTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TreatmentSectionItemTranslations to delete
+     */
+    where?: TreatmentSectionItemTranslationWhereInput
+    /**
+     * Limit how many TreatmentSectionItemTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TreatmentSectionItemTranslation without action
+   */
+  export type TreatmentSectionItemTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TreatmentSectionItemTranslation
+     */
+    select?: TreatmentSectionItemTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TreatmentSectionItemTranslation
+     */
+    omit?: TreatmentSectionItemTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TreatmentSectionItemTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model HeaderMenu
    */
 
@@ -53718,6 +59861,70 @@ export namespace Prisma {
   export type WhyChooseSectionTranslationScalarFieldEnum = (typeof WhyChooseSectionTranslationScalarFieldEnum)[keyof typeof WhyChooseSectionTranslationScalarFieldEnum]
 
 
+  export const TreatmentSectionContentScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TreatmentSectionContentScalarFieldEnum = (typeof TreatmentSectionContentScalarFieldEnum)[keyof typeof TreatmentSectionContentScalarFieldEnum]
+
+
+  export const TreatmentSectionContentTranslationScalarFieldEnum: {
+    id: 'id',
+    treatmentSectionContentId: 'treatmentSectionContentId',
+    languageCode: 'languageCode',
+    mainTitle: 'mainTitle',
+    mainDescription: 'mainDescription',
+    exploreButtonText: 'exploreButtonText',
+    exploreButtonLink: 'exploreButtonLink',
+    avatarGroupText: 'avatarGroupText',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TreatmentSectionContentTranslationScalarFieldEnum = (typeof TreatmentSectionContentTranslationScalarFieldEnum)[keyof typeof TreatmentSectionContentTranslationScalarFieldEnum]
+
+
+  export const TreatmentSectionAvatarScalarFieldEnum: {
+    id: 'id',
+    imageUrl: 'imageUrl',
+    altText: 'altText',
+    order: 'order',
+    treatmentSectionContentId: 'treatmentSectionContentId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TreatmentSectionAvatarScalarFieldEnum = (typeof TreatmentSectionAvatarScalarFieldEnum)[keyof typeof TreatmentSectionAvatarScalarFieldEnum]
+
+
+  export const TreatmentSectionItemScalarFieldEnum: {
+    id: 'id',
+    imageUrl: 'imageUrl',
+    order: 'order',
+    isPublished: 'isPublished',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TreatmentSectionItemScalarFieldEnum = (typeof TreatmentSectionItemScalarFieldEnum)[keyof typeof TreatmentSectionItemScalarFieldEnum]
+
+
+  export const TreatmentSectionItemTranslationScalarFieldEnum: {
+    id: 'id',
+    treatmentSectionItemId: 'treatmentSectionItemId',
+    languageCode: 'languageCode',
+    title: 'title',
+    description: 'description',
+    linkUrl: 'linkUrl',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TreatmentSectionItemTranslationScalarFieldEnum = (typeof TreatmentSectionItemTranslationScalarFieldEnum)[keyof typeof TreatmentSectionItemTranslationScalarFieldEnum]
+
+
   export const HeaderMenuScalarFieldEnum: {
     id: 'id',
     isActive: 'isActive',
@@ -54122,6 +60329,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
     headerMenuTranslations?: HeaderMenuTranslationListRelationFilter
     footerMenuTranslations?: FooterMenuTranslationListRelationFilter
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationListRelationFilter
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationListRelationFilter
   }
 
   export type LanguageOrderByWithRelationInput = {
@@ -54148,6 +60357,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationOrderByRelationAggregateInput
     headerMenuTranslations?: HeaderMenuTranslationOrderByRelationAggregateInput
     footerMenuTranslations?: FooterMenuTranslationOrderByRelationAggregateInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationOrderByRelationAggregateInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationOrderByRelationAggregateInput
   }
 
   export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -54177,6 +60388,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationListRelationFilter
     headerMenuTranslations?: HeaderMenuTranslationListRelationFilter
     footerMenuTranslations?: FooterMenuTranslationListRelationFilter
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationListRelationFilter
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationListRelationFilter
   }, "id" | "code">
 
   export type LanguageOrderByWithAggregationInput = {
@@ -56447,6 +62660,341 @@ export namespace Prisma {
     secondaryButtonLink?: StringWithAggregatesFilter<"WhyChooseSectionTranslation"> | string
   }
 
+  export type TreatmentSectionContentWhereInput = {
+    AND?: TreatmentSectionContentWhereInput | TreatmentSectionContentWhereInput[]
+    OR?: TreatmentSectionContentWhereInput[]
+    NOT?: TreatmentSectionContentWhereInput | TreatmentSectionContentWhereInput[]
+    id?: StringFilter<"TreatmentSectionContent"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionContent"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionContent"> | Date | string
+    avatars?: TreatmentSectionAvatarListRelationFilter
+    translations?: TreatmentSectionContentTranslationListRelationFilter
+  }
+
+  export type TreatmentSectionContentOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    avatars?: TreatmentSectionAvatarOrderByRelationAggregateInput
+    translations?: TreatmentSectionContentTranslationOrderByRelationAggregateInput
+  }
+
+  export type TreatmentSectionContentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TreatmentSectionContentWhereInput | TreatmentSectionContentWhereInput[]
+    OR?: TreatmentSectionContentWhereInput[]
+    NOT?: TreatmentSectionContentWhereInput | TreatmentSectionContentWhereInput[]
+    createdAt?: DateTimeFilter<"TreatmentSectionContent"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionContent"> | Date | string
+    avatars?: TreatmentSectionAvatarListRelationFilter
+    translations?: TreatmentSectionContentTranslationListRelationFilter
+  }, "id">
+
+  export type TreatmentSectionContentOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TreatmentSectionContentCountOrderByAggregateInput
+    _max?: TreatmentSectionContentMaxOrderByAggregateInput
+    _min?: TreatmentSectionContentMinOrderByAggregateInput
+  }
+
+  export type TreatmentSectionContentScalarWhereWithAggregatesInput = {
+    AND?: TreatmentSectionContentScalarWhereWithAggregatesInput | TreatmentSectionContentScalarWhereWithAggregatesInput[]
+    OR?: TreatmentSectionContentScalarWhereWithAggregatesInput[]
+    NOT?: TreatmentSectionContentScalarWhereWithAggregatesInput | TreatmentSectionContentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TreatmentSectionContent"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TreatmentSectionContent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TreatmentSectionContent"> | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationWhereInput = {
+    AND?: TreatmentSectionContentTranslationWhereInput | TreatmentSectionContentTranslationWhereInput[]
+    OR?: TreatmentSectionContentTranslationWhereInput[]
+    NOT?: TreatmentSectionContentTranslationWhereInput | TreatmentSectionContentTranslationWhereInput[]
+    id?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    treatmentSectionContentId?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    languageCode?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    mainTitle?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    mainDescription?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonText?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonLink?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    avatarGroupText?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionContentTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionContentTranslation"> | Date | string
+    treatmentSectionContent?: XOR<TreatmentSectionContentScalarRelationFilter, TreatmentSectionContentWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type TreatmentSectionContentTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    languageCode?: SortOrder
+    mainTitle?: SortOrder
+    mainDescription?: SortOrder
+    exploreButtonText?: SortOrder
+    exploreButtonLink?: SortOrder
+    avatarGroupText?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    treatmentSectionContent?: TreatmentSectionContentOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type TreatmentSectionContentTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    treatmentSectionContentId_languageCode?: TreatmentSectionContentTranslationTreatmentSectionContentIdLanguageCodeCompoundUniqueInput
+    AND?: TreatmentSectionContentTranslationWhereInput | TreatmentSectionContentTranslationWhereInput[]
+    OR?: TreatmentSectionContentTranslationWhereInput[]
+    NOT?: TreatmentSectionContentTranslationWhereInput | TreatmentSectionContentTranslationWhereInput[]
+    treatmentSectionContentId?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    languageCode?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    mainTitle?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    mainDescription?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonText?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonLink?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    avatarGroupText?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionContentTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionContentTranslation"> | Date | string
+    treatmentSectionContent?: XOR<TreatmentSectionContentScalarRelationFilter, TreatmentSectionContentWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "treatmentSectionContentId_languageCode">
+
+  export type TreatmentSectionContentTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    languageCode?: SortOrder
+    mainTitle?: SortOrder
+    mainDescription?: SortOrder
+    exploreButtonText?: SortOrder
+    exploreButtonLink?: SortOrder
+    avatarGroupText?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TreatmentSectionContentTranslationCountOrderByAggregateInput
+    _max?: TreatmentSectionContentTranslationMaxOrderByAggregateInput
+    _min?: TreatmentSectionContentTranslationMinOrderByAggregateInput
+  }
+
+  export type TreatmentSectionContentTranslationScalarWhereWithAggregatesInput = {
+    AND?: TreatmentSectionContentTranslationScalarWhereWithAggregatesInput | TreatmentSectionContentTranslationScalarWhereWithAggregatesInput[]
+    OR?: TreatmentSectionContentTranslationScalarWhereWithAggregatesInput[]
+    NOT?: TreatmentSectionContentTranslationScalarWhereWithAggregatesInput | TreatmentSectionContentTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    treatmentSectionContentId?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    mainTitle?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    mainDescription?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonText?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonLink?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    avatarGroupText?: StringWithAggregatesFilter<"TreatmentSectionContentTranslation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TreatmentSectionContentTranslation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TreatmentSectionContentTranslation"> | Date | string
+  }
+
+  export type TreatmentSectionAvatarWhereInput = {
+    AND?: TreatmentSectionAvatarWhereInput | TreatmentSectionAvatarWhereInput[]
+    OR?: TreatmentSectionAvatarWhereInput[]
+    NOT?: TreatmentSectionAvatarWhereInput | TreatmentSectionAvatarWhereInput[]
+    id?: StringFilter<"TreatmentSectionAvatar"> | string
+    imageUrl?: StringFilter<"TreatmentSectionAvatar"> | string
+    altText?: StringNullableFilter<"TreatmentSectionAvatar"> | string | null
+    order?: IntFilter<"TreatmentSectionAvatar"> | number
+    treatmentSectionContentId?: StringFilter<"TreatmentSectionAvatar"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionAvatar"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionAvatar"> | Date | string
+    treatmentSectionContent?: XOR<TreatmentSectionContentScalarRelationFilter, TreatmentSectionContentWhereInput>
+  }
+
+  export type TreatmentSectionAvatarOrderByWithRelationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrderInput | SortOrder
+    order?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    treatmentSectionContent?: TreatmentSectionContentOrderByWithRelationInput
+  }
+
+  export type TreatmentSectionAvatarWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TreatmentSectionAvatarWhereInput | TreatmentSectionAvatarWhereInput[]
+    OR?: TreatmentSectionAvatarWhereInput[]
+    NOT?: TreatmentSectionAvatarWhereInput | TreatmentSectionAvatarWhereInput[]
+    imageUrl?: StringFilter<"TreatmentSectionAvatar"> | string
+    altText?: StringNullableFilter<"TreatmentSectionAvatar"> | string | null
+    order?: IntFilter<"TreatmentSectionAvatar"> | number
+    treatmentSectionContentId?: StringFilter<"TreatmentSectionAvatar"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionAvatar"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionAvatar"> | Date | string
+    treatmentSectionContent?: XOR<TreatmentSectionContentScalarRelationFilter, TreatmentSectionContentWhereInput>
+  }, "id">
+
+  export type TreatmentSectionAvatarOrderByWithAggregationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrderInput | SortOrder
+    order?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TreatmentSectionAvatarCountOrderByAggregateInput
+    _avg?: TreatmentSectionAvatarAvgOrderByAggregateInput
+    _max?: TreatmentSectionAvatarMaxOrderByAggregateInput
+    _min?: TreatmentSectionAvatarMinOrderByAggregateInput
+    _sum?: TreatmentSectionAvatarSumOrderByAggregateInput
+  }
+
+  export type TreatmentSectionAvatarScalarWhereWithAggregatesInput = {
+    AND?: TreatmentSectionAvatarScalarWhereWithAggregatesInput | TreatmentSectionAvatarScalarWhereWithAggregatesInput[]
+    OR?: TreatmentSectionAvatarScalarWhereWithAggregatesInput[]
+    NOT?: TreatmentSectionAvatarScalarWhereWithAggregatesInput | TreatmentSectionAvatarScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TreatmentSectionAvatar"> | string
+    imageUrl?: StringWithAggregatesFilter<"TreatmentSectionAvatar"> | string
+    altText?: StringNullableWithAggregatesFilter<"TreatmentSectionAvatar"> | string | null
+    order?: IntWithAggregatesFilter<"TreatmentSectionAvatar"> | number
+    treatmentSectionContentId?: StringWithAggregatesFilter<"TreatmentSectionAvatar"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TreatmentSectionAvatar"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TreatmentSectionAvatar"> | Date | string
+  }
+
+  export type TreatmentSectionItemWhereInput = {
+    AND?: TreatmentSectionItemWhereInput | TreatmentSectionItemWhereInput[]
+    OR?: TreatmentSectionItemWhereInput[]
+    NOT?: TreatmentSectionItemWhereInput | TreatmentSectionItemWhereInput[]
+    id?: StringFilter<"TreatmentSectionItem"> | string
+    imageUrl?: StringFilter<"TreatmentSectionItem"> | string
+    order?: IntFilter<"TreatmentSectionItem"> | number
+    isPublished?: BoolFilter<"TreatmentSectionItem"> | boolean
+    createdAt?: DateTimeFilter<"TreatmentSectionItem"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionItem"> | Date | string
+    translations?: TreatmentSectionItemTranslationListRelationFilter
+  }
+
+  export type TreatmentSectionItemOrderByWithRelationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    translations?: TreatmentSectionItemTranslationOrderByRelationAggregateInput
+  }
+
+  export type TreatmentSectionItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TreatmentSectionItemWhereInput | TreatmentSectionItemWhereInput[]
+    OR?: TreatmentSectionItemWhereInput[]
+    NOT?: TreatmentSectionItemWhereInput | TreatmentSectionItemWhereInput[]
+    imageUrl?: StringFilter<"TreatmentSectionItem"> | string
+    order?: IntFilter<"TreatmentSectionItem"> | number
+    isPublished?: BoolFilter<"TreatmentSectionItem"> | boolean
+    createdAt?: DateTimeFilter<"TreatmentSectionItem"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionItem"> | Date | string
+    translations?: TreatmentSectionItemTranslationListRelationFilter
+  }, "id">
+
+  export type TreatmentSectionItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TreatmentSectionItemCountOrderByAggregateInput
+    _avg?: TreatmentSectionItemAvgOrderByAggregateInput
+    _max?: TreatmentSectionItemMaxOrderByAggregateInput
+    _min?: TreatmentSectionItemMinOrderByAggregateInput
+    _sum?: TreatmentSectionItemSumOrderByAggregateInput
+  }
+
+  export type TreatmentSectionItemScalarWhereWithAggregatesInput = {
+    AND?: TreatmentSectionItemScalarWhereWithAggregatesInput | TreatmentSectionItemScalarWhereWithAggregatesInput[]
+    OR?: TreatmentSectionItemScalarWhereWithAggregatesInput[]
+    NOT?: TreatmentSectionItemScalarWhereWithAggregatesInput | TreatmentSectionItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TreatmentSectionItem"> | string
+    imageUrl?: StringWithAggregatesFilter<"TreatmentSectionItem"> | string
+    order?: IntWithAggregatesFilter<"TreatmentSectionItem"> | number
+    isPublished?: BoolWithAggregatesFilter<"TreatmentSectionItem"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"TreatmentSectionItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TreatmentSectionItem"> | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationWhereInput = {
+    AND?: TreatmentSectionItemTranslationWhereInput | TreatmentSectionItemTranslationWhereInput[]
+    OR?: TreatmentSectionItemTranslationWhereInput[]
+    NOT?: TreatmentSectionItemTranslationWhereInput | TreatmentSectionItemTranslationWhereInput[]
+    id?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    treatmentSectionItemId?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    languageCode?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    title?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    description?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    linkUrl?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionItemTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionItemTranslation"> | Date | string
+    treatmentSectionItem?: XOR<TreatmentSectionItemScalarRelationFilter, TreatmentSectionItemWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type TreatmentSectionItemTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    treatmentSectionItemId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    linkUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    treatmentSectionItem?: TreatmentSectionItemOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type TreatmentSectionItemTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    treatmentSectionItemId_languageCode?: TreatmentSectionItemTranslationTreatmentSectionItemIdLanguageCodeCompoundUniqueInput
+    AND?: TreatmentSectionItemTranslationWhereInput | TreatmentSectionItemTranslationWhereInput[]
+    OR?: TreatmentSectionItemTranslationWhereInput[]
+    NOT?: TreatmentSectionItemTranslationWhereInput | TreatmentSectionItemTranslationWhereInput[]
+    treatmentSectionItemId?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    languageCode?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    title?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    description?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    linkUrl?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionItemTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionItemTranslation"> | Date | string
+    treatmentSectionItem?: XOR<TreatmentSectionItemScalarRelationFilter, TreatmentSectionItemWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "treatmentSectionItemId_languageCode">
+
+  export type TreatmentSectionItemTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    treatmentSectionItemId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    linkUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TreatmentSectionItemTranslationCountOrderByAggregateInput
+    _max?: TreatmentSectionItemTranslationMaxOrderByAggregateInput
+    _min?: TreatmentSectionItemTranslationMinOrderByAggregateInput
+  }
+
+  export type TreatmentSectionItemTranslationScalarWhereWithAggregatesInput = {
+    AND?: TreatmentSectionItemTranslationScalarWhereWithAggregatesInput | TreatmentSectionItemTranslationScalarWhereWithAggregatesInput[]
+    OR?: TreatmentSectionItemTranslationScalarWhereWithAggregatesInput[]
+    NOT?: TreatmentSectionItemTranslationScalarWhereWithAggregatesInput | TreatmentSectionItemTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TreatmentSectionItemTranslation"> | string
+    treatmentSectionItemId?: StringWithAggregatesFilter<"TreatmentSectionItemTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"TreatmentSectionItemTranslation"> | string
+    title?: StringWithAggregatesFilter<"TreatmentSectionItemTranslation"> | string
+    description?: StringWithAggregatesFilter<"TreatmentSectionItemTranslation"> | string
+    linkUrl?: StringWithAggregatesFilter<"TreatmentSectionItemTranslation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TreatmentSectionItemTranslation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TreatmentSectionItemTranslation"> | Date | string
+  }
+
   export type HeaderMenuWhereInput = {
     AND?: HeaderMenuWhereInput | HeaderMenuWhereInput[]
     OR?: HeaderMenuWhereInput[]
@@ -57176,6 +63724,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateInput = {
@@ -57202,6 +63752,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUpdateInput = {
@@ -57228,6 +63780,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateInput = {
@@ -57254,6 +63808,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageCreateManyInput = {
@@ -59647,6 +66203,356 @@ export namespace Prisma {
     secondaryButtonLink?: StringFieldUpdateOperationsInput | string
   }
 
+  export type TreatmentSectionContentCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    avatars?: TreatmentSectionAvatarCreateNestedManyWithoutTreatmentSectionContentInput
+    translations?: TreatmentSectionContentTranslationCreateNestedManyWithoutTreatmentSectionContentInput
+  }
+
+  export type TreatmentSectionContentUncheckedCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    avatars?: TreatmentSectionAvatarUncheckedCreateNestedManyWithoutTreatmentSectionContentInput
+    translations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutTreatmentSectionContentInput
+  }
+
+  export type TreatmentSectionContentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatars?: TreatmentSectionAvatarUpdateManyWithoutTreatmentSectionContentNestedInput
+    translations?: TreatmentSectionContentTranslationUpdateManyWithoutTreatmentSectionContentNestedInput
+  }
+
+  export type TreatmentSectionContentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatars?: TreatmentSectionAvatarUncheckedUpdateManyWithoutTreatmentSectionContentNestedInput
+    translations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutTreatmentSectionContentNestedInput
+  }
+
+  export type TreatmentSectionContentCreateManyInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionContentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationCreateInput = {
+    id?: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    treatmentSectionContent: TreatmentSectionContentCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutTreatmentSectionContentTranslationsInput
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedCreateInput = {
+    id?: string
+    treatmentSectionContentId: string
+    languageCode: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    treatmentSectionContent?: TreatmentSectionContentUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutTreatmentSectionContentTranslationsNestedInput
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionContentId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationCreateManyInput = {
+    id?: string
+    treatmentSectionContentId: string
+    languageCode: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionContentId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionAvatarCreateInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    treatmentSectionContent: TreatmentSectionContentCreateNestedOneWithoutAvatarsInput
+  }
+
+  export type TreatmentSectionAvatarUncheckedCreateInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    treatmentSectionContentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionAvatarUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    treatmentSectionContent?: TreatmentSectionContentUpdateOneRequiredWithoutAvatarsNestedInput
+  }
+
+  export type TreatmentSectionAvatarUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    treatmentSectionContentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionAvatarCreateManyInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    treatmentSectionContentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionAvatarUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionAvatarUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    treatmentSectionContentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemCreateInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: TreatmentSectionItemTranslationCreateNestedManyWithoutTreatmentSectionItemInput
+  }
+
+  export type TreatmentSectionItemUncheckedCreateInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutTreatmentSectionItemInput
+  }
+
+  export type TreatmentSectionItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: TreatmentSectionItemTranslationUpdateManyWithoutTreatmentSectionItemNestedInput
+  }
+
+  export type TreatmentSectionItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutTreatmentSectionItemNestedInput
+  }
+
+  export type TreatmentSectionItemCreateManyInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationCreateInput = {
+    id?: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    treatmentSectionItem: TreatmentSectionItemCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutTreatmentSectionItemTranslationsInput
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedCreateInput = {
+    id?: string
+    treatmentSectionItemId: string
+    languageCode: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    treatmentSectionItem?: TreatmentSectionItemUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutTreatmentSectionItemTranslationsNestedInput
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionItemId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationCreateManyInput = {
+    id?: string
+    treatmentSectionItemId: string
+    languageCode: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionItemId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type HeaderMenuCreateInput = {
     id?: string
     isActive?: boolean
@@ -60491,6 +67397,18 @@ export namespace Prisma {
     none?: FooterMenuTranslationWhereInput
   }
 
+  export type TreatmentSectionContentTranslationListRelationFilter = {
+    every?: TreatmentSectionContentTranslationWhereInput
+    some?: TreatmentSectionContentTranslationWhereInput
+    none?: TreatmentSectionContentTranslationWhereInput
+  }
+
+  export type TreatmentSectionItemTranslationListRelationFilter = {
+    every?: TreatmentSectionItemTranslationWhereInput
+    some?: TreatmentSectionItemTranslationWhereInput
+    none?: TreatmentSectionItemTranslationWhereInput
+  }
+
   export type BlogTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -60552,6 +67470,14 @@ export namespace Prisma {
   }
 
   export type FooterMenuTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TreatmentSectionContentTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TreatmentSectionItemTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -62114,6 +69040,199 @@ export namespace Prisma {
     secondaryButtonLink?: SortOrder
   }
 
+  export type TreatmentSectionAvatarListRelationFilter = {
+    every?: TreatmentSectionAvatarWhereInput
+    some?: TreatmentSectionAvatarWhereInput
+    none?: TreatmentSectionAvatarWhereInput
+  }
+
+  export type TreatmentSectionAvatarOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TreatmentSectionContentCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionContentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionContentMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionContentScalarRelationFilter = {
+    is?: TreatmentSectionContentWhereInput
+    isNot?: TreatmentSectionContentWhereInput
+  }
+
+  export type TreatmentSectionContentTranslationTreatmentSectionContentIdLanguageCodeCompoundUniqueInput = {
+    treatmentSectionContentId: string
+    languageCode: string
+  }
+
+  export type TreatmentSectionContentTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    languageCode?: SortOrder
+    mainTitle?: SortOrder
+    mainDescription?: SortOrder
+    exploreButtonText?: SortOrder
+    exploreButtonLink?: SortOrder
+    avatarGroupText?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionContentTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    languageCode?: SortOrder
+    mainTitle?: SortOrder
+    mainDescription?: SortOrder
+    exploreButtonText?: SortOrder
+    exploreButtonLink?: SortOrder
+    avatarGroupText?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionContentTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    languageCode?: SortOrder
+    mainTitle?: SortOrder
+    mainDescription?: SortOrder
+    exploreButtonText?: SortOrder
+    exploreButtonLink?: SortOrder
+    avatarGroupText?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionAvatarCountOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrder
+    order?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionAvatarAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type TreatmentSectionAvatarMaxOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrder
+    order?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionAvatarMinOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrder
+    order?: SortOrder
+    treatmentSectionContentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionAvatarSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type TreatmentSectionItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionItemAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type TreatmentSectionItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionItemSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type TreatmentSectionItemScalarRelationFilter = {
+    is?: TreatmentSectionItemWhereInput
+    isNot?: TreatmentSectionItemWhereInput
+  }
+
+  export type TreatmentSectionItemTranslationTreatmentSectionItemIdLanguageCodeCompoundUniqueInput = {
+    treatmentSectionItemId: string
+    languageCode: string
+  }
+
+  export type TreatmentSectionItemTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    treatmentSectionItemId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    linkUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionItemTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    treatmentSectionItemId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    linkUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TreatmentSectionItemTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    treatmentSectionItemId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    linkUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type HeaderMenuCountOrderByAggregateInput = {
     id?: SortOrder
     isActive?: SortOrder
@@ -62578,6 +69697,20 @@ export namespace Prisma {
     connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
   }
 
+  export type TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionContentTranslationCreateWithoutLanguageInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyLanguageInputEnvelope
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionItemTranslationCreateWithoutLanguageInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyLanguageInputEnvelope
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+  }
+
   export type BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -62688,6 +69821,20 @@ export namespace Prisma {
     connectOrCreate?: FooterMenuTranslationCreateOrConnectWithoutLanguageInput | FooterMenuTranslationCreateOrConnectWithoutLanguageInput[]
     createMany?: FooterMenuTranslationCreateManyLanguageInputEnvelope
     connect?: FooterMenuTranslationWhereUniqueInput | FooterMenuTranslationWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionContentTranslationCreateWithoutLanguageInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyLanguageInputEnvelope
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionItemTranslationCreateWithoutLanguageInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyLanguageInputEnvelope
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -62918,6 +70065,34 @@ export namespace Prisma {
     deleteMany?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
   }
 
+  export type TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionContentTranslationCreateWithoutLanguageInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutLanguageInput | TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyLanguageInputEnvelope
+    set?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    update?: TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutLanguageInput | TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: TreatmentSectionContentTranslationUpdateManyWithWhereWithoutLanguageInput | TreatmentSectionContentTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: TreatmentSectionContentTranslationScalarWhereInput | TreatmentSectionContentTranslationScalarWhereInput[]
+  }
+
+  export type TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionItemTranslationCreateWithoutLanguageInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutLanguageInput | TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyLanguageInputEnvelope
+    set?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    update?: TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutLanguageInput | TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: TreatmentSectionItemTranslationUpdateManyWithWhereWithoutLanguageInput | TreatmentSectionItemTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
+  }
+
   export type BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -63140,6 +70315,34 @@ export namespace Prisma {
     update?: FooterMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput | FooterMenuTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: FooterMenuTranslationUpdateManyWithWhereWithoutLanguageInput | FooterMenuTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: FooterMenuTranslationScalarWhereInput | FooterMenuTranslationScalarWhereInput[]
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionContentTranslationCreateWithoutLanguageInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutLanguageInput | TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyLanguageInputEnvelope
+    set?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    update?: TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutLanguageInput | TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: TreatmentSectionContentTranslationUpdateManyWithWhereWithoutLanguageInput | TreatmentSectionContentTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: TreatmentSectionContentTranslationScalarWhereInput | TreatmentSectionContentTranslationScalarWhereInput[]
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput> | TreatmentSectionItemTranslationCreateWithoutLanguageInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutLanguageInput | TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyLanguageInputEnvelope
+    set?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    update?: TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutLanguageInput | TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: TreatmentSectionItemTranslationUpdateManyWithWhereWithoutLanguageInput | TreatmentSectionItemTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
   }
 
   export type LanguageCreateNestedOneWithoutRouteTranslationsInput = {
@@ -64907,6 +72110,202 @@ export namespace Prisma {
     update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutWhyChooseSectionTranslationsInput, LanguageUpdateWithoutWhyChooseSectionTranslationsInput>, LanguageUncheckedUpdateWithoutWhyChooseSectionTranslationsInput>
   }
 
+  export type TreatmentSectionAvatarCreateNestedManyWithoutTreatmentSectionContentInput = {
+    create?: XOR<TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionAvatarCreateManyTreatmentSectionContentInputEnvelope
+    connect?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionContentTranslationCreateNestedManyWithoutTreatmentSectionContentInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInputEnvelope
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionAvatarUncheckedCreateNestedManyWithoutTreatmentSectionContentInput = {
+    create?: XOR<TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionAvatarCreateManyTreatmentSectionContentInputEnvelope
+    connect?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutTreatmentSectionContentInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInputEnvelope
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionAvatarUpdateManyWithoutTreatmentSectionContentNestedInput = {
+    create?: XOR<TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput[]
+    upsert?: TreatmentSectionAvatarUpsertWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionAvatarUpsertWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionAvatarCreateManyTreatmentSectionContentInputEnvelope
+    set?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    disconnect?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    delete?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    connect?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    update?: TreatmentSectionAvatarUpdateWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionAvatarUpdateWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    updateMany?: TreatmentSectionAvatarUpdateManyWithWhereWithoutTreatmentSectionContentInput | TreatmentSectionAvatarUpdateManyWithWhereWithoutTreatmentSectionContentInput[]
+    deleteMany?: TreatmentSectionAvatarScalarWhereInput | TreatmentSectionAvatarScalarWhereInput[]
+  }
+
+  export type TreatmentSectionContentTranslationUpdateManyWithoutTreatmentSectionContentNestedInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput[]
+    upsert?: TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInputEnvelope
+    set?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    update?: TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    updateMany?: TreatmentSectionContentTranslationUpdateManyWithWhereWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationUpdateManyWithWhereWithoutTreatmentSectionContentInput[]
+    deleteMany?: TreatmentSectionContentTranslationScalarWhereInput | TreatmentSectionContentTranslationScalarWhereInput[]
+  }
+
+  export type TreatmentSectionAvatarUncheckedUpdateManyWithoutTreatmentSectionContentNestedInput = {
+    create?: XOR<TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput[]
+    upsert?: TreatmentSectionAvatarUpsertWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionAvatarUpsertWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionAvatarCreateManyTreatmentSectionContentInputEnvelope
+    set?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    disconnect?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    delete?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    connect?: TreatmentSectionAvatarWhereUniqueInput | TreatmentSectionAvatarWhereUniqueInput[]
+    update?: TreatmentSectionAvatarUpdateWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionAvatarUpdateWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    updateMany?: TreatmentSectionAvatarUpdateManyWithWhereWithoutTreatmentSectionContentInput | TreatmentSectionAvatarUpdateManyWithWhereWithoutTreatmentSectionContentInput[]
+    deleteMany?: TreatmentSectionAvatarScalarWhereInput | TreatmentSectionAvatarScalarWhereInput[]
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateManyWithoutTreatmentSectionContentNestedInput = {
+    create?: XOR<TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput> | TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput[] | TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput[]
+    connectOrCreate?: TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput[]
+    upsert?: TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    createMany?: TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInputEnvelope
+    set?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionContentTranslationWhereUniqueInput | TreatmentSectionContentTranslationWhereUniqueInput[]
+    update?: TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutTreatmentSectionContentInput[]
+    updateMany?: TreatmentSectionContentTranslationUpdateManyWithWhereWithoutTreatmentSectionContentInput | TreatmentSectionContentTranslationUpdateManyWithWhereWithoutTreatmentSectionContentInput[]
+    deleteMany?: TreatmentSectionContentTranslationScalarWhereInput | TreatmentSectionContentTranslationScalarWhereInput[]
+  }
+
+  export type TreatmentSectionContentCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<TreatmentSectionContentCreateWithoutTranslationsInput, TreatmentSectionContentUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: TreatmentSectionContentCreateOrConnectWithoutTranslationsInput
+    connect?: TreatmentSectionContentWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutTreatmentSectionContentTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutTreatmentSectionContentTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionContentTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutTreatmentSectionContentTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type TreatmentSectionContentUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<TreatmentSectionContentCreateWithoutTranslationsInput, TreatmentSectionContentUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: TreatmentSectionContentCreateOrConnectWithoutTranslationsInput
+    upsert?: TreatmentSectionContentUpsertWithoutTranslationsInput
+    connect?: TreatmentSectionContentWhereUniqueInput
+    update?: XOR<XOR<TreatmentSectionContentUpdateToOneWithWhereWithoutTranslationsInput, TreatmentSectionContentUpdateWithoutTranslationsInput>, TreatmentSectionContentUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutTreatmentSectionContentTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutTreatmentSectionContentTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionContentTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutTreatmentSectionContentTranslationsInput
+    upsert?: LanguageUpsertWithoutTreatmentSectionContentTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutTreatmentSectionContentTranslationsInput, LanguageUpdateWithoutTreatmentSectionContentTranslationsInput>, LanguageUncheckedUpdateWithoutTreatmentSectionContentTranslationsInput>
+  }
+
+  export type TreatmentSectionContentCreateNestedOneWithoutAvatarsInput = {
+    create?: XOR<TreatmentSectionContentCreateWithoutAvatarsInput, TreatmentSectionContentUncheckedCreateWithoutAvatarsInput>
+    connectOrCreate?: TreatmentSectionContentCreateOrConnectWithoutAvatarsInput
+    connect?: TreatmentSectionContentWhereUniqueInput
+  }
+
+  export type TreatmentSectionContentUpdateOneRequiredWithoutAvatarsNestedInput = {
+    create?: XOR<TreatmentSectionContentCreateWithoutAvatarsInput, TreatmentSectionContentUncheckedCreateWithoutAvatarsInput>
+    connectOrCreate?: TreatmentSectionContentCreateOrConnectWithoutAvatarsInput
+    upsert?: TreatmentSectionContentUpsertWithoutAvatarsInput
+    connect?: TreatmentSectionContentWhereUniqueInput
+    update?: XOR<XOR<TreatmentSectionContentUpdateToOneWithWhereWithoutAvatarsInput, TreatmentSectionContentUpdateWithoutAvatarsInput>, TreatmentSectionContentUncheckedUpdateWithoutAvatarsInput>
+  }
+
+  export type TreatmentSectionItemTranslationCreateNestedManyWithoutTreatmentSectionItemInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput> | TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInputEnvelope
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutTreatmentSectionItemInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput> | TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInputEnvelope
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+  }
+
+  export type TreatmentSectionItemTranslationUpdateManyWithoutTreatmentSectionItemNestedInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput> | TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput[]
+    upsert?: TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutTreatmentSectionItemInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInputEnvelope
+    set?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    update?: TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutTreatmentSectionItemInput[]
+    updateMany?: TreatmentSectionItemTranslationUpdateManyWithWhereWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationUpdateManyWithWhereWithoutTreatmentSectionItemInput[]
+    deleteMany?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateManyWithoutTreatmentSectionItemNestedInput = {
+    create?: XOR<TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput> | TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput[] | TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput[]
+    connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput[]
+    upsert?: TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutTreatmentSectionItemInput[]
+    createMany?: TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInputEnvelope
+    set?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    disconnect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    delete?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+    update?: TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutTreatmentSectionItemInput[]
+    updateMany?: TreatmentSectionItemTranslationUpdateManyWithWhereWithoutTreatmentSectionItemInput | TreatmentSectionItemTranslationUpdateManyWithWhereWithoutTreatmentSectionItemInput[]
+    deleteMany?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
+  }
+
+  export type TreatmentSectionItemCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<TreatmentSectionItemCreateWithoutTranslationsInput, TreatmentSectionItemUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: TreatmentSectionItemCreateOrConnectWithoutTranslationsInput
+    connect?: TreatmentSectionItemWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutTreatmentSectionItemTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutTreatmentSectionItemTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionItemTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutTreatmentSectionItemTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type TreatmentSectionItemUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<TreatmentSectionItemCreateWithoutTranslationsInput, TreatmentSectionItemUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: TreatmentSectionItemCreateOrConnectWithoutTranslationsInput
+    upsert?: TreatmentSectionItemUpsertWithoutTranslationsInput
+    connect?: TreatmentSectionItemWhereUniqueInput
+    update?: XOR<XOR<TreatmentSectionItemUpdateToOneWithWhereWithoutTranslationsInput, TreatmentSectionItemUpdateWithoutTranslationsInput>, TreatmentSectionItemUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutTreatmentSectionItemTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutTreatmentSectionItemTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionItemTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutTreatmentSectionItemTranslationsInput
+    upsert?: LanguageUpsertWithoutTreatmentSectionItemTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutTreatmentSectionItemTranslationsInput, LanguageUpdateWithoutTreatmentSectionItemTranslationsInput>, LanguageUncheckedUpdateWithoutTreatmentSectionItemTranslationsInput>
+  }
+
   export type HeaderMenuItemCreateNestedManyWithoutHeaderMenuInput = {
     create?: XOR<HeaderMenuItemCreateWithoutHeaderMenuInput, HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuItemCreateWithoutHeaderMenuInput[] | HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput[]
     connectOrCreate?: HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput | HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput[]
@@ -66215,6 +73614,70 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TreatmentSectionContentTranslationCreateWithoutLanguageInput = {
+    id?: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    treatmentSectionContent: TreatmentSectionContentCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    treatmentSectionContentId: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionContentTranslationCreateOrConnectWithoutLanguageInput = {
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+    create: XOR<TreatmentSectionContentTranslationCreateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionContentTranslationCreateManyLanguageInputEnvelope = {
+    data: TreatmentSectionContentTranslationCreateManyLanguageInput | TreatmentSectionContentTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TreatmentSectionItemTranslationCreateWithoutLanguageInput = {
+    id?: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    treatmentSectionItem: TreatmentSectionItemCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    treatmentSectionItemId: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput = {
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+    create: XOR<TreatmentSectionItemTranslationCreateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionItemTranslationCreateManyLanguageInputEnvelope = {
+    data: TreatmentSectionItemTranslationCreateManyLanguageInput | TreatmentSectionItemTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BlogTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
     where: BlogTranslationWhereUniqueInput
     update: XOR<BlogTranslationUpdateWithoutLanguageInput, BlogTranslationUncheckedUpdateWithoutLanguageInput>
@@ -66717,6 +74180,68 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"FooterMenuTranslation"> | Date | string
   }
 
+  export type TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+    update: XOR<TreatmentSectionContentTranslationUpdateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<TreatmentSectionContentTranslationCreateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+    data: XOR<TreatmentSectionContentTranslationUpdateWithoutLanguageInput, TreatmentSectionContentTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionContentTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: TreatmentSectionContentTranslationScalarWhereInput
+    data: XOR<TreatmentSectionContentTranslationUpdateManyMutationInput, TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionContentTranslationScalarWhereInput = {
+    AND?: TreatmentSectionContentTranslationScalarWhereInput | TreatmentSectionContentTranslationScalarWhereInput[]
+    OR?: TreatmentSectionContentTranslationScalarWhereInput[]
+    NOT?: TreatmentSectionContentTranslationScalarWhereInput | TreatmentSectionContentTranslationScalarWhereInput[]
+    id?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    treatmentSectionContentId?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    languageCode?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    mainTitle?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    mainDescription?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonText?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    exploreButtonLink?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    avatarGroupText?: StringFilter<"TreatmentSectionContentTranslation"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionContentTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionContentTranslation"> | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+    update: XOR<TreatmentSectionItemTranslationUpdateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<TreatmentSectionItemTranslationCreateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+    data: XOR<TreatmentSectionItemTranslationUpdateWithoutLanguageInput, TreatmentSectionItemTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionItemTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: TreatmentSectionItemTranslationScalarWhereInput
+    data: XOR<TreatmentSectionItemTranslationUpdateManyMutationInput, TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type TreatmentSectionItemTranslationScalarWhereInput = {
+    AND?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
+    OR?: TreatmentSectionItemTranslationScalarWhereInput[]
+    NOT?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
+    id?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    treatmentSectionItemId?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    languageCode?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    title?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    description?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    linkUrl?: StringFilter<"TreatmentSectionItemTranslation"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionItemTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionItemTranslation"> | Date | string
+  }
+
   export type LanguageCreateWithoutRouteTranslationsInput = {
     id?: string
     code: string
@@ -66740,6 +74265,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutRouteTranslationsInput = {
@@ -66765,6 +74292,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutRouteTranslationsInput = {
@@ -66806,6 +74335,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutRouteTranslationsInput = {
@@ -66831,6 +74362,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateWithoutBlogInput = {
@@ -67076,6 +74609,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutBlogTranslationsInput = {
@@ -67101,6 +74636,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutBlogTranslationsInput = {
@@ -67175,6 +74712,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutBlogTranslationsInput = {
@@ -67200,6 +74739,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetMarqueeImageCreateWithoutHizmetInput = {
@@ -67980,6 +75521,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTranslationsInput = {
@@ -68005,6 +75548,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTranslationsInput = {
@@ -68209,6 +75754,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTranslationsInput = {
@@ -68234,6 +75781,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetTocItemUpsertWithWhereUniqueWithoutHizmetTranslationInput = {
@@ -69719,6 +77268,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetOverviewTabTranslationsInput = {
@@ -69744,6 +77295,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetOverviewTabTranslationsInput = {
@@ -69814,6 +77367,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetOverviewTabTranslationsInput = {
@@ -69839,6 +77394,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutWhyItemDefinitionsInput = {
@@ -70039,6 +77596,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetWhyItemTranslationsInput = {
@@ -70064,6 +77623,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetWhyItemTranslationsInput = {
@@ -70130,6 +77691,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetWhyItemTranslationsInput = {
@@ -70155,6 +77718,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutTestimonialDefinitionsInput = {
@@ -70359,6 +77924,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTestimonialTranslationsInput = {
@@ -70384,6 +77951,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTestimonialTranslationsInput = {
@@ -70452,6 +78021,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTestimonialTranslationsInput = {
@@ -70477,6 +78048,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutRecoveryItemDefinitionsInput = {
@@ -70679,6 +78252,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -70704,6 +78279,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetRecoveryItemTranslationsInput = {
@@ -70772,6 +78349,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -70797,6 +78376,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutPricingPackageDefinitionsInput = {
@@ -70999,6 +78580,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetPricingPackageTranslationsInput = {
@@ -71024,6 +78607,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetPricingPackageTranslationsInput = {
@@ -71090,6 +78675,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetPricingPackageTranslationsInput = {
@@ -71115,6 +78702,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutExpertItemDefinitionsInput = {
@@ -71321,6 +78910,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetExpertItemTranslationsInput = {
@@ -71346,6 +78937,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetExpertItemTranslationsInput = {
@@ -71414,6 +79007,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetExpertItemTranslationsInput = {
@@ -71439,6 +79034,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type GeneralSettingTranslationCreateWithoutGeneralSettingInput = {
@@ -71555,6 +79152,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput = {
@@ -71580,6 +79179,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput = {
@@ -71658,6 +79259,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput = {
@@ -71683,6 +79286,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeroContentTranslationCreateWithoutHeroContentInput = {
@@ -71832,6 +79437,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeroContentTranslationsInput = {
@@ -71857,6 +79464,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeroContentTranslationsInput = {
@@ -71923,6 +79532,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeroContentTranslationsInput = {
@@ -71948,6 +79559,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeroContentCreateWithoutImagesInput = {
@@ -72084,6 +79697,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutWhyChooseSectionTranslationsInput = {
@@ -72109,6 +79724,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutWhyChooseSectionTranslationsInput = {
@@ -72173,6 +79790,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutWhyChooseSectionTranslationsInput = {
@@ -72198,6 +79817,549 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionAvatarCreateOrConnectWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionAvatarWhereUniqueInput
+    create: XOR<TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionAvatarCreateManyTreatmentSectionContentInputEnvelope = {
+    data: TreatmentSectionAvatarCreateManyTreatmentSectionContentInput | TreatmentSectionAvatarCreateManyTreatmentSectionContentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput = {
+    id?: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    language: LanguageCreateNestedOneWithoutTreatmentSectionContentTranslationsInput
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput = {
+    id?: string
+    languageCode: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionContentTranslationCreateOrConnectWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+    create: XOR<TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInputEnvelope = {
+    data: TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInput | TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TreatmentSectionAvatarUpsertWithWhereUniqueWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionAvatarWhereUniqueInput
+    update: XOR<TreatmentSectionAvatarUpdateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedUpdateWithoutTreatmentSectionContentInput>
+    create: XOR<TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedCreateWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionAvatarUpdateWithWhereUniqueWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionAvatarWhereUniqueInput
+    data: XOR<TreatmentSectionAvatarUpdateWithoutTreatmentSectionContentInput, TreatmentSectionAvatarUncheckedUpdateWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionAvatarUpdateManyWithWhereWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionAvatarScalarWhereInput
+    data: XOR<TreatmentSectionAvatarUpdateManyMutationInput, TreatmentSectionAvatarUncheckedUpdateManyWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionAvatarScalarWhereInput = {
+    AND?: TreatmentSectionAvatarScalarWhereInput | TreatmentSectionAvatarScalarWhereInput[]
+    OR?: TreatmentSectionAvatarScalarWhereInput[]
+    NOT?: TreatmentSectionAvatarScalarWhereInput | TreatmentSectionAvatarScalarWhereInput[]
+    id?: StringFilter<"TreatmentSectionAvatar"> | string
+    imageUrl?: StringFilter<"TreatmentSectionAvatar"> | string
+    altText?: StringNullableFilter<"TreatmentSectionAvatar"> | string | null
+    order?: IntFilter<"TreatmentSectionAvatar"> | number
+    treatmentSectionContentId?: StringFilter<"TreatmentSectionAvatar"> | string
+    createdAt?: DateTimeFilter<"TreatmentSectionAvatar"> | Date | string
+    updatedAt?: DateTimeFilter<"TreatmentSectionAvatar"> | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUpsertWithWhereUniqueWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+    update: XOR<TreatmentSectionContentTranslationUpdateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedUpdateWithoutTreatmentSectionContentInput>
+    create: XOR<TreatmentSectionContentTranslationCreateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedCreateWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionContentTranslationUpdateWithWhereUniqueWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionContentTranslationWhereUniqueInput
+    data: XOR<TreatmentSectionContentTranslationUpdateWithoutTreatmentSectionContentInput, TreatmentSectionContentTranslationUncheckedUpdateWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionContentTranslationUpdateManyWithWhereWithoutTreatmentSectionContentInput = {
+    where: TreatmentSectionContentTranslationScalarWhereInput
+    data: XOR<TreatmentSectionContentTranslationUpdateManyMutationInput, TreatmentSectionContentTranslationUncheckedUpdateManyWithoutTreatmentSectionContentInput>
+  }
+
+  export type TreatmentSectionContentCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    avatars?: TreatmentSectionAvatarCreateNestedManyWithoutTreatmentSectionContentInput
+  }
+
+  export type TreatmentSectionContentUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    avatars?: TreatmentSectionAvatarUncheckedCreateNestedManyWithoutTreatmentSectionContentInput
+  }
+
+  export type TreatmentSectionContentCreateOrConnectWithoutTranslationsInput = {
+    where: TreatmentSectionContentWhereUniqueInput
+    create: XOR<TreatmentSectionContentCreateWithoutTranslationsInput, TreatmentSectionContentUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutTreatmentSectionContentTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutTreatmentSectionContentTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutTreatmentSectionContentTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutTreatmentSectionContentTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionContentTranslationsInput>
+  }
+
+  export type TreatmentSectionContentUpsertWithoutTranslationsInput = {
+    update: XOR<TreatmentSectionContentUpdateWithoutTranslationsInput, TreatmentSectionContentUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<TreatmentSectionContentCreateWithoutTranslationsInput, TreatmentSectionContentUncheckedCreateWithoutTranslationsInput>
+    where?: TreatmentSectionContentWhereInput
+  }
+
+  export type TreatmentSectionContentUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: TreatmentSectionContentWhereInput
+    data: XOR<TreatmentSectionContentUpdateWithoutTranslationsInput, TreatmentSectionContentUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type TreatmentSectionContentUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatars?: TreatmentSectionAvatarUpdateManyWithoutTreatmentSectionContentNestedInput
+  }
+
+  export type TreatmentSectionContentUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatars?: TreatmentSectionAvatarUncheckedUpdateManyWithoutTreatmentSectionContentNestedInput
+  }
+
+  export type LanguageUpsertWithoutTreatmentSectionContentTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutTreatmentSectionContentTranslationsInput, LanguageUncheckedUpdateWithoutTreatmentSectionContentTranslationsInput>
+    create: XOR<LanguageCreateWithoutTreatmentSectionContentTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionContentTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutTreatmentSectionContentTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutTreatmentSectionContentTranslationsInput, LanguageUncheckedUpdateWithoutTreatmentSectionContentTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutTreatmentSectionContentTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutTreatmentSectionContentTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type TreatmentSectionContentCreateWithoutAvatarsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: TreatmentSectionContentTranslationCreateNestedManyWithoutTreatmentSectionContentInput
+  }
+
+  export type TreatmentSectionContentUncheckedCreateWithoutAvatarsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutTreatmentSectionContentInput
+  }
+
+  export type TreatmentSectionContentCreateOrConnectWithoutAvatarsInput = {
+    where: TreatmentSectionContentWhereUniqueInput
+    create: XOR<TreatmentSectionContentCreateWithoutAvatarsInput, TreatmentSectionContentUncheckedCreateWithoutAvatarsInput>
+  }
+
+  export type TreatmentSectionContentUpsertWithoutAvatarsInput = {
+    update: XOR<TreatmentSectionContentUpdateWithoutAvatarsInput, TreatmentSectionContentUncheckedUpdateWithoutAvatarsInput>
+    create: XOR<TreatmentSectionContentCreateWithoutAvatarsInput, TreatmentSectionContentUncheckedCreateWithoutAvatarsInput>
+    where?: TreatmentSectionContentWhereInput
+  }
+
+  export type TreatmentSectionContentUpdateToOneWithWhereWithoutAvatarsInput = {
+    where?: TreatmentSectionContentWhereInput
+    data: XOR<TreatmentSectionContentUpdateWithoutAvatarsInput, TreatmentSectionContentUncheckedUpdateWithoutAvatarsInput>
+  }
+
+  export type TreatmentSectionContentUpdateWithoutAvatarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: TreatmentSectionContentTranslationUpdateManyWithoutTreatmentSectionContentNestedInput
+  }
+
+  export type TreatmentSectionContentUncheckedUpdateWithoutAvatarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutTreatmentSectionContentNestedInput
+  }
+
+  export type TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput = {
+    id?: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    language: LanguageCreateNestedOneWithoutTreatmentSectionItemTranslationsInput
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput = {
+    id?: string
+    languageCode: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemTranslationCreateOrConnectWithoutTreatmentSectionItemInput = {
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+    create: XOR<TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput>
+  }
+
+  export type TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInputEnvelope = {
+    data: TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInput | TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TreatmentSectionItemTranslationUpsertWithWhereUniqueWithoutTreatmentSectionItemInput = {
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+    update: XOR<TreatmentSectionItemTranslationUpdateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedUpdateWithoutTreatmentSectionItemInput>
+    create: XOR<TreatmentSectionItemTranslationCreateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedCreateWithoutTreatmentSectionItemInput>
+  }
+
+  export type TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutTreatmentSectionItemInput = {
+    where: TreatmentSectionItemTranslationWhereUniqueInput
+    data: XOR<TreatmentSectionItemTranslationUpdateWithoutTreatmentSectionItemInput, TreatmentSectionItemTranslationUncheckedUpdateWithoutTreatmentSectionItemInput>
+  }
+
+  export type TreatmentSectionItemTranslationUpdateManyWithWhereWithoutTreatmentSectionItemInput = {
+    where: TreatmentSectionItemTranslationScalarWhereInput
+    data: XOR<TreatmentSectionItemTranslationUpdateManyMutationInput, TreatmentSectionItemTranslationUncheckedUpdateManyWithoutTreatmentSectionItemInput>
+  }
+
+  export type TreatmentSectionItemCreateWithoutTranslationsInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    imageUrl: string
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemCreateOrConnectWithoutTranslationsInput = {
+    where: TreatmentSectionItemWhereUniqueInput
+    create: XOR<TreatmentSectionItemCreateWithoutTranslationsInput, TreatmentSectionItemUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutTreatmentSectionItemTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutTreatmentSectionItemTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutTreatmentSectionItemTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutTreatmentSectionItemTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionItemTranslationsInput>
+  }
+
+  export type TreatmentSectionItemUpsertWithoutTranslationsInput = {
+    update: XOR<TreatmentSectionItemUpdateWithoutTranslationsInput, TreatmentSectionItemUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<TreatmentSectionItemCreateWithoutTranslationsInput, TreatmentSectionItemUncheckedCreateWithoutTranslationsInput>
+    where?: TreatmentSectionItemWhereInput
+  }
+
+  export type TreatmentSectionItemUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: TreatmentSectionItemWhereInput
+    data: XOR<TreatmentSectionItemUpdateWithoutTranslationsInput, TreatmentSectionItemUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type TreatmentSectionItemUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LanguageUpsertWithoutTreatmentSectionItemTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutTreatmentSectionItemTranslationsInput, LanguageUncheckedUpdateWithoutTreatmentSectionItemTranslationsInput>
+    create: XOR<LanguageCreateWithoutTreatmentSectionItemTranslationsInput, LanguageUncheckedCreateWithoutTreatmentSectionItemTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutTreatmentSectionItemTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutTreatmentSectionItemTranslationsInput, LanguageUncheckedUpdateWithoutTreatmentSectionItemTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutTreatmentSectionItemTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutTreatmentSectionItemTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeaderMenuItemCreateWithoutHeaderMenuInput = {
@@ -72344,6 +80506,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeaderMenuTranslationsInput = {
@@ -72369,6 +80533,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeaderMenuTranslationsInput = {
@@ -72437,6 +80603,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeaderMenuTranslationsInput = {
@@ -72462,6 +80630,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeaderMenuCreateWithoutItemsInput = {
@@ -72928,6 +81098,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeaderMenuItemTranslationsInput = {
@@ -72953,6 +81125,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeaderMenuItemTranslationsInput = {
@@ -73037,6 +81211,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeaderMenuItemTranslationsInput = {
@@ -73062,6 +81238,8 @@ export namespace Prisma {
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type FooterMenuItemCreateWithoutFooterMenuInput = {
@@ -73206,6 +81384,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutFooterMenuTranslationsInput = {
@@ -73231,6 +81411,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutFooterMenuTranslationsInput = {
@@ -73301,6 +81483,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutFooterMenuTranslationsInput = {
@@ -73326,6 +81510,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type FooterMenuCreateWithoutItemsInput = {
@@ -73654,6 +81840,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutFooterMenuItemTranslationsInput = {
@@ -73679,6 +81867,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutFooterMenuItemTranslationsInput = {
@@ -73759,6 +81949,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutFooterMenuItemTranslationsInput = {
@@ -73784,6 +81976,8 @@ export namespace Prisma {
     headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateManyLanguageInput = {
@@ -73964,6 +82158,28 @@ export namespace Prisma {
     id?: string
     footerMenuId: string
     name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionContentTranslationCreateManyLanguageInput = {
+    id?: string
+    treatmentSectionContentId: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemTranslationCreateManyLanguageInput = {
+    id?: string
+    treatmentSectionItemId: string
+    title: string
+    description: string
+    linkUrl: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -74518,6 +82734,72 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     footerMenuId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    treatmentSectionContent?: TreatmentSectionContentUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionContentId?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionContentId?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    treatmentSectionItem?: TreatmentSectionItemUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionItemId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    treatmentSectionItemId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -75744,6 +84026,130 @@ export namespace Prisma {
     primaryButtonLink?: StringFieldUpdateOperationsInput | string
     secondaryButtonText?: StringFieldUpdateOperationsInput | string
     secondaryButtonLink?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TreatmentSectionAvatarCreateManyTreatmentSectionContentInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionContentTranslationCreateManyTreatmentSectionContentInput = {
+    id?: string
+    languageCode: string
+    mainTitle: string
+    mainDescription: string
+    exploreButtonText: string
+    exploreButtonLink: string
+    avatarGroupText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionAvatarUpdateWithoutTreatmentSectionContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionAvatarUncheckedUpdateWithoutTreatmentSectionContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionAvatarUncheckedUpdateManyWithoutTreatmentSectionContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUpdateWithoutTreatmentSectionContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    language?: LanguageUpdateOneRequiredWithoutTreatmentSectionContentTranslationsNestedInput
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateWithoutTreatmentSectionContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionContentTranslationUncheckedUpdateManyWithoutTreatmentSectionContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    mainTitle?: StringFieldUpdateOperationsInput | string
+    mainDescription?: StringFieldUpdateOperationsInput | string
+    exploreButtonText?: StringFieldUpdateOperationsInput | string
+    exploreButtonLink?: StringFieldUpdateOperationsInput | string
+    avatarGroupText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationCreateManyTreatmentSectionItemInput = {
+    id?: string
+    languageCode: string
+    title: string
+    description: string
+    linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUpdateWithoutTreatmentSectionItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    language?: LanguageUpdateOneRequiredWithoutTreatmentSectionItemTranslationsNestedInput
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateWithoutTreatmentSectionItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TreatmentSectionItemTranslationUncheckedUpdateManyWithoutTreatmentSectionItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HeaderMenuItemCreateManyHeaderMenuInput = {

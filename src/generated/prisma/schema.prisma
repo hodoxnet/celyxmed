@@ -58,10 +58,9 @@ model Language {
   hizmetRecoveryItemTranslations   HizmetRecoveryItemTranslation[]
   hizmetExpertItemTranslations     HizmetExpertItemTranslation[]
   hizmetPricingPackageTranslations HizmetPricingPackageTranslation[]
-  generalSettingTranslations       GeneralSettingTranslation[] // Yeni eklenecek alan
-  // sliderTranslations SliderTranslation[] // Slider ilişkisi kaldırıldı
-  heroContentTranslations          HeroContentTranslation[] // Yeni HeroContent ilişkisi
-  whyChooseSectionTranslations     WhyChooseSectionTranslation[] // Neden Celyxmed bölümü ilişkisi
+  generalSettingTranslations       GeneralSettingTranslation[]
+  heroContentTranslations          HeroContentTranslation[]
+  whyChooseSectionTranslations     WhyChooseSectionTranslation[]
 
   // Rota çevirileri ilişkisi
   routeTranslations RouteTranslation[]
@@ -69,9 +68,12 @@ model Language {
   // Menü Yönetimi İlişkileri
   headerMenuItemTranslations HeaderMenuItemTranslation[]
   footerMenuItemTranslations FooterMenuItemTranslation[]
-  // Ana Menü Çevirileri İçin Geri İlişkiler
   headerMenuTranslations     HeaderMenuTranslation[]
   footerMenuTranslations     FooterMenuTranslation[]
+
+  // Yeni Treatment Section İlişkileri
+  treatmentSectionContentTranslations TreatmentSectionContentTranslation[]
+  treatmentSectionItemTranslations    TreatmentSectionItemTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -601,33 +603,91 @@ model WhyChooseSectionTranslation {
   @@unique([whyChooseSectionId, languageCode])
 }
 
-// ----- MENÜ YÖNETİMİ MODELLERİ -----
+// ----- ANA SAYFA TREATMENTS SECTION MODELLERİ -----
 
-// Blog ve Hizmet modellerine opsiyonel geri dönüş ilişkileri (isteğe bağlı)
-// model Blog {
-//   ...
-//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToBlogPost")
-//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToBlogPost")
-// }
-// model Hizmet {
-//   ...
-//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToHizmet")
-//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToHizmet")
-// }
+// Ana Sayfa Treatments Section İçeriği (Tek Kayıt Olacak)
+model TreatmentSectionContent {
+  id        String   @id @default("main") // Sabit ID, sadece bir tane olacak
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  avatars      TreatmentSectionAvatar[]
+  translations TreatmentSectionContentTranslation[]
+}
+
+model TreatmentSectionContentTranslation {
+  id                        String                  @id @default(cuid())
+  treatmentSectionContent   TreatmentSectionContent @relation(fields: [treatmentSectionContentId], references: [id], onDelete: Cascade)
+  treatmentSectionContentId String // Sabit olarak "main" olacak
+  language                  Language                @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode              String
+
+  mainTitle         String // "Comprehensive Healthcare Solutions Tailored for You"
+  mainDescription   String @db.Text // Altındaki uzun açıklama
+  exploreButtonText String // "Explore Our Treatments"
+  exploreButtonLink String // "/treatments"
+  avatarGroupText   String // "10,000+ Successful Treatments, Your Health in Trusted Hands"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([treatmentSectionContentId, languageCode])
+}
+
+// Treatments Section için Avatar Resimleri
+model TreatmentSectionAvatar {
+  id                        String                  @id @default(cuid())
+  imageUrl                  String
+  altText                   String?
+  order                     Int                     @default(0)
+  treatmentSectionContent   TreatmentSectionContent @relation(fields: [treatmentSectionContentId], references: [id], onDelete: Cascade)
+  treatmentSectionContentId String // Sabit olarak "main" olacak
+  createdAt                 DateTime                @default(now())
+  updatedAt                 DateTime                @updatedAt
+}
+
+// Ana Sayfa Treatments Section - Tedavi Kartı Öğesi (Dil Bağımsız)
+model TreatmentSectionItem {
+  id          String   @id @default(cuid())
+  imageUrl    String
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  translations TreatmentSectionItemTranslation[]
+}
+
+// Ana Sayfa Treatments Section - Tedavi Kartı Çevirisi (Dile Özgü)
+model TreatmentSectionItemTranslation {
+  id                     String               @id @default(cuid())
+  treatmentSectionItem   TreatmentSectionItem @relation(fields: [treatmentSectionItemId], references: [id], onDelete: Cascade)
+  treatmentSectionItemId String
+  language               Language             @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode           String
+
+  title       String
+  description String @db.Text
+  linkUrl     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([treatmentSectionItemId, languageCode])
+}
+
+// ----- MENÜ YÖNETİMİ MODELLERİ -----
 
 enum MenuItemType {
   LINK
   BLOG_POST
   SERVICE_PAGE
-  // CATEGORY_PAGE // Gelecekte eklenebilir
-  // CUSTOM_PAGE // Gelecekte eklenebilir
 }
 
 // ----- HEADER MENÜ MODELLERİ -----
 
 model HeaderMenu {
   id           String                  @id @default(cuid())
-  // name      String    // Bu alan kaldırıldı, HeaderMenuTranslation'a taşındı
   isActive     Boolean                 @default(true)
   createdAt    DateTime                @default(now())
   updatedAt    DateTime                @updatedAt
@@ -641,7 +701,7 @@ model HeaderMenuTranslation {
   headerMenuId String
   language     Language   @relation(fields: [languageCode], references: [code], onDelete: Cascade)
   languageCode String
-  name         String // Çevrilmiş menü adı
+  name         String
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
@@ -654,11 +714,11 @@ model HeaderMenuItem {
   headerMenuId String
   order        Int                         @default(0)
   itemType     MenuItemType
-  linkUrl      String? // itemType LINK ise
+  linkUrl      String?
   blogPost     Blog?                       @relation("HeaderMenuToBlogPost", fields: [blogPostId], references: [id], onDelete: SetNull)
-  blogPostId   String? // itemType BLOG_POST ise
+  blogPostId   String?
   hizmet       Hizmet?                     @relation("HeaderMenuToHizmet", fields: [hizmetId], references: [id], onDelete: SetNull)
-  hizmetId     String? // itemType SERVICE_PAGE ise
+  hizmetId     String?
   openInNewTab Boolean                     @default(false)
   isActive     Boolean                     @default(true)
   parentId     String?
@@ -680,7 +740,7 @@ model HeaderMenuItemTranslation {
   headerMenuItemId String
   language         Language       @relation(fields: [languageCode], references: [code], onDelete: Cascade)
   languageCode     String
-  title            String // Menüde görünecek başlık
+  title            String
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
 
@@ -691,12 +751,7 @@ model HeaderMenuItemTranslation {
 
 model FooterMenu {
   id           String                  @id @default(cuid())
-  // name      String    // Bu alan kaldırıldı, FooterMenuTranslation'a taşındı
-  // Footer'da birden fazla menü grubu olabilir, bu yüzden name önemli.
-  // İstenirse bir "column" veya "groupKey" alanı da eklenebilir.
-  // Örneğin: "treatments_column", "about_column"
-  // Şimdilik sadece çevrilmiş 'name' ile gruplama varsayılıyor.
-  order        Int                     @default(0) // Footer içindeki menülerin sıralaması
+  order        Int                     @default(0)
   isActive     Boolean                 @default(true)
   createdAt    DateTime                @default(now())
   updatedAt    DateTime                @updatedAt
@@ -710,7 +765,7 @@ model FooterMenuTranslation {
   footerMenuId String
   language     Language   @relation(fields: [languageCode], references: [code], onDelete: Cascade)
   languageCode String
-  name         String // Çevrilmiş menü adı
+  name         String
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
@@ -730,16 +785,11 @@ model FooterMenuItem {
   hizmetId     String?
   openInNewTab Boolean                     @default(false)
   isActive     Boolean                     @default(true)
-  // Footer'da genellikle derin alt menüler olmaz ama yapısal olarak eklenebilir.
-  // parentId      String?
-  // parent        FooterMenuItem? @relation("FooterSubMenuItems", fields: [parentId], references: [id], onDelete:Cascade)
-  // children      FooterMenuItem[] @relation("FooterSubMenuItems")
   createdAt    DateTime                    @default(now())
   updatedAt    DateTime                    @updatedAt
   translations FooterMenuItemTranslation[]
 
   @@index([footerMenuId])
-  // @@index([parentId])
   @@index([blogPostId])
   @@index([hizmetId])
 }
@@ -756,15 +806,3 @@ model FooterMenuItemTranslation {
 
   @@unique([footerMenuItemId, languageCode])
 }
-
-// Blog ve Hizmet modellerine opsiyonel geri dönüş ilişkileri (isteğe bağlı)
-// model Blog {
-//   ...
-//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToBlogPost")
-//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToBlogPost")
-// }
-// model Hizmet {
-//   ...
-//   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToHizmet")
-//   footerMenuItems FooterMenuItem[] @relation("FooterMenuToHizmet")
-// }

@@ -475,6 +475,55 @@ exports.Prisma.WhyChooseSectionTranslationScalarFieldEnum = {
   secondaryButtonLink: 'secondaryButtonLink'
 };
 
+exports.Prisma.TreatmentSectionContentScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TreatmentSectionContentTranslationScalarFieldEnum = {
+  id: 'id',
+  treatmentSectionContentId: 'treatmentSectionContentId',
+  languageCode: 'languageCode',
+  mainTitle: 'mainTitle',
+  mainDescription: 'mainDescription',
+  exploreButtonText: 'exploreButtonText',
+  exploreButtonLink: 'exploreButtonLink',
+  avatarGroupText: 'avatarGroupText',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TreatmentSectionAvatarScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  altText: 'altText',
+  order: 'order',
+  treatmentSectionContentId: 'treatmentSectionContentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TreatmentSectionItemScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  order: 'order',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TreatmentSectionItemTranslationScalarFieldEnum = {
+  id: 'id',
+  treatmentSectionItemId: 'treatmentSectionItemId',
+  languageCode: 'languageCode',
+  title: 'title',
+  description: 'description',
+  linkUrl: 'linkUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.HeaderMenuScalarFieldEnum = {
   id: 'id',
   isActive: 'isActive',
@@ -626,6 +675,11 @@ exports.Prisma.ModelName = {
   HeroBackgroundImage: 'HeroBackgroundImage',
   WhyChooseSection: 'WhyChooseSection',
   WhyChooseSectionTranslation: 'WhyChooseSectionTranslation',
+  TreatmentSectionContent: 'TreatmentSectionContent',
+  TreatmentSectionContentTranslation: 'TreatmentSectionContentTranslation',
+  TreatmentSectionAvatar: 'TreatmentSectionAvatar',
+  TreatmentSectionItem: 'TreatmentSectionItem',
+  TreatmentSectionItemTranslation: 'TreatmentSectionItemTranslation',
   HeaderMenu: 'HeaderMenu',
   HeaderMenuTranslation: 'HeaderMenuTranslation',
   HeaderMenuItem: 'HeaderMenuItem',
