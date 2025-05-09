@@ -1,6 +1,7 @@
 // src/app/[locale]/hizmetler/[slug]/page.tsx
 // Server Component olarak kalmalı
 
+import type { Metadata, ResolvingMetadata } from 'next';
 // Navbar, Footer ve FloatingButtons RootLayoutClient'tan geleceği için kaldırıldı.
 import HeroSection from '@/components/hizmet-detay/HeroSection';
 // TableOfContents importu kaldırıldı, yerine TocAndCtaSection gelecek
@@ -96,6 +97,48 @@ interface ServiceDetailPageProps {
   params: {
     locale: string;
     slug: string;
+  };
+}
+
+// Dinamik metadata oluşturma
+export async function generateMetadata(
+  { params }: ServiceDetailPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { locale, slug } = params;
+
+  // Varsayılan meta değerlerini belirle
+  let title = 'Hizmetler';
+  let description = '';
+  let siteName = 'Celyxmed';
+
+  try {
+    // Ana site adını parent'dan al
+    const parentMetadata = await parent;
+    siteName = parentMetadata.title?.absolute || 'Celyxmed';
+
+    // Hizmet verisini API'den çek
+    const serviceData = await getServiceData(slug, locale);
+
+    // Hizmet verisi varsa metadata'yı ayarla
+    if (serviceData) {
+      title = serviceData.title;
+      description = serviceData.description;
+    }
+  } catch (error) {
+    console.error("Error fetching service metadata:", error);
+  }
+
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      siteName: siteName,
+      locale: locale,
+      type: 'website',
+    },
   };
 }
 
