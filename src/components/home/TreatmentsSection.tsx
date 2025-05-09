@@ -117,7 +117,7 @@ const TreatmentsSection = () => {
 
 
   return (
-    <section id="treatments" className="py-16 md:py-24">
+    <section id="treatments" className="w-full py-16 md:py-24"> {/* w-full eklendi */}
       <div className="container mx-auto px-4">
         {/* Üst Kısım: Başlık, Açıklama, Avatarlar */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center mb-12 md:mb-16">
@@ -146,7 +146,7 @@ const TreatmentsSection = () => {
           </div>
 
           {/* Sağ Taraf: Avatarlar */}
-          <div className="lg:w-1/2 flex flex-col items-center">
+          <div className="lg:w-1/2 flex flex-col items-center lg:items-end"> {/* lg:items-end eklendi */}
             <div className="flex -space-x-4 mb-4">
               {displayAvatars.map((avatar, index) => (
                 <Image
