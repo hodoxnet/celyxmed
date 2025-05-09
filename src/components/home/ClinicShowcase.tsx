@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react'; // İkon için
 // Sağ sütunda gösterilecek resim URL'si
 const clinicImageUrl = "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/67b6e872d3351a073b074f22_celyxmed-aesthetic-hair-transplantation-dental-clinic-turkey-1.avif";
 // Ana sayfa için başlık, açıklama ve buton metinleri
-const sectionTitle = "World-Class Healthcare in State-of-the-Art Clinics";
+const sectionTitle = "World-Class Healthcare in State-of-the-Art Clinics2";
 const sectionDescription = "Experience top-quality medical care with Celyxmed. Our modern clinic and partnerships with JCI-accredited hospitals ensure safe, effective, and state-of-the-art treatments tailored to your needs.";
 const buttonText = "Explore Our Clinic";
 const buttonLink = "/klinigimiz"; // Hedef link güncellendi

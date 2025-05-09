@@ -524,6 +524,35 @@ exports.Prisma.TreatmentSectionItemTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ClinicShowcaseScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ClinicShowcaseTranslationScalarFieldEnum = {
+  id: 'id',
+  clinicShowcaseId: 'clinicShowcaseId',
+  languageCode: 'languageCode',
+  title: 'title',
+  description: 'description',
+  buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ClinicShowcaseImageScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  altText: 'altText',
+  order: 'order',
+  isPublished: 'isPublished',
+  clinicShowcaseId: 'clinicShowcaseId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.HeaderMenuScalarFieldEnum = {
   id: 'id',
   isActive: 'isActive',
@@ -680,6 +709,9 @@ exports.Prisma.ModelName = {
   TreatmentSectionAvatar: 'TreatmentSectionAvatar',
   TreatmentSectionItem: 'TreatmentSectionItem',
   TreatmentSectionItemTranslation: 'TreatmentSectionItemTranslation',
+  ClinicShowcase: 'ClinicShowcase',
+  ClinicShowcaseTranslation: 'ClinicShowcaseTranslation',
+  ClinicShowcaseImage: 'ClinicShowcaseImage',
   HeaderMenu: 'HeaderMenu',
   HeaderMenuTranslation: 'HeaderMenuTranslation',
   HeaderMenuItem: 'HeaderMenuItem',

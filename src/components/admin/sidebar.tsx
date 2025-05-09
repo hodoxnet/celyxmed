@@ -93,6 +93,7 @@ const navItems: NavItem[] = [
       { title: "Hero Alanı Yönetimi", href: "/admin/hero" },
       { title: "Tedavi Bölümü İçeriği", href: "/admin/treatments-section" }, // İsim değişikliği
       { title: "Tedavi Kartları Yönetimi", href: "/admin/treatment-cards" }, // Yeni menü
+      { title: "Klinik Tanıtım Yönetimi", href: "/admin/clinic-showcase" }, // Yeni menü
       { title: "Neden Celyxmed Bölümü", href: "/admin/why-choose-section" },
       // Gelecekteki anasayfa modülleri buraya eklenebilir
     ],

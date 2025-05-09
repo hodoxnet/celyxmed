@@ -74,6 +74,9 @@ model Language {
   // Yeni Treatment Section İlişkileri
   treatmentSectionContentTranslations TreatmentSectionContentTranslation[]
   treatmentSectionItemTranslations    TreatmentSectionItemTranslation[]
+
+  // Clinic Showcase İlişkisi
+  clinicShowcaseTranslations ClinicShowcaseTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -674,6 +677,50 @@ model TreatmentSectionItemTranslation {
   updatedAt DateTime @updatedAt
 
   @@unique([treatmentSectionItemId, languageCode])
+}
+
+// ----- ANA SAYFA CLINIC SHOWCASE BÖLÜMÜ MODELLERİ -----
+
+// Ana Sayfa Clinic Showcase Bölümü (Ana İçerik)
+model ClinicShowcase {
+  id        String   @id @default("main") // Sabit ID, tek bir kayıt olacak
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations ClinicShowcaseTranslation[]
+  images       ClinicShowcaseImage[] // Kayan resimler
+}
+
+// Ana Sayfa Clinic Showcase Çevirileri (Dile Özgü İçerik)
+model ClinicShowcaseTranslation {
+  id               String         @id @default(cuid())
+  clinicShowcase   ClinicShowcase @relation(fields: [clinicShowcaseId], references: [id], onDelete: Cascade)
+  clinicShowcaseId String
+  language         Language       @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode     String
+
+  title       String // Başlık (State-of-the-Art Clinic in Istanbul)
+  description String @db.Text // Açıklama metni
+  buttonText  String // Buton metni (Explore Our Clinic)
+  buttonLink  String // Buton linki (/klinigimiz)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([clinicShowcaseId, languageCode])
+}
+
+// Clinic Showcase Resim Galerisi
+model ClinicShowcaseImage {
+  id               String         @id @default(cuid())
+  imageUrl         String // Resim URL'si
+  altText          String? // Alt metni (SEO için)
+  order            Int            @default(0) // Sıralama
+  isPublished      Boolean        @default(true)
+  clinicShowcase   ClinicShowcase @relation(fields: [clinicShowcaseId], references: [id], onDelete: Cascade)
+  clinicShowcaseId String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 }
 
 // ----- MENÜ YÖNETİMİ MODELLERİ -----

@@ -209,6 +209,21 @@ export type TreatmentSectionItem = $Result.DefaultSelection<Prisma.$TreatmentSec
  */
 export type TreatmentSectionItemTranslation = $Result.DefaultSelection<Prisma.$TreatmentSectionItemTranslationPayload>
 /**
+ * Model ClinicShowcase
+ * 
+ */
+export type ClinicShowcase = $Result.DefaultSelection<Prisma.$ClinicShowcasePayload>
+/**
+ * Model ClinicShowcaseTranslation
+ * 
+ */
+export type ClinicShowcaseTranslation = $Result.DefaultSelection<Prisma.$ClinicShowcaseTranslationPayload>
+/**
+ * Model ClinicShowcaseImage
+ * 
+ */
+export type ClinicShowcaseImage = $Result.DefaultSelection<Prisma.$ClinicShowcaseImagePayload>
+/**
  * Model HeaderMenu
  * 
  */
@@ -795,6 +810,36 @@ export class PrismaClient<
   get treatmentSectionItemTranslation(): Prisma.TreatmentSectionItemTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.clinicShowcase`: Exposes CRUD operations for the **ClinicShowcase** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ClinicShowcases
+    * const clinicShowcases = await prisma.clinicShowcase.findMany()
+    * ```
+    */
+  get clinicShowcase(): Prisma.ClinicShowcaseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.clinicShowcaseTranslation`: Exposes CRUD operations for the **ClinicShowcaseTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ClinicShowcaseTranslations
+    * const clinicShowcaseTranslations = await prisma.clinicShowcaseTranslation.findMany()
+    * ```
+    */
+  get clinicShowcaseTranslation(): Prisma.ClinicShowcaseTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.clinicShowcaseImage`: Exposes CRUD operations for the **ClinicShowcaseImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ClinicShowcaseImages
+    * const clinicShowcaseImages = await prisma.clinicShowcaseImage.findMany()
+    * ```
+    */
+  get clinicShowcaseImage(): Prisma.ClinicShowcaseImageDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.headerMenu`: Exposes CRUD operations for the **HeaderMenu** model.
     * Example usage:
     * ```ts
@@ -1352,6 +1397,9 @@ export namespace Prisma {
     TreatmentSectionAvatar: 'TreatmentSectionAvatar',
     TreatmentSectionItem: 'TreatmentSectionItem',
     TreatmentSectionItemTranslation: 'TreatmentSectionItemTranslation',
+    ClinicShowcase: 'ClinicShowcase',
+    ClinicShowcaseTranslation: 'ClinicShowcaseTranslation',
+    ClinicShowcaseImage: 'ClinicShowcaseImage',
     HeaderMenu: 'HeaderMenu',
     HeaderMenuTranslation: 'HeaderMenuTranslation',
     HeaderMenuItem: 'HeaderMenuItem',
@@ -1378,7 +1426,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "whyChooseSection" | "whyChooseSectionTranslation" | "treatmentSectionContent" | "treatmentSectionContentTranslation" | "treatmentSectionAvatar" | "treatmentSectionItem" | "treatmentSectionItemTranslation" | "headerMenu" | "headerMenuTranslation" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuTranslation" | "footerMenuItem" | "footerMenuItemTranslation"
+      modelProps: "user" | "session" | "language" | "routeTranslation" | "blog" | "blogTranslation" | "hizmet" | "hizmetTranslation" | "hizmetMarqueeImage" | "hizmetGalleryImage" | "hizmetCtaAvatar" | "hizmetTocItem" | "hizmetIntroLink" | "hizmetStep" | "hizmetFaqItem" | "hizmetOverviewTabDefinition" | "hizmetOverviewTabTranslation" | "hizmetWhyItemDefinition" | "hizmetWhyItemTranslation" | "hizmetTestimonialDefinition" | "hizmetTestimonialTranslation" | "hizmetRecoveryItemDefinition" | "hizmetRecoveryItemTranslation" | "hizmetPricingPackageDefinition" | "hizmetPricingPackageTranslation" | "hizmetExpertItemDefinition" | "hizmetExpertItemTranslation" | "generalSetting" | "generalSettingTranslation" | "heroContent" | "heroContentTranslation" | "heroBackgroundImage" | "whyChooseSection" | "whyChooseSectionTranslation" | "treatmentSectionContent" | "treatmentSectionContentTranslation" | "treatmentSectionAvatar" | "treatmentSectionItem" | "treatmentSectionItemTranslation" | "clinicShowcase" | "clinicShowcaseTranslation" | "clinicShowcaseImage" | "headerMenu" | "headerMenuTranslation" | "headerMenuItem" | "headerMenuItemTranslation" | "footerMenu" | "footerMenuTranslation" | "footerMenuItem" | "footerMenuItemTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4268,6 +4316,228 @@ export namespace Prisma {
           }
         }
       }
+      ClinicShowcase: {
+        payload: Prisma.$ClinicShowcasePayload<ExtArgs>
+        fields: Prisma.ClinicShowcaseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClinicShowcaseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClinicShowcaseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>
+          }
+          findFirst: {
+            args: Prisma.ClinicShowcaseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClinicShowcaseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>
+          }
+          findMany: {
+            args: Prisma.ClinicShowcaseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>[]
+          }
+          create: {
+            args: Prisma.ClinicShowcaseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>
+          }
+          createMany: {
+            args: Prisma.ClinicShowcaseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClinicShowcaseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>[]
+          }
+          delete: {
+            args: Prisma.ClinicShowcaseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>
+          }
+          update: {
+            args: Prisma.ClinicShowcaseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>
+          }
+          deleteMany: {
+            args: Prisma.ClinicShowcaseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClinicShowcaseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ClinicShowcaseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>[]
+          }
+          upsert: {
+            args: Prisma.ClinicShowcaseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcasePayload>
+          }
+          aggregate: {
+            args: Prisma.ClinicShowcaseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClinicShowcase>
+          }
+          groupBy: {
+            args: Prisma.ClinicShowcaseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClinicShowcaseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClinicShowcaseCountArgs<ExtArgs>
+            result: $Utils.Optional<ClinicShowcaseCountAggregateOutputType> | number
+          }
+        }
+      }
+      ClinicShowcaseTranslation: {
+        payload: Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>
+        fields: Prisma.ClinicShowcaseTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClinicShowcaseTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClinicShowcaseTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.ClinicShowcaseTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClinicShowcaseTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.ClinicShowcaseTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.ClinicShowcaseTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.ClinicShowcaseTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClinicShowcaseTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.ClinicShowcaseTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>
+          }
+          update: {
+            args: Prisma.ClinicShowcaseTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ClinicShowcaseTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClinicShowcaseTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ClinicShowcaseTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.ClinicShowcaseTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.ClinicShowcaseTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClinicShowcaseTranslation>
+          }
+          groupBy: {
+            args: Prisma.ClinicShowcaseTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClinicShowcaseTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClinicShowcaseTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<ClinicShowcaseTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
+      ClinicShowcaseImage: {
+        payload: Prisma.$ClinicShowcaseImagePayload<ExtArgs>
+        fields: Prisma.ClinicShowcaseImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClinicShowcaseImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClinicShowcaseImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>
+          }
+          findFirst: {
+            args: Prisma.ClinicShowcaseImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClinicShowcaseImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>
+          }
+          findMany: {
+            args: Prisma.ClinicShowcaseImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>[]
+          }
+          create: {
+            args: Prisma.ClinicShowcaseImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>
+          }
+          createMany: {
+            args: Prisma.ClinicShowcaseImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClinicShowcaseImageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>[]
+          }
+          delete: {
+            args: Prisma.ClinicShowcaseImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>
+          }
+          update: {
+            args: Prisma.ClinicShowcaseImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ClinicShowcaseImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClinicShowcaseImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ClinicShowcaseImageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>[]
+          }
+          upsert: {
+            args: Prisma.ClinicShowcaseImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClinicShowcaseImagePayload>
+          }
+          aggregate: {
+            args: Prisma.ClinicShowcaseImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClinicShowcaseImage>
+          }
+          groupBy: {
+            args: Prisma.ClinicShowcaseImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClinicShowcaseImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClinicShowcaseImageCountArgs<ExtArgs>
+            result: $Utils.Optional<ClinicShowcaseImageCountAggregateOutputType> | number
+          }
+        }
+      }
       HeaderMenu: {
         payload: Prisma.$HeaderMenuPayload<ExtArgs>
         fields: Prisma.HeaderMenuFieldRefs
@@ -4983,6 +5253,9 @@ export namespace Prisma {
     treatmentSectionAvatar?: TreatmentSectionAvatarOmit
     treatmentSectionItem?: TreatmentSectionItemOmit
     treatmentSectionItemTranslation?: TreatmentSectionItemTranslationOmit
+    clinicShowcase?: ClinicShowcaseOmit
+    clinicShowcaseTranslation?: ClinicShowcaseTranslationOmit
+    clinicShowcaseImage?: ClinicShowcaseImageOmit
     headerMenu?: HeaderMenuOmit
     headerMenuTranslation?: HeaderMenuTranslationOmit
     headerMenuItem?: HeaderMenuItemOmit
@@ -5103,6 +5376,7 @@ export namespace Prisma {
     footerMenuTranslations: number
     treatmentSectionContentTranslations: number
     treatmentSectionItemTranslations: number
+    clinicShowcaseTranslations: number
   }
 
   export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5124,6 +5398,7 @@ export namespace Prisma {
     footerMenuTranslations?: boolean | LanguageCountOutputTypeCountFooterMenuTranslationsArgs
     treatmentSectionContentTranslations?: boolean | LanguageCountOutputTypeCountTreatmentSectionContentTranslationsArgs
     treatmentSectionItemTranslations?: boolean | LanguageCountOutputTypeCountTreatmentSectionItemTranslationsArgs
+    clinicShowcaseTranslations?: boolean | LanguageCountOutputTypeCountClinicShowcaseTranslationsArgs
   }
 
   // Custom InputTypes
@@ -5261,6 +5536,13 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountTreatmentSectionItemTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TreatmentSectionItemTranslationWhereInput
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountClinicShowcaseTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClinicShowcaseTranslationWhereInput
   }
 
 
@@ -5857,6 +6139,46 @@ export namespace Prisma {
    */
   export type TreatmentSectionItemCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TreatmentSectionItemTranslationWhereInput
+  }
+
+
+  /**
+   * Count Type ClinicShowcaseCountOutputType
+   */
+
+  export type ClinicShowcaseCountOutputType = {
+    translations: number
+    images: number
+  }
+
+  export type ClinicShowcaseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | ClinicShowcaseCountOutputTypeCountTranslationsArgs
+    images?: boolean | ClinicShowcaseCountOutputTypeCountImagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ClinicShowcaseCountOutputType without action
+   */
+  export type ClinicShowcaseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseCountOutputType
+     */
+    select?: ClinicShowcaseCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ClinicShowcaseCountOutputType without action
+   */
+  export type ClinicShowcaseCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClinicShowcaseTranslationWhereInput
+  }
+
+  /**
+   * ClinicShowcaseCountOutputType without action
+   */
+  export type ClinicShowcaseCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClinicShowcaseImageWhereInput
   }
 
 
@@ -8242,6 +8564,7 @@ export namespace Prisma {
     footerMenuTranslations?: boolean | Language$footerMenuTranslationsArgs<ExtArgs>
     treatmentSectionContentTranslations?: boolean | Language$treatmentSectionContentTranslationsArgs<ExtArgs>
     treatmentSectionItemTranslations?: boolean | Language$treatmentSectionItemTranslationsArgs<ExtArgs>
+    clinicShowcaseTranslations?: boolean | Language$clinicShowcaseTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["language"]>
 
@@ -8295,6 +8618,7 @@ export namespace Prisma {
     footerMenuTranslations?: boolean | Language$footerMenuTranslationsArgs<ExtArgs>
     treatmentSectionContentTranslations?: boolean | Language$treatmentSectionContentTranslationsArgs<ExtArgs>
     treatmentSectionItemTranslations?: boolean | Language$treatmentSectionItemTranslationsArgs<ExtArgs>
+    clinicShowcaseTranslations?: boolean | Language$clinicShowcaseTranslationsArgs<ExtArgs>
     _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -8321,6 +8645,7 @@ export namespace Prisma {
       footerMenuTranslations: Prisma.$FooterMenuTranslationPayload<ExtArgs>[]
       treatmentSectionContentTranslations: Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>[]
       treatmentSectionItemTranslations: Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>[]
+      clinicShowcaseTranslations: Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8742,6 +9067,7 @@ export namespace Prisma {
     footerMenuTranslations<T extends Language$footerMenuTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$footerMenuTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FooterMenuTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     treatmentSectionContentTranslations<T extends Language$treatmentSectionContentTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$treatmentSectionContentTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionContentTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     treatmentSectionItemTranslations<T extends Language$treatmentSectionItemTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$treatmentSectionItemTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TreatmentSectionItemTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    clinicShowcaseTranslations<T extends Language$clinicShowcaseTranslationsArgs<ExtArgs> = {}>(args?: Subset<T, Language$clinicShowcaseTranslationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9595,6 +9921,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TreatmentSectionItemTranslationScalarFieldEnum | TreatmentSectionItemTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Language.clinicShowcaseTranslations
+   */
+  export type Language$clinicShowcaseTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    where?: ClinicShowcaseTranslationWhereInput
+    orderBy?: ClinicShowcaseTranslationOrderByWithRelationInput | ClinicShowcaseTranslationOrderByWithRelationInput[]
+    cursor?: ClinicShowcaseTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ClinicShowcaseTranslationScalarFieldEnum | ClinicShowcaseTranslationScalarFieldEnum[]
   }
 
   /**
@@ -50282,6 +50632,3327 @@ export namespace Prisma {
 
 
   /**
+   * Model ClinicShowcase
+   */
+
+  export type AggregateClinicShowcase = {
+    _count: ClinicShowcaseCountAggregateOutputType | null
+    _min: ClinicShowcaseMinAggregateOutputType | null
+    _max: ClinicShowcaseMaxAggregateOutputType | null
+  }
+
+  export type ClinicShowcaseMinAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClinicShowcaseMaxAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClinicShowcaseCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ClinicShowcaseMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClinicShowcaseMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClinicShowcaseCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ClinicShowcaseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClinicShowcase to aggregate.
+     */
+    where?: ClinicShowcaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcases to fetch.
+     */
+    orderBy?: ClinicShowcaseOrderByWithRelationInput | ClinicShowcaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClinicShowcaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ClinicShowcases
+    **/
+    _count?: true | ClinicShowcaseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClinicShowcaseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClinicShowcaseMaxAggregateInputType
+  }
+
+  export type GetClinicShowcaseAggregateType<T extends ClinicShowcaseAggregateArgs> = {
+        [P in keyof T & keyof AggregateClinicShowcase]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClinicShowcase[P]>
+      : GetScalarType<T[P], AggregateClinicShowcase[P]>
+  }
+
+
+
+
+  export type ClinicShowcaseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClinicShowcaseWhereInput
+    orderBy?: ClinicShowcaseOrderByWithAggregationInput | ClinicShowcaseOrderByWithAggregationInput[]
+    by: ClinicShowcaseScalarFieldEnum[] | ClinicShowcaseScalarFieldEnum
+    having?: ClinicShowcaseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClinicShowcaseCountAggregateInputType | true
+    _min?: ClinicShowcaseMinAggregateInputType
+    _max?: ClinicShowcaseMaxAggregateInputType
+  }
+
+  export type ClinicShowcaseGroupByOutputType = {
+    id: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ClinicShowcaseCountAggregateOutputType | null
+    _min: ClinicShowcaseMinAggregateOutputType | null
+    _max: ClinicShowcaseMaxAggregateOutputType | null
+  }
+
+  type GetClinicShowcaseGroupByPayload<T extends ClinicShowcaseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClinicShowcaseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClinicShowcaseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClinicShowcaseGroupByOutputType[P]>
+            : GetScalarType<T[P], ClinicShowcaseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClinicShowcaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    translations?: boolean | ClinicShowcase$translationsArgs<ExtArgs>
+    images?: boolean | ClinicShowcase$imagesArgs<ExtArgs>
+    _count?: boolean | ClinicShowcaseCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clinicShowcase"]>
+
+  export type ClinicShowcaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["clinicShowcase"]>
+
+  export type ClinicShowcaseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["clinicShowcase"]>
+
+  export type ClinicShowcaseSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ClinicShowcaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt", ExtArgs["result"]["clinicShowcase"]>
+  export type ClinicShowcaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | ClinicShowcase$translationsArgs<ExtArgs>
+    images?: boolean | ClinicShowcase$imagesArgs<ExtArgs>
+    _count?: boolean | ClinicShowcaseCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ClinicShowcaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ClinicShowcaseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ClinicShowcasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ClinicShowcase"
+    objects: {
+      translations: Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>[]
+      images: Prisma.$ClinicShowcaseImagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["clinicShowcase"]>
+    composites: {}
+  }
+
+  type ClinicShowcaseGetPayload<S extends boolean | null | undefined | ClinicShowcaseDefaultArgs> = $Result.GetResult<Prisma.$ClinicShowcasePayload, S>
+
+  type ClinicShowcaseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClinicShowcaseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClinicShowcaseCountAggregateInputType | true
+    }
+
+  export interface ClinicShowcaseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClinicShowcase'], meta: { name: 'ClinicShowcase' } }
+    /**
+     * Find zero or one ClinicShowcase that matches the filter.
+     * @param {ClinicShowcaseFindUniqueArgs} args - Arguments to find a ClinicShowcase
+     * @example
+     * // Get one ClinicShowcase
+     * const clinicShowcase = await prisma.clinicShowcase.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClinicShowcaseFindUniqueArgs>(args: SelectSubset<T, ClinicShowcaseFindUniqueArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ClinicShowcase that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ClinicShowcaseFindUniqueOrThrowArgs} args - Arguments to find a ClinicShowcase
+     * @example
+     * // Get one ClinicShowcase
+     * const clinicShowcase = await prisma.clinicShowcase.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClinicShowcaseFindUniqueOrThrowArgs>(args: SelectSubset<T, ClinicShowcaseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ClinicShowcase that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseFindFirstArgs} args - Arguments to find a ClinicShowcase
+     * @example
+     * // Get one ClinicShowcase
+     * const clinicShowcase = await prisma.clinicShowcase.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClinicShowcaseFindFirstArgs>(args?: SelectSubset<T, ClinicShowcaseFindFirstArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ClinicShowcase that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseFindFirstOrThrowArgs} args - Arguments to find a ClinicShowcase
+     * @example
+     * // Get one ClinicShowcase
+     * const clinicShowcase = await prisma.clinicShowcase.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClinicShowcaseFindFirstOrThrowArgs>(args?: SelectSubset<T, ClinicShowcaseFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ClinicShowcases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ClinicShowcases
+     * const clinicShowcases = await prisma.clinicShowcase.findMany()
+     * 
+     * // Get first 10 ClinicShowcases
+     * const clinicShowcases = await prisma.clinicShowcase.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const clinicShowcaseWithIdOnly = await prisma.clinicShowcase.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ClinicShowcaseFindManyArgs>(args?: SelectSubset<T, ClinicShowcaseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ClinicShowcase.
+     * @param {ClinicShowcaseCreateArgs} args - Arguments to create a ClinicShowcase.
+     * @example
+     * // Create one ClinicShowcase
+     * const ClinicShowcase = await prisma.clinicShowcase.create({
+     *   data: {
+     *     // ... data to create a ClinicShowcase
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClinicShowcaseCreateArgs>(args: SelectSubset<T, ClinicShowcaseCreateArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ClinicShowcases.
+     * @param {ClinicShowcaseCreateManyArgs} args - Arguments to create many ClinicShowcases.
+     * @example
+     * // Create many ClinicShowcases
+     * const clinicShowcase = await prisma.clinicShowcase.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClinicShowcaseCreateManyArgs>(args?: SelectSubset<T, ClinicShowcaseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ClinicShowcases and returns the data saved in the database.
+     * @param {ClinicShowcaseCreateManyAndReturnArgs} args - Arguments to create many ClinicShowcases.
+     * @example
+     * // Create many ClinicShowcases
+     * const clinicShowcase = await prisma.clinicShowcase.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ClinicShowcases and only return the `id`
+     * const clinicShowcaseWithIdOnly = await prisma.clinicShowcase.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClinicShowcaseCreateManyAndReturnArgs>(args?: SelectSubset<T, ClinicShowcaseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ClinicShowcase.
+     * @param {ClinicShowcaseDeleteArgs} args - Arguments to delete one ClinicShowcase.
+     * @example
+     * // Delete one ClinicShowcase
+     * const ClinicShowcase = await prisma.clinicShowcase.delete({
+     *   where: {
+     *     // ... filter to delete one ClinicShowcase
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClinicShowcaseDeleteArgs>(args: SelectSubset<T, ClinicShowcaseDeleteArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ClinicShowcase.
+     * @param {ClinicShowcaseUpdateArgs} args - Arguments to update one ClinicShowcase.
+     * @example
+     * // Update one ClinicShowcase
+     * const clinicShowcase = await prisma.clinicShowcase.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClinicShowcaseUpdateArgs>(args: SelectSubset<T, ClinicShowcaseUpdateArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ClinicShowcases.
+     * @param {ClinicShowcaseDeleteManyArgs} args - Arguments to filter ClinicShowcases to delete.
+     * @example
+     * // Delete a few ClinicShowcases
+     * const { count } = await prisma.clinicShowcase.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClinicShowcaseDeleteManyArgs>(args?: SelectSubset<T, ClinicShowcaseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClinicShowcases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ClinicShowcases
+     * const clinicShowcase = await prisma.clinicShowcase.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClinicShowcaseUpdateManyArgs>(args: SelectSubset<T, ClinicShowcaseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClinicShowcases and returns the data updated in the database.
+     * @param {ClinicShowcaseUpdateManyAndReturnArgs} args - Arguments to update many ClinicShowcases.
+     * @example
+     * // Update many ClinicShowcases
+     * const clinicShowcase = await prisma.clinicShowcase.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ClinicShowcases and only return the `id`
+     * const clinicShowcaseWithIdOnly = await prisma.clinicShowcase.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ClinicShowcaseUpdateManyAndReturnArgs>(args: SelectSubset<T, ClinicShowcaseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ClinicShowcase.
+     * @param {ClinicShowcaseUpsertArgs} args - Arguments to update or create a ClinicShowcase.
+     * @example
+     * // Update or create a ClinicShowcase
+     * const clinicShowcase = await prisma.clinicShowcase.upsert({
+     *   create: {
+     *     // ... data to create a ClinicShowcase
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ClinicShowcase we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClinicShowcaseUpsertArgs>(args: SelectSubset<T, ClinicShowcaseUpsertArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ClinicShowcases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseCountArgs} args - Arguments to filter ClinicShowcases to count.
+     * @example
+     * // Count the number of ClinicShowcases
+     * const count = await prisma.clinicShowcase.count({
+     *   where: {
+     *     // ... the filter for the ClinicShowcases we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClinicShowcaseCountArgs>(
+      args?: Subset<T, ClinicShowcaseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClinicShowcaseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ClinicShowcase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClinicShowcaseAggregateArgs>(args: Subset<T, ClinicShowcaseAggregateArgs>): Prisma.PrismaPromise<GetClinicShowcaseAggregateType<T>>
+
+    /**
+     * Group by ClinicShowcase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClinicShowcaseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClinicShowcaseGroupByArgs['orderBy'] }
+        : { orderBy?: ClinicShowcaseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClinicShowcaseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClinicShowcaseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ClinicShowcase model
+   */
+  readonly fields: ClinicShowcaseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ClinicShowcase.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClinicShowcaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends ClinicShowcase$translationsArgs<ExtArgs> = {}>(args?: Subset<T, ClinicShowcase$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    images<T extends ClinicShowcase$imagesArgs<ExtArgs> = {}>(args?: Subset<T, ClinicShowcase$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ClinicShowcase model
+   */
+  interface ClinicShowcaseFieldRefs {
+    readonly id: FieldRef<"ClinicShowcase", 'String'>
+    readonly createdAt: FieldRef<"ClinicShowcase", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClinicShowcase", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ClinicShowcase findUnique
+   */
+  export type ClinicShowcaseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcase to fetch.
+     */
+    where: ClinicShowcaseWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcase findUniqueOrThrow
+   */
+  export type ClinicShowcaseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcase to fetch.
+     */
+    where: ClinicShowcaseWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcase findFirst
+   */
+  export type ClinicShowcaseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcase to fetch.
+     */
+    where?: ClinicShowcaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcases to fetch.
+     */
+    orderBy?: ClinicShowcaseOrderByWithRelationInput | ClinicShowcaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClinicShowcases.
+     */
+    cursor?: ClinicShowcaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClinicShowcases.
+     */
+    distinct?: ClinicShowcaseScalarFieldEnum | ClinicShowcaseScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcase findFirstOrThrow
+   */
+  export type ClinicShowcaseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcase to fetch.
+     */
+    where?: ClinicShowcaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcases to fetch.
+     */
+    orderBy?: ClinicShowcaseOrderByWithRelationInput | ClinicShowcaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClinicShowcases.
+     */
+    cursor?: ClinicShowcaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClinicShowcases.
+     */
+    distinct?: ClinicShowcaseScalarFieldEnum | ClinicShowcaseScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcase findMany
+   */
+  export type ClinicShowcaseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcases to fetch.
+     */
+    where?: ClinicShowcaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcases to fetch.
+     */
+    orderBy?: ClinicShowcaseOrderByWithRelationInput | ClinicShowcaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ClinicShowcases.
+     */
+    cursor?: ClinicShowcaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcases.
+     */
+    skip?: number
+    distinct?: ClinicShowcaseScalarFieldEnum | ClinicShowcaseScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcase create
+   */
+  export type ClinicShowcaseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ClinicShowcase.
+     */
+    data: XOR<ClinicShowcaseCreateInput, ClinicShowcaseUncheckedCreateInput>
+  }
+
+  /**
+   * ClinicShowcase createMany
+   */
+  export type ClinicShowcaseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ClinicShowcases.
+     */
+    data: ClinicShowcaseCreateManyInput | ClinicShowcaseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClinicShowcase createManyAndReturn
+   */
+  export type ClinicShowcaseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * The data used to create many ClinicShowcases.
+     */
+    data: ClinicShowcaseCreateManyInput | ClinicShowcaseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClinicShowcase update
+   */
+  export type ClinicShowcaseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ClinicShowcase.
+     */
+    data: XOR<ClinicShowcaseUpdateInput, ClinicShowcaseUncheckedUpdateInput>
+    /**
+     * Choose, which ClinicShowcase to update.
+     */
+    where: ClinicShowcaseWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcase updateMany
+   */
+  export type ClinicShowcaseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ClinicShowcases.
+     */
+    data: XOR<ClinicShowcaseUpdateManyMutationInput, ClinicShowcaseUncheckedUpdateManyInput>
+    /**
+     * Filter which ClinicShowcases to update
+     */
+    where?: ClinicShowcaseWhereInput
+    /**
+     * Limit how many ClinicShowcases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ClinicShowcase updateManyAndReturn
+   */
+  export type ClinicShowcaseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * The data used to update ClinicShowcases.
+     */
+    data: XOR<ClinicShowcaseUpdateManyMutationInput, ClinicShowcaseUncheckedUpdateManyInput>
+    /**
+     * Filter which ClinicShowcases to update
+     */
+    where?: ClinicShowcaseWhereInput
+    /**
+     * Limit how many ClinicShowcases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ClinicShowcase upsert
+   */
+  export type ClinicShowcaseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ClinicShowcase to update in case it exists.
+     */
+    where: ClinicShowcaseWhereUniqueInput
+    /**
+     * In case the ClinicShowcase found by the `where` argument doesn't exist, create a new ClinicShowcase with this data.
+     */
+    create: XOR<ClinicShowcaseCreateInput, ClinicShowcaseUncheckedCreateInput>
+    /**
+     * In case the ClinicShowcase was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClinicShowcaseUpdateInput, ClinicShowcaseUncheckedUpdateInput>
+  }
+
+  /**
+   * ClinicShowcase delete
+   */
+  export type ClinicShowcaseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+    /**
+     * Filter which ClinicShowcase to delete.
+     */
+    where: ClinicShowcaseWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcase deleteMany
+   */
+  export type ClinicShowcaseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClinicShowcases to delete
+     */
+    where?: ClinicShowcaseWhereInput
+    /**
+     * Limit how many ClinicShowcases to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ClinicShowcase.translations
+   */
+  export type ClinicShowcase$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    where?: ClinicShowcaseTranslationWhereInput
+    orderBy?: ClinicShowcaseTranslationOrderByWithRelationInput | ClinicShowcaseTranslationOrderByWithRelationInput[]
+    cursor?: ClinicShowcaseTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ClinicShowcaseTranslationScalarFieldEnum | ClinicShowcaseTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcase.images
+   */
+  export type ClinicShowcase$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    where?: ClinicShowcaseImageWhereInput
+    orderBy?: ClinicShowcaseImageOrderByWithRelationInput | ClinicShowcaseImageOrderByWithRelationInput[]
+    cursor?: ClinicShowcaseImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ClinicShowcaseImageScalarFieldEnum | ClinicShowcaseImageScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcase without action
+   */
+  export type ClinicShowcaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcase
+     */
+    select?: ClinicShowcaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcase
+     */
+    omit?: ClinicShowcaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ClinicShowcaseTranslation
+   */
+
+  export type AggregateClinicShowcaseTranslation = {
+    _count: ClinicShowcaseTranslationCountAggregateOutputType | null
+    _min: ClinicShowcaseTranslationMinAggregateOutputType | null
+    _max: ClinicShowcaseTranslationMaxAggregateOutputType | null
+  }
+
+  export type ClinicShowcaseTranslationMinAggregateOutputType = {
+    id: string | null
+    clinicShowcaseId: string | null
+    languageCode: string | null
+    title: string | null
+    description: string | null
+    buttonText: string | null
+    buttonLink: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClinicShowcaseTranslationMaxAggregateOutputType = {
+    id: string | null
+    clinicShowcaseId: string | null
+    languageCode: string | null
+    title: string | null
+    description: string | null
+    buttonText: string | null
+    buttonLink: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClinicShowcaseTranslationCountAggregateOutputType = {
+    id: number
+    clinicShowcaseId: number
+    languageCode: number
+    title: number
+    description: number
+    buttonText: number
+    buttonLink: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ClinicShowcaseTranslationMinAggregateInputType = {
+    id?: true
+    clinicShowcaseId?: true
+    languageCode?: true
+    title?: true
+    description?: true
+    buttonText?: true
+    buttonLink?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClinicShowcaseTranslationMaxAggregateInputType = {
+    id?: true
+    clinicShowcaseId?: true
+    languageCode?: true
+    title?: true
+    description?: true
+    buttonText?: true
+    buttonLink?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClinicShowcaseTranslationCountAggregateInputType = {
+    id?: true
+    clinicShowcaseId?: true
+    languageCode?: true
+    title?: true
+    description?: true
+    buttonText?: true
+    buttonLink?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ClinicShowcaseTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClinicShowcaseTranslation to aggregate.
+     */
+    where?: ClinicShowcaseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseTranslations to fetch.
+     */
+    orderBy?: ClinicShowcaseTranslationOrderByWithRelationInput | ClinicShowcaseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClinicShowcaseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ClinicShowcaseTranslations
+    **/
+    _count?: true | ClinicShowcaseTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClinicShowcaseTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClinicShowcaseTranslationMaxAggregateInputType
+  }
+
+  export type GetClinicShowcaseTranslationAggregateType<T extends ClinicShowcaseTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateClinicShowcaseTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClinicShowcaseTranslation[P]>
+      : GetScalarType<T[P], AggregateClinicShowcaseTranslation[P]>
+  }
+
+
+
+
+  export type ClinicShowcaseTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClinicShowcaseTranslationWhereInput
+    orderBy?: ClinicShowcaseTranslationOrderByWithAggregationInput | ClinicShowcaseTranslationOrderByWithAggregationInput[]
+    by: ClinicShowcaseTranslationScalarFieldEnum[] | ClinicShowcaseTranslationScalarFieldEnum
+    having?: ClinicShowcaseTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClinicShowcaseTranslationCountAggregateInputType | true
+    _min?: ClinicShowcaseTranslationMinAggregateInputType
+    _max?: ClinicShowcaseTranslationMaxAggregateInputType
+  }
+
+  export type ClinicShowcaseTranslationGroupByOutputType = {
+    id: string
+    clinicShowcaseId: string
+    languageCode: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ClinicShowcaseTranslationCountAggregateOutputType | null
+    _min: ClinicShowcaseTranslationMinAggregateOutputType | null
+    _max: ClinicShowcaseTranslationMaxAggregateOutputType | null
+  }
+
+  type GetClinicShowcaseTranslationGroupByPayload<T extends ClinicShowcaseTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClinicShowcaseTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClinicShowcaseTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClinicShowcaseTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], ClinicShowcaseTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClinicShowcaseTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clinicShowcaseId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clinicShowcaseTranslation"]>
+
+  export type ClinicShowcaseTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clinicShowcaseId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clinicShowcaseTranslation"]>
+
+  export type ClinicShowcaseTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clinicShowcaseId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clinicShowcaseTranslation"]>
+
+  export type ClinicShowcaseTranslationSelectScalar = {
+    id?: boolean
+    clinicShowcaseId?: boolean
+    languageCode?: boolean
+    title?: boolean
+    description?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ClinicShowcaseTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clinicShowcaseId" | "languageCode" | "title" | "description" | "buttonText" | "buttonLink" | "createdAt" | "updatedAt", ExtArgs["result"]["clinicShowcaseTranslation"]>
+  export type ClinicShowcaseTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type ClinicShowcaseTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type ClinicShowcaseTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $ClinicShowcaseTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ClinicShowcaseTranslation"
+    objects: {
+      clinicShowcase: Prisma.$ClinicShowcasePayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      clinicShowcaseId: string
+      languageCode: string
+      title: string
+      description: string
+      buttonText: string
+      buttonLink: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["clinicShowcaseTranslation"]>
+    composites: {}
+  }
+
+  type ClinicShowcaseTranslationGetPayload<S extends boolean | null | undefined | ClinicShowcaseTranslationDefaultArgs> = $Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload, S>
+
+  type ClinicShowcaseTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClinicShowcaseTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClinicShowcaseTranslationCountAggregateInputType | true
+    }
+
+  export interface ClinicShowcaseTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClinicShowcaseTranslation'], meta: { name: 'ClinicShowcaseTranslation' } }
+    /**
+     * Find zero or one ClinicShowcaseTranslation that matches the filter.
+     * @param {ClinicShowcaseTranslationFindUniqueArgs} args - Arguments to find a ClinicShowcaseTranslation
+     * @example
+     * // Get one ClinicShowcaseTranslation
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClinicShowcaseTranslationFindUniqueArgs>(args: SelectSubset<T, ClinicShowcaseTranslationFindUniqueArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ClinicShowcaseTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ClinicShowcaseTranslationFindUniqueOrThrowArgs} args - Arguments to find a ClinicShowcaseTranslation
+     * @example
+     * // Get one ClinicShowcaseTranslation
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClinicShowcaseTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, ClinicShowcaseTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ClinicShowcaseTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseTranslationFindFirstArgs} args - Arguments to find a ClinicShowcaseTranslation
+     * @example
+     * // Get one ClinicShowcaseTranslation
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClinicShowcaseTranslationFindFirstArgs>(args?: SelectSubset<T, ClinicShowcaseTranslationFindFirstArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ClinicShowcaseTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseTranslationFindFirstOrThrowArgs} args - Arguments to find a ClinicShowcaseTranslation
+     * @example
+     * // Get one ClinicShowcaseTranslation
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClinicShowcaseTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, ClinicShowcaseTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ClinicShowcaseTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ClinicShowcaseTranslations
+     * const clinicShowcaseTranslations = await prisma.clinicShowcaseTranslation.findMany()
+     * 
+     * // Get first 10 ClinicShowcaseTranslations
+     * const clinicShowcaseTranslations = await prisma.clinicShowcaseTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const clinicShowcaseTranslationWithIdOnly = await prisma.clinicShowcaseTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ClinicShowcaseTranslationFindManyArgs>(args?: SelectSubset<T, ClinicShowcaseTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ClinicShowcaseTranslation.
+     * @param {ClinicShowcaseTranslationCreateArgs} args - Arguments to create a ClinicShowcaseTranslation.
+     * @example
+     * // Create one ClinicShowcaseTranslation
+     * const ClinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.create({
+     *   data: {
+     *     // ... data to create a ClinicShowcaseTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClinicShowcaseTranslationCreateArgs>(args: SelectSubset<T, ClinicShowcaseTranslationCreateArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ClinicShowcaseTranslations.
+     * @param {ClinicShowcaseTranslationCreateManyArgs} args - Arguments to create many ClinicShowcaseTranslations.
+     * @example
+     * // Create many ClinicShowcaseTranslations
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClinicShowcaseTranslationCreateManyArgs>(args?: SelectSubset<T, ClinicShowcaseTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ClinicShowcaseTranslations and returns the data saved in the database.
+     * @param {ClinicShowcaseTranslationCreateManyAndReturnArgs} args - Arguments to create many ClinicShowcaseTranslations.
+     * @example
+     * // Create many ClinicShowcaseTranslations
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ClinicShowcaseTranslations and only return the `id`
+     * const clinicShowcaseTranslationWithIdOnly = await prisma.clinicShowcaseTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClinicShowcaseTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, ClinicShowcaseTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ClinicShowcaseTranslation.
+     * @param {ClinicShowcaseTranslationDeleteArgs} args - Arguments to delete one ClinicShowcaseTranslation.
+     * @example
+     * // Delete one ClinicShowcaseTranslation
+     * const ClinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one ClinicShowcaseTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClinicShowcaseTranslationDeleteArgs>(args: SelectSubset<T, ClinicShowcaseTranslationDeleteArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ClinicShowcaseTranslation.
+     * @param {ClinicShowcaseTranslationUpdateArgs} args - Arguments to update one ClinicShowcaseTranslation.
+     * @example
+     * // Update one ClinicShowcaseTranslation
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClinicShowcaseTranslationUpdateArgs>(args: SelectSubset<T, ClinicShowcaseTranslationUpdateArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ClinicShowcaseTranslations.
+     * @param {ClinicShowcaseTranslationDeleteManyArgs} args - Arguments to filter ClinicShowcaseTranslations to delete.
+     * @example
+     * // Delete a few ClinicShowcaseTranslations
+     * const { count } = await prisma.clinicShowcaseTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClinicShowcaseTranslationDeleteManyArgs>(args?: SelectSubset<T, ClinicShowcaseTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClinicShowcaseTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ClinicShowcaseTranslations
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClinicShowcaseTranslationUpdateManyArgs>(args: SelectSubset<T, ClinicShowcaseTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClinicShowcaseTranslations and returns the data updated in the database.
+     * @param {ClinicShowcaseTranslationUpdateManyAndReturnArgs} args - Arguments to update many ClinicShowcaseTranslations.
+     * @example
+     * // Update many ClinicShowcaseTranslations
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ClinicShowcaseTranslations and only return the `id`
+     * const clinicShowcaseTranslationWithIdOnly = await prisma.clinicShowcaseTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ClinicShowcaseTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, ClinicShowcaseTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ClinicShowcaseTranslation.
+     * @param {ClinicShowcaseTranslationUpsertArgs} args - Arguments to update or create a ClinicShowcaseTranslation.
+     * @example
+     * // Update or create a ClinicShowcaseTranslation
+     * const clinicShowcaseTranslation = await prisma.clinicShowcaseTranslation.upsert({
+     *   create: {
+     *     // ... data to create a ClinicShowcaseTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ClinicShowcaseTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClinicShowcaseTranslationUpsertArgs>(args: SelectSubset<T, ClinicShowcaseTranslationUpsertArgs<ExtArgs>>): Prisma__ClinicShowcaseTranslationClient<$Result.GetResult<Prisma.$ClinicShowcaseTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ClinicShowcaseTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseTranslationCountArgs} args - Arguments to filter ClinicShowcaseTranslations to count.
+     * @example
+     * // Count the number of ClinicShowcaseTranslations
+     * const count = await prisma.clinicShowcaseTranslation.count({
+     *   where: {
+     *     // ... the filter for the ClinicShowcaseTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClinicShowcaseTranslationCountArgs>(
+      args?: Subset<T, ClinicShowcaseTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClinicShowcaseTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ClinicShowcaseTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClinicShowcaseTranslationAggregateArgs>(args: Subset<T, ClinicShowcaseTranslationAggregateArgs>): Prisma.PrismaPromise<GetClinicShowcaseTranslationAggregateType<T>>
+
+    /**
+     * Group by ClinicShowcaseTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClinicShowcaseTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClinicShowcaseTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: ClinicShowcaseTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClinicShowcaseTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClinicShowcaseTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ClinicShowcaseTranslation model
+   */
+  readonly fields: ClinicShowcaseTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ClinicShowcaseTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClinicShowcaseTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    clinicShowcase<T extends ClinicShowcaseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClinicShowcaseDefaultArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ClinicShowcaseTranslation model
+   */
+  interface ClinicShowcaseTranslationFieldRefs {
+    readonly id: FieldRef<"ClinicShowcaseTranslation", 'String'>
+    readonly clinicShowcaseId: FieldRef<"ClinicShowcaseTranslation", 'String'>
+    readonly languageCode: FieldRef<"ClinicShowcaseTranslation", 'String'>
+    readonly title: FieldRef<"ClinicShowcaseTranslation", 'String'>
+    readonly description: FieldRef<"ClinicShowcaseTranslation", 'String'>
+    readonly buttonText: FieldRef<"ClinicShowcaseTranslation", 'String'>
+    readonly buttonLink: FieldRef<"ClinicShowcaseTranslation", 'String'>
+    readonly createdAt: FieldRef<"ClinicShowcaseTranslation", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClinicShowcaseTranslation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ClinicShowcaseTranslation findUnique
+   */
+  export type ClinicShowcaseTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseTranslation to fetch.
+     */
+    where: ClinicShowcaseTranslationWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseTranslation findUniqueOrThrow
+   */
+  export type ClinicShowcaseTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseTranslation to fetch.
+     */
+    where: ClinicShowcaseTranslationWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseTranslation findFirst
+   */
+  export type ClinicShowcaseTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseTranslation to fetch.
+     */
+    where?: ClinicShowcaseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseTranslations to fetch.
+     */
+    orderBy?: ClinicShowcaseTranslationOrderByWithRelationInput | ClinicShowcaseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClinicShowcaseTranslations.
+     */
+    cursor?: ClinicShowcaseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClinicShowcaseTranslations.
+     */
+    distinct?: ClinicShowcaseTranslationScalarFieldEnum | ClinicShowcaseTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcaseTranslation findFirstOrThrow
+   */
+  export type ClinicShowcaseTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseTranslation to fetch.
+     */
+    where?: ClinicShowcaseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseTranslations to fetch.
+     */
+    orderBy?: ClinicShowcaseTranslationOrderByWithRelationInput | ClinicShowcaseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClinicShowcaseTranslations.
+     */
+    cursor?: ClinicShowcaseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClinicShowcaseTranslations.
+     */
+    distinct?: ClinicShowcaseTranslationScalarFieldEnum | ClinicShowcaseTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcaseTranslation findMany
+   */
+  export type ClinicShowcaseTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseTranslations to fetch.
+     */
+    where?: ClinicShowcaseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseTranslations to fetch.
+     */
+    orderBy?: ClinicShowcaseTranslationOrderByWithRelationInput | ClinicShowcaseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ClinicShowcaseTranslations.
+     */
+    cursor?: ClinicShowcaseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseTranslations.
+     */
+    skip?: number
+    distinct?: ClinicShowcaseTranslationScalarFieldEnum | ClinicShowcaseTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcaseTranslation create
+   */
+  export type ClinicShowcaseTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ClinicShowcaseTranslation.
+     */
+    data: XOR<ClinicShowcaseTranslationCreateInput, ClinicShowcaseTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * ClinicShowcaseTranslation createMany
+   */
+  export type ClinicShowcaseTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ClinicShowcaseTranslations.
+     */
+    data: ClinicShowcaseTranslationCreateManyInput | ClinicShowcaseTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClinicShowcaseTranslation createManyAndReturn
+   */
+  export type ClinicShowcaseTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many ClinicShowcaseTranslations.
+     */
+    data: ClinicShowcaseTranslationCreateManyInput | ClinicShowcaseTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ClinicShowcaseTranslation update
+   */
+  export type ClinicShowcaseTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ClinicShowcaseTranslation.
+     */
+    data: XOR<ClinicShowcaseTranslationUpdateInput, ClinicShowcaseTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which ClinicShowcaseTranslation to update.
+     */
+    where: ClinicShowcaseTranslationWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseTranslation updateMany
+   */
+  export type ClinicShowcaseTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ClinicShowcaseTranslations.
+     */
+    data: XOR<ClinicShowcaseTranslationUpdateManyMutationInput, ClinicShowcaseTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which ClinicShowcaseTranslations to update
+     */
+    where?: ClinicShowcaseTranslationWhereInput
+    /**
+     * Limit how many ClinicShowcaseTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ClinicShowcaseTranslation updateManyAndReturn
+   */
+  export type ClinicShowcaseTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update ClinicShowcaseTranslations.
+     */
+    data: XOR<ClinicShowcaseTranslationUpdateManyMutationInput, ClinicShowcaseTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which ClinicShowcaseTranslations to update
+     */
+    where?: ClinicShowcaseTranslationWhereInput
+    /**
+     * Limit how many ClinicShowcaseTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ClinicShowcaseTranslation upsert
+   */
+  export type ClinicShowcaseTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ClinicShowcaseTranslation to update in case it exists.
+     */
+    where: ClinicShowcaseTranslationWhereUniqueInput
+    /**
+     * In case the ClinicShowcaseTranslation found by the `where` argument doesn't exist, create a new ClinicShowcaseTranslation with this data.
+     */
+    create: XOR<ClinicShowcaseTranslationCreateInput, ClinicShowcaseTranslationUncheckedCreateInput>
+    /**
+     * In case the ClinicShowcaseTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClinicShowcaseTranslationUpdateInput, ClinicShowcaseTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * ClinicShowcaseTranslation delete
+   */
+  export type ClinicShowcaseTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which ClinicShowcaseTranslation to delete.
+     */
+    where: ClinicShowcaseTranslationWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseTranslation deleteMany
+   */
+  export type ClinicShowcaseTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClinicShowcaseTranslations to delete
+     */
+    where?: ClinicShowcaseTranslationWhereInput
+    /**
+     * Limit how many ClinicShowcaseTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ClinicShowcaseTranslation without action
+   */
+  export type ClinicShowcaseTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseTranslation
+     */
+    select?: ClinicShowcaseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseTranslation
+     */
+    omit?: ClinicShowcaseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ClinicShowcaseImage
+   */
+
+  export type AggregateClinicShowcaseImage = {
+    _count: ClinicShowcaseImageCountAggregateOutputType | null
+    _avg: ClinicShowcaseImageAvgAggregateOutputType | null
+    _sum: ClinicShowcaseImageSumAggregateOutputType | null
+    _min: ClinicShowcaseImageMinAggregateOutputType | null
+    _max: ClinicShowcaseImageMaxAggregateOutputType | null
+  }
+
+  export type ClinicShowcaseImageAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ClinicShowcaseImageSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ClinicShowcaseImageMinAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    altText: string | null
+    order: number | null
+    isPublished: boolean | null
+    clinicShowcaseId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClinicShowcaseImageMaxAggregateOutputType = {
+    id: string | null
+    imageUrl: string | null
+    altText: string | null
+    order: number | null
+    isPublished: boolean | null
+    clinicShowcaseId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClinicShowcaseImageCountAggregateOutputType = {
+    id: number
+    imageUrl: number
+    altText: number
+    order: number
+    isPublished: number
+    clinicShowcaseId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ClinicShowcaseImageAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type ClinicShowcaseImageSumAggregateInputType = {
+    order?: true
+  }
+
+  export type ClinicShowcaseImageMinAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    altText?: true
+    order?: true
+    isPublished?: true
+    clinicShowcaseId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClinicShowcaseImageMaxAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    altText?: true
+    order?: true
+    isPublished?: true
+    clinicShowcaseId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClinicShowcaseImageCountAggregateInputType = {
+    id?: true
+    imageUrl?: true
+    altText?: true
+    order?: true
+    isPublished?: true
+    clinicShowcaseId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ClinicShowcaseImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClinicShowcaseImage to aggregate.
+     */
+    where?: ClinicShowcaseImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseImages to fetch.
+     */
+    orderBy?: ClinicShowcaseImageOrderByWithRelationInput | ClinicShowcaseImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClinicShowcaseImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ClinicShowcaseImages
+    **/
+    _count?: true | ClinicShowcaseImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ClinicShowcaseImageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ClinicShowcaseImageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClinicShowcaseImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClinicShowcaseImageMaxAggregateInputType
+  }
+
+  export type GetClinicShowcaseImageAggregateType<T extends ClinicShowcaseImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateClinicShowcaseImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClinicShowcaseImage[P]>
+      : GetScalarType<T[P], AggregateClinicShowcaseImage[P]>
+  }
+
+
+
+
+  export type ClinicShowcaseImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClinicShowcaseImageWhereInput
+    orderBy?: ClinicShowcaseImageOrderByWithAggregationInput | ClinicShowcaseImageOrderByWithAggregationInput[]
+    by: ClinicShowcaseImageScalarFieldEnum[] | ClinicShowcaseImageScalarFieldEnum
+    having?: ClinicShowcaseImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClinicShowcaseImageCountAggregateInputType | true
+    _avg?: ClinicShowcaseImageAvgAggregateInputType
+    _sum?: ClinicShowcaseImageSumAggregateInputType
+    _min?: ClinicShowcaseImageMinAggregateInputType
+    _max?: ClinicShowcaseImageMaxAggregateInputType
+  }
+
+  export type ClinicShowcaseImageGroupByOutputType = {
+    id: string
+    imageUrl: string
+    altText: string | null
+    order: number
+    isPublished: boolean
+    clinicShowcaseId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ClinicShowcaseImageCountAggregateOutputType | null
+    _avg: ClinicShowcaseImageAvgAggregateOutputType | null
+    _sum: ClinicShowcaseImageSumAggregateOutputType | null
+    _min: ClinicShowcaseImageMinAggregateOutputType | null
+    _max: ClinicShowcaseImageMaxAggregateOutputType | null
+  }
+
+  type GetClinicShowcaseImageGroupByPayload<T extends ClinicShowcaseImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClinicShowcaseImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClinicShowcaseImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClinicShowcaseImageGroupByOutputType[P]>
+            : GetScalarType<T[P], ClinicShowcaseImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClinicShowcaseImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    isPublished?: boolean
+    clinicShowcaseId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clinicShowcaseImage"]>
+
+  export type ClinicShowcaseImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    isPublished?: boolean
+    clinicShowcaseId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clinicShowcaseImage"]>
+
+  export type ClinicShowcaseImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    isPublished?: boolean
+    clinicShowcaseId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clinicShowcaseImage"]>
+
+  export type ClinicShowcaseImageSelectScalar = {
+    id?: boolean
+    imageUrl?: boolean
+    altText?: boolean
+    order?: boolean
+    isPublished?: boolean
+    clinicShowcaseId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ClinicShowcaseImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "altText" | "order" | "isPublished" | "clinicShowcaseId" | "createdAt" | "updatedAt", ExtArgs["result"]["clinicShowcaseImage"]>
+  export type ClinicShowcaseImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+  }
+  export type ClinicShowcaseImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+  }
+  export type ClinicShowcaseImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    clinicShowcase?: boolean | ClinicShowcaseDefaultArgs<ExtArgs>
+  }
+
+  export type $ClinicShowcaseImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ClinicShowcaseImage"
+    objects: {
+      clinicShowcase: Prisma.$ClinicShowcasePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      imageUrl: string
+      altText: string | null
+      order: number
+      isPublished: boolean
+      clinicShowcaseId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["clinicShowcaseImage"]>
+    composites: {}
+  }
+
+  type ClinicShowcaseImageGetPayload<S extends boolean | null | undefined | ClinicShowcaseImageDefaultArgs> = $Result.GetResult<Prisma.$ClinicShowcaseImagePayload, S>
+
+  type ClinicShowcaseImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClinicShowcaseImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClinicShowcaseImageCountAggregateInputType | true
+    }
+
+  export interface ClinicShowcaseImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClinicShowcaseImage'], meta: { name: 'ClinicShowcaseImage' } }
+    /**
+     * Find zero or one ClinicShowcaseImage that matches the filter.
+     * @param {ClinicShowcaseImageFindUniqueArgs} args - Arguments to find a ClinicShowcaseImage
+     * @example
+     * // Get one ClinicShowcaseImage
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClinicShowcaseImageFindUniqueArgs>(args: SelectSubset<T, ClinicShowcaseImageFindUniqueArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ClinicShowcaseImage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ClinicShowcaseImageFindUniqueOrThrowArgs} args - Arguments to find a ClinicShowcaseImage
+     * @example
+     * // Get one ClinicShowcaseImage
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClinicShowcaseImageFindUniqueOrThrowArgs>(args: SelectSubset<T, ClinicShowcaseImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ClinicShowcaseImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseImageFindFirstArgs} args - Arguments to find a ClinicShowcaseImage
+     * @example
+     * // Get one ClinicShowcaseImage
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClinicShowcaseImageFindFirstArgs>(args?: SelectSubset<T, ClinicShowcaseImageFindFirstArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ClinicShowcaseImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseImageFindFirstOrThrowArgs} args - Arguments to find a ClinicShowcaseImage
+     * @example
+     * // Get one ClinicShowcaseImage
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClinicShowcaseImageFindFirstOrThrowArgs>(args?: SelectSubset<T, ClinicShowcaseImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ClinicShowcaseImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ClinicShowcaseImages
+     * const clinicShowcaseImages = await prisma.clinicShowcaseImage.findMany()
+     * 
+     * // Get first 10 ClinicShowcaseImages
+     * const clinicShowcaseImages = await prisma.clinicShowcaseImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const clinicShowcaseImageWithIdOnly = await prisma.clinicShowcaseImage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ClinicShowcaseImageFindManyArgs>(args?: SelectSubset<T, ClinicShowcaseImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ClinicShowcaseImage.
+     * @param {ClinicShowcaseImageCreateArgs} args - Arguments to create a ClinicShowcaseImage.
+     * @example
+     * // Create one ClinicShowcaseImage
+     * const ClinicShowcaseImage = await prisma.clinicShowcaseImage.create({
+     *   data: {
+     *     // ... data to create a ClinicShowcaseImage
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClinicShowcaseImageCreateArgs>(args: SelectSubset<T, ClinicShowcaseImageCreateArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ClinicShowcaseImages.
+     * @param {ClinicShowcaseImageCreateManyArgs} args - Arguments to create many ClinicShowcaseImages.
+     * @example
+     * // Create many ClinicShowcaseImages
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClinicShowcaseImageCreateManyArgs>(args?: SelectSubset<T, ClinicShowcaseImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ClinicShowcaseImages and returns the data saved in the database.
+     * @param {ClinicShowcaseImageCreateManyAndReturnArgs} args - Arguments to create many ClinicShowcaseImages.
+     * @example
+     * // Create many ClinicShowcaseImages
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ClinicShowcaseImages and only return the `id`
+     * const clinicShowcaseImageWithIdOnly = await prisma.clinicShowcaseImage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClinicShowcaseImageCreateManyAndReturnArgs>(args?: SelectSubset<T, ClinicShowcaseImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ClinicShowcaseImage.
+     * @param {ClinicShowcaseImageDeleteArgs} args - Arguments to delete one ClinicShowcaseImage.
+     * @example
+     * // Delete one ClinicShowcaseImage
+     * const ClinicShowcaseImage = await prisma.clinicShowcaseImage.delete({
+     *   where: {
+     *     // ... filter to delete one ClinicShowcaseImage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClinicShowcaseImageDeleteArgs>(args: SelectSubset<T, ClinicShowcaseImageDeleteArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ClinicShowcaseImage.
+     * @param {ClinicShowcaseImageUpdateArgs} args - Arguments to update one ClinicShowcaseImage.
+     * @example
+     * // Update one ClinicShowcaseImage
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClinicShowcaseImageUpdateArgs>(args: SelectSubset<T, ClinicShowcaseImageUpdateArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ClinicShowcaseImages.
+     * @param {ClinicShowcaseImageDeleteManyArgs} args - Arguments to filter ClinicShowcaseImages to delete.
+     * @example
+     * // Delete a few ClinicShowcaseImages
+     * const { count } = await prisma.clinicShowcaseImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClinicShowcaseImageDeleteManyArgs>(args?: SelectSubset<T, ClinicShowcaseImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClinicShowcaseImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ClinicShowcaseImages
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClinicShowcaseImageUpdateManyArgs>(args: SelectSubset<T, ClinicShowcaseImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClinicShowcaseImages and returns the data updated in the database.
+     * @param {ClinicShowcaseImageUpdateManyAndReturnArgs} args - Arguments to update many ClinicShowcaseImages.
+     * @example
+     * // Update many ClinicShowcaseImages
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ClinicShowcaseImages and only return the `id`
+     * const clinicShowcaseImageWithIdOnly = await prisma.clinicShowcaseImage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ClinicShowcaseImageUpdateManyAndReturnArgs>(args: SelectSubset<T, ClinicShowcaseImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ClinicShowcaseImage.
+     * @param {ClinicShowcaseImageUpsertArgs} args - Arguments to update or create a ClinicShowcaseImage.
+     * @example
+     * // Update or create a ClinicShowcaseImage
+     * const clinicShowcaseImage = await prisma.clinicShowcaseImage.upsert({
+     *   create: {
+     *     // ... data to create a ClinicShowcaseImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ClinicShowcaseImage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClinicShowcaseImageUpsertArgs>(args: SelectSubset<T, ClinicShowcaseImageUpsertArgs<ExtArgs>>): Prisma__ClinicShowcaseImageClient<$Result.GetResult<Prisma.$ClinicShowcaseImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ClinicShowcaseImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseImageCountArgs} args - Arguments to filter ClinicShowcaseImages to count.
+     * @example
+     * // Count the number of ClinicShowcaseImages
+     * const count = await prisma.clinicShowcaseImage.count({
+     *   where: {
+     *     // ... the filter for the ClinicShowcaseImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClinicShowcaseImageCountArgs>(
+      args?: Subset<T, ClinicShowcaseImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClinicShowcaseImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ClinicShowcaseImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClinicShowcaseImageAggregateArgs>(args: Subset<T, ClinicShowcaseImageAggregateArgs>): Prisma.PrismaPromise<GetClinicShowcaseImageAggregateType<T>>
+
+    /**
+     * Group by ClinicShowcaseImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClinicShowcaseImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClinicShowcaseImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClinicShowcaseImageGroupByArgs['orderBy'] }
+        : { orderBy?: ClinicShowcaseImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClinicShowcaseImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClinicShowcaseImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ClinicShowcaseImage model
+   */
+  readonly fields: ClinicShowcaseImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ClinicShowcaseImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClinicShowcaseImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    clinicShowcase<T extends ClinicShowcaseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClinicShowcaseDefaultArgs<ExtArgs>>): Prisma__ClinicShowcaseClient<$Result.GetResult<Prisma.$ClinicShowcasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ClinicShowcaseImage model
+   */
+  interface ClinicShowcaseImageFieldRefs {
+    readonly id: FieldRef<"ClinicShowcaseImage", 'String'>
+    readonly imageUrl: FieldRef<"ClinicShowcaseImage", 'String'>
+    readonly altText: FieldRef<"ClinicShowcaseImage", 'String'>
+    readonly order: FieldRef<"ClinicShowcaseImage", 'Int'>
+    readonly isPublished: FieldRef<"ClinicShowcaseImage", 'Boolean'>
+    readonly clinicShowcaseId: FieldRef<"ClinicShowcaseImage", 'String'>
+    readonly createdAt: FieldRef<"ClinicShowcaseImage", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClinicShowcaseImage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ClinicShowcaseImage findUnique
+   */
+  export type ClinicShowcaseImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseImage to fetch.
+     */
+    where: ClinicShowcaseImageWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseImage findUniqueOrThrow
+   */
+  export type ClinicShowcaseImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseImage to fetch.
+     */
+    where: ClinicShowcaseImageWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseImage findFirst
+   */
+  export type ClinicShowcaseImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseImage to fetch.
+     */
+    where?: ClinicShowcaseImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseImages to fetch.
+     */
+    orderBy?: ClinicShowcaseImageOrderByWithRelationInput | ClinicShowcaseImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClinicShowcaseImages.
+     */
+    cursor?: ClinicShowcaseImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClinicShowcaseImages.
+     */
+    distinct?: ClinicShowcaseImageScalarFieldEnum | ClinicShowcaseImageScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcaseImage findFirstOrThrow
+   */
+  export type ClinicShowcaseImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseImage to fetch.
+     */
+    where?: ClinicShowcaseImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseImages to fetch.
+     */
+    orderBy?: ClinicShowcaseImageOrderByWithRelationInput | ClinicShowcaseImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClinicShowcaseImages.
+     */
+    cursor?: ClinicShowcaseImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClinicShowcaseImages.
+     */
+    distinct?: ClinicShowcaseImageScalarFieldEnum | ClinicShowcaseImageScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcaseImage findMany
+   */
+  export type ClinicShowcaseImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ClinicShowcaseImages to fetch.
+     */
+    where?: ClinicShowcaseImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClinicShowcaseImages to fetch.
+     */
+    orderBy?: ClinicShowcaseImageOrderByWithRelationInput | ClinicShowcaseImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ClinicShowcaseImages.
+     */
+    cursor?: ClinicShowcaseImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClinicShowcaseImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClinicShowcaseImages.
+     */
+    skip?: number
+    distinct?: ClinicShowcaseImageScalarFieldEnum | ClinicShowcaseImageScalarFieldEnum[]
+  }
+
+  /**
+   * ClinicShowcaseImage create
+   */
+  export type ClinicShowcaseImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ClinicShowcaseImage.
+     */
+    data: XOR<ClinicShowcaseImageCreateInput, ClinicShowcaseImageUncheckedCreateInput>
+  }
+
+  /**
+   * ClinicShowcaseImage createMany
+   */
+  export type ClinicShowcaseImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ClinicShowcaseImages.
+     */
+    data: ClinicShowcaseImageCreateManyInput | ClinicShowcaseImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClinicShowcaseImage createManyAndReturn
+   */
+  export type ClinicShowcaseImageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * The data used to create many ClinicShowcaseImages.
+     */
+    data: ClinicShowcaseImageCreateManyInput | ClinicShowcaseImageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ClinicShowcaseImage update
+   */
+  export type ClinicShowcaseImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ClinicShowcaseImage.
+     */
+    data: XOR<ClinicShowcaseImageUpdateInput, ClinicShowcaseImageUncheckedUpdateInput>
+    /**
+     * Choose, which ClinicShowcaseImage to update.
+     */
+    where: ClinicShowcaseImageWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseImage updateMany
+   */
+  export type ClinicShowcaseImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ClinicShowcaseImages.
+     */
+    data: XOR<ClinicShowcaseImageUpdateManyMutationInput, ClinicShowcaseImageUncheckedUpdateManyInput>
+    /**
+     * Filter which ClinicShowcaseImages to update
+     */
+    where?: ClinicShowcaseImageWhereInput
+    /**
+     * Limit how many ClinicShowcaseImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ClinicShowcaseImage updateManyAndReturn
+   */
+  export type ClinicShowcaseImageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * The data used to update ClinicShowcaseImages.
+     */
+    data: XOR<ClinicShowcaseImageUpdateManyMutationInput, ClinicShowcaseImageUncheckedUpdateManyInput>
+    /**
+     * Filter which ClinicShowcaseImages to update
+     */
+    where?: ClinicShowcaseImageWhereInput
+    /**
+     * Limit how many ClinicShowcaseImages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ClinicShowcaseImage upsert
+   */
+  export type ClinicShowcaseImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ClinicShowcaseImage to update in case it exists.
+     */
+    where: ClinicShowcaseImageWhereUniqueInput
+    /**
+     * In case the ClinicShowcaseImage found by the `where` argument doesn't exist, create a new ClinicShowcaseImage with this data.
+     */
+    create: XOR<ClinicShowcaseImageCreateInput, ClinicShowcaseImageUncheckedCreateInput>
+    /**
+     * In case the ClinicShowcaseImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClinicShowcaseImageUpdateInput, ClinicShowcaseImageUncheckedUpdateInput>
+  }
+
+  /**
+   * ClinicShowcaseImage delete
+   */
+  export type ClinicShowcaseImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+    /**
+     * Filter which ClinicShowcaseImage to delete.
+     */
+    where: ClinicShowcaseImageWhereUniqueInput
+  }
+
+  /**
+   * ClinicShowcaseImage deleteMany
+   */
+  export type ClinicShowcaseImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClinicShowcaseImages to delete
+     */
+    where?: ClinicShowcaseImageWhereInput
+    /**
+     * Limit how many ClinicShowcaseImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ClinicShowcaseImage without action
+   */
+  export type ClinicShowcaseImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClinicShowcaseImage
+     */
+    select?: ClinicShowcaseImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClinicShowcaseImage
+     */
+    omit?: ClinicShowcaseImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClinicShowcaseImageInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model HeaderMenu
    */
 
@@ -59925,6 +63596,44 @@ export namespace Prisma {
   export type TreatmentSectionItemTranslationScalarFieldEnum = (typeof TreatmentSectionItemTranslationScalarFieldEnum)[keyof typeof TreatmentSectionItemTranslationScalarFieldEnum]
 
 
+  export const ClinicShowcaseScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ClinicShowcaseScalarFieldEnum = (typeof ClinicShowcaseScalarFieldEnum)[keyof typeof ClinicShowcaseScalarFieldEnum]
+
+
+  export const ClinicShowcaseTranslationScalarFieldEnum: {
+    id: 'id',
+    clinicShowcaseId: 'clinicShowcaseId',
+    languageCode: 'languageCode',
+    title: 'title',
+    description: 'description',
+    buttonText: 'buttonText',
+    buttonLink: 'buttonLink',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ClinicShowcaseTranslationScalarFieldEnum = (typeof ClinicShowcaseTranslationScalarFieldEnum)[keyof typeof ClinicShowcaseTranslationScalarFieldEnum]
+
+
+  export const ClinicShowcaseImageScalarFieldEnum: {
+    id: 'id',
+    imageUrl: 'imageUrl',
+    altText: 'altText',
+    order: 'order',
+    isPublished: 'isPublished',
+    clinicShowcaseId: 'clinicShowcaseId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ClinicShowcaseImageScalarFieldEnum = (typeof ClinicShowcaseImageScalarFieldEnum)[keyof typeof ClinicShowcaseImageScalarFieldEnum]
+
+
   export const HeaderMenuScalarFieldEnum: {
     id: 'id',
     isActive: 'isActive',
@@ -60331,6 +64040,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationListRelationFilter
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationListRelationFilter
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationListRelationFilter
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationListRelationFilter
   }
 
   export type LanguageOrderByWithRelationInput = {
@@ -60359,6 +64069,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationOrderByRelationAggregateInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationOrderByRelationAggregateInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationOrderByRelationAggregateInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationOrderByRelationAggregateInput
   }
 
   export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -60390,6 +64101,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationListRelationFilter
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationListRelationFilter
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationListRelationFilter
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationListRelationFilter
   }, "id" | "code">
 
   export type LanguageOrderByWithAggregationInput = {
@@ -62995,6 +66707,205 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"TreatmentSectionItemTranslation"> | Date | string
   }
 
+  export type ClinicShowcaseWhereInput = {
+    AND?: ClinicShowcaseWhereInput | ClinicShowcaseWhereInput[]
+    OR?: ClinicShowcaseWhereInput[]
+    NOT?: ClinicShowcaseWhereInput | ClinicShowcaseWhereInput[]
+    id?: StringFilter<"ClinicShowcase"> | string
+    createdAt?: DateTimeFilter<"ClinicShowcase"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcase"> | Date | string
+    translations?: ClinicShowcaseTranslationListRelationFilter
+    images?: ClinicShowcaseImageListRelationFilter
+  }
+
+  export type ClinicShowcaseOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    translations?: ClinicShowcaseTranslationOrderByRelationAggregateInput
+    images?: ClinicShowcaseImageOrderByRelationAggregateInput
+  }
+
+  export type ClinicShowcaseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ClinicShowcaseWhereInput | ClinicShowcaseWhereInput[]
+    OR?: ClinicShowcaseWhereInput[]
+    NOT?: ClinicShowcaseWhereInput | ClinicShowcaseWhereInput[]
+    createdAt?: DateTimeFilter<"ClinicShowcase"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcase"> | Date | string
+    translations?: ClinicShowcaseTranslationListRelationFilter
+    images?: ClinicShowcaseImageListRelationFilter
+  }, "id">
+
+  export type ClinicShowcaseOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ClinicShowcaseCountOrderByAggregateInput
+    _max?: ClinicShowcaseMaxOrderByAggregateInput
+    _min?: ClinicShowcaseMinOrderByAggregateInput
+  }
+
+  export type ClinicShowcaseScalarWhereWithAggregatesInput = {
+    AND?: ClinicShowcaseScalarWhereWithAggregatesInput | ClinicShowcaseScalarWhereWithAggregatesInput[]
+    OR?: ClinicShowcaseScalarWhereWithAggregatesInput[]
+    NOT?: ClinicShowcaseScalarWhereWithAggregatesInput | ClinicShowcaseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ClinicShowcase"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ClinicShowcase"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClinicShowcase"> | Date | string
+  }
+
+  export type ClinicShowcaseTranslationWhereInput = {
+    AND?: ClinicShowcaseTranslationWhereInput | ClinicShowcaseTranslationWhereInput[]
+    OR?: ClinicShowcaseTranslationWhereInput[]
+    NOT?: ClinicShowcaseTranslationWhereInput | ClinicShowcaseTranslationWhereInput[]
+    id?: StringFilter<"ClinicShowcaseTranslation"> | string
+    clinicShowcaseId?: StringFilter<"ClinicShowcaseTranslation"> | string
+    languageCode?: StringFilter<"ClinicShowcaseTranslation"> | string
+    title?: StringFilter<"ClinicShowcaseTranslation"> | string
+    description?: StringFilter<"ClinicShowcaseTranslation"> | string
+    buttonText?: StringFilter<"ClinicShowcaseTranslation"> | string
+    buttonLink?: StringFilter<"ClinicShowcaseTranslation"> | string
+    createdAt?: DateTimeFilter<"ClinicShowcaseTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcaseTranslation"> | Date | string
+    clinicShowcase?: XOR<ClinicShowcaseScalarRelationFilter, ClinicShowcaseWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type ClinicShowcaseTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    clinicShowcaseId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    clinicShowcase?: ClinicShowcaseOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type ClinicShowcaseTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    clinicShowcaseId_languageCode?: ClinicShowcaseTranslationClinicShowcaseIdLanguageCodeCompoundUniqueInput
+    AND?: ClinicShowcaseTranslationWhereInput | ClinicShowcaseTranslationWhereInput[]
+    OR?: ClinicShowcaseTranslationWhereInput[]
+    NOT?: ClinicShowcaseTranslationWhereInput | ClinicShowcaseTranslationWhereInput[]
+    clinicShowcaseId?: StringFilter<"ClinicShowcaseTranslation"> | string
+    languageCode?: StringFilter<"ClinicShowcaseTranslation"> | string
+    title?: StringFilter<"ClinicShowcaseTranslation"> | string
+    description?: StringFilter<"ClinicShowcaseTranslation"> | string
+    buttonText?: StringFilter<"ClinicShowcaseTranslation"> | string
+    buttonLink?: StringFilter<"ClinicShowcaseTranslation"> | string
+    createdAt?: DateTimeFilter<"ClinicShowcaseTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcaseTranslation"> | Date | string
+    clinicShowcase?: XOR<ClinicShowcaseScalarRelationFilter, ClinicShowcaseWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "id" | "clinicShowcaseId_languageCode">
+
+  export type ClinicShowcaseTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    clinicShowcaseId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ClinicShowcaseTranslationCountOrderByAggregateInput
+    _max?: ClinicShowcaseTranslationMaxOrderByAggregateInput
+    _min?: ClinicShowcaseTranslationMinOrderByAggregateInput
+  }
+
+  export type ClinicShowcaseTranslationScalarWhereWithAggregatesInput = {
+    AND?: ClinicShowcaseTranslationScalarWhereWithAggregatesInput | ClinicShowcaseTranslationScalarWhereWithAggregatesInput[]
+    OR?: ClinicShowcaseTranslationScalarWhereWithAggregatesInput[]
+    NOT?: ClinicShowcaseTranslationScalarWhereWithAggregatesInput | ClinicShowcaseTranslationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ClinicShowcaseTranslation"> | string
+    clinicShowcaseId?: StringWithAggregatesFilter<"ClinicShowcaseTranslation"> | string
+    languageCode?: StringWithAggregatesFilter<"ClinicShowcaseTranslation"> | string
+    title?: StringWithAggregatesFilter<"ClinicShowcaseTranslation"> | string
+    description?: StringWithAggregatesFilter<"ClinicShowcaseTranslation"> | string
+    buttonText?: StringWithAggregatesFilter<"ClinicShowcaseTranslation"> | string
+    buttonLink?: StringWithAggregatesFilter<"ClinicShowcaseTranslation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ClinicShowcaseTranslation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClinicShowcaseTranslation"> | Date | string
+  }
+
+  export type ClinicShowcaseImageWhereInput = {
+    AND?: ClinicShowcaseImageWhereInput | ClinicShowcaseImageWhereInput[]
+    OR?: ClinicShowcaseImageWhereInput[]
+    NOT?: ClinicShowcaseImageWhereInput | ClinicShowcaseImageWhereInput[]
+    id?: StringFilter<"ClinicShowcaseImage"> | string
+    imageUrl?: StringFilter<"ClinicShowcaseImage"> | string
+    altText?: StringNullableFilter<"ClinicShowcaseImage"> | string | null
+    order?: IntFilter<"ClinicShowcaseImage"> | number
+    isPublished?: BoolFilter<"ClinicShowcaseImage"> | boolean
+    clinicShowcaseId?: StringFilter<"ClinicShowcaseImage"> | string
+    createdAt?: DateTimeFilter<"ClinicShowcaseImage"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcaseImage"> | Date | string
+    clinicShowcase?: XOR<ClinicShowcaseScalarRelationFilter, ClinicShowcaseWhereInput>
+  }
+
+  export type ClinicShowcaseImageOrderByWithRelationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrderInput | SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    clinicShowcaseId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    clinicShowcase?: ClinicShowcaseOrderByWithRelationInput
+  }
+
+  export type ClinicShowcaseImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ClinicShowcaseImageWhereInput | ClinicShowcaseImageWhereInput[]
+    OR?: ClinicShowcaseImageWhereInput[]
+    NOT?: ClinicShowcaseImageWhereInput | ClinicShowcaseImageWhereInput[]
+    imageUrl?: StringFilter<"ClinicShowcaseImage"> | string
+    altText?: StringNullableFilter<"ClinicShowcaseImage"> | string | null
+    order?: IntFilter<"ClinicShowcaseImage"> | number
+    isPublished?: BoolFilter<"ClinicShowcaseImage"> | boolean
+    clinicShowcaseId?: StringFilter<"ClinicShowcaseImage"> | string
+    createdAt?: DateTimeFilter<"ClinicShowcaseImage"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcaseImage"> | Date | string
+    clinicShowcase?: XOR<ClinicShowcaseScalarRelationFilter, ClinicShowcaseWhereInput>
+  }, "id">
+
+  export type ClinicShowcaseImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrderInput | SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    clinicShowcaseId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ClinicShowcaseImageCountOrderByAggregateInput
+    _avg?: ClinicShowcaseImageAvgOrderByAggregateInput
+    _max?: ClinicShowcaseImageMaxOrderByAggregateInput
+    _min?: ClinicShowcaseImageMinOrderByAggregateInput
+    _sum?: ClinicShowcaseImageSumOrderByAggregateInput
+  }
+
+  export type ClinicShowcaseImageScalarWhereWithAggregatesInput = {
+    AND?: ClinicShowcaseImageScalarWhereWithAggregatesInput | ClinicShowcaseImageScalarWhereWithAggregatesInput[]
+    OR?: ClinicShowcaseImageScalarWhereWithAggregatesInput[]
+    NOT?: ClinicShowcaseImageScalarWhereWithAggregatesInput | ClinicShowcaseImageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ClinicShowcaseImage"> | string
+    imageUrl?: StringWithAggregatesFilter<"ClinicShowcaseImage"> | string
+    altText?: StringNullableWithAggregatesFilter<"ClinicShowcaseImage"> | string | null
+    order?: IntWithAggregatesFilter<"ClinicShowcaseImage"> | number
+    isPublished?: BoolWithAggregatesFilter<"ClinicShowcaseImage"> | boolean
+    clinicShowcaseId?: StringWithAggregatesFilter<"ClinicShowcaseImage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ClinicShowcaseImage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClinicShowcaseImage"> | Date | string
+  }
+
   export type HeaderMenuWhereInput = {
     AND?: HeaderMenuWhereInput | HeaderMenuWhereInput[]
     OR?: HeaderMenuWhereInput[]
@@ -63726,6 +67637,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateInput = {
@@ -63754,6 +67666,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUpdateInput = {
@@ -63782,6 +67695,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateInput = {
@@ -63810,6 +67724,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageCreateManyInput = {
@@ -66553,6 +70468,214 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ClinicShowcaseCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: ClinicShowcaseTranslationCreateNestedManyWithoutClinicShowcaseInput
+    images?: ClinicShowcaseImageCreateNestedManyWithoutClinicShowcaseInput
+  }
+
+  export type ClinicShowcaseUncheckedCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutClinicShowcaseInput
+    images?: ClinicShowcaseImageUncheckedCreateNestedManyWithoutClinicShowcaseInput
+  }
+
+  export type ClinicShowcaseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: ClinicShowcaseTranslationUpdateManyWithoutClinicShowcaseNestedInput
+    images?: ClinicShowcaseImageUpdateManyWithoutClinicShowcaseNestedInput
+  }
+
+  export type ClinicShowcaseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutClinicShowcaseNestedInput
+    images?: ClinicShowcaseImageUncheckedUpdateManyWithoutClinicShowcaseNestedInput
+  }
+
+  export type ClinicShowcaseCreateManyInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseTranslationCreateInput = {
+    id?: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    clinicShowcase: ClinicShowcaseCreateNestedOneWithoutTranslationsInput
+    language: LanguageCreateNestedOneWithoutClinicShowcaseTranslationsInput
+  }
+
+  export type ClinicShowcaseTranslationUncheckedCreateInput = {
+    id?: string
+    clinicShowcaseId: string
+    languageCode: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clinicShowcase?: ClinicShowcaseUpdateOneRequiredWithoutTranslationsNestedInput
+    language?: LanguageUpdateOneRequiredWithoutClinicShowcaseTranslationsNestedInput
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clinicShowcaseId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseTranslationCreateManyInput = {
+    id?: string
+    clinicShowcaseId: string
+    languageCode: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clinicShowcaseId?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseImageCreateInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    clinicShowcase: ClinicShowcaseCreateNestedOneWithoutImagesInput
+  }
+
+  export type ClinicShowcaseImageUncheckedCreateInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    isPublished?: boolean
+    clinicShowcaseId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseImageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clinicShowcase?: ClinicShowcaseUpdateOneRequiredWithoutImagesNestedInput
+  }
+
+  export type ClinicShowcaseImageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    clinicShowcaseId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseImageCreateManyInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    isPublished?: boolean
+    clinicShowcaseId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseImageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseImageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    clinicShowcaseId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type HeaderMenuCreateInput = {
     id?: string
     isActive?: boolean
@@ -67409,6 +71532,12 @@ export namespace Prisma {
     none?: TreatmentSectionItemTranslationWhereInput
   }
 
+  export type ClinicShowcaseTranslationListRelationFilter = {
+    every?: ClinicShowcaseTranslationWhereInput
+    some?: ClinicShowcaseTranslationWhereInput
+    none?: ClinicShowcaseTranslationWhereInput
+  }
+
   export type BlogTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -67478,6 +71607,10 @@ export namespace Prisma {
   }
 
   export type TreatmentSectionItemTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ClinicShowcaseTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -69233,6 +73366,121 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type ClinicShowcaseImageListRelationFilter = {
+    every?: ClinicShowcaseImageWhereInput
+    some?: ClinicShowcaseImageWhereInput
+    none?: ClinicShowcaseImageWhereInput
+  }
+
+  export type ClinicShowcaseImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ClinicShowcaseCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseScalarRelationFilter = {
+    is?: ClinicShowcaseWhereInput
+    isNot?: ClinicShowcaseWhereInput
+  }
+
+  export type ClinicShowcaseTranslationClinicShowcaseIdLanguageCodeCompoundUniqueInput = {
+    clinicShowcaseId: string
+    languageCode: string
+  }
+
+  export type ClinicShowcaseTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    clinicShowcaseId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    clinicShowcaseId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    clinicShowcaseId?: SortOrder
+    languageCode?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    clinicShowcaseId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseImageAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type ClinicShowcaseImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    clinicShowcaseId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    imageUrl?: SortOrder
+    altText?: SortOrder
+    order?: SortOrder
+    isPublished?: SortOrder
+    clinicShowcaseId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClinicShowcaseImageSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
   export type HeaderMenuCountOrderByAggregateInput = {
     id?: SortOrder
     isActive?: SortOrder
@@ -69711,6 +73959,13 @@ export namespace Prisma {
     connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
   }
 
+  export type ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput> | ClinicShowcaseTranslationCreateWithoutLanguageInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput | ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyLanguageInputEnvelope
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+  }
+
   export type BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -69835,6 +74090,13 @@ export namespace Prisma {
     connectOrCreate?: TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput | TreatmentSectionItemTranslationCreateOrConnectWithoutLanguageInput[]
     createMany?: TreatmentSectionItemTranslationCreateManyLanguageInputEnvelope
     connect?: TreatmentSectionItemTranslationWhereUniqueInput | TreatmentSectionItemTranslationWhereUniqueInput[]
+  }
+
+  export type ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput> | ClinicShowcaseTranslationCreateWithoutLanguageInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput | ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyLanguageInputEnvelope
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -70093,6 +74355,20 @@ export namespace Prisma {
     deleteMany?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
   }
 
+  export type ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput> | ClinicShowcaseTranslationCreateWithoutLanguageInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput | ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutLanguageInput | ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyLanguageInputEnvelope
+    set?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    disconnect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    delete?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    update?: ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutLanguageInput | ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: ClinicShowcaseTranslationUpdateManyWithWhereWithoutLanguageInput | ClinicShowcaseTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: ClinicShowcaseTranslationScalarWhereInput | ClinicShowcaseTranslationScalarWhereInput[]
+  }
+
   export type BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
     create?: XOR<BlogTranslationCreateWithoutLanguageInput, BlogTranslationUncheckedCreateWithoutLanguageInput> | BlogTranslationCreateWithoutLanguageInput[] | BlogTranslationUncheckedCreateWithoutLanguageInput[]
     connectOrCreate?: BlogTranslationCreateOrConnectWithoutLanguageInput | BlogTranslationCreateOrConnectWithoutLanguageInput[]
@@ -70343,6 +74619,20 @@ export namespace Prisma {
     update?: TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutLanguageInput | TreatmentSectionItemTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
     updateMany?: TreatmentSectionItemTranslationUpdateManyWithWhereWithoutLanguageInput | TreatmentSectionItemTranslationUpdateManyWithWhereWithoutLanguageInput[]
     deleteMany?: TreatmentSectionItemTranslationScalarWhereInput | TreatmentSectionItemTranslationScalarWhereInput[]
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput> | ClinicShowcaseTranslationCreateWithoutLanguageInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput | ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput[]
+    upsert?: ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutLanguageInput | ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyLanguageInputEnvelope
+    set?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    disconnect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    delete?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    update?: ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutLanguageInput | ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: ClinicShowcaseTranslationUpdateManyWithWhereWithoutLanguageInput | ClinicShowcaseTranslationUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: ClinicShowcaseTranslationScalarWhereInput | ClinicShowcaseTranslationScalarWhereInput[]
   }
 
   export type LanguageCreateNestedOneWithoutRouteTranslationsInput = {
@@ -72306,6 +76596,132 @@ export namespace Prisma {
     update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutTreatmentSectionItemTranslationsInput, LanguageUpdateWithoutTreatmentSectionItemTranslationsInput>, LanguageUncheckedUpdateWithoutTreatmentSectionItemTranslationsInput>
   }
 
+  export type ClinicShowcaseTranslationCreateNestedManyWithoutClinicShowcaseInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyClinicShowcaseInputEnvelope
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+  }
+
+  export type ClinicShowcaseImageCreateNestedManyWithoutClinicShowcaseInput = {
+    create?: XOR<ClinicShowcaseImageCreateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseImageCreateWithoutClinicShowcaseInput[] | ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseImageCreateManyClinicShowcaseInputEnvelope
+    connect?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+  }
+
+  export type ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutClinicShowcaseInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyClinicShowcaseInputEnvelope
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+  }
+
+  export type ClinicShowcaseImageUncheckedCreateNestedManyWithoutClinicShowcaseInput = {
+    create?: XOR<ClinicShowcaseImageCreateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseImageCreateWithoutClinicShowcaseInput[] | ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseImageCreateManyClinicShowcaseInputEnvelope
+    connect?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+  }
+
+  export type ClinicShowcaseTranslationUpdateManyWithoutClinicShowcaseNestedInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput[]
+    upsert?: ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyClinicShowcaseInputEnvelope
+    set?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    disconnect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    delete?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    update?: ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutClinicShowcaseInput[]
+    updateMany?: ClinicShowcaseTranslationUpdateManyWithWhereWithoutClinicShowcaseInput | ClinicShowcaseTranslationUpdateManyWithWhereWithoutClinicShowcaseInput[]
+    deleteMany?: ClinicShowcaseTranslationScalarWhereInput | ClinicShowcaseTranslationScalarWhereInput[]
+  }
+
+  export type ClinicShowcaseImageUpdateManyWithoutClinicShowcaseNestedInput = {
+    create?: XOR<ClinicShowcaseImageCreateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseImageCreateWithoutClinicShowcaseInput[] | ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput[]
+    upsert?: ClinicShowcaseImageUpsertWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseImageUpsertWithWhereUniqueWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseImageCreateManyClinicShowcaseInputEnvelope
+    set?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    disconnect?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    delete?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    connect?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    update?: ClinicShowcaseImageUpdateWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseImageUpdateWithWhereUniqueWithoutClinicShowcaseInput[]
+    updateMany?: ClinicShowcaseImageUpdateManyWithWhereWithoutClinicShowcaseInput | ClinicShowcaseImageUpdateManyWithWhereWithoutClinicShowcaseInput[]
+    deleteMany?: ClinicShowcaseImageScalarWhereInput | ClinicShowcaseImageScalarWhereInput[]
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateManyWithoutClinicShowcaseNestedInput = {
+    create?: XOR<ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput[] | ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput[]
+    upsert?: ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseTranslationCreateManyClinicShowcaseInputEnvelope
+    set?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    disconnect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    delete?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    connect?: ClinicShowcaseTranslationWhereUniqueInput | ClinicShowcaseTranslationWhereUniqueInput[]
+    update?: ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutClinicShowcaseInput[]
+    updateMany?: ClinicShowcaseTranslationUpdateManyWithWhereWithoutClinicShowcaseInput | ClinicShowcaseTranslationUpdateManyWithWhereWithoutClinicShowcaseInput[]
+    deleteMany?: ClinicShowcaseTranslationScalarWhereInput | ClinicShowcaseTranslationScalarWhereInput[]
+  }
+
+  export type ClinicShowcaseImageUncheckedUpdateManyWithoutClinicShowcaseNestedInput = {
+    create?: XOR<ClinicShowcaseImageCreateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput> | ClinicShowcaseImageCreateWithoutClinicShowcaseInput[] | ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput[]
+    connectOrCreate?: ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput | ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput[]
+    upsert?: ClinicShowcaseImageUpsertWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseImageUpsertWithWhereUniqueWithoutClinicShowcaseInput[]
+    createMany?: ClinicShowcaseImageCreateManyClinicShowcaseInputEnvelope
+    set?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    disconnect?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    delete?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    connect?: ClinicShowcaseImageWhereUniqueInput | ClinicShowcaseImageWhereUniqueInput[]
+    update?: ClinicShowcaseImageUpdateWithWhereUniqueWithoutClinicShowcaseInput | ClinicShowcaseImageUpdateWithWhereUniqueWithoutClinicShowcaseInput[]
+    updateMany?: ClinicShowcaseImageUpdateManyWithWhereWithoutClinicShowcaseInput | ClinicShowcaseImageUpdateManyWithWhereWithoutClinicShowcaseInput[]
+    deleteMany?: ClinicShowcaseImageScalarWhereInput | ClinicShowcaseImageScalarWhereInput[]
+  }
+
+  export type ClinicShowcaseCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<ClinicShowcaseCreateWithoutTranslationsInput, ClinicShowcaseUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: ClinicShowcaseCreateOrConnectWithoutTranslationsInput
+    connect?: ClinicShowcaseWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutClinicShowcaseTranslationsInput = {
+    create?: XOR<LanguageCreateWithoutClinicShowcaseTranslationsInput, LanguageUncheckedCreateWithoutClinicShowcaseTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutClinicShowcaseTranslationsInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type ClinicShowcaseUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<ClinicShowcaseCreateWithoutTranslationsInput, ClinicShowcaseUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: ClinicShowcaseCreateOrConnectWithoutTranslationsInput
+    upsert?: ClinicShowcaseUpsertWithoutTranslationsInput
+    connect?: ClinicShowcaseWhereUniqueInput
+    update?: XOR<XOR<ClinicShowcaseUpdateToOneWithWhereWithoutTranslationsInput, ClinicShowcaseUpdateWithoutTranslationsInput>, ClinicShowcaseUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutClinicShowcaseTranslationsNestedInput = {
+    create?: XOR<LanguageCreateWithoutClinicShowcaseTranslationsInput, LanguageUncheckedCreateWithoutClinicShowcaseTranslationsInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutClinicShowcaseTranslationsInput
+    upsert?: LanguageUpsertWithoutClinicShowcaseTranslationsInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutClinicShowcaseTranslationsInput, LanguageUpdateWithoutClinicShowcaseTranslationsInput>, LanguageUncheckedUpdateWithoutClinicShowcaseTranslationsInput>
+  }
+
+  export type ClinicShowcaseCreateNestedOneWithoutImagesInput = {
+    create?: XOR<ClinicShowcaseCreateWithoutImagesInput, ClinicShowcaseUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: ClinicShowcaseCreateOrConnectWithoutImagesInput
+    connect?: ClinicShowcaseWhereUniqueInput
+  }
+
+  export type ClinicShowcaseUpdateOneRequiredWithoutImagesNestedInput = {
+    create?: XOR<ClinicShowcaseCreateWithoutImagesInput, ClinicShowcaseUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: ClinicShowcaseCreateOrConnectWithoutImagesInput
+    upsert?: ClinicShowcaseUpsertWithoutImagesInput
+    connect?: ClinicShowcaseWhereUniqueInput
+    update?: XOR<XOR<ClinicShowcaseUpdateToOneWithWhereWithoutImagesInput, ClinicShowcaseUpdateWithoutImagesInput>, ClinicShowcaseUncheckedUpdateWithoutImagesInput>
+  }
+
   export type HeaderMenuItemCreateNestedManyWithoutHeaderMenuInput = {
     create?: XOR<HeaderMenuItemCreateWithoutHeaderMenuInput, HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput> | HeaderMenuItemCreateWithoutHeaderMenuInput[] | HeaderMenuItemUncheckedCreateWithoutHeaderMenuInput[]
     connectOrCreate?: HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput | HeaderMenuItemCreateOrConnectWithoutHeaderMenuInput[]
@@ -73678,6 +78094,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ClinicShowcaseTranslationCreateWithoutLanguageInput = {
+    id?: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    clinicShowcase: ClinicShowcaseCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput = {
+    id?: string
+    clinicShowcaseId: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseTranslationCreateOrConnectWithoutLanguageInput = {
+    where: ClinicShowcaseTranslationWhereUniqueInput
+    create: XOR<ClinicShowcaseTranslationCreateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type ClinicShowcaseTranslationCreateManyLanguageInputEnvelope = {
+    data: ClinicShowcaseTranslationCreateManyLanguageInput | ClinicShowcaseTranslationCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BlogTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
     where: BlogTranslationWhereUniqueInput
     update: XOR<BlogTranslationUpdateWithoutLanguageInput, BlogTranslationUncheckedUpdateWithoutLanguageInput>
@@ -74242,6 +78690,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"TreatmentSectionItemTranslation"> | Date | string
   }
 
+  export type ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: ClinicShowcaseTranslationWhereUniqueInput
+    update: XOR<ClinicShowcaseTranslationUpdateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedUpdateWithoutLanguageInput>
+    create: XOR<ClinicShowcaseTranslationCreateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: ClinicShowcaseTranslationWhereUniqueInput
+    data: XOR<ClinicShowcaseTranslationUpdateWithoutLanguageInput, ClinicShowcaseTranslationUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type ClinicShowcaseTranslationUpdateManyWithWhereWithoutLanguageInput = {
+    where: ClinicShowcaseTranslationScalarWhereInput
+    data: XOR<ClinicShowcaseTranslationUpdateManyMutationInput, ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type ClinicShowcaseTranslationScalarWhereInput = {
+    AND?: ClinicShowcaseTranslationScalarWhereInput | ClinicShowcaseTranslationScalarWhereInput[]
+    OR?: ClinicShowcaseTranslationScalarWhereInput[]
+    NOT?: ClinicShowcaseTranslationScalarWhereInput | ClinicShowcaseTranslationScalarWhereInput[]
+    id?: StringFilter<"ClinicShowcaseTranslation"> | string
+    clinicShowcaseId?: StringFilter<"ClinicShowcaseTranslation"> | string
+    languageCode?: StringFilter<"ClinicShowcaseTranslation"> | string
+    title?: StringFilter<"ClinicShowcaseTranslation"> | string
+    description?: StringFilter<"ClinicShowcaseTranslation"> | string
+    buttonText?: StringFilter<"ClinicShowcaseTranslation"> | string
+    buttonLink?: StringFilter<"ClinicShowcaseTranslation"> | string
+    createdAt?: DateTimeFilter<"ClinicShowcaseTranslation"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcaseTranslation"> | Date | string
+  }
+
   export type LanguageCreateWithoutRouteTranslationsInput = {
     id?: string
     code: string
@@ -74267,6 +78746,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutRouteTranslationsInput = {
@@ -74294,6 +78774,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutRouteTranslationsInput = {
@@ -74337,6 +78818,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutRouteTranslationsInput = {
@@ -74364,6 +78846,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateWithoutBlogInput = {
@@ -74611,6 +79094,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutBlogTranslationsInput = {
@@ -74638,6 +79122,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutBlogTranslationsInput = {
@@ -74714,6 +79199,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutBlogTranslationsInput = {
@@ -74741,6 +79227,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetMarqueeImageCreateWithoutHizmetInput = {
@@ -75523,6 +80010,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTranslationsInput = {
@@ -75550,6 +80038,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTranslationsInput = {
@@ -75756,6 +80245,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTranslationsInput = {
@@ -75783,6 +80273,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetTocItemUpsertWithWhereUniqueWithoutHizmetTranslationInput = {
@@ -77270,6 +81761,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetOverviewTabTranslationsInput = {
@@ -77297,6 +81789,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetOverviewTabTranslationsInput = {
@@ -77369,6 +81862,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetOverviewTabTranslationsInput = {
@@ -77396,6 +81890,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutWhyItemDefinitionsInput = {
@@ -77598,6 +82093,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetWhyItemTranslationsInput = {
@@ -77625,6 +82121,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetWhyItemTranslationsInput = {
@@ -77693,6 +82190,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetWhyItemTranslationsInput = {
@@ -77720,6 +82218,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutTestimonialDefinitionsInput = {
@@ -77926,6 +82425,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetTestimonialTranslationsInput = {
@@ -77953,6 +82453,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetTestimonialTranslationsInput = {
@@ -78023,6 +82524,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetTestimonialTranslationsInput = {
@@ -78050,6 +82552,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutRecoveryItemDefinitionsInput = {
@@ -78254,6 +82757,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -78281,6 +82785,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetRecoveryItemTranslationsInput = {
@@ -78351,6 +82856,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetRecoveryItemTranslationsInput = {
@@ -78378,6 +82884,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutPricingPackageDefinitionsInput = {
@@ -78582,6 +83089,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetPricingPackageTranslationsInput = {
@@ -78609,6 +83117,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetPricingPackageTranslationsInput = {
@@ -78677,6 +83186,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetPricingPackageTranslationsInput = {
@@ -78704,6 +83214,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HizmetCreateWithoutExpertItemDefinitionsInput = {
@@ -78912,6 +83423,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHizmetExpertItemTranslationsInput = {
@@ -78939,6 +83451,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHizmetExpertItemTranslationsInput = {
@@ -79009,6 +83522,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHizmetExpertItemTranslationsInput = {
@@ -79036,6 +83550,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type GeneralSettingTranslationCreateWithoutGeneralSettingInput = {
@@ -79154,6 +83669,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutGeneralSettingTranslationsInput = {
@@ -79181,6 +83697,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutGeneralSettingTranslationsInput = {
@@ -79261,6 +83778,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutGeneralSettingTranslationsInput = {
@@ -79288,6 +83806,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeroContentTranslationCreateWithoutHeroContentInput = {
@@ -79439,6 +83958,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeroContentTranslationsInput = {
@@ -79466,6 +83986,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeroContentTranslationsInput = {
@@ -79534,6 +84055,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeroContentTranslationsInput = {
@@ -79561,6 +84083,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeroContentCreateWithoutImagesInput = {
@@ -79699,6 +84222,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutWhyChooseSectionTranslationsInput = {
@@ -79726,6 +84250,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutWhyChooseSectionTranslationsInput = {
@@ -79792,6 +84317,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutWhyChooseSectionTranslationsInput = {
@@ -79819,6 +84345,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type TreatmentSectionAvatarCreateWithoutTreatmentSectionContentInput = {
@@ -79972,6 +84499,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutTreatmentSectionContentTranslationsInput = {
@@ -79999,6 +84527,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutTreatmentSectionContentTranslationsInput = {
@@ -80067,6 +84596,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutTreatmentSectionContentTranslationsInput = {
@@ -80094,6 +84624,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type TreatmentSectionContentCreateWithoutAvatarsInput = {
@@ -80234,6 +84765,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutTreatmentSectionItemTranslationsInput = {
@@ -80261,6 +84793,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutTreatmentSectionItemTranslationsInput = {
@@ -80333,6 +84866,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutTreatmentSectionItemTranslationsInput = {
@@ -80360,6 +84894,331 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput = {
+    id?: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    language: LanguageCreateNestedOneWithoutClinicShowcaseTranslationsInput
+  }
+
+  export type ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput = {
+    id?: string
+    languageCode: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseTranslationCreateOrConnectWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseTranslationWhereUniqueInput
+    create: XOR<ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseTranslationCreateManyClinicShowcaseInputEnvelope = {
+    data: ClinicShowcaseTranslationCreateManyClinicShowcaseInput | ClinicShowcaseTranslationCreateManyClinicShowcaseInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClinicShowcaseImageCreateWithoutClinicShowcaseInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseImageCreateOrConnectWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseImageWhereUniqueInput
+    create: XOR<ClinicShowcaseImageCreateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseImageCreateManyClinicShowcaseInputEnvelope = {
+    data: ClinicShowcaseImageCreateManyClinicShowcaseInput | ClinicShowcaseImageCreateManyClinicShowcaseInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClinicShowcaseTranslationUpsertWithWhereUniqueWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseTranslationWhereUniqueInput
+    update: XOR<ClinicShowcaseTranslationUpdateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedUpdateWithoutClinicShowcaseInput>
+    create: XOR<ClinicShowcaseTranslationCreateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedCreateWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseTranslationUpdateWithWhereUniqueWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseTranslationWhereUniqueInput
+    data: XOR<ClinicShowcaseTranslationUpdateWithoutClinicShowcaseInput, ClinicShowcaseTranslationUncheckedUpdateWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseTranslationUpdateManyWithWhereWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseTranslationScalarWhereInput
+    data: XOR<ClinicShowcaseTranslationUpdateManyMutationInput, ClinicShowcaseTranslationUncheckedUpdateManyWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseImageUpsertWithWhereUniqueWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseImageWhereUniqueInput
+    update: XOR<ClinicShowcaseImageUpdateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedUpdateWithoutClinicShowcaseInput>
+    create: XOR<ClinicShowcaseImageCreateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedCreateWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseImageUpdateWithWhereUniqueWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseImageWhereUniqueInput
+    data: XOR<ClinicShowcaseImageUpdateWithoutClinicShowcaseInput, ClinicShowcaseImageUncheckedUpdateWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseImageUpdateManyWithWhereWithoutClinicShowcaseInput = {
+    where: ClinicShowcaseImageScalarWhereInput
+    data: XOR<ClinicShowcaseImageUpdateManyMutationInput, ClinicShowcaseImageUncheckedUpdateManyWithoutClinicShowcaseInput>
+  }
+
+  export type ClinicShowcaseImageScalarWhereInput = {
+    AND?: ClinicShowcaseImageScalarWhereInput | ClinicShowcaseImageScalarWhereInput[]
+    OR?: ClinicShowcaseImageScalarWhereInput[]
+    NOT?: ClinicShowcaseImageScalarWhereInput | ClinicShowcaseImageScalarWhereInput[]
+    id?: StringFilter<"ClinicShowcaseImage"> | string
+    imageUrl?: StringFilter<"ClinicShowcaseImage"> | string
+    altText?: StringNullableFilter<"ClinicShowcaseImage"> | string | null
+    order?: IntFilter<"ClinicShowcaseImage"> | number
+    isPublished?: BoolFilter<"ClinicShowcaseImage"> | boolean
+    clinicShowcaseId?: StringFilter<"ClinicShowcaseImage"> | string
+    createdAt?: DateTimeFilter<"ClinicShowcaseImage"> | Date | string
+    updatedAt?: DateTimeFilter<"ClinicShowcaseImage"> | Date | string
+  }
+
+  export type ClinicShowcaseCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: ClinicShowcaseImageCreateNestedManyWithoutClinicShowcaseInput
+  }
+
+  export type ClinicShowcaseUncheckedCreateWithoutTranslationsInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: ClinicShowcaseImageUncheckedCreateNestedManyWithoutClinicShowcaseInput
+  }
+
+  export type ClinicShowcaseCreateOrConnectWithoutTranslationsInput = {
+    where: ClinicShowcaseWhereUniqueInput
+    create: XOR<ClinicShowcaseCreateWithoutTranslationsInput, ClinicShowcaseUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LanguageCreateWithoutClinicShowcaseTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateWithoutClinicShowcaseTranslationsInput = {
+    id?: string
+    code: string
+    name: string
+    isActive?: boolean
+    isDefault?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogTranslations?: BlogTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTranslations?: HizmetTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    heroContentTranslations?: HeroContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    routeTranslations?: RouteTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageCreateOrConnectWithoutClinicShowcaseTranslationsInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutClinicShowcaseTranslationsInput, LanguageUncheckedCreateWithoutClinicShowcaseTranslationsInput>
+  }
+
+  export type ClinicShowcaseUpsertWithoutTranslationsInput = {
+    update: XOR<ClinicShowcaseUpdateWithoutTranslationsInput, ClinicShowcaseUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<ClinicShowcaseCreateWithoutTranslationsInput, ClinicShowcaseUncheckedCreateWithoutTranslationsInput>
+    where?: ClinicShowcaseWhereInput
+  }
+
+  export type ClinicShowcaseUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: ClinicShowcaseWhereInput
+    data: XOR<ClinicShowcaseUpdateWithoutTranslationsInput, ClinicShowcaseUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type ClinicShowcaseUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: ClinicShowcaseImageUpdateManyWithoutClinicShowcaseNestedInput
+  }
+
+  export type ClinicShowcaseUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: ClinicShowcaseImageUncheckedUpdateManyWithoutClinicShowcaseNestedInput
+  }
+
+  export type LanguageUpsertWithoutClinicShowcaseTranslationsInput = {
+    update: XOR<LanguageUpdateWithoutClinicShowcaseTranslationsInput, LanguageUncheckedUpdateWithoutClinicShowcaseTranslationsInput>
+    create: XOR<LanguageCreateWithoutClinicShowcaseTranslationsInput, LanguageUncheckedCreateWithoutClinicShowcaseTranslationsInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutClinicShowcaseTranslationsInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutClinicShowcaseTranslationsInput, LanguageUncheckedUpdateWithoutClinicShowcaseTranslationsInput>
+  }
+
+  export type LanguageUpdateWithoutClinicShowcaseTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateWithoutClinicShowcaseTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogTranslations?: BlogTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTranslations?: HizmetTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetOverviewTabTranslations?: HizmetOverviewTabTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetWhyItemTranslations?: HizmetWhyItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetTestimonialTranslations?: HizmetTestimonialTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetRecoveryItemTranslations?: HizmetRecoveryItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetExpertItemTranslations?: HizmetExpertItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    hizmetPricingPackageTranslations?: HizmetPricingPackageTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    generalSettingTranslations?: GeneralSettingTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    heroContentTranslations?: HeroContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    whyChooseSectionTranslations?: WhyChooseSectionTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    routeTranslations?: RouteTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuItemTranslations?: HeaderMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuItemTranslations?: FooterMenuItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type ClinicShowcaseCreateWithoutImagesInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: ClinicShowcaseTranslationCreateNestedManyWithoutClinicShowcaseInput
+  }
+
+  export type ClinicShowcaseUncheckedCreateWithoutImagesInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    translations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutClinicShowcaseInput
+  }
+
+  export type ClinicShowcaseCreateOrConnectWithoutImagesInput = {
+    where: ClinicShowcaseWhereUniqueInput
+    create: XOR<ClinicShowcaseCreateWithoutImagesInput, ClinicShowcaseUncheckedCreateWithoutImagesInput>
+  }
+
+  export type ClinicShowcaseUpsertWithoutImagesInput = {
+    update: XOR<ClinicShowcaseUpdateWithoutImagesInput, ClinicShowcaseUncheckedUpdateWithoutImagesInput>
+    create: XOR<ClinicShowcaseCreateWithoutImagesInput, ClinicShowcaseUncheckedCreateWithoutImagesInput>
+    where?: ClinicShowcaseWhereInput
+  }
+
+  export type ClinicShowcaseUpdateToOneWithWhereWithoutImagesInput = {
+    where?: ClinicShowcaseWhereInput
+    data: XOR<ClinicShowcaseUpdateWithoutImagesInput, ClinicShowcaseUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type ClinicShowcaseUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: ClinicShowcaseTranslationUpdateManyWithoutClinicShowcaseNestedInput
+  }
+
+  export type ClinicShowcaseUncheckedUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    translations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutClinicShowcaseNestedInput
   }
 
   export type HeaderMenuItemCreateWithoutHeaderMenuInput = {
@@ -80508,6 +85367,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeaderMenuTranslationsInput = {
@@ -80535,6 +85395,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeaderMenuTranslationsInput = {
@@ -80605,6 +85466,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeaderMenuTranslationsInput = {
@@ -80632,6 +85494,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type HeaderMenuCreateWithoutItemsInput = {
@@ -81100,6 +85963,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutHeaderMenuItemTranslationsInput = {
@@ -81127,6 +85991,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutHeaderMenuItemTranslationsInput = {
@@ -81213,6 +86078,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutHeaderMenuItemTranslationsInput = {
@@ -81240,6 +86106,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type FooterMenuItemCreateWithoutFooterMenuInput = {
@@ -81386,6 +86253,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutFooterMenuTranslationsInput = {
@@ -81413,6 +86281,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutFooterMenuTranslationsInput = {
@@ -81485,6 +86354,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutFooterMenuTranslationsInput = {
@@ -81512,6 +86382,7 @@ export namespace Prisma {
     headerMenuTranslations?: HeaderMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type FooterMenuCreateWithoutItemsInput = {
@@ -81842,6 +86713,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateWithoutFooterMenuItemTranslationsInput = {
@@ -81869,6 +86741,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedCreateNestedManyWithoutLanguageInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedCreateNestedManyWithoutLanguageInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageCreateOrConnectWithoutFooterMenuItemTranslationsInput = {
@@ -81951,6 +86824,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateWithoutFooterMenuItemTranslationsInput = {
@@ -81978,6 +86852,7 @@ export namespace Prisma {
     footerMenuTranslations?: FooterMenuTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionContentTranslations?: TreatmentSectionContentTranslationUncheckedUpdateManyWithoutLanguageNestedInput
     treatmentSectionItemTranslations?: TreatmentSectionItemTranslationUncheckedUpdateManyWithoutLanguageNestedInput
+    clinicShowcaseTranslations?: ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type BlogTranslationCreateManyLanguageInput = {
@@ -82180,6 +87055,17 @@ export namespace Prisma {
     title: string
     description: string
     linkUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseTranslationCreateManyLanguageInput = {
+    id?: string
+    clinicShowcaseId: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -82800,6 +87686,39 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseTranslationUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clinicShowcase?: ClinicShowcaseUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clinicShowcaseId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateManyWithoutLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clinicShowcaseId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -84148,6 +89067,90 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     linkUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseTranslationCreateManyClinicShowcaseInput = {
+    id?: string
+    languageCode: string
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseImageCreateManyClinicShowcaseInput = {
+    id?: string
+    imageUrl: string
+    altText?: string | null
+    order?: number
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClinicShowcaseTranslationUpdateWithoutClinicShowcaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    language?: LanguageUpdateOneRequiredWithoutClinicShowcaseTranslationsNestedInput
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateWithoutClinicShowcaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseTranslationUncheckedUpdateManyWithoutClinicShowcaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    languageCode?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseImageUpdateWithoutClinicShowcaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseImageUncheckedUpdateWithoutClinicShowcaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClinicShowcaseImageUncheckedUpdateManyWithoutClinicShowcaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    altText?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
