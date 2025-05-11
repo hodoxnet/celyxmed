@@ -88,6 +88,9 @@ model Language {
 
   // Consult Online Section İlişkileri
   consultOnlineSectionTranslations ConsultOnlineSectionTranslation[]
+
+  // SSS İlişkileri
+  faqTranslations FaqTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -1056,4 +1059,34 @@ model ConsultOnlineDoctorAvatar {
 
   createdAt               DateTime              @default(now())
   updatedAt               DateTime              @updatedAt
+}
+
+// ----- SSS (SIKÇA SORULAN SORULAR) MODELLERİ -----
+
+// SSS Ana Modeli (Dil Bağımsız)
+model Faq {
+  id          String   @id @default(cuid())
+  order       Int      @default(0) // SSS öğesinin sıralaması
+  isPublished Boolean  @default(true) // SSS öğesinin yayınlanıp yayınlanmadığı
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  translations FaqTranslation[]
+}
+
+// SSS Çeviri Modeli (Dile Özgü Soru ve Cevap)
+model FaqTranslation {
+  id        String   @id @default(cuid())
+  faq       Faq      @relation(fields: [faqId], references: [id], onDelete: Cascade)
+  faqId     String
+  language  Language @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode String
+
+  question  String   // Soru metni
+  answer    String   @db.Text // Cevap metni (HTML içerebilir)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([faqId, languageCode])
 }

@@ -20,6 +20,7 @@ import {
   LayoutGrid, // LayoutGrid ikonu import edildi
   LayoutList, // Menü Yönetimi için ikon
   Globe, // Rota çevirileri için ikon
+  HelpCircle, // SSS için ikon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -98,6 +99,7 @@ const navItems: NavItem[] = [
       { title: "Neden Bize Güvenmelisiniz", href: "/admin/why-trust-section" }, // Yeni eklenen WhyTrustSection
       { title: "Başarı Hikayeleri Bölümü", href: "/admin/success-stories-section" }, // Yeni eklenen SuccessStoriesSection
       { title: "Online Konsültasyon Bölümü", href: "/admin/consult-online-section" }, // Yeni eklenen ConsultOnlineSection
+      { title: "SSS Yönetimi", href: "/admin/faqs" }, // YENİ EKLENDİ
       // Gelecekteki anasayfa modülleri buraya eklenebilir
     ],
   },

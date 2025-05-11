@@ -1,91 +1,118 @@
-import React from 'react';
+"use client"; // Dinamik veri çekme ve state kullanımı için
+
+import React, { useEffect, useState } from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Skeleton } from "@/components/ui/skeleton"; // Yükleme durumu için
+import { useLocale } from 'next-intl'; // Aktif dili almak için
 
-// SSS verileri Türkçeleştirildi ve yapı güncellendi (id kullanıldı)
-const faqData = [
-  {
-    id: "faq-home-1",
-    question: "Celyxmed hangi tedavileri sunuyor?",
-    answer: "Celyxmed, bariatrik cerrahi, plastik cerrahi, diş estetiği, saç ekimi ve çeşitli medikal tedaviler dahil olmak üzere geniş bir yelpazede tedavi sunmaktadır."
-  },
-  {
-    id: "faq-home-2",
-    question: "Neden diğer klinikler yerine Celyxmed'i seçmeliyim?",
-    answer: "Celyxmed, JCI akreditasyonlu klinikleri, deneyimli doktorları ve kişiselleştirilmiş bakımıyla binlerce uluslararası hasta tarafından güvenilmektedir. Yüksek kaliteli tedavileri uygun fiyatlarla sunuyoruz."
-  },
-  {
-    id: "faq-home-3",
-    question: "Türkiye tıbbi tedaviler için güvenli mi?",
-    answer: "Evet, Türkiye medikal turizm için önde gelen destinasyonlardan biridir. Dünya standartlarında klinikler, deneyimli doktorlar ve uygun fiyatlı tedavi seçenekleri ile her yıl binlerce hastayı cezbetmektedir."
-  },
-  {
-    id: "faq-home-4",
-    question: "Nasıl konsültasyon randevusu alabilirim?",
-    answer: "Ücretsiz konsültasyonunuzu web sitemiz üzerinden veya WhatsApp, e-posta ya da telefon yoluyla bizimle iletişime geçerek alabilirsiniz. Ekibimiz süreç boyunca size rehberlik edecektir."
-  },
-  {
-    id: "faq-home-5",
-    question: "Doktorlarla online görüşme yapabilir miyim?",
-    answer: "Evet, ziyaretinizden önce ihtiyaçlarınızı görüşmek ve kişiselleştirilmiş tedavi tavsiyesi almak için uzmanlarımızla online konsültasyon planlayabilirsiniz."
-  },
-   {
-    id: "faq-home-6",
-    question: "Yerel doktorumdan bir sevk almam gerekiyor mu?",
-    answer: "Hayır, sevk gerekmez. Sadece Celyxmed ile bir konsültasyon ayarlayın, gerisini biz hallederiz."
-  },
-   {
-    id: "faq-home-7",
-    question: "Celyxmed havaalanı transferlerini ayarlıyor mu?",
-    answer: "Evet, hastalarımızın İstanbul'a varışlarında sorunsuz ve konforlu bir deneyim yaşamalarını sağlamak için havaalanı transferleri sağlıyoruz."
-  },
-   {
-    id: "faq-home-8",
-    question: "Konaklama düzenlemeleri konusunda yardımcı olabilir misiniz?",
-    answer: "Evet, tedavi süreciniz boyunca konforlu bir konaklama sağlamak için kliniklerimize yakın konaklama rezervasyonu konusunda yardımcı oluyoruz."
-  },
-   {
-    id: "faq-home-9",
-    question: "Tedavim için Türkiye'de ne kadar kalmalıyım?",
-    answer: "Süre, tedavi türüne bağlıdır. Ekibimiz konsültasyonunuzdan sonra ayrıntılı bir zaman çizelgesi sunacaktır."
-  }
-];
+interface FaqItemData {
+  id: string;
+  question: string;
+  answer: string;
+  order: number;
+  isPublished: boolean;
+}
 
 const FaqSection = () => {
+  const [faqData, setFaqData] = useState<FaqItemData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const locale = useLocale(); // Aktif dil kodunu al (örn: 'tr', 'en')
+
+  useEffect(() => {
+    const fetchFaqs = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(`/api/home/faqs?lang=${locale}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch FAQs: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setFaqData(data);
+      } catch (err) {
+        console.error("Error fetching FAQs:", err);
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFaqs();
+  }, [locale]); // locale değiştiğinde veriyi yeniden çek
+
+  // Yükleme durumu için iskelet (skeleton) gösterimi
+  if (loading) {
+    return (
+      <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
+            <Skeleton className="h-12 w-3/4 mx-auto mb-4" />
+            {/* <Skeleton className="h-6 w-1/2 mx-auto" /> */}
+          </div>
+          <div className="w-full space-y-4">
+            {[...Array(5)].map((_, index) => (
+              <Skeleton key={index} className="h-20 w-full rounded-xl" />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Hata durumu gösterimi
+  if (error) {
+    return (
+      <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-2xl font-semibold text-red-600 dark:text-red-400">
+            Sıkça Sorulan Sorular yüklenirken bir hata oluştu.
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">{error}</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Veri yoksa veya boşsa gösterilecek mesaj
+  if (!faqData || faqData.length === 0) {
+    return (
+      <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300">
+            Sıkça Sorulan Soru bulunamadı.
+          </h2>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    // Stil hizmet detay ile aynı yapıldı (dark mode dahil)
     <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
       <div className="container mx-auto px-4">
-        {/* Başlık stili hizmet detay ile aynı yapıldı */}
         <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Sıkça Sorulan Sorular ve Çözümleri {/* Başlık Türkçeleştirildi */}
+            Sıkça Sorulan Sorular {/* Başlık dinamik olarak da yönetilebilir */}
           </h2>
-          {/* İsteğe bağlı açıklama eklenebilir:
-          <p className="text-base text-gray-600 dark:text-gray-400">Açıklama buraya</p>
-          */}
+          {/* İsteğe bağlı açıklama eklenebilir */}
         </div>
 
-        {/* Ekstra sarmalayıcı div kaldırıldı, Accordion stilleri güncellendi */}
         <Accordion type="single" collapsible className="w-full space-y-4">
-          {faqData.map((item) => ( // Değişken adı 'item' olarak değiştirildi
-            // React.Fragment eklendi (hizmet detaydaki gibi)
+          {faqData.map((item) => (
             <React.Fragment key={item.id}>
-              {/* AccordionItem stili hizmet detay ile aynı yapıldı */}
               <AccordionItem value={item.id} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl border-none overflow-hidden">
-                {/* AccordionTrigger stili hizmet detay ile aynı yapıldı */}
                 <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline px-6 py-5 text-gray-900 dark:text-white">
                   {item.question}
                 </AccordionTrigger>
-                {/* AccordionContent stili ve cevap renderlama hizmet detay ile aynı yapıldı */}
                 <AccordionContent className="px-6 pb-6 pt-0">
                    <div
                     className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
-                    dangerouslySetInnerHTML={{ __html: item.answer }}
+                    dangerouslySetInnerHTML={{ __html: item.answer }} // Cevaplar HTML içerebilir
                   />
                 </AccordionContent>
               </AccordionItem>

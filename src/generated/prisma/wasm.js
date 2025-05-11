@@ -751,6 +751,24 @@ exports.Prisma.ConsultOnlineDoctorAvatarScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FaqScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FaqTranslationScalarFieldEnum = {
+  id: 'id',
+  faqId: 'faqId',
+  languageCode: 'languageCode',
+  question: 'question',
+  answer: 'answer',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -849,7 +867,9 @@ exports.Prisma.ModelName = {
   SuccessStoriesTestimonialTranslation: 'SuccessStoriesTestimonialTranslation',
   ConsultOnlineSection: 'ConsultOnlineSection',
   ConsultOnlineSectionTranslation: 'ConsultOnlineSectionTranslation',
-  ConsultOnlineDoctorAvatar: 'ConsultOnlineDoctorAvatar'
+  ConsultOnlineDoctorAvatar: 'ConsultOnlineDoctorAvatar',
+  Faq: 'Faq',
+  FaqTranslation: 'FaqTranslation'
 };
 
 /**
