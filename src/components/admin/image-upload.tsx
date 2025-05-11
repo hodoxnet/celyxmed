@@ -14,6 +14,12 @@ interface ImageUploadProps {
   showPreview?: boolean;
   initialImage?: string;
   uploadFolder?: string; // Hedef klasör prop'u eklendi
+
+  // Eski sürüm uyumluluğu için alternatif prop adları
+  value?: string;  // initialImage yerine kullanılabilir
+  onChange?: (imageUrl: string) => void; // onImageUploaded yerine kullanılabilir
+  folder?: string; // uploadFolder yerine kullanılabilir
+  disabled?: boolean; // Yükleme işlemini engellemek için
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({
@@ -22,18 +28,29 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   buttonText = "Resim Yükle",
   showPreview = false,
   initialImage = "",
-  uploadFolder // Prop alındı
+  uploadFolder, // Prop alındı
+
+  // Eski sürüm uyumluluğu için alternatif prop adları
+  value,
+  onChange,
+  folder,
+  disabled = false
 }) => {
+  // Geriye dönük uyumluluğu sağlayalım
+  const finalInitialImage = initialImage || value || "";
+  const finalUploadFolder = uploadFolder || folder || "";
+  const handleImageUploaded = onImageUploaded || onChange || (() => {});
+  
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  // previewUrl state'i initialImage değiştiğinde güncellenmeli
-  const [previewUrl, setPreviewUrl] = useState<string>(initialImage);
+  // previewUrl state'i finalInitialImage değiştiğinde güncellenmeli
+  const [previewUrl, setPreviewUrl] = useState<string>(finalInitialImage);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // initialImage prop'u değiştiğinde previewUrl'i güncelle
+  // finalInitialImage prop'u değiştiğinde previewUrl'i güncelle
   useEffect(() => {
-    setPreviewUrl(initialImage);
-  }, [initialImage]);
+    setPreviewUrl(finalInitialImage);
+  }, [finalInitialImage]);
 
   // Dosya seçilince Data URL önizlemesi oluştur
   const createPreview = (file: File) => {
@@ -85,8 +102,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       }, 300);
 
       // API endpoint URL'ini dinamik yap
-      const uploadUrl = uploadFolder 
-        ? `/api/admin/upload?folder=${encodeURIComponent(uploadFolder)}` 
+      const uploadUrl = finalUploadFolder
+        ? `/api/admin/upload?folder=${encodeURIComponent(finalUploadFolder)}`
         : '/api/admin/upload'; // Folder yoksa varsayılan
 
       const response = await fetch(uploadUrl, { // Güncellenmiş URL kullanıldı
@@ -104,7 +121,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       setUploadProgress(100);
       const data = await response.json();
 
-      onImageUploaded(data.url); // Yüklenen göreceli yolu bildir
+      handleImageUploaded(data.url); // Yüklenen göreceli yolu bildir
       toast.success('Resim başarıyla yüklendi');
 
       // Başarılı yükleme sonrası sunucudan dönen göreceli yolu previewUrl olarak ayarla
@@ -216,4 +233,5 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   );
 };
 
+export { ImageUpload };
 export default ImageUpload;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -74,18 +73,34 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(`[CLIENT] Fetching consult online section for locale: ${locale}`);
         const response = await fetch(`/api/home/consult-online-section?locale=${locale}`);
 
         if (!response.ok) {
+          console.log(`[CLIENT] API response not OK:`, response.status, response.statusText);
           // API başarısız olursa varsayılan veri kullan
           setData(defaultData as ConsultOnlineSectionData);
           return;
         }
 
         const responseData = await response.json();
-        setData(responseData);
+        console.log(`[CLIENT] Received data:`, {
+          gotValidResponse: !!responseData,
+          hasTranslation: !!responseData?.translation,
+          title: responseData?.translation?.title,
+          imageUrl: responseData?.imageUrl,
+          avatarCount: responseData?.doctorAvatars?.length
+        });
+        
+        // Sunucudan gönderilen veri, varsayılan verinin üstüne yazılır
+        if (responseData?.translation) {
+          setData(responseData);
+        } else {
+          console.log(`[CLIENT] Using default data due to missing translation`);
+          setData(defaultData as ConsultOnlineSectionData);
+        }
       } catch (err) {
-        console.error('Error fetching consult online section data:', err);
+        console.error('[CLIENT] Error fetching consult online section data:', err);
         setError('Failed to load data');
         // Hata durumunda varsayılan veri kullan
         setData(defaultData as ConsultOnlineSectionData);
@@ -101,31 +116,55 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
   const displayData = data || defaultData;
   const { imageUrl, doctorAvatars, translation } = displayData;
 
+  // Resim URL'sini işlemek için helper fonksiyon
+  const getFullImageUrl = (url: string | null) => {
+    if (!url) return defaultData.imageUrl;
+
+    // Eğer tam URL ise (http:// veya https:// ile başlıyorsa)
+    if (url.startsWith('http')) {
+      return url;
+    }
+
+    // Göreli URL ise ve /uploads ile başlıyorsa
+    if (url.startsWith('/uploads')) {
+      return url; // Aynı originle çalıştığımız için göreceli URL yeterli
+    }
+
+    // Hiçbir duruma uymuyorsa varsayılan URL'yi kullan
+    return defaultData.imageUrl;
+  };
+
   return (
-    <section className="py-16 md:py-24 bg-gray-100">
-      <div className="container mx-auto px-4">
-        <div className="bg-white rounded-lg shadow-xl overflow-hidden md:flex md:items-center">
+    <section className="py-16 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="bg-teal-800 rounded-2xl shadow-xl overflow-hidden md:flex md:items-stretch">
           {/* Sol Taraf: Görsel */}
-          <div className="md:w-1/2 relative min-h-[300px] md:min-h-0 md:h-auto">
-            <Image
-              src={imageUrl || defaultData.imageUrl}
-              alt="Consult Online"
-              layout="fill"
-              objectFit="cover"
-              className="md:absolute md:inset-0"
-            />
+          <div className="md:w-1/2 relative overflow-hidden">
+            {/* Ana görsel */}
+            <div className="h-full w-full bg-amber-500">
+              <img
+                src={getFullImageUrl(imageUrl)}
+                alt="Consult Online"
+                className="w-full h-full md:h-[480px] object-cover"
+                style={{ objectPosition: 'center' }}
+                onError={(e) => {
+                  console.error('[CLIENT] Ana resim yüklenemedi:', imageUrl);
+                  e.currentTarget.src = defaultData.imageUrl;
+                }}
+              />
+            </div>
           </div>
 
           {/* Sağ Taraf: İçerik */}
-          <div className="md:w-1/2 p-6 md:p-10 lg:p-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-semibold mb-4">
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+          <div className="md:w-1/2 p-8 md:p-10 lg:p-14 flex flex-col justify-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100/20 text-white text-xs font-semibold mb-5">
+              <span className="w-2 h-2 rounded-full bg-white"></span>
               {translation.tagText}
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-3 text-gray-800">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-3 text-white">
               {translation.title}
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-white/90 mb-6">
               {translation.description}
             </p>
 
@@ -133,35 +172,44 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
             <div className="flex items-center mb-6">
                <div className="flex -space-x-3 mr-4">
                  {doctorAvatars.map((avatar, index) => (
-                   <Image
+                   <img
                      key={avatar.id}
-                     src={avatar.imageUrl}
+                     src={getFullImageUrl(avatar.imageUrl)}
                      alt={avatar.altText || `Doctor ${index + 1}`}
-                     width={48}
-                     height={48}
-                     className="rounded-full border-2 border-white shadow-md"
+                     width="48"
+                     height="48"
+                     className="rounded-full border-2 border-white shadow-md w-12 h-12 object-cover"
                      style={{ zIndex: doctorAvatars.length - index }}
+                     onError={(e) => {
+                       console.error(`[CLIENT] Avatar resmi yüklenemedi:`, avatar.imageUrl);
+                       e.currentTarget.src = defaultData.doctorAvatars[0].imageUrl;
+                     }}
                    />
                  ))}
                  {/* +50 Avatarı */}
-                 <div className="w-12 h-12 rounded-full border-2 border-white shadow-md bg-gray-200 flex items-center justify-center text-center text-[10px] font-semibold text-gray-700 relative" style={{ zIndex: 0 }}>
+                 <div className="w-12 h-12 rounded-full border-2 border-white shadow-md bg-teal-600 flex items-center justify-center text-center text-[10px] font-semibold text-white relative" style={{ zIndex: 0 }}>
                    +50<br/>Expert
-                   <Image
-                     src={doctorAvatars[0]?.imageUrl || defaultData.doctorAvatars[0].imageUrl}
+                   <img
+                     src={getFullImageUrl(doctorAvatars[0]?.imageUrl || defaultData.doctorAvatars[0].imageUrl)}
                      alt=""
-                     layout="fill"
-                     objectFit="cover"
-                     className="rounded-full opacity-30 blur-sm absolute inset-0"
+                     className="rounded-full opacity-20 blur-sm absolute inset-0 w-full h-full object-cover"
+                     onError={(e) => {
+                       e.currentTarget.src = defaultData.doctorAvatars[0].imageUrl;
+                     }}
                    />
                  </div>
                </div>
-               <p className="text-sm text-gray-500" dangerouslySetInnerHTML={{ __html: translation.avatarText.replace('\n', '<br/>') }} />
+               <p className="text-sm text-white" dangerouslySetInnerHTML={{ __html: translation.avatarText.replace('\n', '<br/>') }} />
             </div>
 
             {/* Buton */}
-            <Button size="lg" className="w-full sm:w-auto bg-green-600 hover:bg-green-700" asChild>
+            <Button size="lg" className="w-full sm:w-auto bg-white text-teal-700 hover:bg-white/90 rounded-full px-8 py-6 flex items-center gap-2 mt-4" asChild>
               <Link href={translation.buttonLink}>
-                {translation.buttonText}
+                <span className="text-sm font-medium">{translation.buttonText}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
               </Link>
             </Button>
           </div>

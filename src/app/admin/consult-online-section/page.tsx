@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { ImageUpload } from "@/components/admin/image-upload";
+import ImageUpload from "@/components/admin/image-upload";
 import { Loader2, PlusCircle, Save, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -213,10 +213,10 @@ const ConsultOnlineSectionPage = () => {
   return (
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Consult Online Section</h1>
+        <h1 className="text-2xl font-bold">Çevrimiçi Konsültasyon Bölümü</h1>
         <Button onClick={form.handleSubmit(onSubmit)} disabled={isLoading}>
           {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
-          Save Changes
+          Değişiklikleri Kaydet
         </Button>
       </div>
 
@@ -224,7 +224,7 @@ const ConsultOnlineSectionPage = () => {
         <form className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Main Image</CardTitle>
+              <CardTitle>Ana Görsel</CardTitle>
             </CardHeader>
             <CardContent>
               <FormField
@@ -232,12 +232,13 @@ const ConsultOnlineSectionPage = () => {
                 name="imageUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Main Section Image</FormLabel>
+                    <FormLabel>Ana Bölüm Görseli</FormLabel>
                     <FormControl>
                       <ImageUpload
-                        value={field.value || ""}
-                        onChange={field.onChange}
-                        folder="consult_online"
+                        initialImage={field.value || ""}
+                        onImageUploaded={field.onChange}
+                        uploadFolder="consult_online"
+                        showPreview={true}
                       />
                     </FormControl>
                     <FormMessage />
@@ -249,7 +250,7 @@ const ConsultOnlineSectionPage = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Doctor Avatars</CardTitle>
+              <CardTitle>Doktor Avatarları</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -265,7 +266,7 @@ const ConsultOnlineSectionPage = () => {
                         className="w-16 h-16 rounded-full object-cover mr-3"
                       />
                       <div className="flex-1">
-                        <p className="text-sm text-gray-600">Order: {avatar.order}</p>
+                        <p className="text-sm text-gray-600">Sıra: {avatar.order}</p>
                       </div>
                       <Button
                         variant="destructive"
@@ -282,12 +283,12 @@ const ConsultOnlineSectionPage = () => {
 
                 <div className="mt-4">
                   <div className="border border-dashed rounded-md p-4">
-                    <p className="text-sm text-gray-500 mb-3">Add new doctor avatar</p>
+                    <p className="text-sm text-gray-500 mb-3">Yeni doktor avatarı ekle</p>
                     <ImageUpload
-                      value=""
-                      onChange={handleAddDoctorAvatar}
-                      folder="doctor_avatars"
-                      disabled={avatarLoading}
+                      initialImage=""
+                      onImageUploaded={handleAddDoctorAvatar}
+                      uploadFolder="doctor_avatars"
+                      showPreview={true}
                     />
                   </div>
                 </div>
@@ -297,7 +298,7 @@ const ConsultOnlineSectionPage = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Content Translations</CardTitle>
+              <CardTitle>İçerik Çevirileri</CardTitle>
             </CardHeader>
             <CardContent>
               <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -317,7 +318,7 @@ const ConsultOnlineSectionPage = () => {
                         name={`translations.${index}.tagText`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Tag Text</FormLabel>
+                            <FormLabel>Etiket Metni</FormLabel>
                             <FormControl>
                               <Input placeholder="Be Your Best" {...field} />
                             </FormControl>
@@ -331,7 +332,7 @@ const ConsultOnlineSectionPage = () => {
                         name={`translations.${index}.title`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Title</FormLabel>
+                            <FormLabel>Başlık</FormLabel>
                             <FormControl>
                               <Input placeholder="Consult with Our Doctors Online" {...field} />
                             </FormControl>
@@ -345,7 +346,7 @@ const ConsultOnlineSectionPage = () => {
                         name={`translations.${index}.description`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Description</FormLabel>
+                            <FormLabel>Açıklama</FormLabel>
                             <FormControl>
                               <Textarea
                                 rows={3}
@@ -363,7 +364,7 @@ const ConsultOnlineSectionPage = () => {
                         name={`translations.${index}.avatarText`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Avatar Text</FormLabel>
+                            <FormLabel>Avatar Metni</FormLabel>
                             <FormControl>
                               <Input placeholder="Choose Your Doctor, Ask Your Questions" {...field} />
                             </FormControl>
@@ -378,7 +379,7 @@ const ConsultOnlineSectionPage = () => {
                           name={`translations.${index}.buttonText`}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Button Text</FormLabel>
+                              <FormLabel>Buton Metni</FormLabel>
                               <FormControl>
                                 <Input placeholder="Book Your Free Consultation Today" {...field} />
                               </FormControl>
@@ -392,7 +393,7 @@ const ConsultOnlineSectionPage = () => {
                           name={`translations.${index}.buttonLink`}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Button Link</FormLabel>
+                              <FormLabel>Buton Bağlantısı</FormLabel>
                               <FormControl>
                                 <Input placeholder="/contact" {...field} />
                               </FormControl>

@@ -61,22 +61,37 @@ export const PUT = withAdmin(async (req: Request) => {
     const data = await req.json();
     const { imageUrl, translations } = data;
 
-    // Ana kaydı güncelle
-    const consultOnlineSection = await prisma.consultOnlineSection.update({
-      where: {
-        id: "main",
-      },
-      data: {
-        imageUrl,
-      },
+    console.log(`[ADMIN-API] Updating ConsultOnlineSection with imageUrl:`, !!imageUrl);
+    console.log(`[ADMIN-API] Received ${translations?.length || 0} translations`);
+
+    // Önce konsultasyon bölümünün var olup olmadığını kontrol edelim
+    const existingSection = await prisma.consultOnlineSection.findUnique({
+      where: { id: "main" },
     });
+
+    // Ana kaydı güncelle veya oluştur
+    const consultOnlineSection = existingSection
+      ? await prisma.consultOnlineSection.update({
+          where: { id: "main" },
+          data: { imageUrl },
+        })
+      : await prisma.consultOnlineSection.create({
+          data: {
+            id: "main",
+            imageUrl,
+          },
+        });
+
+    console.log(`[ADMIN-API] ConsultOnlineSection ${existingSection ? 'updated' : 'created'} with ID:`, consultOnlineSection.id);
 
     // Çevirileri güncelle (upsert)
     if (translations && Array.isArray(translations)) {
       for (const translation of translations) {
         const { languageCode, tagText, title, description, avatarText, buttonText, buttonLink } = translation;
 
-        await prisma.consultOnlineSectionTranslation.upsert({
+        console.log(`[ADMIN-API] Processing translation for language: ${languageCode} with title: ${title}`);
+
+        const result = await prisma.consultOnlineSectionTranslation.upsert({
           where: {
             consultOnlineSectionId_languageCode: {
               consultOnlineSectionId: "main",
@@ -98,10 +113,12 @@ export const PUT = withAdmin(async (req: Request) => {
             title,
             description,
             avatarText,
-            buttonText, 
+            buttonText,
             buttonLink,
           },
         });
+
+        console.log(`[ADMIN-API] Translation ${result.id} for ${languageCode} was ${result.createdAt === result.updatedAt ? 'created' : 'updated'}`);
       }
     }
 
