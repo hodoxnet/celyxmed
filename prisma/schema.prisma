@@ -77,6 +77,10 @@ model Language {
 
   // Clinic Showcase İlişkisi
   clinicShowcaseTranslations ClinicShowcaseTranslation[]
+
+  // Why Trust Section İlişkileri
+  whyTrustSectionTranslations WhyTrustSectionTranslation[]
+  whyTrustPointTranslations   WhyTrustPointTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -842,4 +846,63 @@ model FooterMenuItemTranslation {
   updatedAt       DateTime        @updatedAt
 
   @@unique([footerMenuItemId, languageCode])
+}
+
+// ----- ANA SAYFA WHY TRUST SECTION MODELLERİ -----
+
+// Ana Sayfa Why Trust Section (Tek Kayıt Olacak)
+model WhyTrustSection {
+  id                String   @id @default("main") // Sabit ID, sadece bir tane olacak
+  backgroundImage   String?  // Arka plan görseli (dosya yolu)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  translations      WhyTrustSectionTranslation[]
+  trustPoints       WhyTrustPoint[]
+}
+
+// Why Trust Section Çevirileri (Dile özgü metinler)
+model WhyTrustSectionTranslation {
+  id                 String           @id @default(cuid())
+  whyTrustSection    WhyTrustSection  @relation(fields: [whyTrustSectionId], references: [id], onDelete: Cascade)
+  whyTrustSectionId  String           // Sabit olarak "main" olacak
+  language           Language         @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode       String
+
+  // Ana başlık ve alt başlık
+  title              String          // "Why Trust Celyxmed?"
+  subtitle           String          // "Your Health, Our Priority"
+
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  @@unique([whyTrustSectionId, languageCode])
+}
+
+// Trust Point Modeli (Dil Bağımsız)
+model WhyTrustPoint {
+  id                String          @id @default(cuid())
+  whyTrustSection   WhyTrustSection @relation(fields: [whyTrustSectionId], references: [id], onDelete: Cascade)
+  whyTrustSectionId String          // Sabit olarak "main" olacak
+  number            String          // "01", "02", vb.
+  order             Int             @default(0)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  translations      WhyTrustPointTranslation[]
+}
+
+// Trust Point Çevirileri (Dile Özgü)
+model WhyTrustPointTranslation {
+  id              String        @id @default(cuid())
+  whyTrustPoint   WhyTrustPoint @relation(fields: [whyTrustPointId], references: [id], onDelete: Cascade)
+  whyTrustPointId String
+  language        Language      @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode    String
+
+  title           String        // "Experienced Specialists" gibi
+  description     String        // Açıklama metni
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@unique([whyTrustPointId, languageCode])
 }

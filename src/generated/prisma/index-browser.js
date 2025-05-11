@@ -633,6 +633,42 @@ exports.Prisma.FooterMenuItemTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.WhyTrustSectionScalarFieldEnum = {
+  id: 'id',
+  backgroundImage: 'backgroundImage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WhyTrustSectionTranslationScalarFieldEnum = {
+  id: 'id',
+  whyTrustSectionId: 'whyTrustSectionId',
+  languageCode: 'languageCode',
+  title: 'title',
+  subtitle: 'subtitle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WhyTrustPointScalarFieldEnum = {
+  id: 'id',
+  whyTrustSectionId: 'whyTrustSectionId',
+  number: 'number',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WhyTrustPointTranslationScalarFieldEnum = {
+  id: 'id',
+  whyTrustPointId: 'whyTrustPointId',
+  languageCode: 'languageCode',
+  title: 'title',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -719,7 +755,11 @@ exports.Prisma.ModelName = {
   FooterMenu: 'FooterMenu',
   FooterMenuTranslation: 'FooterMenuTranslation',
   FooterMenuItem: 'FooterMenuItem',
-  FooterMenuItemTranslation: 'FooterMenuItemTranslation'
+  FooterMenuItemTranslation: 'FooterMenuItemTranslation',
+  WhyTrustSection: 'WhyTrustSection',
+  WhyTrustSectionTranslation: 'WhyTrustSectionTranslation',
+  WhyTrustPoint: 'WhyTrustPoint',
+  WhyTrustPointTranslation: 'WhyTrustPointTranslation'
 };
 
 /**

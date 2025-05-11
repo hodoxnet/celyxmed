@@ -15,7 +15,8 @@ import FaqSection from '@/components/home/FaqSection';
 import WhyChooseSection from '@/components/home/WhyChooseSection';
 import ConsultOnlineSection from '@/components/home/ConsultOnlineSection'; // Yeni bileşeni import et
 
-export default function HomePage() {
+export default function HomePage({ params }: { params: { locale: string } }) {
+  const { locale } = params;
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow pt-0"> {/* Padding kaldırıldı */}
@@ -23,7 +24,7 @@ export default function HomePage() {
         <WhyChooseSection /> {/* index.html'deki video ve açıklama bölümü */}
         <TreatmentsSection />
         <ClinicShowcaseCarousel />
-        <WhyTrustSection />
+        <WhyTrustSection locale={locale} />
         <SuccessStories />
         <FeaturesTabs />
         <ConsultOnlineSection /> {/* index.html'deki doktor fotoğraflı bölüm */}
