@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { CalendarDays } from 'lucide-react';
 
 // Konsülte bölümü için tip tanımları
 interface DoctorAvatar {
@@ -136,16 +137,16 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
 
   return (
     <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="bg-teal-800 rounded-2xl shadow-xl overflow-hidden md:flex md:items-stretch">
-          {/* Sol Taraf: Görsel */}
-          <div className="md:w-1/2 relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-[1600px]"> {/* Max genişlik 1600px olarak güncellendi */}
+        <div className="bg-teal-800 rounded-2xl shadow-xl overflow-hidden md:flex md:items-stretch p-4 md:p-8 h-[680px]"> {/* Yükseklik 680px olarak ayarlandı ve ana yeşil alana padding eklendi */}
+          {/* Sol Taraf: Görsel Kartı */}
+          <div className="md:w-1/2 relative flex items-center justify-center p-4"> {/* Görseli ortalamak ve padding vermek için */}
             {/* Ana görsel */}
-            <div className="h-full w-full bg-amber-500">
+            <div className="h-full w-full bg-amber-500 rounded-xl overflow-hidden shadow-lg"> {/* Görsel kartına yuvarlak köşe ve gölge */}
               <img
                 src={getFullImageUrl(imageUrl)}
                 alt="Consult Online"
-                className="w-full h-full md:h-[480px] object-cover"
+                className="w-full h-full object-cover" /* Sabit yükseklik kaldırıldı, h-full ile dolduracak */
                 style={{ objectPosition: 'center' }}
                 onError={(e) => {
                   console.error('[CLIENT] Ana resim yüklenemedi:', imageUrl);
@@ -156,9 +157,9 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
           </div>
 
           {/* Sağ Taraf: İçerik */}
-          <div className="md:w-1/2 p-8 md:p-10 lg:p-14 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100/20 text-white text-xs font-semibold mb-5">
-              <span className="w-2 h-2 rounded-full bg-white"></span>
+          <div className="md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center"> {/* Padding biraz ayarlandı */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-200 text-black text-xs font-semibold mb-5">
+              <span className="w-2 h-2 rounded-full bg-black"></span>
               {translation.tagText}
             </div>
             <h2 className="text-3xl md:text-4xl font-semibold mb-3 text-white">
@@ -205,11 +206,8 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
             {/* Buton */}
             <Button size="lg" className="w-full sm:w-auto bg-white text-teal-700 hover:bg-white/90 rounded-full px-8 py-6 flex items-center gap-2 mt-4" asChild>
               <Link href={translation.buttonLink}>
+                <CalendarDays className="mr-2 h-5 w-5" />
                 <span className="text-sm font-medium">{translation.buttonText}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
               </Link>
             </Button>
           </div>
