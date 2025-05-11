@@ -4,6 +4,7 @@
 // FloatingButtons ve Footer importları kaldırıldı (layout'a taşındı)
 
 // Ana sayfa bölüm bileşenlerini import et
+import { use } from 'react';
 import HeroSection from '@/components/home/HeroSection';
 import TreatmentsSection from '@/components/home/TreatmentsSection';
 import ClinicShowcaseCarousel from '@/components/home/ClinicShowcaseCarousel'; // Carousel sürümü kullanılıyor
@@ -15,7 +16,9 @@ import FaqSection from '@/components/home/FaqSection';
 import WhyChooseSection from '@/components/home/WhyChooseSection';
 import ConsultOnlineSection from '@/components/home/ConsultOnlineSection'; // Yeni bileşeni import et
 
-export default function HomePage({ params }: { params: { locale: string } }) {
+export default function HomePage(props: { params: Promise<{ locale: string }> }) {
+  // props.params Promise'ini React.use ile çözümle
+  const params = use(props.params);
   const { locale } = params;
   return (
     <div className="flex flex-col min-h-screen">
