@@ -81,6 +81,13 @@ model Language {
   // Why Trust Section İlişkileri
   whyTrustSectionTranslations WhyTrustSectionTranslation[]
   whyTrustPointTranslations   WhyTrustPointTranslation[]
+
+  // Success Stories Section İlişkileri
+  successStoriesSectionTranslations     SuccessStoriesSectionTranslation[]
+  successStoriesTestimonialTranslations SuccessStoriesTestimonialTranslation[]
+
+  // Consult Online Section İlişkileri
+  consultOnlineSectionTranslations ConsultOnlineSectionTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -915,4 +922,148 @@ model WhyTrustPointTranslation {
   updatedAt DateTime @updatedAt
 
   @@unique([whyTrustPointId, languageCode])
+}
+
+// ----- ANA SAYFA SUCCESS STORIES SECTION MODELLERİ -----
+
+// Ana Sayfa Success Stories Section (Tek Kayıt Olacak)
+model SuccessStoriesSection {
+  id        String   @id @default("main") // Sabit ID, sadece bir tane olacak
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // İlişkiler
+  translations  SuccessStoriesSectionTranslation[]
+  galleryImages SuccessStoriesImage[]
+  testimonials  SuccessStoriesTestimonial[]
+}
+
+// Success Stories Section Çevirileri (Dile özgü metinler)
+model SuccessStoriesSectionTranslation {
+  id                      String                @id @default(cuid())
+  successStoriesSection   SuccessStoriesSection @relation(fields: [successStoriesSectionId], references: [id], onDelete: Cascade)
+  successStoriesSectionId String // Sabit olarak "main" olacak
+  language                Language              @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode            String
+
+  // Ana başlık ve açıklama
+  title       String // "10,000+ Successful Treatments, Your Health in Trusted Hands"
+  description String // Açıklama metni
+
+  // Butonlar
+  consultButtonText String? // "Book Your Free Consultation"
+  consultButtonLink String? // "/contact"
+
+  discoverButtonText String? // "Discover Success Stories and Before, Afters"
+  discoverButtonLink String? // "/success-stories"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([successStoriesSectionId, languageCode])
+}
+
+// Success Stories Galeri Görselleri
+model SuccessStoriesImage {
+  id                      String                @id @default(cuid())
+  successStoriesSection   SuccessStoriesSection @relation(fields: [successStoriesSectionId], references: [id], onDelete: Cascade)
+  successStoriesSectionId String // Sabit olarak "main" olacak
+
+  imageUrl String // Görsel dosya yolu
+  altText  String? // Alt text
+  order    Int     @default(0) // Sıralama
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Success Stories Hasta Yorumları
+model SuccessStoriesTestimonial {
+  id                      String                @id @default(cuid())
+  successStoriesSection   SuccessStoriesSection @relation(fields: [successStoriesSectionId], references: [id], onDelete: Cascade)
+  successStoriesSectionId String // Sabit olarak "main" olacak
+
+  stars    Int     @default(5) // Yıldız sayısı (1-5)
+  imageUrl String? // Hasta fotoğrafı
+  order    Int     @default(0) // Sıralama
+
+  // İlişkiler
+  translations SuccessStoriesTestimonialTranslation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Success Stories Hasta Yorumları Çevirileri
+model SuccessStoriesTestimonialTranslation {
+  id            String                    @id @default(cuid())
+  testimonial   SuccessStoriesTestimonial @relation(fields: [testimonialId], references: [id], onDelete: Cascade)
+  testimonialId String
+  language      Language                  @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+
+  text      String // Yorum metni
+  author    String // Hasta adı ve ülkesi
+  treatment String // Tedavi adı
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([testimonialId, languageCode])
+}
+
+// ----- ANA SAYFA CONSULT ONLINE SECTION MODELLERİ -----
+
+// Ana Sayfa Consult Online Section (Tek Kayıt Olacak)
+model ConsultOnlineSection {
+  id        String   @id @default("main") // Sabit ID, sadece bir tane olacak
+  imageUrl  String? // Ana resim URL'si
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // İlişkiler
+  translations  ConsultOnlineSectionTranslation[]
+  doctorAvatars ConsultOnlineDoctorAvatar[]
+}
+
+// Consult Online Section Çevirileri (Dile özgü metinler)
+model ConsultOnlineSectionTranslation {
+  id                     String               @id @default(cuid())
+  consultOnlineSection   ConsultOnlineSection @relation(fields: [consultOnlineSectionId], references: [id], onDelete: Cascade)
+  consultOnlineSectionId String // Sabit olarak "main" olacak
+  language               Language             @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode           String
+
+  // Tag line - "Be Your Best"
+  tagText String
+
+  // Ana başlık ve açıklama
+  title       String // "Consult with Our Doctors Online"
+  description String // Açıklama metni
+
+  // Avatar metin "Choose Your Doctor, Ask Your Questions"
+  avatarText String
+
+  // Buton
+  buttonText String // "Book Your Free Consultation Today"
+  buttonLink String // "/contact"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([consultOnlineSectionId, languageCode])
+}
+
+// Consult Online Doktor Avatarları
+model ConsultOnlineDoctorAvatar {
+  id                     String               @id @default(cuid())
+  consultOnlineSection   ConsultOnlineSection @relation(fields: [consultOnlineSectionId], references: [id], onDelete: Cascade)
+  consultOnlineSectionId String // Sabit olarak "main" olacak
+
+  imageUrl String // Doktor avatar URL'si
+  altText  String? // Alt text
+  order    Int     @default(0) // Sıralama
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

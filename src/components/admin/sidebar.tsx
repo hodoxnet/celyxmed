@@ -96,6 +96,8 @@ const navItems: NavItem[] = [
       { title: "Klinik Tanıtım Yönetimi", href: "/admin/clinic-showcase" }, // Yeni menü
       { title: "Neden Celyxmed Bölümü", href: "/admin/why-choose-section" },
       { title: "Neden Bize Güvenmelisiniz", href: "/admin/why-trust-section" }, // Yeni eklenen WhyTrustSection
+      { title: "Başarı Hikayeleri Bölümü", href: "/admin/success-stories-section" }, // Yeni eklenen SuccessStoriesSection
+      { title: "Online Konsültasyon Bölümü", href: "/admin/consult-online-section" }, // Yeni eklenen ConsultOnlineSection
       // Gelecekteki anasayfa modülleri buraya eklenebilir
     ],
   },

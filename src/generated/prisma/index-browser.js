@@ -669,6 +669,88 @@ exports.Prisma.WhyTrustPointTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SuccessStoriesSectionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SuccessStoriesSectionTranslationScalarFieldEnum = {
+  id: 'id',
+  successStoriesSectionId: 'successStoriesSectionId',
+  languageCode: 'languageCode',
+  title: 'title',
+  description: 'description',
+  consultButtonText: 'consultButtonText',
+  consultButtonLink: 'consultButtonLink',
+  discoverButtonText: 'discoverButtonText',
+  discoverButtonLink: 'discoverButtonLink',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SuccessStoriesImageScalarFieldEnum = {
+  id: 'id',
+  successStoriesSectionId: 'successStoriesSectionId',
+  imageUrl: 'imageUrl',
+  altText: 'altText',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SuccessStoriesTestimonialScalarFieldEnum = {
+  id: 'id',
+  successStoriesSectionId: 'successStoriesSectionId',
+  stars: 'stars',
+  imageUrl: 'imageUrl',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SuccessStoriesTestimonialTranslationScalarFieldEnum = {
+  id: 'id',
+  testimonialId: 'testimonialId',
+  languageCode: 'languageCode',
+  text: 'text',
+  author: 'author',
+  treatment: 'treatment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConsultOnlineSectionScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConsultOnlineSectionTranslationScalarFieldEnum = {
+  id: 'id',
+  consultOnlineSectionId: 'consultOnlineSectionId',
+  languageCode: 'languageCode',
+  tagText: 'tagText',
+  title: 'title',
+  description: 'description',
+  avatarText: 'avatarText',
+  buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConsultOnlineDoctorAvatarScalarFieldEnum = {
+  id: 'id',
+  consultOnlineSectionId: 'consultOnlineSectionId',
+  imageUrl: 'imageUrl',
+  altText: 'altText',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -759,7 +841,15 @@ exports.Prisma.ModelName = {
   WhyTrustSection: 'WhyTrustSection',
   WhyTrustSectionTranslation: 'WhyTrustSectionTranslation',
   WhyTrustPoint: 'WhyTrustPoint',
-  WhyTrustPointTranslation: 'WhyTrustPointTranslation'
+  WhyTrustPointTranslation: 'WhyTrustPointTranslation',
+  SuccessStoriesSection: 'SuccessStoriesSection',
+  SuccessStoriesSectionTranslation: 'SuccessStoriesSectionTranslation',
+  SuccessStoriesImage: 'SuccessStoriesImage',
+  SuccessStoriesTestimonial: 'SuccessStoriesTestimonial',
+  SuccessStoriesTestimonialTranslation: 'SuccessStoriesTestimonialTranslation',
+  ConsultOnlineSection: 'ConsultOnlineSection',
+  ConsultOnlineSectionTranslation: 'ConsultOnlineSectionTranslation',
+  ConsultOnlineDoctorAvatar: 'ConsultOnlineDoctorAvatar'
 };
 
 /**

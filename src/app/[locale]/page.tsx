@@ -28,9 +28,9 @@ export default function HomePage(props: { params: Promise<{ locale: string }> })
         <TreatmentsSection />
         <ClinicShowcaseCarousel />
         <WhyTrustSection locale={locale} />
-        <SuccessStories />
+        <SuccessStories locale={locale} />
         <FeaturesTabs />
-        <ConsultOnlineSection /> {/* index.html'deki doktor fotoğraflı bölüm */}
+        <ConsultOnlineSection locale={locale} /> {/* index.html'deki doktor fotoğraflı bölüm */}
         <BlogPreview />
         <FaqSection />
       </main>
