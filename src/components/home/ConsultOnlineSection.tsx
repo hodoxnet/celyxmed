@@ -138,7 +138,7 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
   return (
     <section className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 max-w-[1600px]"> {/* Max genişlik 1600px olarak güncellendi */}
-        <div className="bg-teal-800 rounded-2xl shadow-xl overflow-hidden md:flex md:items-stretch p-4 md:p-8 h-[680px]"> {/* Yükseklik 680px olarak ayarlandı ve ana yeşil alana padding eklendi */}
+        <div className="bg-[#29707a] rounded-2xl shadow-xl overflow-hidden md:flex md:items-stretch p-4 md:p-8 h-[680px]"> {/* Arka plan rengi #29707a olarak güncellendi, Yükseklik 680px olarak ayarlandı ve ana yeşil alana padding eklendi */}
           {/* Sol Taraf: Görsel Kartı */}
           <div className="md:w-1/2 relative flex items-center justify-center p-4"> {/* Görseli ortalamak ve padding vermek için */}
             {/* Ana görsel */}
@@ -158,7 +158,7 @@ const ConsultOnlineSection = ({ locale = 'en' }: ConsultOnlineSectionProps) => {
 
           {/* Sağ Taraf: İçerik */}
           <div className="md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center"> {/* Padding biraz ayarlandı */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-200 text-black text-xs font-semibold mb-5">
+            <div className="inline-flex items-center gap-[0.62rem] py-[0.31rem] px-[0.56rem] rounded bg-slate-100 text-[#364959] text-xs font-semibold uppercase mb-5">
               <span className="w-2 h-2 rounded-full bg-black"></span>
               {translation.tagText}
             </div>
