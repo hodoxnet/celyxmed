@@ -4,6 +4,7 @@ import React from 'react';
 import { use } from 'react';
 import HeroSection from '@/components/about/HeroSection';
 import JciSection from '@/components/about/JciSection';
+import ClinicGallery from '@/components/about/ClinicGallery';
 
 // Sayfa parametrelerinin tipini tanımla
 interface AboutPageProps {
@@ -30,7 +31,7 @@ export default function AboutPage({ params }: AboutPageProps) {
           secondaryButtonLink="#doktorlar"
         />
         
-        {/* JCI Akreditasyon Bölümü - Yeni eklendi */}
+        {/* JCI Akreditasyon Bölümü */}
         <JciSection 
           title="Celyxmed ile dünya standartlarında sağlık hizmetini deneyimleyin. Estetik ameliyatlarımız JCI tarafından akredite edilmiş ortak hastanelerde gerçekleştirilir ve en yüksek güvenlik ve bakım standartlarını sağlar."
           primaryButtonText="Kliniğimizi Keşfedin"
@@ -39,7 +40,30 @@ export default function AboutPage({ params }: AboutPageProps) {
           secondaryButtonLink="#doktorlar"
         />
         
-        {/* Vizyonumuz ve Misyonumuz Bölümü - Daha yuvarlak hatlı tasarım */}
+        {/* Klinik Galeri Bölümü - Hızı artırıldı */}
+        <ClinicGallery 
+          speed={3} // Hız artırıldı
+          images={[
+            {
+              src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67e1a882b66604fbd32f690b_celyxmed-estetik-klinigi-1.avif",
+              alt: "Celyxmed Estetik Kliniği 1"
+            },
+            {
+              src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67e1a882b47bbed49bb6e4c6_celyxmed-estetik-klinigi-2.avif",
+              alt: "Celyxmed Estetik Kliniği 2"
+            },
+            {
+              src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67e1a8826fdd559adff2ee72_celyxmed-estetik-klinigi-4.avif",
+              alt: "Celyxmed Estetik Kliniği 4"
+            },
+            {
+              src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67e1a8822b3acd0be8b3e11e_celyxmed-estetik-klinigi-3.avif",
+              alt: "Celyxmed Estetik Kliniği 3"
+            }
+          ]}
+        />
+        
+        {/* Vizyonumuz ve Misyonumuz Bölümü */}
         <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
           {/* Arka plan dekoratif elementleri */}
           <div className="absolute left-0 top-24 w-32 h-32 rounded-full bg-blue-100 opacity-30 -z-10"></div>
