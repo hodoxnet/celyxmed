@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Navbar from './Navbar';
+import NavbarWrapper from './NavbarWrapper';
 import Footer from './Footer';
 import FloatingButtons from './FloatingButtons';
 import { ThemeProvider } from "@/components/theme-provider";
@@ -32,7 +32,7 @@ interface RootLayoutClientProps {
   locale: string;
   messages: any; // Veya daha spesifik bir tip kullanabilirsiniz: AbstractIntlMessages
   generalSettings: GeneralSettingWithTranslation | null;
-  headerMenu: HeaderMenu | null; // Header menü prop'u eklendi
+  headerMenu: HeaderMenu[] | null; // Header menü prop'u eklendi
   footerMenus: FooterMenu[] | null; // Footer menüleri prop'u eklendi
 }
 
@@ -50,12 +50,12 @@ export default function RootLayoutClient({ children, locale, messages, generalSe
     >
       <NextIntlClientProvider locale={locale} messages={messages}>
         <div className="flex flex-col min-h-screen">
-          {/* Navbar'a headerMenu prop'unu ekle */}
-          <Navbar 
-            logoUrl={generalSettings?.logoUrl} 
-            headerButtonText={generalSettings?.translation?.headerButtonText} 
-            headerButtonLink={generalSettings?.translation?.headerButtonLink} 
-            menuData={headerMenu} // Yeni prop
+          {/* NavbarWrapper kullanımını düzelt */}
+          <NavbarWrapper
+            logoUrl={generalSettings?.logoUrl}
+            headerButtonText={generalSettings?.translation?.headerButtonText}
+            headerButtonLink={generalSettings?.translation?.headerButtonLink}
+            menuData={headerMenu} // Geçiş yapılıyor
           />
           <main className="flex-grow">
             {children}

@@ -5,9 +5,9 @@ import prisma from '@/lib/prisma';
 import { z } from 'zod';
 
 // Helper function to build the menu hierarchy and resolve links
-async function buildHeaderMenu(locale: string) {
-  const headerMenu = await prisma.headerMenu.findFirst({
-    where: { isActive: true }, // Genellikle tek bir aktif header menüsü olur
+async function buildHeaderMenus(locale: string) {
+  const headerMenus = await prisma.headerMenu.findMany({
+    where: { isActive: true }, // Tüm aktif header menülerini getir
     include: {
       translations: { // Ana menü çevirileri
         where: { languageCode: locale },
@@ -47,16 +47,8 @@ async function buildHeaderMenu(locale: string) {
     },
   });
 
-  if (!headerMenu) {
-    return null;
-  }
-
-  const menuNameTranslation = headerMenu.translations[0];
-  if (!menuNameTranslation) {
-    // İstenen dilde ana menü adı çevirisi yoksa, menüyü geçersiz sayabiliriz veya bir fallback kullanabiliriz.
-    // Şimdilik null dönüyoruz, bu da 404'e yol açacak.
-    // Alternatif olarak: console.warn(`HeaderMenu ID ${headerMenu.id} için '${locale}' dilinde isim çevirisi bulunamadı.`);
-    return null;
+  if (!headerMenus || headerMenus.length === 0) {
+    return [];
   }
 
   // Veriyi frontend için formatla ve linkleri oluştur
@@ -87,11 +79,20 @@ async function buildHeaderMenu(locale: string) {
       .filter(item => item !== null); // Geçersiz öğeleri filtrele
   };
 
-  return {
-    id: headerMenu.id,
-    name: menuNameTranslation.name, // Çevrilmiş menü adını kullan
-    items: formatItems(headerMenu.items.filter(item => !item.parentId)), // Sadece ana seviye öğelerle başla
-  };
+  // Tüm menüleri formatla ve dön
+  return headerMenus.map(menu => {
+    const menuNameTranslation = menu.translations[0];
+    if (!menuNameTranslation) {
+      // İstenen dilde çeviri yoksa bu menüyü atla
+      return null;
+    }
+
+    return {
+      id: menu.id,
+      name: menuNameTranslation.name, // Çevrilmiş menü adını kullan
+      items: formatItems(menu.items.filter(item => !item.parentId)), // Sadece ana seviye öğelerle başla
+    };
+  }).filter(menu => menu !== null); // Geçersiz menüleri filtrele
 }
 
 
@@ -103,9 +104,9 @@ export async function GET(req: Request) {
 
     console.log(`[API/menus/header] Requested locale: ${locale}`);
 
-    const menuData = await buildHeaderMenu(locale);
+    const menuData = await buildHeaderMenus(locale);
 
-    if (!menuData) {
+    if (!menuData || menuData.length === 0) {
       return NextResponse.json({ message: 'Aktif header menüsü bulunamadı.' }, { status: 404 });
     }
 

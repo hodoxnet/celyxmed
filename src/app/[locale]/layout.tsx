@@ -57,7 +57,7 @@ async function fetchGeneralSettings(locale: string): Promise<GeneralSettingWithT
 }
 
 // Header menü verisini çek
-async function fetchHeaderMenu(locale: string): Promise<HeaderMenu | null> {
+async function fetchHeaderMenu(locale: string): Promise<HeaderMenu[] | null> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   if (!baseUrl) return null;
   try {

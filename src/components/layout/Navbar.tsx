@@ -65,7 +65,7 @@ interface NavbarProps {
   logoUrl?: string | null;
   headerButtonText?: string | null;
   headerButtonLink?: string | null;
-  menuData?: HeaderMenu | null; // Dinamik menü verisi
+  menuData?: HeaderMenu[] | null; // Dinamik menü verisi (artık dizi)
 }
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -96,21 +96,30 @@ const Navbar: React.FC<NavbarProps> = ({
     fetchLanguages();
   }, []);
 
-  const dynamicMenuItems = menuData?.items || [];
+  // Menü verilerini diziden al (artık birden çok menü olabilir)
+  const menus = menuData || [];
 
-  // Mobil menü için formatlama
-  const mobileMenuItems = dynamicMenuItems.map(item => ({
-    id: item.id,
-    label: item.title,
-    href: (!item.children || item.children.length === 0) ? item.href : undefined,
-    openInNewTab: item.openInNewTab,
-    items: item.children?.map(child => ({
-      id: child.id,
-      title: child.title,
-      href: child.href,
-      openInNewTab: child.openInNewTab
-    })) || []
-  }));
+  // Mobil menü için tüm menü öğelerini düzenle
+  const mobileMenuFormats = menus.map(menu => {
+    const mobileItems = menu.items.map(item => ({
+      id: item.id,
+      label: item.title,
+      href: (!item.children || item.children.length === 0) ? item.href : undefined,
+      openInNewTab: item.openInNewTab,
+      items: item.children?.map(child => ({
+        id: child.id,
+        title: child.title,
+        href: child.href,
+        openInNewTab: child.openInNewTab
+      })) || []
+    }));
+
+    return {
+      menuId: menu.id,
+      menuName: menu.name,
+      items: mobileItems
+    };
+  });
 
   return (
     <>
@@ -134,42 +143,25 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className="hidden lg:flex items-center space-x-6">
               <NavigationMenu>
                 <NavigationMenuList>
-                  {/* Dinamik Menü Öğeleri */}
-                  {dynamicMenuItems.map((item) => (
-                    <NavigationMenuItem key={item.id}>
-                      {/* Eğer alt menüsü varsa Trigger kullan */}
-                      {item.children && item.children.length > 0 ? (
-                        <>
-                          <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-normal">
-                            {item.title}
-                          </NavigationMenuTrigger>
-                          <NavigationMenuContent>
-                            <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] lg:w-[300px]">
-                              {item.children.map((subItem) => (
-                                <ListItem
-                                  key={subItem.id}
-                                  title={subItem.title}
-                                  href={subItem.href}
-                                  target={subItem.openInNewTab ? "_blank" : undefined}
-                                  rel={subItem.openInNewTab ? "noopener noreferrer" : undefined}
-                                />
-                              ))}
-                            </ul>
-                          </NavigationMenuContent>
-                        </>
-                      ) : (
-                        // Alt menüsü yoksa direkt Link kullan
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href={item.href}
-                            className={navigationMenuTriggerStyle() + " bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent py-2 px-3 text-base font-normal"}
-                            target={item.openInNewTab ? "_blank" : undefined}
-                            rel={item.openInNewTab ? "noopener noreferrer" : undefined}
-                          >
-                            {item.title}
-                          </Link>
-                        </NavigationMenuLink>
-                      )}
+                  {/* Tüm Ana Menüler - Her biri kendi dropdown'una sahip */}
+                  {menus.map(menu => (
+                    <NavigationMenuItem key={menu.id}>
+                      <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-medium">
+                        {menu.name}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] lg:w-[300px]">
+                          {menu.items.map((item) => (
+                            <ListItem
+                              key={item.id}
+                              title={item.title}
+                              href={item.href}
+                              target={item.openInNewTab ? "_blank" : undefined}
+                              rel={item.openInNewTab ? "noopener noreferrer" : undefined}
+                            />
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
                     </NavigationMenuItem>
                   ))}
 
@@ -241,44 +233,30 @@ const Navbar: React.FC<NavbarProps> = ({
                   <div className="flex-1 overflow-auto py-6 px-4">
                     {/* Mobil Navigasyon (Dinamik) */}
                     <nav className="flex flex-col space-y-6">
-                      {mobileMenuItems.map((item) => (
-                        <div key={item.id} className="border-b pb-4">
-                          {item.items && item.items.length > 0 ? (
-                            // Alt menüsü varsa Accordion gibi davran
-                            <>
-                              <button
-                                className="flex items-center justify-between w-full text-left text-lg font-medium mb-2"
-                                onClick={() => setMobileActiveDropdown(mobileActiveDropdown === item.id ? null : item.id)}
-                              >
-                                <span>{item.label}</span>
-                                <ChevronDown className={`h-5 w-5 transition-transform ${mobileActiveDropdown === item.id ? 'rotate-180' : ''}`} />
-                              </button>
-                              {mobileActiveDropdown === item.id && (
-                                <div className="pl-4 space-y-2 mt-2 max-h-[50vh] overflow-y-auto">
-                                  {item.items.map((dropdownItem) => (
-                                    <Link
-                                      key={dropdownItem.id}
-                                      href={dropdownItem.href}
-                                      className="block py-2 text-gray-600 hover:text-gray-900"
-                                      target={dropdownItem.openInNewTab ? "_blank" : undefined}
-                                      rel={dropdownItem.openInNewTab ? "noopener noreferrer" : undefined}
-                                    >
-                                      {dropdownItem.title}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
-                            </>
-                          ) : (
-                            // Alt menüsü yoksa direkt Link
-                            <Link
-                              href={item.href || '#'} // href yoksa '#' kullan
-                              className="flex items-center justify-between w-full text-left text-lg font-medium mb-2 text-gray-600 hover:text-gray-900"
-                              target={item.openInNewTab ? "_blank" : undefined}
-                              rel={item.openInNewTab ? "noopener noreferrer" : undefined}
-                            >
-                              <span>{item.label}</span>
-                            </Link>
+                      {/* Tüm Ana Menüler (Mobil) */}
+                      {mobileMenuFormats.map(menu => (
+                        <div key={menu.menuId} className="border-b pb-4">
+                          <button
+                            className="flex items-center justify-between w-full text-left text-lg font-medium mb-2"
+                            onClick={() => setMobileActiveDropdown(mobileActiveDropdown === menu.menuId ? null : menu.menuId)}
+                          >
+                            <span className="font-medium">{menu.menuName}</span>
+                            <ChevronDown className={`h-5 w-5 transition-transform ${mobileActiveDropdown === menu.menuId ? 'rotate-180' : ''}`} />
+                          </button>
+                          {mobileActiveDropdown === menu.menuId && (
+                            <div className="pl-4 space-y-2 mt-2 max-h-[50vh] overflow-y-auto">
+                              {menu.items.map((item) => (
+                                <Link
+                                  key={item.id}
+                                  href={item.href || '#'}
+                                  className="block py-2 text-gray-600 hover:text-gray-900"
+                                  target={item.openInNewTab ? "_blank" : undefined}
+                                  rel={item.openInNewTab ? "noopener noreferrer" : undefined}
+                                >
+                                  {item.label}
+                                </Link>
+                              ))}
+                            </div>
                           )}
                         </div>
                       ))}
