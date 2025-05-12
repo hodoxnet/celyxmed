@@ -8,15 +8,17 @@ async function generateNextConfig() {
   try {
     console.log('[generate-next-config] Fetching data from database...');
     
-    // 1. Aktif dilleri al
+    // 1. Aktif dilleri ve varsayılan dili al
     const activeLanguages = await prisma.language.findMany({
       where: { isActive: true },
-      select: { code: true },
+      select: { code: true, isDefault: true },
       orderBy: { code: 'asc' },
     });
-    
+
     const languageCodes = activeLanguages.map(lang => lang.code);
+    const defaultLanguage = activeLanguages.find(lang => lang.isDefault)?.code || 'tr';
     console.log(`[generate-next-config] Active languages: ${languageCodes.join(', ')}`);
+    console.log(`[generate-next-config] Default language: ${defaultLanguage}`);
     
     // 2. Rota çevirilerini al
     const routeTranslations = await prisma.routeTranslation.findMany({
@@ -125,7 +127,10 @@ export default withIntl(nextConfig);
     
     // 6. Şablonu dinamik verilerle güncelle
     const dynamicRewritesCode = JSON.stringify(dynamicRewrites, null, 2);
-    const updatedTemplate = configTemplate.replace('__DYNAMIC_REWRITES__', dynamicRewritesCode);
+    let updatedTemplate = configTemplate.replace('__DYNAMIC_REWRITES__', dynamicRewritesCode);
+
+    // Varsayılan dili de güncelle
+    updatedTemplate = updatedTemplate.replace('__DEFAULT_LOCALE__', `${defaultLanguage}`);
     
     // 7. Yeni next.config.ts dosyasını kaydet
     const configPath = path.resolve(process.cwd(), 'next.config.ts');

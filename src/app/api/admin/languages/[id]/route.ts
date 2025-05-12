@@ -17,6 +17,9 @@ export async function PUT(request: Request, { params }: Params) {
     const body = await request.json();
     const { name, isActive, isDefault } = body; // Güncellenecek alanlar
 
+    console.log("API - Gelen istek gövdesi:", body);
+    console.log("API - isDefault değeri:", isDefault, "tipi:", typeof isDefault);
+
     // En az bir alanın güncellenmesi gerektiğini kontrol et (isteğe bağlı)
     if (name === undefined && isActive === undefined && isDefault === undefined) {
       return NextResponse.json({ message: 'Güncellenecek en az bir alan (name, isActive, isDefault) gönderilmelidir.' }, { status: 400 });
@@ -31,9 +34,12 @@ export async function PUT(request: Request, { params }: Params) {
       return NextResponse.json({ message: 'Güncellenecek dil bulunamadı.' }, { status: 404 });
     }
 
+    console.log("API - Veritabanındaki mevcut dil:", currentLanguage);
+
     // Eğer bu dil varsayılan olarak ayarlanıyorsa, diğerlerini false yap
     // Sadece isDefault true olarak geliyorsa bu işlemi yap
     if (isDefault === true) {
+      console.log("API - Diğer dilleri varsayılan olmaktan çıkarma işlemi yapılıyor");
       await prisma.language.updateMany({
         where: { id: { not: id }, isDefault: true }, // Kendisi hariç diğer varsayılanları false yap
         data: { isDefault: false },
@@ -44,13 +50,20 @@ export async function PUT(request: Request, { params }: Params) {
     const updateData: Partial<Pick<Language, 'name' | 'isActive' | 'isDefault'>> = {};
     if (name !== undefined) updateData.name = name;
     if (isActive !== undefined) updateData.isActive = isActive;
-    if (isDefault !== undefined) updateData.isDefault = isDefault; // Gelen değeri doğrudan ata
+    if (isDefault !== undefined) {
+      // Boolean'a dönüştürmeyi garantile
+      updateData.isDefault = isDefault === true || isDefault === "true";
+      console.log("API - isDefault güncellenecek değer:", updateData.isDefault);
+    }
+
+    console.log("API - Güncellenecek veriler:", updateData);
 
     const updatedLanguage = await prisma.language.update({
       where: { id: id },
       data: updateData,
     });
 
+    console.log("API - Güncelleme sonrası:", updatedLanguage);
     return NextResponse.json(updatedLanguage);
   } catch (error: any) {
     console.error(`Error updating language ${id}:`, error);

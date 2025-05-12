@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/',
-        destination: '/tr',
+        destination: '/__DEFAULT_LOCALE__',
         permanent: true,
       },
     ];

@@ -14,7 +14,7 @@ import {
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, PlusCircle, Trash2, Edit, FileJson } from 'lucide-react';
+import { MoreHorizontal, PlusCircle, Trash2, Edit, FileJson, ToggleLeft, ToggleRight } from 'lucide-react';
 import { toast } from "sonner";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -87,6 +87,11 @@ export default function DillerPage() {
       delete dataToSend.code;
     }
 
+    // Debug için form değerleri ve gönderilen veriyi konsola yazdır
+    console.log("Form değerleri:", values);
+    console.log("Gönderilen veri:", dataToSend);
+    console.log("isDefault değeri (tip):", typeof dataToSend.isDefault);
+
     try {
       const response = await fetch(url, {
         method: method,
@@ -94,6 +99,10 @@ export default function DillerPage() {
         body: JSON.stringify(dataToSend),
       });
       if (!response.ok) throw new Error((await response.json()).message || 'API Hatası');
+
+      const responseData = await response.json();
+      console.log("API Yanıtı:", responseData);
+
       toast.success(`Dil başarıyla ${editingLanguage ? 'güncellendi' : 'eklendi'}!`);
       setIsFormOpen(false); setEditingLanguage(null); form.reset();
       await fetchLanguages();
@@ -117,11 +126,32 @@ export default function DillerPage() {
     } finally { setIsSubmitting(false); setDeletingLanguageId(null); }
   };
 
+  // Varsayılan dil değiştirme işlemi
+  const handleSetDefaultLanguage = async (id: string, name: string) => {
+    try {
+      const response = await fetch(`/api/admin/languages/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isDefault: true }),
+      });
+
+      if (!response.ok) throw new Error((await response.json()).message || 'API Hatası');
+
+      toast.success(`${name} varsayılan dil olarak ayarlandı!`);
+      await fetchLanguages();
+    } catch (err: any) {
+      toast.error(`Varsayılan dil değiştirme hatası: ${err.message}`);
+    }
+  };
+
   // Formu düzenleme için doldur
   const openEditDialog = (language: Language) => {
     setEditingLanguage(language);
     // form.reset ile değerleri LanguageFormValues tipine uygun atıyoruz
-    form.reset({ 
+    console.log("Düzenleme için gelen dil verisi:", language);
+    console.log("isDefault değeri (tip):", typeof language.isDefault);
+
+    form.reset({
       name: language.name,
       code: language.code,
       isActive: language.isActive, // Prisma'dan gelen boolean
@@ -152,8 +182,29 @@ export default function DillerPage() {
       cell: ({ row }) => <Checkbox checked={row.getValue("isActive")} disabled />,
     },
     {
-      accessorKey: "isDefault", header: "Varsayılan",
-      cell: ({ row }) => <Checkbox checked={row.getValue("isDefault")} disabled />,
+      accessorKey: "isDefault",
+      header: "Varsayılan",
+      cell: ({ row }) => {
+        const isDefault = row.getValue("isDefault");
+        if (isDefault) {
+          return (
+            <div className="flex items-center">
+              <ToggleRight className="w-5 h-5 mr-1 text-green-600" />
+              <span className="text-sm text-green-600 font-medium">Varsayılan</span>
+            </div>
+          );
+        }
+        return (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleSetDefaultLanguage(row.original.id, row.original.name)}
+          >
+            <ToggleLeft className="w-4 h-4 mr-1" />
+            Varsayılan Yap
+          </Button>
+        );
+      },
     },
     {
       id: "translations", header: "Çeviriler",
