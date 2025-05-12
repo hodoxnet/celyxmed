@@ -1,59 +1,101 @@
-import React from 'react';
+"use client"; // Veri çekme işlemleri için client component
+
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from '@/components/ui/button';
-import { Card } from "@/components/ui/card"; // Card bileşenini import et
+// import { Button } from '@/components/ui/button'; // Bu bileşende doğrudan kullanılmıyor
+// import { Card } from "@/components/ui/card"; // Bu bileşende doğrudan kullanılmıyor
+import { useLocale } from 'next-intl'; // Aktif dili almak için
+import { Skeleton } from "@/components/ui/skeleton"; // Yükleme durumu için skeleton
 
-// Sekme verileri (index.html'den alınmıştır)
-const tabData = [
-  {
-    value: "modern-care",
-    trigger: "Modern Care",
-    tag: "Advanced Clinic. Trusted Care.",
-    heading: "World-Class Healthcare in State-of-the-Art Clinics",
-    description: "Experience top-quality medical care with Celyxmed. Our modern clinic and partnerships with JCI-accredited hospitals ensure safe, effective, and state-of-the-art treatments tailored to your needs.",
-    buttonText: "Explore Our Clinic",
-    buttonLink: "/our-clinic",
-    imageUrl: "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/67b763f203c0bd6ea9674a7e_celyxmed-aesthetic-hair-transplantation-dental-clinic-turkey%20(1).avif"
-  },
-  {
-    value: "affordable-quality",
-    trigger: "Affordable Quality",
-    tag: "Premium Care. Fair Prices.",
-    heading: "Affordable Care Without Compromising Quality",
-    description: "Celyxmed provides high-quality treatments at a fraction of the cost compared to other countries, making premium healthcare accessible to everyone.",
-    buttonText: "Get Started",
-    buttonLink: "/contact",
-    imageUrl: "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/67b7641c7d16e12cf9366c9c_celyxmed-aesthetic-hair-transplantation-dental-clinic-turkey%20(3).avif"
-  },
-  {
-    value: "personal-touch",
-    trigger: "Personal Touch",
-    tag: "Your Journey. Personalized.",
-    heading: "Personalized Care from Start to Finish",
-    description: "At Celyxmed, we guide you through every step of your healthcare journey, offering personalized treatment plans, transfers, and post-treatment support.",
-    buttonText: "Discover Our Success Stories",
-    buttonLink: "/success-stories", // Örnek link
-    imageUrl: "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/678380d4781b67ce39154046_personalized-care-from-start-to-finish.avif"
-  },
-  {
-    value: "health-travel",
-    trigger: "Health & Travel",
-    tag: "Discover. Heal. Explore.",
-    heading: "Enjoy a Health Journey with a Tourism Touch",
-    description: "Combine your treatment with an unforgettable trip to Istanbul. Discover Turkey’s rich culture, history, and hospitality with Celyxmed by your side.",
-    buttonText: "Explore Our Treatments",
-    buttonLink: "/#treatments", // Örnek link
-    imageUrl: "https://cdn.prod.website-files.com/6766b8d65a3055a5841135b1/678380c80148c6789ed142bb_enjoy-a-health-journey-with-a-tourism-touch.avif"
-  }
-];
+interface TabDataItem {
+  id: string;
+  value: string;
+  imageUrl: string;
+  order: number;
+  isPublished: boolean;
+  triggerText: string;
+  tagText: string;
+  heading: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  languageCode: string;
+}
 
 const FeaturesTabs = () => {
+  const locale = useLocale();
+  const [tabData, setTabData] = useState<TabDataItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchTabData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(`/api/home/feature-tabs?locale=${locale}`);
+        if (!response.ok) {
+          throw new Error('Özellik sekmeleri verisi yüklenemedi.');
+        }
+        const data = await response.json();
+        setTabData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : String(err));
+        console.error("FeaturesTabs veri çekme hatası:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTabData();
+  }, [locale]);
+
+  if (loading) {
+    return (
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+            <Skeleton className="h-10 w-3/4 mx-auto mb-4" />
+            <Skeleton className="h-6 w-full mx-auto" />
+          </div>
+          <Skeleton className="h-12 w-full rounded-lg mb-10" /> {/* TabsList skeleton */}
+          <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+              <div className="p-8 md:p-12 flex flex-col justify-center">
+                <Skeleton className="h-6 w-1/4 mb-6" />
+                <Skeleton className="h-10 w-3/4 mb-6" />
+                <Skeleton className="h-5 w-full mb-2" />
+                <Skeleton className="h-5 w-full mb-2" />
+                <Skeleton className="h-5 w-2/3 mb-8" />
+                <Skeleton className="h-12 w-48 rounded-full" />
+              </div>
+              <div className="relative w-full h-full min-h-[450px]">
+                <Skeleton className="h-full w-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    // Hata durumunda bir mesaj gösterilebilir veya bölüm hiç render edilmeyebilir.
+    // Şimdilik konsola yazdırıldı, UI'da bir mesaj göstermek daha iyi olabilir.
+    // return <p className="text-center text-red-500 py-10">Veriler yüklenirken bir hata oluştu: {error}</p>;
+    return null; // Hata durumunda bölümü gösterme
+  }
+
+  if (tabData.length === 0) {
+    return null; // Veri yoksa bölümü gösterme
+  }
+
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4 max-w-6xl"> {/* max-w-none yerine max-w-6xl kullanıldı, hizmet detay sayfasındaki gibi sınırlı genişlik */}
-        {/* Ana Başlık ve Alt Başlık */}
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Ana Başlık ve Alt Başlık (Bunlar statik kalabilir veya ayrı bir API'den çekilebilir) */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-800">
             Discover World-Class Healthcare with Celyxmed in Turkey
@@ -73,7 +115,7 @@ const FeaturesTabs = () => {
                 value={tab.value}
                 className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white text-gray-600 dark:text-gray-300 flex-1" // Stil TreatmentOverview'dan alındı
               >
-                {tab.trigger}
+                {tab.triggerText}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -86,7 +128,7 @@ const FeaturesTabs = () => {
                   {/* Sol Taraf: Metin İçeriği */}
                   <div className="p-8 md:p-12 flex flex-col justify-center"> {/* Padding değerleri TreatmentOverview ile uyumlu hale getirildi */}
                     <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300 mb-6 self-start">
-                      {tab.tag}
+                      {tab.tagText}
                     </span>
                     <h3 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900 dark:text-white leading-tight"> {/* Renk değiştirildi */}
                       {tab.heading}

@@ -91,6 +91,9 @@ model Language {
 
   // SSS İlişkileri
   faqTranslations FaqTranslation[]
+
+  // Ana Sayfa Özellik Sekmeleri İlişkileri
+  homePageFeatureTabItemTranslations HomePageFeatureTabItemTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -1089,4 +1092,47 @@ model FaqTranslation {
   updatedAt DateTime @updatedAt
 
   @@unique([faqId, languageCode])
+}
+
+// ----- ANA SAYFA ÖZELLİK SEKMELERİ (FEATURES TABS) MODELLERİ -----
+
+// Ana Sayfa Özellik Sekme Öğesi (Dil Bağımsız)
+model HomePageFeatureTabItem {
+  id            String   @id @default(cuid())
+  value         String   // Sekme için benzersiz bir değer (örn: "modern-care")
+  imageUrl      String   // Sekmeye ait görselin URL'si
+  order         Int      @default(0) // Sekmelerin sıralaması
+  isPublished   Boolean  @default(true) // Sekmenin yayınlanıp yayınlanmadığı
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  translations  HomePageFeatureTabItemTranslation[]
+
+  // Opsiyonel: Eğer bu sekmeler genel bir "FeaturesTabsSection" altına toplanacaksa
+  // section       HomePageFeaturesTabsSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  // sectionId     String // Genellikle "main" olurdu
+
+  @@unique([value]) // `value` alanı benzersiz olmalı (eğer sectionId yoksa)
+  // @@unique([sectionId, value]) // Eğer sectionId varsa
+}
+
+// Ana Sayfa Özellik Sekme Öğesi Çevirisi (Dile Özgü)
+model HomePageFeatureTabItemTranslation {
+  id            String                  @id @default(cuid())
+  tabItem       HomePageFeatureTabItem  @relation(fields: [tabItemId], references: [id], onDelete: Cascade)
+  tabItemId     String
+  language      Language                @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+
+  triggerText   String                  // Sekme başlığı (örn: "Modern Care")
+  tagText       String                  // Etiket (örn: "Advanced Clinic. Trusted Care.")
+  heading       String                  // İçerik başlığı (örn: "World-Class Healthcare...")
+  description   String                  @db.Text // İçerik açıklaması
+  buttonText    String                  // Buton metni
+  buttonLink    String                  // Buton yönlendirme linki
+
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@unique([tabItemId, languageCode])
 }

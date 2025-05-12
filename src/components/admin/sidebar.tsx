@@ -92,6 +92,7 @@ const navItems: NavItem[] = [
     icon: <LayoutGrid className="h-5 w-5" />,
     subItems: [ // Alt menüler
       { title: "Hero Alanı Yönetimi", href: "/admin/hero" },
+      { title: "Özellik Sekmeleri Yönetimi", href: "/admin/home-page-feature-tabs" }, // YENİ EKLENDİ
       { title: "Tedavi Bölümü İçeriği", href: "/admin/treatments-section" }, // İsim değişikliği
       { title: "Tedavi Kartları Yönetimi", href: "/admin/treatment-cards" }, // Yeni menü
       { title: "Klinik Tanıtım Yönetimi", href: "/admin/clinic-showcase" }, // Yeni menü

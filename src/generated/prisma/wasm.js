@@ -769,6 +769,30 @@ exports.Prisma.FaqTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.HomePageFeatureTabItemScalarFieldEnum = {
+  id: 'id',
+  value: 'value',
+  imageUrl: 'imageUrl',
+  order: 'order',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HomePageFeatureTabItemTranslationScalarFieldEnum = {
+  id: 'id',
+  tabItemId: 'tabItemId',
+  languageCode: 'languageCode',
+  triggerText: 'triggerText',
+  tagText: 'tagText',
+  heading: 'heading',
+  description: 'description',
+  buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -869,7 +893,9 @@ exports.Prisma.ModelName = {
   ConsultOnlineSectionTranslation: 'ConsultOnlineSectionTranslation',
   ConsultOnlineDoctorAvatar: 'ConsultOnlineDoctorAvatar',
   Faq: 'Faq',
-  FaqTranslation: 'FaqTranslation'
+  FaqTranslation: 'FaqTranslation',
+  HomePageFeatureTabItem: 'HomePageFeatureTabItem',
+  HomePageFeatureTabItemTranslation: 'HomePageFeatureTabItemTranslation'
 };
 
 /**
