@@ -94,6 +94,7 @@ model Language {
 
   // Ana Sayfa Özellik Sekmeleri İlişkileri
   homePageFeatureTabItemTranslations HomePageFeatureTabItemTranslation[]
+  homePageFeaturesTabsSectionTranslations HomePageFeaturesTabsSectionTranslation[] // Yeni eklendi
 }
 
 // URL rota çevirileri modeli
@@ -1135,4 +1136,33 @@ model HomePageFeatureTabItemTranslation {
   updatedAt     DateTime                @updatedAt
 
   @@unique([tabItemId, languageCode])
+}
+
+// Ana Sayfa Özellik Sekmeleri Bölümü (Singleton)
+model HomePageFeaturesTabsSection {
+  id            String   @id @default("main") // Sabit ID, tek bir kayıt olacak
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  translations  HomePageFeaturesTabsSectionTranslation[]
+  // tabItems ilişkisi HomePageFeatureTabItem modelinde 'sectionId' üzerinden kurulabilir,
+  // ancak şimdilik bu section'ın sadece genel başlıkları tutacağını varsayıyoruz.
+  // Eğer sekme öğeleri de bu section'a bağlanacaksa, HomePageFeatureTabItem'a sectionId eklenmeli.
+}
+
+// Ana Sayfa Özellik Sekmeleri Bölümü Çevirisi
+model HomePageFeaturesTabsSectionTranslation {
+  id            String                      @id @default(cuid())
+  section       HomePageFeaturesTabsSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId     String                      // Her zaman "main" olacak
+  language      Language                    @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+
+  mainTitle     String?                     // Bölümün ana başlığı (örn: "Discover World-Class Healthcare...")
+  mainDescription String?                   @db.Text // Bölümün alt başlığı
+
+  createdAt     DateTime                    @default(now())
+  updatedAt     DateTime                    @updatedAt
+
+  @@unique([sectionId, languageCode])
 }

@@ -6,6 +6,21 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const locale = searchParams.get('locale') || 'en'; // Varsayılan dil 'en'
 
+    // Bölüm detaylarını çek
+    const section = await prisma.homePageFeaturesTabsSection.findUnique({
+      where: { id: "main" },
+      include: {
+        translations: {
+          where: { languageCode: locale },
+        },
+      },
+    });
+
+    const sectionDetails = section?.translations[0] 
+      ? { mainTitle: section.translations[0].mainTitle, mainDescription: section.translations[0].mainDescription }
+      : { mainTitle: null, mainDescription: null }; // Eğer çeviri yoksa null döner
+
+    // Sekme öğelerini çek
     const items = await prisma.homePageFeatureTabItem.findMany({
       where: {
         isPublished: true,
@@ -27,8 +42,6 @@ export async function GET(request: Request) {
       },
     });
 
-    // İstenen dilde çevirisi olmayan öğeleri filtrele (bu normalde olmamalı ama bir güvence)
-    // ve çevirileri direkt olarak ana objeye map'le
     const localizedItems = items
       .filter(item => item.translations.length > 0)
       .map(item => {
@@ -39,7 +52,6 @@ export async function GET(request: Request) {
           imageUrl: item.imageUrl,
           order: item.order,
           isPublished: item.isPublished,
-          // Çeviri alanları
           triggerText: translation.triggerText,
           tagText: translation.tagText,
           heading: translation.heading,
@@ -50,9 +62,9 @@ export async function GET(request: Request) {
         };
       });
 
-    return NextResponse.json(localizedItems);
+    return NextResponse.json({ sectionDetails, tabItems: localizedItems });
   } catch (error) {
-    console.error('[HOME_FEATURE_TABS_GET]', error);
+    console.error('[HOME_FEATURE_TABS_GET_WITH_SECTION]', error);
     return NextResponse.json({ error: 'Veriler alınırken bir hata oluştu.' }, { status: 500 });
   }
 }

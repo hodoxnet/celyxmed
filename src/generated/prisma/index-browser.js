@@ -793,6 +793,22 @@ exports.Prisma.HomePageFeatureTabItemTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.HomePageFeaturesTabsSectionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HomePageFeaturesTabsSectionTranslationScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  languageCode: 'languageCode',
+  mainTitle: 'mainTitle',
+  mainDescription: 'mainDescription',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -895,7 +911,9 @@ exports.Prisma.ModelName = {
   Faq: 'Faq',
   FaqTranslation: 'FaqTranslation',
   HomePageFeatureTabItem: 'HomePageFeatureTabItem',
-  HomePageFeatureTabItemTranslation: 'HomePageFeatureTabItemTranslation'
+  HomePageFeatureTabItemTranslation: 'HomePageFeatureTabItemTranslation',
+  HomePageFeaturesTabsSection: 'HomePageFeaturesTabsSection',
+  HomePageFeaturesTabsSectionTranslation: 'HomePageFeaturesTabsSectionTranslation'
 };
 
 /**
