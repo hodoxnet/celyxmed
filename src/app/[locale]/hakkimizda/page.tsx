@@ -7,6 +7,8 @@ import JciSection from '@/components/about/JciSection';
 import ClinicGallery from '@/components/about/ClinicGallery';
 import ComprehensiveCareSection from '@/components/about/ComprehensiveCareSection';
 import WhyTrustSection from '@/components/home/WhyTrustSection';
+import SuccessStories from '@/components/home/SuccessStories';
+import FaqSection from '@/components/home/FaqSection';
 
 // Sayfa parametrelerinin tipini tanımla
 interface AboutPageProps {
@@ -82,6 +84,12 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Why Trust Section - Ana sayfadan eklendi */}
         <WhyTrustSection locale={locale} />
         
+        {/* Success Stories Section - Ana sayfadan eklendi */}
+        <SuccessStories locale={locale} />
+
+        {/* FAQ Section - Ana sayfadan eklendi */}
+        <FaqSection />
+
         {/* Vizyonumuz ve Misyonumuz Bölümü */}
         <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
           {/* Arka plan dekoratif elementleri */}
