@@ -105,6 +105,11 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    title: "Hakkımızda Sayfası",
+    href: "/admin/about-page",
+    icon: <FileText className="h-5 w-5" />,
+  },
+  {
     title: "Genel Ayarlar",
     href: "/admin/ayarlar",
     icon: <Settings className="h-5 w-5" />,

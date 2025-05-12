@@ -809,6 +809,83 @@ exports.Prisma.HomePageFeaturesTabsSectionTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AboutPageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  heroImageUrl: 'heroImageUrl'
+};
+
+exports.Prisma.AboutPageTranslationScalarFieldEnum = {
+  id: 'id',
+  aboutPageId: 'aboutPageId',
+  languageCode: 'languageCode',
+  heroTitle: 'heroTitle',
+  heroDescription: 'heroDescription',
+  heroPrimaryButtonText: 'heroPrimaryButtonText',
+  heroPrimaryButtonLink: 'heroPrimaryButtonLink',
+  heroSecondaryButtonText: 'heroSecondaryButtonText',
+  heroSecondaryButtonLink: 'heroSecondaryButtonLink',
+  jciTitle: 'jciTitle',
+  jciPrimaryButtonText: 'jciPrimaryButtonText',
+  jciPrimaryButtonLink: 'jciPrimaryButtonLink',
+  jciSecondaryButtonText: 'jciSecondaryButtonText',
+  jciSecondaryButtonLink: 'jciSecondaryButtonLink',
+  doctorsTitle: 'doctorsTitle',
+  doctorsDescription: 'doctorsDescription',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutPageGalleryImageScalarFieldEnum = {
+  id: 'id',
+  aboutPageId: 'aboutPageId',
+  imageUrl: 'imageUrl',
+  altText: 'altText',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutPageCareItemScalarFieldEnum = {
+  id: 'id',
+  aboutPageId: 'aboutPageId',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutPageCareItemTranslationScalarFieldEnum = {
+  id: 'id',
+  careItemId: 'careItemId',
+  languageCode: 'languageCode',
+  title: 'title',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutPageDoctorScalarFieldEnum = {
+  id: 'id',
+  aboutPageId: 'aboutPageId',
+  imageUrl: 'imageUrl',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutPageDoctorTranslationScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  languageCode: 'languageCode',
+  name: 'name',
+  title: 'title',
+  description: 'description',
+  profileUrl: 'profileUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -913,7 +990,14 @@ exports.Prisma.ModelName = {
   HomePageFeatureTabItem: 'HomePageFeatureTabItem',
   HomePageFeatureTabItemTranslation: 'HomePageFeatureTabItemTranslation',
   HomePageFeaturesTabsSection: 'HomePageFeaturesTabsSection',
-  HomePageFeaturesTabsSectionTranslation: 'HomePageFeaturesTabsSectionTranslation'
+  HomePageFeaturesTabsSectionTranslation: 'HomePageFeaturesTabsSectionTranslation',
+  AboutPage: 'AboutPage',
+  AboutPageTranslation: 'AboutPageTranslation',
+  AboutPageGalleryImage: 'AboutPageGalleryImage',
+  AboutPageCareItem: 'AboutPageCareItem',
+  AboutPageCareItemTranslation: 'AboutPageCareItemTranslation',
+  AboutPageDoctor: 'AboutPageDoctor',
+  AboutPageDoctorTranslation: 'AboutPageDoctorTranslation'
 };
 
 /**

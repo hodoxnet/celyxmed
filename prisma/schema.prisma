@@ -95,6 +95,11 @@ model Language {
   // Ana Sayfa Özellik Sekmeleri İlişkileri
   homePageFeatureTabItemTranslations HomePageFeatureTabItemTranslation[]
   homePageFeaturesTabsSectionTranslations HomePageFeaturesTabsSectionTranslation[] // Yeni eklendi
+
+  // Hakkımızda Sayfası İlişkileri
+  aboutPageTranslations AboutPageTranslation[]
+  aboutPageCareItemTranslations AboutPageCareItemTranslation[]
+  aboutPageDoctorTranslations AboutPageDoctorTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -1165,4 +1170,130 @@ model HomePageFeaturesTabsSectionTranslation {
   updatedAt     DateTime                    @updatedAt
 
   @@unique([sectionId, languageCode])
+}
+
+// ----- HAKKIMIZDA SAYFASI MODELLERİ -----
+
+// Hakkımızda Sayfası Ana Modeli (Dil Bağımsız)
+model AboutPage {
+  id            String   @id @default("main") // Tek kayıt olacak
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Dil bağımsız görseller
+  heroImageUrl  String?
+
+  // İlişkiler
+  translations  AboutPageTranslation[]
+  galleryImages AboutPageGalleryImage[]
+  careItems     AboutPageCareItem[]
+  doctors       AboutPageDoctor[]
+}
+
+// Hakkımızda Sayfası Çeviri Modeli (Dile Özgü Metinler)
+model AboutPageTranslation {
+  id              String    @id @default(cuid())
+  aboutPage       AboutPage @relation(fields: [aboutPageId], references: [id], onDelete: Cascade)
+  aboutPageId     String
+  language        Language  @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode    String
+
+  // Hero bölümü
+  heroTitle       String
+  heroDescription String    @db.Text
+  heroPrimaryButtonText     String
+  heroPrimaryButtonLink     String
+  heroSecondaryButtonText   String
+  heroSecondaryButtonLink   String
+
+  // JCI bölümü
+  jciTitle        String    @db.Text
+  jciPrimaryButtonText     String
+  jciPrimaryButtonLink     String
+  jciSecondaryButtonText   String
+  jciSecondaryButtonLink   String
+
+  // Doktor bölümü
+  doctorsTitle     String    @default("Uzman Doktorlarımız")
+  doctorsDescription String  @default("") @db.Text
+
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@unique([aboutPageId, languageCode])
+}
+
+// Hakkımızda Sayfası Galeri Görselleri
+model AboutPageGalleryImage {
+  id            String    @id @default(cuid())
+  aboutPage     AboutPage @relation(fields: [aboutPageId], references: [id], onDelete: Cascade)
+  aboutPageId   String
+  imageUrl      String
+  altText       String
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Hakkımızda Sayfası Kapsamlı Bakım Öğeleri
+model AboutPageCareItem {
+  id            String    @id @default(cuid())
+  aboutPage     AboutPage @relation(fields: [aboutPageId], references: [id], onDelete: Cascade)
+  aboutPageId   String
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Çeviriler
+  translations  AboutPageCareItemTranslation[]
+}
+
+// Hakkımızda Sayfası Kapsamlı Bakım Öğesi Çevirileri
+model AboutPageCareItemTranslation {
+  id            String          @id @default(cuid())
+  careItem      AboutPageCareItem @relation(fields: [careItemId], references: [id], onDelete: Cascade)
+  careItemId    String
+  language      Language        @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+
+  title         String
+  description   String          @db.Text
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@unique([careItemId, languageCode])
+}
+
+// Hakkımızda Sayfası Doktorlar
+model AboutPageDoctor {
+  id            String    @id @default(cuid())
+  aboutPage     AboutPage @relation(fields: [aboutPageId], references: [id], onDelete: Cascade)
+  aboutPageId   String
+  imageUrl      String
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Çeviriler
+  translations  AboutPageDoctorTranslation[]
+}
+
+// Hakkımızda Sayfası Doktor Çevirileri
+model AboutPageDoctorTranslation {
+  id            String          @id @default(cuid())
+  doctor        AboutPageDoctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId      String
+  language      Language        @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+
+  name          String
+  title         String
+  description   String          @db.Text
+  profileUrl    String?
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@unique([doctorId, languageCode])
 }
