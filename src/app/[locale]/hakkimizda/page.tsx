@@ -5,6 +5,7 @@ import { use } from 'react';
 import HeroSection from '@/components/about/HeroSection';
 import JciSection from '@/components/about/JciSection';
 import ClinicGallery from '@/components/about/ClinicGallery';
+import ComprehensiveCareSection from '@/components/about/ComprehensiveCareSection';
 
 // Sayfa parametrelerinin tipini tanımla
 interface AboutPageProps {
@@ -40,9 +41,9 @@ export default function AboutPage({ params }: AboutPageProps) {
           secondaryButtonLink="#doktorlar"
         />
         
-        {/* Klinik Galeri Bölümü - Hızı artırıldı */}
+        {/* Klinik Galeri Bölümü - Otomatik kaydırma */}
         <ClinicGallery 
-          speed={3} // Hız artırıldı
+          speed={3}
           images={[
             {
               src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67e1a882b66604fbd32f690b_celyxmed-estetik-klinigi-1.avif",
@@ -59,6 +60,20 @@ export default function AboutPage({ params }: AboutPageProps) {
             {
               src: "https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67e1a8822b3acd0be8b3e11e_celyxmed-estetik-klinigi-3.avif",
               alt: "Celyxmed Estetik Kliniği 3"
+            }
+          ]}
+        />
+        
+        {/* Kapsamlı Bakım Bölümü - Yeni Eklendi */}
+        <ComprehensiveCareSection 
+          items={[
+            {
+              title: "Varıştan İyileşmeye Kadar Kapsamlı Bakım",
+              description: "İlk konsültasyonunuzdan tedavi sonrası iyileşme sürecine kadar her adımda yanınızdayız. Kendini işine adamış ekibimiz, havaalanı transferleri, lüks konaklama ve ihtiyaçlarınıza göre uyarlanmış kişiselleştirilmiş bakım ile sorunsuz bir deneyim sağlar."
+            },
+            {
+              title: "Konforunuz ve Güvenliğiniz için Tasarlandı",
+              description: "İstanbul Ataşehir'deki kliniğimiz, size en üst düzeyde bakım sağlamak için en son teknoloji ile donatılmıştır. Estetik ameliyatlarımız JCI akreditasyonuna sahip ortak hastanelerde gerçekleştirilirken, kliniğimiz konsültasyondan tedavi sonrası bakıma kadar konforlu ve sorunsuz bir deneyim sağlar."
             }
           ]}
         />
