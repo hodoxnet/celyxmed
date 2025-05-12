@@ -6,6 +6,7 @@ import HeroSection from '@/components/about/HeroSection';
 import JciSection from '@/components/about/JciSection';
 import ClinicGallery from '@/components/about/ClinicGallery';
 import ComprehensiveCareSection from '@/components/about/ComprehensiveCareSection';
+import WhyTrustSection from '@/components/home/WhyTrustSection';
 
 // Sayfa parametrelerinin tipini tanımla
 interface AboutPageProps {
@@ -64,7 +65,7 @@ export default function AboutPage({ params }: AboutPageProps) {
           ]}
         />
         
-        {/* Kapsamlı Bakım Bölümü - Yeni Eklendi */}
+        {/* Kapsamlı Bakım Bölümü */}
         <ComprehensiveCareSection 
           items={[
             {
@@ -77,6 +78,9 @@ export default function AboutPage({ params }: AboutPageProps) {
             }
           ]}
         />
+        
+        {/* Why Trust Section - Ana sayfadan eklendi */}
+        <WhyTrustSection locale={locale} />
         
         {/* Vizyonumuz ve Misyonumuz Bölümü */}
         <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
