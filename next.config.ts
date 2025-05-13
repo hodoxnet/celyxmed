@@ -13,7 +13,12 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
-    return [];
+    return [
+  {
+    "source": "/en/deneme/:path*",
+    "destination": "/en/hakkimizda/:path*"
+  }
+];
   },
   images: {
     remotePatterns: [

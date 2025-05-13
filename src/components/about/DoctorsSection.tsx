@@ -67,7 +67,7 @@ const DoctorsSection = ({
   ]
 }: DoctorsSectionProps) => {
   return (
-    <section className="py-24">
+    <section className="pt-48 pb-24"> {/* Üst padding daha da artırıldı (pt-40 yerine pt-48) */}
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
