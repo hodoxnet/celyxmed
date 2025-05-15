@@ -37,10 +37,29 @@ const hizmetExpertItemDefinitionSchema = z.object({ id: z.string().optional(), i
 const hizmetPricingPackageTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default(""), price: z.string().default(""), features: z.array(z.string()).default([]) }); // .min(1) kaldırıldı
 const hizmetPricingPackageDefinitionSchema = z.object({ id: z.string().optional(), isFeatured: z.boolean().default(false), order: z.number().default(0), translations: z.record(z.string(), hizmetPricingPackageTranslationSchema) });
 const hizmetFormSchema = z.object({
-  id: z.string().optional(), published: z.boolean().default(false), heroImageUrl: z.string().optional().nullable().default(null), heroImageAlt: z.string().optional().nullable().default(null), whyBackgroundImageUrl: z.string().optional().nullable().default(null), ctaBackgroundImageUrl: z.string().optional().nullable().default(null), ctaMainImageUrl: z.string().optional().nullable().default(null), ctaMainImageAlt: z.string().optional().nullable().default(null), introVideoId: z.string().optional().nullable().default(null),
-  marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
+  id: z.string().optional(), 
+  published: z.boolean().default(false), 
+  moduleStates: z.record(z.string(), z.object({
+    isActive: z.boolean().optional(),
+    isVisible: z.boolean().optional()
+  })).optional(), // ModuleStates ekledik
+  heroImageUrl: z.string().optional().nullable().default(null), 
+  heroImageAlt: z.string().optional().nullable().default(null), 
+  whyBackgroundImageUrl: z.string().optional().nullable().default(null), 
+  ctaBackgroundImageUrl: z.string().optional().nullable().default(null), 
+  ctaMainImageUrl: z.string().optional().nullable().default(null), 
+  ctaMainImageAlt: z.string().optional().nullable().default(null), 
+  introVideoId: z.string().optional().nullable().default(null),
+  marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
+  galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
+  ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
   translations: z.record(z.string(), hizmetTranslationSchema),
-  overviewTabDefinitions: z.array(hizmetOverviewTabDefinitionSchema).default([]), whyItemDefinitions: z.array(hizmetWhyItemDefinitionSchema).default([]), testimonialDefinitions: z.array(hizmetTestimonialDefinitionSchema).default([]), recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]),
+  overviewTabDefinitions: z.array(hizmetOverviewTabDefinitionSchema).default([]), 
+  whyItemDefinitions: z.array(hizmetWhyItemDefinitionSchema).default([]), 
+  testimonialDefinitions: z.array(hizmetTestimonialDefinitionSchema).default([]), 
+  recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), 
+  expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), 
+  pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]),
   activeLang: z.string(), // activeLang eklendi
 });
 // --- Şema kopyalama sonu ---
@@ -183,6 +202,7 @@ export async function PATCH(req: Request, context: Context) {
 
       const mainHizmetData = {
         published: vData.published,
+        moduleStates: vData.moduleStates || {}, // ModuleStates'i ekle
         heroImageUrl: vData.heroImageUrl,
         heroImageAlt: vData.heroImageAlt,
         whyBackgroundImageUrl: vData.whyBackgroundImageUrl,

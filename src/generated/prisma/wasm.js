@@ -181,6 +181,7 @@ exports.Prisma.BlogTranslationScalarFieldEnum = {
 exports.Prisma.HizmetScalarFieldEnum = {
   id: 'id',
   published: 'published',
+  moduleStates: 'moduleStates',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   heroImageUrl: 'heroImageUrl',

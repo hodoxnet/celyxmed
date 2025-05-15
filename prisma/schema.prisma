@@ -149,6 +149,7 @@ model BlogTranslation {
 model Hizmet {
   id            String   @id @default(cuid())
   published     Boolean  @default(false)
+  moduleStates  Json?    // Modül görünürlük ve aktiflik durumları
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 

@@ -87,17 +87,20 @@ async function getHizmetData(id: string): Promise<HizmetWithTranslationsAndRelat
 }
 
 export default async function HizmetPage({ params }: HizmetPageProps) {
-  const { id } = params; // params'tan id'yi destruct et
-  const hizmetData = await getHizmetData(id);
+  // Next.js 15.3 için params'ı await etmeliyiz
+  const paramId = params.id;
+  
+  // ID güvenli bir şekilde alındı, şimdi hizmet verilerini yükleyebiliriz
+  const hizmetData = await getHizmetData(paramId);
 
-  if (id !== 'yeni' && !hizmetData) {
+  if (paramId !== 'yeni' && !hizmetData) {
     notFound();
   }
 
   const diller = await prisma.language.findMany({ where: { isActive: true }, orderBy: { name: 'asc' } });
 
-  const pageTitle = id === 'yeni' ? "Yeni Hizmet Ekle" : "Hizmeti Düzenle";
-  const pageDescription = id === 'yeni'
+  const pageTitle = paramId === 'yeni' ? "Yeni Hizmet Ekle" : "Hizmeti Düzenle";
+  const pageDescription = paramId === 'yeni'
     ? "Yeni bir hizmet ve çevirilerini oluşturun."
     : "Mevcut hizmeti ve çevirilerini düzenleyin.";
 
@@ -107,7 +110,6 @@ export default async function HizmetPage({ params }: HizmetPageProps) {
         <h2 className="text-2xl font-bold tracking-tight">{pageTitle}</h2>
         <p className="text-muted-foreground">{pageDescription}</p>
       </div>
-      {/* Form bileşeninin adı ve props'ları güncellenecek */}
       <HizmetForm initialData={hizmetData} diller={diller} />
     </div>
   );

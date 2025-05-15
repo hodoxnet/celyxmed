@@ -6,16 +6,32 @@ import { useForm, SubmitHandler, UseFormReturn } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { Hizmet, Language } from "@/generated/prisma";
 import { ensureArray } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Globe, 
+  Languages, 
+  LanguagesIcon,
+  Settings,
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Grip,
+  Edit,
+  ChevronRight
+} from "lucide-react";
 
 // Alt form bileşenleri
 import { BasicInfoSection } from "./BasicInfoSection";
@@ -34,12 +50,12 @@ import { PricingSectionForm } from "./PricingSectionForm";
 import { ExpertsSectionForm } from "./ExpertsSectionForm";
 import { FaqSectionForm } from "./FaqSectionForm";
 import { SeoSectionForm } from "./SeoSectionForm";
+import { MediaManager } from "./MediaManager";
 
-// Prisma tiplerini import et (FullHizmetData içinde kullanılacak)
 import {
   HizmetTranslation,
   HizmetTocItem,
-  HizmetIntroLink, // Schema.prisma'da hala var
+  HizmetIntroLink,
   HizmetStep,
   HizmetFaqItem,
   HizmetMarqueeImage,
@@ -59,10 +75,8 @@ import {
   HizmetPricingPackageTranslation,
 } from "@/generated/prisma";
 
-
-// ### BÖLÜM ŞEMALARI ###
-
-// Basic Info Section
+// Şema tanımlarını dahil etmek gerekiyor, orijinal dosyadan bunları kopyalıyoruz
+// Temel Bilgiler
 const HizmetBasicInfoSectionTranslationSchema = z.object({
   languageCode: z.string(),
   slug: z.string().min(1, "Slug gerekli."),
@@ -70,15 +84,16 @@ const HizmetBasicInfoSectionTranslationSchema = z.object({
   description: z.string().min(1, "Açıklama gerekli."),
 });
 
-// TOC Section
+// TOC
 const hizmetTocItemSchema = z.object({
   id: z.string().optional(),
   text: z.string().min(1, "Metin gerekli"),
   isBold: z.boolean().default(false),
   level: z.number().int().min(1).max(3).optional().nullable(),
   order: z.number().default(0),
-  hizmetTranslationId: z.string().optional(), // API'den gelirse
+  hizmetTranslationId: z.string().optional(),
 });
+
 const HizmetTocSectionTranslationSchema = z.object({
   languageCode: z.string(),
   tocTitle: z.string().default("İçindekiler"),
@@ -87,16 +102,16 @@ const HizmetTocSectionTranslationSchema = z.object({
   tocItems: z.array(hizmetTocItemSchema).default([]),
 });
 
-// Intro Section
-// HizmetIntroLink artık HizmetTranslation'a bağlı olduğu için basitleştirildi
+// Intro
 const hizmetIntroLinkSchema = z.object({
   id: z.string().optional(),
   targetId: z.string().min(1, "Hedef ID/URL gerekli"),
   number: z.string().min(1, "Numara metni gerekli"),
   text: z.string().min(1, "Link metni gerekli"),
   order: z.number().default(0),
-  hizmetTranslationId: z.string().optional(), // API'den gelirse
+  hizmetTranslationId: z.string().optional(),
 });
+
 const HizmetIntroSectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default(""),
@@ -107,11 +122,12 @@ const HizmetIntroSectionTranslationSchema = z.object({
   secondaryButtonLink: z.string().default(""),
   introLinks: z.array(hizmetIntroLinkSchema).default([]),
 });
+
 const HizmetIntroSectionDefinitionSchema = z.object({
   videoId: z.string().optional().nullable().default(null),
 });
 
-// SEO Section
+// SEO
 const HizmetSeoSectionTranslationSchema = z.object({
   languageCode: z.string(),
   metaTitle: z.string().optional().nullable().default(null),
@@ -119,15 +135,16 @@ const HizmetSeoSectionTranslationSchema = z.object({
   metaKeywords: z.string().optional().nullable().default(null),
 });
 
-// Overview Section
+// Overview
 const HizmetOverviewTabTranslationSchema = z.object({
   languageCode: z.string(),
-  triggerText: z.string().default(""), // .min(1) kaldırıldı
-  title: z.string().default(""), // .min(1) kaldırıldı
-  content: z.string().default(""), // .min(1) kaldırıldı
+  triggerText: z.string().default(""),
+  title: z.string().default(""),
+  content: z.string().default(""),
   buttonText: z.string().default("Detaylar"),
   buttonLink: z.string().optional().nullable().default(null),
 });
+
 const HizmetOverviewTabDefinitionSchema = z.object({
   id: z.string().optional(),
   value: z.string().min(1, "Sekme değeri gerekli (unique olmalı)"),
@@ -136,11 +153,13 @@ const HizmetOverviewTabDefinitionSchema = z.object({
   order: z.number().default(0),
   translations: z.record(z.string(), HizmetOverviewTabTranslationSchema),
 });
+
 const HizmetOverviewSectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("Genel Bakış"),
   description: z.string().optional().default(""),
 });
+
 const HizmetOverviewSectionDefinitionSchema = z.object({
   tabs: z.array(HizmetOverviewTabDefinitionSchema).default([]),
 });
@@ -148,37 +167,41 @@ const HizmetOverviewSectionDefinitionSchema = z.object({
 // Why Section
 const HizmetWhyItemTranslationSchema = z.object({
   languageCode: z.string(),
-  title: z.string().default(""), // .min(1) kaldırıldı
-  description: z.string().default(""), // .min(1) kaldırıldı
+  title: z.string().default(""),
+  description: z.string().default(""),
 });
+
 const HizmetWhyItemDefinitionSchema = z.object({
   id: z.string().optional(),
   number: z.string().min(1, "Numara gerekli"),
   order: z.number().default(0),
   translations: z.record(z.string(), HizmetWhyItemTranslationSchema),
 });
+
 const HizmetWhySectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("Neden Biz?"),
 });
+
 const HizmetWhySectionDefinitionSchema = z.object({
   items: z.array(HizmetWhyItemDefinitionSchema).default([]),
 });
 
-// Gallery Section (Sadece çevirilebilir başlık ve açıklama, resimler ana şemada)
+// Gallery
 const HizmetGallerySectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("Galeri"),
   description: z.string().optional().default(""),
 });
 
-// Testimonials Section
+// Testimonials
 const HizmetTestimonialTranslationSchema = z.object({
   languageCode: z.string(),
-  text: z.string().default(""), // .min(1) kaldırıldı
-  author: z.string().default(""), // .min(1) kaldırıldı
+  text: z.string().default(""),
+  author: z.string().default(""),
   treatment: z.string().optional().nullable().default(null),
 });
+
 const HizmetTestimonialDefinitionSchema = z.object({
   id: z.string().optional(),
   stars: z.number().min(1).max(5).default(5),
@@ -186,23 +209,26 @@ const HizmetTestimonialDefinitionSchema = z.object({
   order: z.number().default(0),
   translations: z.record(z.string(), HizmetTestimonialTranslationSchema),
 });
+
 const HizmetTestimonialsSectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().optional().nullable().default("Yorumlar"),
 });
+
 const HizmetTestimonialsSectionDefinitionSchema = z.object({
   items: z.array(HizmetTestimonialDefinitionSchema).default([]),
 });
 
-// Steps Section
+// Steps
 const hizmetStepSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1, "Başlık gerekli"),
   description: z.string().min(1, "Açıklama gerekli"),
   linkText: z.string().optional().nullable().default(null),
   order: z.number().default(0),
-  hizmetTranslationId: z.string().optional(), // API'den gelirse
+  hizmetTranslationId: z.string().optional(),
 });
+
 const HizmetStepsSectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("Adımlar"),
@@ -210,12 +236,13 @@ const HizmetStepsSectionTranslationSchema = z.object({
   steps: z.array(hizmetStepSchema).default([]),
 });
 
-// Recovery Section
+// Recovery
 const HizmetRecoveryItemTranslationSchema = z.object({
   languageCode: z.string(),
-  title: z.string().default(""), // .min(1) kaldırıldı
-  description: z.string().default(""), // .min(1) kaldırıldı
+  title: z.string().default(""),
+  description: z.string().default(""),
 });
+
 const HizmetRecoveryItemDefinitionSchema = z.object({
   id: z.string().optional(),
   imageUrl: z.string().min(1, "Resim URL gerekli"),
@@ -223,16 +250,18 @@ const HizmetRecoveryItemDefinitionSchema = z.object({
   order: z.number().default(0),
   translations: z.record(z.string(), HizmetRecoveryItemTranslationSchema),
 });
+
 const HizmetRecoverySectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("İyileşme Süreci"),
   description: z.string().optional().default(""),
 });
+
 const HizmetRecoverySectionDefinitionSchema = z.object({
   items: z.array(HizmetRecoveryItemDefinitionSchema).default([]),
 });
 
-// CTA Section
+// CTA
 const HizmetCtaSectionTranslationSchema = z.object({
   languageCode: z.string(),
   tagline: z.string().optional().nullable().default(null),
@@ -243,36 +272,40 @@ const HizmetCtaSectionTranslationSchema = z.object({
   avatarText: z.string().optional().nullable().default(null),
 });
 
-// Pricing Section
+// Pricing
 const HizmetPricingPackageTranslationSchema = z.object({
   languageCode: z.string(),
-  title: z.string().default(""), // .min(1) kaldırıldı
-  price: z.string().default(""), // .min(1) kaldırıldı
+  title: z.string().default(""),
+  price: z.string().default(""),
   features: z.array(z.string()).default([]),
 });
+
 const HizmetPricingPackageDefinitionSchema = z.object({
   id: z.string().optional(),
   isFeatured: z.boolean().default(false),
   order: z.number().default(0),
   translations: z.record(z.string(), HizmetPricingPackageTranslationSchema),
 });
+
 const HizmetPricingSectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("Fiyatlandırma"),
   description: z.string().optional().default(""),
 });
+
 const HizmetPricingSectionDefinitionSchema = z.object({
   packages: z.array(HizmetPricingPackageDefinitionSchema).default([]),
 });
 
-// Experts Section
+// Experts
 const HizmetExpertItemTranslationSchema = z.object({
   languageCode: z.string(),
-  name: z.string().default(""), // .min(1) kaldırıldı
-  title: z.string().default(""), // .min(1) kaldırıldı
-  description: z.string().default(""), // .min(1) kaldırıldı
+  name: z.string().default(""),
+  title: z.string().default(""),
+  description: z.string().default(""),
   ctaText: z.string().optional().nullable().default(null),
 });
+
 const HizmetExpertItemDefinitionSchema = z.object({
   id: z.string().optional(),
   imageUrl: z.string().min(1, "Resim URL gerekli"),
@@ -280,23 +313,26 @@ const HizmetExpertItemDefinitionSchema = z.object({
   order: z.number().default(0),
   translations: z.record(z.string(), HizmetExpertItemTranslationSchema),
 });
+
 const HizmetExpertsSectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("Uzmanlarımız"),
   tagline: z.string().optional().nullable().default(null),
 });
+
 const HizmetExpertsSectionDefinitionSchema = z.object({
   items: z.array(HizmetExpertItemDefinitionSchema).default([]),
 });
 
-// FAQ Section
+// FAQ
 const hizmetFaqItemSchema = z.object({
   id: z.string().optional(),
   question: z.string().min(1, "Soru gerekli"),
   answer: z.string().min(1, "Cevap gerekli"),
   order: z.number().default(0),
-  hizmetTranslationId: z.string().optional(), // API'den gelirse
+  hizmetTranslationId: z.string().optional(),
 });
+
 const HizmetFaqSectionTranslationSchema = z.object({
   languageCode: z.string(),
   title: z.string().default("Sıkça Sorulan Sorular"),
@@ -304,8 +340,35 @@ const HizmetFaqSectionTranslationSchema = z.object({
   faqs: z.array(hizmetFaqItemSchema).default([]),
 });
 
+// Modül tipleri için Enum tanımı
+enum ModuleType {
+  BASIC_INFO = "basic_info",
+  HERO = "hero",
+  TOC = "toc",
+  INTRO = "intro",
+  OVERVIEW = "overview",
+  WHY = "why",
+  GALLERY = "gallery",
+  TESTIMONIALS = "testimonials",
+  STEPS = "steps",
+  RECOVERY = "recovery",
+  CTA = "cta",
+  PRICING = "pricing",
+  EXPERTS = "experts",
+  FAQ = "faq",
+  SEO = "seo"
+}
 
-// ### ANA FORM ŞEMASI ###
+// Modül durumu için tip
+interface ModuleState {
+  id: ModuleType;
+  title: string;
+  isActive: boolean;
+  isVisible: boolean;
+  isEditing: boolean;
+  icon?: React.ReactNode;
+}
+
 const hizmetFormSchema = z.object({
   id: z.string().optional(),
   published: z.boolean().default(false),
@@ -321,6 +384,12 @@ const hizmetFormSchema = z.object({
   marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1,"Resim linki gerekli"), alt: z.string().min(1,"Resim açıklaması gerekli"), order: z.number().default(0) })).default([]),
   galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1,"Resim linki gerekli"), alt: z.string().min(1,"Resim açıklaması gerekli"), order: z.number().default(0) })).default([]),
   ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1,"Resim linki gerekli"), alt: z.string().min(1,"Resim açıklaması gerekli"), order: z.number().default(0) })).default([]),
+
+  // Modül aktivasyon durumları
+  moduleStates: z.record(z.string(), z.object({
+    isActive: z.boolean().default(true),
+    isVisible: z.boolean().default(true)
+  })).default({}),
 
   // Bölüm Bazlı Yapılar
   basicInfoSection: z.object({
@@ -350,7 +419,7 @@ const hizmetFormSchema = z.object({
     translations: z.record(z.string(), HizmetWhySectionTranslationSchema),
   }).default({ definition: { items: [] }, translations: {} }),
 
-  gallerySection: z.object({ // Sadece çevirilebilir başlık/açıklama
+  gallerySection: z.object({
     translations: z.record(z.string(), HizmetGallerySectionTranslationSchema),
   }).default({ translations: {} }),
 
@@ -368,7 +437,7 @@ const hizmetFormSchema = z.object({
     translations: z.record(z.string(), HizmetRecoverySectionTranslationSchema),
   }).default({ definition: { items: [] }, translations: {} }),
 
-  ctaSection: z.object({ // Ana görseller ve avatarlar üst seviyede
+  ctaSection: z.object({
     translations: z.record(z.string(), HizmetCtaSectionTranslationSchema),
   }).default({ translations: {} }),
 
@@ -385,30 +454,29 @@ const hizmetFormSchema = z.object({
   faqSection: z.object({
     translations: z.record(z.string(), HizmetFaqSectionTranslationSchema),
   }).default({ translations: {} }),
+  
+  // Dil değişikliği kontrolü için bayrak (işlem sırasında kullanılır, API'ye gönderilmez)
+  _isLanguageSwitch: z.boolean().optional(),
 });
 
 export type HizmetFormValues = z.infer<typeof hizmetFormSchema>;
 
-// Hizmet ve ilişkili tüm verilerini içeren tip (API'den gelen veri için)
-// Bu tip, Prisma'dan gelen ve `HizmetTranslation` içinde birçok alanı barındıran yapıyı yansıtır.
-// `getInitialFormValues` bu tipten `HizmetFormValues` tipine dönüşüm yapar.
+// API'den gelen veri tipi
 export type FullHizmetData = Hizmet & {
   translations: Array<
-    HizmetTranslation & { // Prisma'daki HizmetTranslation
+    HizmetTranslation & {
       language: Language;
-      // Eskiden HizmetTranslation'da olan ve şimdi formda ayrı bölümlere ayrılan alanlar:
-      tocItems?: HizmetTocItem[]; // Prisma'da HizmetTranslation'a bağlı
-      introLinks?: HizmetIntroLink[]; // Prisma'da HizmetTranslation'a bağlı
-      steps?: HizmetStep[]; // Prisma'da HizmetTranslation'a bağlı
-      faqs?: HizmetFaqItem[]; // Prisma'da HizmetTranslation'a bağlı
+      tocItems?: HizmetTocItem[];
+      introLinks?: HizmetIntroLink[];
+      steps?: HizmetStep[];
+      faqs?: HizmetFaqItem[];
     }
   >;
   marqueeImages?: HizmetMarqueeImage[];
   galleryImages?: HizmetGalleryImage[];
   ctaAvatars?: HizmetCtaAvatar[];
-  introVideoId?: string | null; // Şemada HizmetTranslation'da ama formda ayrı bir alanda
+  introVideoId?: string | null;
   
-  // Definition/Translation yapısındaki ilişkiler
   overviewTabDefinitions?: Array<
     HizmetOverviewTabDefinition & {
       translations: Array<HizmetOverviewTabTranslation & { language: Language }>;
@@ -441,7 +509,7 @@ export type FullHizmetData = Hizmet & {
   >;
 };
 
-
+// Form bileşeni props
 interface HizmetFormProps {
   initialData: FullHizmetData | null;
   diller: Language[];
@@ -452,12 +520,40 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
   const [loading, setLoading] = useState(false);
   const defaultLangCode = diller.find(d => d.isDefault)?.code || diller[0]?.code || "tr";
   const [activeLang, setActiveLang] = useState<string>(defaultLangCode);
+  
+  // Yeni UI için durum değişkenleri
+  const [activeContentTab, setActiveContentTab] = useState<string>("basic");
+  const [activeMainTab, setActiveMainTab] = useState<string>("content");
+  const [progress, setProgress] = useState<number>(0);
+  const [expandedSections, setExpandedSections] = useState<string[]>(["basic_info"]);
+  
+  // Modüller için state
+  const [availableModules, setAvailableModules] = useState<ModuleState[]>([
+    { id: ModuleType.BASIC_INFO, title: "Temel Bilgiler", isActive: true, isVisible: true, isEditing: false, icon: <Globe size={16} /> },
+    { id: ModuleType.HERO, title: "Hero Bölümü", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.TOC, title: "İçindekiler", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.INTRO, title: "Giriş Bölümü", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.OVERVIEW, title: "Genel Bakış", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.WHY, title: "Neden Biz", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.GALLERY, title: "Galeri", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.TESTIMONIALS, title: "Yorumlar", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.STEPS, title: "Prosedür Adımları", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.RECOVERY, title: "İyileşme Süreci", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.CTA, title: "CTA Bölümü", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.PRICING, title: "Fiyatlandırma", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.EXPERTS, title: "Uzmanlar", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.FAQ, title: "SSS", isActive: true, isVisible: true, isEditing: false },
+    { id: ModuleType.SEO, title: "SEO", isActive: true, isVisible: true, isEditing: false }
+  ]);
+  
+  const [selectedModule, setSelectedModule] = useState<ModuleType | null>(null);
 
   const isEditing = !!initialData?.id;
   const actionButtonText = isEditing ? "Değişiklikleri Kaydet" : "Hizmeti Oluştur";
   const toastMessageSuccess = isEditing ? "Hizmet güncellendi." : "Hizmet oluşturuldu.";
   const toastMessageError = isEditing ? "Hizmet güncellenirken bir hata oluştu." : "Hizmet oluşturulurken bir hata oluştu.";
 
+  // Orijinal dosyadan getInitialFormValues işlevini alıyoruz
   const getInitialFormValues = (): HizmetFormValues => {
     try {
       // Kullanılan metin şablonları - başlangıç değerleri
@@ -467,9 +563,17 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         description: "Açıklama"
       };
       
+      // ModuleStates varsa konsola yazdır
+      if (initialData && initialData.moduleStates) {
+        console.log("Veritabanından gelen moduleStates:", initialData.moduleStates);
+      } else {
+        console.log("Veritabanından gelen moduleStates bulunamadı - yeni kayıt oluşturulacak");
+      }
+      
       const baseValues: Partial<HizmetFormValues> = {
         id: initialData?.id,
         published: initialData?.published ?? false,
+        moduleStates: initialData?.moduleStates || {}, // Veritabanından gelen modül durumlarını kullan
         heroImageUrl: initialData?.heroImageUrl ?? null,
         heroImageAlt: initialData?.heroImageAlt ?? null,
         whyBackgroundImageUrl: initialData?.whyBackgroundImageUrl ?? null,
@@ -662,18 +766,15 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         if (basicInfoParseResult.success) {
           baseValues.basicInfoSection!.translations[lang.code] = basicInfoParseResult.data;
         } else {
-          console.warn(`[getInitialFormValues] Zod validation failed for basicInfoSection, lang: ${lang.code}. Attempting to use original values or fallbacks.`, basicInfoParseResult.error.flatten().fieldErrors);
           // Hata durumunda, orijinal veriyi (boş olsa bile) korumaya çalış veya daha anlamlı varsayılan ata
           baseValues.basicInfoSection!.translations[lang.code] = {
             languageCode: lang.code,
-            slug: tr?.slug || `hizmet-${initialData?.id || 'error'}-${lang.code}`, // Orijinal slug'ı (boşsa boş) veya varsayılanı kullan
-            title: tr?.title || `[${lang.code.toUpperCase()} Başlık Girilmemiş]`, // Orijinal başlığı veya varsayılanı kullan
-            description: tr?.description || `[${lang.code.toUpperCase()} Açıklama Girilmemiş]`, // Orijinal açıklamayı veya varsayılanı kullan
+            slug: tr?.slug || `hizmet-${initialData?.id || 'error'}-${lang.code}`,
+            title: tr?.title || `[${lang.code.toUpperCase()} Başlık Girilmemiş]`,
+            description: tr?.description || `[${lang.code.toUpperCase()} Açıklama Girilmemiş]`,
           };
         }
 
-        // Diğer bölümler için de safeParse kullanılabilir, şimdilik parse ile devam ediyoruz
-        // TODO: Diğer parse çağrılarını da safeParse ile güncelle
         baseValues.tocSection!.translations[lang.code] = HizmetTocSectionTranslationSchema.parse({
           languageCode: lang.code,
           tocTitle: tr?.tocTitle || "İçindekiler",
@@ -706,7 +807,7 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
             hizmetTranslationId: link.hizmetTranslationId
           })),
         });
-        // introSection.definition.videoId zaten yukarıda baseValues'da ayarlandı.
+
         baseValues.seoSection!.translations[lang.code] = HizmetSeoSectionTranslationSchema.parse({
           languageCode: lang.code,
           metaTitle: tr?.metaTitle || null,
@@ -820,38 +921,17 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         // her dil için çeviri ekle
         diller.forEach(lang => {
           const existingTrans = def.translations?.find((t: any) => t.languageCode === lang.code);
-          // ADD LOGGING HERE:
-          if (lang.code === 'en') {
-            // Güvenli loglama (döngüsel yapı içerebilecek nesneler için)
-            const safeTrans = existingTrans ? {
-              id: existingTrans.id,
-              languageCode: existingTrans.languageCode,
-              // Sadece bazı önemli alanları logla
-              keys: Object.keys(existingTrans).filter(k => k !== 'language')
-            } : null;
-            console.log(`[DEBUG getInitial] Found existing 'en' trans for def ${def.id}:`, safeTrans);
-          }
           const parsedTranslation = transSchema.parse({
             languageCode: lang.code,
             ...(existingTrans || {}), // Prisma'dan gelen çeviriyi veya boş obje
           });
           (parsedDef as any).translations[lang.code] = parsedTranslation;
-          // ADD LOGGING HERE:
-          if (lang.code === 'en') {
-             const safeResult = {
-               languageCode: parsedTranslation.languageCode,
-               // Diğer önemli alanları logla (döngüsel referans olmadığından emin olarak)
-               hasData: Object.keys(parsedTranslation).length > 1 // languageCode dışında alan var mı
-             };
-             console.log(`[DEBUG getInitial] Parsed 'en' trans for def ${def.id}:`, safeResult);
-          }
         });
         
         return parsedDef;
       });
     };
     
-    // introLinks are now directly mapped from HizmetTranslation
     if (initialData?.overviewTabDefinitions) {
       const mappedTabs = mapDefWithTranslations(
         initialData.overviewTabDefinitions,
@@ -962,72 +1042,355 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
     }
   };
 
-
   const form = useForm<HizmetFormValues>({
-    resolver: zodResolver(hizmetFormSchema) as any, // Type assertion to resolve resolver type issue
+    resolver: zodResolver(hizmetFormSchema) as any,
     defaultValues: getInitialFormValues(),
-  }) as UseFormReturn<HizmetFormValues>; // Type assertion to resolve form type issues
+  }) as UseFormReturn<HizmetFormValues>;
   
   useEffect(() => {
      form.reset(getInitialFormValues());
-  }, [initialData, diller, form]); // form'u bağımlılıklardan kaldırdık, reset içinde zaten var
+  }, [initialData, diller, form]);
+  
+  // Başlangıç değerlerinden modül durumlarını ayarla
+  useEffect(() => {
+    if (initialData?.id) {
+      console.log("Form değerleri yükleniyor:", form.getValues());
+      
+      const formValues = form.getValues();
+      if (formValues.moduleStates) {
+        console.log("Mevcut moduleStates:", formValues.moduleStates);
+        
+        // Mevcut verilere göre moduleStates güncelleyerek UI'ı ayarla
+        const updatedAvailableModules = availableModules.map(module => ({
+          ...module,
+          isVisible: formValues.moduleStates[module.id]?.isVisible ?? true
+        }));
+        
+        console.log("Güncellenen modüller:", updatedAvailableModules);
+        setAvailableModules(updatedAvailableModules);
+      }
+    }
+  }, [initialData, form]);
+  
+  // Modül durumlarını form değişikliğinde güncelle
+  useEffect(() => {
+    // ModuleStates değişikliklerini izle
+    const subscription = form.watch((value, { name }) => {
+      if (name && name.startsWith('moduleStates')) {
+        // Form değerlerini al
+        const formValues = form.getValues();
+        if (formValues.moduleStates) {
+          // Modülleri güncelle
+          const updatedAvailableModules = availableModules.map(module => ({
+            ...module,
+            isVisible: formValues.moduleStates[module.id]?.isVisible ?? true
+          }));
+          
+          setAvailableModules(updatedAvailableModules);
+          
+          // Eğer seçili bir modül yoksa ilk modülü seç
+          if (selectedModule === null && updatedAvailableModules.length > 0) {
+            setSelectedModule(updatedAvailableModules[0].id);
+          }
+        }
+      }
+    });
+    
+    // Temizlik fonksiyonu
+    return () => subscription.unsubscribe();
+  }, [form, selectedModule]);
 
- // Debug: Form validasyon hatalarını konsola yazdır
- useEffect(() => {
-   if (Object.keys(form.formState.errors).length > 0) {
-     // Güvenli bir şekilde döngüsel yapıları önleme (circular references)
-     const safeErrors = {};
-     Object.keys(form.formState.errors).forEach(key => {
-       if (form.formState.errors[key]) {
-         safeErrors[key] = {
-           type: form.formState.errors[key].type,
-           message: form.formState.errors[key].message
-         };
-       }
-     });
-     console.log("Form Validation Errors:", safeErrors);
-   }
- }, [form.formState.errors]);
- 
- // Aktif dil değiştiğinde kullanıcıya bilgi ver ve form içeriğini reset et
- useEffect(() => {
-   console.log("Active Language Changed to:", activeLang);
-   // Kullanıcı arayüzünde aktif dil göstergesi
-   console.log(`%c ŞU AN AKTİF DİL: ${activeLang.toUpperCase()} `, 'background: #4CAF50; color: white; font-size: 14px; font-weight: bold; padding: 4px 8px;');
-   
-   // ÖNEMLİ: Dil değiştiğinde form değerleri tamamen baştan alınmalı
-   // Bu, dil sekmeleri arasında değerlerin paylaşılmasını önler
-   form.reset(getInitialFormValues());
-   
-   // Debug için form state'ini konsola yazdır
-   console.log("Current Form Values Structure:", Object.keys(form.getValues()));
- }, [activeLang]);
+  // İlerleme yüzdesini hesapla
+  useEffect(() => {
+    const formValues = form.getValues();
+    let totalFields = 0;
+    let filledFields = 0;
 
+    // Basit bir ilerleme hesaplama - gerçek uygulamada daha detaylı olabilir
+    // Temel alanları kontrol et
+    const checkFields = [
+      formValues.heroImageUrl,
+      formValues.basicInfoSection?.translations?.[activeLang]?.title,
+      formValues.basicInfoSection?.translations?.[activeLang]?.description,
+      formValues.basicInfoSection?.translations?.[activeLang]?.slug,
+      // Diğer önemli alanlar buraya eklenebilir
+    ];
+
+    totalFields = checkFields.length;
+    filledFields = checkFields.filter(field => field).length;
+
+    // Koleksiyon alanlarını kontrol et
+    if (formValues.marqueeImages?.length) filledFields++;
+    totalFields++;
+    
+    if (formValues.galleryImages?.length) filledFields++;
+    totalFields++;
+
+    const percent = Math.round((filledFields / totalFields) * 100);
+    setProgress(percent);
+  }, [form.watch(), activeLang]);
+
+  // Akordeon bölümünü aç/kapat
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => 
+      prev.includes(sectionId)
+        ? prev.filter(id => id !== sectionId)
+        : [...prev, sectionId]
+    );
+  };
+  
+  // Sürükle-bırak işlemleri
+  const handleDragEnd = (result: any) => {
+    if (!result.destination) return;
+    
+    const source = result.source.droppableId;
+    const destination = result.destination.droppableId;
+    
+    // Soldan sağa (aktifleştirme) taşıma
+    if (source === 'available-modules' && destination === 'active-modules') {
+      const moduleId = result.draggableId as ModuleType;
+      const module = availableModules.find(m => m.id === moduleId);
+      
+      if (module) {
+        // Modülü aktif modüller listesine ekle
+        setActiveModules(prev => [...prev, {...module, isActive: true, isEditing: true}]);
+        setSelectedModule(moduleId);
+        
+        // Form verisini güncelle - modülü aktifleştir
+        form.setValue(`moduleStates.${moduleId}.isActive`, true);
+      }
+    }
+    
+    // Sağdan sola (deaktifleştirme) taşıma
+    if (source === 'active-modules' && destination === 'available-modules') {
+      const moduleId = result.draggableId as ModuleType;
+      
+      // Modülü aktif listeden kaldır
+      setActiveModules(prev => prev.filter(m => m.id !== moduleId));
+      
+      // Eğer seçili modül deaktif edildiyse, seçimi temizle
+      if (selectedModule === moduleId) {
+        setSelectedModule(null);
+      }
+      
+      // Form verisini güncelle - modülü deaktifleştir
+      form.setValue(`moduleStates.${moduleId}.isActive`, false);
+    }
+    
+    // Aynı tarafta sıralama değişikliği
+    if (source.droppableId === destination.droppableId) {
+      if (source.droppableId === 'active-modules') {
+        const items = Array.from(activeModules);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+        setActiveModules(items);
+      }
+    }
+  };
+  
+  // Modül görünürlük değiştirme
+  const toggleModuleVisibility = (moduleId: ModuleType) => {
+    try {
+      // Güncel form değerlerini al
+      const formValues = form.getValues();
+      
+      // Mevcut görünürlük değerini kontrol et
+      const currentVisibility = formValues.moduleStates?.[moduleId]?.isVisible ?? true;
+      
+      // moduleStates objesi henüz yoksa oluştur
+      if (!formValues.moduleStates) {
+        form.setValue('moduleStates', {}, { shouldDirty: true });
+      }
+
+      // Her modül için boş bir obje oluştur
+      if (!formValues.moduleStates?.[moduleId]) {
+        form.setValue(`moduleStates.${moduleId}`, {}, { shouldDirty: true });
+      }
+      
+      // Değeri güncelle ve formu kirli (dirty) olarak işaretle
+      form.setValue(`moduleStates.${moduleId}`, { 
+        ...formValues.moduleStates?.[moduleId],
+        isVisible: !currentVisibility 
+      }, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true
+      });
+      
+      // UI'ı uyarı verebilmek için state güncellemesi yap
+      setAvailableModules(prev => prev.map(module => 
+        module.id === moduleId 
+          ? { ...module, isVisible: !currentVisibility } 
+          : module
+      ));
+      
+      console.log(`Modül ${moduleId} görünürlüğü: ${!currentVisibility}`);
+    } catch (error) {
+      console.error("Görünürlük değiştirme hatası:", error);
+    }
+  };
+  
+  // Modül düzenleme
+  const selectModuleForEditing = (moduleId: ModuleType) => {
+    setSelectedModule(moduleId);
+  };
+  
+  // Modül paneli render işlevi
+  const renderModuleEditPane = () => {
+    if (!selectedModule) return <div className="p-8 text-center text-muted-foreground">Düzenlemek için modül seçin veya sürükleyin</div>;
+    
+    // Her modül tipine göre uygun bileşeni render et
+    switch (selectedModule) {
+      case ModuleType.BASIC_INFO:
+        return (
+          <BasicInfoSection 
+            form={form}
+            loading={loading}
+            isEditing={isEditing}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.HERO:
+        return (
+          <HeroSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.TOC:
+        return (
+          <TocSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.INTRO:
+        return (
+          <IntroSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.OVERVIEW:
+        return (
+          <OverviewSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+            diller={diller}
+          />
+        );
+      case ModuleType.WHY:
+        return (
+          <WhySectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+            diller={diller}
+          />
+        );
+      case ModuleType.GALLERY:
+        return (
+          <GallerySectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.TESTIMONIALS:
+        return (
+          <TestimonialsSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+            diller={diller}
+          />
+        );
+      case ModuleType.STEPS:
+        return (
+          <StepsSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.RECOVERY:
+        return (
+          <RecoverySectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+            diller={diller}
+          />
+        );
+      case ModuleType.CTA:
+        return (
+          <CtaSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.PRICING:
+        return (
+          <PricingSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+            diller={diller}
+          />
+        );
+      case ModuleType.EXPERTS:
+        return (
+          <ExpertsSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+            diller={diller}
+          />
+        );
+      case ModuleType.FAQ:
+        return (
+          <FaqSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      case ModuleType.SEO:
+        return (
+          <SeoSectionForm 
+            form={form}
+            loading={loading}
+            activeLang={activeLang}
+          />
+        );
+      default:
+        return <div>Seçilen modül için düzenleme paneli bulunamadı.</div>;
+    }
+  };
+
+  // Orijinal form işleme kodunu kullanıyoruz
   const onSubmit = async (values: HizmetFormValues) => {
+    // Dil değişikliği bayrağı kontrol et - eğer sadece dil değişikliği yapıyorsak formu submit etme
+    if (values._isLanguageSwitch) {
+      // Bayrağı temizle
+      form.setValue("_isLanguageSwitch", false, { shouldDirty: false });
+      return; // Form gönderimini iptal et
+    }
+    
     setLoading(true);
     try {
-      // Gönderim sırasında form değerlerini konsola yazdır - debug için
-      console.log("Form values being submitted:", values);
-      
       // API'nin beklediği yapıya dönüştürme
-      // API'nin beklediği format:
-      // - translations: Record<string, HizmetTranslationSchema>
-      // - overviewTabDefinitions, whyItemDefinitions, etc. (bunlar zaten doğru formatta)
-      
       // TÜM DİLLER için translations objesi oluştur
       const allTranslations: Record<string, any> = {};
       
       // TÜM DİLLER için işlem yap
       diller.forEach(lang => {
         const langCode = lang.code;
-        
-        // Basic Info alanlarını kontrol et ve logla - debug için
-        const basicInfoForLang = values.basicInfoSection.translations[langCode];
-        console.log(`[DEBUG] Processing BasicInfo for lang ${langCode}:`, {
-            slug: basicInfoForLang?.slug || "undefined", 
-            title: basicInfoForLang?.title || "undefined",
-            description: basicInfoForLang?.description ? (basicInfoForLang.description.length > 30 ? basicInfoForLang.description.substring(0, 30) + "..." : basicInfoForLang.description) : "undefined"
-        });
         
         // Her dil için veri dönüşümü yap
         allTranslations[langCode] = {
@@ -1103,8 +1466,6 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       };
       }); // diller.forEach döngüsü sonu
       
-      // API'nin beklediği payload'ı oluştur
-
       // Yardımcı fonksiyon: Definition dizilerindeki TÜM çevirileri alır
       const processDefinitionsForPayload = (definitions: any[] | undefined) => {
         if (!definitions) return [];
@@ -1119,12 +1480,6 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
                 ...def.translations[langCode],
                 languageCode: langCode // Dil kodunu açıkça belirt
               };
-              console.log(`[PAYLOAD DEBUG] Processing translation for lang ${langCode} in definition:`, 
-                JSON.stringify(processedTranslations[langCode]));
-            } else {
-               console.log(`[PAYLOAD DEBUG] WARNING: No translation found for ${langCode} in definition ${def.id || 'new'}`);
-               // İsteğe bağlı: Boş çeviri objesi oluşturulabilir mi? API'nin bunu nasıl işlediğine bağlı.
-               // processedTranslations[langCode] = { languageCode: langCode }; 
             }
           });
           
@@ -1136,125 +1491,37 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         });
       };
 
-      // API'den nasıl bir payload bekleniyor ona göre kontrol et
-      console.log('[DEBUG] Checking route.ts file structure to determine expected payload format');
+      // API payload'ını oluştur
+      const { _isLanguageSwitch, ...formValues } = values;
       
-      let payload;
-      
-      try {
-        // İki formatta hazırlayalım - düzenli bir yapı (yeni) ve basitleştirilmiş (eski)
-        // API hangi formatı bekliyorsa ona göre işlenecek
-        
-        // Format 1: İç içe bölümler ve çevirilerle (standart Zod validation şeması)
-        const detailedPayload = {
-          id: values.id,
-          published: values.published,
-          heroImageUrl: values.heroImageUrl,
-          heroImageAlt: values.heroImageAlt,
-          whyBackgroundImageUrl: values.whyBackgroundImageUrl,
-          ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
-          ctaMainImageUrl: values.ctaMainImageUrl,
-          ctaMainImageAlt: values.ctaMainImageAlt,
-          introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
-          marqueeImages: values.marqueeImages,
-          galleryImages: values.galleryImages,
-          ctaAvatars: values.ctaAvatars,
-          
-          // İç içe bölüm yapısı (form bileşenindeki yapı)
-          basicInfoSection: values.basicInfoSection,
-          tocSection: values.tocSection,
-          introSection: values.introSection,
-          seoSection: values.seoSection,
-          overviewSection: values.overviewSection,
-          whySection: values.whySection,
-          gallerySection: values.gallerySection,
-          testimonialsSection: values.testimonialsSection,
-          stepsSection: values.stepsSection,
-          recoverySection: values.recoverySection,
-          ctaSection: values.ctaSection,
-          pricingSection: values.pricingSection,
-          expertsSection: values.expertsSection,
-          faqSection: values.faqSection,
-          
-          activeLang: activeLang,
-        };
-        
-        // Format 2: Düzleştirilmiş, doğrudan API'ye gönderilen (eski stil) 
-        const flattenedPayload = {
-          id: values.id,
-          published: values.published,
-          heroImageUrl: values.heroImageUrl,
-          heroImageAlt: values.heroImageAlt,
-          whyBackgroundImageUrl: values.whyBackgroundImageUrl,
-          ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
-          ctaMainImageUrl: values.ctaMainImageUrl,
-          ctaMainImageAlt: values.ctaMainImageAlt,
-          introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
-          marqueeImages: values.marqueeImages,
-          galleryImages: values.galleryImages,
-          ctaAvatars: values.ctaAvatars,
-          
-          // Düzleştirilmiş, API'nin beklediği yapılar
-          translations: allTranslations, 
-          overviewTabDefinitions: processDefinitionsForPayload(values.overviewSection.definition?.tabs),
-          whyItemDefinitions: processDefinitionsForPayload(values.whySection.definition?.items),
-          testimonialDefinitions: processDefinitionsForPayload(values.testimonialsSection.definition?.items),
-          recoveryItemDefinitions: processDefinitionsForPayload(values.recoverySection.definition?.items),
-          expertItemDefinitions: processDefinitionsForPayload(values.expertsSection.definition?.items),
-          pricingPackageDefinitions: processDefinitionsForPayload(values.pricingSection.definition?.packages),
-          
-          activeLang: activeLang,
-        };
-        
-        // Güvenlik için, route.ts dosyasında flattenedPayload formatında çalışacağını varsaydık
-        // Bu API'nin daha sonraki geliştirmelerinde değişebilir
-        payload = flattenedPayload;
-        
-        console.log("[DEBUG] Using flattened payload structure for API compatibility");
-        
-      } catch (formatError) {
-        console.error("Error preparing payload format:", formatError);
-        // Hata durumunda, orijinal flattenedPayload yapısına dönelim
-        payload = {
-          id: values.id,
-          published: values.published,
-          heroImageUrl: values.heroImageUrl,
-          heroImageAlt: values.heroImageAlt,
-          whyBackgroundImageUrl: values.whyBackgroundImageUrl,
-          ctaBackgroundImageUrl: values.ctaBackgroundImageUrl,
-          ctaMainImageUrl: values.ctaMainImageUrl,
-          ctaMainImageAlt: values.ctaMainImageAlt,
-          introVideoId: values.introSection.definition?.videoId === "" ? null : values.introSection.definition?.videoId,
-          marqueeImages: values.marqueeImages,
-          galleryImages: values.galleryImages,
-          ctaAvatars: values.ctaAvatars,
-          translations: allTranslations,
-          overviewTabDefinitions: processDefinitionsForPayload(values.overviewSection.definition?.tabs),
-          whyItemDefinitions: processDefinitionsForPayload(values.whySection.definition?.items),
-          testimonialDefinitions: processDefinitionsForPayload(values.testimonialsSection.definition?.items),
-          recoveryItemDefinitions: processDefinitionsForPayload(values.recoverySection.definition?.items),
-          expertItemDefinitions: processDefinitionsForPayload(values.expertsSection.definition?.items),
-          pricingPackageDefinitions: processDefinitionsForPayload(values.pricingSection.definition?.packages),
-          activeLang: activeLang,
-        };
-      }
+      const payload = {
+        id: formValues.id,
+        published: formValues.published,
+        moduleStates: formValues.moduleStates, // Modül durumları gönder
+        heroImageUrl: formValues.heroImageUrl,
+        heroImageAlt: formValues.heroImageAlt,
+        whyBackgroundImageUrl: formValues.whyBackgroundImageUrl,
+        ctaBackgroundImageUrl: formValues.ctaBackgroundImageUrl,
+        ctaMainImageUrl: formValues.ctaMainImageUrl,
+        ctaMainImageAlt: formValues.ctaMainImageAlt,
+        introVideoId: formValues.introSection.definition?.videoId === "" ? null : formValues.introSection.definition?.videoId,
+        marqueeImages: formValues.marqueeImages,
+        galleryImages: formValues.galleryImages,
+        ctaAvatars: formValues.ctaAvatars,
+        translations: allTranslations,
+        overviewTabDefinitions: processDefinitionsForPayload(formValues.overviewSection.definition?.tabs),
+        whyItemDefinitions: processDefinitionsForPayload(formValues.whySection.definition?.items),
+        testimonialDefinitions: processDefinitionsForPayload(formValues.testimonialsSection.definition?.items),
+        recoveryItemDefinitions: processDefinitionsForPayload(formValues.recoverySection.definition?.items),
+        expertItemDefinitions: processDefinitionsForPayload(formValues.expertsSection.definition?.items),
+        pricingPackageDefinitions: processDefinitionsForPayload(formValues.pricingSection.definition?.packages),
+        activeLang: activeLang,
+      };
 
       const url = isEditing && initialData?.id
         ? `/api/admin/hizmetler/${initialData.id}`
         : '/api/admin/hizmetler';
       const method = isEditing ? 'PATCH' : 'POST';
-
-      // Göndermeden hemen önce payload içindeki definition dizilerini logla
-      console.log("[DEBUG PAYLOAD] overviewTabDefinitions:", JSON.stringify(payload.overviewTabDefinitions, null, 2));
-      console.log("[DEBUG PAYLOAD] whyItemDefinitions:", JSON.stringify(payload.whyItemDefinitions, null, 2));
-      // Gerekirse diğer definition tipleri için de log ekleyebilirsiniz
-      console.log("[DEBUG PAYLOAD] testimonialDefinitions:", JSON.stringify(payload.testimonialDefinitions, null, 2));
-      console.log("[DEBUG PAYLOAD] recoveryItemDefinitions:", JSON.stringify(payload.recoveryItemDefinitions, null, 2));
-      console.log("[DEBUG PAYLOAD] expertItemDefinitions:", JSON.stringify(payload.expertItemDefinitions, null, 2));
-      console.log("[DEBUG PAYLOAD] pricingPackageDefinitions:", JSON.stringify(payload.pricingPackageDefinitions, null, 2));
-      console.log("[DEBUG PAYLOAD] Top-level translations:", JSON.stringify(payload.translations, null, 2));
-
-      console.log("API Payload:", JSON.stringify(payload, null, 2)); // Bu genel log kalabilir
 
       const response = await fetch(url, {
         method,
@@ -1262,12 +1529,8 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         body: JSON.stringify(payload),
       });
 
-      // Debug için - API yanıtını tam olarak logla
-      const responseText = await response.text();
-      console.log(`API Response (${response.status}):`, responseText);
-      
-      // Yanıt başarılı değilse, hatayı işle
       if (!response.ok) {
+        const responseText = await response.text();
         let errorData;
         try {
           errorData = JSON.parse(responseText);
@@ -1277,104 +1540,245 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         throw new Error(errorData.message || `İşlem sırasında bir hata oluştu (${response.status})`);
       }
 
-      // API yanıtını parse et - hata yakalamak için try/catch bloğu ekleyelim
-      let resultData;
-      try {
-        resultData = JSON.parse(responseText);
-      } catch (parseError) {
-        console.error("JSON parse error:", parseError);
-        console.error("Raw response text:", responseText);
-        throw new Error("JSON yanıtı parse edilemedi. Sunucu yanıtı geçersiz.");
-      }
-      console.log("API Success Result:", resultData);
-      
       toast.success(toastMessageSuccess);
-      router.push('/admin/hizmetler');
-      router.refresh();
+
+      // Sadece yeni hizmet oluşturulduğunda listeye geri dön
+      // Düzenleme modunda kalıp, dil değişikliği yapabilelim
+      if (!isEditing) {
+        router.push('/admin/hizmetler');
+      } else {
+        // Düzenleme modunda form durumunu sıfırla
+        form.reset(await response.json());
+        // Sayfayı yeniden oluştur ama yönlendirme yapma
+        router.refresh();
+      }
     } catch (error: unknown) {
       console.error("Form submit error:", error);
       const message = error instanceof Error ? error.message : toastMessageError;
       toast.error(message);
-      // Zod validation error ise detayları logla
-      if (error instanceof z.ZodError) {
-        console.error("Zod validation errors:", error.errors);
-      }
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <>
-      <Tabs value={activeLang} onValueChange={setActiveLang} className="mb-6">
-        <TabsList>
-          {diller.map(lang => (
-            <TabsTrigger key={lang.code} value={lang.code}>
-              {lang.name}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+  // Formun yükleme durumunu kontrol et
+  const isFormReady = form.formState.isDirty || isEditing;
+  
+  // Dil geçişini işleyen fonksiyon
+  const handleLanguageChange = (langCode: string) => {
+    // Eğer zaten seçili dil ise hiçbir şey yapma
+    if (langCode === activeLang) return;
+    
+    // Önce form durumu kontrolü yap
+    if (form.formState.isDirty && !confirm("Kaydedilmemiş değişiklikleriniz var. Dil değiştirirseniz kaybolabilir. Devam etmek istiyor musunuz?")) {
+      return; // Kullanıcı vazgeçti
+    }
+    
+    // Form durumu temizlendiğinden emin ol - ancak submit tetiklemeden
+    form.reset(form.getValues(), { keepDirty: false, keepTouched: false });
+    
+    // Dili değiştir - direkt olarak state'i güncelle
+    setActiveLang(langCode);
+    
+    // İçerik sekme görünümünde olduğundan emin olalım
+    setActiveMainTab("content");
+    
+    // Forma özel bir bayrak ekle - dil değişikliği olduğunu belirt
+    form.setValue("_isLanguageSwitch", true, { shouldDirty: false });
+  };
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="p-4 border rounded-md">
-            <h3 className="text-lg font-medium mb-2">Genel Ayarlar (Dil Bağımsız)</h3>
-            <FormField
-              control={form.control}
-              name="published"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                  <div className="space-y-0.5">
-                    <FormLabel>Yayın Durumu</FormLabel>
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {/* Üst Bölüm: Başlık, Durum ve Dil Seçimi */}
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>{isEditing ? "Hizmeti Düzenle" : "Yeni Hizmet Ekle"}</CardTitle>
+                <CardDescription>
+                  {isEditing ? "Mevcut hizmeti ve tüm çevirilerini düzenleyin" : "Yeni bir hizmet ve çevirilerini oluşturun"}
+                </CardDescription>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-muted-foreground mr-2">
+                  {isEditing ? "Yayında" : "Yayınla"}
+                </span>
+                <Switch
+                  checked={form.watch("published")}
+                  onCheckedChange={(checked) => form.setValue("published", checked)}
+                  disabled={loading}
+                />
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center">
+                <Progress value={progress} className="w-full" />
+                <span className="text-sm text-muted-foreground ml-2 whitespace-nowrap">
+                  %{progress}
+                </span>
+              </div>
+              
+              {/* Dil Seçimi Tablar */}
+              <div className="flex items-center border-b">
+                <div className="flex items-center space-x-2 mr-4">
+                  <Globe className="h-5 w-5 text-muted-foreground" />
+                  <span className="font-medium">Dil:</span>
+                </div>
+                <div className="flex space-x-1 overflow-x-auto">
+                  {diller.map(lang => (
+                    <Button
+                      key={lang.code}
+                      variant={activeLang === lang.code ? "default" : "ghost"}
+                      size="sm"
+                      className={`rounded-t-md rounded-b-none ${activeLang === lang.code ? 'bg-primary text-primary-foreground border-b-2 border-primary' : 'border-b border-transparent hover:bg-accent hover:text-accent-foreground'}`}
+                      onClick={() => handleLanguageChange(lang.code)}
+                    >
+                      <div className="flex items-center">
+                        <span>{lang.name}</span>
+                        {lang.isDefault && (
+                          <Badge 
+                            variant={activeLang === lang.code ? "secondary" : "outline"} 
+                            className={`ml-2 ${activeLang === lang.code ? 'bg-white text-primary' : ''} text-[10px] px-1 py-0`}
+                          >
+                            Varsayılan
+                          </Badge>
+                        )}
+                      </div>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        {/* Modül Düzenleme Grid */}
+        <div className="grid grid-cols-12 gap-6">
+            {/* Sol Panel - Aktif Modüller */}
+            <div className="col-span-4">
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="text-lg">Modüller</CardTitle>
+                  <CardDescription>
+                    Düzenlemek için modül seçin, görmek için göz simgesine tıklayın
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-2">
+                  <div className="space-y-2 min-h-[300px]">
+                    {availableModules.map((module, index) => (
+                      <div
+                        key={module.id}
+                        className={`flex items-center border rounded-md p-3 transition-colors ${
+                          selectedModule === module.id 
+                            ? 'bg-primary/10 border-primary text-primary-foreground' 
+                            : 'bg-card hover:bg-accent/50'
+                        }`}
+                      >
+                        <span className="flex-1 ml-1 mr-4">{module.title}</span>
+                        <div className="flex space-x-1">
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => toggleModuleVisibility(module.id)}
+                            title={(module.isVisible) ? "Gizle" : "Göster"}
+                            className="p-1 h-8 w-8"
+                          >
+                            {(module.isVisible)
+                              ? <Eye size={16} className="text-blue-500" /> 
+                              : <EyeOff size={16} className="text-muted-foreground" />}
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => selectModuleForEditing(module.id)}
+                            title="Düzenle"
+                            className={`p-1 h-8 w-8 ${selectedModule === module.id ? 'bg-primary text-primary-foreground' : ''}`}
+                          >
+                            <Edit size={16} />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <FormControl>
-                    <Switch checked={field.value} onCheckedChange={field.onChange} disabled={loading} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-             <HeroSectionForm form={form} loading={loading} />
-             <Separator className="my-4" />
-             <MarqueeSectionForm form={form} loading={loading} />
-             {/* WhySectionForm (whyBackgroundImageUrl) ve CtaSectionForm (ctaBackgroundImageUrl, ctaMainImageUrl) dil bağımsız resimleri burada yönetiliyor. */}
-             {/* GallerySectionForm'un ana resim listesi (galleryImages) burada yönetiliyor. */}
+                </CardContent>
+              </Card>
+            </div>
+            
+            {/* Sağ Panel - Seçilen Modülün Düzenleme Alanı */}
+            <div className="col-span-8">
+              <Card className="h-full">
+                <CardHeader>
+                  <div className="flex justify-between items-center">
+                    <CardTitle>
+                      {selectedModule 
+                        ? availableModules.find(m => m.id === selectedModule)?.title + " Düzenleme" 
+                        : "Modül Düzenleme"}
+                    </CardTitle>
+                    {selectedModule && (
+                      <div className="flex space-x-2">
+                        <Switch 
+                          checked={availableModules.find(m => m.id === selectedModule)?.isVisible ?? true}
+                          onCheckedChange={(checked) => {
+                            // moduleStates objesi henüz yoksa oluştur
+                            const hasModuleStates = form.getValues().moduleStates !== undefined;
+                            if (!hasModuleStates) {
+                              form.setValue('moduleStates', {});
+                            }
+                            
+                            // Form değerini güncelle
+                            form.setValue(`moduleStates.${selectedModule}`, {
+                              ...form.getValues().moduleStates?.[selectedModule],
+                              isVisible: checked
+                            }, {
+                              shouldDirty: true,
+                              shouldTouch: true,
+                              shouldValidate: true
+                            });
+                            
+                            // UI state'i güncelle
+                            setAvailableModules(prev => prev.map(module => 
+                              module.id === selectedModule 
+                                ? { ...module, isVisible: checked } 
+                                : module
+                            ));
+                            
+                            console.log(`Switch: Modül ${selectedModule} görünürlüğü: ${checked}`);
+                          }}
+                          disabled={loading}
+                        />
+                        <span className="text-sm">
+                          {(availableModules.find(m => m.id === selectedModule)?.isVisible ?? true) ? "Görünür" : "Gizli"}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  {renderModuleEditPane()}
+                </CardContent>
+              </Card>
+            </div>
           </div>
-          
-          {/* Bu bileşenin diller prop'una ihtiyacı var mı kontrol et */}
-          <BasicInfoSection form={form} loading={loading} isEditing={isEditing} activeLang={activeLang} />
-          <Separator />
-          <TocSectionForm form={form} loading={loading} activeLang={activeLang} />
-          <Separator />
-          <IntroSectionForm form={form} loading={loading} activeLang={activeLang} />
-          <Separator />
-          <OverviewSectionForm form={form} loading={loading} activeLang={activeLang} diller={diller} />
-          <Separator />
-          <WhySectionForm form={form} loading={loading} activeLang={activeLang} diller={diller} />
-          <Separator />
-          <GallerySectionForm form={form} loading={loading} activeLang={activeLang} />
-          <Separator />
-          <TestimonialsSectionForm form={form} loading={loading} activeLang={activeLang} diller={diller} />
-          <Separator />
-          <StepsSectionForm form={form} loading={loading} activeLang={activeLang} />
-          <Separator />
-          <RecoverySectionForm form={form} loading={loading} activeLang={activeLang} diller={diller} />
-          <Separator />
-          <CtaSectionForm form={form} loading={loading} activeLang={activeLang} />
-          <Separator />
-          <PricingSectionForm form={form} loading={loading} activeLang={activeLang} diller={diller} />
-          <Separator />
-          <ExpertsSectionForm form={form} loading={loading} activeLang={activeLang} diller={diller} />
-          <Separator />
-          <FaqSectionForm form={form} loading={loading} activeLang={activeLang} />
-          <Separator />
-          <SeoSectionForm form={form} loading={loading} activeLang={activeLang} />
-          
-          <Button type="submit" disabled={loading} className="mt-8">
-            {actionButtonText}
-          </Button>
-        </form>
-      </Form>
-    </>
+
+        {/* Sayfanın en altında her zaman görünen genel kaydet butonu */}
+        <div className="sticky bottom-0 bg-background pb-4 pt-2 border-t">
+          <div className="flex justify-between items-center">
+            <Button 
+              variant="outline"
+              onClick={() => router.back()}
+              disabled={loading}
+            >
+              İptal
+            </Button>
+            <Button type="submit" disabled={loading}>
+              {actionButtonText}
+            </Button>
+          </div>
+        </div>
+      </form>
+    </Form>
   );
 }

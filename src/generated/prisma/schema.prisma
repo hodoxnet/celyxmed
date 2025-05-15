@@ -148,10 +148,11 @@ model BlogTranslation {
 
 // Hizmet Ana Modeli (Dil Bağımsız)
 model Hizmet {
-  id        String   @id @default(cuid())
-  published Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  published    Boolean  @default(false)
+  moduleStates Json? // Modül görünürlük ve aktiflik durumları
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   // --- Dil Bağımsız Temel Resimler ---
   heroImageUrl          String?

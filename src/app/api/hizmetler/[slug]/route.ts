@@ -19,14 +19,14 @@ export async function GET(req: Request, context: Context) {
       return new NextResponse(JSON.stringify({ message: 'Dil parametresi (locale) eksik.' }), { status: 400 });
     }
 
+    console.log(`[API] Hizmet aranıyor. Slug: "${slug}", Locale: "${locale}"`);
+
     // YENİ YAPI: Hizmet ve HizmetTranslation modelleriyle çalışacak şekilde güncellendi
     // Önce belirtilen slug ve locale için çeviriyi bul
-    let hizmetTranslation = await prisma.hizmetTranslation.findUnique({
+    let hizmetTranslation = await prisma.hizmetTranslation.findFirst({
       where: {
-        slug_languageCode: { // Unique constraint: slug + language
-          slug: slug,
-          languageCode: locale,
-        },
+        slug: slug,
+        languageCode: locale,
       },
       include: {
         hizmet: {
@@ -217,6 +217,7 @@ export async function GET(req: Request, context: Context) {
       description: hizmetTranslation.description,
       heroImageUrl: hizmetTranslation.hizmet.heroImageUrl,
       heroImageAlt: hizmetTranslation.hizmet.heroImageAlt,
+      slug: hizmetTranslation.slug, // Slug değerini de gönder
       
       // TOC bölümü
       tocTitle: hizmetTranslation.tocTitle,
@@ -315,13 +316,13 @@ export async function GET(req: Request, context: Context) {
       // Steps bölümü
       stepsTitle: hizmetTranslation.stepsSectionTitle,
       stepsDescription: hizmetTranslation.stepsSectionDescription,
-      steps: hizmetTranslation.steps.map(step => ({
+      steps: hizmetTranslation.steps?.map(step => ({
         id: step.id,
         title: step.title,
         description: step.description,
         linkText: step.linkText,
         order: step.order
-      })),
+      })) || [], // Array olmama durumunda boş dizi kullan
       
       // Recovery bölümü
       recoveryTitle: hizmetTranslation.recoverySectionTitle,

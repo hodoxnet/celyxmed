@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ import {
   NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { slugTranslations } from "@/generated/route-translations";
 
 // Menü veri tipleri (RootLayoutClient'tan veya ortak tiplerden alınmalı)
 interface MenuItem {
@@ -77,6 +79,41 @@ const Navbar: React.FC<NavbarProps> = ({
   const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null);
   const [languages, setLanguages] = useState<{ code: string; name: string }[]>([]);
   const [isLanguageLoading, setIsLanguageLoading] = useState(true);
+  const pathname = usePathname(); // Next.js hook ile mevcut sayfa yolunu al
+
+  // Dil değiştirme linki oluşturan fonksiyon
+  const getLanguageLink = (langCode: string) => {
+    const currentPathParts = pathname.split('/').filter(Boolean);
+    if (currentPathParts.length === 0) {
+      // Ana sayfadaysa, sadece dil kodunu döndür
+      return `/${langCode}`;
+    }
+
+    const currentLang = currentPathParts[0];
+    const pathWithoutLang = currentPathParts.slice(1).join('/');
+    
+    // Eğer hizmetler detay sayfasındaysa ve slug varsa
+    if (pathWithoutLang.startsWith('hizmetler/') || pathWithoutLang.startsWith('services/')) {
+      const segments = pathWithoutLang.split('/');
+      const routeType = segments[0]; // 'hizmetler' veya 'services'
+      const currentSlug = segments[1];
+      
+      // Yeni dilin karşılık gelen route'u (hizmetler -> services)
+      const newRoute = routeType === 'hizmetler' && langCode === 'en' ? 'services' : 
+                       routeType === 'services' && langCode === 'tr' ? 'hizmetler' : routeType;
+      
+      // Slugın diğer dildeki karşılığını bulmaya çalış
+      let translatedSlug = currentSlug;
+      if (slugTranslations[currentSlug] && slugTranslations[currentSlug][langCode]) {
+        translatedSlug = slugTranslations[currentSlug][langCode];
+      }
+      
+      return `/${langCode}/${newRoute}/${translatedSlug}`;
+    }
+    
+    // Diğer sayfalar için basit dil değiştirme
+    return `/${langCode}/${pathWithoutLang}`;
+  };
 
   useEffect(() => {
     const fetchLanguages = async () => {
@@ -179,7 +216,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             <ListItem
                               key={lang.code}
                               title={lang.name}
-                              href={`/${lang.code}`} // Locale değiştirme linki
+                              href={getLanguageLink(lang.code)} // Akıllı dil değiştirme fonksiyonu
                             />
                           ))
                         ) : (
@@ -277,7 +314,7 @@ const Navbar: React.FC<NavbarProps> = ({
                               languages.map((lang) => (
                                 <Link
                                   key={lang.code}
-                                  href={`/${lang.code}`} // Locale değiştirme linki
+                                  href={getLanguageLink(lang.code)} // Akıllı dil değiştirme fonksiyonu
                                   className="block py-2 text-gray-600 hover:text-gray-900"
                                 >
                                   {lang.name}
