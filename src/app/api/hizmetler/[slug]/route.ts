@@ -33,6 +33,7 @@ export async function GET(req: Request, context: Context) {
           select: {
             id: true,
             published: true,
+            moduleStates: true, // Modül durumlarını seçiyoruz
             heroImageUrl: true,
             heroImageAlt: true,
             whyBackgroundImageUrl: true,
@@ -130,6 +131,7 @@ export async function GET(req: Request, context: Context) {
               select: {
                 id: true,
                 published: true,
+                moduleStates: true, // Modül durumlarını seçiyoruz (ikinci sorgu için)
                 heroImageUrl: true,
                 heroImageAlt: true,
                 whyBackgroundImageUrl: true,
@@ -218,6 +220,7 @@ export async function GET(req: Request, context: Context) {
       heroImageUrl: hizmetTranslation.hizmet.heroImageUrl,
       heroImageAlt: hizmetTranslation.hizmet.heroImageAlt,
       slug: hizmetTranslation.slug, // Slug değerini de gönder
+      moduleStates: hizmetTranslation.hizmet.moduleStates || {}, // Modül aktiflik durumlarını da gönder
       
       // TOC bölümü
       tocTitle: hizmetTranslation.tocTitle,

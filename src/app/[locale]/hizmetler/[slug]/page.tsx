@@ -2,6 +2,7 @@
 // Server Component olarak kalmalı
 
 import type { Metadata, ResolvingMetadata } from 'next';
+import { normalizeModuleStates } from './page.tsx.normalize';
 // Navbar, Footer ve FloatingButtons RootLayoutClient'tan geleceği için kaldırıldı.
 import HeroSection from '@/components/hizmet-detay/HeroSection';
 // TableOfContents importu kaldırıldı, yerine TocAndCtaSection gelecek
@@ -265,6 +266,19 @@ async function getServiceData(slug: string, locale: string): Promise<FetchedServ
     }
 
     const data = await res.json();
+    // Debug için - moduleStates'i kontrol et ve düzelt
+    console.log(`[Page] API Yanıt moduleStates:`, data.moduleStates);
+    
+    // Eğer moduleStates yoksa, boş bir object ekle
+    if (!data.moduleStates) {
+      console.log('[Page] moduleStates bulunamadı, boş bir nesne ekleniyor');
+      data.moduleStates = {};
+    }
+    
+    // ModuleStates durumlarını normalize et
+    data.moduleStates = normalizeModuleStates(data.moduleStates);
+    console.log('[Page] Normalize edilmiş moduleStates:', data.moduleStates);
+    
     return data;
   } catch (error) {
     console.error("[Page] Hizmet verisi çekme hatası:", error);
@@ -293,6 +307,19 @@ async function fetchWithDefaultLocale(slug: string): Promise<FetchedServiceData 
     }
     
     const data = await res.json();
+    // Debug için - moduleStates'i kontrol et ve düzelt
+    console.log(`[Page] API Yanıt moduleStates:`, data.moduleStates);
+    
+    // Eğer moduleStates yoksa, boş bir object ekle
+    if (!data.moduleStates) {
+      console.log('[Page] moduleStates bulunamadı, boş bir nesne ekleniyor');
+      data.moduleStates = {};
+    }
+    
+    // ModuleStates durumlarını normalize et
+    data.moduleStates = normalizeModuleStates(data.moduleStates);
+    console.log('[Page] Normalize edilmiş moduleStates:', data.moduleStates);
+    
     return data;
   } catch (error) {
     console.error(`[Page] Varsayılan dil (${defaultLocale}) için veri çekme hatası:`, error);
@@ -306,6 +333,22 @@ function getFallbackData(slug: string, locale: string): FetchedServiceData {
   
   // Örnek veri, bu veriyi gerçek API yanıtınıza göre uyarlayabilirsiniz
   return {
+    // ModuleStates ekle (tüm modüller aktif ve görünür)
+    moduleStates: {
+      tocSection: { isActive: true, isVisible: true },
+      marqueeSection: { isActive: true, isVisible: true },
+      introSection: { isActive: true, isVisible: true },
+      overviewSection: { isActive: true, isVisible: true },
+      whySection: { isActive: true, isVisible: true },
+      gallerySection: { isActive: true, isVisible: true },
+      testimonialsSection: { isActive: true, isVisible: true },
+      stepsSection: { isActive: true, isVisible: true },
+      recoverySection: { isActive: true, isVisible: true },
+      ctaSection: { isActive: true, isVisible: true },
+      pricingSection: { isActive: true, isVisible: true },
+      expertsSection: { isActive: true, isVisible: true },
+      faqSection: { isActive: true, isVisible: true }
+    },
     breadcrumb: "Anasayfa > Hizmetler > Anne Estetiği", // breadcrumb eklendi
     title: "Anne Estetiği",
     description: "Anne estetiği, doğum sonrası vücut değişimlerini geri döndürmek için tasarlanmış işlemler bütünüdür.",
@@ -432,13 +475,33 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
     // Navbar RootLayoutClient'tan gelecek
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-        {/* Hero Bölümü - API'den gelen veri ile */}
-        <HeroSection
-          title={serviceData.title}
-          description={serviceData.description}
-          imageUrl={serviceData.heroImageUrl}
-          imageAlt={serviceData.heroImageAlt}
-        />
+        {/* Hero Bölümü - Gösterim kontrolü eklendi */}
+        {(
+          (serviceData?.moduleStates?.heroSection?.isActive !== false && serviceData?.moduleStates?.heroSection?.isVisible !== false) ||
+          (serviceData?.moduleStates?.hero?.isActive !== false && serviceData?.moduleStates?.hero?.isVisible !== false)
+        ) ? (
+          <>
+            {console.log('[Render] Hero modülü render ediliyor', 
+              'heroSection.isActive:', serviceData?.moduleStates?.heroSection?.isActive, 
+              'heroSection.isVisible:', serviceData?.moduleStates?.heroSection?.isVisible,
+              'hero.isActive:', serviceData?.moduleStates?.hero?.isActive,
+              'hero.isVisible:', serviceData?.moduleStates?.hero?.isVisible
+            )}
+            <HeroSection
+              title={serviceData.title}
+              description={serviceData.description}
+              imageUrl={serviceData.heroImageUrl}
+              imageAlt={serviceData.heroImageAlt}
+            />
+          </>
+        ) : (
+          console.log('[Render] Hero modülü gizli, sebep:', 
+            'heroSection.isActive:', serviceData?.moduleStates?.heroSection?.isActive, 
+            'heroSection.isVisible:', serviceData?.moduleStates?.heroSection?.isVisible,
+            'hero.isActive:', serviceData?.moduleStates?.hero?.isActive,
+            'hero.isVisible:', serviceData?.moduleStates?.hero?.isVisible
+          )
+        )}
 
         {/* Diğer bölümler şimdilik statik veya boş kalabilir */}
         {/* Örnek:
@@ -447,110 +510,210 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         ... vb.
         */}
 
-        {/* Yorum satırları kaldırıldı. Prop'lara varsayılan/boş değerler atanacak. */}
-        <TocAndCtaSection
-          tocTitle={serviceData?.tocTitle ?? "İçindekiler"} // Prop isimleri düzeltildi
-          tocItems={serviceData?.tocItems ?? []} // Prop isimleri düzeltildi
-          tocAuthorInfo={serviceData?.tocAuthorInfo ?? ""} // Prop isimleri düzeltildi
-          ctaDescription={serviceData?.tocCtaDescription ?? ""} // Prop isimleri düzeltildi
-        />
-        {/* marqueeImages API'den gelince kontrol edilecek */}
-        {(serviceData?.marqueeImages && serviceData.marqueeImages.length > 0) && (
-          <ImageMarquee images={serviceData.marqueeImages} />
+        {/* Her bölüm için moduleStates kontrolü yaparak bölümleri göster/gizle */}
+        
+        {/* TOC & CTA Bölümü */}
+        {/* TOC & CTA Bölümü - Hem toc hem de tocSection anahtarlarını kontrol ediyoruz */}
+        {(
+          // TOC için iki olası anahtarı da kontrol ediyoruz
+          (serviceData?.moduleStates?.tocSection?.isActive !== false && serviceData?.moduleStates?.tocSection?.isVisible !== false) ||
+          (serviceData?.moduleStates?.toc?.isActive !== false && serviceData?.moduleStates?.toc?.isVisible !== false)
+        ) ? (
+          <>
+            {console.log('[Render] TOC modülü render ediliyor', 
+              'tocSection.isActive:', serviceData?.moduleStates?.tocSection?.isActive, 
+              'tocSection.isVisible:', serviceData?.moduleStates?.tocSection?.isVisible,
+              'toc.isActive:', serviceData?.moduleStates?.toc?.isActive,
+              'toc.isVisible:', serviceData?.moduleStates?.toc?.isVisible
+            )}
+            <TocAndCtaSection
+              tocTitle={serviceData?.tocTitle ?? "İçindekiler"}
+              tocItems={serviceData?.tocItems ?? []}
+              tocAuthorInfo={serviceData?.tocAuthorInfo ?? ""}
+              ctaDescription={serviceData?.tocCtaDescription ?? ""}
+            />
+          </>
+        ) : (
+          console.log('[Render] TOC modülü gizli, sebep:', 
+            'tocSection.isActive:', serviceData?.moduleStates?.tocSection?.isActive, 
+            'tocSection.isVisible:', serviceData?.moduleStates?.tocSection?.isVisible,
+            'toc.isActive:', serviceData?.moduleStates?.toc?.isActive,
+            'toc.isVisible:', serviceData?.moduleStates?.toc?.isVisible
+          )
         )}
-        <TreatmentIntroSection
-          videoId={serviceData?.introVideoId} // Prop isimleri düzeltildi
-          title={serviceData?.introTitle ?? ""} // Prop isimleri düzeltildi
-          description={serviceData?.introDescription ?? ""} // Prop isimleri düzeltildi
-          primaryButtonText={serviceData?.introPrimaryButtonText ?? ""} // Prop isimleri düzeltildi
-          primaryButtonLink={serviceData?.introPrimaryButtonLink ?? "#"} // Prop isimleri düzeltildi
-          secondaryButtonText={serviceData?.introSecondaryButtonText ?? ""} // Prop isimleri düzeltildi
-          secondaryButtonLink={serviceData?.introSecondaryButtonLink ?? "#"} // Prop isimleri düzeltildi
-          links={serviceData?.introLinks ?? []} // Prop isimleri düzeltildi
-        />
-        <div id="1">
-          <TreatmentOverview
-            sectionTitle={serviceData?.overviewTitle ?? ""} // Prop isimleri düzeltildi
-            sectionDescription={serviceData?.overviewDescription ?? ""} // Prop isimleri düzeltildi
-            // tabsData prop'unu map ile dönüştürerek 'triggerText' -> 'trigger' yapalım
-            tabsData={serviceData?.overviewTabs?.map(tab => ({ ...tab, trigger: tab.triggerText })) ?? []}
+        
+        {/* Marquee Bölümü - Tüm olası anahtarları kontrol ediyoruz */}
+        {(
+          // Hem 'marqueeSection' hem de 'marquee' anahtarlarını kontrol ediyoruz
+          (serviceData?.moduleStates?.marqueeSection?.isActive !== false && serviceData?.moduleStates?.marqueeSection?.isVisible !== false) || 
+          (serviceData?.moduleStates?.marquee?.isActive !== false && serviceData?.moduleStates?.marquee?.isVisible !== false)
+        ) && serviceData?.marqueeImages && serviceData.marqueeImages.length > 0 ? (
+          <>
+            {console.log('[Render] Marquee modülü render ediliyor', 
+              'marqueeSection.isActive:', serviceData?.moduleStates?.marqueeSection?.isActive, 
+              'marqueeSection.isVisible:', serviceData?.moduleStates?.marqueeSection?.isVisible,
+              'marquee.isActive:', serviceData?.moduleStates?.marquee?.isActive,
+              'marquee.isVisible:', serviceData?.moduleStates?.marquee?.isVisible
+            )}
+            <ImageMarquee images={serviceData.marqueeImages} />
+          </>
+        ) : (
+          console.log('[Render] Marquee modülü gizli, sebep:', 
+                    'marqueeSection.isActive:', serviceData?.moduleStates?.marqueeSection?.isActive, 
+                    'marqueeSection.isVisible:', serviceData?.moduleStates?.marqueeSection?.isVisible,
+                    'marquee.isActive:', serviceData?.moduleStates?.marquee?.isActive,
+                    'marquee.isVisible:', serviceData?.moduleStates?.marquee?.isVisible,
+                    'marqueeImages.length:', serviceData?.marqueeImages?.length)
+        )}
+        
+        {/* Tedavi Tanıtım Bölümü - Her iki anahtarı kontrol ediyoruz */}
+        {(
+          (serviceData?.moduleStates?.introSection?.isActive !== false && serviceData?.moduleStates?.introSection?.isVisible !== false) ||
+          (serviceData?.moduleStates?.intro?.isActive !== false && serviceData?.moduleStates?.intro?.isVisible !== false)
+        ) && (
+          <TreatmentIntroSection
+            videoId={serviceData?.introVideoId}
+            title={serviceData?.introTitle ?? ""}
+            description={serviceData?.introDescription ?? ""}
+            primaryButtonText={serviceData?.introPrimaryButtonText ?? ""}
+            primaryButtonLink={serviceData?.introPrimaryButtonLink ?? "#"}
+            secondaryButtonText={serviceData?.introSecondaryButtonText ?? ""}
+            secondaryButtonLink={serviceData?.introSecondaryButtonLink ?? "#"}
+            links={serviceData?.introLinks ?? []}
           />
-        </div>
-        <div id="2">
-          <WhyCelyxmed
-            sectionTitle={serviceData?.whyTitle ?? ""} // Prop isimleri düzeltildi
-            items={serviceData?.whyItems ?? []} // Prop isimleri düzeltildi
-            backgroundImageUrl={serviceData?.whyBackgroundImageUrl}
+        )}
+        
+        {/* Genel Bakış Bölümü */}
+        {serviceData?.moduleStates?.overviewSection?.isActive !== false && 
+         serviceData?.moduleStates?.overviewSection?.isVisible !== false && (
+          <div id="1">
+            <TreatmentOverview
+              sectionTitle={serviceData?.overviewTitle ?? ""}
+              sectionDescription={serviceData?.overviewDescription ?? ""}
+              tabsData={serviceData?.overviewTabs?.map(tab => ({ ...tab, trigger: tab.triggerText })) ?? []}
+            />
+          </div>
+        )}
+        
+        {/* Neden Celyxmed Bölümü */}
+        {serviceData?.moduleStates?.whySection?.isActive !== false && 
+         serviceData?.moduleStates?.whySection?.isVisible !== false && (
+          <div id="2">
+            <WhyCelyxmed
+              sectionTitle={serviceData?.whyTitle ?? ""}
+              items={serviceData?.whyItems ?? []}
+              backgroundImageUrl={serviceData?.whyBackgroundImageUrl}
+            />
+          </div>
+        )}
+        
+        {/* Galeri Bölümü */}
+        {serviceData?.moduleStates?.gallerySection?.isActive !== false && 
+         serviceData?.moduleStates?.gallerySection?.isVisible !== false && (
+          <div id="galeri">
+            <GallerySection
+              sectionTitle={serviceData?.galleryTitle ?? ""}
+              sectionDescription={serviceData?.galleryDescription ?? ""}
+              images={serviceData?.galleryImages ?? []}
+            />
+          </div>
+        )}
+        
+        {/* Yorumlar Bölümü */}
+        {serviceData?.moduleStates?.testimonialsSection?.isActive !== false && 
+         serviceData?.moduleStates?.testimonialsSection?.isVisible !== false && (
+          <div id="yorumlar">
+            <TestimonialsSection
+              title={serviceData?.testimonialsSectionTitle}
+              testimonials={serviceData?.testimonials?.map(testimonial => ({
+                ...testimonial,
+                stars: testimonial.stars ?? 5,
+                treatment: testimonial.treatment ?? "",
+                imageUrl: testimonial.imageUrl ?? "",
+              })) ?? []}
+            />
+          </div>
+        )}
+        
+        {/* Prosedür Adımları Bölümü */}
+        {serviceData?.moduleStates?.stepsSection?.isActive !== false && 
+         serviceData?.moduleStates?.stepsSection?.isVisible !== false && (
+          <div id="4">
+            <ProcedureSteps
+              sectionTitle={serviceData?.stepsTitle ?? ""}
+              sectionDescription={serviceData?.stepsDescription}
+              steps={serviceData?.steps ?? []}
+            />
+          </div>
+        )}
+        
+        {/* İyileşme Bilgileri Bölümü */}
+        {serviceData?.moduleStates?.recoverySection?.isActive !== false && 
+         serviceData?.moduleStates?.recoverySection?.isVisible !== false && (
+          <div id="5">
+            <RecoveryInfo
+              sectionTitle={serviceData?.recoveryTitle ?? ""}
+              sectionDescription={serviceData?.recoveryDescription}
+              items={serviceData?.recoveryItems ?? []}
+            />
+          </div>
+        )}
+        
+        {/* CTA Bölümü */}
+        {serviceData?.moduleStates?.ctaSection?.isActive !== false && 
+         serviceData?.moduleStates?.ctaSection?.isVisible !== false && (
+          <CtaSection
+            tagline={serviceData?.ctaTagline}
+            title={serviceData?.ctaTitle ?? ""}
+            description={serviceData?.ctaDescription ?? ""}
+            buttonText={serviceData?.ctaButtonText ?? ""}
+            buttonLink={serviceData?.ctaButtonLink}
+            avatars={serviceData?.ctaAvatars ?? []}
+            avatarText={serviceData?.ctaAvatarText}
+            backgroundImageUrl={serviceData?.ctaBackgroundImageUrl}
+            mainImageUrl={serviceData?.ctaMainImageUrl}
+            mainImageAlt={serviceData?.ctaMainImageAlt}
           />
-        </div>
-        <div id="galeri">
-          <GallerySection
-            sectionTitle={serviceData?.galleryTitle ?? ""} // Prop isimleri düzeltildi
-            sectionDescription={serviceData?.galleryDescription ?? ""} // Prop isimleri düzeltildi
-            images={serviceData?.galleryImages ?? []} // Prop isimleri düzeltildi
-          />
-        </div>
-        <div id="yorumlar">
-          <TestimonialsSection
-            title={serviceData?.testimonialsSectionTitle}
-            // testimonials prop'unu map ile dönüştürerek 'stars', 'treatment' ve 'imageUrl' için varsayılan değer atayalım
-            testimonials={serviceData?.testimonials?.map(testimonial => ({
-              ...testimonial,
-              stars: testimonial.stars ?? 5,
-              treatment: testimonial.treatment ?? "",
-              imageUrl: testimonial.imageUrl ?? "", // imageUrl için varsayılan boş string
-            })) ?? []}
-          />
-        </div>
-        <div id="4">
-          <ProcedureSteps
-            sectionTitle={serviceData?.stepsTitle ?? ""} // Prop isimleri düzeltildi
-            sectionDescription={serviceData?.stepsDescription}
-            steps={serviceData?.steps ?? []} // Prop isimleri düzeltildi
-          />
-        </div>
-        <div id="5">
-          <RecoveryInfo
-            sectionTitle={serviceData?.recoveryTitle ?? ""} // Prop isimleri düzeltildi
-            sectionDescription={serviceData?.recoveryDescription}
-            items={serviceData?.recoveryItems ?? []} // Prop isimleri düzeltildi
-          />
-        </div>
-        <CtaSection
-          tagline={serviceData?.ctaTagline}
-          title={serviceData?.ctaTitle ?? ""} // Prop isimleri düzeltildi
-          description={serviceData?.ctaDescription ?? ""} // Prop isimleri düzeltildi
-          buttonText={serviceData?.ctaButtonText ?? ""} // Prop isimleri düzeltildi
-          buttonLink={serviceData?.ctaButtonLink}
-          avatars={serviceData?.ctaAvatars ?? []} // Prop isimleri düzeltildi
-          avatarText={serviceData?.ctaAvatarText}
-          backgroundImageUrl={serviceData?.ctaBackgroundImageUrl}
-          mainImageUrl={serviceData?.ctaMainImageUrl}
-          mainImageAlt={serviceData?.ctaMainImageAlt}
-        />
-        <div id="fiyat">
-          <PricingSection
-            sectionTitle={serviceData?.pricingTitle ?? ""} // Prop isimleri düzeltildi
-            sectionDescription={serviceData?.pricingDescription}
-            packages={serviceData?.pricingPackages ?? []} // Prop isimleri düzeltildi
-          />
-        </div>
-        <div id="7">
-          <MeetExperts
-            sectionTitle={serviceData?.expertsSectionTitle ?? ""} // Prop isimleri düzeltildi
-            tagline={serviceData?.expertsTagline}
-            experts={serviceData?.expertItems ?? []} // Prop isimleri düzeltildi
-          />
-        </div>
-        {/* BlogPreview ve FaqSection yer değiştiriyor */}
-        <div id="8">
-          <FaqSection
-            sectionTitle={serviceData?.faqSectionTitle ?? ""} // Prop isimleri düzeltildi
-            sectionDescription={serviceData?.faqSectionDescription}
-            faqItems={serviceData?.faqs ?? []} // Prop isimleri düzeltildi
-          />
-        </div>
-        <BlogPreview /> {/* BlogPreview en alta taşındı */}
+        )}
+        
+        {/* Fiyatlandırma Bölümü */}
+        {serviceData?.moduleStates?.pricingSection?.isActive !== false && 
+         serviceData?.moduleStates?.pricingSection?.isVisible !== false && (
+          <div id="fiyat">
+            <PricingSection
+              sectionTitle={serviceData?.pricingTitle ?? ""}
+              sectionDescription={serviceData?.pricingDescription}
+              packages={serviceData?.pricingPackages ?? []}
+            />
+          </div>
+        )}
+        
+        {/* Uzmanlar Bölümü */}
+        {serviceData?.moduleStates?.expertsSection?.isActive !== false && 
+         serviceData?.moduleStates?.expertsSection?.isVisible !== false && (
+          <div id="7">
+            <MeetExperts
+              sectionTitle={serviceData?.expertsSectionTitle ?? ""}
+              tagline={serviceData?.expertsTagline}
+              experts={serviceData?.expertItems ?? []}
+            />
+          </div>
+        )}
+        
+        {/* SSS Bölümü */}
+        {serviceData?.moduleStates?.faqSection?.isActive !== false && 
+         serviceData?.moduleStates?.faqSection?.isVisible !== false && (
+          <div id="8">
+            <FaqSection
+              sectionTitle={serviceData?.faqSectionTitle ?? ""}
+              sectionDescription={serviceData?.faqSectionDescription}
+              faqItems={serviceData?.faqs ?? []}
+            />
+          </div>
+        )}
+        
+        {/* BlogPreview en alta taşındı - modül kontrolü yapılmıyor çünkü sabit bir bölüm */}
+        <BlogPreview />
 
       </main>
       {/* Footer ve FloatingButtons RootLayoutClient'tan gelecek */}

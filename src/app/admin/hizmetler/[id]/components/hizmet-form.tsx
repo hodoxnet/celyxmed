@@ -1229,19 +1229,67 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       }
       
       // Değeri güncelle ve formu kirli (dirty) olarak işaretle
+      // Hem kısa anahtar (moduleId) hem de uzun anahtar (moduleId + "Section") için değer ayarla
+      const newVisibility = !currentVisibility;
+      
+      // Orijinal module ID için değeri güncelle
       form.setValue(`moduleStates.${moduleId}`, { 
         ...formValues.moduleStates?.[moduleId],
-        isVisible: !currentVisibility 
+        isVisible: newVisibility,
+        isActive: newVisibility // isActive değerini de aynı değere ayarla
       }, {
         shouldDirty: true,
         shouldTouch: true,
         shouldValidate: true
       });
       
+      // "[moduleId]Section" versiyonu için de güncelle (eğer farklıysa)
+      const sectionKey = `${moduleId}Section`;
+      if (moduleId !== sectionKey) {
+        form.setValue(`moduleStates.${sectionKey}`, { 
+          ...formValues.moduleStates?.[sectionKey],
+          isVisible: newVisibility,
+          isActive: newVisibility
+        }, {
+          shouldDirty: true,
+          shouldTouch: true,
+          shouldValidate: true
+        });
+      }
+      
+      // Özel durumlar - bazı modüller için isimlendirmeler farklı
+      if (moduleId === 'basic_info') {
+        // "basic_info" modülü için "basicInfoSection" şeklinde de olabilir
+        form.setValue('moduleStates.basicInfoSection', { 
+          ...formValues.moduleStates?.basicInfoSection,
+          isVisible: newVisibility,
+          isActive: newVisibility
+        }, {
+          shouldDirty: true,
+          shouldTouch: true,
+          shouldValidate: true
+        });
+      }
+      
+      if (moduleId === 'hero') {
+        // "hero" modülü için "heroSection" şeklinde de olabilir
+        form.setValue('moduleStates.heroSection', { 
+          ...formValues.moduleStates?.heroSection,
+          isVisible: newVisibility,
+          isActive: newVisibility
+        }, {
+          shouldDirty: true,
+          shouldTouch: true,
+          shouldValidate: true
+        });
+      }
+      
+      console.log(`Modül ${moduleId} ve ${sectionKey} görünürlüğü: ${newVisibility}`);
+      
       // UI'ı uyarı verebilmek için state güncellemesi yap
       setAvailableModules(prev => prev.map(module => 
         module.id === moduleId 
-          ? { ...module, isVisible: !currentVisibility } 
+          ? { ...module, isVisible: !currentVisibility, isActive: !currentVisibility } 
           : module
       ));
       
@@ -1907,15 +1955,60 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
                               form.setValue('moduleStates', {});
                             }
                             
-                            // Form değerini güncelle
+                            // Form değerini güncelle - hem kısa hem de uzun anahtarlar için
+                            // Kısa modül anahtarı
                             form.setValue(`moduleStates.${selectedModule}`, {
                               ...form.getValues().moduleStates?.[selectedModule],
-                              isVisible: checked
+                              isVisible: checked,
+                              isActive: checked // isActive de güncellenmeli
                             }, {
                               shouldDirty: true,
                               shouldTouch: true,
                               shouldValidate: true
                             });
+                            
+                            // "[moduleId]Section" versiyonu için de güncelle (eğer farklıysa)
+                            const sectionKey = `${selectedModule}Section`;
+                            if (selectedModule !== sectionKey) {
+                              form.setValue(`moduleStates.${sectionKey}`, {
+                                ...form.getValues().moduleStates?.[sectionKey],
+                                isVisible: checked,
+                                isActive: checked
+                              }, {
+                                shouldDirty: true,
+                                shouldTouch: true,
+                                shouldValidate: true
+                              });
+                              
+                              console.log(`Switch: Modül ${selectedModule} ve ${sectionKey} görünürlüğü: ${checked}`);
+                            }
+                            
+                            // Özel durumlar - bazı modüller için isimlendirmeler farklı
+                            if (selectedModule === 'basic_info') {
+                              // "basic_info" modülü için "basicInfoSection" şeklinde de olabilir
+                              form.setValue('moduleStates.basicInfoSection', { 
+                                ...form.getValues().moduleStates?.basicInfoSection,
+                                isVisible: checked,
+                                isActive: checked
+                              }, {
+                                shouldDirty: true,
+                                shouldTouch: true,
+                                shouldValidate: true
+                              });
+                            }
+                            
+                            if (selectedModule === 'hero') {
+                              // "hero" modülü için "heroSection" şeklinde de olabilir
+                              form.setValue('moduleStates.heroSection', { 
+                                ...form.getValues().moduleStates?.heroSection,
+                                isVisible: checked,
+                                isActive: checked
+                              }, {
+                                shouldDirty: true,
+                                shouldTouch: true,
+                                shouldValidate: true
+                              });
+                            }
                             
                             // UI state'i güncelle
                             setAvailableModules(prev => prev.map(module => 

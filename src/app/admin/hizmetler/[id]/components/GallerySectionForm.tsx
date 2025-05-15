@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Trash } from "lucide-react";
 import ImageUpload from '@/components/admin/image-upload';
 
@@ -34,7 +35,29 @@ export function GallerySectionForm({ form, loading, activeLang }: GallerySection
 
   return (
     <div className="space-y-4 p-6 border rounded-md">
-      <h3 className="text-lg font-medium">Galeri Bölümü ({activeLang.toUpperCase()})</h3>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-medium">Galeri Bölümü ({activeLang.toUpperCase()})</h3>
+        
+        {/* Modül durumu kontrolleri */}
+        <div className="flex items-center space-x-4">
+          <FormField
+            control={form.control}
+            name="moduleStates.gallerySection.isActive"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-2">
+                <FormControl>
+                  <Checkbox 
+                    checked={field.value !== false} 
+                    onCheckedChange={field.onChange} 
+                    disabled={loading} 
+                  />
+                </FormControl>
+                <FormLabel className="text-sm !mt-0">Aktif</FormLabel>
+              </FormItem>
+            )}
+          />
+        </div>
+      </div>
       <FormField
         control={form.control}
         name={titleFieldName} // Güncellendi

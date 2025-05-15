@@ -172,7 +172,29 @@ export function TocSectionForm({ form, loading, activeLang }: TocSectionFormProp
         </Alert>
       )}
     
-      <h3 className="text-lg font-medium">İçindekiler (TOC) & Sağ CTA ({activeLang.toUpperCase()})</h3>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-medium">İçindekiler (TOC) & Sağ CTA ({activeLang.toUpperCase()})</h3>
+        
+        {/* Modül durumu kontrolleri */}
+        <div className="flex items-center space-x-4">
+          <FormField
+            control={form.control}
+            name="moduleStates.tocSection.isActive"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-2">
+                <FormControl>
+                  <Checkbox 
+                    checked={field.value !== false} 
+                    onCheckedChange={field.onChange} 
+                    disabled={loading} 
+                  />
+                </FormControl>
+                <FormLabel className="text-sm !mt-0">Aktif</FormLabel>
+              </FormItem>
+            )}
+          />
+        </div>
+      </div>
       <FormField
         control={form.control}
         name={tocTitleFieldName}
