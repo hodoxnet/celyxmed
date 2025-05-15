@@ -1042,13 +1042,34 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
     }
   };
 
+  // Form oluşturma, doğrulama ve varsayılan değerler
   const form = useForm<HizmetFormValues>({
     resolver: zodResolver(hizmetFormSchema) as any,
     defaultValues: getInitialFormValues(),
+    // Form değişimi anında typescript hatalarını önlemek için mode: 'onChange' devre dışı
+    mode: 'onSubmit'
   }) as UseFormReturn<HizmetFormValues>;
   
+  // İlk yükleme veya initialData/diller değiştiğinde form değerlerini sıfırla
   useEffect(() => {
-     form.reset(getInitialFormValues());
+     try {
+       // Tam temiz bir durumla başla
+       const initialValues = getInitialFormValues();
+       
+       // Form değerlerini hatasız bir şekilde sıfırla
+       form.reset(initialValues, {
+         keepDirty: false,
+         keepTouched: false,
+         keepErrors: false,
+         keepIsSubmitted: false,
+         keepIsValid: false,
+         keepSubmitCount: false,
+       });
+       
+       console.log("[RESET] Form başarıyla sıfırlandı.");
+     } catch (error) {
+       console.error("[RESET] Form sıfırlama hatası:", error);
+     }
   }, [initialData, diller, form]);
   
   // Başlangıç değerlerinden modül durumlarını ayarla
@@ -1373,13 +1394,25 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
     }
   };
 
-  // Orijinal form işleme kodunu kullanıyoruz
+  // Form gönderimi ve API iletişimi - typescript güvenlik iyileştirmeleriyle
   const onSubmit = async (values: HizmetFormValues) => {
     // Dil değişikliği bayrağı kontrol et - eğer sadece dil değişikliği yapıyorsak formu submit etme
     if (values._isLanguageSwitch) {
-      // Bayrağı temizle
+      // Bayrağı temizle ve log ekle
+      console.log("[SUBMIT] Dil değişimi tespit edildi, form gönderimi iptal edildi");
       form.setValue("_isLanguageSwitch", false, { shouldDirty: false });
       return; // Form gönderimini iptal et
+    }
+    
+    // Form değerlerini doğrula ve temizle (tip hataları için)
+    try {
+      // Submit öncesi değerleri bir kez daha doğrula
+      const validatedValues = hizmetFormSchema.parse(values);
+      console.log("[SUBMIT] Form verileri başarıyla doğrulandı, API'ye gönderiliyor...");
+    } catch (validationError) {
+      console.error("[SUBMIT] Form doğrulama hatası:", validationError);
+      toast.error("Form verilerinde hatalar var. Lütfen form alanlarını kontrol ediniz.");
+      return; // Hatalı formun gönderilmesini engelle
     }
     
     setLoading(true);
@@ -1564,7 +1597,12 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
   // Formun yükleme durumunu kontrol et
   const isFormReady = form.formState.isDirty || isEditing;
   
-  // Dil geçişini işleyen fonksiyon
+  // Derin obje klonlama fonksiyonu - form değerlerini izole etmek için
+  const deepClone = <T extends object>(obj: T): T => {
+    return JSON.parse(JSON.stringify(obj));
+  };
+  
+  // Dil geçişini işleyen fonksiyon - tamamen izole ederek
   const handleLanguageChange = (langCode: string) => {
     // Eğer zaten seçili dil ise hiçbir şey yapma
     if (langCode === activeLang) return;
@@ -1574,17 +1612,125 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       return; // Kullanıcı vazgeçti
     }
     
-    // Form durumu temizlendiğinden emin ol - ancak submit tetiklemeden
-    form.reset(form.getValues(), { keepDirty: false, keepTouched: false });
-    
-    // Dili değiştir - direkt olarak state'i güncelle
-    setActiveLang(langCode);
-    
-    // İçerik sekme görünümünde olduğundan emin olalım
-    setActiveMainTab("content");
-    
-    // Forma özel bir bayrak ekle - dil değişikliği olduğunu belirt
-    form.setValue("_isLanguageSwitch", true, { shouldDirty: false });
+    try {
+      // 1. Mevcut formun tam durumunu kaydet
+      const currentFormValues = deepClone(form.getValues());
+      
+      // 2. Mevcut dildeki tüm TOC öğelerini ve diğer listeleri loglama
+      console.log(`[DİL DEĞİŞİMİ] ${activeLang} -> ${langCode}`);
+      console.log(`[MEVCUT DİL] ${activeLang} TOC öğeleri: `, 
+        currentFormValues?.tocSection?.translations?.[activeLang]?.tocItems?.length || 0);
+      console.log(`[HEDEF DİL] ${langCode} TOC öğeleri: `, 
+        currentFormValues?.tocSection?.translations?.[langCode]?.tocItems?.length || 0);
+      
+      // 3. Mevcut dile özgü listeleri özel cache'leyelim
+      const prevTocItems = deepClone(currentFormValues?.tocSection?.translations?.[activeLang]?.tocItems || []);
+      const prevIntroLinks = deepClone(currentFormValues?.introSection?.translations?.[activeLang]?.introLinks || []);
+      const prevSteps = deepClone(currentFormValues?.stepsSection?.translations?.[activeLang]?.steps || []);
+      const prevFaqs = deepClone(currentFormValues?.faqSection?.translations?.[activeLang]?.faqs || []);
+      
+      // 4. Eğer yeni dilde henüz bu listeler oluşturulmadıysa (yeni form), boş diziler ekleme
+      if (!currentFormValues?.tocSection?.translations?.[langCode]?.tocItems) {
+        if (!currentFormValues.tocSection) currentFormValues.tocSection = { translations: {} };
+        if (!currentFormValues.tocSection.translations) currentFormValues.tocSection.translations = {};
+        if (!currentFormValues.tocSection.translations[langCode]) {
+          currentFormValues.tocSection.translations[langCode] = {
+            languageCode: langCode,
+            tocTitle: "İçindekiler",
+            tocAuthorInfo: "",
+            tocCtaDescription: "",
+            tocItems: []
+          };
+        }
+      }
+      
+      // 5. Aynı kontrolü diğer listeler için de yapalım - bu dil bazlı tam izolasyon sağlar
+      // IntroLinks için
+      if (!currentFormValues?.introSection?.translations?.[langCode]?.introLinks) {
+        if (!currentFormValues.introSection) currentFormValues.introSection = { definition: { videoId: null }, translations: {} };
+        if (!currentFormValues.introSection.translations) currentFormValues.introSection.translations = {};
+        if (!currentFormValues.introSection.translations[langCode]) {
+          currentFormValues.introSection.translations[langCode] = {
+            languageCode: langCode,
+            title: "",
+            description: "",
+            primaryButtonText: "",
+            primaryButtonLink: "",
+            secondaryButtonText: "",
+            secondaryButtonLink: "",
+            introLinks: []
+          };
+        }
+      }
+      
+      // Steps için
+      if (!currentFormValues?.stepsSection?.translations?.[langCode]?.steps) {
+        if (!currentFormValues.stepsSection) currentFormValues.stepsSection = { translations: {} };
+        if (!currentFormValues.stepsSection.translations) currentFormValues.stepsSection.translations = {};
+        if (!currentFormValues.stepsSection.translations[langCode]) {
+          currentFormValues.stepsSection.translations[langCode] = {
+            languageCode: langCode,
+            title: "Adımlar",
+            description: "",
+            steps: []
+          };
+        }
+      }
+      
+      // Faqs için
+      if (!currentFormValues?.faqSection?.translations?.[langCode]?.faqs) {
+        if (!currentFormValues.faqSection) currentFormValues.faqSection = { translations: {} };
+        if (!currentFormValues.faqSection.translations) currentFormValues.faqSection.translations = {};
+        if (!currentFormValues.faqSection.translations[langCode]) {
+          currentFormValues.faqSection.translations[langCode] = {
+            languageCode: langCode,
+            title: "Sıkça Sorulan Sorular",
+            description: "",
+            faqs: []
+          };
+        }
+      }
+      
+      // 6. Mevcut dile ait öğeleri saklayalım - bunlar değişimden SONRA tekrar kullanılabilir
+      const languageDataCache = {
+        [activeLang]: {
+          tocItems: prevTocItems,
+          introLinks: prevIntroLinks,
+          steps: prevSteps,
+          faqs: prevFaqs
+        }
+      };
+      console.log(`[CACHE] ${activeLang} dili için cache oluşturuldu:`, languageDataCache);
+      
+      // 7. Formu sıfırlayıp yeni form değerlerini yerleştir
+      form.reset(currentFormValues, { 
+        keepDirty: false, 
+        keepTouched: false,
+        keepErrors: false,
+        keepIsSubmitted: false,
+        keepIsValid: false,
+        keepSubmitCount: false
+      });
+      
+      // 8. Dili değiştir
+      setActiveLang(langCode);
+      
+      // 9. İçerik sekme görünümünde olduğundan emin olalım
+      setActiveMainTab("content");
+      
+      // 10. Forma özel bir bayrak ekle - dil değişikliği olduğunu belirt
+      form.setValue("_isLanguageSwitch", true, { shouldDirty: false });
+      
+      // 11. Yeni dilde form yüklendiğinde listeler boşsa, önceki dilden içe aktarma seçeneği sunabilirsiniz
+      
+      console.log(`[DİL DEĞİŞİMİ TAMAMLANDI] Aktif dil: ${langCode}`);
+    } catch (error) {
+      console.error("[DİL DEĞİŞİMİ HATASI]", error);
+      toast.error("Dil değişimi sırasında bir hata oluştu. Lütfen kaydetmeden önce bilgileri kontrol edin.");
+      
+      // Yine de dili değiştir, ancak sıfırlama hatası olabilir
+      setActiveLang(langCode);
+    }
   };
 
   return (
@@ -1671,34 +1817,67 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
                     {availableModules.map((module, index) => (
                       <div
                         key={module.id}
-                        className={`flex items-center border rounded-md p-3 transition-colors ${
+                        onClick={() => selectModuleForEditing(module.id)}
+                        className={`flex items-center border rounded-lg p-4 transition-colors cursor-pointer shadow-sm hover:shadow-md ${
                           selectedModule === module.id 
-                            ? 'bg-primary/10 border-primary text-primary-foreground' 
-                            : 'bg-card hover:bg-accent/50'
+                            ? 'bg-primary/10 border-primary shadow-md' 
+                            : 'bg-card hover:bg-accent/30'
                         }`}
                       >
-                        <span className="flex-1 ml-1 mr-4">{module.title}</span>
-                        <div className="flex space-x-1">
+                        <div className="flex-1 flex items-center">
+                          {/* Modül ikon alanı - eğer ikon varsa göster, yoksa varsayılan ikon kullan */}
+                          <div className={`rounded-full w-8 h-8 flex items-center justify-center mr-3 ${
+                            selectedModule === module.id ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                          }`}>
+                            {module.icon || <Settings size={16} />}
+                          </div>
+                          
+                          {/* Modül başlığı */}
+                          <span className={`font-medium ${
+                            selectedModule === module.id ? 'text-primary' : ''
+                          }`}>
+                            {module.title}
+                          </span>
+                        </div>
+                        
+                        {/* Sağdaki butonlar */}
+                        <div className="flex items-center space-x-2">
+                          {/* Görünürlük düğmesi */}
                           <Button 
-                            variant="ghost" 
+                            variant={module.isVisible ? "outline" : "ghost"}
                             size="sm"
-                            onClick={() => toggleModuleVisibility(module.id)}
+                            onClick={(e) => {
+                              e.stopPropagation(); // Modül seçimini engellemek için olay yayılımını durdur
+                              toggleModuleVisibility(module.id);
+                            }}
                             title={(module.isVisible) ? "Gizle" : "Göster"}
-                            className="p-1 h-8 w-8"
+                            className={`transition-colors ${
+                              module.isVisible 
+                                ? 'border-blue-500 text-blue-500 hover:bg-blue-50' 
+                                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                            }`}
                           >
                             {(module.isVisible)
-                              ? <Eye size={16} className="text-blue-500" /> 
-                              : <EyeOff size={16} className="text-muted-foreground" />}
+                              ? <Eye size={16} /> 
+                              : <EyeOff size={16} />}
                           </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="sm"
-                            onClick={() => selectModuleForEditing(module.id)}
-                            title="Düzenle"
-                            className={`p-1 h-8 w-8 ${selectedModule === module.id ? 'bg-primary text-primary-foreground' : ''}`}
-                          >
-                            <Edit size={16} />
-                          </Button>
+                          
+                          {/* Düzenleme düğmesi - sadece seçili olmadığında göster */}
+                          {selectedModule !== module.id && (
+                            <Button 
+                              variant="outline"
+                              size="sm"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                selectModuleForEditing(module.id);
+                              }}
+                              title="Düzenle"
+                              className="text-primary hover:bg-primary/10"
+                            >
+                              <Edit size={16} className="mr-1" />
+                              <span className="hidden sm:inline">Düzenle</span>
+                            </Button>
+                          )}
                         </div>
                       </div>
                     ))}

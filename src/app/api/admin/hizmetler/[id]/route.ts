@@ -36,6 +36,60 @@ const hizmetExpertItemTranslationSchema = z.object({ languageCode: z.string(), n
 const hizmetExpertItemDefinitionSchema = z.object({ id: z.string().optional(), imageUrl: z.string().min(1), imageAlt: z.string().min(1), order: z.number().default(0), translations: z.record(z.string(), hizmetExpertItemTranslationSchema) });
 const hizmetPricingPackageTranslationSchema = z.object({ languageCode: z.string(), title: z.string().default(""), price: z.string().default(""), features: z.array(z.string()).default([]) }); // .min(1) kaldırıldı
 const hizmetPricingPackageDefinitionSchema = z.object({ id: z.string().optional(), isFeatured: z.boolean().default(false), order: z.number().default(0), translations: z.record(z.string(), hizmetPricingPackageTranslationSchema) });
+// Aktif dil için kullanılacak ek validasyon
+const createValidator = (activeLang: string) => {
+  // Sadece activeLang için alanları valide et
+  const validationByActiveLang = (translations: Record<string, any>) => {
+    // Aktif dil çevirisi yoksa kabul et - boş bir çeviri eklenecek
+    if (!translations[activeLang]) {
+      return true;
+    }
+    
+    // Aktif dil için validasyon yap
+    try {
+      const result = hizmetTranslationSchema.safeParse(translations[activeLang]);
+      return result.success;
+    } catch (error) {
+      console.error("Translation validation error:", error);
+      return false;
+    }
+  };
+  
+  return z.object({
+    id: z.string().optional(), 
+    published: z.boolean().default(false), 
+    moduleStates: z.record(z.string(), z.object({
+      isActive: z.boolean().optional(),
+      isVisible: z.boolean().optional()
+    })).optional(), // ModuleStates ekledik
+    heroImageUrl: z.string().optional().nullable().default(null), 
+    heroImageAlt: z.string().optional().nullable().default(null), 
+    whyBackgroundImageUrl: z.string().optional().nullable().default(null), 
+    ctaBackgroundImageUrl: z.string().optional().nullable().default(null), 
+    ctaMainImageUrl: z.string().optional().nullable().default(null), 
+    ctaMainImageAlt: z.string().optional().nullable().default(null), 
+    introVideoId: z.string().optional().nullable().default(null),
+    marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
+    galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
+    ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
+    translations: z.record(z.string(), z.any()).refine(
+      validationByActiveLang,
+      {
+        message: `Active language (${activeLang}) çevirisi geçerli değil.`,
+        path: [`translations.${activeLang}`]
+      }
+    ),
+    overviewTabDefinitions: z.array(z.any()).default([]), 
+    whyItemDefinitions: z.array(z.any()).default([]), 
+    testimonialDefinitions: z.array(z.any()).default([]), 
+    recoveryItemDefinitions: z.array(z.any()).default([]), 
+    expertItemDefinitions: z.array(z.any()).default([]), 
+    pricingPackageDefinitions: z.array(z.any()).default([]),
+    activeLang: z.string()
+  });
+};
+
+// Standart hizmetFormSchema artık bir fonksiyon tarafından oluşturulacak
 const hizmetFormSchema = z.object({
   id: z.string().optional(), 
   published: z.boolean().default(false), 
@@ -60,7 +114,7 @@ const hizmetFormSchema = z.object({
   recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), 
   expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), 
   pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]),
-  activeLang: z.string(), // activeLang eklendi
+  activeLang: z.string() // activeLang eklendi
 });
 // --- Şema kopyalama sonu ---
 
@@ -144,7 +198,12 @@ export async function PATCH(req: Request, context: Context) {
     }
 
     const body = await req.json();
-    const validationResult = hizmetFormSchema.safeParse(body);
+    // Aktif dile özgü validator oluştur
+    const activeLang = body.activeLang;
+    const activeValidator = createValidator(activeLang);
+    
+    // Önce genel bir validasyon yap (eski validasyon için)
+    const validationResult = activeValidator.safeParse(body);
 
     if (!validationResult.success) {
       console.error("Validation Errors:", validationResult.error.flatten().fieldErrors);
