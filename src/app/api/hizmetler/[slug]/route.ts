@@ -213,7 +213,6 @@ export async function GET(req: Request, context: Context) {
     // Verileri, detay sayfasının beklediği formata dönüştür
     const responseData = {
       // Ana bilgiler
-      breadcrumb: hizmetTranslation.breadcrumb,
       title: hizmetTranslation.title,
       description: hizmetTranslation.description,
       heroImageUrl: hizmetTranslation.hizmet.heroImageUrl,

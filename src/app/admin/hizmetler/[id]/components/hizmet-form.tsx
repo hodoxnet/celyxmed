@@ -68,7 +68,6 @@ const HizmetBasicInfoSectionTranslationSchema = z.object({
   slug: z.string().min(1, "Slug gerekli."),
   title: z.string().min(1, "Başlık gerekli."),
   description: z.string().min(1, "Açıklama gerekli."),
-  breadcrumb: z.string().optional().default(""),
 });
 
 // TOC Section
@@ -521,293 +520,45 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       if (!initialData) {
         // Dil koduna göre başlık ve açıklamalar oluşturalım - dinamik dil desteğiyle
         const getLocalizedDefaults = (langCode: string) => {
-          // Önceden tanımlanmış dil konfigürasyonları
-          const languageDefaults: {[key: string]: any} = {
-            // Türkçe
+          const defaults: Record<string, Record<string, string>> = {
             'tr': {
-              title: "Yeni Hizmet",
-              description: "Hizmet açıklaması",
-              breadcrumb: "Anasayfa > Hizmetler > Yeni Hizmet",
-              introTitle: "Giriş Başlığı",
-              introDesc: "Giriş Açıklaması",
-              primaryBtn: "Ana Buton",
-              secondaryBtn: "İkincil Buton",
-              metaTitle: "Meta Başlık",
-              metaDesc: "Meta Açıklama",
-              metaKeywords: "anahtar,kelimeler",
-              overviewTitle: "Genel Bakış",
-              overviewDesc: "Genel bakış açıklaması",
-              whyTitle: "Neden Biz?",
-              galleryTitle: "Galeri",
-              galleryDesc: "Galeri açıklaması",
-              testimonialsTitle: "Müşteri Yorumları",
-              stepsTitle: "Prosedür Adımları",
-              stepsDesc: "Adım açıklamaları",
-              recoveryTitle: "İyileşme Süreci",
-              recoveryDesc: "İyileşme süreci açıklaması",
-              ctaTagline: "Slogan",
-              ctaTitle: "Harekete Geçirici Mesaj Başlığı",
-              ctaDesc: "Harekete geçirici mesaj açıklaması",
-              ctaBtn: "Buton Metni",
-              ctaAvatarText: "Avatar Metni",
-              pricingTitle: "Fiyatlandırma",
-              pricingDesc: "Fiyatlandırma açıklaması",
-              expertsTitle: "Uzmanlarımız",
-              expertsTagline: "Uzmanlarımız sloganı",
-              faqTitle: "Sıkça Sorulan Sorular",
-              faqDesc: "SSS açıklaması"
+              title: 'Yeni Hizmet',
+              description: 'Hizmet açıklaması',
+              slug: `hizmet-${Date.now()}-tr`,
             },
-            // İngilizce
             'en': {
-              title: "New Service",
-              description: "Service description",
-              breadcrumb: "Home > Services > New Service",
-              introTitle: "Introduction Title",
-              introDesc: "Introduction Description",
-              primaryBtn: "Primary Button",
-              secondaryBtn: "Secondary Button",
-              metaTitle: "Meta Title",
-              metaDesc: "Meta Description",
-              metaKeywords: "keywords,seo",
-              overviewTitle: "Overview",
-              overviewDesc: "Overview description",
-              whyTitle: "Why Us?",
-              galleryTitle: "Gallery",
-              galleryDesc: "Gallery description",
-              testimonialsTitle: "Testimonials",
-              stepsTitle: "Procedure Steps",
-              stepsDesc: "Steps description",
-              recoveryTitle: "Recovery Process",
-              recoveryDesc: "Recovery process description",
-              ctaTagline: "Tagline",
-              ctaTitle: "Call to Action Title",
-              ctaDesc: "Call to action description",
-              ctaBtn: "Button Text",
-              ctaAvatarText: "Avatar Text",
-              pricingTitle: "Pricing",
-              pricingDesc: "Pricing description",
-              expertsTitle: "Our Experts",
-              expertsTagline: "Our experts tagline",
-              faqTitle: "Frequently Asked Questions",
-              faqDesc: "FAQ description"
+              title: 'New Service',
+              description: 'Service description',
+              slug: `service-${Date.now()}-en`,
             },
-            // Almanca
             'de': {
-              title: "Neuer Service",
-              description: "Servicebeschreibung",
-              breadcrumb: "Startseite > Dienste > Neuer Service",
-              introTitle: "Einführungstitel",
-              introDesc: "Einführungsbeschreibung",
-              primaryBtn: "Primärer Button",
-              secondaryBtn: "Sekundärer Button",
-              metaTitle: "Meta-Titel",
-              metaDesc: "Meta-Beschreibung",
-              metaKeywords: "schlüsselwörter,seo",
-              overviewTitle: "Überblick",
-              overviewDesc: "Überblicksbeschreibung",
-              whyTitle: "Warum Wir?",
-              galleryTitle: "Galerie",
-              galleryDesc: "Galeriebeschreibung",
-              testimonialsTitle: "Kundenbewertungen",
-              stepsTitle: "Verfahrensschritte",
-              stepsDesc: "Schrittbeschreibung",
-              recoveryTitle: "Erholungsprozess",
-              recoveryDesc: "Beschreibung des Erholungsprozesses",
-              ctaTagline: "Slogan",
-              ctaTitle: "Call-to-Action Titel",
-              ctaDesc: "Call-to-Action Beschreibung",
-              ctaBtn: "Button-Text",
-              ctaAvatarText: "Avatar-Text",
-              pricingTitle: "Preisgestaltung",
-              pricingDesc: "Beschreibung der Preisgestaltung",
-              expertsTitle: "Unsere Experten",
-              expertsTagline: "Slogan unserer Experten",
-              faqTitle: "Häufig gestellte Fragen",
-              faqDesc: "FAQ-Beschreibung"
+              title: 'Neuer Service',
+              description: 'Servicebeschreibung',
+              slug: `dienst-${Date.now()}-de`,
             },
-            // Rusça
             'ru': {
-              title: "Новая Услуга",
-              description: "Описание услуги",
-              breadcrumb: "Главная > Услуги > Новая Услуга",
-              introTitle: "Заголовок Введения",
-              introDesc: "Описание Введения",
-              primaryBtn: "Основная Кнопка",
-              secondaryBtn: "Дополнительная Кнопка",
-              metaTitle: "Мета-Заголовок",
-              metaDesc: "Мета-Описание",
-              metaKeywords: "ключевые,слова",
-              overviewTitle: "Обзор",
-              overviewDesc: "Описание обзора",
-              whyTitle: "Почему Мы?",
-              galleryTitle: "Галерея",
-              galleryDesc: "Описание галереи",
-              testimonialsTitle: "Отзывы",
-              stepsTitle: "Этапы Процедуры",
-              stepsDesc: "Описание этапов",
-              recoveryTitle: "Процесс Восстановления",
-              recoveryDesc: "Описание процесса восстановления",
-              ctaTagline: "Слоган",
-              ctaTitle: "Заголовок Призыва к Действию",
-              ctaDesc: "Описание призыва к действию",
-              ctaBtn: "Текст Кнопки",
-              ctaAvatarText: "Текст Аватара",
-              pricingTitle: "Цены",
-              pricingDesc: "Описание цен",
-              expertsTitle: "Наши Эксперты",
-              expertsTagline: "Слоган наших экспертов",
-              faqTitle: "Часто Задаваемые Вопросы",
-              faqDesc: "Описание FAQ"
+              title: 'Новая Услуга',
+              description: 'Описание услуги',
+              slug: `usluga-${Date.now()}-ru`,
             },
-            // Fransızca
             'fr': {
-              title: "Nouveau Service",
-              description: "Description du service",
-              breadcrumb: "Accueil > Services > Nouveau Service",
-              introTitle: "Titre d'Introduction",
-              introDesc: "Description d'Introduction",
-              primaryBtn: "Bouton Principal",
-              secondaryBtn: "Bouton Secondaire",
-              metaTitle: "Méta-Titre",
-              metaDesc: "Méta-Description",
-              metaKeywords: "mots,clés",
-              overviewTitle: "Aperçu",
-              overviewDesc: "Description de l'aperçu",
-              whyTitle: "Pourquoi Nous?",
-              galleryTitle: "Galerie",
-              galleryDesc: "Description de la galerie",
-              testimonialsTitle: "Témoignages",
-              stepsTitle: "Étapes de la Procédure",
-              stepsDesc: "Description des étapes",
-              recoveryTitle: "Processus de Récupération",
-              recoveryDesc: "Description du processus de récupération",
-              ctaTagline: "Slogan",
-              ctaTitle: "Titre d'Appel à l'Action",
-              ctaDesc: "Description d'appel à l'action",
-              ctaBtn: "Texte du Bouton",
-              ctaAvatarText: "Texte de l'Avatar",
-              pricingTitle: "Tarification",
-              pricingDesc: "Description des tarifs",
-              expertsTitle: "Nos Experts",
-              expertsTagline: "Slogan de nos experts",
-              faqTitle: "Questions Fréquemment Posées",
-              faqDesc: "Description FAQ"
+              title: 'Nouveau Service',
+              description: 'Description du service',
+              slug: `service-${Date.now()}-fr`,
             },
-            // İspanyolca
             'es': {
-              title: "Nuevo Servicio",
-              description: "Descripción del servicio",
-              breadcrumb: "Inicio > Servicios > Nuevo Servicio",
-              introTitle: "Título de Introducción",
-              introDesc: "Descripción de Introducción",
-              primaryBtn: "Botón Principal",
-              secondaryBtn: "Botón Secundario",
-              metaTitle: "Meta-Título",
-              metaDesc: "Meta-Descripción",
-              metaKeywords: "palabras,clave",
-              overviewTitle: "Visión General",
-              overviewDesc: "Descripción de la visión general",
-              whyTitle: "¿Por Qué Nosotros?",
-              galleryTitle: "Galería",
-              galleryDesc: "Descripción de la galería",
-              testimonialsTitle: "Testimonios",
-              stepsTitle: "Pasos del Procedimiento",
-              stepsDesc: "Descripción de los pasos",
-              recoveryTitle: "Proceso de Recuperación",
-              recoveryDesc: "Descripción del proceso de recuperación",
-              ctaTagline: "Eslogan",
-              ctaTitle: "Título de Llamada a la Acción",
-              ctaDesc: "Descripción de llamada a la acción",
-              ctaBtn: "Texto del Botón",
-              ctaAvatarText: "Texto del Avatar",
-              pricingTitle: "Precios",
-              pricingDesc: "Descripción de precios",
-              expertsTitle: "Nuestros Expertos",
-              expertsTagline: "Eslogan de nuestros expertos",
-              faqTitle: "Preguntas Frecuentes",
-              faqDesc: "Descripción de FAQ"
+              title: 'Nuevo Servicio',
+              description: 'Descripción del servicio',
+              slug: `servicio-${Date.now()}-es`,
             },
-            // İtalyanca
             'it': {
-              title: "Nuovo Servizio",
-              description: "Descrizione del servizio",
-              breadcrumb: "Home > Servizi > Nuovo Servizio",
-              introTitle: "Titolo Introduzione",
-              introDesc: "Descrizione Introduzione",
-              primaryBtn: "Pulsante Primario",
-              secondaryBtn: "Pulsante Secondario",
-              metaTitle: "Meta-Titolo",
-              metaDesc: "Meta-Descrizione",
-              metaKeywords: "parole,chiave",
-              overviewTitle: "Panoramica",
-              overviewDesc: "Descrizione panoramica",
-              whyTitle: "Perché Noi?",
-              galleryTitle: "Galleria",
-              galleryDesc: "Descrizione della galleria",
-              testimonialsTitle: "Testimonianze",
-              stepsTitle: "Fasi della Procedura",
-              stepsDesc: "Descrizione delle fasi",
-              recoveryTitle: "Processo di Recupero",
-              recoveryDesc: "Descrizione del processo di recupero",
-              ctaTagline: "Slogan",
-              ctaTitle: "Titolo Call to Action",
-              ctaDesc: "Descrizione call to action",
-              ctaBtn: "Testo Pulsante",
-              ctaAvatarText: "Testo Avatar",
-              pricingTitle: "Prezzi",
-              pricingDesc: "Descrizione prezzi",
-              expertsTitle: "I Nostri Esperti",
-              expertsTagline: "Slogan dei nostri esperti",
-              faqTitle: "Domande Frequenti",
-              faqDesc: "Descrizione FAQ"
-            }
+              title: 'Nuovo Servizio',
+              description: 'Descrizione del servizio',
+              slug: `servizio-${Date.now()}-it`,
+            },
           };
-          
-          // Dil koduna göre başlangıç değerlerini döndür
-          // Tanımlı değilse, Türkçe veya varsayılan değerleri kullan
-          if (languageDefaults[langCode]) {
-            return languageDefaults[langCode];
-          } else if (languageDefaults['tr']) {
-            // Bilinmeyen bir dil için Türkçe değerleri kullanabiliriz (varsayılan olarak)
-            console.log(`[DEBUG] No default values found for language '${langCode}', using Turkish defaults`);
-            return languageDefaults['tr'];
-          } else {
-            // Hiçbir dil tanımlanmamışsa, temel değerler oluştur
-            console.log(`[DEBUG] No default language values defined, using generic defaults`);
-            return {
-              title: "New Service",
-              description: "Service description",
-              breadcrumb: "Home > Services > New Service",
-              introTitle: "Introduction",
-              introDesc: "Introduction Description",
-              primaryBtn: "Primary Button",
-              secondaryBtn: "Secondary Button",
-              metaTitle: "Meta Title",
-              metaDesc: "Meta Description",
-              metaKeywords: "keywords",
-              overviewTitle: "Overview",
-              overviewDesc: "Overview description",
-              whyTitle: "Why Us?",
-              galleryTitle: "Gallery",
-              galleryDesc: "Gallery description",
-              testimonialsTitle: "Testimonials",
-              stepsTitle: "Procedure Steps",
-              stepsDesc: "Steps description",
-              recoveryTitle: "Recovery Process",
-              recoveryDesc: "Recovery process description",
-              ctaTagline: "Tagline",
-              ctaTitle: "Call to Action",
-              ctaDesc: "Call to action description",
-              ctaBtn: "Button Text",
-              ctaAvatarText: "Avatar Text",
-              pricingTitle: "Pricing",
-              pricingDesc: "Pricing description",
-              expertsTitle: "Our Experts",
-              expertsTagline: "Our experts tagline",
-              faqTitle: "FAQ",
-              faqDesc: "FAQ description"
-            };
-          }
+
+          return defaults[langCode] || defaults['en'];
         };
         
         const localizedValues = getLocalizedDefaults(lang.code);
@@ -816,10 +567,9 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         // Varsayılan değerlerle tüm bölümleri oluştur (zorunlu alanlar)
         baseValues.basicInfoSection!.translations[lang.code] = {
           languageCode: lang.code,
-          slug: `hizmet-${uniqueTimestamp}-${lang.code}`,
+          slug: localizedValues.slug || `service-${Date.now()}-${lang.code}`,
           title: localizedValues.title,
           description: localizedValues.description,
-          breadcrumb: localizedValues.breadcrumb
         };
         baseValues.tocSection!.translations[lang.code] = {
           languageCode: lang.code,
@@ -830,72 +580,72 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         };
         baseValues.introSection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.introTitle,
-          description: localizedValues.introDesc,
-          primaryButtonText: localizedValues.primaryBtn,
+          title: localizedValues.title,
+          description: localizedValues.description,
+          primaryButtonText: "Ana Buton",
           primaryButtonLink: "#",
-          secondaryButtonText: localizedValues.secondaryBtn,
+          secondaryButtonText: "İkincil Buton",
           secondaryButtonLink: "#",
           introLinks: [],
         };
         baseValues.seoSection!.translations[lang.code] = {
           languageCode: lang.code,
-          metaTitle: localizedValues.metaTitle,
-          metaDescription: localizedValues.metaDesc,
-          metaKeywords: localizedValues.metaKeywords,
+          metaTitle: localizedValues.title,
+          metaDescription: localizedValues.description,
+          metaKeywords: "anahtar,kelimeler",
         };
         baseValues.overviewSection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.overviewTitle,
-          description: localizedValues.overviewDesc,
+          title: localizedValues.title,
+          description: localizedValues.description,
         };
         baseValues.whySection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.whyTitle,
+          title: localizedValues.title,
         };
         baseValues.gallerySection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.galleryTitle,
-          description: localizedValues.galleryDesc,
+          title: localizedValues.title,
+          description: localizedValues.description,
         };
         baseValues.testimonialsSection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.testimonialsTitle,
+          title: "Müşteri Yorumları",
         };
         baseValues.stepsSection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.stepsTitle,
-          description: localizedValues.stepsDesc,
+          title: "Prosedür Adımları",
+          description: "Adım açıklamaları",
           steps: [],
         };
         baseValues.recoverySection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.recoveryTitle,
-          description: localizedValues.recoveryDesc,
+          title: "İyileşme Süreci",
+          description: "İyileşme süreci açıklaması",
         };
         baseValues.ctaSection!.translations[lang.code] = {
           languageCode: lang.code,
-          tagline: localizedValues.ctaTagline,
-          title: localizedValues.ctaTitle,
-          description: localizedValues.ctaDesc,
-          buttonText: localizedValues.ctaBtn,
+          tagline: "Slogan",
+          title: "Harekete Geçirici Mesaj Başlığı",
+          description: "Harekete geçirici mesaj açıklaması",
+          buttonText: "Buton Metni",
           buttonLink: "#",
-          avatarText: localizedValues.ctaAvatarText,
+          avatarText: "Avatar Metni",
         };
         baseValues.pricingSection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.pricingTitle,
-          description: localizedValues.pricingDesc,
+          title: "Fiyatlandırma",
+          description: "Fiyatlandırma açıklaması",
         };
         baseValues.expertsSection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.expertsTitle,
-          tagline: localizedValues.expertsTagline,
+          title: "Uzmanlarımız",
+          tagline: "Uzmanlarımız sloganı",
         };
         baseValues.faqSection!.translations[lang.code] = {
           languageCode: lang.code,
-          title: localizedValues.faqTitle,
-          description: localizedValues.faqDesc,
+          title: "Sıkça Sorulan Sorular",
+          description: "SSS açıklaması",
           faqs: [],
         };
       }
@@ -907,7 +657,6 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
           slug: tr?.slug || "",
           title: tr?.title || "",
           description: tr?.description || "",
-          breadcrumb: tr?.breadcrumb || "",
         });
 
         if (basicInfoParseResult.success) {
@@ -920,7 +669,6 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
             slug: tr?.slug || `hizmet-${initialData?.id || 'error'}-${lang.code}`, // Orijinal slug'ı (boşsa boş) veya varsayılanı kullan
             title: tr?.title || `[${lang.code.toUpperCase()} Başlık Girilmemiş]`, // Orijinal başlığı veya varsayılanı kullan
             description: tr?.description || `[${lang.code.toUpperCase()} Açıklama Girilmemiş]`, // Orijinal açıklamayı veya varsayılanı kullan
-            breadcrumb: tr?.breadcrumb || "",
           };
         }
 
@@ -1192,8 +940,7 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
               languageCode: lang.code,
               slug: `hizmet-${Date.now()}-${lang.code}`,
               title: "Yeni Hizmet",
-              description: "Hizmet açıklaması",
-              breadcrumb: "Anasayfa > Hizmetler > Yeni Hizmet"
+              description: "Hizmet açıklaması"
             };
             
             // Diğer tüm alanlar varsayılan değerlerle eklenebilir
@@ -1289,7 +1036,6 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         slug: values.basicInfoSection.translations[langCode]?.slug || "",
         title: values.basicInfoSection.translations[langCode]?.title || "",
         description: values.basicInfoSection.translations[langCode]?.description || "",
-        breadcrumb: values.basicInfoSection.translations[langCode]?.breadcrumb || "",
         
         // Toc Section
         tocTitle: values.tocSection.translations[langCode]?.tocTitle || "İçindekiler",

@@ -197,7 +197,6 @@ exports.Prisma.HizmetTranslationScalarFieldEnum = {
   hizmetId: 'hizmetId',
   languageCode: 'languageCode',
   slug: 'slug',
-  breadcrumb: 'breadcrumb',
   title: 'title',
   description: 'description',
   tocTitle: 'tocTitle',

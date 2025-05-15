@@ -43,7 +43,6 @@ export function BasicInfoSection({ form, activeLang, loading, isEditing }: Basic
   const titleFieldName = `basicInfoSection.translations.${activeLang}.title` as const;
   const slugFieldName = `basicInfoSection.translations.${activeLang}.slug` as const;
   const descriptionFieldName = `basicInfoSection.translations.${activeLang}.description` as const;
-  const breadcrumbFieldName = `basicInfoSection.translations.${activeLang}.breadcrumb` as const;
 
   const watchedTitle = form.watch(titleFieldName);
 
@@ -103,22 +102,6 @@ export function BasicInfoSection({ form, activeLang, loading, isEditing }: Basic
             <FormControl>
               <Textarea placeholder={`Hizmetin kısa bir özeti (${activeLang.toUpperCase()})...`} {...field} disabled={loading} />
             </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name={breadcrumbFieldName}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Breadcrumb ({activeLang.toUpperCase()}) *</FormLabel>
-            <FormControl>
-              <Input placeholder={`Anasayfa > Hizmetler > Hizmet Adı (${activeLang.toUpperCase()})`} {...field} disabled={loading} />
-            </FormControl>
-            <FormDescription>
-              Sayfanın üst kısmında görünecek navigasyon yolu.
-            </FormDescription>
             <FormMessage />
           </FormItem>
         )}

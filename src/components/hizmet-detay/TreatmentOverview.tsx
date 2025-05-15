@@ -15,6 +15,7 @@ interface TabData {
   title: string; // İçerik başlığı
   content: string; // İçerik metni
   imagePath?: string | null; // Sekmeye ait resim dosya yolu (opsiyonel)
+  imageUrl?: string | null; // Sekmeye ait resim URL'si (API'den gelen veri) (opsiyonel)
   imageAlt?: string | null; // Resim alt metni (opsiyonel)
   buttonText: string; // Buton metni
   buttonLink?: string; // Buton linki (opsiyonel)
@@ -99,10 +100,10 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
                     </Button> */}
                   </div>
                   {/* Resim */}
-                  {tab.imagePath && (
+                  {(tab.imagePath || tab.imageUrl) && (
                     <div className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-md"> {/* Yükseklik ve gölge ayarlandı */}
                       <Image
-                        src={tab.imagePath} // Doğrudan path kullanılıyor, Next.js public klasöründen sunacak
+                        src={tab.imagePath || tab.imageUrl || ""} // imagePath veya imageUrl kullanılıyor, Next.js public klasöründen sunacak
                         alt={tab.imageAlt || tab.title} // imageAlt yoksa başlığı kullan
                         layout="fill"
                         objectFit="cover"

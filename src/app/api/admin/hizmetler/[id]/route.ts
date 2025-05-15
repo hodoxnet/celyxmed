@@ -14,7 +14,7 @@ const hizmetIntroLinkSchema = z.object({ id: z.string().optional(), targetId: z.
 const hizmetStepSchema = z.object({ id: z.string().optional(), title: z.string().min(1), description: z.string().min(1), linkText: z.string().optional().nullable(), order: z.number().default(0) });
 const hizmetFaqItemSchema = z.object({ id: z.string().optional(), question: z.string().min(1), answer: z.string().min(1), order: z.number().default(0) });
 const hizmetTranslationSchema = z.object({
-  languageCode: z.string(), slug: z.string().min(1), title: z.string().min(1), description: z.string().min(1), breadcrumb: z.string().default(""),
+  languageCode: z.string(), slug: z.string().min(1), title: z.string().min(1), description: z.string().min(1),
   tocTitle: z.string().default("İçindekiler"), tocAuthorInfo: z.string().default(""), tocCtaDescription: z.string().default(""), tocItems: z.array(hizmetTocItemSchema).default([]),
   introTitle: z.string().default(""), introDescription: z.string().default(""), introPrimaryButtonText: z.string().default(""), introPrimaryButtonLink: z.string().default(""), introSecondaryButtonText: z.string().default(""), introSecondaryButtonLink: z.string().default(""), introLinks: z.array(hizmetIntroLinkSchema).default([]),
   overviewSectionTitle: z.string().default("Genel Bakış"), overviewSectionDescription: z.string().default(""), whySectionTitle: z.string().default("Neden Biz?"), gallerySectionTitle: z.string().default("Galeri"), gallerySectionDescription: z.string().default(""), testimonialsSectionTitle: z.string().optional().nullable().default("Yorumlar"),

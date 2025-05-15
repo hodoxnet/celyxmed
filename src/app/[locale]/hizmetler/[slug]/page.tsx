@@ -434,7 +434,6 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
       <main className="flex-grow">
         {/* Hero Bölümü - API'den gelen veri ile */}
         <HeroSection
-          breadcrumb={serviceData.breadcrumb}
           title={serviceData.title}
           description={serviceData.description}
           imageUrl={serviceData.heroImageUrl}

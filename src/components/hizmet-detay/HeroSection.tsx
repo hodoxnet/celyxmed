@@ -4,11 +4,12 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from 'lucide-react'; // İkonu ArrowLeft olarak değiştirelim (görseldeki gibi)
 
 interface HeroSectionProps {
-  breadcrumb: string;
+  // breadcrumb prop'u kaldırıldı, otomatik oluşturulacak
   title: string;
   description: string;
   imageUrl: string;
@@ -20,7 +21,6 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
-  breadcrumb,
   title,
   description,
   imageUrl,
@@ -30,6 +30,36 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   secondaryButtonText = "Konsültasyon",
   secondaryButtonLink = "/iletisim"
 }) => {
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1]; // İlk segment genellikle dil kodu olur
+  
+  // Breadcrumb oluştur
+  const homeLabelMap: Record<string, string> = {
+    'tr': 'Anasayfa',
+    'en': 'Home',
+    'de': 'Startseite',
+    'ru': 'Главная',
+    'fr': 'Accueil',
+    'es': 'Inicio',
+    'it': 'Home',
+    // Diğer diller eklenebilir
+  };
+  
+  const servicesLabelMap: Record<string, string> = {
+    'tr': 'Hizmetler',
+    'en': 'Services',
+    'de': 'Dienste',
+    'ru': 'Услуги',
+    'fr': 'Services',
+    'es': 'Servicios',
+    'it': 'Servizi',
+    // Diğer diller eklenebilir
+  };
+  
+  const homeLabel = homeLabelMap[locale] || 'Home';
+  const servicesLabel = servicesLabelMap[locale] || 'Services';
+  const dynamicBreadcrumb = `${homeLabel} > ${servicesLabel} > ${title}`;
+
   return (
     <section className="relative h-screen flex items-end text-white overflow-hidden"> {/* h-screen ve overflow-hidden */}
       {/* Arka Plan Resmi */}
@@ -49,7 +79,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       {/* İçerik - Konumlandırma ve padding ayarlandı */}
       <div className="relative z-20 container mx-auto px-6 lg:px-8 pb-20 md:pb-28 lg:pb-32 w-full max-w-7xl"> {/* Daha geniş container ve padding */}
         <div className="max-w-xl"> {/* İçerik genişliği */}
-          <p className="text-sm text-gray-300 mb-3">{breadcrumb}</p>
+          <p className="text-sm text-gray-300 mb-3">{dynamicBreadcrumb}</p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5 leading-tight">{title}</h1>
           <p className="text-base sm:text-lg text-gray-200 mb-10">{description}</p>
 

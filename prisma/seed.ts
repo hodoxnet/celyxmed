@@ -61,13 +61,60 @@ async function main() {
       },
     });
     console.log('Almanca dili eklendi/kontrol edildi.');
+    
+    await prisma.language.upsert({
+      where: { code: 'fr' },
+      update: { isDefault: false },
+      create: {
+        code: 'fr',
+        name: 'Français',
+        isActive: true,
+        isDefault: false,
+      },
+    });
+    console.log('Fransızca dili eklendi/kontrol edildi.');
+    
+    await prisma.language.upsert({
+      where: { code: 'ru' },
+      update: { isDefault: false },
+      create: {
+        code: 'ru',
+        name: 'Русский',
+        isActive: true,
+        isDefault: false,
+      },
+    });
+    console.log('Rusça dili eklendi/kontrol edildi.');
+    
+    await prisma.language.upsert({
+      where: { code: 'it' },
+      update: { isDefault: false },
+      create: {
+        code: 'it',
+        name: 'Italiano',
+        isActive: true,
+        isDefault: false,
+      },
+    });
+    console.log('İtalyanca dili eklendi/kontrol edildi.');
+    
+    await prisma.language.upsert({
+      where: { code: 'es' },
+      update: { isDefault: false },
+      create: {
+        code: 'es',
+        name: 'Español',
+        isActive: true,
+        isDefault: false,
+      },
+    });
+    console.log('İspanyolca dili eklendi/kontrol edildi.');
     // --- Başlangıç Dilleri Ekle Bitti ---
     
     // Örnek blog yazısı oluştur
     console.log('Örnek blog yazısı oluşturuluyor...');
     const blog = await prisma.blog.create({
       data: {
-        slug: 'ornek-blog-yazisi',
         coverImageUrl: '/uploads/blogs/sample-cover.jpg',
         isPublished: true,
         publishedAt: new Date(),
@@ -97,7 +144,7 @@ async function main() {
         }
       }
     });
-    console.log('Örnek blog yazısı oluşturuldu:', blog.slug);
+    console.log('Örnek blog yazısı oluşturuldu:', blog.id);
 
   } catch (error: any) {
     // Eğer kullanıcı zaten varsa (unique constraint hatası P2002), bunu görmezden gel

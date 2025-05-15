@@ -191,7 +191,6 @@ model HizmetTranslation {
 
   // --- Dile Özgü Metinsel Alanlar ---
   slug        String   // URL parçası (dil ile birlikte unique)
-  breadcrumb  String   // Sayfa üstü navigasyon yolu
   title       String   // Hizmet Başlığı
   description String   // Hizmet Kısa Açıklama
 

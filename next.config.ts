@@ -7,18 +7,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/',
-        destination: '/en',
+        destination: '/tr',
         permanent: true,
       },
     ];
   },
   async rewrites() {
-    return [
-  {
-    "source": "/en/deneme/:path*",
-    "destination": "/en/hakkimizda/:path*"
-  }
-];
+    return [];
   },
   images: {
     remotePatterns: [
