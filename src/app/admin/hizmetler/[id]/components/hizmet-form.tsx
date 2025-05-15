@@ -1750,6 +1750,9 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       };
       console.log(`[CACHE] ${activeLang} dili için cache oluşturuldu:`, languageDataCache);
       
+      // moduleStates'in değişmediğini kontrol etmek için
+      console.log('[DİL DEĞİŞİMİ] moduleStates kontrol:', currentFormValues.moduleStates);
+      
       // 7. Formu sıfırlayıp yeni form değerlerini yerleştir
       form.reset(currentFormValues, { 
         keepDirty: false, 
@@ -1765,6 +1768,11 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       
       // 9. İçerik sekme görünümünde olduğundan emin olalım
       setActiveMainTab("content");
+      
+      // Seçili modülü koru (eğer varsa)
+      console.log('[DİL DEĞİŞİMİ] Dil değişiminden önce seçili modül:', selectedModule);
+      // selectedModule'ü korumak için özel bir işlem yapmaya gerek yok,
+      // çünkü React state'i dil değişiminde sıfırlanmıyor
       
       // 10. Forma özel bir bayrak ekle - dil değişikliği olduğunu belirt
       form.setValue("_isLanguageSwitch", true, { shouldDirty: false });

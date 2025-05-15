@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
   {
     "source": "/en/services/:path*",
     "destination": "/en/hizmetler/:path*"
+  },
+  {
+    "source": "/ru/services/:path*",
+    "destination": "/ru/hizmetler/:path*"
   }
 ];
   },
