@@ -17,6 +17,7 @@ import ImageUpload from '@/components/admin/image-upload';
 interface HeroSectionFormProps {
   form: UseFormReturn<any>; // Şimdilik any
   loading: boolean;
+  activeLang: string;
 }
 
 export function HeroSectionForm({ form, loading }: HeroSectionFormProps) {
