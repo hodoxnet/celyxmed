@@ -2275,7 +2275,13 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
                 <div className="flex items-center space-x-2">
                   <Input
                     type="url"
-                    placeholder={`https://www.celyxmed.com/${activeLang}/...`}
+                    placeholder={
+                      activeLang === 'en' 
+                        ? `https://www.celyxmed.com/service-slug...`
+                        : activeLang === 'tr'
+                        ? `https://www.celyxmed.com.tr/hizmet-slug...`
+                        : `https://www.celyxmed.com/${activeLang}/service-slug...`
+                    }
                     value={scrapingUrl}
                     onChange={(e) => setScrapingUrl(e.target.value)}
                     className="flex-grow"
