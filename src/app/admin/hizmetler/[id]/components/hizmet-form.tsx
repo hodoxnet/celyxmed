@@ -383,7 +383,12 @@ const hizmetFormSchema = z.object({
   ctaMainImageUrl: z.string().optional().nullable().default(null),
   ctaMainImageAlt: z.string().optional().nullable().default(null),
   
-  marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1,"Resim linki gerekli"), alt: z.string().min(1,"Resim açıklaması gerekli"), order: z.number().default(0) })).default([]),
+  marqueeImages: z.array(z.object({ 
+    id: z.string().optional(), 
+    src: z.string().min(1,"Resim linki gerekli"), 
+    alt: z.string().default(""), // Boş olabilir, varsayılan boş string
+    order: z.number().default(0) 
+  })).default([]),
   galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1,"Resim linki gerekli"), alt: z.string().min(1,"Resim açıklaması gerekli"), order: z.number().default(0) })).default([]),
   ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1,"Resim linki gerekli"), alt: z.string().min(1,"Resim açıklaması gerekli"), order: z.number().default(0) })).default([]),
 
@@ -662,36 +667,83 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         dataChanged = true;
       }
       if (data.overviewTabs && Array.isArray(data.overviewTabs) && data.overviewTabs.length > 0) {
-        const overviewTabDefinitions = data.overviewTabs.map((tab: any, index: number) => {
-          const translations: Record<string, any> = {};
-          translations[activeLang] = {
-            languageCode: activeLang,
-            triggerText: tab.triggerText || "",
-            title: tab.title || "",
-            content: tab.content || "",
-            buttonText: tab.buttonText || "Detaylar",
-            buttonLink: tab.buttonLink || null,
-          };
-          // Diğer diller için boş çeviri objeleri oluşturulabilir veya mevcutlar korunabilir.
-          // Şimdilik sadece aktif dil için veri basıyoruz.
-          diller.forEach(lang => {
-            if (lang.code !== activeLang) {
-              translations[lang.code] = form.getValues(`overviewSection.definition.tabs.${index}.translations.${lang.code}`) || {
-                languageCode: lang.code, triggerText: "", title: "", content: "", buttonText: "Detaylar", buttonLink: null
-              };
-            }
-          });
-
-          return {
-            id: undefined, // Yeni eklendiği için ID yok
-            value: tab.value || `tab-${index + 1}`,
-            imagePath: tab.imagePath || null,
-            imageAlt: tab.imageAlt || null,
-            order: tab.order !== undefined ? tab.order : index,
-            translations,
-          };
+        // Mevcut overview tabs'ları al
+        const currentOverviewTabs = form.getValues('overviewSection.definition.tabs') || [];
+        
+        // Mevcut tab'ları güncelle veya yeni ekle
+        const updatedOverviewTabs = [...currentOverviewTabs];
+        
+        data.overviewTabs.forEach((tab: any, index: number) => {
+          // Mevcut tab'ı bul (order veya index ile)
+          let existingIndex = -1;
+          let existingTab = null;
+          
+          // Önce order ile bul
+          existingIndex = updatedOverviewTabs.findIndex((overTab: any) => overTab.order === (tab.order || index));
+          if (existingIndex !== -1) {
+            existingTab = updatedOverviewTabs[existingIndex];
+          }
+          
+          // Order ile bulamazsan index ile dene
+          if (existingIndex === -1 && updatedOverviewTabs[index]) {
+            existingIndex = index;
+            existingTab = updatedOverviewTabs[index];
+          }
+          
+          if (existingTab) {
+            // Mevcut tab'ı güncelle - sadece aktif dili değiştir
+            updatedOverviewTabs[existingIndex] = {
+              ...existingTab, // ID ve diğer alanları koru
+              value: tab.value || existingTab.value || `tab-${index + 1}`,
+              imagePath: tab.imagePath || existingTab.imagePath || null,
+              imageAlt: tab.imageAlt || existingTab.imageAlt || null,
+              translations: {
+                ...existingTab.translations,
+                [activeLang]: {
+                  languageCode: activeLang,
+                  triggerText: tab.triggerText || "",
+                  title: tab.title || "",
+                  content: tab.content || "",
+                  buttonText: tab.buttonText || "Detaylar",
+                  buttonLink: tab.buttonLink || null,
+                }
+              }
+            };
+          } else {
+            // Yeni tab ekle
+            const translations: Record<string, any> = {};
+            
+            // Aktif dil için veri ekle
+            translations[activeLang] = {
+              languageCode: activeLang,
+              triggerText: tab.triggerText || "",
+              title: tab.title || "",
+              content: tab.content || "",
+              buttonText: tab.buttonText || "Detaylar",
+              buttonLink: tab.buttonLink || null,
+            };
+            
+            // Diğer diller için boş veri ekle
+            diller.forEach(lang => {
+              if (lang.code !== activeLang) {
+                translations[lang.code] = {
+                  languageCode: lang.code, triggerText: "", title: "", content: "", buttonText: "Detaylar", buttonLink: null
+                };
+              }
+            });
+            
+            updatedOverviewTabs.push({
+              id: undefined, // Yeni kayıt
+              value: tab.value || `tab-${index + 1}`,
+              imagePath: tab.imagePath || null,
+              imageAlt: tab.imageAlt || null,
+              order: tab.order !== undefined ? tab.order : updatedOverviewTabs.length,
+              translations,
+            });
+          }
         });
-        form.setValue('overviewSection.definition.tabs', overviewTabDefinitions, { shouldDirty: true });
+        
+        form.setValue('overviewSection.definition.tabs', updatedOverviewTabs, { shouldDirty: true });
         dataChanged = true;
       }
 
@@ -701,28 +753,73 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         dataChanged = true;
       }
       if (data.whyItems && Array.isArray(data.whyItems) && data.whyItems.length > 0) {
-        const whyItemDefinitions = data.whyItems.map((item: any, index: number) => {
-          const translations: Record<string, any> = {};
-          translations[activeLang] = {
-            languageCode: activeLang,
-            title: item.title || "",
-            description: item.description || "",
-          };
-          diller.forEach(lang => {
-            if (lang.code !== activeLang) {
-              translations[lang.code] = form.getValues(`whySection.definition.items.${index}.translations.${lang.code}`) || {
-                languageCode: lang.code, title: "", description: ""
-              };
-            }
-          });
-          return {
-            id: undefined,
-            number: item.number || `${index + 1}`,
-            order: item.order !== undefined ? item.order : index,
-            translations,
-          };
+        // Mevcut why items'ları al
+        const currentWhyItems = form.getValues('whySection.definition.items') || [];
+        
+        // Mevcut item'ları güncelle veya yeni ekle
+        const updatedWhyItems = [...currentWhyItems];
+        
+        data.whyItems.forEach((item: any, index: number) => {
+          // Mevcut item'ı bul (order veya index ile)
+          let existingIndex = -1;
+          let existingItem = null;
+          
+          // Önce order ile bul
+          existingIndex = updatedWhyItems.findIndex((whyItem: any) => whyItem.order === (item.order || index));
+          if (existingIndex !== -1) {
+            existingItem = updatedWhyItems[existingIndex];
+          }
+          
+          // Order ile bulamazsan index ile dene
+          if (existingIndex === -1 && updatedWhyItems[index]) {
+            existingIndex = index;
+            existingItem = updatedWhyItems[index];
+          }
+          
+          if (existingItem) {
+            // Mevcut item'ı güncelle - sadece aktif dili değiştir
+            updatedWhyItems[existingIndex] = {
+              ...existingItem, // ID ve diğer alanları koru
+              number: item.number || existingItem.number || `${index + 1}`,
+              translations: {
+                ...existingItem.translations,
+                [activeLang]: {
+                  languageCode: activeLang,
+                  title: item.title || "",
+                  description: item.description || "",
+                }
+              }
+            };
+          } else {
+            // Yeni item ekle
+            const translations: Record<string, any> = {};
+            
+            // Aktif dil için veri ekle
+            translations[activeLang] = {
+              languageCode: activeLang,
+              title: item.title || "",
+              description: item.description || "",
+            };
+            
+            // Diğer diller için boş veri ekle
+            diller.forEach(lang => {
+              if (lang.code !== activeLang) {
+                translations[lang.code] = {
+                  languageCode: lang.code, title: "", description: ""
+                };
+              }
+            });
+            
+            updatedWhyItems.push({
+              id: undefined, // Yeni kayıt
+              number: item.number || `${index + 1}`,
+              order: item.order !== undefined ? item.order : updatedWhyItems.length,
+              translations,
+            });
+          }
         });
-        form.setValue('whySection.definition.items', whyItemDefinitions, { shouldDirty: true });
+        
+        form.setValue('whySection.definition.items', updatedWhyItems, { shouldDirty: true });
         dataChanged = true;
       }
 
@@ -755,32 +852,88 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
 
       // Testimonials Section
       if (data.testimonials && Array.isArray(data.testimonials) && data.testimonials.length > 0) {
-        const testimonialItems = data.testimonials.map((testimonial: any, index: number) => {
-          const translations: Record<string, any> = {};
-          translations[activeLang] = {
-            languageCode: activeLang,
-            text: testimonial.text || "",
-            author: testimonial.author || "",
-            treatment: testimonial.treatment || null,
-          };
-          diller.forEach(lang => {
-            if (lang.code !== activeLang) {
-              translations[lang.code] = form.getValues(`testimonialsSection.definition.items.${index}.translations.${lang.code}`) || {
-                languageCode: lang.code, text: "", author: "", treatment: null
+        console.log("[SCRAPE] Testimonials verisi geldi:", data.testimonials);
+        
+        // Mevcut testimonials'ı al
+        const currentTestimonials = form.getValues('testimonialsSection.definition.items') || [];
+        console.log("[SCRAPE] Mevcut testimonials:", currentTestimonials);
+        
+        // Mevcut testimonial'ları güncelle veya yeni ekle
+        const updatedTestimonials = [...currentTestimonials]; // Mevcut array'i kopyala
+          
+          data.testimonials.forEach((testimonial: any, index: number) => {
+            // Mevcut testimonial'ı bul (order veya index ile)
+            let existingIndex = -1;
+            let existingTestimonial = null;
+            
+            // Önce order ile bul
+            existingIndex = updatedTestimonials.findIndex((item: any) => item.order === (testimonial.order || index));
+            if (existingIndex !== -1) {
+              existingTestimonial = updatedTestimonials[existingIndex];
+              console.log(`[SCRAPE] Order ${testimonial.order || index} ile mevcut testimonial bulundu`);
+            }
+            
+            // Order ile bulamazsan index ile dene
+            if (existingIndex === -1 && updatedTestimonials[index]) {
+              existingIndex = index;
+              existingTestimonial = updatedTestimonials[index];
+              console.log(`[SCRAPE] Index ${index} ile mevcut testimonial bulundu`);
+            }
+            
+            if (existingTestimonial) {
+              // Mevcut testimonial'ı güncelle - sadece aktif dili değiştir
+              console.log(`[SCRAPE] Mevcut testimonial güncelleniyor (ID: ${existingTestimonial.id})`);
+              updatedTestimonials[existingIndex] = {
+                ...existingTestimonial, // ID ve diğer alanları koru
+                stars: testimonial.stars || existingTestimonial.stars || 5,
+                imageUrl: testimonial.imageUrl || existingTestimonial.imageUrl || null,
+                translations: {
+                  ...existingTestimonial.translations,
+                  [activeLang]: {
+                    languageCode: activeLang,
+                    text: testimonial.text || "",
+                    author: testimonial.author || "",
+                    treatment: testimonial.treatment || null,
+                  }
+                }
               };
+            } else {
+              // Yeni testimonial ekle
+              console.log(`[SCRAPE] Yeni testimonial ekleniyor`);
+              const translations: Record<string, any> = {};
+              
+              // Aktif dil için veri ekle
+              translations[activeLang] = {
+                languageCode: activeLang,
+                text: testimonial.text || "",
+                author: testimonial.author || "",
+                treatment: testimonial.treatment || null,
+              };
+              
+              // Diğer diller için boş veri ekle
+              diller.forEach(lang => {
+                if (lang.code !== activeLang) {
+                  translations[lang.code] = {
+                    languageCode: lang.code, text: "", author: "", treatment: null
+                  };
+                }
+              });
+              
+              updatedTestimonials.push({
+                id: undefined, // Yeni kayıt
+                stars: testimonial.stars || 5,
+                imageUrl: testimonial.imageUrl || null,
+                order: testimonial.order !== undefined ? testimonial.order : updatedTestimonials.length,
+                translations,
+              });
             }
           });
-          return {
-            id: undefined,
-            stars: testimonial.stars || 5,
-            imageUrl: testimonial.imageUrl || null,
-            order: testimonial.order !== undefined ? testimonial.order : index,
-            translations,
-          };
-        });
-        form.setValue('testimonialsSection.definition.items', testimonialItems, { shouldDirty: true });
-        dataChanged = true;
+          
+          console.log("[SCRAPE] Güncellenmiş testimonialItems:", updatedTestimonials);
+          form.setValue('testimonialsSection.definition.items', updatedTestimonials, { shouldDirty: true });
+          dataChanged = true;
       }
+      // Eğer boş array ise mevcut verileri silme, mevcut verileri koru
 
       // Steps Section
       if (data.stepsSectionTitle) {
@@ -814,29 +967,75 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         dataChanged = true;
       }
       if (data.recoveryItems && Array.isArray(data.recoveryItems) && data.recoveryItems.length > 0) {
-        const recoveryItemDefinitions = data.recoveryItems.map((item: any, index: number) => {
-          const translations: Record<string, any> = {};
-          translations[activeLang] = {
-            languageCode: activeLang,
-            title: item.title || "",
-            description: item.description || "",
-          };
-          diller.forEach(lang => {
-            if (lang.code !== activeLang) {
-              translations[lang.code] = form.getValues(`recoverySection.definition.items.${index}.translations.${lang.code}`) || {
-                languageCode: lang.code, title: "", description: ""
-              };
-            }
-          });
-          return {
-            id: undefined,
-            imageUrl: item.imageUrl || "", // Şemada zorunlu
-            imageAlt: item.imageAlt || item.title || "", // Şemada zorunlu
-            order: item.order !== undefined ? item.order : index,
-            translations,
-          };
+        // Mevcut recovery items'ları al
+        const currentRecoveryItems = form.getValues('recoverySection.definition.items') || [];
+        
+        // Mevcut item'ları güncelle veya yeni ekle
+        const updatedRecoveryItems = [...currentRecoveryItems];
+        
+        data.recoveryItems.forEach((item: any, index: number) => {
+          // Mevcut item'ı bul (order veya index ile)
+          let existingIndex = -1;
+          let existingItem = null;
+          
+          // Önce order ile bul
+          existingIndex = updatedRecoveryItems.findIndex((recItem: any) => recItem.order === (item.order || index));
+          if (existingIndex !== -1) {
+            existingItem = updatedRecoveryItems[existingIndex];
+          }
+          
+          // Order ile bulamazsan index ile dene
+          if (existingIndex === -1 && updatedRecoveryItems[index]) {
+            existingIndex = index;
+            existingItem = updatedRecoveryItems[index];
+          }
+          
+          if (existingItem) {
+            // Mevcut item'ı güncelle - sadece aktif dili değiştir
+            updatedRecoveryItems[existingIndex] = {
+              ...existingItem, // ID ve diğer alanları koru
+              imageUrl: item.imageUrl || existingItem.imageUrl || "",
+              imageAlt: item.imageAlt || item.title || existingItem.imageAlt || "",
+              translations: {
+                ...existingItem.translations,
+                [activeLang]: {
+                  languageCode: activeLang,
+                  title: item.title || "",
+                  description: item.description || "",
+                }
+              }
+            };
+          } else {
+            // Yeni item ekle
+            const translations: Record<string, any> = {};
+            
+            // Aktif dil için veri ekle
+            translations[activeLang] = {
+              languageCode: activeLang,
+              title: item.title || "",
+              description: item.description || "",
+            };
+            
+            // Diğer diller için boş veri ekle
+            diller.forEach(lang => {
+              if (lang.code !== activeLang) {
+                translations[lang.code] = {
+                  languageCode: lang.code, title: "", description: ""
+                };
+              }
+            });
+            
+            updatedRecoveryItems.push({
+              id: undefined, // Yeni kayıt
+              imageUrl: item.imageUrl || "",
+              imageAlt: item.imageAlt || item.title || "",
+              order: item.order !== undefined ? item.order : updatedRecoveryItems.length,
+              translations,
+            });
+          }
         });
-        form.setValue('recoverySection.definition.items', recoveryItemDefinitions, { shouldDirty: true });
+        
+        form.setValue('recoverySection.definition.items', updatedRecoveryItems, { shouldDirty: true });
         dataChanged = true;
       }
 
@@ -882,33 +1081,82 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         dataChanged = true;
       }
       if (data.expertItems && Array.isArray(data.expertItems) && data.expertItems.length > 0) {
-        const expertItemDefinitions = data.expertItems.map((item: any, index: number) => {
-          const translations: Record<string, any> = {};
-          translations[activeLang] = {
-            languageCode: activeLang,
-            name: item.name || "",
-            title: item.title || "", // API'de bu "Uzman Doktor" olarak sabitlenmişti
-            description: item.description || "",
-            ctaText: item.ctaText || null,
-          };
-          diller.forEach(lang => {
-            if (lang.code !== activeLang) {
-              translations[lang.code] = form.getValues(`expertsSection.definition.items.${index}.translations.${lang.code}`) || {
-                languageCode: lang.code, name: "", title: "", description: "", ctaText: null
+        // Mevcut experts'i al
+        const currentExperts = form.getValues('expertsSection.definition.items') || [];
+          
+          // Mevcut expert'leri güncelle veya yeni ekle
+          const updatedExperts = [...currentExperts]; // Mevcut array'i kopyala
+          
+          data.expertItems.forEach((item: any, index: number) => {
+            // Mevcut expert'i bul (order veya index ile)
+            let existingIndex = -1;
+            let existingExpert = null;
+            
+            // Önce order ile bul
+            existingIndex = updatedExperts.findIndex((expert: any) => expert.order === (item.order || index));
+            if (existingIndex !== -1) {
+              existingExpert = updatedExperts[existingIndex];
+            }
+            
+            // Order ile bulamazsan index ile dene
+            if (existingIndex === -1 && updatedExperts[index]) {
+              existingIndex = index;
+              existingExpert = updatedExperts[index];
+            }
+            
+            if (existingExpert) {
+              // Mevcut expert'i güncelle - sadece aktif dili değiştir
+              updatedExperts[existingIndex] = {
+                ...existingExpert, // ID ve diğer alanları koru
+                imageUrl: item.imageUrl || existingExpert.imageUrl || "",
+                imageAlt: item.imageAlt || item.name || existingExpert.imageAlt || "",
+                translations: {
+                  ...existingExpert.translations,
+                  [activeLang]: {
+                    languageCode: activeLang,
+                    name: item.name || "",
+                    title: item.title || "",
+                    description: item.description || "",
+                    ctaText: item.ctaText || null,
+                  }
+                }
               };
+            } else {
+              // Yeni expert ekle
+              const translations: Record<string, any> = {};
+              
+              // Aktif dil için veri ekle
+              translations[activeLang] = {
+                languageCode: activeLang,
+                name: item.name || "",
+                title: item.title || "",
+                description: item.description || "",
+                ctaText: item.ctaText || null,
+              };
+              
+              // Diğer diller için boş veri ekle
+              diller.forEach(lang => {
+                if (lang.code !== activeLang) {
+                  translations[lang.code] = {
+                    languageCode: lang.code, name: "", title: "", description: "", ctaText: null
+                  };
+                }
+              });
+              
+              updatedExperts.push({
+                id: undefined, // Yeni kayıt
+                imageUrl: item.imageUrl || "",
+                imageAlt: item.imageAlt || item.name || "",
+                order: item.order !== undefined ? item.order : updatedExperts.length,
+                translations,
+              });
             }
           });
-          return {
-            id: undefined,
-            imageUrl: item.imageUrl || "", // Şemada zorunlu
-            imageAlt: item.imageAlt || item.name || "", // Şemada zorunlu
-            order: item.order !== undefined ? item.order : index,
-            translations,
-          };
-        });
-        form.setValue('expertsSection.definition.items', expertItemDefinitions, { shouldDirty: true });
-        dataChanged = true;
+          
+          form.setValue('expertsSection.definition.items', updatedExperts, { shouldDirty: true });
+          dataChanged = true;
       }
+      // Eğer boş array ise mevcut verileri silme, mevcut verileri koru
 
 
       if (dataChanged) {
@@ -1856,6 +2104,10 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
 
   // Form gönderimi ve API iletişimi - typescript güvenlik iyileştirmeleriyle
   const onSubmit = async (values: HizmetFormValues) => {
+    console.log("[SUBMIT] Form submit edildi");
+    console.log("[SUBMIT] Form değerleri:", values);
+    console.log("[SUBMIT] MarqueeImages detaylı:", JSON.stringify(values.marqueeImages, null, 2));
+    
     // Dil değişikliği bayrağı kontrol et - eğer sadece dil değişikliği yapıyorsak formu submit etme
     if (values._isLanguageSwitch) {
       // Bayrağı temizle ve log ekle
@@ -1885,6 +2137,25 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
       diller.forEach(lang => {
         const langCode = lang.code;
         
+        // Bu dilde veri olup olmadığını kontrol et
+        const hasDataInLang = values.basicInfoSection.translations[langCode] ||
+                            values.seoSection.translations[langCode] ||
+                            values.tocSection.translations[langCode] ||
+                            values.introSection.translations[langCode] ||
+                            values.overviewSection.translations[langCode] ||
+                            values.whySection.translations[langCode] ||
+                            values.gallerySection.translations[langCode] ||
+                            values.testimonialsSection.translations[langCode] ||
+                            values.stepsSection.translations[langCode] ||
+                            values.recoverySection.translations[langCode] ||
+                            values.ctaSection.translations[langCode] ||
+                            values.pricingSection.translations[langCode] ||
+                            values.expertsSection.translations[langCode] ||
+                            values.faqSection.translations[langCode];
+                            
+        // Eğer bu dilde hiç veri yoksa bu dili ekleme
+        if (!hasDataInLang) return;
+        
         // Her dil için veri dönüşümü yap
         allTranslations[langCode] = {
           // BasicInfo
@@ -1897,7 +2168,7 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         tocTitle: values.tocSection.translations[langCode]?.tocTitle || "İçindekiler",
         tocAuthorInfo: values.tocSection.translations[langCode]?.tocAuthorInfo || "",
         tocCtaDescription: values.tocSection.translations[langCode]?.tocCtaDescription || "",
-        tocItems: values.tocSection.translations[langCode]?.tocItems || [],
+        tocItems: values.tocSection.translations[langCode]?.tocItems,
         
         // Intro Section
         introTitle: values.introSection.translations[langCode]?.title || "",
@@ -1906,7 +2177,7 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         introPrimaryButtonLink: values.introSection.translations[langCode]?.primaryButtonLink || "",
         introSecondaryButtonText: values.introSection.translations[langCode]?.secondaryButtonText || "",
         introSecondaryButtonLink: values.introSection.translations[langCode]?.secondaryButtonLink || "",
-        introLinks: values.introSection.translations[langCode]?.introLinks || [],
+        introLinks: values.introSection.translations[langCode]?.introLinks,
         
         // SEO
         metaTitle: values.seoSection.translations[langCode]?.metaTitle || null,
@@ -1930,7 +2201,7 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         // Steps Section
         stepsSectionTitle: values.stepsSection.translations[langCode]?.title || "Adımlar",
         stepsSectionDescription: values.stepsSection.translations[langCode]?.description || "",
-        steps: values.stepsSection.translations[langCode]?.steps || [],
+        steps: values.stepsSection.translations[langCode]?.steps,
         
         // Recovery Section
         recoverySectionTitle: values.recoverySection.translations[langCode]?.title || "İyileşme Süreci",
@@ -1955,13 +2226,13 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         // FAQ Section
         faqSectionTitle: values.faqSection.translations[langCode]?.title || "Sıkça Sorulan Sorular",
         faqSectionDescription: values.faqSection.translations[langCode]?.description || "",
-        faqs: values.faqSection.translations[langCode]?.faqs || [],
+        faqs: values.faqSection.translations[langCode]?.faqs,
       };
       }); // diller.forEach döngüsü sonu
       
       // Yardımcı fonksiyon: Definition dizilerindeki TÜM çevirileri alır
       const processDefinitionsForPayload = (definitions: any[] | undefined) => {
-        if (!definitions) return [];
+        if (!definitions || definitions.length === 0) return undefined; // Boş array gönderme
         return definitions.map(def => {
           const processedTranslations: Record<string, any> = {};
           
@@ -2009,6 +2280,7 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         expertItemDefinitions: processDefinitionsForPayload(formValues.expertsSection.definition?.items),
         pricingPackageDefinitions: processDefinitionsForPayload(formValues.pricingSection.definition?.packages),
         activeLang: activeLang,
+        onlyUpdateActiveLang: true, // API'ye sadece aktif dili güncelleme isteği gönder
       };
 
       const url = isEditing && initialData?.id
@@ -2203,7 +2475,22 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={(e) => {
+        console.log("[FORM] Form onSubmit event tetiklendi");
+        console.log("[FORM] Form errors:", form.formState.errors);
+        console.log("[FORM] Form isValid:", form.formState.isValid);
+        console.log("[FORM] Form isDirty:", form.formState.isDirty);
+        e.preventDefault();
+        form.handleSubmit(
+          (data) => {
+            console.log("[FORM] handleSubmit başarılı, onSubmit çağrılıyor");
+            onSubmit(data);
+          },
+          (errors) => {
+            console.error("[FORM] Form validation hataları:", errors);
+          }
+        )(e);
+      }} className="space-y-6">
         {/* Üst Bölüm: Başlık, Durum ve Dil Seçimi */}
         <Card>
           <CardHeader className="pb-3">
@@ -2500,7 +2787,19 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
             >
               İptal
             </Button>
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} onClick={() => {
+              console.log("[BUTTON] Submit butonu tıklandı");
+              console.log("[BUTTON] Button disabled durumu:", loading);
+              console.log("[BUTTON] Form değerleri:", form.getValues());
+              const marqueeImages = form.getValues('marqueeImages');
+              console.log("[BUTTON] Marquee images detayı:");
+              marqueeImages?.forEach((img, index) => {
+                console.log(`  [${index}] URL: ${img.url}`);
+                console.log(`  [${index}] Alt: ${img.alt}`);
+                console.log(`  [${index}] Order: ${img.order}`);
+                console.log(`  ---`);
+              });
+            }}>
               {actionButtonText}
             </Button>
           </div>

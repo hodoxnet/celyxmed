@@ -69,7 +69,7 @@ const createValidator = (activeLang: string) => {
     ctaMainImageUrl: z.string().optional().nullable().default(null), 
     ctaMainImageAlt: z.string().optional().nullable().default(null), 
     introVideoId: z.string().optional().nullable().default(null),
-    marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
+    marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().default(""), order: z.number().default(0) })).default([]), 
     galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
     ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
     translations: z.record(z.string(), z.any()).refine(
@@ -85,7 +85,8 @@ const createValidator = (activeLang: string) => {
     recoveryItemDefinitions: z.array(z.any()).default([]), 
     expertItemDefinitions: z.array(z.any()).default([]), 
     pricingPackageDefinitions: z.array(z.any()).default([]),
-    activeLang: z.string()
+    activeLang: z.string(),
+    onlyUpdateActiveLang: z.boolean().optional()
   });
 };
 
@@ -104,7 +105,7 @@ const hizmetFormSchema = z.object({
   ctaMainImageUrl: z.string().optional().nullable().default(null), 
   ctaMainImageAlt: z.string().optional().nullable().default(null), 
   introVideoId: z.string().optional().nullable().default(null),
-  marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
+  marqueeImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().default(""), order: z.number().default(0) })).default([]), 
   galleryImages: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]), 
   ctaAvatars: z.array(z.object({ id: z.string().optional(), src: z.string().min(1), alt: z.string().min(1), order: z.number().default(0) })).default([]),
   translations: z.record(z.string(), hizmetTranslationSchema),
@@ -114,7 +115,8 @@ const hizmetFormSchema = z.object({
   recoveryItemDefinitions: z.array(hizmetRecoveryItemDefinitionSchema).default([]), 
   expertItemDefinitions: z.array(hizmetExpertItemDefinitionSchema).default([]), 
   pricingPackageDefinitions: z.array(hizmetPricingPackageDefinitionSchema).default([]),
-  activeLang: z.string() // activeLang eklendi
+  activeLang: z.string(),
+  onlyUpdateActiveLang: z.boolean().optional()
 });
 // --- Şema kopyalama sonu ---
 
@@ -344,15 +346,23 @@ export async function PATCH(req: Request, context: Context) {
               where: { id: currentTranslation.id },
               data: translationPayload,
             });
-            // İlişkili listeleri güncelle (Sil & Yeniden Oluştur) - SADECE aktif dil için
-            await tx.hizmetTocItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-            if (tocItems.length > 0) await tx.hizmetTocItem.createMany({ data: tocItems.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
-            await tx.hizmetIntroLink.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-            if (introLinks.length > 0) await tx.hizmetIntroLink.createMany({ data: introLinks.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
-            await tx.hizmetStep.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-            if (steps.length > 0) await tx.hizmetStep.createMany({ data: steps.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
-            await tx.hizmetFaqItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
-            if (faqs.length > 0) await tx.hizmetFaqItem.createMany({ data: faqs.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            // İlişkili listeleri güncelle - Array alanlar sadece değer varsa güncelle
+            if (tocItems !== undefined) {
+              await tx.hizmetTocItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+              if (tocItems.length > 0) await tx.hizmetTocItem.createMany({ data: tocItems.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            }
+            if (introLinks !== undefined) {
+              await tx.hizmetIntroLink.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+              if (introLinks.length > 0) await tx.hizmetIntroLink.createMany({ data: introLinks.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            }
+            if (steps !== undefined) {
+              await tx.hizmetStep.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+              if (steps.length > 0) await tx.hizmetStep.createMany({ data: steps.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            }
+            if (faqs !== undefined) {
+              await tx.hizmetFaqItem.deleteMany({ where: { hizmetTranslationId: currentTranslation.id } });
+              if (faqs.length > 0) await tx.hizmetFaqItem.createMany({ data: faqs.map((item: any) => ({ ...item, id: undefined, hizmetTranslationId: currentTranslation.id })) });
+            }
 
           } else {
             // Oluştur - SADECE aktif dil için
@@ -360,10 +370,10 @@ export async function PATCH(req: Request, context: Context) {
             await tx.hizmetTranslation.create({
               data: {
                 ...translationPayload,
-                tocItems: { createMany: { data: tocItems.map((item: any) => ({ ...item, id: undefined })) } },
-                introLinks: { createMany: { data: introLinks.map((item: any) => ({ ...item, id: undefined })) } },
-                steps: { createMany: { data: steps.map((item: any) => ({ ...item, id: undefined })) } },
-                faqs: { createMany: { data: faqs.map((item: any) => ({ ...item, id: undefined })) } },
+                ...(tocItems !== undefined && { tocItems: { createMany: { data: tocItems.map((item: any) => ({ ...item, id: undefined })) } } }),
+                ...(introLinks !== undefined && { introLinks: { createMany: { data: introLinks.map((item: any) => ({ ...item, id: undefined })) } } }),
+                ...(steps !== undefined && { steps: { createMany: { data: steps.map((item: any) => ({ ...item, id: undefined })) } } }),
+                ...(faqs !== undefined && { faqs: { createMany: { data: faqs.map((item: any) => ({ ...item, id: undefined })) } } }),
               },
             });
           }
@@ -371,7 +381,13 @@ export async function PATCH(req: Request, context: Context) {
            console.warn(`[WARN] No translation data found in payload for activeLang: ${activeLangCode}`);
       }
       
-      // DİĞER DİLLER İÇİN HERHANGİ BİR İŞLEM YAPILMIYOR
+      // Eğer onlyUpdateActiveLang true ise sadece aktif dili güncelle
+      if (body.onlyUpdateActiveLang) {
+        console.log(`[DEBUG] onlyUpdateActiveLang is true, not processing other languages`);
+      } else {
+        // DİĞER DİLLER İÇİN HERHANGİ BİR İŞLEM YAPILMIYOR
+        console.log(`[DEBUG] Processing all languages`);
+      }
 
       // 4. Definition/Translation Çiftlerini Güncelle/Oluştur/Sil
       const updateDefinitionCollection = async (
@@ -482,12 +498,25 @@ export async function PATCH(req: Request, context: Context) {
           }
       };
 
-      await updateDefinitionCollection('overviewTabDefinitions', 'hizmetOverviewTabDefinition', 'hizmetOverviewTabTranslation', currentHizmet.overviewTabDefinitions, overviewTabDefinitions);
-      await updateDefinitionCollection('whyItemDefinitions', 'hizmetWhyItemDefinition', 'hizmetWhyItemTranslation', currentHizmet.whyItemDefinitions, whyItemDefinitions);
-      await updateDefinitionCollection('testimonialDefinitions', 'hizmetTestimonialDefinition', 'hizmetTestimonialTranslation', currentHizmet.testimonialDefinitions, testimonialDefinitions);
-      await updateDefinitionCollection('recoveryItemDefinitions', 'hizmetRecoveryItemDefinition', 'hizmetRecoveryItemTranslation', currentHizmet.recoveryItemDefinitions, recoveryItemDefinitions);
-      await updateDefinitionCollection('expertItemDefinitions', 'hizmetExpertItemDefinition', 'hizmetExpertItemTranslation', currentHizmet.expertItemDefinitions, expertItemDefinitions);
-      await updateDefinitionCollection('pricingPackageDefinitions', 'hizmetPricingPackageDefinition', 'hizmetPricingPackageTranslation', currentHizmet.pricingPackageDefinitions, pricingPackageDefinitions);
+      // Definition collection'ları güncelle - undefined olanları güncelleme
+      if (overviewTabDefinitions !== undefined) {
+        await updateDefinitionCollection('overviewTabDefinitions', 'hizmetOverviewTabDefinition', 'hizmetOverviewTabTranslation', currentHizmet.overviewTabDefinitions, overviewTabDefinitions);
+      }
+      if (whyItemDefinitions !== undefined) {
+        await updateDefinitionCollection('whyItemDefinitions', 'hizmetWhyItemDefinition', 'hizmetWhyItemTranslation', currentHizmet.whyItemDefinitions, whyItemDefinitions);
+      }
+      if (testimonialDefinitions !== undefined) {
+        await updateDefinitionCollection('testimonialDefinitions', 'hizmetTestimonialDefinition', 'hizmetTestimonialTranslation', currentHizmet.testimonialDefinitions, testimonialDefinitions);
+      }
+      if (recoveryItemDefinitions !== undefined) {
+        await updateDefinitionCollection('recoveryItemDefinitions', 'hizmetRecoveryItemDefinition', 'hizmetRecoveryItemTranslation', currentHizmet.recoveryItemDefinitions, recoveryItemDefinitions);
+      }
+      if (expertItemDefinitions !== undefined) {
+        await updateDefinitionCollection('expertItemDefinitions', 'hizmetExpertItemDefinition', 'hizmetExpertItemTranslation', currentHizmet.expertItemDefinitions, expertItemDefinitions);
+      }
+      if (pricingPackageDefinitions !== undefined) {
+        await updateDefinitionCollection('pricingPackageDefinitions', 'hizmetPricingPackageDefinition', 'hizmetPricingPackageTranslation', currentHizmet.pricingPackageDefinitions, pricingPackageDefinitions);
+      }
 
 
       // Dosya silme işlemlerini bekle
