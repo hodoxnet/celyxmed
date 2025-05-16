@@ -318,6 +318,123 @@ export async function POST(request: Request) {
       (scrapedData as any).procedureSteps = procedureSteps;
     }
 
+    // İyileşme Süreci Bölümü (Recovery Section)
+    const recoverySectionNode = $('section#5');
+    const recoverySectionTitle = recoverySectionNode.find('.parallax-heading .heading-4').text().trim();
+    const recoverySectionDescription = recoverySectionNode.find('.parallax-heading .max-width-45ch div').first().text().trim();
+    const recoveryItems: { title: string; description: string; imageUrl?: string; imageAlt?: string; order: number }[] = [];
+
+    recoverySectionNode.find('.parallax-card').each((i, el) => {
+      const title = $(el).find('.parallax-card-content .parallax-text-size').text().trim();
+      const description = $(el).find('.parallax-card-content .opacity-60 .text-size-medium').text().trim();
+      const imageUrl = $(el).find('.parallax-image img').attr('src');
+      const imageAlt = $(el).find('.parallax-image img').attr('alt');
+
+      if (title && description) {
+        recoveryItems.push({ 
+          title, 
+          description, 
+          imageUrl: imageUrl || undefined, 
+          imageAlt: imageAlt || title, // Alt metni yoksa başlığı kullan
+          order: i 
+        });
+      }
+    });
+
+    if (recoverySectionTitle) {
+      (scrapedData as any).recoverySectionTitle = recoverySectionTitle;
+    }
+    if (recoverySectionDescription) {
+      (scrapedData as any).recoverySectionDescription = recoverySectionDescription;
+    }
+    if (recoveryItems.length > 0) {
+      (scrapedData as any).recoveryItems = recoveryItems;
+    }
+
+    // CTA Bölümü
+    const ctaSectionNode = $('section.section-4 .banner-component');
+    const ctaTagline = ctaSectionNode.find('.banner-heading-component .light-tag-2 .text-size-small').text().trim();
+    const ctaTitle = ctaSectionNode.find('.banner-heading-component .banner-heading-2 .heading-8').text().trim();
+    const ctaDescription = ctaSectionNode.find('.banner-heading-component .banner-content-2 div').first().text().trim();
+    const ctaButtonText = ctaSectionNode.find('a.form-3 .button-primary-text div').text().trim();
+    const ctaAvatarText = ctaSectionNode.find('.hero-avatar-content .opacity-70 .text-block-2').text().trim();
+    
+    // CTA Ana Resmi (banner-image-wrapper içindeki)
+    const ctaMainImageUrl = $('section.section-4 .banner-image-wrapper .banner-image img').attr('src');
+    const ctaMainImageAlt = $('section.section-4 .banner-image-wrapper .banner-image img').attr('alt');
+
+
+    if (ctaTagline) {
+      (scrapedData as any).ctaTagline = ctaTagline;
+    }
+    if (ctaTitle) {
+      (scrapedData as any).ctaTitle = ctaTitle;
+    }
+    if (ctaDescription) {
+      (scrapedData as any).ctaDescription = ctaDescription;
+    }
+    if (ctaButtonText) {
+      (scrapedData as any).ctaButtonText = ctaButtonText;
+    }
+    if (ctaAvatarText) {
+      (scrapedData as any).ctaAvatarText = ctaAvatarText;
+    }
+    if (ctaMainImageUrl) {
+      (scrapedData as any).ctaMainImageUrl = ctaMainImageUrl;
+    }
+    if (ctaMainImageAlt) {
+      (scrapedData as any).ctaMainImageAlt = ctaMainImageAlt;
+    }
+
+    // Uzmanlar Bölümü (Experts Section)
+    const expertsSectionNode = $('section#7'); // section#7 veya daha genel bir seçici
+    const expertsSectionTitle = expertsSectionNode.find('.cta-heading-2 .heading-8').text().trim();
+    const expertsTagline = expertsSectionNode.find('.light-blue-tag-2 .text-size-small').text().trim();
+    
+    const expertItems: { name: string; title: string; description: string; ctaText: string; imageUrl?: string; imageAlt?: string; order: number }[] = [];
+    
+    // Bu HTML yapısında tek bir uzman varmış gibi duruyor.
+    // Eğer birden fazla uzman olsaydı .each() döngüsü gerekirdi.
+    const expertDescriptionNode = expertsSectionNode.find('.cta-content div');
+    const expertDescription = expertDescriptionNode.text().trim();
+    // İsim genellikle strong etiketinde veya belirli bir class içinde olabilir.
+    let expertName = expertDescriptionNode.find('strong').first().text().trim();
+    if (!expertName) { // Fallback eğer strong yoksa
+        // Açıklamadan ismi çıkarmak için daha karmaşık bir regex gerekebilir.
+        // Şimdilik boş bırakalım veya varsayılan bir değer atayalım.
+        expertName = "Uzman Adı Belirtilmemiş";
+    }
+    
+    // Ünvanı HTML'den çekmek zor olabilir, kullanıcıdan gelen bilgiyi kullanabilir veya boş bırakabiliriz.
+    // Örnek: const expertTitleFromUser = "Rhinoplastik Uzmanı"; 
+    const expertTitle = "Uzman Doktor"; // Varsayılan veya kullanıcıdan gelen bilgiye göre ayarlanabilir.
+
+    const expertCtaText = expertsSectionNode.find('a.form-5 .button-primary-text div').text().trim();
+    const expertImageUrl = expertsSectionNode.find('.banner-image-wrapper .banner-image img').attr('src');
+    const expertImageAlt = expertsSectionNode.find('.banner-image-wrapper .banner-image img').attr('alt');
+
+    if (expertDescription) { // En azından bir açıklama varsa uzmanı ekle
+      expertItems.push({
+        name: expertName,
+        title: expertTitle, // Bu alanın nasıl doldurulacağı netleştirilmeli
+        description: expertDescription,
+        ctaText: expertCtaText,
+        imageUrl: expertImageUrl || undefined,
+        imageAlt: expertImageAlt || expertName,
+        order: 0
+      });
+    }
+
+    if (expertsSectionTitle) {
+      (scrapedData as any).expertsSectionTitle = expertsSectionTitle;
+    }
+    if (expertsTagline) {
+      (scrapedData as any).expertsTagline = expertsTagline;
+    }
+    if (expertItems.length > 0) {
+      (scrapedData as any).expertItems = expertItems;
+    }
+
     return NextResponse.json(scrapedData);
 
   } catch (error: any) {

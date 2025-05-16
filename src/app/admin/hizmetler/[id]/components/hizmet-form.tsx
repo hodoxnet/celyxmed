@@ -804,6 +804,112 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         dataChanged = true;
       }
 
+      // Recovery Section
+      if (data.recoverySectionTitle) {
+        form.setValue(`recoverySection.translations.${activeLang}.title`, data.recoverySectionTitle, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.recoverySectionDescription) {
+        form.setValue(`recoverySection.translations.${activeLang}.description`, data.recoverySectionDescription, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.recoveryItems && Array.isArray(data.recoveryItems) && data.recoveryItems.length > 0) {
+        const recoveryItemDefinitions = data.recoveryItems.map((item: any, index: number) => {
+          const translations: Record<string, any> = {};
+          translations[activeLang] = {
+            languageCode: activeLang,
+            title: item.title || "",
+            description: item.description || "",
+          };
+          diller.forEach(lang => {
+            if (lang.code !== activeLang) {
+              translations[lang.code] = form.getValues(`recoverySection.definition.items.${index}.translations.${lang.code}`) || {
+                languageCode: lang.code, title: "", description: ""
+              };
+            }
+          });
+          return {
+            id: undefined,
+            imageUrl: item.imageUrl || "", // Şemada zorunlu
+            imageAlt: item.imageAlt || item.title || "", // Şemada zorunlu
+            order: item.order !== undefined ? item.order : index,
+            translations,
+          };
+        });
+        form.setValue('recoverySection.definition.items', recoveryItemDefinitions, { shouldDirty: true });
+        dataChanged = true;
+      }
+
+      // CTA Section
+      if (data.ctaTagline) {
+        form.setValue(`ctaSection.translations.${activeLang}.tagline`, data.ctaTagline, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.ctaTitle) {
+        form.setValue(`ctaSection.translations.${activeLang}.title`, data.ctaTitle, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.ctaDescription) {
+        form.setValue(`ctaSection.translations.${activeLang}.description`, data.ctaDescription, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.ctaButtonText) {
+        form.setValue(`ctaSection.translations.${activeLang}.buttonText`, data.ctaButtonText, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.ctaAvatarText) {
+        form.setValue(`ctaSection.translations.${activeLang}.avatarText`, data.ctaAvatarText, { shouldDirty: true });
+        dataChanged = true;
+      }
+      // Dil bağımsız CTA görselleri
+      if (data.ctaMainImageUrl) {
+        form.setValue('ctaMainImageUrl', data.ctaMainImageUrl, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.ctaMainImageAlt) {
+        form.setValue('ctaMainImageAlt', data.ctaMainImageAlt, { shouldDirty: true });
+        dataChanged = true;
+      }
+      // ctaBackgroundImageUrl için API'de bir seçici eklenmedi, şimdilik atlıyoruz.
+
+      // Experts Section
+      if (data.expertsSectionTitle) {
+        form.setValue(`expertsSection.translations.${activeLang}.title`, data.expertsSectionTitle, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.expertsTagline) {
+        form.setValue(`expertsSection.translations.${activeLang}.tagline`, data.expertsTagline, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.expertItems && Array.isArray(data.expertItems) && data.expertItems.length > 0) {
+        const expertItemDefinitions = data.expertItems.map((item: any, index: number) => {
+          const translations: Record<string, any> = {};
+          translations[activeLang] = {
+            languageCode: activeLang,
+            name: item.name || "",
+            title: item.title || "", // API'de bu "Uzman Doktor" olarak sabitlenmişti
+            description: item.description || "",
+            ctaText: item.ctaText || null,
+          };
+          diller.forEach(lang => {
+            if (lang.code !== activeLang) {
+              translations[lang.code] = form.getValues(`expertsSection.definition.items.${index}.translations.${lang.code}`) || {
+                languageCode: lang.code, name: "", title: "", description: "", ctaText: null
+              };
+            }
+          });
+          return {
+            id: undefined,
+            imageUrl: item.imageUrl || "", // Şemada zorunlu
+            imageAlt: item.imageAlt || item.name || "", // Şemada zorunlu
+            order: item.order !== undefined ? item.order : index,
+            translations,
+          };
+        });
+        form.setValue('expertsSection.definition.items', expertItemDefinitions, { shouldDirty: true });
+        dataChanged = true;
+      }
+
 
       if (dataChanged) {
         toast.success("Veriler forma başarıyla aktarıldı!");
