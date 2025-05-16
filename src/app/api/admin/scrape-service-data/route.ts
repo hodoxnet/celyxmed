@@ -126,7 +126,14 @@ export async function POST(request: Request) {
     let videoId = "";
     if (videoUrl) {
       try {
-        const urlParams = new URL(videoUrl).searchParams;
+        // URL protokolü eksikse ekle
+        const fullVideoUrl = videoUrl.startsWith('//') 
+          ? `https:${videoUrl}` 
+          : videoUrl.startsWith('http') 
+          ? videoUrl 
+          : `https://${videoUrl}`;
+        
+        const urlParams = new URL(fullVideoUrl).searchParams;
         const srcParam = urlParams.get('src');
         if (srcParam) {
           const youtubeUrl = new URL(srcParam);
