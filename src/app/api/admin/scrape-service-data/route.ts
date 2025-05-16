@@ -288,6 +288,36 @@ export async function POST(request: Request) {
       (scrapedData as any).testimonials = testimonials;
     }
 
+    // Prosedür Adımları Bölümü (Steps Section)
+    // HTML'de bu bölüm div#4 veya .procedure class'ı ile başlıyor gibi.
+    // Başlık ve açıklama .testimonial-slider-component .heading-testimonial-section içinde.
+    // Adımlar .slider .slide içinde.
+    const stepsSectionNode = $('.testimonial-slider-component'); // Bu genel bir sarmalayıcı
+    
+    const stepsSectionTitle = stepsSectionNode.find('.heading-testimonial-section h2.heading-6').text().trim();
+    const stepsSectionDescription = stepsSectionNode.find('.heading-testimonial-section h2.heading-6 + div').text().trim();
+    const procedureSteps: { title: string; description: string; linkText?: string; order: number }[] = [];
+
+    stepsSectionNode.find('.slider .slide').each((i, el) => {
+      const title = $(el).find('.slider-card .slider-text .text-size-large').text().trim();
+      const description = $(el).find('.slider-card .slider-text .text-size-medium').text().trim();
+      const linkText = $(el).find('.slider-card .learn-button .text-size-small.text-weight-medium').text().trim();
+      
+      if (title && description) {
+        procedureSteps.push({ title, description, linkText: linkText || undefined, order: i });
+      }
+    });
+
+    if (stepsSectionTitle) {
+      (scrapedData as any).stepsSectionTitle = stepsSectionTitle;
+    }
+    if (stepsSectionDescription) {
+      (scrapedData as any).stepsSectionDescription = stepsSectionDescription;
+    }
+    if (procedureSteps.length > 0) {
+      (scrapedData as any).procedureSteps = procedureSteps;
+    }
+
     return NextResponse.json(scrapedData);
 
   } catch (error: any) {

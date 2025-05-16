@@ -782,6 +782,28 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
         dataChanged = true;
       }
 
+      // Steps Section
+      if (data.stepsSectionTitle) {
+        form.setValue(`stepsSection.translations.${activeLang}.title`, data.stepsSectionTitle, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.stepsSectionDescription) {
+        form.setValue(`stepsSection.translations.${activeLang}.description`, data.stepsSectionDescription, { shouldDirty: true });
+        dataChanged = true;
+      }
+      if (data.procedureSteps && Array.isArray(data.procedureSteps) && data.procedureSteps.length > 0) {
+        const stepItems = data.procedureSteps.map((step: any, index: number) => ({
+          id: undefined,
+          title: step.title || "",
+          description: step.description || "",
+          linkText: step.linkText || null,
+          order: step.order !== undefined ? step.order : index,
+          hizmetTranslationId: undefined,
+        }));
+        form.setValue(`stepsSection.translations.${activeLang}.steps`, stepItems, { shouldDirty: true });
+        dataChanged = true;
+      }
+
 
       if (dataChanged) {
         toast.success("Veriler forma başarıyla aktarıldı!");
