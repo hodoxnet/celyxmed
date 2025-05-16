@@ -1,25 +1,52 @@
 "use client";
 
 import { SessionProvider } from "next-auth/react";
-import { Sidebar } from "./sidebar";
-import { AdminHeader } from "./header"; // AdminHeader'ı import et
+import { SidebarNew } from "./sidebar";
+import { AdminHeaderNew } from "./header";
 import { Toaster } from "@/components/ui/sonner";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <SessionProvider>
-      <div className="flex min-h-screen flex-col bg-background"> {/* bg-gray-50 yerine bg-background kullanıldı */}
-        <AdminHeader /> {/* Header'ı buraya ekle */}
-        <div className="flex flex-1">
-          <Sidebar />
-          <main className="flex-1 overflow-y-auto p-4 lg:p-8">{children}</main>
-        </div>
-        <footer className="border-t py-3 text-center text-xs text-gray-500">
-          <div className="container mx-auto">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        {/* Sidebar */}
+        <SidebarNew isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+        
+        {/* Header */}
+        <AdminHeaderNew onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+        
+        {/* Main Content */}
+        <main
+          className={cn(
+            "transition-all duration-300 ease-in-out",
+            "pt-16", // Header height
+            "lg:ml-64" // Sidebar width on desktop
+          )}
+        >
+          <div className="p-4 lg:p-8">
+            {children}
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer
+          className={cn(
+            "transition-all duration-300 ease-in-out",
+            "lg:ml-64", // Sidebar width on desktop
+            "border-t bg-white dark:bg-gray-900 dark:border-gray-800"
+          )}
+        >
+          <div className="px-4 py-6 text-center text-sm text-gray-600 dark:text-gray-400">
             © {new Date().getFullYear()} CelyxMed. Tüm hakları saklıdır.
           </div>
         </footer>
-        <Toaster richColors position="top-right" /> {/* Toaster'ı ekle */}
+
+        {/* Toaster */}
+        <Toaster richColors position="top-right" />
       </div>
     </SessionProvider>
   );

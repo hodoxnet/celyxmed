@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
   {
+    "source": "/de/services/:path*",
+    "destination": "/de/hizmetler/:path*"
+  },
+  {
     "source": "/en/services/:path*",
     "destination": "/en/hizmetler/:path*"
   },

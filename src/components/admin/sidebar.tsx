@@ -1,62 +1,53 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import {
   LayoutDashboard,
   FileText,
-  Mail,
   Settings,
   Users,
   LogOut,
   Menu,
-  FileImage,
-  PlusCircle,
-  GalleryHorizontal,
-  Languages, // Languages ikonunu import et
-  ClipboardList, // Hizmetler için ikon
-  Home, // Home ikonu import edildi
-  LayoutGrid, // LayoutGrid ikonu import edildi
-  LayoutList, // Menü Yönetimi için ikon
-  Globe, // Rota çevirileri için ikon
-  HelpCircle, // SSS için ikon
+  X,
+  Languages,
+  ClipboardList,
+  LayoutList,
+  Globe,
+  LayoutGrid,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"; // Accordion import edildi
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Alt menü öğesi tipi
-type SubNavItem = {
+interface SubNavItem {
   title: string;
   href: string;
-};
+}
 
-// Ana menü öğesi tipi (alt menüleri destekler)
-type NavItem = {
+// Ana menü öğesi tipi
+interface NavItem {
   title: string;
   icon: React.ReactNode;
-  href?: string; // Ana menü öğesinin linki olmayabilir
-  subItems?: SubNavItem[]; // Alt menü öğeleri
-};
+  href?: string;
+  subItems?: SubNavItem[];
+}
 
 const navItems: NavItem[] = [
   {
     title: "Dashboard",
-    href: "/admin", // Removed /tr
+    href: "/admin",
     icon: <LayoutDashboard className="h-5 w-5" />,
   },
   {
     title: "Blog Yönetimi",
-    href: "/admin/blog", // Removed /tr
-    icon: <FileText className="h-5 w-5" />, // Reverted icon change, kept original
+    href: "/admin/blog",
+    icon: <FileText className="h-5 w-5" />,
   },
   {
     title: "Menü Yönetimi",
@@ -66,42 +57,40 @@ const navItems: NavItem[] = [
       { title: "Footer Menüleri", href: "/admin/footer-menus" },
     ],
   },
-  // Removed Sayfalar, Galeri, İletişim, Kullanıcılar, Ayarlar
   {
-    title: "Yöneticiler", // Added Yöneticiler menu
-    href: "/admin/yoneticiler", // Removed /tr
+    title: "Yöneticiler",
+    href: "/admin/yoneticiler",
     icon: <Users className="h-5 w-5" />,
   },
   {
-    title: "Dil Yönetimi", // Added Dil Yönetimi menu
+    title: "Dil Yönetimi",
     href: "/admin/diller",
     icon: <Languages className="h-5 w-5" />,
   },
   {
-    title: "Hizmetler", // Yeni menü öğesi
+    title: "Hizmetler",
     href: "/admin/hizmetler",
-    icon: <ClipboardList className="h-5 w-5" />, // Hizmetler için ikon
+    icon: <ClipboardList className="h-5 w-5" />,
   },
   {
-    title: "Rota Çevirileri", // Yeni menü öğesi
+    title: "Rota Çevirileri",
     href: "/admin/rota-cevirileri",
-    icon: <Globe className="h-5 w-5" />, // Rota çevirileri için ikon
+    icon: <Globe className="h-5 w-5" />,
   },
   {
-    title: "Anasayfa Modülleri", // Yeni ana menü
+    title: "Anasayfa Modülleri",
     icon: <LayoutGrid className="h-5 w-5" />,
-    subItems: [ // Alt menüler
+    subItems: [
       { title: "Hero Alanı Yönetimi", href: "/admin/hero" },
-      { title: "Özellik Sekmeleri Yönetimi", href: "/admin/home-page-feature-tabs" }, // YENİ EKLENDİ
-      { title: "Tedavi Bölümü İçeriği", href: "/admin/treatments-section" }, // İsim değişikliği
-      { title: "Tedavi Kartları Yönetimi", href: "/admin/treatment-cards" }, // Yeni menü
-      { title: "Klinik Tanıtım Yönetimi", href: "/admin/clinic-showcase" }, // Yeni menü
+      { title: "Özellik Sekmeleri Yönetimi", href: "/admin/home-page-feature-tabs" },
+      { title: "Tedavi Bölümü İçeriği", href: "/admin/treatments-section" },
+      { title: "Tedavi Kartları Yönetimi", href: "/admin/treatment-cards" },
+      { title: "Klinik Tanıtım Yönetimi", href: "/admin/clinic-showcase" },
       { title: "Neden Celyxmed Bölümü", href: "/admin/why-choose-section" },
-      { title: "Neden Bize Güvenmelisiniz", href: "/admin/why-trust-section" }, // Yeni eklenen WhyTrustSection
-      { title: "Başarı Hikayeleri Bölümü", href: "/admin/success-stories-section" }, // Yeni eklenen SuccessStoriesSection
-      { title: "Online Konsültasyon Bölümü", href: "/admin/consult-online-section" }, // Yeni eklenen ConsultOnlineSection
-      { title: "SSS Yönetimi", href: "/admin/faqs" }, // YENİ EKLENDİ
-      // Gelecekteki anasayfa modülleri buraya eklenebilir
+      { title: "Neden Bize Güvenmelisiniz", href: "/admin/why-trust-section" },
+      { title: "Başarı Hikayeleri Bölümü", href: "/admin/success-stories-section" },
+      { title: "Online Konsültasyon Bölümü", href: "/admin/consult-online-section" },
+      { title: "SSS Yönetimi", href: "/admin/faqs" },
     ],
   },
   {
@@ -116,130 +105,163 @@ const navItems: NavItem[] = [
   },
 ];
 
-export function Sidebar() {
-  const router = useRouter();
+interface SidebarProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}
+
+export function SidebarNew({ isOpen, setIsOpen }: SidebarProps) {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+  // Alt menülerden aktif olanın ana menüsünü bul ve otomatik aç
+  const activeParent = navItems.find(item => 
+    item.subItems?.some(sub => pathname === sub.href)
+  );
+
+  // Sayfa yüklendiğinde aktif ana menüyü aç
+  useState(() => {
+    if (activeParent) {
+      setExpandedItems([activeParent.title]);
+    }
+  }, []);
+
+  const toggleExpanded = (title: string) => {
+    setExpandedItems(prev =>
+      prev.includes(title)
+        ? prev.filter(item => item !== title)
+        : [...prev, title]
+    );
+  };
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
-    router.push("/admin/login"); // Removed /tr
+    window.location.href = "/admin/login";
   };
-
-  // Eski NavItem fonksiyonu kaldırıldı.
-
-  const SidebarContent = () => {
-    // Aktif alt menüyü belirlemek için state (opsiyonel, istenirse eklenebilir)
-    // const [openAccordion, setOpenAccordion] = useState<string | undefined>(
-    //   navItems.find(item => item.subItems?.some(sub => pathname.startsWith(sub.href)))?.title
-    // );
-
-    return (
-      <div className="flex h-full w-full flex-col"> {/* gap-2 kaldırıldı */}
-        <div className="px-3 py-2">
-          <div className="mb-2 flex h-12 items-center justify-between">
-            <h2 className="text-lg font-semibold">CelyxMed Admin</h2>
-          </div>
-        </div>
-
-        <nav className="flex-1 px-3 py-2 space-y-1"> {/* flex-col gap-1 yerine space-y-1 */}
-          <Accordion 
-            type="single" 
-            collapsible 
-            className="w-full"
-            // value={openAccordion} // Aktif alt menü state'i
-            // onValueChange={setOpenAccordion} // Aktif alt menü state'i
-          >
-            {navItems.map((item, index) => (
-              item.subItems ? (
-                // Alt menüsü olan öğe (AccordionItem)
-                <AccordionItem value={item.title} key={item.title} className="border-none">
-                  <AccordionTrigger className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 hover:no-underline",
-                    item.subItems.some(sub => pathname.startsWith(sub.href)) ? "text-gray-900 dark:text-gray-50" : "" // Aktifse ana başlığı vurgula
-                  )}>
-                     <div className="flex items-center gap-3">
-                       {item.icon}
-                       {item.title}
-                     </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pl-9 pr-3 pb-1 pt-0">
-                    <div className="flex flex-col space-y-1">
-                      {item.subItems.map((subItem) => {
-                        const isSubActive = pathname === subItem.href;
-                        return (
-                          <Link
-                            key={subItem.title}
-                            href={subItem.href}
-                            className={cn(
-                              "block rounded-md px-3 py-1.5 text-sm text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
-                              isSubActive ? "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50" : ""
-                            )}
-                          >
-                            {subItem.title}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ) : item.href ? (
-                // Doğrudan link olan öğe
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
-                    pathname === item.href ? "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50" : ""
-                  )}
-                >
-                  {item.icon}
-                  {item.title}
-                </Link>
-              ) : null // href veya subItems yoksa hiçbir şey render etme
-            ))}
-          </Accordion>
-        </nav>
-        
-        <div className="mt-auto px-3 pb-4 pt-2"> {/* Padding ayarlandı */}
-          <Button 
-            variant="ghost" 
-            className="w-full justify-start text-red-500 hover:text-red-600"
-            onClick={handleLogout}
-          >
-            <LogOut className="mr-2 h-5 w-5" />
-            Çıkış Yap
-          </Button>
-        </div>
-      </div>
-    ); 
-  }; // Eksik kapanış süslü parantezi eklendi
 
   return (
     <>
-      {/* Mobile Sidebar (Sheet) */}
-      <div className="block lg:hidden">
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="mr-2">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-[240px] sm:w-[300px]">
-            <SidebarContent />
-          </SheetContent>
-        </Sheet>
-      </div>
+      {/* Mobile Sidebar Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
-      {/* Desktop Sidebar */}
-      <div className="hidden border-r bg-gray-50/40 lg:block dark:bg-gray-800/40">
-        <div className="flex h-full flex-col gap-2">
-          <div className="flex-1 px-3 py-4">
-            <SidebarContent />
+      {/* Sidebar */}
+      <aside
+        className={cn(
+          "fixed left-0 top-0 z-50 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transform transition-transform duration-300 ease-in-out lg:translate-x-0",
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        <div className="flex h-full flex-col">
+          {/* Logo ve Kapat Butonu */}
+          <div className="flex h-16 items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800">
+            <Link href="/admin" className="flex items-center gap-2">
+              <span className="text-xl font-bold text-gray-900 dark:text-gray-100">CelyxMed</span>
+            </Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setIsOpen(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
+
+          {/* Menu Items */}
+          <ScrollArea className="flex-1 px-3 py-4">
+            <nav className="space-y-1">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                const isExpanded = expandedItems.includes(item.title);
+                const hasActiveChild = item.subItems?.some(sub => pathname === sub.href);
+
+                if (item.subItems) {
+                  return (
+                    <div key={item.title}>
+                      <button
+                        onClick={() => toggleExpanded(item.title)}
+                        className={cn(
+                          "flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                          "hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100",
+                          hasActiveChild
+                            ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                            : "text-gray-600 dark:text-gray-400"
+                        )}
+                      >
+                        <div className="flex items-center gap-3">
+                          {item.icon}
+                          <span>{item.title}</span>
+                        </div>
+                        {isExpanded ? (
+                          <ChevronDown className="h-4 w-4" />
+                        ) : (
+                          <ChevronRight className="h-4 w-4" />
+                        )}
+                      </button>
+                      {isExpanded && (
+                        <div className="mt-1 ml-9 space-y-1">
+                          {item.subItems.map((subItem) => {
+                            const isSubActive = pathname === subItem.href;
+                            return (
+                              <Link
+                                key={subItem.href}
+                                href={subItem.href}
+                                className={cn(
+                                  "block rounded-lg px-3 py-2 text-sm transition-colors",
+                                  isSubActive
+                                    ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-medium"
+                                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100"
+                                )}
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.title}
+                    href={item.href!}
+                    className={cn(
+                      "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                      isActive
+                        ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100"
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+          </ScrollArea>
+
+          {/* Logout Button */}
+          <div className="border-t border-gray-200 dark:border-gray-800 px-3 py-4">
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950"
+              onClick={handleLogout}
+            >
+              <LogOut className="mr-2 h-5 w-5" />
+              Çıkış Yap
+            </Button>
           </div>
         </div>
-      </div>
+      </aside>
     </>
   );
 }
