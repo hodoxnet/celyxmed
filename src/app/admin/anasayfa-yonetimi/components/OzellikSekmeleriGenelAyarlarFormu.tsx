@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormLoadingSkeleton } from "./LoadingSkeletons";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // ShadcnTabs importları kaldırıldı
 import { Save } from 'lucide-react';
@@ -114,7 +115,7 @@ export default function OzellikSekmeleriGenelAyarlarFormu({ activeLanguageCode, 
     }
   };
 
-  if (loadingSection) return <p className="text-center py-10">Genel ayarlar yükleniyor...</p>;
+  if (loadingSection) return <FormLoadingSkeleton title="Genel ayarlar yükleniyor..." rows={2} />;
   if (error) return <p className="text-red-500 bg-red-100 p-3 rounded-md">Hata: {error}</p>;
 
   return (

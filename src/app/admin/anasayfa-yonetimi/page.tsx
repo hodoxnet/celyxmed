@@ -24,6 +24,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import HeroAlaniFormu from "./components/HeroAlaniFormu";
 import OzellikSekmeleriGenelAyarlarFormu from "./components/OzellikSekmeleriGenelAyarlarFormu";
@@ -61,6 +62,9 @@ const modules: HomePageModule[] = [
   { id: "consult-online", title: "Online Konsültasyon Bölümü", icon: MessageSquare, description: "Online konsültasyon bölümünü düzenleyin" },
   { id: "faqs", title: "SSS Yönetimi", icon: HelpCircle, description: "Sıkça Sorulan Sorular bölümünü düzenleyin" },
 ];
+
+// Ortak iskelet bileşenlerini içe aktar
+import { MixedLoadingSkeleton } from "./components/LoadingSkeletons";
 
 export default function AnasayfaYonetimiPage() {
   const [selectedModule, setSelectedModule] = useState<HomePageModule | null>(modules[0] || null);
@@ -147,10 +151,18 @@ export default function AnasayfaYonetimiPage() {
   };
   
   const renderModuleContent = () => {
-    if (!selectedModule) return <p className="text-center p-6">Lütfen bir modül seçin.</p>;
-    if (loadingLanguages) return <p className="text-center p-6">Diller yükleniyor...</p>;
-    if (availableLanguages.length === 0) return <p className="text-center p-6 text-red-500">Aktif dil bulunamadı.</p>;
-    if (!activeLanguageCode) return <p className="text-center p-6">Aktif dil kodu ayarlanıyor...</p>;
+    if (!selectedModule) return <MixedLoadingSkeleton title="Lütfen bir modül seçin" />;
+    if (loadingLanguages) return <MixedLoadingSkeleton title="Diller ve modül içeriği yükleniyor..." />;
+    if (availableLanguages.length === 0) return (
+      <div className="space-y-4 rounded-lg border border-red-200 bg-red-50 p-6 dark:border-red-900 dark:bg-red-950">
+        <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="h-5 w-5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          <h3 className="font-medium">Aktif dil bulunamadı</h3>
+        </div>
+        <p className="text-sm text-red-600 dark:text-red-400">Lütfen yönetim panelinden en az bir dili aktif hale getirin.</p>
+      </div>
+    );
+    if (!activeLanguageCode) return <MixedLoadingSkeleton title="Aktif dil kodu ayarlanıyor..." />;
 
     const propsWithLang = { availableLanguages, activeLanguageCode };
 

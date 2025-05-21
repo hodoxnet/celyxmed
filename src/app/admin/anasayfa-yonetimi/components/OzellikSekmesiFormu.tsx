@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useState, useMemo } from "react";
+import { FormLoadingSkeleton } from "./LoadingSkeletons";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // Tabs importları kaldırıldı
 import ImageUpload from "@/components/admin/image-upload";
@@ -303,7 +304,7 @@ export default function OzellikSekmesiFormu({
   };
   
   if (isLoadingData) {
-    return <p className="text-center py-10">Sekme verileri yükleniyor...</p>;
+    return <FormLoadingSkeleton title="Sekme verileri yükleniyor..." rows={5} />;
   }
 
   return (

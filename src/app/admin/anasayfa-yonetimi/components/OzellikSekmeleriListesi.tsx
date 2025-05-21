@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { TableLoadingSkeleton } from './LoadingSkeletons';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { PlusCircle, Edit, Trash2 } from 'lucide-react';
@@ -81,7 +82,7 @@ export default function OzellikSekmeleriListesi({ onEditItem, onAddNewItem, acti
     }
   };
 
-  if (loadingItems) return <p className="text-center py-10">Sekme öğeleri yükleniyor...</p>;
+  if (loadingItems) return <TableLoadingSkeleton title="Sekme öğeleri yükleniyor..." rows={4} />;
   if (error) return <p className="text-red-500 bg-red-100 p-3 rounded-md">Hata: {error}</p>;
 
   return (
