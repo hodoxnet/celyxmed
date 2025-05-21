@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { TableLoadingSkeleton } from './LoadingSkeletons';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -85,7 +86,7 @@ export default function TedaviKartlariListesi({
   };
 
   if (!initialDataLoaded && isLoading) {
-    return <p className="p-6 text-center">Tedavi Kartları yükleniyor...</p>;
+    return <TableLoadingSkeleton title="Tedavi Kartları yükleniyor..." />;
   }
 
   return (

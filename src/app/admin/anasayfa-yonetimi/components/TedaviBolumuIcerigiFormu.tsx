@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { FormLoadingSkeleton } from './LoadingSkeletons';
 import { useForm, Controller, useFieldArray, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -128,7 +129,7 @@ export default function TedaviBolumuIcerigiFormu({ activeLanguageCode, available
   };
 
   if (!initialDataLoaded && isLoading) {
-    return <p className="p-6">Tedavi Bölümü İçeriği yükleniyor...</p>;
+    return <FormLoadingSkeleton title="Tedavi Bölümü İçeriği yükleniyor..." />;
   }
 
   return (

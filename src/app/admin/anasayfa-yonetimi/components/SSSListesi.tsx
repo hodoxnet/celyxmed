@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { TableLoadingSkeleton } from './LoadingSkeletons';
 import { PlusCircle, Edit, Trash2, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -104,7 +105,7 @@ export default function SSSListesi({ onEditItem, onAddNewItem, availableLanguage
   };
 
   if (loading) {
-    return <div className="p-6 text-center">SSS'ler yükleniyor...</div>;
+    return <TableLoadingSkeleton title="SSS'ler yükleniyor..." />;
   }
 
   if (error) {

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { MixedLoadingSkeleton } from './LoadingSkeletons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -257,7 +258,7 @@ export default function KlinikTanitimYonetimiFormu({ availableLanguages, activeL
   };
 
   if (!initialDataLoaded && isLoading) {
-    return <p className="p-6 text-center">Klinik Tanıtım verileri yükleniyor...</p>;
+    return <MixedLoadingSkeleton title="Klinik Tanıtım verileri yükleniyor..." />;
   }
   
   const currentTranslation = translationForms[activeLanguageCode] || { languageCode: activeLanguageCode, title: '', description: '', buttonText: '', buttonLink: ''};

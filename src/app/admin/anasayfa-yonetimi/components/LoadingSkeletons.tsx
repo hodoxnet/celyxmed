@@ -47,7 +47,7 @@ export function LoadingSkeleton({ title = "Yükleniyor...", type = "form", rows 
                     <Skeleton key={i} className={`h-5 w-${[16, 24, 32, 20, 16][i % 5]}`} />
                   ))}
                 </div>
-                {Array.from({ length: rows }).map(i => (
+                {Array.from({ length: rows }).map((_, i) => (
                   <div key={i} className="flex justify-between items-center py-3">
                     {Array.from({ length: 5 }).map((_, j) => (
                       <Skeleton key={j} className={`h-5 w-${[8, 32, 48, 20, 20][j % 5]}`} />

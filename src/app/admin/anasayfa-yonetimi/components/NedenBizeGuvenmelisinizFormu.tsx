@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { MixedLoadingSkeleton } from './LoadingSkeletons';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -359,7 +360,7 @@ export default function NedenBizeGuvenmelisinizFormu({ availableLanguages, activ
   };
 
 
-  if (!initialDataLoaded && isLoading) return <p className="p-6 text-center">Veriler yükleniyor...</p>;
+  if (!initialDataLoaded && isLoading) return <MixedLoadingSkeleton title="Neden Bize Güvenmelisiniz verileri yükleniyor..." />;
 
   return (
     <div className="space-y-8">

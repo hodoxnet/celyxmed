@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from "react";
+import { MixedLoadingSkeleton } from './LoadingSkeletons';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
@@ -163,10 +164,10 @@ export default function OnlineKonsultasyonFormu({ availableLanguages, activeLang
   };
 
   if (isLoading && availableLanguages.length === 0) {
-    return <div className="flex justify-center items-center h-64"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>;
+    return <MixedLoadingSkeleton title="Diller ve konsültasyon verileri yükleniyor..." />;
   }
    if (isLoading) {
-    return <div className="flex justify-center items-center h-64"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>;
+    return <MixedLoadingSkeleton title="Online konsültasyon verileri yükleniyor..." />;
   }
 
   return (

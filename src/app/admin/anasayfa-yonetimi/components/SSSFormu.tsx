@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { FormLoadingSkeleton, MixedLoadingSkeleton } from './LoadingSkeletons';
 import { useForm, useFieldArray, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -188,10 +189,10 @@ export default function SSSFormu({
   // handleAddTranslation kaldırıldı
   
   if (isLoading && !activeLanguageCode) { // Aktif dil kodu bekleniyor
-    return <div className="p-6 text-center">Aktif dil ayarlanıyor veya SSS verileri yükleniyor...</div>;
+    return <MixedLoadingSkeleton title="Aktif dil ayarlanıyor veya SSS verileri yükleniyor..." />;
   }
    if (isLoading) { // Sadece yükleme durumu
-    return <div className="p-6 text-center">SSS verileri yükleniyor...</div>;
+    return <FormLoadingSkeleton title="SSS verileri yükleniyor..." />;
   }
 
   return (

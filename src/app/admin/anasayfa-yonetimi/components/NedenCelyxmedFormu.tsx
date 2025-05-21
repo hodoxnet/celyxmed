@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { MixedLoadingSkeleton, FormLoadingSkeleton } from './LoadingSkeletons';
 import { useForm, Controller, useFieldArray } from 'react-hook-form'; 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -140,10 +141,10 @@ export default function NedenCelyxmedFormu({ availableLanguages, activeLanguageC
   };
   
   if (!initialDataLoaded && isLoading && availableLanguages.length === 0) {
-    return <p className="p-6 text-center">Diller ve veriler yükleniyor...</p>;
+    return <MixedLoadingSkeleton title="Diller ve veriler yükleniyor..." />;
   }
   if (!initialDataLoaded && isLoading) {
-    return <p className="p-6 text-center">"Neden Celyxmed" bölümü verileri yükleniyor...</p>;
+    return <FormLoadingSkeleton title="Neden Celyxmed bölümü verileri yükleniyor..." />;
   }
 
   return (

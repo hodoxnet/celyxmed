@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { MixedLoadingSkeleton } from './LoadingSkeletons';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -145,7 +146,7 @@ export default function HeroAlaniFormu({ activeLanguageCode, availableLanguages 
   };
 
   if (!initialDataLoaded && isLoading) {
-    return <p className="p-6">Hero alanı verileri yükleniyor...</p>;
+    return <MixedLoadingSkeleton title="Hero alanı verileri yükleniyor..." />;
   }
 
   // Formun dışındaki Card ve başlık kaldırıldı, bu ana sayfada sağlanacak.
