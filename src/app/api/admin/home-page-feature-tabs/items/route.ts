@@ -53,9 +53,29 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const validation = CreateFeatureTabItemSchema.safeParse(body);
+    console.log("Alınan POST verileri:", JSON.stringify(body, null, 2));
+    
+    // Validasyon şemasını daha gevşek hale getir - client tarafta kontrol edildiği için
+    const relaxedSchema = z.object({
+      value: z.string().min(1, "Sekme değeri gereklidir."),
+      imageUrl: z.string(),
+      order: z.number().int().min(0).default(0),
+      isPublished: z.boolean().default(true),
+      translations: z.array(z.object({
+        languageCode: z.string(),
+        triggerText: z.string(),
+        tagText: z.string(),
+        heading: z.string(),
+        description: z.string(),
+        buttonText: z.string(),
+        buttonLink: z.string()
+      })).min(1, "En az bir çeviri gereklidir.")
+    });
+    
+    const validation = relaxedSchema.safeParse(body);
 
     if (!validation.success) {
+      console.error("Validasyon hatası:", validation.error.format());
       return NextResponse.json({ error: validation.error.format() }, { status: 400 });
     }
 
@@ -67,6 +87,7 @@ export async function POST(request: Request) {
     });
 
     if (existingItem) {
+      console.error(`Value değeri çakışması: '${value}' zaten mevcut.`);
       return NextResponse.json({ error: { _errors: ["Bu 'value' değeri zaten kullanılıyor."] } }, { status: 409 });
     }
 

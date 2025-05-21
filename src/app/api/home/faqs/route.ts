@@ -32,45 +32,24 @@ export async function GET(request: Request) {
       },
     });
 
-    const localizedFaqs = await Promise.all(faqsFromDb.map(async (faq) => {
-      let translation = faq.translations.find(t => t.languageCode === lang);
+    // prisma.faq.findMany zaten istenen dildeki çeviriyi (varsa) getiriyor.
+    // Eğer çeviri yoksa, faq.translations dizisi boş olacaktır.
+    const localizedFaqs = faqsFromDb.map(faq => {
+      const translation = faq.translations[0]; // En fazla bir çeviri olmalı
 
-      // İstenen dilde çeviri yoksa ve lang parametresiyle gelinmediyse (yani varsayılan dil denendiyse)
-      // ya da istenen dilde çeviri yoksa ve lang parametresiyle gelinmişse,
-      // veritabanındaki varsayılan dildeki çeviriyi bulmaya çalış
-      if (!translation && langParams) { // Sadece lang parametresi varsa ve çeviri yoksa varsayılana bak
-        const defaultLanguage = await prisma.language.findFirst({ where: { isDefault: true } });
-        if (defaultLanguage && defaultLanguage.code !== lang) { // Eğer zaten varsayılan dil değilse
-          const defaultTranslation = await prisma.faqTranslation.findFirst({
-            where: {
-              faqId: faq.id,
-              languageCode: defaultLanguage.code,
-            },
-          });
-          if (defaultTranslation) {
-            translation = defaultTranslation;
-          }
-        }
+      if (translation && translation.question && translation.answer) {
+        return {
+          id: faq.id,
+          order: faq.order,
+          isPublished: faq.isPublished,
+          question: translation.question,
+          answer: translation.answer,
+        };
       }
-      
-      // Eğer hala çeviri yoksa, boş bir çeviri nesnesi kullan
-      const finalTranslation: Pick<FaqTranslation, 'question' | 'answer'> = translation
-        ? { question: translation.question, answer: translation.answer }
-        : { question: '', answer: '' };
+      return null; // Eğer çeviri yoksa veya soru/cevap boşsa null döndür
+    }).filter(faq => faq !== null); // Null olanları filtrele
 
-      return {
-        id: faq.id,
-        order: faq.order,
-        isPublished: faq.isPublished,
-        question: finalTranslation.question,
-        answer: finalTranslation.answer,
-      };
-    }));
-
-    // Sorusu veya cevabı olmayanları filtrele (isteğe bağlı, duruma göre karar verilir)
-    const filteredFaqs = localizedFaqs.filter(faq => faq.question && faq.answer);
-
-    return NextResponse.json(filteredFaqs);
+    return NextResponse.json(localizedFaqs);
   } catch (error) {
     console.error('[HOME_FAQS_GET]', error);
     return new NextResponse('Internal error', { status: 500 });

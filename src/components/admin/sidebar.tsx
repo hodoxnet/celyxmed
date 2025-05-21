@@ -78,20 +78,9 @@ const navItems: NavItem[] = [
     icon: <Globe className="h-5 w-5" />,
   },
   {
-    title: "Anasayfa Modülleri",
+    title: "Anasayfa Yönetimi",
+    href: "/admin/anasayfa-yonetimi",
     icon: <LayoutGrid className="h-5 w-5" />,
-    subItems: [
-      { title: "Hero Alanı Yönetimi", href: "/admin/hero" },
-      { title: "Özellik Sekmeleri Yönetimi", href: "/admin/home-page-feature-tabs" },
-      { title: "Tedavi Bölümü İçeriği", href: "/admin/treatments-section" },
-      { title: "Tedavi Kartları Yönetimi", href: "/admin/treatment-cards" },
-      { title: "Klinik Tanıtım Yönetimi", href: "/admin/clinic-showcase" },
-      { title: "Neden Celyxmed Bölümü", href: "/admin/why-choose-section" },
-      { title: "Neden Bize Güvenmelisiniz", href: "/admin/why-trust-section" },
-      { title: "Başarı Hikayeleri Bölümü", href: "/admin/success-stories-section" },
-      { title: "Online Konsültasyon Bölümü", href: "/admin/consult-online-section" },
-      { title: "SSS Yönetimi", href: "/admin/faqs" },
-    ],
   },
   {
     title: "Hakkımızda Sayfası",
