@@ -83,6 +83,11 @@ const navItems: NavItem[] = [
     icon: <LayoutGrid className="h-5 w-5" />,
   },
   {
+    title: "SSS Yönetimi",
+    href: "/admin/faqs",
+    icon: <FileText className="h-5 w-5" />,
+  },
+  {
     title: "Hakkımızda Sayfası",
     href: "/admin/about-page",
     icon: <FileText className="h-5 w-5" />,

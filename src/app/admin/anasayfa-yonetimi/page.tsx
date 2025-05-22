@@ -156,7 +156,7 @@ export default function AnasayfaYonetimiPage() {
     if (availableLanguages.length === 0) return (
       <div className="space-y-4 rounded-lg border border-red-200 bg-red-50 p-6 dark:border-red-900 dark:bg-red-950">
         <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="h-5 w-5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
           <h3 className="font-medium">Aktif dil bulunamadı</h3>
         </div>
         <p className="text-sm text-red-600 dark:text-red-400">Lütfen yönetim panelinden en az bir dili aktif hale getirin.</p>

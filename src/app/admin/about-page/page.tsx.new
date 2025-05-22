@@ -1,0 +1,659 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import {
+  Image as ImageIcon,
+  Users,
+  ListCheck,
+  PanelLeft,
+  LayoutDashboard,
+  Info,
+  ScanLine,
+  Award
+} from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Progress } from "@/components/ui/progress";
+import { toast } from "sonner";
+import { ImageUpload } from "@/components/admin/image-upload";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Language } from "@/generated/prisma/client";
+
+// LoadingSkeletons.tsx dosyasından bileşenleri içe aktar
+import { MixedLoadingSkeleton } from "./components/LoadingSkeletons";
+
+interface AboutPageModule {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  description?: string;
+}
+
+const modules: AboutPageModule[] = [
+  { id: "general", title: "Genel Ayarlar", icon: LayoutDashboard, description: "Hakkımızda sayfası genel ayarlarını düzenleyin" },
+  { id: "hero", title: "Hero Bölümü", icon: PanelLeft, description: "Hakkımızda sayfası hero bölümü içerik ve görsellerini düzenleyin" },
+  { id: "jci", title: "JCI Akreditasyon Bölümü", icon: Award, description: "JCI Akreditasyon bölümü içeriğini düzenleyin" },
+  { id: "doctors", title: "Doktorlar Bölümü", icon: Users, description: "Doktor bilgilerini ve içeriğini düzenleyin" },
+  { id: "gallery", title: "Galeri Yönetimi", icon: ImageIcon, description: "Klinik galeri resimlerini yönetin" },
+  { id: "care-items", title: "Kapsamlı Bakım Öğeleri", icon: ListCheck, description: "Kapsamlı bakım bölümü içeriklerini düzenleyin" },
+];
+
+export default function AboutPageAdmin() {
+  const defaultLocale = "tr"; // Varsayılan dil olarak Türkçe
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [languages, setLanguages] = useState<any[]>([]);
+  const [activeLanguageCode, setActiveLanguageCode] = useState<string>(defaultLocale);
+  const [selectedModule, setSelectedModule] = useState<AboutPageModule | null>(modules[0] || null);
+  const [progress, setProgress] = useState(0); // İlerleme durumu için
+
+  const [aboutPage, setAboutPage] = useState<any>({
+    id: "main",
+    heroImageUrl: "",
+    galleryImages: [],
+    careItems: [],
+    doctors: [],
+    translations: {}
+  });
+
+  // Form değişikliklerini işle
+  const handleTranslationChange = (lang: string, field: string, value: string) => {
+    setAboutPage(prev => ({
+      ...prev,
+      translations: {
+        ...prev.translations,
+        [lang]: {
+          ...(prev.translations[lang] || {}),
+          [field]: value
+        }
+      }
+    }));
+  };
+
+  // Hero görseli güncelle
+  const handleHeroImageChange = (url: string) => {
+    setAboutPage(prev => ({
+      ...prev,
+      heroImageUrl: url
+    }));
+  };
+
+  // Modül seçimi
+  const handleModuleSelect = (module: AboutPageModule) => {
+    setSelectedModule(module);
+    
+    // Özel modül yönlendirmeleri
+    if (module.id === 'gallery') {
+      router.push("/admin/about-page/gallery");
+    } else if (module.id === 'doctors') {
+      router.push("/admin/about-page/doctors");
+    } else if (module.id === 'care-items') {
+      router.push("/admin/about-page/care-items");
+    }
+  };
+
+  // API'den dilleri getir
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("/api/languages");
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data && Array.isArray(data)) {
+            const activeLangs = data.filter((lang: any) => lang.isActive);
+            setLanguages(activeLangs);
+            
+            // Varsayılan dil kodunu ayarla
+            if (activeLangs.length > 0) {
+              const defaultLang = activeLangs.find((lang: any) => lang.isDefault);
+              setActiveLanguageCode(defaultLang?.code || activeLangs[0].code);
+            }
+          }
+        } else {
+          throw new Error("Diller yüklenemedi!");
+        }
+      } catch (error) {
+        console.error("Diller yüklenirken hata oluştu:", error);
+        toast.error("Diller yüklenemedi!");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLanguages();
+  }, []);
+
+  // API'den Hakkımızda sayfası verilerini getir
+  useEffect(() => {
+    const fetchAboutPage = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("/api/admin/about-page");
+
+        if (response.ok) {
+          const data = await response.json();
+
+          // Verileri düzenle
+          const translationsByLang: any = {};
+
+          if (data.translations) {
+            data.translations.forEach((translation: any) => {
+              // İlişki verilerini temizle
+              const { language, ...translationData } = translation;
+              translationsByLang[translation.languageCode] = translationData;
+            });
+          }
+
+          setAboutPage({
+            ...data,
+            translations: translationsByLang
+          });
+          
+          // İlerleme durumunu hesapla (doldurulmuş alanların yüzdesi)
+          if (data.translations && data.translations.length > 0) {
+            calculateProgress(translationsByLang);
+          }
+        } else {
+          // Veri yoksa varsayılan yapı
+          console.log("Hakkımızda sayfası verileri bulunamadı, yeni bir kayıt oluşturulacak.");
+        }
+      } catch (error) {
+        console.error("Hakkımızda sayfası verileri yüklenirken hata oluştu:", error);
+        toast.error("Veriler yüklenemedi!");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAboutPage();
+  }, []);
+
+  // İlerleme durumunu hesapla (doldurulmuş alanların yüzdesi)
+  const calculateProgress = (translationsByLang: any) => {
+    if (!activeLanguageCode || !translationsByLang[activeLanguageCode]) {
+      setProgress(0);
+      return;
+    }
+
+    const translation = translationsByLang[activeLanguageCode];
+    const totalFields = Object.keys(getEmptyTranslation()).length;
+    let filledFields = 0;
+
+    // Dolu alanları say
+    Object.keys(translation).forEach(key => {
+      if (translation[key] && translation[key].trim() !== "") {
+        filledFields++;
+      }
+    });
+
+    // Görsellerin varlığını kontrol et
+    if (aboutPage.heroImageUrl) filledFields++;
+
+    const calculatedProgress = Math.round((filledFields / (totalFields + 1)) * 100);
+    setProgress(calculatedProgress);
+  };
+
+  // Formu kaydet
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+
+      const translationsArray = Object.entries(aboutPage.translations).map(([langCode, data]) => ({
+        languageCode: langCode,
+        ...data
+      }));
+
+      const payload = {
+        ...aboutPage,
+        translations: translationsArray
+      };
+
+      const response = await fetch("/api/admin/about-page", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        toast.success("Hakkımızda sayfası başarıyla kaydedildi!");
+        router.refresh();
+      } else {
+        const errorData = await response.json();
+        console.error("API hatası:", errorData);
+        throw new Error(errorData.message || errorData.error || "Kayıt sırasında bir hata oluştu.");
+      }
+    } catch (error: any) {
+      console.error("Kayıt sırasında hata:", error);
+      toast.error(error.message || "Kayıt başarısız!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getEmptyTranslation = () => {
+    return {
+      // Hero bölümü
+      heroTitle: "",
+      heroDescription: "",
+      heroPrimaryButtonText: "",
+      heroPrimaryButtonLink: "",
+      heroSecondaryButtonText: "",
+      heroSecondaryButtonLink: "",
+
+      // JCI bölümü
+      jciTitle: "",
+      jciPrimaryButtonText: "",
+      jciPrimaryButtonLink: "",
+      jciSecondaryButtonText: "",
+      jciSecondaryButtonLink: "",
+
+      // Doktor bölümü
+      doctorsTitle: "Uzman Doktorlarımız, Güvenilir Bakım Ekibiniz",
+      doctorsDescription: "Celyxmed'de doktorlarımız uzmanlardan daha fazlasıdır - kendilerini kişiselleştirilmiş bakım sağlamaya ve hayat değiştiren sonuçlar elde etmeye adamış, alanlarında lider kişilerdir. Yılların deneyimiyle, sağlık yolculuğunuzun en iyi ellerde olmasını sağlarlar.",
+    };
+  };
+
+  // Modül içeriğini render et
+  const renderModuleContent = () => {
+    if (loading) return <MixedLoadingSkeleton title="Veriler yükleniyor..." />;
+    if (languages.length === 0) return (
+      <div className="space-y-4 rounded-lg border border-red-200 bg-red-50 p-6 dark:border-red-900 dark:bg-red-950">
+        <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="h-5 w-5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          <h3 className="font-medium">Aktif dil bulunamadı</h3>
+        </div>
+        <p className="text-sm text-red-600 dark:text-red-400">Lütfen yönetim panelinden en az bir dili aktif hale getirin.</p>
+      </div>
+    );
+    
+    if (!selectedModule) return <MixedLoadingSkeleton title="Lütfen bir modül seçin" />;
+
+    // Her modüle özel içerik
+    switch(selectedModule.id) {
+      case 'general':
+        return renderGeneralSettings();
+      case 'hero':
+        return renderHeroSection();
+      case 'jci':
+        return renderJciSection();
+      default:
+        return (
+          <div className="text-center p-8">
+            <h3 className="text-xl font-semibold mb-2">Bu modül ayrı bir sayfada yönetilmektedir</h3>
+            <p className="text-muted-foreground mb-4">İlgili sayfaya yönlendirileceksiniz...</p>
+            <Button onClick={() => router.push(`/admin/about-page/${selectedModule.id}`)}>
+              {selectedModule.title} Sayfasına Git
+            </Button>
+          </div>
+        );
+    }
+  };
+
+  // Genel Ayarlar
+  const renderGeneralSettings = () => {
+    const translation = aboutPage.translations[activeLanguageCode] || getEmptyTranslation();
+    
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Genel Ayarlar</CardTitle>
+            <CardDescription>
+              Hakkımızda sayfası için genel ayarlar ve bilgiler
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Galeri Yönetimi</CardTitle>
+                  <CardDescription>
+                    Klinik galeri resimlerini yönetin
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => router.push("/admin/about-page/gallery")}
+                    variant="outline"
+                    className="w-full"
+                  >
+                    Galeri Yönetimine Git
+                  </Button>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Kapsamlı Bakım Öğeleri</CardTitle>
+                  <CardDescription>
+                    Kapsamlı bakım bölümü içerik yönetimi
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => router.push("/admin/about-page/care-items")}
+                    variant="outline"
+                    className="w-full"
+                  >
+                    Bakım Öğelerine Git
+                  </Button>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Doktorlar</CardTitle>
+                  <CardDescription>
+                    Doktor bilgileri yönetimi
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => router.push("/admin/about-page/doctors")}
+                    variant="outline"
+                    className="w-full"
+                  >
+                    Doktor Yönetimine Git
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <div className="flex justify-end">
+              <Button onClick={handleSubmit} disabled={loading}>
+                {loading ? "Kaydediliyor..." : "Değişiklikleri Kaydet"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
+
+  // Hero Bölümü
+  const renderHeroSection = () => {
+    const translation = aboutPage.translations[activeLanguageCode] || getEmptyTranslation();
+    
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Hero Bölümü</CardTitle>
+            <CardDescription>
+              Hakkımızda sayfası hero bölümü ayarları
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="col-span-1">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium">Hero Görseli</h3>
+                  <ImageUpload
+                    endpoint="aboutPageHero"
+                    value={aboutPage.heroImageUrl}
+                    onChange={handleHeroImageChange}
+                  />
+                </div>
+              </div>
+              
+              <div className="col-span-2 space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor={`heroTitle-${activeLanguageCode}`}>Başlık</Label>
+                  <Input
+                    id={`heroTitle-${activeLanguageCode}`}
+                    value={translation.heroTitle || ""}
+                    onChange={(e) => handleTranslationChange(activeLanguageCode, "heroTitle", e.target.value)}
+                    placeholder="Sağlık ve Güzellik Alanında Güvenilir Ortağınız"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor={`heroDescription-${activeLanguageCode}`}>Açıklama</Label>
+                  <Textarea
+                    id={`heroDescription-${activeLanguageCode}`}
+                    value={translation.heroDescription || ""}
+                    onChange={(e) => handleTranslationChange(activeLanguageCode, "heroDescription", e.target.value)}
+                    placeholder="Celyxmed, hasta öncelikli bir yaklaşımla kişiselleştirilmiş sağlık çözümleri sunmaya kendini adamıştır..."
+                    rows={4}
+                  />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor={`heroPrimaryButtonText-${activeLanguageCode}`}>Ana Buton Metni</Label>
+                    <Input
+                      id={`heroPrimaryButtonText-${activeLanguageCode}`}
+                      value={translation.heroPrimaryButtonText || ""}
+                      onChange={(e) => handleTranslationChange(activeLanguageCode, "heroPrimaryButtonText", e.target.value)}
+                      placeholder="Kliniğimizi Keşfedin"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`heroPrimaryButtonLink-${activeLanguageCode}`}>Ana Buton Bağlantısı</Label>
+                    <Input
+                      id={`heroPrimaryButtonLink-${activeLanguageCode}`}
+                      value={translation.heroPrimaryButtonLink || ""}
+                      onChange={(e) => handleTranslationChange(activeLanguageCode, "heroPrimaryButtonLink", e.target.value)}
+                      placeholder="#klinik"
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor={`heroSecondaryButtonText-${activeLanguageCode}`}>İkincil Buton Metni</Label>
+                    <Input
+                      id={`heroSecondaryButtonText-${activeLanguageCode}`}
+                      value={translation.heroSecondaryButtonText || ""}
+                      onChange={(e) => handleTranslationChange(activeLanguageCode, "heroSecondaryButtonText", e.target.value)}
+                      placeholder="Doktorlarımızla Tanışın"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`heroSecondaryButtonLink-${activeLanguageCode}`}>İkincil Buton Bağlantısı</Label>
+                    <Input
+                      id={`heroSecondaryButtonLink-${activeLanguageCode}`}
+                      value={translation.heroSecondaryButtonLink || ""}
+                      onChange={(e) => handleTranslationChange(activeLanguageCode, "heroSecondaryButtonLink", e.target.value)}
+                      placeholder="#doktorlar"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex justify-end">
+              <Button onClick={handleSubmit} disabled={loading}>
+                {loading ? "Kaydediliyor..." : "Değişiklikleri Kaydet"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
+
+  // JCI Bölümü
+  const renderJciSection = () => {
+    const translation = aboutPage.translations[activeLanguageCode] || getEmptyTranslation();
+    
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>JCI Akreditasyon Bölümü</CardTitle>
+            <CardDescription>
+              JCI akreditasyon bölümü içerik ve ayarları
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor={`jciTitle-${activeLanguageCode}`}>Başlık</Label>
+                <Textarea
+                  id={`jciTitle-${activeLanguageCode}`}
+                  value={translation.jciTitle || ""}
+                  onChange={(e) => handleTranslationChange(activeLanguageCode, "jciTitle", e.target.value)}
+                  placeholder="Celyxmed ile dünya standartlarında sağlık hizmetini deneyimleyin..."
+                  rows={4}
+                />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor={`jciPrimaryButtonText-${activeLanguageCode}`}>Ana Buton Metni</Label>
+                  <Input
+                    id={`jciPrimaryButtonText-${activeLanguageCode}`}
+                    value={translation.jciPrimaryButtonText || ""}
+                    onChange={(e) => handleTranslationChange(activeLanguageCode, "jciPrimaryButtonText", e.target.value)}
+                    placeholder="Kliniğimizi Keşfedin"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor={`jciPrimaryButtonLink-${activeLanguageCode}`}>Ana Buton Bağlantısı</Label>
+                  <Input
+                    id={`jciPrimaryButtonLink-${activeLanguageCode}`}
+                    value={translation.jciPrimaryButtonLink || ""}
+                    onChange={(e) => handleTranslationChange(activeLanguageCode, "jciPrimaryButtonLink", e.target.value)}
+                    placeholder="#klinik"
+                  />
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor={`jciSecondaryButtonText-${activeLanguageCode}`}>İkincil Buton Metni</Label>
+                  <Input
+                    id={`jciSecondaryButtonText-${activeLanguageCode}`}
+                    value={translation.jciSecondaryButtonText || ""}
+                    onChange={(e) => handleTranslationChange(activeLanguageCode, "jciSecondaryButtonText", e.target.value)}
+                    placeholder="Doktorlarımızla Tanışın"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor={`jciSecondaryButtonLink-${activeLanguageCode}`}>İkincil Buton Bağlantısı</Label>
+                  <Input
+                    id={`jciSecondaryButtonLink-${activeLanguageCode}`}
+                    value={translation.jciSecondaryButtonLink || ""}
+                    onChange={(e) => handleTranslationChange(activeLanguageCode, "jciSecondaryButtonLink", e.target.value)}
+                    placeholder="#doktorlar"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex justify-end">
+              <Button onClick={handleSubmit} disabled={loading}>
+                {loading ? "Kaydediliyor..." : "Değişiklikleri Kaydet"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight">Hakkımızda Sayfası Yönetimi</h2>
+        <p className="text-muted-foreground">Hakkımızda sayfası bölümlerini düzenleyin ve yönetin.</p>
+      </div>
+    
+      <Card>
+        <CardHeader className="pb-3">
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle>{selectedModule?.title || "Hakkımızda Sayfası Yönetimi"}</CardTitle>
+              <CardDescription>
+                {selectedModule?.description || "Lütfen düzenlemek istediğiniz modülü seçin"}
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col space-y-4">
+            {/* İlerleme çubuğu */}
+            <div className="flex items-center">
+              <Progress value={progress} className="w-full" />
+              <span className="text-sm text-muted-foreground ml-2 whitespace-nowrap">
+                %{progress}
+              </span>
+            </div>
+            
+            {/* Dil Seçimi */}
+            {languages.length > 0 && activeLanguageCode && (
+              <Tabs value={activeLanguageCode} onValueChange={setActiveLanguageCode} className="w-full">
+                <TabsList className="grid w-full grid-cols-none sm:grid-cols-auto sm:inline-flex">
+                  {languages.map((lang) => (
+                    <TabsTrigger key={lang.code} value={lang.code} className="px-4 py-2 text-sm">
+                      {lang.name}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Sol taraf - Modül listesi */}
+        <div className="md:col-span-1">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Modüller</CardTitle>
+              <CardDescription className="text-sm">
+                Düzenlemek için modül seçin
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-4 space-y-3">
+              {modules.map((module) => {
+                const IconComponent = module.icon;
+                const isActive = selectedModule?.id === module.id;
+                return (
+                  <div 
+                    key={module.id}
+                    className={`rounded-lg border border-gray-200 shadow-sm overflow-hidden ${isActive ? 'ring-2 ring-primary' : ''} 
+                      hover:border-primary/70 hover:bg-gray-50 cursor-pointer transition-all duration-200`}
+                    onClick={() => handleModuleSelect(module)}
+                  >
+                    <div className="flex items-center p-3">
+                      <div className="flex items-center space-x-3">
+                        <IconComponent className="h-5 w-5 text-gray-500" />
+                        <span className="font-medium">{module.title}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Sağ taraf - İçerik alanı */}
+        <div className="md:col-span-3">
+          {!selectedModule ? (
+            <Card className="flex items-center justify-center h-64">
+              <div className="text-center p-6">
+                <h3 className="text-lg font-medium mb-2">Modül Düzenleme</h3>
+                <p className="text-muted-foreground">Düzenlemek için sol menüden bir modül seçin</p>
+              </div>
+            </Card>
+          ) : (
+            renderModuleContent()
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
