@@ -769,6 +769,22 @@ exports.Prisma.FaqTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FaqSectionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FaqSectionTranslationScalarFieldEnum = {
+  id: 'id',
+  faqSectionId: 'faqSectionId',
+  languageCode: 'languageCode',
+  title: 'title',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.HomePageFeatureTabItemScalarFieldEnum = {
   id: 'id',
   value: 'value',
@@ -987,6 +1003,8 @@ exports.Prisma.ModelName = {
   ConsultOnlineDoctorAvatar: 'ConsultOnlineDoctorAvatar',
   Faq: 'Faq',
   FaqTranslation: 'FaqTranslation',
+  FaqSection: 'FaqSection',
+  FaqSectionTranslation: 'FaqSectionTranslation',
   HomePageFeatureTabItem: 'HomePageFeatureTabItem',
   HomePageFeatureTabItemTranslation: 'HomePageFeatureTabItemTranslation',
   HomePageFeaturesTabsSection: 'HomePageFeaturesTabsSection',

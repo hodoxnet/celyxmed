@@ -15,6 +15,20 @@ export async function GET(request: Request) {
       lang = defaultLanguage?.code || 'tr'; // Varsayılan dil 'tr' veya veritabanındaki varsayılan
     }
 
+    // SSS bölüm ayarlarını al
+    const faqSection = await prisma.faqSection.findUnique({
+      where: { id: 'main' },
+      include: {
+        translations: {
+          where: {
+            languageCode: lang,
+          },
+        },
+      },
+    });
+
+    const sectionTranslation = faqSection?.translations[0];
+
     const faqsFromDb = await prisma.faq.findMany({
       where: {
         isPublished: true,
@@ -48,7 +62,12 @@ export async function GET(request: Request) {
       return null; // Eğer çeviri yoksa veya soru/cevap boşsa null döndür
     }).filter(faq => faq !== null); // Null olanları filtrele
 
-    return NextResponse.json(localizedFaqs);
+    // Bölüm başlığı ve SSS öğelerini birlikte döndür
+    return NextResponse.json({
+      title: sectionTranslation?.title || 'Sıkça Sorulan Sorular',
+      description: sectionTranslation?.description || null,
+      items: localizedFaqs,
+    });
   } catch (error) {
     console.error('[HOME_FAQS_GET]', error);
     return new NextResponse('Internal error', { status: 500 });

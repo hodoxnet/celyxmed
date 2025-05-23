@@ -40,6 +40,7 @@ import BasariHikayeleriFormu from "./components/BasariHikayeleriFormu";
 import OnlineKonsultasyonFormu from "./components/OnlineKonsultasyonFormu";
 import SSSListesi from "./components/SSSListesi";
 import SSSFormu from "./components/SSSFormu";
+import SSSBolumFormu from "./components/SSSBolumFormu";
 import { Language } from "@/generated/prisma/client";
 import { toast } from "sonner";
 
@@ -232,6 +233,8 @@ export default function AnasayfaYonetimiPage() {
       case 'faqs':
         return (
           <div className="space-y-6">
+            <SSSBolumFormu {...propsWithLang} />
+            <Separator />
             {faqsView === 'list' ? (
               <SSSListesi
                 onEditItem={handleEditFaq}

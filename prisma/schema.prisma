@@ -91,6 +91,7 @@ model Language {
 
   // SSS İlişkileri
   faqTranslations FaqTranslation[]
+  faqSectionTranslations FaqSectionTranslation[]
 
   // Ana Sayfa Özellik Sekmeleri İlişkileri
   homePageFeatureTabItemTranslations HomePageFeatureTabItemTranslation[]
@@ -1098,6 +1099,34 @@ model FaqTranslation {
   updatedAt DateTime @updatedAt
 
   @@unique([faqId, languageCode])
+}
+
+// ----- SSS BÖLÜMÜ GENEL AYARLARI -----
+
+// SSS Bölümü (Singleton - tek kayıt)
+model FaqSection {
+  id            String   @id @default("main") // Sabit ID, tek bir kayıt olacak
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  translations  FaqSectionTranslation[]
+}
+
+// SSS Bölümü Çevirileri
+model FaqSectionTranslation {
+  id            String      @id @default(cuid())
+  faqSection    FaqSection  @relation(fields: [faqSectionId], references: [id], onDelete: Cascade)
+  faqSectionId  String
+  language      Language    @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode  String
+
+  title         String      // Bölüm başlığı (örn: "Sıkça Sorulan Sorular")
+  description   String?     @db.Text // Opsiyonel açıklama metni
+
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([faqSectionId, languageCode])
 }
 
 // ----- ANA SAYFA ÖZELLİK SEKMELERİ (FEATURES TABS) MODELLERİ -----

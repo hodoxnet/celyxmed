@@ -18,8 +18,14 @@ interface FaqItemData {
   isPublished: boolean;
 }
 
+interface FaqSectionData {
+  title: string;
+  description: string | null;
+  items: FaqItemData[];
+}
+
 const FaqSection = () => {
-  const [faqData, setFaqData] = useState<FaqItemData[]>([]);
+  const [sectionData, setSectionData] = useState<FaqSectionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const locale = useLocale(); // Aktif dil kodunu al (örn: 'tr', 'en')
@@ -33,8 +39,8 @@ const FaqSection = () => {
         if (!response.ok) {
           throw new Error(`Failed to fetch FAQs: ${response.statusText}`);
         }
-        const data = await response.json();
-        setFaqData(data);
+        const data: FaqSectionData = await response.json();
+        setSectionData(data);
       } catch (err) {
         console.error("Error fetching FAQs:", err);
         setError(err instanceof Error ? err.message : 'An unknown error occurred');
@@ -80,7 +86,7 @@ const FaqSection = () => {
   }
 
   // Veri yoksa veya boşsa gösterilecek mesaj
-  if (!faqData || faqData.length === 0) {
+  if (!sectionData || !sectionData.items || sectionData.items.length === 0) {
     return (
       <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
         <div className="container mx-auto px-4 text-center">
@@ -97,13 +103,17 @@ const FaqSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Sıkça Sorulan Sorular {/* Başlık dinamik olarak da yönetilebilir */}
+            {sectionData.title}
           </h2>
-          {/* İsteğe bağlı açıklama eklenebilir */}
+          {sectionData.description && (
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              {sectionData.description}
+            </p>
+          )}
         </div>
 
         <Accordion type="single" collapsible className="w-full space-y-4">
-          {faqData.map((item) => (
+          {sectionData.items.map((item) => (
             <React.Fragment key={item.id}>
               <AccordionItem value={item.id} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl border-none overflow-hidden">
                 <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline px-6 py-5 text-gray-900 dark:text-white">
