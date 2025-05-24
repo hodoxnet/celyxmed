@@ -1,12 +1,14 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavbarWrapper from './NavbarWrapper';
 import FooterWrapper from './FooterWrapper';
 import FloatingButtons from './FloatingButtons';
 import { ThemeProvider } from "@/components/theme-provider";
 import { NextIntlClientProvider } from 'next-intl';
 import { GeneralSettingWithTranslation } from '@/types/form-types'; // Tip tanımını import ediyoruz
+import { usePathname } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
 
 // Menü veri tipleri (layout.tsx'den veya ortak tiplerden)
 interface MenuItem {
@@ -37,10 +39,19 @@ interface RootLayoutClientProps {
 }
 
 export default function RootLayoutClient({ children, locale, messages, generalSettings, headerMenu, footerMenus }: RootLayoutClientProps) {
-  // generalSettings null ise veya bazı temel alanlar eksikse varsayılan değerler kullanılabilir.
-  // Örneğin, logoUrl veya diğer kritik bilgiler için.
-  // Şimdilik doğrudan prop olarak geçiyoruz.
-  
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const pathname = usePathname();
+
+  // Page transition loading effect
+  useEffect(() => {
+    setIsPageTransitioning(true);
+    const timer = setTimeout(() => {
+      setIsPageTransitioning(false);
+    }, 350); // Optimize edilmiş süre
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
   return (
     <ThemeProvider
       attribute="class"
@@ -57,8 +68,24 @@ export default function RootLayoutClient({ children, locale, messages, generalSe
             headerButtonLink={generalSettings?.translation?.headerButtonLink}
             menuData={headerMenu} // Geçiş yapılıyor
           />
-          <main className="flex-grow">
-            {children}
+          <main className="flex-grow relative">
+            <div className={`transition-all duration-300 ease-out transform ${
+              isPageTransitioning 
+                ? 'opacity-0 scale-[0.99]' 
+                : 'opacity-100 scale-100'
+            }`}>
+              {children}
+            </div>
+            
+            {/* Quick loading overlay during page transitions */}
+            {isPageTransitioning && (
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50 animate-in fade-in duration-200">
+                <div className="flex flex-col items-center gap-3 p-6 bg-white/80 rounded-xl shadow-lg backdrop-blur-sm border border-white/30">
+                  <Loader2 className="h-8 w-8 animate-spin text-teal-600" />
+                  <span className="text-sm font-medium text-gray-700">Yükleniyor...</span>
+                </div>
+              </div>
+            )}
           </main>
           {/* Footer'a footerMenus prop'unu ekle */}
           <FooterWrapper 

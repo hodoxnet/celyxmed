@@ -4,8 +4,8 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { ChevronDown, Loader2 } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -37,17 +37,21 @@ interface HeaderMenu {
 // ListItem helper component (Shadcn UI dökümantasyonundan alınmıştır)
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { title: React.ReactNode }
->(({ className, title, children, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<"a"> & { 
+    title: React.ReactNode;
+    onClick?: (event: React.MouseEvent) => void;
+  }
+>(({ className, title, children, onClick, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer",
             className
           )}
+          onClick={onClick}
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
@@ -93,7 +97,9 @@ const Navbar: React.FC<NavbarProps> = ({
   const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null);
   const [languages, setLanguages] = useState<LanguageData[]>([]);
   const [isLanguageLoading, setIsLanguageLoading] = useState(true);
+  const [isLanguageChanging, setIsLanguageChanging] = useState(false);
   const pathname = usePathname(); // Next.js hook ile mevcut sayfa yolunu al
+  const router = useRouter();
   
   // Aktif dili pathname'den al
   const currentLocale = pathname.split('/')[1] || 'tr';
@@ -156,6 +162,35 @@ const Navbar: React.FC<NavbarProps> = ({
   // Aktif dilin menuLabel'ını bul
   const currentLanguage = languages.find(lang => lang.code === currentLocale);
   const languageMenuLabel = currentLanguage?.menuLabel || 'Language';
+
+  // Smooth dil değiştirme fonksiyonu
+  const handleLanguageChange = async (langCode: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    
+    if (langCode === currentLocale || isLanguageChanging) return;
+    
+    setIsLanguageChanging(true);
+    
+    // Hızlı smooth fade efekti
+    document.body.style.opacity = '0.8';
+    document.body.style.transition = 'opacity 0.25s ease-out';
+    document.body.style.filter = 'blur(0.5px)';
+    
+    // Kısa loading animation
+    await new Promise(resolve => setTimeout(resolve, 250));
+    
+    // Programmatic navigation
+    const newUrl = getLanguageLink(langCode);
+    router.push(newUrl);
+    
+    // Cleanup - reset after navigation
+    setTimeout(() => {
+      setIsLanguageChanging(false);
+      document.body.style.opacity = '1';
+      document.body.style.filter = 'none';
+      document.body.style.transition = 'opacity 0.2s ease-out, filter 0.2s ease-out';
+    }, 100);
+  };
 
   // Mobil menü için tüm menü öğelerini düzenle
   const mobileMenuFormats = menus.map(menu => {
@@ -225,8 +260,22 @@ const Navbar: React.FC<NavbarProps> = ({
 
                   {/* Dil Menüsü (Korunuyor) */}
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-normal">
-                      {languageMenuLabel}
+                    <NavigationMenuTrigger className={cn(
+                      "bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-normal flex items-center gap-2 transition-all duration-300",
+                      isLanguageChanging && "opacity-70 scale-95"
+                    )}>
+                      <div className={cn(
+                        "transition-all duration-200 transform",
+                        isLanguageChanging ? "opacity-100 scale-100" : "opacity-0 scale-0 w-0"
+                      )}>
+                        <Loader2 className="h-4 w-4 animate-spin text-teal-600" />
+                      </div>
+                      <span className={cn(
+                        "transition-all duration-200",
+                        isLanguageChanging && "text-teal-700"
+                      )}>
+                        {languageMenuLabel}
+                      </span>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[150px] gap-3 p-4">
@@ -237,12 +286,26 @@ const Navbar: React.FC<NavbarProps> = ({
                             <ListItem
                               key={lang.code}
                               title={
-                                <span className="flex items-center gap-2">
-                                  {lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>}
-                                  {lang.name}
-                                </span>
+                                <div className="flex items-center gap-2">
+                                  {isLanguageChanging && lang.code === currentLocale ? (
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                  ) : (
+                                    lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>
+                                  )}
+                                  <span className={cn(
+                                    lang.code === currentLocale && "font-semibold text-teal-700",
+                                    isLanguageChanging && "opacity-50"
+                                  )}>
+                                    {lang.name}
+                                  </span>
+                                </div>
                               }
-                              href={getLanguageLink(lang.code)} // Akıllı dil değiştirme fonksiyonu
+                              onClick={(e) => handleLanguageChange(lang.code, e)}
+                              className={cn(
+                                "transition-all duration-300 hover:scale-[1.02]",
+                                isLanguageChanging && "pointer-events-none scale-95 opacity-50",
+                                lang.code === currentLocale && "bg-teal-50 border-teal-200 scale-[1.02]"
+                              )}
                             />
                           ))
                         ) : (
@@ -325,11 +388,27 @@ const Navbar: React.FC<NavbarProps> = ({
                       {/* Dil Menüsü (Mobil - Korunuyor) */}
                       <div className="border-b pb-4">
                         <button
-                          className="flex items-center justify-between w-full text-left text-lg font-medium mb-2"
+                          className={cn(
+                            "flex items-center justify-between w-full text-left text-lg font-medium mb-2 transition-all duration-300",
+                            isLanguageChanging && "opacity-70 scale-95"
+                          )}
                           onClick={() => setMobileActiveDropdown(mobileActiveDropdown === "language" ? null : "language")}
                         >
-                          <span>{languageMenuLabel}</span>
-                          <ChevronDown className={`h-5 w-5 transition-transform ${mobileActiveDropdown === "language" ? 'rotate-180' : ''}`} />
+                          <span className="flex items-center gap-2">
+                            <div className={cn(
+                              "transition-all duration-200 transform",
+                              isLanguageChanging ? "opacity-100 scale-100" : "opacity-0 scale-0 w-0"
+                            )}>
+                              <Loader2 className="h-4 w-4 animate-spin text-teal-600" />
+                            </div>
+                            <span className={cn(
+                              "transition-all duration-200",
+                              isLanguageChanging && "text-teal-700"
+                            )}>
+                              {languageMenuLabel}
+                            </span>
+                          </span>
+                          <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileActiveDropdown === "language" ? 'rotate-180' : ''}`} />
                         </button>
                         {mobileActiveDropdown === "language" && (
                           <div className="pl-4 space-y-2 mt-2 max-h-[50vh] overflow-y-auto">
@@ -337,14 +416,23 @@ const Navbar: React.FC<NavbarProps> = ({
                               <div className="py-2 text-gray-500">Loading...</div>
                             ) : languages.length > 0 ? (
                               languages.map((lang) => (
-                                <Link
+                                <button
                                   key={lang.code}
-                                  href={getLanguageLink(lang.code)} // Akıllı dil değiştirme fonksiyonu
-                                  className="block py-2 text-gray-600 hover:text-gray-900 flex items-center gap-2"
+                                  onClick={(e) => handleLanguageChange(lang.code, e)}
+                                  className={cn(
+                                    "w-full text-left py-2 text-gray-600 hover:text-gray-900 flex items-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:bg-gray-50 rounded-md px-2 -mx-2",
+                                    lang.code === currentLocale && "font-semibold text-teal-700 bg-teal-50 scale-[1.02]",
+                                    isLanguageChanging && "opacity-50 pointer-events-none scale-95"
+                                  )}
+                                  disabled={isLanguageChanging}
                                 >
-                                  {lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>}
+                                  {isLanguageChanging && lang.code === currentLocale ? (
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                  ) : (
+                                    lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>
+                                  )}
                                   {lang.name}
-                                </Link>
+                                </button>
                               ))
                             ) : (
                               <div className="py-2 text-gray-500">No languages found.</div>
