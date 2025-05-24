@@ -15,6 +15,34 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
   {
+    "source": "/de/unsere-arztede/:path*",
+    "destination": "/de/doktorlar/:path*"
+  },
+  {
+    "source": "/en/our-doctors/:path*",
+    "destination": "/en/doktorlar/:path*"
+  },
+  {
+    "source": "/es/nuestros-medicos/:path*",
+    "destination": "/es/doktorlar/:path*"
+  },
+  {
+    "source": "/fr/nos-medecins/:path*",
+    "destination": "/fr/doktorlar/:path*"
+  },
+  {
+    "source": "/it/i-nostri-medici/:path*",
+    "destination": "/it/doktorlar/:path*"
+  },
+  {
+    "source": "/ru/nashi-vrachi/:path*",
+    "destination": "/ru/doktorlar/:path*"
+  },
+  {
+    "source": "/tr/doktorlarimiz/:path*",
+    "destination": "/tr/doktorlar/:path*"
+  },
+  {
     "source": "/de/uber-uns/:path*",
     "destination": "/de/hakkimizda/:path*"
   },
