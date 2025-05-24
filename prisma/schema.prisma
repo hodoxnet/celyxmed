@@ -43,6 +43,8 @@ model Language {
   id        String  @id @default(cuid())
   code      String  @unique // Dil kodu (örn: 'en', 'tr')
   name      String  // Dilin tam adı (örn: 'English', 'Türkçe')
+  menuLabel String? // Menüde gösterilecek etiket (örn: 'Language', 'Dil', 'Sprache')
+  flagCode  String? // Bayrak kodu (örn: 'gb', 'tr', 'de') - ISO 3166-1 alpha-2
   isActive  Boolean @default(true) // Dilin sitede aktif olup olmadığını belirtir
   isDefault Boolean @default(false) // Varsayılan dil olup olmadığını belirtir (sadece biri true olabilir)
   createdAt DateTime @default(now())

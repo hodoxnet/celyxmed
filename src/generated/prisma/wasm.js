@@ -143,6 +143,8 @@ exports.Prisma.LanguageScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
+  menuLabel: 'menuLabel',
+  flagCode: 'flagCode',
   isActive: 'isActive',
   isDefault: 'isDefault',
   createdAt: 'createdAt',

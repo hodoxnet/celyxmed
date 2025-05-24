@@ -23,7 +23,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { code, name, isActive, isDefault } = body;
+    const { code, name, menuLabel, flagCode, isActive, isDefault } = body;
 
     if (!code || !name) {
       return NextResponse.json({ message: 'Dil kodu ve adı zorunludur.' }, { status: 400 });
@@ -48,6 +48,8 @@ export async function POST(request: Request) {
       data: {
         code: languageCode,
         name,
+        menuLabel: menuLabel || name, // Eğer menuLabel verilmezse name kullan
+        flagCode: flagCode || languageCode, // Eğer flagCode verilmezse languageCode kullan
         isActive: isActive !== undefined ? isActive : true, // Varsayılan aktif
         isDefault: isDefault === true, // Sadece true ise true yap
       },

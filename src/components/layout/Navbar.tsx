@@ -37,7 +37,7 @@ interface HeaderMenu {
 // ListItem helper component (Shadcn UI dökümantasyonundan alınmıştır)
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ComponentPropsWithoutRef<"a"> & { title: React.ReactNode }
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
@@ -68,6 +68,22 @@ interface NavbarProps {
   menuData?: HeaderMenu[] | null; // Dinamik menü verisi (artık dizi)
 }
 
+interface LanguageData {
+  code: string;
+  name: string;
+  menuLabel?: string | null;
+  flagCode?: string | null;
+}
+
+// Bayrak emoji dönüştürücü fonksiyon
+const getFlagEmoji = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map(char => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
+
 const Navbar: React.FC<NavbarProps> = ({
   logoUrl,
   headerButtonText,
@@ -75,9 +91,12 @@ const Navbar: React.FC<NavbarProps> = ({
   menuData
 }) => {
   const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null);
-  const [languages, setLanguages] = useState<{ code: string; name: string }[]>([]);
+  const [languages, setLanguages] = useState<LanguageData[]>([]);
   const [isLanguageLoading, setIsLanguageLoading] = useState(true);
   const pathname = usePathname(); // Next.js hook ile mevcut sayfa yolunu al
+  
+  // Aktif dili pathname'den al
+  const currentLocale = pathname.split('/')[1] || 'tr';
 
   // Dil değiştirme linki oluşturan fonksiyon
   const getLanguageLink = (langCode: string) => {
@@ -133,6 +152,10 @@ const Navbar: React.FC<NavbarProps> = ({
 
   // Menü verilerini diziden al (artık birden çok menü olabilir)
   const menus = menuData || [];
+  
+  // Aktif dilin menuLabel'ını bul
+  const currentLanguage = languages.find(lang => lang.code === currentLocale);
+  const languageMenuLabel = currentLanguage?.menuLabel || 'Language';
 
   // Mobil menü için tüm menü öğelerini düzenle
   const mobileMenuFormats = menus.map(menu => {
@@ -203,7 +226,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   {/* Dil Menüsü (Korunuyor) */}
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-normal">
-                      Language
+                      {languageMenuLabel}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[150px] gap-3 p-4">
@@ -213,7 +236,12 @@ const Navbar: React.FC<NavbarProps> = ({
                           languages.map((lang) => (
                             <ListItem
                               key={lang.code}
-                              title={lang.name}
+                              title={
+                                <span className="flex items-center gap-2">
+                                  {lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>}
+                                  {lang.name}
+                                </span>
+                              }
                               href={getLanguageLink(lang.code)} // Akıllı dil değiştirme fonksiyonu
                             />
                           ))
@@ -300,7 +328,7 @@ const Navbar: React.FC<NavbarProps> = ({
                           className="flex items-center justify-between w-full text-left text-lg font-medium mb-2"
                           onClick={() => setMobileActiveDropdown(mobileActiveDropdown === "language" ? null : "language")}
                         >
-                          <span>Language</span>
+                          <span>{languageMenuLabel}</span>
                           <ChevronDown className={`h-5 w-5 transition-transform ${mobileActiveDropdown === "language" ? 'rotate-180' : ''}`} />
                         </button>
                         {mobileActiveDropdown === "language" && (
@@ -312,8 +340,9 @@ const Navbar: React.FC<NavbarProps> = ({
                                 <Link
                                   key={lang.code}
                                   href={getLanguageLink(lang.code)} // Akıllı dil değiştirme fonksiyonu
-                                  className="block py-2 text-gray-600 hover:text-gray-900"
+                                  className="block py-2 text-gray-600 hover:text-gray-900 flex items-center gap-2"
                                 >
+                                  {lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>}
                                   {lang.name}
                                 </Link>
                               ))

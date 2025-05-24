@@ -33,6 +33,8 @@ import type { Language } from '@/generated/prisma';
 const languageFormSchema = z.object({
   name: z.string().min(2, { message: "Dil adı en az 2 karakter olmalıdır." }),
   code: z.string().regex(/^[a-z]{2}(-[A-Z]{2})?$/, { message: "Kod formatı 'en' veya 'en-US' gibi olmalıdır." }),
+  menuLabel: z.string().min(1, { message: "Menü etiketi zorunludur." }),
+  flagCode: z.string().min(2).max(2, { message: "Bayrak kodu 2 karakter olmalıdır (örn: tr, gb)." }),
   // .default() kaldırıldı, varsayılan değerler useForm'da ayarlanacak
   isActive: z.boolean(), 
   isDefault: z.boolean(),
@@ -56,6 +58,8 @@ export default function DillerPage() {
     defaultValues: { 
       name: "", 
       code: "", 
+      menuLabel: "",
+      flagCode: "",
       isActive: true, 
       isDefault: false 
     },
@@ -154,6 +158,8 @@ export default function DillerPage() {
     form.reset({
       name: language.name,
       code: language.code,
+      menuLabel: language.menuLabel || language.name,
+      flagCode: language.flagCode || language.code,
       isActive: language.isActive, // Prisma'dan gelen boolean
       isDefault: language.isDefault, // Prisma'dan gelen boolean
     });
@@ -167,6 +173,8 @@ export default function DillerPage() {
     form.reset({ 
       name: "", 
       code: "", 
+      menuLabel: "",
+      flagCode: "",
       isActive: true, 
       isDefault: false 
     }); 
@@ -249,6 +257,8 @@ export default function DillerPage() {
             <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4">
               <FormField control={form.control} name="name" render={({ field }) => (<FormItem><FormLabel>Dil Adı</FormLabel><FormControl><Input placeholder="Örn: Türkçe" {...field} /></FormControl><FormMessage /></FormItem>)} />
               <FormField control={form.control} name="code" render={({ field }) => (<FormItem><FormLabel>Dil Kodu</FormLabel><FormControl><Input placeholder="örn: tr, en-US" {...field} disabled={!!editingLanguage} /></FormControl><FormDescription>Küçük harf, 2 veya 5 karakter (örn: en, en-US). Değiştirilemez.</FormDescription><FormMessage /></FormItem>)} />
+              <FormField control={form.control} name="menuLabel" render={({ field }) => (<FormItem><FormLabel>Menü Etiketi</FormLabel><FormControl><Input placeholder="Örn: Dil, Language, Sprache" {...field} /></FormControl><FormDescription>Navbar'da gösterilecek metin (her dilin kendi dilinde)</FormDescription><FormMessage /></FormItem>)} />
+              <FormField control={form.control} name="flagCode" render={({ field }) => (<FormItem><FormLabel>Bayrak Kodu</FormLabel><FormControl><Input placeholder="Örn: tr, gb, de" {...field} /></FormControl><FormDescription>ISO 3166-1 alpha-2 ülke kodu (2 karakter)</FormDescription><FormMessage /></FormItem>)} />
               <FormField control={form.control} name="isActive" render={({ field }) => (<FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm"><div className="space-y-0.5"><FormLabel>Aktif Mi?</FormLabel><FormDescription>Bu dil sitede kullanılsın mı?</FormDescription></div><FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl></FormItem>)} />
               <FormField control={form.control} name="isDefault" render={({ field }) => (<FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm"><div className="space-y-0.5"><FormLabel>Varsayılan Dil Mi?</FormLabel><FormDescription>Siteye ilk girişte bu dil mi gösterilsin?</FormDescription></div><FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl></FormItem>)} />
               <DialogFooter>

@@ -11,6 +11,8 @@ export async function GET() {
       select: {
         code: true, // Dil kodunu seç
         name: true, // Dil adını seç
+        menuLabel: true, // Menüde gösterilecek etiket
+        flagCode: true, // Bayrak kodu
         isActive: true, // Debugging/future use
         isDefault: true, // Debugging/future use
       },

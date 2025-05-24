@@ -15,14 +15,14 @@ export async function PUT(request: Request, { params }: Params) {
   const { id } = params;
   try {
     const body = await request.json();
-    const { name, isActive, isDefault } = body; // Güncellenecek alanlar
+    const { name, menuLabel, flagCode, isActive, isDefault } = body; // Güncellenecek alanlar
 
     console.log("API - Gelen istek gövdesi:", body);
     console.log("API - isDefault değeri:", isDefault, "tipi:", typeof isDefault);
 
     // En az bir alanın güncellenmesi gerektiğini kontrol et (isteğe bağlı)
-    if (name === undefined && isActive === undefined && isDefault === undefined) {
-      return NextResponse.json({ message: 'Güncellenecek en az bir alan (name, isActive, isDefault) gönderilmelidir.' }, { status: 400 });
+    if (name === undefined && menuLabel === undefined && flagCode === undefined && isActive === undefined && isDefault === undefined) {
+      return NextResponse.json({ message: 'Güncellenecek en az bir alan (name, menuLabel, flagCode, isActive, isDefault) gönderilmelidir.' }, { status: 400 });
     }
 
     // Güncellenecek dili bul (güncelleme öncesi kodunu almak için)
@@ -47,8 +47,10 @@ export async function PUT(request: Request, { params }: Params) {
     }
 
     // Veritabanında güncelle
-    const updateData: Partial<Pick<Language, 'name' | 'isActive' | 'isDefault'>> = {};
+    const updateData: Partial<Pick<Language, 'name' | 'menuLabel' | 'flagCode' | 'isActive' | 'isDefault'>> = {};
     if (name !== undefined) updateData.name = name;
+    if (menuLabel !== undefined) updateData.menuLabel = menuLabel;
+    if (flagCode !== undefined) updateData.flagCode = flagCode;
     if (isActive !== undefined) updateData.isActive = isActive;
     if (isDefault !== undefined) {
       // Boolean'a dönüştürmeyi garantile
