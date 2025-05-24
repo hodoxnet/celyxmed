@@ -96,7 +96,7 @@ export default function ContactForm() {
               onChange={(e) => handleInputChange('name', e.target.value)}
               placeholder="İsim Soyisim"
               required
-              className="w-full h-12 text-base"
+              className="w-full h-12 text-base bg-white"
             />
           </div>
           <div>
@@ -104,7 +104,7 @@ export default function ContactForm() {
               Sizinle nasıl iletişime geçebiliriz?
             </Label>
             <Select value={formData.contactMethod} onValueChange={(value) => handleInputChange('contactMethod', value)}>
-              <SelectTrigger className="h-12 text-base">
+              <SelectTrigger className="h-12 text-base bg-white">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -135,7 +135,7 @@ export default function ContactForm() {
                 onChange={(e) => handleInputChange('phone', e.target.value)}
                 placeholder="Telefon Numarası"
                 required
-                className="w-full h-12 pl-20 text-base"
+                className="w-full h-12 pl-20 text-base bg-white"
               />
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function ContactForm() {
               onChange={(e) => handleInputChange('email', e.target.value)}
               placeholder="E-posta adresinizi girin"
               required
-              className="w-full h-12 text-base"
+              className="w-full h-12 text-base bg-white"
             />
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function ContactForm() {
             onChange={(e) => handleInputChange('message', e.target.value)}
             placeholder="Mesajınız..."
             rows={5}
-            className="w-full text-base resize-none"
+            className="w-full text-base resize-none bg-white"
           />
         </div>
 
