@@ -70,7 +70,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-[#f6f9fc] rounded-2xl p-8">
+    <div className="bg-[#f6f9fc] border border-gray-200 rounded-2xl p-8 h-full flex flex-col">
       {/* Başlık */}
       <div className="mb-8">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4">
@@ -82,7 +82,7 @@ export default function ContactForm() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-center">
         {/* İsim ve İletişim Türü */}
         <div className="grid md:grid-cols-2 gap-6">
           <div>
