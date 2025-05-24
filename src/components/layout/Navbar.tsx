@@ -17,8 +17,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { slugTranslations } from "@/generated/route-translations";
 
@@ -178,7 +176,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-6">
-              <NavigationMenu>
+              <NavigationMenu viewport={false}>
                 <NavigationMenuList>
                   {/* Tüm Ana Menüler - Her biri kendi dropdown'una sahip */}
                   {menus.map(menu => (
@@ -226,7 +224,6 @@ const Navbar: React.FC<NavbarProps> = ({
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                 </NavigationMenuList>
-                <NavigationMenuViewport className="absolute left-0 top-full flex justify-center perspective-[2000px] w-full" />
               </NavigationMenu>
 
               {/* Header Butonu (Korunuyor) */}
