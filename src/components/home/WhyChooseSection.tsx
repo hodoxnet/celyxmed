@@ -18,7 +18,13 @@ interface WhyChooseSectionData {
   languageCode: string;
 }
 
-const WhyChooseSection = () => {
+interface WhyChooseSectionProps {
+  hideTitle?: boolean;
+  hideDescription?: boolean;
+  hideButtons?: boolean;
+}
+
+const WhyChooseSection = ({ hideTitle = false, hideDescription = false, hideButtons = false }: WhyChooseSectionProps) => {
   const [sectionData, setSectionData] = useState<WhyChooseSectionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -108,17 +114,22 @@ const WhyChooseSection = () => {
             </div>
 
             {/* Başlık */}
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-800">
-              {data.title}
-            </h2>
+            {!hideTitle && (
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-800">
+                {data.title}
+              </h2>
+            )}
 
             {/* Açıklama */}
-            <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
-              {data.description}
-            </p>
+            {!hideDescription && (
+              <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
+                {data.description}
+              </p>
+            )}
 
             {/* Butonlar */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {!hideButtons && (
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href={data.primaryButtonLink}
                 className="flex items-center bg-[#4a8f9c] hover:bg-[#3d7a86] text-white rounded-[20px] shadow-lg transition-all duration-300 overflow-hidden"
@@ -138,7 +149,8 @@ const WhyChooseSection = () => {
               >
                 {data.secondaryButtonText}
               </Link>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
