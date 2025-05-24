@@ -18,7 +18,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { slugTranslations } from "@/generated/route-translations";
+import { routeTranslations } from "@/generated/route-translations";
 
 // Menü veri tipleri (RootLayoutClient'tan veya ortak tiplerden alınmalı)
 interface MenuItem {
@@ -54,10 +54,14 @@ const ListItem = React.forwardRef<
           onClick={onClick}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          {/* <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p> */}
+          <div className="text-sm font-medium leading-none">
+            {title}
+          </div>
+          {children && (
+            <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+              {children}
+            </div>
+          )}
         </a>
       </NavigationMenuLink>
     </li>
@@ -104,38 +108,54 @@ const Navbar: React.FC<NavbarProps> = ({
   // Aktif dili pathname'den al
   const currentLocale = pathname.split('/')[1] || 'tr';
 
-  // Dil değiştirme linki oluşturan fonksiyon
+  // Dil değiştirme linki oluşturan fonksiyon - Her zaman ana sayfaya yönlendir
   const getLanguageLink = (langCode: string) => {
-    const currentPathParts = pathname.split('/').filter(Boolean);
-    if (currentPathParts.length === 0) {
-      // Ana sayfadaysa, sadece dil kodunu döndür
-      return `/${langCode}`;
-    }
+    return `/${langCode}`;
+  };
 
-    const currentLang = currentPathParts[0];
-    const pathWithoutLang = currentPathParts.slice(1).join('/');
+  // Menü linklerini aktif dile göre çeviren fonksiyon
+  const translateMenuLink = (href: string, targetLocale: string) => {
+    // Eğer href zaten '/' ile başlamıyorsa, başına ekle
+    const normalizedHref = href.startsWith('/') ? href : `/${href}`;
     
-    // Eğer hizmetler detay sayfasındaysa ve slug varsa
-    if (pathWithoutLang.startsWith('hizmetler/') || pathWithoutLang.startsWith('services/')) {
-      const segments = pathWithoutLang.split('/');
-      const routeType = segments[0]; // 'hizmetler' veya 'services'
-      const currentSlug = segments[1];
-      
-      // Yeni dilin karşılık gelen route'u (hizmetler -> services)
-      const newRoute = routeType === 'hizmetler' && langCode === 'en' ? 'services' : 
-                       routeType === 'services' && langCode === 'tr' ? 'hizmetler' : routeType;
-      
-      // Slugın diğer dildeki karşılığını bulmaya çalış
-      let translatedSlug = currentSlug;
-      if (slugTranslations[currentSlug] && slugTranslations[currentSlug][langCode]) {
-        translatedSlug = slugTranslations[currentSlug][langCode];
-      }
-      
-      return `/${langCode}/${newRoute}/${translatedSlug}`;
+    // URL'i parçalara ayır 
+    const pathParts = normalizedHref.split('/').filter(Boolean);
+    
+    if (pathParts.length === 0) {
+      // Ana sayfa linki ise
+      return `/${targetLocale}`;
     }
     
-    // Diğer sayfalar için basit dil değiştirme
-    return `/${langCode}/${pathWithoutLang}`;
+    // Eğer URL zaten dil kodu ile başlıyorsa, onu çıkar
+    let actualPathParts = pathParts;
+    if (pathParts.length > 0 && pathParts[0].length === 2 && /^[a-z]{2}$/.test(pathParts[0])) {
+      // İlk parça dil koduna benziyor, onu çıkar
+      actualPathParts = pathParts.slice(1);
+    }
+    
+    if (actualPathParts.length === 0) {
+      // Sadece dil kodu vardı, ana sayfaya yönlendir
+      return `/${targetLocale}`;
+    }
+    
+    // İlk parçayı (ana route) kontrol et
+    const mainRoute = actualPathParts[0];
+    
+    // routeTranslations'da çevirisi var mı?
+    const routeEntry = routeTranslations[mainRoute as keyof typeof routeTranslations];
+    if (routeEntry && routeEntry[targetLocale as keyof typeof routeEntry]) {
+      const translatedRoute = routeEntry[targetLocale as keyof typeof routeEntry];
+      
+      // Çevrilmiş route ile yeni URL oluştur
+      const otherParts = actualPathParts.slice(1); // Diğer path parçaları (varsa)
+      const translatedPath = [translatedRoute, ...otherParts].join('/');
+      
+      return `/${targetLocale}/${translatedPath}`;
+    }
+    
+    // Çeviri yoksa orijinal path'i kullan (ama dil kodunu güncelle)
+    const finalPath = actualPathParts.join('/');
+    return `/${targetLocale}/${finalPath}`;
   };
 
   useEffect(() => {
@@ -197,12 +217,12 @@ const Navbar: React.FC<NavbarProps> = ({
     const mobileItems = menu.items.map(item => ({
       id: item.id,
       label: item.title,
-      href: (!item.children || item.children.length === 0) ? item.href : undefined,
+      href: (!item.children || item.children.length === 0) ? translateMenuLink(item.href, currentLocale) : undefined,
       openInNewTab: item.openInNewTab,
       items: item.children?.map(child => ({
         id: child.id,
         title: child.title,
-        href: child.href,
+        href: translateMenuLink(child.href, currentLocale),
         openInNewTab: child.openInNewTab
       })) || []
     }));
@@ -248,7 +268,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             <ListItem
                               key={item.id}
                               title={item.title}
-                              href={item.href}
+                              href={translateMenuLink(item.href, currentLocale)}
                               target={item.openInNewTab ? "_blank" : undefined}
                               rel={item.openInNewTab ? "noopener noreferrer" : undefined}
                             />
@@ -283,30 +303,34 @@ const Navbar: React.FC<NavbarProps> = ({
                           <li className="text-sm text-gray-500">Loading...</li>
                         ) : languages.length > 0 ? (
                           languages.map((lang) => (
-                            <ListItem
-                              key={lang.code}
-                              title={
-                                <div className="flex items-center gap-2">
-                                  {isLanguageChanging && lang.code === currentLocale ? (
-                                    <Loader2 className="h-4 w-4 animate-spin" />
-                                  ) : (
-                                    lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>
+                            <li key={lang.code}>
+                              <NavigationMenuLink asChild>
+                                <button
+                                  onClick={(e) => handleLanguageChange(lang.code, e)}
+                                  className={cn(
+                                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer w-full text-left transition-all duration-300 hover:scale-[1.02]",
+                                    isLanguageChanging && "pointer-events-none scale-95 opacity-50",
+                                    lang.code === currentLocale && "bg-teal-50 border-teal-200 scale-[1.02]"
                                   )}
-                                  <span className={cn(
-                                    lang.code === currentLocale && "font-semibold text-teal-700",
-                                    isLanguageChanging && "opacity-50"
-                                  )}>
-                                    {lang.name}
-                                  </span>
-                                </div>
-                              }
-                              onClick={(e) => handleLanguageChange(lang.code, e)}
-                              className={cn(
-                                "transition-all duration-300 hover:scale-[1.02]",
-                                isLanguageChanging && "pointer-events-none scale-95 opacity-50",
-                                lang.code === currentLocale && "bg-teal-50 border-teal-200 scale-[1.02]"
-                              )}
-                            />
+                                >
+                                  <div className="text-sm font-medium leading-none">
+                                    <div className="flex items-center gap-2">
+                                      {isLanguageChanging && lang.code === currentLocale ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                      ) : (
+                                        lang.flagCode && <span className="text-lg">{getFlagEmoji(lang.flagCode)}</span>
+                                      )}
+                                      <span className={cn(
+                                        lang.code === currentLocale && "font-semibold text-teal-700",
+                                        isLanguageChanging && "opacity-50"
+                                      )}>
+                                        {lang.name}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </button>
+                              </NavigationMenuLink>
+                            </li>
                           ))
                         ) : (
                           <li className="text-sm text-gray-500">No languages found.</li>

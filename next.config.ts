@@ -15,12 +15,48 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
   {
-    "source": "/de/services/:path*",
+    "source": "/de/uber-uns/:path*",
+    "destination": "/de/hakkimizda/:path*"
+  },
+  {
+    "source": "/en/about-us/:path*",
+    "destination": "/en/hakkimizda/:path*"
+  },
+  {
+    "source": "/es/quienes-somos/:path*",
+    "destination": "/es/hakkimizda/:path*"
+  },
+  {
+    "source": "/fr/a-propos/:path*",
+    "destination": "/fr/hakkimizda/:path*"
+  },
+  {
+    "source": "/it/chi-siamo/:path*",
+    "destination": "/it/hakkimizda/:path*"
+  },
+  {
+    "source": "/ru/o-nas/:path*",
+    "destination": "/ru/hakkimizda/:path*"
+  },
+  {
+    "source": "/de/unsere-dienstleistungen/:path*",
     "destination": "/de/hizmetler/:path*"
   },
   {
-    "source": "/en/services/:path*",
+    "source": "/en/our-services/:path*",
     "destination": "/en/hizmetler/:path*"
+  },
+  {
+    "source": "/es/nuestros-servicios/:path*",
+    "destination": "/es/hizmetler/:path*"
+  },
+  {
+    "source": "/fr/nos-services/:path*",
+    "destination": "/fr/hizmetler/:path*"
+  },
+  {
+    "source": "/it/i-nostri-servizi/:path*",
+    "destination": "/it/hizmetler/:path*"
   },
   {
     "source": "/ru/services/:path*",
