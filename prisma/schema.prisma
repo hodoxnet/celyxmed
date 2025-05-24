@@ -103,6 +103,9 @@ model Language {
   aboutPageTranslations AboutPageTranslation[]
   aboutPageCareItemTranslations AboutPageCareItemTranslation[]
   aboutPageDoctorTranslations AboutPageDoctorTranslation[]
+
+  // Klinik Sayfası İlişkileri
+  clinicPageTranslations ClinicPageTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -1327,4 +1330,34 @@ model AboutPageDoctorTranslation {
   updatedAt     DateTime        @updatedAt
 
   @@unique([doctorId, languageCode])
+}
+
+// ----- KLİNİK SAYFASI MODELLERİ -----
+
+// Klinik Sayfası Ana Modeli (Dil Bağımsız)
+model ClinicPage {
+  id            String   @id @default("main") // Tek kayıt olacak
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // İlişkiler
+  translations  ClinicPageTranslation[]
+}
+
+// Klinik Sayfası Çeviri Modeli (Dile Özgü Metinler)
+model ClinicPageTranslation {
+  id              String    @id @default(cuid())
+  clinicPage      ClinicPage @relation(fields: [clinicPageId], references: [id], onDelete: Cascade)
+  clinicPageId    String
+  language        Language  @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode    String
+
+  // Hero bölümü
+  heroTitle       String
+  heroDescription String    @db.Text
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([clinicPageId, languageCode])
 }

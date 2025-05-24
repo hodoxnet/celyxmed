@@ -18,10 +18,11 @@ import {
   LayoutGrid,
   ChevronDown,
   ChevronRight,
+  Building,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Alt menü öğesi tipi
@@ -93,6 +94,11 @@ const navItems: NavItem[] = [
     icon: <FileText className="h-5 w-5" />,
   },
   {
+    title: "Klinik Sayfası",
+    href: "/admin/clinic-page",
+    icon: <Building className="h-5 w-5" />,
+  },
+  {
     title: "Genel Ayarlar",
     href: "/admin/ayarlar",
     icon: <Settings className="h-5 w-5" />,
@@ -114,11 +120,11 @@ export function SidebarNew({ isOpen, setIsOpen }: SidebarProps) {
   );
 
   // Sayfa yüklendiğinde aktif ana menüyü aç
-  useState(() => {
+  useEffect(() => {
     if (activeParent) {
       setExpandedItems([activeParent.title]);
     }
-  }, []);
+  }, [activeParent]);
 
   const toggleExpanded = (title: string) => {
     setExpandedItems(prev =>

@@ -89,6 +89,30 @@ const nextConfig: NextConfig = {
   {
     "source": "/ru/services/:path*",
     "destination": "/ru/hizmetler/:path*"
+  },
+  {
+    "source": "/de/unsere-klinik/:path*",
+    "destination": "/de/klinik/:path*"
+  },
+  {
+    "source": "/en/our-clinic/:path*",
+    "destination": "/en/klinik/:path*"
+  },
+  {
+    "source": "/es/nuestra-clinica/:path*",
+    "destination": "/es/klinik/:path*"
+  },
+  {
+    "source": "/fr/notre-clinique/:path*",
+    "destination": "/fr/klinik/:path*"
+  },
+  {
+    "source": "/it/la-nostra-clinica/:path*",
+    "destination": "/it/klinik/:path*"
+  },
+  {
+    "source": "/ru/nasha-klinika/:path*",
+    "destination": "/ru/klinik/:path*"
   }
 ];
   },

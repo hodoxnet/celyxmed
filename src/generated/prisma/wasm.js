@@ -904,6 +904,22 @@ exports.Prisma.AboutPageDoctorTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ClinicPageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ClinicPageTranslationScalarFieldEnum = {
+  id: 'id',
+  clinicPageId: 'clinicPageId',
+  languageCode: 'languageCode',
+  heroTitle: 'heroTitle',
+  heroDescription: 'heroDescription',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1017,7 +1033,9 @@ exports.Prisma.ModelName = {
   AboutPageCareItem: 'AboutPageCareItem',
   AboutPageCareItemTranslation: 'AboutPageCareItemTranslation',
   AboutPageDoctor: 'AboutPageDoctor',
-  AboutPageDoctorTranslation: 'AboutPageDoctorTranslation'
+  AboutPageDoctorTranslation: 'AboutPageDoctorTranslation',
+  ClinicPage: 'ClinicPage',
+  ClinicPageTranslation: 'ClinicPageTranslation'
 };
 
 /**

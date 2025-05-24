@@ -20,22 +20,41 @@ interface DoctorData {
   profileUrl: string;
 }
 
+interface ClinicPageData {
+  heroTitle: string;
+  heroDescription: string;
+}
+
+interface AboutPageData {
+  doctorsTitle: string;
+  doctorsDescription: string;
+}
+
 export default function ClinicPage({ params }: ClinicPageProps) {
   const resolvedParams = use(params);
   const { locale } = resolvedParams;
   
   const [doctors, setDoctors] = useState<DoctorData[]>([]);
+  const [clinicData, setClinicData] = useState<ClinicPageData>({
+    heroTitle: "Son Teknoloji Kliniğimizde Birinci Sınıf Bakımı Deneyimleyin",
+    heroDescription: "İstanbul Ataşehir'deki JCI akreditasyonlu kliniğimiz, en son teknolojiyi ve hasta öncelikli bir yaklaşımı sunmaktadır. İlk konsültasyonunuzdan tedavi sonrası bakıma kadar güvenli, konforlu ve kişiselleştirilmiş bir sağlık hizmeti yolculuğu sağlıyoruz."
+  });
+  const [aboutData, setAboutData] = useState<AboutPageData>({
+    doctorsTitle: "Uzman Doktorlarımız, Güvenilir Bakım Ekibiniz",
+    doctorsDescription: "Celyxmed'de doktorlarımız uzmanlardan daha fazlasıdır - kendilerini kişiselleştirilmiş bakım sağlamaya ve hayat değiştiren sonuçlar elde etmeye adamış, alanlarında lider kişilerdir. Yılların deneyimiyle, sağlık yolculuğunuzun en iyi ellerde olmasını sağlarlar."
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchDoctors() {
+    async function fetchData() {
       try {
         setLoading(true);
-        const response = await fetch(`/api/about-page?lang=${locale}`);
-
-        if (response.ok) {
-          const data = await response.json();
-          const doctorsData = data.doctors ? data.doctors.map((doctor: any) => ({
+        
+        // Doktor verilerini çek
+        const aboutResponse = await fetch(`/api/about-page?lang=${locale}`);
+        if (aboutResponse.ok) {
+          const aboutResponseData = await aboutResponse.json();
+          const doctorsData = aboutResponseData.doctors ? aboutResponseData.doctors.map((doctor: any) => ({
             id: doctor.id,
             name: doctor.name || "",
             title: doctor.title || "",
@@ -43,15 +62,31 @@ export default function ClinicPage({ params }: ClinicPageProps) {
             profileUrl: doctor.profileUrl || "#",
           })) : [];
           setDoctors(doctorsData);
+          
+          // About page verilerini de set et
+          setAboutData({
+            doctorsTitle: aboutResponseData.doctorsTitle || "Uzman Doktorlarımız, Güvenilir Bakım Ekibiniz",
+            doctorsDescription: aboutResponseData.doctorsDescription || "Celyxmed'de doktorlarımız uzmanlardan daha fazlasıdır - kendilerini kişiselleştirilmiş bakım sağlamaya ve hayat değiştiren sonuçlar elde etmeye adamış, alanlarında lider kişilerdir. Yılların deneyimiyle, sağlık yolculuğunuzun en iyi ellerde olmasını sağlarlar."
+          });
+        }
+
+        // Klinik sayfası verilerini çek
+        const clinicResponse = await fetch(`/api/clinic-page?lang=${locale}`);
+        if (clinicResponse.ok) {
+          const clinicPageData = await clinicResponse.json();
+          setClinicData({
+            heroTitle: clinicPageData.heroTitle || "Son Teknoloji Kliniğimizde Birinci Sınıf Bakımı Deneyimleyin",
+            heroDescription: clinicPageData.heroDescription || "İstanbul Ataşehir'deki JCI akreditasyonlu kliniğimiz, en son teknolojiyi ve hasta öncelikli bir yaklaşımı sunmaktadır. İlk konsültasyonunuzdan tedavi sonrası bakıma kadar güvenli, konforlu ve kişiselleştirilmiş bir sağlık hizmeti yolculuğu sağlıyoruz."
+          });
         }
       } catch (error) {
-        console.error("Doktor verileri alınırken hata oluştu:", error);
+        console.error("Veriler alınırken hata oluştu:", error);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchDoctors();
+    fetchData();
   }, [locale]);
 
   return (
@@ -62,10 +97,10 @@ export default function ClinicPage({ params }: ClinicPageProps) {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-6 leading-tight">
-                Son Teknoloji Kliniğimizde Birinci Sınıf Bakımı Deneyimleyin
+                {clinicData.heroTitle}
               </h1>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                İstanbul Ataşehir'deki JCI akreditasyonlu kliniğimiz, en son teknolojiyi ve hasta öncelikli bir yaklaşımı sunmaktadır. İlk konsültasyonunuzdan tedavi sonrası bakıma kadar güvenli, konforlu ve kişiselleştirilmiş bir sağlık hizmeti yolculuğu sağlıyoruz.
+                {clinicData.heroDescription}
               </p>
             </div>
           </div>
@@ -79,8 +114,8 @@ export default function ClinicPage({ params }: ClinicPageProps) {
         
         {/* Doktorlarımız - Hakkımızda sayfasından */}
         <DoctorsSection
-          title="Uzman Doktorlarımız, Güvenilir Bakım Ekibiniz"
-          description="Celyxmed'de doktorlarımız uzmanlardan daha fazlasıdır - kendilerini kişiselleştirilmiş bakım sağlamaya ve hayat değiştiren sonuçlar elde etmeye adamış, alanlarında lider kişilerdir. Yılların deneyimiyle, sağlık yolculuğunuzun en iyi ellerde olmasını sağlarlar."
+          title={aboutData.doctorsTitle}
+          description={aboutData.doctorsDescription}
           doctors={doctors}
         />
         
