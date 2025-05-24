@@ -57,13 +57,18 @@ interface FooterProps {
   } | null;
   copyrightText?: string | null;
   menuData?: FooterMenu[] | null; // Dinamik footer menü verisi
+  translations?: {
+    description: string;
+    contactButton: string;
+  };
 }
 
 const Footer: React.FC<FooterProps> = ({
   socialLinks: dynamicSocialLinks,
   contactInfo,
   copyrightText,
-  menuData // Prop'u al
+  menuData, // Prop'u al
+  translations
 }) => {
   // Dinamik menü gruplarını al veya boş array kullan
   const footerMenuGroups = menuData || [];
@@ -85,12 +90,12 @@ const Footer: React.FC<FooterProps> = ({
             </Link>
             {/* Açıklama Türkçeleştirildi ve rengi güncellendi */}
             <p className="text-gray-600 mb-6 max-w-md">
-              Celyxmed, dünya standartlarında doktorlar ve JCI akreditasyonlu kliniklerle kişiselleştirilmiş tedaviler sunan Türkiye'deki güvenilir sağlık ortağınızdır. Sizin sağlığınız, bizim önceliğimiz.
+              {translations?.description || "Celyxmed, dünya standartlarında doktorlar ve JCI akreditasyonlu kliniklerle kişiselleştirilmiş tedaviler sunan Türkiye'deki güvenilir sağlık ortağınızdır. Sizin sağlığınız, bizim önceliğimiz."}
             </p>
             {/* Buton Link ile sarıldı (Yeni Next.js standardı) */}
             <Button asChild className="bg-[#3E838C] hover:bg-[#367078] text-white rounded-lg px-6 py-2 inline-block">
               <Link href="/iletisim">
-                İletişim
+                {translations?.contactButton || "İletişim"}
               </Link>
             </Button>
           </div>

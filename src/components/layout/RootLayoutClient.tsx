@@ -2,7 +2,7 @@
 
 import React from 'react';
 import NavbarWrapper from './NavbarWrapper';
-import Footer from './Footer';
+import FooterWrapper from './FooterWrapper';
 import FloatingButtons from './FloatingButtons';
 import { ThemeProvider } from "@/components/theme-provider";
 import { NextIntlClientProvider } from 'next-intl';
@@ -61,7 +61,7 @@ export default function RootLayoutClient({ children, locale, messages, generalSe
             {children}
           </main>
           {/* Footer'a footerMenus prop'unu ekle */}
-          <Footer 
+          <FooterWrapper 
             menuData={footerMenus} // Yeni prop
             socialLinks={{
               youtube: generalSettings?.translation?.socialYoutubeUrl,

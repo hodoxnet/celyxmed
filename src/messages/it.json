@@ -1,4 +1,8 @@
 {
+  "Footer": {
+    "description": "Celyxmed è il tuo partner sanitario di fiducia in Turchia, che offre trattamenti personalizzati con medici di livello mondiale e cliniche accreditate JCI. La tua salute è la nostra priorità.",
+    "contactButton": "Contatto"
+  },
   "Routes": {
     "services": "servizi",
     "blog": "blog",

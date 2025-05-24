@@ -13,6 +13,10 @@
   "Common": {
     "clickMe": "Bana Tıkla"
   },
+  "Footer": {
+    "description": "Celyxmed, dünya standartlarında doktorlar ve JCI akreditasyonlu kliniklerle kişiselleştirilmiş tedaviler sunan Türkiye'deki güvenilir sağlık ortağınızdır. Sizin sağlığınız, bizim önceliğimiz.",
+    "contactButton": "İletişim"
+  },
   "Routes": {
     "services": "hizmetler",
     "blog": "blog",
