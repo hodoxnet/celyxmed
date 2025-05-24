@@ -5,7 +5,6 @@ import { use } from 'react';
 import WhyChooseSection from '@/components/home/WhyChooseSection';
 import ClinicShowcaseCarousel from '@/components/home/ClinicShowcaseCarousel';
 import DoctorsSection from '@/components/about/DoctorsSection';
-import WhyTrustSection from '@/components/home/WhyTrustSection';
 import SuccessStories from '@/components/home/SuccessStories';
 import ConsultOnlineSection from '@/components/home/ConsultOnlineSection';
 
@@ -84,9 +83,6 @@ export default function ClinicPage({ params }: ClinicPageProps) {
           description="Celyxmed'de doktorlarımız uzmanlardan daha fazlasıdır - kendilerini kişiselleştirilmiş bakım sağlamaya ve hayat değiştiren sonuçlar elde etmeye adamış, alanlarında lider kişilerdir. Yılların deneyimiyle, sağlık yolculuğunuzun en iyi ellerde olmasını sağlarlar."
           doctors={doctors}
         />
-        
-        {/* 10.000'den Fazla Başarılı Tedavi - Sağlığınız Güvenilir Ellerde */}
-        <WhyTrustSection locale={locale} />
         
         {/* Yorumlar Alanı */}
         <SuccessStories locale={locale} />
