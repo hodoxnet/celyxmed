@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Phone, MessageCircle } from 'lucide-react';
 
 interface FloatingButtonsProps {
   whatsappNumber?: string | null;
@@ -16,6 +16,7 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
   stickyButtonLink,
 }) => {
   const [whatsappLink, setWhatsappLink] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
   const defaultPhoneNumber = "902167064780"; // Varsayılan numara, eğer prop gelmezse kullanılır
 
   useEffect(() => {
@@ -29,6 +30,11 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
     const message = hasUtm ? utmMessage : defaultMessage;
     const generatedLink = `https://wa.me/${phoneToUse.replace(/\s+/g, '')}?text=${encodeURIComponent(message)}`;
     setWhatsappLink(generatedLink);
+    
+    // Sayfa yüklendiğinde animasyonlu giriş
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
   }, [whatsappNumber]);
 
   const finalStickyButtonLink = stickyButtonLink || "/contact";
@@ -37,44 +43,82 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
   return (
     <>
       {/* Sol Alt: WhatsApp ve Telefon Butonları */}
-      <div className="fixed bottom-8 left-8 z-50 flex flex-col gap-4 sm:flex-row">
+      <div className={`fixed bottom-8 left-8 z-50 flex flex-col gap-4 sm:flex-row transition-all duration-700 ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+      }`}>
         {whatsappLink && (
           <Link 
             href={whatsappLink} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full flex items-center justify-center shadow-lg"
+            className="group relative bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white p-4 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300"
             aria-label="WhatsApp ile iletişime geçin"
+            style={{ transitionDelay: '100ms' }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
+            {/* Pulse animasyonu */}
+            <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-20"></div>
+            <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-10" style={{ animationDelay: '0.5s' }}></div>
+            
+            <MessageCircle className="h-6 w-6 relative z-10" />
+            
+            {/* Hover tooltip */}
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+              WhatsApp
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+              </div>
+            </div>
           </Link>
         )}
-        {/* Telefon butonu, eğer whatsappNumber prop'u varsa onu kullanır, yoksa varsayılanı */}
+        
+        {/* Telefon butonu */}
         <Link 
           href={`tel:${(whatsappNumber || defaultPhoneNumber).replace(/\s+/g, '')}`}
-          className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full flex items-center justify-center shadow-lg"
+          className="group relative bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-4 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300"
           aria-label="Telefonla arayın"
+          style={{ transitionDelay: '200ms' }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-          </svg>
+          {/* Glow efekti */}
+          <div className="absolute inset-0 rounded-full bg-blue-400 blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+          
+          <Phone className="h-6 w-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+          
+          {/* Hover tooltip */}
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            Ara
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+              <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
         </Link>
       </div>
       
       {/* Sağ Alt: Consultation Butonu */}
       {(finalStickyButtonText && finalStickyButtonLink) && (
-        <div className="fixed bottom-8 right-8 z-50">
+        <div className={`fixed bottom-8 right-8 z-50 transition-all duration-700 ${
+          isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'
+        }`} style={{ transitionDelay: '300ms' }}>
           <Link 
             href={finalStickyButtonLink}
-            className="bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-md flex items-center gap-2 shadow-lg"
+            className="group bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden relative"
           >
-            <ArrowRight className="h-5 w-5" />
-            <span>{finalStickyButtonText}</span>
+            {/* Shimmer efekti */}
+            <div className="absolute inset-0 -inset-x-full bg-gradient-to-r from-transparent via-white to-transparent opacity-10 group-hover:translate-x-full transition-transform duration-1000"></div>
+            
+            <span className="relative z-10 font-medium">{finalStickyButtonText}</span>
+            <ArrowRight className="h-5 w-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
       )}
+      
+      <style jsx>{`
+        @keyframes ping {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+      `}</style>
     </>
   );
 };
