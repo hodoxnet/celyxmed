@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -19,7 +19,11 @@ interface FormData {
   privacyAccepted: boolean;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  locale: string;
+}
+
+export default function ContactForm({ locale }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
@@ -29,6 +33,41 @@ export default function ContactForm() {
     privacyAccepted: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contactContent, setContactContent] = useState<any>({
+    formTitle: "Bize ulaşın",
+    formDescription: "Size 24 saat içinde mümkün olan en kısa sürede geri dönmek için elimizden geleni yapacağız!",
+    nameLabel: "İsim Soyisim",
+    namePlaceholder: "İsim Soyisim",
+    contactMethodLabel: "İletişim Türü",
+    phoneLabel: "Telefon",
+    phonePlaceholder: "5XX XXX XX XX",
+    emailLabel: "E-posta",
+    emailPlaceholder: "ornek@email.com",
+    messageLabel: "Mesajınız",
+    messagePlaceholder: "Mesajınızı buraya yazın...",
+    submitButtonText: "Mesaj Gönder",
+    privacyCheckboxText: "Gizlilik politikasını kabul ediyorum",
+    successMessage: "Mesajınız başarıyla gönderildi! Size 24 saat içinde geri dönüş yapacağız.",
+    errorMessage: "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+    privacyErrorMessage: "Gizlilik politikasını kabul etmelisiniz"
+  });
+
+  // İletişim sayfası içeriğini yükle
+  useEffect(() => {
+    const fetchContactContent = async () => {
+      try {
+        const response = await fetch(`/api/contact-page?lang=${locale}`);
+        if (response.ok) {
+          const data = await response.json();
+          setContactContent(data);
+        }
+      } catch (error) {
+        console.error("İletişim içeriği yüklenirken hata:", error);
+      }
+    };
+
+    fetchContactContent();
+  }, [locale]);
 
   const handleInputChange = (field: keyof FormData, value: string | boolean) => {
     setFormData(prev => ({
@@ -41,7 +80,7 @@ export default function ContactForm() {
     e.preventDefault();
     
     if (!formData.privacyAccepted) {
-      toast.error('Gizlilik politikasını kabul etmelisiniz');
+      toast.error(contactContent.privacyErrorMessage);
       return;
     }
 
@@ -51,7 +90,7 @@ export default function ContactForm() {
       // Form gönderme işlemi burada yapılacak
       // Şimdilik sadece bir toast mesajı gösteriyoruz
       await new Promise(resolve => setTimeout(resolve, 1000));
-      toast.success('Mesajınız başarıyla gönderildi! Size 24 saat içinde geri dönüş yapacağız.');
+      toast.success(contactContent.successMessage);
       
       // Formu sıfırla
       setFormData({
@@ -63,7 +102,7 @@ export default function ContactForm() {
         privacyAccepted: false
       });
     } catch (error) {
-      toast.error('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+      toast.error(contactContent.errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -74,10 +113,10 @@ export default function ContactForm() {
       {/* Başlık */}
       <div className="mb-8">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4">
-          Bize ulaşın
+          {contactContent.formTitle}
         </h1>
         <p className="text-gray-600 text-lg">
-          Size 24 saat içinde mümkün olan en kısa sürede geri dönmek için elimizden geleni yapacağız!
+          {contactContent.formDescription}
         </p>
       </div>
 
@@ -87,21 +126,21 @@ export default function ContactForm() {
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <Label htmlFor="name" className="text-base font-medium text-gray-900 mb-3 block">
-              İsim Soyisim
+              {contactContent.nameLabel}
             </Label>
             <Input
               id="name"
               type="text"
               value={formData.name}
               onChange={(e) => handleInputChange('name', e.target.value)}
-              placeholder="İsim Soyisim"
+              placeholder={contactContent.namePlaceholder}
               required
               className="w-full h-12 text-base bg-white"
             />
           </div>
           <div>
             <Label htmlFor="contactMethod" className="text-base font-medium text-gray-900 mb-3 block">
-              Sizinle nasıl iletişime geçebiliriz?
+              {contactContent.contactMethodLabel}
             </Label>
             <Select value={formData.contactMethod} onValueChange={(value) => handleInputChange('contactMethod', value)}>
               <SelectTrigger className="h-12 text-base bg-white">
@@ -133,7 +172,7 @@ export default function ContactForm() {
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
-                placeholder="Telefon Numarası"
+                placeholder={contactContent.phonePlaceholder}
                 required
                 className="w-full h-12 pl-20 text-base bg-white"
               />
@@ -141,14 +180,14 @@ export default function ContactForm() {
           </div>
           <div>
             <Label htmlFor="email" className="text-base font-medium text-gray-900 mb-3 block">
-              E-posta
+              {contactContent.emailLabel}
             </Label>
             <Input
               id="email"
               type="email"
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              placeholder="E-posta adresinizi girin"
+              placeholder={contactContent.emailPlaceholder}
               required
               className="w-full h-12 text-base bg-white"
             />
@@ -158,13 +197,13 @@ export default function ContactForm() {
         {/* Mesaj */}
         <div>
           <Label htmlFor="message" className="text-base font-medium text-gray-900 mb-3 block">
-            Mesaj
+            {contactContent.messageLabel}
           </Label>
           <Textarea
             id="message"
             value={formData.message}
             onChange={(e) => handleInputChange('message', e.target.value)}
-            placeholder="Mesajınız..."
+            placeholder={contactContent.messagePlaceholder}
             rows={5}
             className="w-full text-base resize-none bg-white"
           />
@@ -179,7 +218,7 @@ export default function ContactForm() {
             className="mt-1"
           />
           <Label htmlFor="privacy" className="text-base text-gray-600 leading-relaxed">
-            Gizlilik Politikasını ve KVKK Şartlarını okudum ve kabul ediyorum.
+            {contactContent.privacyCheckboxText}
           </Label>
         </div>
 
@@ -193,7 +232,7 @@ export default function ContactForm() {
             <div className="bg-[#d4b978] h-10 w-10 rounded-full flex items-center justify-center mr-4">
               <ArrowRight className="h-5 w-5 text-white transition-transform group-hover:translate-x-1" />
             </div>
-            {isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
+            {isSubmitting ? 'Gönderiliyor...' : contactContent.submitButtonText}
           </Button>
         </div>
       </form>

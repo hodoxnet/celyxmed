@@ -140,7 +140,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
   const handleClearImage = () => {
     setPreviewUrl('');
-    onImageUploaded('');
+    handleImageUploaded(''); // Bu hem onImageUploaded hem onChange'i kapsar
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 

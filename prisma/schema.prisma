@@ -106,6 +106,9 @@ model Language {
 
   // Klinik Sayfası İlişkileri
   clinicPageTranslations ClinicPageTranslation[]
+
+  // İletişim Sayfası İlişkileri
+  contactPageTranslations ContactPageTranslation[]
 }
 
 // URL rota çevirileri modeli
@@ -1360,4 +1363,77 @@ model ClinicPageTranslation {
   updatedAt       DateTime  @updatedAt
 
   @@unique([clinicPageId, languageCode])
+}
+
+// ----- İLETİŞİM SAYFASI MODELLERİ -----
+
+// İletişim Sayfası Ana Modeli (Dil Bağımsız)
+model ContactPage {
+  id            String   @id @default("main") // Tek kayıt olacak
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Dil bağımsız görseller
+  heroImageUrl  String?  // Ana görsel URL'si
+
+  // İlişkiler
+  translations  ContactPageTranslation[]
+}
+
+// İletişim Sayfası Çeviri Modeli (Dile Özgü Metinler)
+model ContactPageTranslation {
+  id              String    @id @default(cuid())
+  contactPage     ContactPage @relation(fields: [contactPageId], references: [id], onDelete: Cascade)
+  contactPageId   String
+  language        Language  @relation(fields: [languageCode], references: [code], onDelete: Cascade)
+  languageCode    String
+
+  // Form başlık bölümü
+  formTitle           String    @default("Bize ulaşın")
+  formDescription     String    @default("Size 24 saat içinde mümkün olan en kısa sürede geri dönmek için elimizden geleni yapacağız!") @db.Text
+
+  // Form alanları metinleri
+  nameLabel           String    @default("İsim Soyisim")
+  namePlaceholder     String    @default("İsim Soyisim")
+  contactMethodLabel  String    @default("İletişim Türü")
+  phoneLabel          String    @default("Telefon")
+  phonePlaceholder    String    @default("5XX XXX XX XX")
+  emailLabel          String    @default("E-posta")
+  emailPlaceholder    String    @default("ornek@email.com")
+  messageLabel        String    @default("Mesajınız")
+  messagePlaceholder  String    @default("Mesajınızı buraya yazın...")
+  
+  // Form buton ve checkbox metinleri
+  submitButtonText    String    @default("Mesaj Gönder")
+  privacyCheckboxText String    @default("Gizlilik politikasını kabul ediyorum") @db.Text
+  privacyPolicyLink   String    @default("/gizlilik-politikasi")
+
+  // Sol taraf bilgi bölümü
+  onlineIndicatorText String    @default("Sağlık Danışmanlarımız Çevrimiçi")
+  advisorTitle        String    @default("Sağlık Danışmanlarımız Çevrimiçi ve Size Yardımcı Olmaya Hazır") @db.Text
+  advisorDescription  String    @default("Uzman ekibimiz, sağlık yolculuğunuzda size rehberlik etmek için burada. Sorularınızı yanıtlamak ve size en uygun tedavi seçeneklerini sunmak için sabırsızlanıyoruz.") @db.Text
+  
+  // Harita ve iletişim bilgileri bölümü
+  mapTitle            String    @default("Bize Ulaşın")
+  addressTitle        String    @default("Adres")
+  addressText         String    @default("Ataşehir, İstanbul") @db.Text
+  phoneTitle          String    @default("Telefon")
+  phoneText           String    @default("+90 XXX XXX XX XX")
+  emailTitle          String    @default("E-posta")
+  emailText           String    @default("info@celyxmed.com")
+  workingHoursTitle   String    @default("Çalışma Saatleri")
+  workingHoursText    String    @default("Pazartesi - Cumartesi: 09:00 - 18:00") @db.Text
+
+  // Ana görsel alt metni
+  heroImageAlt        String    @default("Ücretsiz konsültasyon")
+
+  // Başarı mesajları
+  successMessage      String    @default("Mesajınız başarıyla gönderildi! Size 24 saat içinde geri dönüş yapacağız.") @db.Text
+  errorMessage        String    @default("Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.") @db.Text
+  privacyErrorMessage String    @default("Gizlilik politikasını kabul etmelisiniz")
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([contactPageId, languageCode])
 }

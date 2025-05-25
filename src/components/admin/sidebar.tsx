@@ -19,6 +19,7 @@ import {
   ChevronDown,
   ChevronRight,
   Building,
+  Phone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -97,6 +98,11 @@ const navItems: NavItem[] = [
     title: "Klinik Sayfası",
     href: "/admin/clinic-page",
     icon: <Building className="h-5 w-5" />,
+  },
+  {
+    title: "İletişim Sayfası",
+    href: "/admin/contact-page",
+    icon: <Phone className="h-5 w-5" />,
   },
   {
     title: "Genel Ayarlar",

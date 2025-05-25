@@ -920,6 +920,51 @@ exports.Prisma.ClinicPageTranslationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ContactPageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  heroImageUrl: 'heroImageUrl'
+};
+
+exports.Prisma.ContactPageTranslationScalarFieldEnum = {
+  id: 'id',
+  contactPageId: 'contactPageId',
+  languageCode: 'languageCode',
+  formTitle: 'formTitle',
+  formDescription: 'formDescription',
+  nameLabel: 'nameLabel',
+  namePlaceholder: 'namePlaceholder',
+  contactMethodLabel: 'contactMethodLabel',
+  phoneLabel: 'phoneLabel',
+  phonePlaceholder: 'phonePlaceholder',
+  emailLabel: 'emailLabel',
+  emailPlaceholder: 'emailPlaceholder',
+  messageLabel: 'messageLabel',
+  messagePlaceholder: 'messagePlaceholder',
+  submitButtonText: 'submitButtonText',
+  privacyCheckboxText: 'privacyCheckboxText',
+  privacyPolicyLink: 'privacyPolicyLink',
+  onlineIndicatorText: 'onlineIndicatorText',
+  advisorTitle: 'advisorTitle',
+  advisorDescription: 'advisorDescription',
+  mapTitle: 'mapTitle',
+  addressTitle: 'addressTitle',
+  addressText: 'addressText',
+  phoneTitle: 'phoneTitle',
+  phoneText: 'phoneText',
+  emailTitle: 'emailTitle',
+  emailText: 'emailText',
+  workingHoursTitle: 'workingHoursTitle',
+  workingHoursText: 'workingHoursText',
+  heroImageAlt: 'heroImageAlt',
+  successMessage: 'successMessage',
+  errorMessage: 'errorMessage',
+  privacyErrorMessage: 'privacyErrorMessage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1035,7 +1080,9 @@ exports.Prisma.ModelName = {
   AboutPageDoctor: 'AboutPageDoctor',
   AboutPageDoctorTranslation: 'AboutPageDoctorTranslation',
   ClinicPage: 'ClinicPage',
-  ClinicPageTranslation: 'ClinicPageTranslation'
+  ClinicPageTranslation: 'ClinicPageTranslation',
+  ContactPage: 'ContactPage',
+  ContactPageTranslation: 'ContactPageTranslation'
 };
 
 /**

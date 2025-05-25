@@ -91,6 +91,30 @@ const nextConfig: NextConfig = {
     "destination": "/ru/hizmetler/:path*"
   },
   {
+    "source": "/de/kontakt/:path*",
+    "destination": "/de/iletisim/:path*"
+  },
+  {
+    "source": "/en/contact/:path*",
+    "destination": "/en/iletisim/:path*"
+  },
+  {
+    "source": "/es/contacto/:path*",
+    "destination": "/es/iletisim/:path*"
+  },
+  {
+    "source": "/fr/contact/:path*",
+    "destination": "/fr/iletisim/:path*"
+  },
+  {
+    "source": "/it/contatti/:path*",
+    "destination": "/it/iletisim/:path*"
+  },
+  {
+    "source": "/ru/kontakt/:path*",
+    "destination": "/ru/iletisim/:path*"
+  },
+  {
     "source": "/de/unsere-klinik/:path*",
     "destination": "/de/klinik/:path*"
   },
