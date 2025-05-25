@@ -117,10 +117,11 @@ const Footer: React.FC<FooterProps> = ({
     
     // İlk parçayı çevir (varsa)
     const firstPart = actualPathParts[0];
-    const translatedRoute = routeTranslations[firstPart]?.[targetLocale] || firstPart;
+    const routeTranslationsTyped = routeTranslations as Record<string, Record<string, string>>;
+    const translatedRoute = routeTranslationsTyped[firstPart]?.[targetLocale] || firstPart;
     
     // Çeviri varsa yeni path oluştur
-    if (routeTranslations[firstPart]?.[targetLocale]) {
+    if (routeTranslationsTyped[firstPart]?.[targetLocale]) {
       const otherParts = actualPathParts.slice(1);
       const translatedPath = [translatedRoute, ...otherParts].join('/');
       return `/${targetLocale}/${translatedPath}`;
