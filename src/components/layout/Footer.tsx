@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 // Sosyal medya ikonları için tip tanımı
 import { LucideProps } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { routeTranslations } from '@/generated/route-translations';
 
 // Menü tipleri (RootLayoutClient'tan veya ortak tiplerden)
 interface MenuItem {
@@ -93,6 +95,41 @@ const Footer: React.FC<FooterProps> = ({
 }) => {
   // Dinamik menü gruplarını al veya boş array kullan
   const footerMenuGroups = menuData || [];
+  const pathname = usePathname();
+  
+  // Mevcut locale'i pathname'den al
+  const currentLocale = pathname.split('/')[1] || 'tr';
+  
+  // Menü linklerini hedef dile çeviren fonksiyon (Navbar'dan alındı)
+  const translateMenuLink = (href: string, targetLocale: string): string => {
+    if (!href || href === '#') return href;
+    
+    // URL'i parçalara ayır
+    const pathParts = href.split('/').filter(Boolean);
+    
+    // Eğer ilk parça bir dil koduysa, onu çıkar
+    const startsWithLocale = pathParts[0] && ['tr', 'en', 'de', 'es', 'fr', 'it', 'ru'].includes(pathParts[0]);
+    const actualPathParts = startsWithLocale ? pathParts.slice(1) : pathParts;
+    
+    if (actualPathParts.length === 0) {
+      return `/${targetLocale}`;
+    }
+    
+    // İlk parçayı çevir (varsa)
+    const firstPart = actualPathParts[0];
+    const translatedRoute = routeTranslations[firstPart]?.[targetLocale] || firstPart;
+    
+    // Çeviri varsa yeni path oluştur
+    if (routeTranslations[firstPart]?.[targetLocale]) {
+      const otherParts = actualPathParts.slice(1);
+      const translatedPath = [translatedRoute, ...otherParts].join('/');
+      return `/${targetLocale}/${translatedPath}`;
+    }
+    
+    // Çeviri yoksa orijinal path'i kullan (ama dil kodunu güncelle)
+    const finalPath = actualPathParts.join('/');
+    return `/${targetLocale}/${finalPath}`;
+  };
   return (
     // Renk şeması güncellendi: beyaz arka plan, koyu gri metin. Alt boşluk artırıldı.
     <footer className="bg-white text-gray-700 pt-16 pb-24"> {/* pb-8'den pb-24'e çıkarıldı */}
@@ -115,7 +152,7 @@ const Footer: React.FC<FooterProps> = ({
             </p>
             {/* Buton Link ile sarıldı (Yeni Next.js standardı) */}
             <Button asChild className="bg-[#3E838C] hover:bg-[#367078] text-white rounded-lg px-6 py-2 inline-block">
-              <Link href="/iletisim">
+              <Link href={translateMenuLink("/iletisim", currentLocale)}>
                 {translations?.contactButton || "İletişim"}
               </Link>
             </Button>
@@ -130,7 +167,7 @@ const Footer: React.FC<FooterProps> = ({
                   {group.items.map(item => (
                     <li key={item.id}>
                       <Link 
-                        href={item.href} 
+                        href={translateMenuLink(item.href, currentLocale)} 
                         className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                         target={item.openInNewTab ? "_blank" : undefined}
                         rel={item.openInNewTab ? "noopener noreferrer" : undefined}
