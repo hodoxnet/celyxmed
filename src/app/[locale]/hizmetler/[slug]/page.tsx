@@ -95,10 +95,10 @@ interface ServiceData {
 
 // Sayfa parametrelerinin tipini tanımla
 interface ServiceDetailPageProps {
-  params: {
+  params: Promise<{
     locale: string;
     slug: string;
-  };
+  }>;
 }
 
 // Dinamik metadata oluşturma
@@ -106,7 +106,7 @@ export async function generateMetadata(
   { params }: ServiceDetailPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
 
   // Varsayılan meta değerlerini belirle
   let title = 'Hizmetler';
@@ -448,9 +448,9 @@ function getFallbackData(slug: string, locale: string): FetchedServiceData {
 
 
 export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
-  // Burada React.use() kullanmak gerekiyor, ama Next.js 15'te henüz zorunlu değil
+  // Burada React.use() kullanmak gerekiyor, ama Next.js 15'te henün zorunlu değil
   // Gelecek versiyonlarda React.use(params) ile kullanılmalı
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
 
   // Veriyi API'den çek
   const serviceData = await getServiceData(slug, locale);

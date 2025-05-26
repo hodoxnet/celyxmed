@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run build:config && next dev",
+    "dev": "npm run build:config && next dev -p 3002",
     "build:locales": "npx prisma generate && node ./scripts/generate-locales-config.mjs",
     "build:routes": "node ./scripts/generate-route-translations.mjs",
     "build:next-config": "node ./scripts/generate-next-config.mjs",
     "build:config": "npm run build:locales && npm run build:routes && npm run build:next-config",
     "build": "npm run build:config && next build",
-    "start": "next start",
+    "start": "next start -p 3002",
     "lint": "next lint",
     "seed": "tsx prisma/seed.ts"
   },

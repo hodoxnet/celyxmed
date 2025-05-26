@@ -121,9 +121,9 @@ const hizmetFormSchema = z.object({
 // --- Şema kopyalama sonu ---
 
 interface Context {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // Yardımcı fonksiyon: Fiziksel dosyayı siler
@@ -155,7 +155,7 @@ async function deleteFile(relativePath: string | null | undefined) {
 // GET: Belirli bir hizmeti ve tüm ilişkili verilerini getir (Yeni yapı)
 export async function GET(req: Request, context: Context) {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
     const session = await getServerSession(authOptions);
     if (!session || session.user.role !== Role.ADMIN) {
       return new NextResponse('Unauthorized', { status: 401 });
@@ -193,7 +193,7 @@ export async function GET(req: Request, context: Context) {
 // PATCH: Belirli bir hizmeti güncelle (Yeni yapı)
 export async function PATCH(req: Request, context: Context) {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
     const session = await getServerSession(authOptions);
     if (!session || session.user.role !== Role.ADMIN) {
       return new NextResponse('Unauthorized', { status: 401 });
@@ -617,7 +617,7 @@ export async function PATCH(req: Request, context: Context) {
 // DELETE: Belirli bir hizmeti sil (Yeni yapı)
 export async function DELETE(req: Request, context: Context) {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
     const session = await getServerSession(authOptions);
     if (!session || session.user.role !== Role.ADMIN) {
       return new NextResponse('Unauthorized', { status: 401 });

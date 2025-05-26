@@ -2,15 +2,15 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 interface Context {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // GET: Belirli bir hizmet detayını slug ve locale'e göre getir (Public)
 export async function GET(req: Request, context: Context) {
   try {
-    const { slug } = context.params;
+    const { slug } = await context.params;
     const { searchParams } = new URL(req.url);
     const locale = searchParams.get('locale');
     const defaultLocale = 'tr'; // Varsayılan dili belirle

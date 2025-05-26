@@ -25,9 +25,9 @@ const UpdateFeatureTabItemSchema = z.object({
 
 
 interface Params {
-  params: {
+  params: Promise<{
     itemId: string;
-  };
+  }>;
 }
 
 export async function GET(request: Request, { params }: Params) {
@@ -37,7 +37,7 @@ export async function GET(request: Request, { params }: Params) {
       return NextResponse.json({ error: 'Yetkisiz erişim.' }, { status: 403 });
     }
 
-    const { itemId } = params;
+    const { itemId } = await params;
 
     const item = await prisma.homePageFeatureTabItem.findUnique({
       where: { id: itemId },
@@ -66,7 +66,7 @@ export async function PUT(request: Request, { params }: Params) {
       return NextResponse.json({ error: 'Yetkisiz erişim.' }, { status: 403 });
     }
 
-    const { itemId } = params;
+    const { itemId } = await params;
     const body = await request.json();
     console.log("Alınan PUT verileri:", JSON.stringify(body, null, 2));
     
@@ -168,7 +168,7 @@ export async function DELETE(request: Request, { params }: Params) {
       return NextResponse.json({ error: 'Yetkisiz erişim.' }, { status: 403 });
     }
 
-    const { itemId } = params;
+    const { itemId } = await params;
 
     const itemToDelete = await prisma.homePageFeatureTabItem.findUnique({
       where: { id: itemId },

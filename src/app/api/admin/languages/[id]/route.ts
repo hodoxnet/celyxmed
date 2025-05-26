@@ -7,12 +7,12 @@ import { Language } from '@/generated/prisma';
 const messagesDir = path.join(process.cwd(), 'src', 'messages');
 
 interface Params {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 // PUT: Dili güncelle
 export async function PUT(request: Request, { params }: Params) {
-  const { id } = params;
+  const { id } = await params;
   try {
     const body = await request.json();
     const { name, menuLabel, flagCode, isActive, isDefault } = body; // Güncellenecek alanlar
@@ -79,7 +79,7 @@ export async function PUT(request: Request, { params }: Params) {
 
 // DELETE: Dili sil
 export async function DELETE(request: Request, { params }: Params) {
-  const { id } = params;
+  const { id } = await params;
   try {
     // Silinecek dili bul (dosya adını almak için)
     const languageToDelete = await prisma.language.findUnique({

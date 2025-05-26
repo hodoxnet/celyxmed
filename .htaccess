@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# LiteSpeed proxy with host preservation
+RewriteCond %{HTTP_HOST} ^(www\.)?medyayonetimi\.net$ [NC]
+RewriteRule ^(.*)$ http://127.0.0.1:3002/$1 [P,L,E=HTTP_HOST:medyayonetimi.net]
+
+# Add headers
+Header set X-Forwarded-Host "medyayonetimi.net"
+Header set X-Forwarded-Proto "https"

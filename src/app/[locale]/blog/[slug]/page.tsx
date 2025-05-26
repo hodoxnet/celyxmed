@@ -16,7 +16,7 @@ const BlogDetailContent = dynamic(() => import('./BlogDetailContent'), {
 
 // Metadata tipi
 type Props = {
-  params: { locale: string; slug: string }
+  params: Promise<{ locale: string; slug: string }>
 }
 
 // Dinamik metadata oluşturma
@@ -24,7 +24,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
 
   // Varsayılan meta değerlerini belirle
   let title = 'Blog';
@@ -75,7 +75,7 @@ export async function generateMetadata(
 
 // Blog sayfasının ana bileşeni
 export default async function BlogDetailPage({ params }: Props) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
   
   // Veritabanında blog kaydını kontrol et
   const blogTranslation = await prisma.blogTranslation.findFirst({

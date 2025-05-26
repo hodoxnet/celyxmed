@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 };
 
 interface HizmetPageProps {
-  params: {
+  params: Promise<{
     id: string; // 'yeni' veya hizmet ID'si
-  };
+  }>;
 }
 
 // Hizmet ve ilişkili tüm çevirilerini, definition'larını ve onların çevirilerini getirecek tip
@@ -88,7 +88,7 @@ async function getHizmetData(id: string): Promise<HizmetWithTranslationsAndRelat
 
 export default async function HizmetPage({ params }: HizmetPageProps) {
   // Next.js 15.3 için params'ı await etmeliyiz
-  const paramId = params.id;
+  const { id: paramId } = await params;
   
   // ID güvenli bir şekilde alındı, şimdi hizmet verilerini yükleyebiliriz
   const hizmetData = await getHizmetData(paramId);

@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 interface Params {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 // GET: Belirli bir dildeki tüm yayınlanmış blogları listele (public API)
 export async function GET(request: Request, { params }: Params) {
   try {
-    const { locale } = params;
+    const { locale } = await params;
     
     // Yayınlanmış blogları ve belirtilen dildeki çevirilerini getir
     const blogs = await prisma.blog.findMany({

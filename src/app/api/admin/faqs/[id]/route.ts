@@ -3,14 +3,14 @@ import prisma from '@/lib/prisma';
 import { Prisma } from '@/generated/prisma/client';
 
 interface FaqRouteContext {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // Belirli bir SSS'yi ve çevirilerini getir (GET)
 export async function GET(request: Request, context: FaqRouteContext) {
-  const { id } = context.params;
+  const { id } = await context.params;
   try {
     const faq = await prisma.faq.findUnique({
       where: { id },
@@ -35,7 +35,7 @@ export async function GET(request: Request, context: FaqRouteContext) {
 
 // Belirli bir SSS'yi güncelle (PUT)
 export async function PUT(request: Request, context: FaqRouteContext) {
-  const { id } = context.params;
+  const { id } = await context.params;
   try {
     const body = await request.json();
     const { order, isPublished, translations } = body;
@@ -96,7 +96,7 @@ export async function PUT(request: Request, context: FaqRouteContext) {
 
 // Belirli bir SSS'yi sil (DELETE)
 export async function DELETE(request: Request, context: FaqRouteContext) {
-  const { id } = context.params;
+  const { id } = await context.params;
   try {
     const faqToDelete = await prisma.faq.findUnique({ where: { id } });
     if (!faqToDelete) {

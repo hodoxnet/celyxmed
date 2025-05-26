@@ -25,8 +25,9 @@ interface FooterMenu {
 
 
 async function fetchGeneralSettings(locale: string): Promise<GeneralSettingWithTranslation | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  console.log(`[fetchGeneralSettings] NEXT_PUBLIC_BASE_URL: ${baseUrl}`); // Log eklendi
+  // Server-side için internal URL kullan
+  const baseUrl = process.env.INTERNAL_API_URL || 'http://localhost:3002';
+  console.log(`[fetchGeneralSettings] Using internal URL: ${baseUrl}`); // Log eklendi
 
   if (!baseUrl) {
     console.error("[fetchGeneralSettings] Error: NEXT_PUBLIC_BASE_URL is not defined. Please set it in your .env.local file.");
@@ -58,7 +59,7 @@ async function fetchGeneralSettings(locale: string): Promise<GeneralSettingWithT
 
 // Header menü verisini çek
 async function fetchHeaderMenu(locale: string): Promise<HeaderMenu[] | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.INTERNAL_API_URL || 'http://localhost:3002';
   if (!baseUrl) return null;
   try {
     const response = await fetch(`${baseUrl}/api/menus/header?locale=${locale}`, { cache: 'no-store' });
@@ -73,7 +74,7 @@ async function fetchHeaderMenu(locale: string): Promise<HeaderMenu[] | null> {
 
 // Footer menü verisini çek
 async function fetchFooterMenus(locale: string): Promise<FooterMenu[] | null> {
-   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+   const baseUrl = process.env.INTERNAL_API_URL || 'http://localhost:3002';
   if (!baseUrl) return null;
   try {
     const response = await fetch(`${baseUrl}/api/menus/footer?locale=${locale}`, { cache: 'no-store' });
