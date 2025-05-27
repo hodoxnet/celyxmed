@@ -238,7 +238,7 @@ const Navbar: React.FC<NavbarProps> = ({
     <>
       <header className="absolute top-0 left-0 right-0 z-50 w-full pt-6">
         <div className="container mx-auto px-4 flex justify-center">
-          <div className="flex items-center justify-between bg-white/90 backdrop-blur-md px-6 py-5 rounded-3xl shadow-lg w-full max-w-[1360px]">
+          <div className="flex items-center justify-between bg-white backdrop-blur-md px-6 py-3 rounded-3xl shadow-lg w-full max-w-[1360px]">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
