@@ -1067,7 +1067,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/var/www/vhosts/medyayonetimi.net/httpdocs/src/generated/prisma",
+      "value": "/Users/hodoxpro/Documents/herd/celyxmed/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -1076,12 +1076,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "rhel-openssl-1.1.x",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/var/www/vhosts/medyayonetimi.net/httpdocs/prisma/schema.prisma",
+    "sourceFilePath": "/Users/hodoxpro/Documents/herd/celyxmed/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

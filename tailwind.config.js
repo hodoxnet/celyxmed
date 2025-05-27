@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Satoshi', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        satoshi: ['Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

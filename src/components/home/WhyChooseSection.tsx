@@ -145,7 +145,7 @@ const WhyChooseSection = ({ hideTitle = false, hideDescription = false, hideButt
               
               <Link 
                 href={data.secondaryButtonLink}
-                className="flex items-center justify-center bg-transparent text-gray-700 hover:bg-gray-100 px-8 py-4 rounded-[20px] shadow-lg transition-all duration-300 text-base font-bold"
+                className="flex items-center justify-center bg-transparent text-gray-700 hover:bg-gray-100 px-8 py-4 rounded-[20px] shadow-lg transition-all duration-300 text-base font-medium"
               >
                 {data.secondaryButtonText}
               </Link>

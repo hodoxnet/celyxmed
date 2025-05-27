@@ -1068,7 +1068,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/var/www/vhosts/medyayonetimi.net/httpdocs/src/generated/prisma",
+      "value": "/Users/hodoxpro/Documents/herd/celyxmed/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -1077,12 +1077,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "rhel-openssl-1.1.x",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/var/www/vhosts/medyayonetimi.net/httpdocs/prisma/schema.prisma",
+    "sourceFilePath": "/Users/hodoxpro/Documents/herd/celyxmed/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -1145,8 +1145,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-rhel-openssl-1.1.x.so.node");
-path.join(process.cwd(), "src/generated/prisma/libquery_engine-rhel-openssl-1.1.x.so.node")
+path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-darwin-arm64.dylib.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/generated/prisma/schema.prisma")

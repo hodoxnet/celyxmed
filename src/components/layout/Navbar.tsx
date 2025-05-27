@@ -9,7 +9,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -259,7 +259,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   {/* Tüm Ana Menüler - Her biri kendi dropdown'una sahip */}
                   {menus.map(menu => (
                     <NavigationMenuItem key={menu.id}>
-                      <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-medium">
+                      <NavigationMenuTrigger className="bg-transparent text-gray-700 hover:text-gray-900 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent py-2 px-3 text-base font-normal">
                         {menu.name}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
@@ -386,24 +386,25 @@ const Navbar: React.FC<NavbarProps> = ({
                       {mobileMenuFormats.map(menu => (
                         <div key={menu.menuId} className="border-b pb-4">
                           <button
-                            className="flex items-center justify-between w-full text-left text-lg font-medium mb-2"
+                            className="flex items-center justify-between w-full text-left text-lg font-normal mb-2"
                             onClick={() => setMobileActiveDropdown(mobileActiveDropdown === menu.menuId ? null : menu.menuId)}
                           >
-                            <span className="font-medium">{menu.menuName}</span>
+                            <span className="font-normal">{menu.menuName}</span>
                             <ChevronDown className={`h-5 w-5 transition-transform ${mobileActiveDropdown === menu.menuId ? 'rotate-180' : ''}`} />
                           </button>
                           {mobileActiveDropdown === menu.menuId && (
                             <div className="pl-4 space-y-2 mt-2 max-h-[50vh] overflow-y-auto">
                               {menu.items.map((item) => (
-                                <Link
-                                  key={item.id}
-                                  href={item.href || '#'}
-                                  className="block py-2 text-gray-600 hover:text-gray-900"
-                                  target={item.openInNewTab ? "_blank" : undefined}
-                                  rel={item.openInNewTab ? "noopener noreferrer" : undefined}
-                                >
-                                  {item.label}
-                                </Link>
+                                <SheetClose asChild key={item.id}>
+                                  <Link
+                                    href={item.href || '#'}
+                                    className="block py-2 text-gray-600 hover:text-gray-900"
+                                    target={item.openInNewTab ? "_blank" : undefined}
+                                    rel={item.openInNewTab ? "noopener noreferrer" : undefined}
+                                  >
+                                    {item.label}
+                                  </Link>
+                                </SheetClose>
                               ))}
                             </div>
                           )}
@@ -413,7 +414,7 @@ const Navbar: React.FC<NavbarProps> = ({
                       <div className="border-b pb-4">
                         <button
                           className={cn(
-                            "flex items-center justify-between w-full text-left text-lg font-medium mb-2 transition-all duration-300",
+                            "flex items-center justify-between w-full text-left text-lg font-normal mb-2 transition-all duration-300",
                             isLanguageChanging && "opacity-70 scale-95"
                           )}
                           onClick={() => setMobileActiveDropdown(mobileActiveDropdown === "language" ? null : "language")}
@@ -469,11 +470,13 @@ const Navbar: React.FC<NavbarProps> = ({
                   {/* Header Butonu (Mobil - Korunuyor) */}
                   <div className="p-6 border-t">
                     {headerButtonLink ? (
-                      <Link href={headerButtonLink}>
-                        <Button className="w-full bg-teal-700 hover:bg-teal-800 text-white py-3">
-                         {headerButtonText || "Consultation"}
-                        </Button>
-                      </Link>
+                      <SheetClose asChild>
+                        <Link href={headerButtonLink}>
+                          <Button className="w-full bg-teal-700 hover:bg-teal-800 text-white py-3">
+                           {headerButtonText || "Consultation"}
+                          </Button>
+                        </Link>
+                      </SheetClose>
                     ) : (
                       <Button className="w-full bg-teal-700 hover:bg-teal-800 text-white py-3">
                         {headerButtonText || "Consultation"}

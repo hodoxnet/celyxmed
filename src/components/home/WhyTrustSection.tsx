@@ -98,7 +98,7 @@ const WhyTrustSection = ({ locale }: { locale: string }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
           {trustPoints.map((point) => (
             <div key={point.id || point.number} className="flex items-start space-x-4">
-              <div className="text-4xl font-bold text-cyan-400 flex-shrink-0 mt-1"> {/* Numara stili */}
+              <div className="text-4xl font-semibold text-cyan-400 flex-shrink-0 mt-1"> {/* Numara stili */}
                 {point.number}
               </div>
               <div>

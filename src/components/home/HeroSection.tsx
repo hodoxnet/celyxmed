@@ -102,7 +102,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/50 z-10"></div>
         {/* İçerik (varsayılan veya gelen çeviri) */}
          <div className="relative z-20 container mx-auto px-4 flex flex-col items-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 max-w-4xl leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 max-w-4xl leading-tight">
               {translation.title}
             </h1>
             {translation.description && (
@@ -155,7 +155,7 @@ const HeroSection = () => {
       {/* Sabit İçerik */}
       <div className="relative z-20 h-full flex items-center justify-center text-center">
           <div className="container mx-auto px-4 flex flex-col items-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 max-w-4xl leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 max-w-4xl leading-tight">
               {translation.title}
             </h1>
             {translation.description && (
