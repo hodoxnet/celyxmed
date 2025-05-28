@@ -147,17 +147,17 @@ const FeaturesTabs = () => {
                       {tab.description}
                     </p>
                     <div className="self-start">
-                      <Link 
+                      <Link
                         href={tab.buttonLink}
-                        className="inline-flex items-center rounded-full overflow-hidden shadow-md group transition-shadow hover:shadow-lg text-white font-medium text-base"
+                        className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 group bg-teal-600 hover:bg-teal-700"
                       >
-                        <span className="flex h-12 w-12 items-center justify-center bg-[#d4b978] group-hover:bg-[#c5ad6e] transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
+                        <div className="bg-[#d4b978] group-hover:bg-[#c5ad6e] rounded-lg p-1.5 flex items-center justify-center transition-colors">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-white">
                             <path d="m5 12h14"></path>
                             <path d="m12 5 7 7-7 7"></path>
                           </svg>
-                        </span>
-                        <span className="px-6 py-3 bg-teal-600 group-hover:bg-teal-700 transition-colors">
+                        </div>
+                        <span className="text-sm font-medium">
                           {tab.buttonText}
                         </span>
                       </Link>
