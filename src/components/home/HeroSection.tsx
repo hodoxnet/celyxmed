@@ -106,7 +106,7 @@ const HeroSection = () => {
               {translation.title}
             </h1>
             {translation.description && (
-              <p className="text-sm md:text-base mb-8 max-w-2xl">
+              <p className="text-sm md:text-base mb-8 max-w-4xl">
                 {translation.description}
               </p>
             )}
@@ -159,7 +159,7 @@ const HeroSection = () => {
               {translation.title}
             </h1>
             {translation.description && (
-              <p className="text-sm md:text-base mb-8 max-w-2xl">
+              <p className="text-sm md:text-base mb-8 max-w-4xl">
                 {translation.description}
               </p>
             )}
