@@ -101,24 +101,24 @@ const HeroSection = () => {
         />
         <div className="absolute inset-0 bg-black/50 z-10"></div>
         {/* İçerik (varsayılan veya gelen çeviri) */}
-         <div className="relative z-20 container mx-auto px-4 flex flex-col items-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 max-w-4xl leading-tight">
+         <div className="relative z-20 container mx-auto px-4 flex flex-col items-center justify-center pt-72 md:pt-80">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 max-w-3xl leading-tight">
               {translation.title}
             </h1>
             {translation.description && (
-              <p className="text-lg md:text-xl mb-10 max-w-3xl">
+              <p className="text-sm md:text-base mb-8 max-w-2xl">
                 {translation.description}
               </p>
             )}
              <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
-                <Link href={translation.button1Link} className="flex items-center gap-3 bg-white hover:bg-gray-100 text-gray-800 px-8 py-4 rounded-full shadow-lg transition-all duration-300">
-                  <div className="bg-[#4a8f9c] rounded-full p-2 flex items-center justify-center"><ArrowRight className="h-5 w-5 text-white" /></div>
-                  <span className="text-base font-medium">{translation.button1Text}</span>
+                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+                  <div className="bg-[#4a8f9c] rounded-xl p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
+                  <span className="text-sm font-medium">{translation.button1Text}</span>
                 </Link>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-8 py-4 rounded-full shadow-lg transition-all duration-300 text-base font-bold">
+                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-xl shadow-lg transition-all duration-300 text-sm font-bold">
                   {translation.button2Text}
                 </Link>
               )}
@@ -153,25 +153,25 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-black/50 z-10"></div>
 
       {/* Sabit İçerik */}
-      <div className="relative z-20 h-full flex items-center justify-center text-center">
+      <div className="relative z-20 h-full flex items-center justify-center text-center pt-72 md:pt-80">
           <div className="container mx-auto px-4 flex flex-col items-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 max-w-4xl leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 max-w-3xl leading-tight">
               {translation.title}
             </h1>
             {translation.description && (
-              <p className="text-lg md:text-xl mb-10 max-w-3xl">
+              <p className="text-sm md:text-base mb-8 max-w-2xl">
                 {translation.description}
               </p>
             )}
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
-                <Link href={translation.button1Link} className="flex items-center gap-3 bg-white hover:bg-gray-100 text-gray-800 px-8 py-4 rounded-full shadow-lg transition-all duration-300">
-                  <div className="bg-[#4a8f9c] rounded-full p-2 flex items-center justify-center"><ArrowRight className="h-5 w-5 text-white" /></div>
-                  <span className="text-base font-medium">{translation.button1Text}</span>
+                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+                  <div className="bg-[#4a8f9c] rounded-xl p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
+                  <span className="text-sm font-medium">{translation.button1Text}</span>
                 </Link>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-8 py-4 rounded-full shadow-lg transition-all duration-300 text-base font-bold">
+                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-xl shadow-lg transition-all duration-300 text-sm font-bold">
                   {translation.button2Text}
                 </Link>
               )}
