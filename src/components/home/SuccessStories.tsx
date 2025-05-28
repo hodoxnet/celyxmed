@@ -162,7 +162,7 @@ const SuccessStories = ({ locale }: { locale: string }) => {
          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 md:mb-16">
             <Link 
               href={consultButtonLink}
-              className="flex items-center gap-2 bg-[#4a8f9c] hover:bg-[#3d7a86] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
+              className="flex items-center gap-2 bg-[#486F79] hover:bg-[#406069] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
             >
               <div className="bg-[#d4b978] rounded-lg p-1.5 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-white">
@@ -175,7 +175,7 @@ const SuccessStories = ({ locale }: { locale: string }) => {
             
             <Link 
               href={discoverButtonLink}
-              className="inline-flex items-center justify-center text-[#4a8f9c] hover:text-[#3d7a86] border border-[#4a8f9c] hover:bg-[#4a8f9c]/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-medium"
+              className="inline-flex items-center justify-center text-[#486F79] hover:text-[#406069] border border-[#486F79] hover:bg-[#486F79]/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-medium"
             >
               {discoverButtonText}
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 h-4 w-4">

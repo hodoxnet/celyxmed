@@ -113,7 +113,7 @@ const HeroSection = () => {
              <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
                 <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
-                  <div className="bg-[#4a8f9c] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
+                  <div className="bg-[#486F79] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
                   <span className="text-sm font-medium">{translation.button1Text}</span>
                 </Link>
               )}
@@ -166,7 +166,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
                 <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
-                  <div className="bg-[#4a8f9c] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
+                  <div className="bg-[#486F79] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
                   <span className="text-sm font-medium">{translation.button1Text}</span>
                 </Link>
               )}
