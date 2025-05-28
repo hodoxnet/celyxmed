@@ -112,13 +112,13 @@ const HeroSection = () => {
             )}
              <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
-                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
-                  <div className="bg-[#4a8f9c] rounded-xl p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
+                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
+                  <div className="bg-[#4a8f9c] rounded-2xl p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
                   <span className="text-sm font-medium">{translation.button1Text}</span>
                 </Link>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-xl shadow-lg transition-all duration-300 text-sm font-bold">
+                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-bold">
                   {translation.button2Text}
                 </Link>
               )}
@@ -165,13 +165,13 @@ const HeroSection = () => {
             )}
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
-                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
-                  <div className="bg-[#4a8f9c] rounded-xl p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
+                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
+                  <div className="bg-[#4a8f9c] rounded-2xl p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
                   <span className="text-sm font-medium">{translation.button1Text}</span>
                 </Link>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-xl shadow-lg transition-all duration-300 text-sm font-bold">
+                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-bold">
                   {translation.button2Text}
                 </Link>
               )}
