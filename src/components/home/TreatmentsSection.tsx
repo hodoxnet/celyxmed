@@ -132,15 +132,15 @@ const TreatmentsSection = () => {
             {(contentTranslation?.exploreButtonText || defaultExploreButtonText) && (
               <Link 
                 href={contentTranslation?.exploreButtonLink || defaultExploreButtonLink}
-                className="inline-flex items-center bg-[#4a8f9c] hover:bg-[#3d7a86] text-white rounded-[20px] shadow-lg transition-all duration-300 overflow-hidden"
+                className="inline-flex items-center gap-2 bg-[#4a8f9c] hover:bg-[#3d7a86] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
               >
-                <div className="bg-[#d4b978] h-[56px] w-[56px] flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
+                <div className="bg-[#d4b978] rounded-lg p-1.5 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-white">
                     <path d="M5 12h14"></path>
                     <path d="m12 5 7 7-7 7"></path>
                   </svg>
                 </div>
-                <span className="px-6 py-4 text-base font-medium">{contentTranslation?.exploreButtonText || defaultExploreButtonText}</span>
+                <span className="text-sm font-medium">{contentTranslation?.exploreButtonText || defaultExploreButtonText}</span>
               </Link>
             )}
           </div>
