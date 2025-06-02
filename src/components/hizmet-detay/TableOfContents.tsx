@@ -20,13 +20,16 @@ interface TableOfContentsProps {
 
 // Bu bileşen artık sadece Accordion'u render edecek
 const TableOfContentsAccordion: React.FC<TableOfContentsProps> = ({ title, items, authorInfo }) => {
-  // Seviyeye göre içeriği formatlamak için yardımcı fonksiyon (şimdilik basit liste)
+  // Seviyeye göre içeriği formatlamak için yardımcı fonksiyon
   const renderItems = (items: ContentItem[]) => {
     return (
-      <ul className="list-disc pl-5 space-y-1">
+      <ul className="space-y-2">
         {items.map((item) => (
-          <li key={item.id} className="font-bold">
-            {item.text}
+          <li key={item.id} className="flex items-start gap-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 flex-shrink-0"></span>
+            <span className={`text-gray-700 dark:text-gray-300 leading-relaxed ${item.isBold ? 'font-semibold' : 'font-normal'}`}>
+              {item.text}
+            </span>
           </li>
         ))}
       </ul>
@@ -37,34 +40,30 @@ const TableOfContentsAccordion: React.FC<TableOfContentsProps> = ({ title, items
   const authorLines = authorInfo?.split('\n') || [];
 
   return (
-    // Stil güncellendi: Daha açık arka plan, daha belirgin border-radius
     <Accordion type="single" collapsible className="w-full rounded-xl shadow-sm bg-gray-50 dark:bg-gray-800/50 overflow-hidden">
-      <AccordionItem value="toc-item" className="border-none"> {/* Border kaldırıldı */}
-        {/* Trigger içeriği güncellendi: Font boyutları artırıldı, manuel ikon kaldırıldı */}
-        <AccordionTrigger className="px-6 py-5 text-left hover:no-underline group justify-between"> {/* justify-between eklendi */}
-           <div className="flex flex-col items-start mr-4"> {/* Sağ boşluk eklendi */}
-             <span className="text-xl font-bold text-gray-900 dark:text-white mb-1.5">{title}</span> {/* Font kalınlığı artırıldı */}
-             {/* Yazar bilgisi Trigger'a taşındı */}
+      <AccordionItem value="toc-item" className="border-none">
+        <AccordionTrigger className="px-6 py-5 text-left hover:no-underline group justify-between">
+           <div className="flex flex-col items-start mr-4 w-full">
+             <span className="text-xl font-bold text-gray-900 dark:text-white mb-4">{title}</span>
+             {/* Yazar ve güncelleme bilgileri - Dinamik */}
              {authorLines.length > 0 && (
-               <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1"> {/* Boyut ve satır aralığı artırıldı */}
+               <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1 mb-2 w-full">
                  {authorLines.map((line, index) => (
-                   <p key={index}>{line}</p>
+                   <p key={index} className="font-medium">
+                     <span className="font-normal">{line}</span>
+                   </p>
                  ))}
                </div>
              )}
            </div>
-           {/* Manuel SVG ikonu kaldırıldı, AccordionTrigger kendi ikonunu kullanacak */}
         </AccordionTrigger>
-        {/* Content içeriği güncellendi: Yazar bilgisi kaldırıldı */}
-        <AccordionContent className="px-6 pb-5 pt-0"> {/* Padding ayarlandı */}
-              {/* Yazar bilgisi Trigger'a taşındığı için buradan kaldırıldı */}
-              <div className="prose dark:prose-invert max-w-none text-sm pt-4 border-t border-gray-200 dark:border-gray-700"> {/* Üst border ve padding eklendi */}
+        <AccordionContent className="px-6 pb-5 pt-0">
+              <div className="pt-4">
                 {renderItems(items)}
               </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-    // Dıştaki section ve container kaldırıldı
   );
 };
 
