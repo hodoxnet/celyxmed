@@ -38,73 +38,77 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
   const titleLine2 = titleParts.slice(-2).join(' '); // Son iki kelime
 
   return (
-    // Container geri eklendi, section'dan padding kaldırıldı
-    <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
-      <div className="container mx-auto px-4"> {/* Container geri eklendi */}
-        {/* Başlık/Açıklama alanı ortalandı, max-width kaldırıldı */}
+    <section className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4">
+        {/* Başlık/Açıklama alanı ortalandı */}
         <div className="text-center mb-12 md:mb-16">
-          {/* Başlık büyütüldü ve iki satıra ayrıldı */}
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            {titleLine1} <br /> {titleLine2}
+          {/* Başlık eski site stilinde - Text wrapping iyileştirildi */}
+          <h2 
+            className="text-4xl md:text-5xl lg:text-5xl font-medium mb-6 leading-tight max-w-5xl mx-auto"
+            style={{
+              color: '#283849',
+              wordBreak: 'keep-all',
+              overflowWrap: 'break-word',
+              hyphens: 'none',
+              textWrap: 'balance'
+            }}
+          >
+            {sectionTitle}
           </h2>
-          {/* Açıklama fontu küçültüldü ve rengi ayarlandı */}
-          <p className="text-base text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">{sectionDescription}</p> {/* Açıklama için max-width kaldı */}
+          {/* Açıklama eski site stilinde - Text wrapping iyileştirildi */}
+          <p 
+            className="text-lg text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed"
+            style={{
+              wordBreak: 'keep-all',
+              overflowWrap: 'break-word',
+              hyphens: 'none',
+              textWrap: 'balance'
+            }}
+          >
+            {sectionDescription}
+          </p>
         </div>
 
         {/* Tabs bileşeni container içinde, w-full */}
         <Tabs defaultValue={tabsData[0].value} className="w-full">
-          {/* Sekme Listesi ortalandı */}
-          <div className="flex justify-center mb-10"> {/* Wrapper div for centering TabsList */}
-            <TabsList className="inline-flex h-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-1.5 overflow-x-auto">
+          {/* Sekme Listesi eski site stilinde */}
+          <div className="flex justify-center mb-12">
+            <TabsList className="inline-flex h-auto rounded-xl bg-gray-50 dark:bg-gray-800 p-2 gap-2 border border-gray-200 dark:border-gray-700">
               {tabsData.map((tab) => (
-                // Sekme Tetikleyici Stili Güncellendi - Yinelenen prop'lar kaldırıldı
                 <TabsTrigger
-                  key={tab.value} // Tek key
-                  value={tab.value} // Tek value
-                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white text-gray-600 dark:text-gray-300 flex-1" // Tek className
+                  key={tab.value}
+                  value={tab.value}
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-6 py-3 text-sm font-medium transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-md dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
                   {tab.trigger}
                 </TabsTrigger>
             ))}
             </TabsList>
-          </div> {/* Closing tag for the flex wrapper div */}
+          </div>
 
           {tabsData.map((tab) => (
             <TabsContent key={tab.value} value={tab.value} className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-              {/* İçerik alanı yeni stil: Arka plan, padding, yuvarlak köşeler */}
-              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-8 md:p-12">
-                <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+              {/* İçerik alanı eski site stilinde */}
+              <div className="bg-white dark:bg-gray-800/50 rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100 dark:border-gray-700">
+                <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                   {/* Metin İçeriği */}
-                  <div className="space-y-5"> {/* Boşluk ayarlandı */}
-                    <h3 className="text-3xl md:text-4xl font-normal text-gray-900 dark:text-white">{tab.title}</h3> {/* Font boyutu ayarlandı */}
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base">{tab.content}</p> {/* Renk, satır aralığı ve font boyutu ayarlandı */}
-                    {/* Buton Stili Güncellendi (Home'daki gibi) */}
-                    <Link href={tab.buttonLink || '/iletisim'} className="inline-flex items-center rounded-full overflow-hidden shadow-md group transition-shadow hover:shadow-lg text-white font-medium text-base">
-                      {/* İkon Bölümü */}
-                      <span className="flex h-12 w-12 items-center justify-center bg-[#d4b978] group-hover:bg-[#c5ad6e] transition-colors"> {/* Renk ve boyut ayarlandı */}
-                        <ArrowRight className="h-5 w-5 text-white" />
-                      </span>
-                      {/* Metin Bölümü */}
-                      <span className="px-6 py-3 bg-teal-600 group-hover:bg-teal-700 transition-colors"> {/* Renk ve padding ayarlandı */}
-                        {tab.buttonText}
-                      </span>
+                  <div className="space-y-6">
+                    <h3 className="text-2xl md:text-3xl font-medium leading-tight" style={{ color: '#283849' }}>{tab.title}</h3>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">{tab.content}</p>
+                    {/* Buton TOC & CTA stilinde */}
+                    <Link href={tab.buttonLink || '/iletisim'} className="inline-flex items-center gap-2 bg-[#486F79] hover:bg-[#3a5a63] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
+                      <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
+                        <ArrowRight className="h-4 w-4 text-white" />
+                      </div>
+                      <span className="text-sm font-satoshi-medium">{tab.buttonText}</span>
                     </Link>
-                    {/* Eski Buton kaldırıldı */}
-                    {/* <Button variant="link" asChild className="p-0 h-auto text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 group">
-                       <Link href={tab.buttonLink || '/iletisim'} className="inline-flex items-center gap-3">
-                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 transition-colors group-hover:bg-amber-500">
-                           <ArrowRight className="h-5 w-5 text-teal-900" />
-                         </span>
-                         <span className="font-medium">{tab.buttonText}</span>
-                       </Link>
-                    </Button> */}
                   </div>
-                  {/* Resim */}
+                  {/* Resim eski site stilinde */}
                   {(tab.imagePath || tab.imageUrl) && (
-                    <div className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-md"> {/* Yükseklik ve gölge ayarlandı */}
+                    <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg">
                       <Image
-                        src={tab.imagePath || tab.imageUrl || ""} // imagePath veya imageUrl kullanılıyor, Next.js public klasöründen sunacak
-                        alt={tab.imageAlt || tab.title} // imageAlt yoksa başlığı kullan
+                        src={tab.imagePath || tab.imageUrl || ""}
+                        alt={tab.imageAlt || tab.title}
                         layout="fill"
                         objectFit="cover"
                         loading="lazy"
