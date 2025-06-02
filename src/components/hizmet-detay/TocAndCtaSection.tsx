@@ -55,7 +55,18 @@ const TocAndCtaSection: React.FC<TocAndCtaSectionProps> = ({
 
           {/* Sağ Sütun: Açıklama ve Butonlar */}
           <div className="space-y-6">
-            <p className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p 
+              className="text-3xl font-normal text-gray-700 dark:text-gray-300 leading-none my-4 block" 
+              style={{ 
+                fontSize: '2rem', 
+                lineHeight: '1',
+                marginBlockStart: '1em',
+                marginBlockEnd: '1em', 
+                marginInlineStart: '0px',
+                marginInlineEnd: '0px',
+                unicodeBidi: 'isolate'
+              }}
+            >
               {ctaDescription}
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
@@ -64,10 +75,10 @@ const TocAndCtaSection: React.FC<TocAndCtaSectionProps> = ({
                 <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
                   <ArrowRight className="h-4 w-4 text-white" />
                 </div>
-                <span className="text-sm font-satoshi-bold">{primaryButtonText}</span>
+                <span className="text-base font-satoshi-medium">{primaryButtonText}</span>
               </Link>
               {/* İkincil Buton - Sade text link */}
-              <Link href={secondaryButtonLink} className="text-gray-800 hover:text-gray-600 transition-colors duration-300 text-sm font-bold flex items-center">
+              <Link href={secondaryButtonLink} className="text-gray-800 hover:text-gray-600 transition-colors duration-300 text-base font-medium flex items-center">
                 {secondaryButtonText}
               </Link>
             </div>
