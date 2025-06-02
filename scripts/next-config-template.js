@@ -10,13 +10,8 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/__DEFAULT_LOCALE__',
-        permanent: true,
-      },
-    ];
+    // Root path artık middleware tarafından yönetiliyor
+    return [];
   },
   async rewrites() {
     return __DYNAMIC_REWRITES__;

@@ -239,7 +239,7 @@ interface FetchedServiceData {
 async function getServiceData(slug: string, locale: string): Promise<FetchedServiceData | null> {
   try {
     // API endpoint URL'sini doğrula/ayarla - API URL'leri hiçbir zaman çevrilmez
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
     const apiUrl = `${baseUrl}/api/hizmetler/${slug}?locale=${locale}`;
     
     console.log(`[Page] API'den veri çekiliyor. URL: ${apiUrl}`);

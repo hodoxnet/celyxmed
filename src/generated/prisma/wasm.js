@@ -156,6 +156,8 @@ exports.Prisma.RouteTranslationScalarFieldEnum = {
   routeKey: 'routeKey',
   languageCode: 'languageCode',
   translatedValue: 'translatedValue',
+  useRootPath: 'useRootPath',
+  customPath: 'customPath',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -236,6 +238,16 @@ exports.Prisma.HizmetTranslationScalarFieldEnum = {
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription',
   metaKeywords: 'metaKeywords'
+};
+
+exports.Prisma.HizmetLegacyUrlScalarFieldEnum = {
+  id: 'id',
+  hizmetId: 'hizmetId',
+  languageCode: 'languageCode',
+  legacySlug: 'legacySlug',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.HizmetMarqueeImageScalarFieldEnum = {
@@ -1010,6 +1022,7 @@ exports.Prisma.ModelName = {
   BlogTranslation: 'BlogTranslation',
   Hizmet: 'Hizmet',
   HizmetTranslation: 'HizmetTranslation',
+  HizmetLegacyUrl: 'HizmetLegacyUrl',
   HizmetMarqueeImage: 'HizmetMarqueeImage',
   HizmetGalleryImage: 'HizmetGalleryImage',
   HizmetCtaAvatar: 'HizmetCtaAvatar',

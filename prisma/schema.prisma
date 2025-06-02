@@ -118,6 +118,8 @@ model RouteTranslation {
   language        Language @relation(fields: [languageCode], references: [code], onDelete: Cascade)
   languageCode    String
   translatedValue String   // Çevrilmiş değer (örn: 'services', 'blog', 'contact')
+  useRootPath     Boolean  @default(false) // Bu dil için root path kullanılsın mı (prefix olmadan)
+  customPath      String?  // Özel path (örn: "our-doctors" yerine "doktorlar")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
@@ -187,6 +189,7 @@ model Hizmet {
 
   // --- Çeviriler ---
   translations HizmetTranslation[]
+  legacyUrls   HizmetLegacyUrl[] // Eski URL redirectleri
   headerMenuItems HeaderMenuItem[] @relation("HeaderMenuToHizmet")
   footerMenuItems FooterMenuItem[] @relation("FooterMenuToHizmet")
 }
@@ -294,6 +297,19 @@ model HizmetTranslation {
   @@unique([slug, languageCode])
 }
 
+// Hizmet Legacy URL Modeli (Eski site URL'lerini yönetmek için)
+model HizmetLegacyUrl {
+  id           String   @id @default(cuid())
+  hizmet       Hizmet   @relation(fields: [hizmetId], references: [id], onDelete: Cascade)
+  hizmetId     String
+  languageCode String
+  legacySlug   String   @unique // Eski URL slug'ı (örn: "gastric-sleeve-turkey")
+  isActive     Boolean  @default(true) // Redirect aktif mi
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([hizmetId, languageCode]) // Her hizmet için her dilde tek legacy URL
+}
 
 // ----- HİZMET ALT MODELLERİ YENİ YAPI -----
 

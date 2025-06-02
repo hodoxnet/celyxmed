@@ -18,7 +18,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { routeTranslations } from "@/generated/route-translations";
+import { routeTranslations, rootPathRoutes, slugTranslations } from "@/generated/route-translations";
+import { defaultLocale } from "@/i18n";
 
 // Menü veri tipleri (RootLayoutClient'tan veya ortak tiplerden alınmalı)
 interface MenuItem {
@@ -105,11 +106,26 @@ const Navbar: React.FC<NavbarProps> = ({
   const pathname = usePathname(); // Next.js hook ile mevcut sayfa yolunu al
   const router = useRouter();
   
-  // Aktif dili pathname'den al
-  const currentLocale = pathname.split('/')[1] || 'tr';
+  // Aktif dili pathname'den al - İngilizce ana dil
+  const pathParts = pathname.split('/').filter(Boolean);
+  const currentLocale = (pathParts.length > 0 && ['de','es','fr','it','ru','tr'].includes(pathParts[0])) 
+    ? pathParts[0] 
+    : defaultLocale; // Prefix yoksa ana dil (İngilizce)
 
   // Dil değiştirme linki oluşturan fonksiyon - Her zaman ana sayfaya yönlendir
   const getLanguageLink = (langCode: string) => {
+    // Ana dil için prefix yok
+    if (langCode === defaultLocale) {
+      return '/';
+    }
+    
+    // Root path kullanan diller için prefix yok 
+    const usesRootPath = Object.values(rootPathRoutes).some((route: any) => route.locale === langCode);
+    if (usesRootPath) {
+      return '/';
+    }
+    
+    // Diğer diller için prefix kullan
     return `/${langCode}`;
   };
 
@@ -122,7 +138,14 @@ const Navbar: React.FC<NavbarProps> = ({
     const pathParts = normalizedHref.split('/').filter(Boolean);
     
     if (pathParts.length === 0) {
-      // Ana sayfa linki ise
+      // Ana sayfa linki ise - dil sistemine göre uygun URL döndür
+      if (targetLocale === defaultLocale) {
+        return '/';
+      }
+      const usesRootPath = Object.values(rootPathRoutes).some((route: any) => route.locale === targetLocale);
+      if (usesRootPath) {
+        return '/';
+      }
       return `/${targetLocale}`;
     }
     
@@ -135,7 +158,7 @@ const Navbar: React.FC<NavbarProps> = ({
     
     if (actualPathParts.length === 0) {
       // Sadece dil kodu vardı, ana sayfaya yönlendir
-      return `/${targetLocale}`;
+      return getLanguageLink(targetLocale);
     }
     
     // İlk parçayı (ana route) kontrol et
@@ -148,13 +171,44 @@ const Navbar: React.FC<NavbarProps> = ({
       
       // Çevrilmiş route ile yeni URL oluştur
       const otherParts = actualPathParts.slice(1); // Diğer path parçaları (varsa)
+      
+      // ÖZEL DURUM: İngilizce ana dil için hizmet detayları root level'da olmalı
+      if (targetLocale === defaultLocale && (mainRoute === 'our-services' || mainRoute === 'hizmetler') && otherParts.length > 0) {
+        // Slug çevirisini kontrol et
+        const currentSlug = otherParts[0];
+        const translatedSlug = slugTranslations[currentSlug as keyof typeof slugTranslations]?.[targetLocale as keyof typeof slugTranslations[typeof currentSlug]] || currentSlug;
+        // İngilizce hizmet detayı için root level URL: /slug (prefix yok!)
+        return `/${translatedSlug}`;
+      }
+      
       const translatedPath = [translatedRoute, ...otherParts].join('/');
+      
+      // Ana dil veya root path kullanan diller için prefix kullanma
+      if (targetLocale === defaultLocale) {
+        return `/${translatedPath}`;
+      }
+      
+      const usesRootPath = Object.values(rootPathRoutes).some((route: any) => route.locale === targetLocale);
+      if (usesRootPath) {
+        // Root path kullanıyorsa, çevrilmiş route'un kendisini root path olarak kullan
+        return `/${translatedRoute}`;
+      }
       
       return `/${targetLocale}/${translatedPath}`;
     }
     
     // Çeviri yoksa orijinal path'i kullan (ama dil kodunu güncelle)
     const finalPath = actualPathParts.join('/');
+    
+    if (targetLocale === defaultLocale) {
+      return `/${finalPath}`;
+    }
+    
+    const usesRootPath = Object.values(rootPathRoutes).some((route: any) => route.locale === targetLocale);
+    if (usesRootPath) {
+      return `/${finalPath}`;
+    }
+    
     return `/${targetLocale}/${finalPath}`;
   };
 

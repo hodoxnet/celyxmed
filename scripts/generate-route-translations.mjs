@@ -132,13 +132,69 @@ async function generateRouteTranslations() {
       }
     }
     
-    // 4. Tüm çevirileri birleştir
+    // 4. Root Path Route'ları oluştur (useRootPath: true olanlar)
+    const rootPathRoutes = {};
+    
+    for (const translation of routeTranslations) {
+      if (translation.useRootPath) {
+        const routePath = translation.customPath || translation.translatedValue;
+        rootPathRoutes[routePath] = {
+          locale: translation.languageCode,
+          targetPath: `/${translation.languageCode}/${translation.routeKey}`
+        };
+      }
+    }
+    
+    console.log(`[generate-route-translations] Found ${Object.keys(rootPathRoutes).length} root path routes`);
+    
+    // 5. Legacy URL'leri al (HizmetLegacyUrl tablosundan)
+    const legacyUrls = {};
+    
+    try {
+      const legacyUrlRecords = await prisma.hizmetLegacyUrl.findMany({
+        where: { isActive: true },
+        include: {
+          hizmet: {
+            include: {
+              translations: {
+                select: {
+                  slug: true,
+                  languageCode: true
+                }
+              }
+            }
+          }
+        }
+      });
+      
+      for (const legacyRecord of legacyUrlRecords) {
+        const targetTranslation = legacyRecord.hizmet.translations.find(
+          t => t.languageCode === legacyRecord.languageCode
+        );
+        
+        if (targetTranslation) {
+          const routeKey = routeTranslationsMap['hizmetler'] 
+            ? routeTranslationsMap['hizmetler'][legacyRecord.languageCode] || 'hizmetler'
+            : 'hizmetler';
+            
+          legacyUrls[legacyRecord.legacySlug] = `/${legacyRecord.languageCode}/${routeKey}/${targetTranslation.slug}`;
+        }
+      }
+      
+      console.log(`[generate-route-translations] Found ${Object.keys(legacyUrls).length} legacy URLs`);
+    } catch (error) {
+      console.warn('[generate-route-translations] Could not fetch legacy URLs:', error.message);
+    }
+    
+    // 6. Tüm çevirileri birleştir
     const allTranslations = {
       staticRoutes: routeTranslationsMap,
-      dynamicSlugs: dynamicSlugTranslations
+      dynamicSlugs: dynamicSlugTranslations,
+      rootPathRoutes: rootPathRoutes,
+      legacyUrls: legacyUrls
     };
     
-    // 5. Config dosyasını oluştur
+    // 7. Config dosyasını oluştur
     writeTranslationsConfigFile(allTranslations);
     
   } catch (error) {
@@ -196,6 +252,8 @@ function writeTranslationsConfigFile(translations) {
   const configContent = `// This file is auto-generated during the build process. Do not edit manually.
 export const routeTranslations = ${JSON.stringify(translations.staticRoutes, null, 2)};
 export const slugTranslations = ${JSON.stringify(translations.dynamicSlugs, null, 2)};
+export const rootPathRoutes = ${JSON.stringify(translations.rootPathRoutes, null, 2)};
+export const legacyUrls = ${JSON.stringify(translations.legacyUrls, null, 2)};
 `;
 
   const generatedDir = path.resolve(process.cwd(), 'src', 'generated');

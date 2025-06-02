@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
 
 // Panelde gösterilecek dil ve tip
@@ -21,6 +22,8 @@ interface RouteTranslation {
   routeKey: string;
   languageCode: string;
   translatedValue: string;
+  useRootPath: boolean;
+  customPath: string | null;
 }
 
 // Admin panelindeki rota çevirileri sayfası
@@ -32,6 +35,7 @@ export default function RoutesTranslationsPage() {
   const [activeTab, setActiveTab] = useState<string>('');
   const [translations, setTranslations] = useState<Record<string, RouteTranslation[]>>({});
   const [newRouteKey, setNewRouteKey] = useState<string>('');
+  const [newTranslationValues, setNewTranslationValues] = useState<Record<string, {translatedValue: string, useRootPath: boolean, customPath: string}>>({});
   const [isLoading, setIsLoading] = useState(true);
   
   // Verileri yükle
@@ -134,6 +138,14 @@ export default function RoutesTranslationsPage() {
       // Yeni rota giriş alanını temizle
       if (!translation.id) {
         setNewRouteKey('');
+        setNewTranslationValues(prev => ({
+          ...prev,
+          [translation.languageCode]: {
+            translatedValue: '',
+            useRootPath: false,
+            customPath: ''
+          }
+        }));
       }
       
     } catch (error) {
@@ -175,7 +187,7 @@ export default function RoutesTranslationsPage() {
   };
   
   // Çeviriyi güncelle
-  const handleUpdateTranslation = (langCode: string, index: number, value: string) => {
+  const handleUpdateTranslation = (langCode: string, index: number, field: string, value: string | boolean) => {
     setTranslations(prev => {
       const langTranslations = [...(prev[langCode] || [])];
       
@@ -183,7 +195,7 @@ export default function RoutesTranslationsPage() {
         // İlgili çeviriyi güncelle
         langTranslations[index] = {
           ...langTranslations[index],
-          translatedValue: value
+          [field]: value
         };
       }
       
@@ -219,12 +231,30 @@ export default function RoutesTranslationsPage() {
             Rota çevirileri, URL yollarının farklı dillerde nasıl görüneceğini belirler. 
             Örneğin, Türkçe'de &quot;hizmetler&quot; olan bir yol, İngilizce'de &quot;services&quot; olabilir.
           </p>
-          <p className="text-sm text-gray-600 mb-2">
-            <strong>Rota Adı:</strong> URL yolunun temel adı (örn: &quot;hizmetler&quot;, &quot;blog&quot;, &quot;iletisim&quot;)
-          </p>
-          <p className="text-sm text-gray-600">
-            <strong>Çeviri:</strong> Belirtilen dilde gösterilecek yol adı (örn: &quot;services&quot;, &quot;blog&quot;, &quot;contact&quot;)
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+            <div>
+              <p className="mb-2">
+                <strong>Rota Adı:</strong> URL yolunun temel adı (örn: &quot;hizmetler&quot;, &quot;blog&quot;, &quot;iletisim&quot;)
+              </p>
+              <p className="mb-2">
+                <strong>Çeviri:</strong> Belirtilen dilde gösterilecek yol adı (örn: &quot;services&quot;, &quot;blog&quot;, &quot;contact&quot;)
+              </p>
+            </div>
+            <div>
+              <p className="mb-2">
+                <strong>Root Path Kullan:</strong> Bu dil için URL'de dil prefix'i olmasın (/en/blog → /blog)
+              </p>
+              <p className="mb-2">
+                <strong>Özel Path:</strong> Varsayılan çeviri yerine kullanılacak özel URL (örn: &quot;our-doctors&quot;)
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+            <p className="text-sm text-blue-800">
+              <strong>Önemli:</strong> Root Path özelliği genellikle İngilizce için kullanılır. 
+              Eski site uyumluluğu için /en/blog yerine /blog gibi URL'ler oluşturabilirsiniz.
+            </p>
+          </div>
         </CardContent>
       </Card>
       
@@ -248,23 +278,43 @@ export default function RoutesTranslationsPage() {
                   <div className="space-y-4">
                     {/* Mevcut çeviriler */}
                     {translations[lang.code]?.map((translation, index) => (
-                      <div key={translation.id || index} className="flex items-end gap-4">
-                        <div className="flex-1">
-                          <Label>Rota Adı</Label>
-                          <Input 
-                            value={translation.routeKey} 
-                            onChange={() => {}} // Bu alan değiştirilemez
-                            disabled
-                          />
+                      <Card key={translation.id || index} className="p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Label>Rota Adı</Label>
+                            <Input 
+                              value={translation.routeKey} 
+                              onChange={() => {}} // Bu alan değiştirilemez
+                              disabled
+                            />
+                          </div>
+                          <div>
+                            <Label>Çeviri</Label>
+                            <Input 
+                              value={translation.translatedValue} 
+                              onChange={(e) => handleUpdateTranslation(lang.code, index, 'translatedValue', e.target.value)}
+                            />
+                          </div>
+                          <div>
+                            <Label>Özel Path (Opsiyonel)</Label>
+                            <Input 
+                              value={translation.customPath || ''} 
+                              onChange={(e) => handleUpdateTranslation(lang.code, index, 'customPath', e.target.value || null)}
+                              placeholder="örn: our-doctors"
+                            />
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Checkbox 
+                              id={`useRootPath-${translation.id || index}`}
+                              checked={translation.useRootPath || false}
+                              onCheckedChange={(checked) => handleUpdateTranslation(lang.code, index, 'useRootPath', !!checked)}
+                            />
+                            <Label htmlFor={`useRootPath-${translation.id || index}`}>
+                              Root Path Kullan (Dil prefix'i olmadan)
+                            </Label>
+                          </div>
                         </div>
-                        <div className="flex-1">
-                          <Label>Çeviri</Label>
-                          <Input 
-                            value={translation.translatedValue} 
-                            onChange={(e) => handleUpdateTranslation(lang.code, index, e.target.value)}
-                          />
-                        </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 mt-4">
                           <Button 
                             onClick={() => handleSaveTranslation(translation)}
                           >
@@ -277,39 +327,86 @@ export default function RoutesTranslationsPage() {
                             Sil
                           </Button>
                         </div>
-                      </div>
+                      </Card>
                     ))}
                     
                     {/* Yeni çeviri ekle */}
-                    <div className="flex items-end gap-4 mt-8 pt-4 border-t">
-                      <div className="flex-1">
-                        <Label>Yeni Rota Adı</Label>
-                        <Input 
-                          value={newRouteKey} 
-                          onChange={(e) => setNewRouteKey(e.target.value)}
-                          placeholder="örn: hizmetler"
-                        />
+                    <Card className="mt-8 p-4 border-t-4 border-blue-500">
+                      <div className="mb-4">
+                        <Label className="text-lg font-semibold">Yeni Rota Çevirisi Ekle</Label>
                       </div>
-                      <div className="flex-1">
-                        <Label>Çeviri</Label>
-                        <Input 
-                          placeholder={`örn: ${lang.code === 'en' ? 'services' : 'çeviri'}`}
-                          id={`new-translation-${lang.code}`}
-                        />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label>Rota Adı</Label>
+                          <Input 
+                            value={newRouteKey} 
+                            onChange={(e) => setNewRouteKey(e.target.value)}
+                            placeholder="örn: hizmetler"
+                          />
+                        </div>
+                        <div>
+                          <Label>Çeviri</Label>
+                          <Input 
+                            value={newTranslationValues[lang.code]?.translatedValue || ''}
+                            onChange={(e) => setNewTranslationValues(prev => ({
+                              ...prev,
+                              [lang.code]: {
+                                ...prev[lang.code],
+                                translatedValue: e.target.value
+                              }
+                            }))}
+                            placeholder={`örn: ${lang.code === 'en' ? 'services' : 'çeviri'}`}
+                          />
+                        </div>
+                        <div>
+                          <Label>Özel Path (Opsiyonel)</Label>
+                          <Input 
+                            value={newTranslationValues[lang.code]?.customPath || ''}
+                            onChange={(e) => setNewTranslationValues(prev => ({
+                              ...prev,
+                              [lang.code]: {
+                                ...prev[lang.code],
+                                customPath: e.target.value
+                              }
+                            }))}
+                            placeholder="örn: our-doctors"
+                          />
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox 
+                            id={`new-useRootPath-${lang.code}`}
+                            checked={newTranslationValues[lang.code]?.useRootPath || false}
+                            onCheckedChange={(checked) => setNewTranslationValues(prev => ({
+                              ...prev,
+                              [lang.code]: {
+                                ...prev[lang.code],
+                                useRootPath: !!checked
+                              }
+                            }))}
+                          />
+                          <Label htmlFor={`new-useRootPath-${lang.code}`}>
+                            Root Path Kullan (Dil prefix'i olmadan)
+                          </Label>
+                        </div>
                       </div>
-                      <Button 
-                        onClick={() => {
-                          const translatedValue = (document.getElementById(`new-translation-${lang.code}`) as HTMLInputElement)?.value;
-                          handleSaveTranslation({
-                            routeKey: newRouteKey,
-                            languageCode: lang.code,
-                            translatedValue: translatedValue || ''
-                          });
-                        }}
-                      >
-                        Ekle
-                      </Button>
-                    </div>
+                      <div className="mt-4">
+                        <Button 
+                          onClick={() => {
+                            const values = newTranslationValues[lang.code] || {};
+                            handleSaveTranslation({
+                              routeKey: newRouteKey,
+                              languageCode: lang.code,
+                              translatedValue: values.translatedValue || '',
+                              useRootPath: values.useRootPath || false,
+                              customPath: values.customPath || null
+                            });
+                          }}
+                          disabled={!newRouteKey || !newTranslationValues[lang.code]?.translatedValue}
+                        >
+                          Ekle
+                        </Button>
+                      </div>
+                    </Card>
                   </div>
                 </CardContent>
               </Card>

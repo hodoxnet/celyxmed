@@ -83,14 +83,15 @@ import withNextIntl from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/tr',
-        permanent: true,
-      },
-    ];
+    // Root path artık middleware tarafından yönetiliyor
+    return [];
   },
   async rewrites() {
     return __DYNAMIC_REWRITES__;

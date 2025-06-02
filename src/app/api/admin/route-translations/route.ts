@@ -23,7 +23,7 @@ export const GET = withAdmin(async () => {
 export const POST = withAdmin(async (req: Request) => {
   try {
     const body = await req.json();
-    const { routeKey, languageCode, translatedValue } = body;
+    const { routeKey, languageCode, translatedValue, useRootPath, customPath } = body;
     
     // Alanların doluluğunu kontrol et
     if (!routeKey || !languageCode || !translatedValue) {
@@ -56,7 +56,9 @@ export const POST = withAdmin(async (req: Request) => {
       data: {
         routeKey,
         languageCode,
-        translatedValue
+        translatedValue,
+        useRootPath: useRootPath || false,
+        customPath: customPath || null
       }
     });
     
@@ -71,7 +73,7 @@ export const POST = withAdmin(async (req: Request) => {
 export const PUT = withAdmin(async (req: Request) => {
   try {
     const body = await req.json();
-    const { id, routeKey, languageCode, translatedValue } = body;
+    const { id, routeKey, languageCode, translatedValue, useRootPath, customPath } = body;
     
     // id'nin varlığını kontrol et
     if (!id) {
@@ -98,7 +100,9 @@ export const PUT = withAdmin(async (req: Request) => {
       data: {
         routeKey,
         languageCode,
-        translatedValue
+        translatedValue,
+        useRootPath: useRootPath !== undefined ? useRootPath : existingTranslation.useRootPath,
+        customPath: customPath !== undefined ? customPath : existingTranslation.customPath
       }
     });
     

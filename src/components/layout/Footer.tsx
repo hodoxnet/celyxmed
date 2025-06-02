@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 // Sosyal medya ikonları için tip tanımı
 import { LucideProps } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { routeTranslations } from '@/generated/route-translations';
+import { routeTranslations, rootPathRoutes, slugTranslations } from '@/generated/route-translations';
+import { defaultLocale } from '@/i18n';
 
 // Menü tipleri (RootLayoutClient'tan veya ortak tiplerden)
 interface MenuItem {
@@ -97,10 +98,13 @@ const Footer: React.FC<FooterProps> = ({
   const footerMenuGroups = menuData || [];
   const pathname = usePathname();
   
-  // Mevcut locale'i pathname'den al
-  const currentLocale = pathname.split('/')[1] || 'tr';
+  // Mevcut locale'i pathname'den al - İngilizce ana dil
+  const pathParts = pathname.split('/').filter(Boolean);
+  const currentLocale = (pathParts.length > 0 && ['de','es','fr','it','ru','tr'].includes(pathParts[0])) 
+    ? pathParts[0] 
+    : defaultLocale; // Prefix yoksa ana dil (İngilizce)
   
-  // Menü linklerini hedef dile çeviren fonksiyon (Navbar'dan alındı)
+  // Menü linklerini hedef dile çeviren fonksiyon (Navbar ile senkronize)
   const translateMenuLink = (href: string, targetLocale: string): string => {
     if (!href || href === '#') return href;
     
@@ -112,6 +116,14 @@ const Footer: React.FC<FooterProps> = ({
     const actualPathParts = startsWithLocale ? pathParts.slice(1) : pathParts;
     
     if (actualPathParts.length === 0) {
+      // Ana sayfa linki ise - dil sistemine göre uygun URL döndür
+      if (targetLocale === defaultLocale) {
+        return '/';
+      }
+      const usesRootPath = Object.values(rootPathRoutes).some((route: any) => route.locale === targetLocale);
+      if (usesRootPath) {
+        return '/';
+      }
       return `/${targetLocale}`;
     }
     
@@ -123,12 +135,44 @@ const Footer: React.FC<FooterProps> = ({
     // Çeviri varsa yeni path oluştur
     if (routeTranslationsTyped[firstPart]?.[targetLocale]) {
       const otherParts = actualPathParts.slice(1);
+      
+      // ÖZEL DURUM: İngilizce ana dil için hizmet detayları root level'da olmalı
+      if (targetLocale === defaultLocale && (firstPart === 'our-services' || firstPart === 'hizmetler') && otherParts.length > 0) {
+        // Slug çevirisini kontrol et
+        const currentSlug = otherParts[0];
+        const translatedSlug = slugTranslations[currentSlug as keyof typeof slugTranslations]?.[targetLocale as keyof typeof slugTranslations[typeof currentSlug]] || currentSlug;
+        // İngilizce hizmet detayı için root level URL: /slug (prefix yok!)
+        return `/${translatedSlug}`;
+      }
+      
       const translatedPath = [translatedRoute, ...otherParts].join('/');
+      
+      // Ana dil veya root path kullanan diller için prefix kullanma
+      if (targetLocale === defaultLocale) {
+        return `/${translatedPath}`;
+      }
+      
+      const usesRootPath = Object.values(rootPathRoutes).some((route: any) => route.locale === targetLocale);
+      if (usesRootPath) {
+        // Root path kullanıyorsa, çevrilmiş route'un kendisini root path olarak kullan
+        return `/${translatedRoute}`;
+      }
+      
       return `/${targetLocale}/${translatedPath}`;
     }
     
     // Çeviri yoksa orijinal path'i kullan (ama dil kodunu güncelle)
     const finalPath = actualPathParts.join('/');
+    
+    if (targetLocale === defaultLocale) {
+      return `/${finalPath}`;
+    }
+    
+    const usesRootPath = Object.values(rootPathRoutes).some((route: any) => route.locale === targetLocale);
+    if (usesRootPath) {
+      return `/${finalPath}`;
+    }
+    
     return `/${targetLocale}/${finalPath}`;
   };
   return (

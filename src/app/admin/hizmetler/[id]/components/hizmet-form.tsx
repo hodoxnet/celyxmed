@@ -53,6 +53,7 @@ import { ExpertsSectionForm } from "./ExpertsSectionForm";
 import { FaqSectionForm } from "./FaqSectionForm";
 import { SeoSectionForm } from "./SeoSectionForm";
 import { MediaManager } from "./MediaManager";
+import { LegacyUrlSection } from "./LegacyUrlSection";
 
 import {
   HizmetTranslation,
@@ -2590,6 +2591,14 @@ export function HizmetForm({ initialData, diller }: HizmetFormProps) {
             </div>
           </CardContent>
         </Card>
+        
+        {/* Legacy URL Yönetimi */}
+        <LegacyUrlSection 
+          form={form}
+          languages={diller}
+          hizmetId={initialData?.id}
+          loading={loading}
+        />
         
         {/* Modül Düzenleme Grid */}
         <div className="grid grid-cols-12 gap-6">
