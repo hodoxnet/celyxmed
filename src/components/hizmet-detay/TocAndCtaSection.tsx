@@ -58,24 +58,18 @@ const TocAndCtaSection: React.FC<TocAndCtaSectionProps> = ({
             <p className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
               {ctaDescription}
             </p>
-            <div className="flex flex-wrap items-center gap-4"> {/* items-center eklendi */}
-               {/* Ana Buton (Görseldeki gibi) - Düzeltilmiş yapı */}
-               <Button size="lg" asChild className="bg-teal-600 text-white hover:bg-teal-700 rounded-full pl-2 pr-6 py-2 group shadow-md">
-                 <Link href={primaryButtonLink} className="flex items-center gap-2"> {/* Link içine flex eklendi */}
-                   {/* İkon Alanı */}
-                   <span className="bg-amber-400 p-2 rounded-full inline-flex items-center justify-center">
-                      <ArrowRight className="h-5 w-5 text-teal-800 transition-transform duration-300 group-hover:translate-x-1" />
-                   </span>
-                   {/* Metin Alanı */}
-                   <span className="font-semibold">{primaryButtonText}</span> {/* Metni span içine aldık */}
-                 </Link>
-               </Button>
-               {/* İkincil Buton (Metin Linki) */}
-               <Button size="lg" variant="link" asChild className="text-gray-800 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400 px-0 font-medium">
-                 <Link href={secondaryButtonLink}>
-                   {secondaryButtonText}
-                 </Link>
-               </Button>
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              {/* Ana Buton - Teal arkaplan + altın ikon */}
+              <Link href={primaryButtonLink} className="flex items-center gap-2 bg-[#486F79] hover:bg-[#3a5a63] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
+                <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
+                  <ArrowRight className="h-4 w-4 text-white" />
+                </div>
+                <span className="text-sm font-normal">{primaryButtonText}</span>
+              </Link>
+              {/* İkincil Buton - Home Hero birebir aynısı */}
+              <Link href={secondaryButtonLink} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-normal">
+                {secondaryButtonText}
+              </Link>
             </div>
           </div>
         </div>
