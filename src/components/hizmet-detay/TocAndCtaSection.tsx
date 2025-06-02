@@ -58,16 +58,16 @@ const TocAndCtaSection: React.FC<TocAndCtaSectionProps> = ({
             <p className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
               {ctaDescription}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
               {/* Ana Buton - Teal arkaplan + altın ikon */}
               <Link href={primaryButtonLink} className="flex items-center gap-2 bg-[#486F79] hover:bg-[#3a5a63] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
                 <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
                   <ArrowRight className="h-4 w-4 text-white" />
                 </div>
-                <span className="text-sm font-normal">{primaryButtonText}</span>
+                <span className="text-sm font-satoshi-bold">{primaryButtonText}</span>
               </Link>
-              {/* İkincil Buton - Home Hero birebir aynısı */}
-              <Link href={secondaryButtonLink} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-normal">
+              {/* İkincil Buton - Sade text link */}
+              <Link href={secondaryButtonLink} className="text-gray-800 hover:text-gray-600 transition-colors duration-300 text-sm font-bold flex items-center">
                 {secondaryButtonText}
               </Link>
             </div>
