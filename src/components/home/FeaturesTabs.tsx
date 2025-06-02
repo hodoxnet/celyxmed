@@ -111,7 +111,7 @@ const FeaturesTabs = () => {
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-800">
+          <h2 className="text-3xl md:text-4xl font-normal mb-4 text-gray-800">
             {sectionDetails?.mainTitle || defaultMainTitle}
           </h2>
           <p className="text-lg text-gray-600">
@@ -140,7 +140,7 @@ const FeaturesTabs = () => {
                     <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300 mb-6 self-start">
                       {tab.tagText}
                     </span>
-                    <h3 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900 dark:text-white leading-tight">
+                    <h3 className="text-3xl md:text-4xl font-normal mb-6 text-gray-900 dark:text-white leading-tight">
                       {tab.heading}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 mb-8 text-base md:text-lg leading-relaxed">

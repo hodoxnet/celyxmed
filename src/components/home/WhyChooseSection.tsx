@@ -115,7 +115,7 @@ const WhyChooseSection = ({ hideTitle = false, hideDescription = false, hideButt
 
             {/* Başlık */}
             {!hideTitle && (
-              <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-800">
+              <h2 className="text-3xl md:text-4xl font-normal mb-4 text-gray-800">
                 {data.title}
               </h2>
             )}

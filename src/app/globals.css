@@ -1,63 +1,80 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Satoshi Font Ailesi */
+/* Satoshi Font Ailesi - Eski siteyle aynı sıra ve format */
 @font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Variable.woff2') format('woff2'),
-       url('/fonts/Satoshi-Variable.woff') format('woff'),
-       url('/fonts/Satoshi-Variable.ttf') format('truetype');
-  font-weight: 300 900;
+  font-family: 'SatoshiBold';
+  src: url('/fonts/Satoshi-Bold.woff2') format('woff2'),
+       url('/fonts/Satoshi-Bold.woff') format('woff'),
+       url('/fonts/Satoshi-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SatoshiMedium';
+  src: url('/fonts/Satoshi-Medium.woff2') format('woff2'),
+       url('/fonts/Satoshi-Medium.woff') format('woff'),
+       url('/fonts/Satoshi-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SatoshiRegular';
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
+       url('/fonts/Satoshi-Regular.woff') format('woff'),
+       url('/fonts/Satoshi-Regular.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-VariableItalic.woff2') format('woff2'),
-       url('/fonts/Satoshi-VariableItalic.woff') format('woff'),
-       url('/fonts/Satoshi-VariableItalic.ttf') format('truetype');
-  font-weight: 300 900;
+  src: url('/fonts/Satoshi-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
   font-style: italic;
   font-display: swap;
 }
 
-/* Statik Font Sürümleri (Fallback) */
 @font-face {
   font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Light.woff2') format('woff2'),
-       url('/fonts/Satoshi-Light.woff') format('woff'),
-       url('/fonts/Satoshi-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
-       url('/fonts/Satoshi-Regular.woff') format('woff'),
-       url('/fonts/Satoshi-Regular.ttf') format('truetype');
+  src: url('/fonts/Satoshi-Italic.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
+  font-style: italic;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Medium.woff2') format('woff2'),
-       url('/fonts/Satoshi-Medium.woff') format('woff'),
-       url('/fonts/Satoshi-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+  src: url('/fonts/Satoshi-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Bold.woff2') format('woff2'),
-       url('/fonts/Satoshi-Bold.woff') format('woff'),
-       url('/fonts/Satoshi-Bold.ttf') format('truetype');
+  src: url('/fonts/Satoshi-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -65,11 +82,33 @@
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Black.woff2') format('woff2'),
-       url('/fonts/Satoshi-Black.woff') format('woff'),
-       url('/fonts/Satoshi-Black.ttf') format('truetype');
-  font-weight: 900;
+  src: url('/fonts/Satoshi-Regular.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -204,7 +243,63 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+    font-variant: normal;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: geometricPrecision;
+    font-feature-settings: normal;
+    font-synthesis: none;
+    font-optical-sizing: none;
   }
+}
+
+/* Hero başlık için eski siteyle uyumlu font rendering */
+h1, h2 {
+  font-family: 'SatoshiBold', 'Satoshi', sans-serif !important;
+  font-weight: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeSpeed !important;
+  font-feature-settings: normal !important;
+  font-synthesis: none !important;
+}
+
+/* P etiketleri için Satoshi Medium */
+p {
+  font-family: 'SatoshiMedium', 'Satoshi', sans-serif !important;
+  font-weight: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeSpeed !important;
+  font-feature-settings: normal !important;
+  font-synthesis: none !important;
+}
+
+/* Span etiketleri için Satoshi Medium */
+span {
+  font-family: 'SatoshiMedium', 'Satoshi', sans-serif !important;
+  font-weight: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeSpeed !important;
+  font-feature-settings: normal !important;
+  font-synthesis: none !important;
+}
+
+/* Button etiketleri için Satoshi Bold */
+button, .btn, [role="button"] {
+  font-family: 'SatoshiBold', 'Satoshi', sans-serif !important;
+  font-weight: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeSpeed !important;
+  font-feature-settings: normal !important;
+  font-synthesis: none !important;
+}
+
+.font-satoshi-bold {
+  font-family: 'SatoshiBold', 'Satoshi', sans-serif !important;
+  font-weight: normal !important;
 }
 
 /* Scrollbar gizleme sınıfları */

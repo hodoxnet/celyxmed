@@ -55,7 +55,7 @@ const TocAndCtaSection: React.FC<TocAndCtaSectionProps> = ({
 
           {/* Sağ Sütun: Açıklama ve Butonlar */}
           <div className="space-y-6">
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
               {ctaDescription}
             </p>
             <div className="flex flex-wrap items-center gap-4"> {/* items-center eklendi */}

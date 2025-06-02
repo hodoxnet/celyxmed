@@ -90,7 +90,7 @@ const WhyTrustSection = ({ locale }: { locale: string }) => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold leading-tight">
+          <h2 className="text-4xl md:text-5xl font-normal leading-tight">
             {title}<br />{subtitle}
           </h2>
         </div>
@@ -102,7 +102,7 @@ const WhyTrustSection = ({ locale }: { locale: string }) => {
                 {point.number}
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">{point.title}</h3>
+                <h3 className="text-xl font-medium mb-2">{point.title}</h3>
                 <p className="text-gray-300">{point.description}</p>
               </div>
             </div>

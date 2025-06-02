@@ -121,7 +121,7 @@ const SuccessStories = ({ locale }: { locale: string }) => {
       <div className="container mx-auto px-4">
         {/* Başlık ve Açıklama */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-800">
+          <h2 className="text-3xl md:text-4xl font-normal mb-4 text-gray-800">
             {title}
           </h2>
           <p className="text-lg text-gray-600">

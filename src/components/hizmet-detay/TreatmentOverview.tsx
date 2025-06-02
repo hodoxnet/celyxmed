@@ -76,7 +76,7 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
                 <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
                   {/* Metin İçeriği */}
                   <div className="space-y-5"> {/* Boşluk ayarlandı */}
-                    <h3 className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white">{tab.title}</h3> {/* Font boyutu ayarlandı */}
+                    <h3 className="text-3xl md:text-4xl font-normal text-gray-900 dark:text-white">{tab.title}</h3> {/* Font boyutu ayarlandı */}
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base">{tab.content}</p> {/* Renk, satır aralığı ve font boyutu ayarlandı */}
                     {/* Buton Stili Güncellendi (Home'daki gibi) */}
                     <Link href={tab.buttonLink || '/iletisim'} className="inline-flex items-center rounded-full overflow-hidden shadow-md group transition-shadow hover:shadow-lg text-white font-medium text-base">

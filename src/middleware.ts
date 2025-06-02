@@ -200,5 +200,5 @@ export const config = {
   // - favicon.ico hariç
   // - uploads klasörü hariç (eklendi)
   // tüm rotalarda çalışmasını sağlar.
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|uploads).*)']
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|uploads|fonts).*)']
 };

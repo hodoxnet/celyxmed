@@ -67,7 +67,7 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
             </div>
               {/* Başlık ve Açıklama (index.html: integrations-banner-heading-2) */}
               <div className="space-y-3">
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+                <h2 className="text-2xl md:text-3xl font-normal text-gray-900">
                   <strong>{title}</strong>
                 </h2>
                 <p className="text-gray-600 text-base leading-relaxed">{description}</p>

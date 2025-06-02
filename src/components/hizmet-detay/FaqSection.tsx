@@ -40,7 +40,7 @@ const FaqSection: React.FC<FaqSectionProps> = ({ sectionTitle, sectionDescriptio
           {faqItems.map((item) => (
             <React.Fragment key={item.id}>
               <AccordionItem value={item.id} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl border-none overflow-hidden">
-                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline px-6 py-5 text-gray-900 dark:text-white">
+                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline px-6 py-5 text-gray-900 dark:text-white">
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 pt-0">

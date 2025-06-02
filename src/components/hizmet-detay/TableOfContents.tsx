@@ -25,7 +25,7 @@ const TableOfContentsAccordion: React.FC<TableOfContentsProps> = ({ title, items
     return (
       <ul className="list-disc pl-5 space-y-1">
         {items.map((item) => (
-          <li key={item.id} className={item.isBold ? 'font-semibold' : ''}>
+          <li key={item.id} className="font-bold">
             {item.text}
           </li>
         ))}
@@ -43,7 +43,7 @@ const TableOfContentsAccordion: React.FC<TableOfContentsProps> = ({ title, items
         {/* Trigger içeriği güncellendi: Font boyutları artırıldı, manuel ikon kaldırıldı */}
         <AccordionTrigger className="px-6 py-5 text-left hover:no-underline group justify-between"> {/* justify-between eklendi */}
            <div className="flex flex-col items-start mr-4"> {/* Sağ boşluk eklendi */}
-             <span className="text-xl font-semibold text-gray-900 dark:text-white mb-1.5">{title}</span> {/* Boyut ve alt boşluk artırıldı */}
+             <span className="text-xl font-bold text-gray-900 dark:text-white mb-1.5">{title}</span> {/* Font kalınlığı artırıldı */}
              {/* Yazar bilgisi Trigger'a taşındı */}
              {authorLines.length > 0 && (
                <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1"> {/* Boyut ve satır aralığı artırıldı */}

@@ -102,7 +102,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/50 z-10"></div>
         {/* İçerik (varsayılan veya gelen çeviri) */}
          <div className="relative z-20 container mx-auto px-4 flex flex-col items-center justify-center pt-72 md:pt-80">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 max-w-3xl leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4 max-w-3xl leading-tight font-satoshi-bold">
               {translation.title}
             </h1>
             {translation.description && (
@@ -114,11 +114,11 @@ const HeroSection = () => {
               {translation.button1Text && translation.button1Link && (
                 <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
                   <div className="bg-[#486F79] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
-                  <span className="text-sm font-medium">{translation.button1Text}</span>
+                  <span className="text-sm font-normal">{translation.button1Text}</span>
                 </Link>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-bold">
+                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-normal">
                   {translation.button2Text}
                 </Link>
               )}
@@ -155,7 +155,7 @@ const HeroSection = () => {
       {/* Sabit İçerik */}
       <div className="relative z-20 h-full flex items-center justify-center text-center pt-72 md:pt-80">
           <div className="container mx-auto px-4 flex flex-col items-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 max-w-3xl leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4 max-w-3xl leading-tight font-satoshi-bold">
               {translation.title}
             </h1>
             {translation.description && (
@@ -167,11 +167,11 @@ const HeroSection = () => {
               {translation.button1Text && translation.button1Link && (
                 <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
                   <div className="bg-[#486F79] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
-                  <span className="text-sm font-medium">{translation.button1Text}</span>
+                  <span className="text-sm font-normal">{translation.button1Text}</span>
                 </Link>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-bold">
+                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-normal">
                   {translation.button2Text}
                 </Link>
               )}

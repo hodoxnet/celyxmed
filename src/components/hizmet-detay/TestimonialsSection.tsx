@@ -31,7 +31,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ title, testim
         {/* Opsiyonel Başlık */}
         {title && (
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-white">
+            <h2 className="text-3xl md:text-4xl font-normal text-gray-800 dark:text-white">
               {title}
             </h2>
           </div>
