@@ -52,15 +52,16 @@ const MeetExperts: React.FC<MeetExpertsProps> = ({ sectionTitle, experts, taglin
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white leading-tight">{sectionTitle}</h2>
               {/* Açıklama */}
               <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">{expert.description}</p>
-              {/* Altın/Sarı CTA Butonu */}
-              <Button size="lg" asChild className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white rounded-full px-6 py-4 group shadow-lg border-0 transition-all duration-300 hover:shadow-xl">
-                 <Link href={expert.ctaLink || '/iletisim'} className="flex items-center gap-3">
-                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20"> 
-                      <ArrowRight className="h-5 w-5 text-white transition-transform duration-300 group-hover:translate-x-1" />
-                   </span>
-                   <span className="font-semibold text-base">{expert.ctaText || 'Çevrimiçi Danışma'}</span>
-                 </Link>
-               </Button>
+              {/* CTA Butonu - Hero Stilinde */}
+              <Link 
+                href={expert.ctaLink || '/iletisim'}
+                className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
+              >
+                <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
+                  <ArrowRight className="h-4 w-4 text-white" />
+                </div>
+                <span className="text-base font-medium">{expert.ctaText || 'Çevrimiçi Danışma'}</span>
+              </Link>
             </div>
             {/* Uzman Resmi (Sağ Taraf) */}
             <div className="relative w-full aspect-[5/4] rounded-xl overflow-hidden shadow-lg">
