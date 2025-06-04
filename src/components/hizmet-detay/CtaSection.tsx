@@ -45,8 +45,13 @@ const CtaSection: React.FC<CtaSectionProps> = ({
       <div className="container mx-auto px-4">
         {/* Ana Banner Wrapper */}
         <div
-          className="rounded-2xl overflow-hidden bg-teal-700 dark:bg-teal-800/60 relative p-8 md:p-12 lg:p-16"
-          style={backgroundImageUrl ? { backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+          className="rounded-2xl overflow-hidden relative p-8 md:p-12 lg:p-16"
+          style={backgroundImageUrl ? { 
+            backgroundImage: `url(${backgroundImageUrl})`, 
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center',
+            backgroundColor: '#29707a'
+          } : { backgroundColor: '#29707a' }}
         >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Sol Taraf: Ana Görsel */}
@@ -106,7 +111,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({
 
               {/* Buton - TreatmentOverview stili */}
               <Link href={buttonLink || "/iletisim"} className="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl transition-all duration-300">
-                <div className="bg-[#D4AF37] rounded-lg p-2 flex items-center justify-center">
+                <div className="bg-[#29707a] rounded-lg p-2 flex items-center justify-center">
                   <ArrowRight className="h-5 w-5 text-white" />
                 </div>
                 <span className="text-base font-semibold">{buttonText}</span>
