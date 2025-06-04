@@ -29,7 +29,7 @@ const WhyCelyxmed: React.FC<WhyCelyxmedProps> = ({
       style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/80 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40 z-0"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Başlık */}
