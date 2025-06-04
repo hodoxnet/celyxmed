@@ -29,7 +29,7 @@ const ImageMarquee: React.FC<ImageMarqueeProps> = ({ images }) => {
             {duplicatedImages.map((image, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-60 h-80 md:w-72 md:h-96 relative rounded-lg overflow-hidden shadow-md" /* Boyutları ayarlayabilirsiniz */
+                className="flex-shrink-0 w-[28rem] h-96 md:w-[40rem] md:h-[30rem] relative rounded-lg overflow-hidden shadow-md" /* Boyutları ayarlayabilirsiniz */
               >
                 <Image
                   src={image.src}
@@ -37,7 +37,7 @@ const ImageMarquee: React.FC<ImageMarqueeProps> = ({ images }) => {
                   fill
                   style={{ objectFit: "cover" }}
                   className="transition-transform duration-300 hover:scale-105"
-                  sizes="(max-width: 768px) 15rem, 18rem" // Optimize image loading
+                  sizes="(max-width: 768px) 28rem, 40rem" // Optimize image loading
                 />
               </div>
             ))}
