@@ -46,48 +46,51 @@ const PricingSection: React.FC<PricingSectionProps> = ({
   }
 
   return (
-    <section className="py-16">
+    <section className="py-16 md:py-24" style={{backgroundColor: '#f4f5f7'}}>
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{sectionTitle}</h2>
-          {sectionDescription && (
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">{sectionDescription}</p>
-          )}
-        </div>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Sol Taraf - İçerik */}
+          <div className="space-y-6">
+            {/* Mavi Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-semibold">
+              <span className="w-2 h-2 rounded-full bg-white"></span>
+              Doktorumuz Çevrimiçi ve Konsültasyona Hazır
+            </div>
 
-        {/* Fiyatlandırma Kartları */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"> {/* items-stretch kartları eşitler */}
-          {packages.map((pkg) => (
-            <Card key={pkg.id} className={`flex flex-col ${pkg.isFeatured ? 'border-blue-500 border-2 shadow-lg dark:border-blue-400' : 'border dark:border-gray-700'}`}>
-              <CardHeader>
-                <CardTitle>{pkg.title}</CardTitle>
-                {pkg.description && <CardDescription>{pkg.description}</CardDescription>}
-              </CardHeader>
-              <CardContent className="flex-grow"> {/* flex-grow içeriği iter */}
-                <div className="text-3xl font-bold mb-4">{pkg.price}</div>
-                <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                  {pkg.features.map((feature, index) => (
-                    <li key={index} className="flex items-center">
-                      <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                 <Button asChild className="w-full" variant={pkg.isFeatured ? 'default' : 'outline'}>
-                   <Link href="/iletisim">Paketi Seç / Bilgi Al</Link>
-                 </Button>
-              </CardFooter>
-            </Card>
-          ))}
+            {/* Başlık */}
+            <h2 className="text-4xl md:text-5xl font-medium text-gray-900 dark:text-white leading-tight max-w-2xl">
+              {sectionTitle}
+            </h2>
+
+            {/* Açıklama */}
+            {sectionDescription && (
+              <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl">
+                <div>{sectionDescription}</div>
+              </div>
+            )}
+
+            {/* Buton */}
+            <Link href="/iletisim" className="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg">
+              <div className="bg-[#D4AF37] rounded-lg p-2 flex items-center justify-center">
+                <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <span className="text-base font-semibold">Çevrimiçi Danışma</span>
+            </Link>
+          </div>
+
+          {/* Sağ Taraf - Tek Görsel */}
+          <div className="relative">
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+              <img
+                src="https://cdn.prod.website-files.com/67deade75b02537eadc0bc9f/67deade75b02537eadc0c5dd_op-dr-kemal-aytuglu-celyxmed.avif"
+                alt="Dr. Kemal Aytuğlu - Celyxmed"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
-         <div className="text-center mt-12">
-             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Fiyatlar ve paket içerikleri kişisel ihtiyaçlarınıza göre değişiklik gösterebilir. En doğru bilgi için lütfen ücretsiz konsültasyon talep edin.</p>
-             <Button asChild>
-                <Link href="/iletisim">{contactButtonText}</Link>
-             </Button>
-         </div>
       </div>
     </section>
   );
