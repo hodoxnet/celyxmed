@@ -4,7 +4,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button'; // Buton için
+// Button import'u kaldırıldı, direkt Link kullanılıyor
 import { ArrowRight } from 'lucide-react'; // İkon için
 
 // Avatar verisi tipi
@@ -104,15 +104,13 @@ const CtaSection: React.FC<CtaSectionProps> = ({
                 </div>
               )}
 
-              {/* Buton - buttonLink null kontrolü eklendi */}
-              <Button size="lg" asChild className="bg-white text-teal-700 hover:bg-gray-100 rounded-full pl-3 pr-6 py-3 group shadow-md">
-                 <Link href={buttonLink || "/iletisim"} className="flex items-center gap-3">
-                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-600">
-                      <ArrowRight className="h-5 w-5 text-teal-700 dark:text-white transition-transform duration-300 group-hover:translate-x-1" />
-                   </span>
-                   <span className="font-semibold">{buttonText}</span>
-                 </Link>
-               </Button>
+              {/* Buton - TreatmentOverview stili */}
+              <Link href={buttonLink || "/iletisim"} className="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl transition-all duration-300">
+                <div className="bg-[#D4AF37] rounded-lg p-2 flex items-center justify-center">
+                  <ArrowRight className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-base font-semibold">{buttonText}</span>
+              </Link>
             </div>
           </div>
         </div>
