@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from 'lucide-react'; // İkonu ArrowLeft olarak değiştirelim (görseldeki gibi)
+import { ArrowRight } from 'lucide-react'; // İkonu ArrowRight olarak değiştirelim
 
 interface HeroSectionProps {
   // breadcrumb prop'u kaldırıldı, otomatik oluşturulacak
@@ -97,18 +97,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="flex items-center gap-4">
             <Link 
               href={primaryButtonLink}
-              className="inline-flex items-center bg-[#D4AF37] hover:bg-[#B8941F] text-[rgb(40,56,73)] font-medium px-6 py-3 rounded-full transition-all duration-300 group"
+              className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
             >
-              <div className="flex items-center">
-                <ArrowLeft className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1" />
-                <span className="text-sm font-medium">{primaryButtonText}</span>
+              <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
+                <ArrowRight className="h-4 w-4 text-white" />
               </div>
+              <span className="text-base font-medium">{primaryButtonText}</span>
             </Link>
             <Link 
               href={secondaryButtonLink}
-              className="inline-flex items-center text-white hover:text-gray-300 font-medium px-6 py-3 rounded-full transition-all duration-300"
+              className="text-white hover:text-gray-300 transition-colors duration-300 text-base font-medium flex items-center"
             >
-              <span className="text-sm font-medium">{secondaryButtonText}</span>
+              {secondaryButtonText}
             </Link>
             </div>
           </div>
