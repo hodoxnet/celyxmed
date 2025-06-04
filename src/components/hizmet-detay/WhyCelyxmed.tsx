@@ -25,7 +25,7 @@ const WhyCelyxmed: React.FC<WhyCelyxmedProps> = ({
 }) => {
   return (
     <section
-      className="py-20 md:py-32 bg-cover bg-center bg-no-repeat relative text-white"
+      className="pt-8 pb-12 md:pt-12 md:pb-20 bg-cover bg-center bg-no-repeat relative text-white"
       style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
     >
       {/* Gradient Overlay */}

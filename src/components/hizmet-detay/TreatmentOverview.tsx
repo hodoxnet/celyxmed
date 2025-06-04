@@ -38,7 +38,7 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
   const titleLine2 = titleParts.slice(-2).join(' '); // Son iki kelime
 
   return (
-    <section className="py-20 md:py-32 bg-white dark:bg-gray-900">
+    <section className="pt-20 pb-8 md:pt-32 md:pb-12 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         {/* Başlık/Açıklama alanı ortalandı */}
         <div className="text-center mb-12 md:mb-16">
