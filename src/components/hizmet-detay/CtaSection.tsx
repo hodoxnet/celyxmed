@@ -56,7 +56,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Sol Taraf: Ana Görsel */}
             {mainImageUrl && (
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden order-last lg:order-first">
+              <div className="relative aspect-[6/5] lg:aspect-[5/4] rounded-xl overflow-hidden order-last lg:order-first min-h-[300px] lg:min-h-[400px]">
                 <Image
                   src={mainImageUrl}
                   alt={mainImageAlt}
