@@ -85,14 +85,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">{title}</h1>
           </div>
           
-          {/* Description ve Butonlar - Full width container */}
-          <div className="relative mb-10 w-full">
+          {/* Description */}
+          <div className="mb-6 w-full">
             <div className="max-w-3xl">
               <p className="text-sm sm:text-base text-gray-200 leading-normal">{description}</p>
             </div>
-            
-            {/* Butonlar - Sayfanın sağ kenarına yaslanmış */}
-            <div className="absolute top-0 right-0 flex items-start gap-4">
+          </div>
+          
+          {/* Butonlar - Ayrı container, sağ tarafa yaslanmış */}
+          <div className="w-full flex justify-end mb-10">
+            <div className="flex items-center gap-4">
             <Link 
               href={primaryButtonLink}
               className="inline-flex items-center bg-[#D4AF37] hover:bg-[#B8941F] text-[rgb(40,56,73)] font-medium px-6 py-3 rounded-full transition-all duration-300 group"
@@ -109,7 +111,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               <span className="text-sm font-medium">{secondaryButtonText}</span>
             </Link>
             </div>
-        </div>
+          </div>
         </div>
       </div>
     </section>
