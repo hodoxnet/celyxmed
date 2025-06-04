@@ -28,7 +28,7 @@ const RecoveryInfo: React.FC<RecoveryInfoProps> = ({ sectionTitle, sectionDescri
     <section className="py-16 bg-gray-50 dark:bg-gray-900"> {/* Arka plan rengi */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{sectionTitle}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 max-w-4xl mx-auto leading-tight">{sectionTitle}</h2>
           {sectionDescription && (
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">{sectionDescription}</p>
           )}
