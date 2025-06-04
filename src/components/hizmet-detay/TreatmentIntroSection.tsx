@@ -36,11 +36,11 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
   // const videoEmbedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : null;
 
   return (
-    <section id="detaylar" className="tedavi-y bg-gray-50 py-16 md:py-24">
+    <section id="detaylar" className="tedavi-y bg-white py-16 md:py-24">
       {/* Ana container (ortalanmış ve padding'li) */}
       <div className="container mx-auto px-4">
         {/* Kart yapısı (index.html'deki banner-bg-2'ye benzer) */}
-        <div className="bg-white p-8 md:p-12 rounded-xl shadow-lg">
+        <div className="p-8 md:p-12 rounded-xl shadow-lg" style={{backgroundColor: '#f6f9fc'}}>
           {/* İki sütunlu grid yapısı (index.html'deki integrations-banner-2) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
