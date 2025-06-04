@@ -74,7 +74,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       />
       {/* Gradient Overlay */}
       {/* Gradient Overlay - Daha belirgin */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"></div>
 
       {/* İçerik - Eski site layout'ına göre */}
       <div className="relative z-20 w-full h-full flex flex-col justify-end items-center pb-20 md:pb-28 lg:pb-32">
