@@ -77,7 +77,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"></div>
 
       {/* İçerik - Eski site layout'ına göre */}
-      <div className="relative z-20 w-full h-full flex flex-col justify-end items-center pb-20 md:pb-28 lg:pb-32">
+      <div className="relative z-20 w-full h-full flex flex-col justify-end items-center pb-12 md:pb-16 lg:pb-20">
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl w-full">
           {/* Breadcrumb ve Title */}
           <div className="max-w-4xl">
