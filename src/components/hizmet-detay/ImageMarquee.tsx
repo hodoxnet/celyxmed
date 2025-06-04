@@ -22,10 +22,9 @@ const ImageMarquee: React.FC<ImageMarqueeProps> = ({ images }) => {
   const duplicatedImages = [...images, ...images.slice(0, Math.min(images.length, 4))];
 
   return (
-    <section className="py-8 md:py-12 bg-white"> {/* Arka planı veya padding'i ayarlayabilirsiniz */}
-      <div className="container mx-auto px-4">
-        <div className="overflow-hidden">
-          <div className="flex animate-marquee space-x-4 md:space-x-6">
+    <section className="py-8 md:py-12 bg-white w-full"> {/* Arka planı veya padding'i ayarlayabilirsiniz */}
+      <div className="overflow-hidden w-full">
+        <div className="flex animate-marquee space-x-4 md:space-x-6">
             {duplicatedImages.map((image, index) => (
               <div
                 key={index}
@@ -35,13 +34,12 @@ const ImageMarquee: React.FC<ImageMarqueeProps> = ({ images }) => {
                   src={image.src}
                   alt={image.alt}
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "fill" }}
                   className="transition-transform duration-300 hover:scale-105"
                   sizes="(max-width: 768px) 28rem, 40rem" // Optimize image loading
                 />
               </div>
             ))}
-          </div>
         </div>
       </div>
     </section>
