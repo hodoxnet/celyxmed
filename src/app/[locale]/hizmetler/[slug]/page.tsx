@@ -146,6 +146,13 @@ export async function generateMetadata(
 // API'den dönecek veri tipi (Genişletildi - tüm alanlar opsiyonel)
 // Not: Bu tipin Prisma'dan veya paylaşılan bir tipten türetilmesi daha iyi olur.
 interface FetchedServiceData {
+  // Module States
+  moduleStates?: {
+    [key: string]: {
+      isActive?: boolean;
+      isVisible?: boolean;
+    };
+  };
   // Hero
   heroImageUrl: string;
   heroImageAlt: string;
@@ -476,32 +483,37 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
         {/* Hero Bölümü - Gösterim kontrolü eklendi */}
-        {(
-          (serviceData?.moduleStates?.heroSection?.isActive !== false && serviceData?.moduleStates?.heroSection?.isVisible !== false) ||
-          (serviceData?.moduleStates?.hero?.isActive !== false && serviceData?.moduleStates?.hero?.isVisible !== false)
-        ) ? (
-          <>
-            {console.log('[Render] Hero modülü render ediliyor', 
+        {(() => {
+          const shouldShowHero = (
+            (serviceData?.moduleStates?.heroSection?.isActive !== false && serviceData?.moduleStates?.heroSection?.isVisible !== false) ||
+            (serviceData?.moduleStates?.hero?.isActive !== false && serviceData?.moduleStates?.hero?.isVisible !== false)
+          );
+          
+          if (shouldShowHero) {
+            console.log('[Render] Hero modülü render ediliyor', 
               'heroSection.isActive:', serviceData?.moduleStates?.heroSection?.isActive, 
               'heroSection.isVisible:', serviceData?.moduleStates?.heroSection?.isVisible,
               'hero.isActive:', serviceData?.moduleStates?.hero?.isActive,
               'hero.isVisible:', serviceData?.moduleStates?.hero?.isVisible
-            )}
-            <HeroSection
-              title={serviceData.title}
-              description={serviceData.description}
-              imageUrl={serviceData.heroImageUrl}
-              imageAlt={serviceData.heroImageAlt}
-            />
-          </>
-        ) : (
-          console.log('[Render] Hero modülü gizli, sebep:', 
-            'heroSection.isActive:', serviceData?.moduleStates?.heroSection?.isActive, 
-            'heroSection.isVisible:', serviceData?.moduleStates?.heroSection?.isVisible,
-            'hero.isActive:', serviceData?.moduleStates?.hero?.isActive,
-            'hero.isVisible:', serviceData?.moduleStates?.hero?.isVisible
-          )
-        )}
+            );
+            return (
+              <HeroSection
+                title={serviceData.title}
+                description={serviceData.description}
+                imageUrl={serviceData.heroImageUrl}
+                imageAlt={serviceData.heroImageAlt}
+              />
+            );
+          } else {
+            console.log('[Render] Hero modülü gizli, sebep:', 
+              'heroSection.isActive:', serviceData?.moduleStates?.heroSection?.isActive, 
+              'heroSection.isVisible:', serviceData?.moduleStates?.heroSection?.isVisible,
+              'hero.isActive:', serviceData?.moduleStates?.hero?.isActive,
+              'hero.isVisible:', serviceData?.moduleStates?.hero?.isVisible
+            );
+            return null;
+          }
+        })()}
 
         {/* Diğer bölümler şimdilik statik veya boş kalabilir */}
         {/* Örnek:
@@ -513,60 +525,66 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         {/* Her bölüm için moduleStates kontrolü yaparak bölümleri göster/gizle */}
         
         {/* TOC & CTA Bölümü */}
-        {/* TOC & CTA Bölümü - Hem toc hem de tocSection anahtarlarını kontrol ediyoruz */}
-        {(
-          // TOC için iki olası anahtarı da kontrol ediyoruz
-          (serviceData?.moduleStates?.tocSection?.isActive !== false && serviceData?.moduleStates?.tocSection?.isVisible !== false) ||
-          (serviceData?.moduleStates?.toc?.isActive !== false && serviceData?.moduleStates?.toc?.isVisible !== false)
-        ) ? (
-          <>
-            {console.log('[Render] TOC modülü render ediliyor', 
+        {(() => {
+          const shouldShowToc = (
+            (serviceData?.moduleStates?.tocSection?.isActive !== false && serviceData?.moduleStates?.tocSection?.isVisible !== false) ||
+            (serviceData?.moduleStates?.toc?.isActive !== false && serviceData?.moduleStates?.toc?.isVisible !== false)
+          );
+          
+          if (shouldShowToc) {
+            console.log('[Render] TOC modülü render ediliyor', 
               'tocSection.isActive:', serviceData?.moduleStates?.tocSection?.isActive, 
               'tocSection.isVisible:', serviceData?.moduleStates?.tocSection?.isVisible,
               'toc.isActive:', serviceData?.moduleStates?.toc?.isActive,
               'toc.isVisible:', serviceData?.moduleStates?.toc?.isVisible
-            )}
-            <TocAndCtaSection
-              tocTitle={serviceData?.tocTitle ?? "İçindekiler"}
-              tocItems={serviceData?.tocItems ?? []}
-              tocAuthorInfo={serviceData?.tocAuthorInfo ?? ""}
-              ctaDescription={serviceData?.tocCtaDescription ?? ""}
-            />
-          </>
-        ) : (
-          console.log('[Render] TOC modülü gizli, sebep:', 
-            'tocSection.isActive:', serviceData?.moduleStates?.tocSection?.isActive, 
-            'tocSection.isVisible:', serviceData?.moduleStates?.tocSection?.isVisible,
-            'toc.isActive:', serviceData?.moduleStates?.toc?.isActive,
-            'toc.isVisible:', serviceData?.moduleStates?.toc?.isVisible
-          )
-        )}
+            );
+            return (
+              <TocAndCtaSection
+                tocTitle={serviceData?.tocTitle ?? "İçindekiler"}
+                tocItems={serviceData?.tocItems ?? []}
+                tocAuthorInfo={serviceData?.tocAuthorInfo ?? ""}
+                ctaDescription={serviceData?.tocCtaDescription ?? ""}
+              />
+            );
+          } else {
+            console.log('[Render] TOC modülü gizli, sebep:', 
+              'tocSection.isActive:', serviceData?.moduleStates?.tocSection?.isActive, 
+              'tocSection.isVisible:', serviceData?.moduleStates?.tocSection?.isVisible,
+              'toc.isActive:', serviceData?.moduleStates?.toc?.isActive,
+              'toc.isVisible:', serviceData?.moduleStates?.toc?.isVisible
+            );
+            return null;
+          }
+        })()}
         
-        {/* Marquee Bölümü - Tüm olası anahtarları kontrol ediyoruz */}
-        {(
-          // Hem 'marqueeSection' hem de 'marquee' anahtarlarını kontrol ediyoruz
-          (serviceData?.moduleStates?.marqueeSection?.isActive !== false && serviceData?.moduleStates?.marqueeSection?.isVisible !== false) || 
-          (serviceData?.moduleStates?.marquee?.isActive !== false && serviceData?.moduleStates?.marquee?.isVisible !== false)
-        ) && serviceData?.marqueeImages && serviceData.marqueeImages.length > 0 ? (
-          <>
-            {console.log('[Render] Marquee modülü render ediliyor', 
+        {/* Marquee Bölümü */}
+        {(() => {
+          const shouldShowMarquee = (
+            (serviceData?.moduleStates?.marqueeSection?.isActive !== false && serviceData?.moduleStates?.marqueeSection?.isVisible !== false) || 
+            (serviceData?.moduleStates?.marquee?.isActive !== false && serviceData?.moduleStates?.marquee?.isVisible !== false)
+          ) && serviceData?.marqueeImages && serviceData.marqueeImages.length > 0;
+          
+          if (shouldShowMarquee) {
+            console.log('[Render] Marquee modülü render ediliyor', 
               'marqueeSection.isActive:', serviceData?.moduleStates?.marqueeSection?.isActive, 
               'marqueeSection.isVisible:', serviceData?.moduleStates?.marqueeSection?.isVisible,
               'marquee.isActive:', serviceData?.moduleStates?.marquee?.isActive,
               'marquee.isVisible:', serviceData?.moduleStates?.marquee?.isVisible
-            )}
-            <ImageMarquee images={serviceData.marqueeImages} />
-          </>
-        ) : (
-          console.log('[Render] Marquee modülü gizli, sebep:', 
-                    'marqueeSection.isActive:', serviceData?.moduleStates?.marqueeSection?.isActive, 
-                    'marqueeSection.isVisible:', serviceData?.moduleStates?.marqueeSection?.isVisible,
-                    'marquee.isActive:', serviceData?.moduleStates?.marquee?.isActive,
-                    'marquee.isVisible:', serviceData?.moduleStates?.marquee?.isVisible,
-                    'marqueeImages.length:', serviceData?.marqueeImages?.length)
-        )}
+            );
+            return <ImageMarquee images={serviceData.marqueeImages || []} />;
+          } else {
+            console.log('[Render] Marquee modülü gizli, sebep:', 
+              'marqueeSection.isActive:', serviceData?.moduleStates?.marqueeSection?.isActive, 
+              'marqueeSection.isVisible:', serviceData?.moduleStates?.marqueeSection?.isVisible,
+              'marquee.isActive:', serviceData?.moduleStates?.marquee?.isActive,
+              'marquee.isVisible:', serviceData?.moduleStates?.marquee?.isVisible,
+              'marqueeImages.length:', serviceData?.marqueeImages?.length
+            );
+            return null;
+          }
+        })()}
         
-        {/* Tedavi Tanıtım Bölümü - Her iki anahtarı kontrol ediyoruz */}
+        {/* Tedavi Tanıtım Bölümü */}
         {(
           (serviceData?.moduleStates?.introSection?.isActive !== false && serviceData?.moduleStates?.introSection?.isVisible !== false) ||
           (serviceData?.moduleStates?.intro?.isActive !== false && serviceData?.moduleStates?.intro?.isVisible !== false)

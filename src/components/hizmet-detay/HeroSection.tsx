@@ -78,10 +78,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* İçerik - Konumlandırma ve padding ayarlandı */}
       <div className="relative z-20 container mx-auto px-6 lg:px-8 pb-20 md:pb-28 lg:pb-32 w-full max-w-7xl"> {/* Daha geniş container ve padding */}
-        <div className="max-w-xl"> {/* İçerik genişliği */}
-          <p className="text-sm text-gray-300 mb-3">{dynamicBreadcrumb}</p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5 leading-tight">{title}</h1>
-          <p className="text-base sm:text-lg text-gray-200 mb-10">{description}</p>
+        <div className="max-w-4xl"> {/* İçerik genişliği */}
+          <p className="text-xs text-gray-300 mb-3">{dynamicBreadcrumb}</p>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight">{title}</h1>
+          <p className="text-sm sm:text-base text-gray-200 mb-10 leading-relaxed">{description}</p>
 
           {/* Butonlar - Görseldeki gibi */}
           <div className="flex flex-wrap gap-4">
