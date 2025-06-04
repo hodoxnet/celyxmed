@@ -72,23 +72,19 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
                 </h2>
                 <p className="text-gray-600 text-base leading-relaxed">{description}</p>
               </div>
-              {/* Butonlar (index.html: double-button) - Güncellenmiş stil */}
-              <div className="mt-6 flex flex-col sm:flex-row gap-4 items-start">
-                 {/* Ana Buton (Görseldeki gibi) - Yeni stil */}
-                 <Button size="lg" asChild className="bg-teal-600 text-white hover:bg-teal-700 rounded-full pl-2 pr-6 py-2 group shadow-md">
-                   <Link href={primaryButtonLink} className="flex items-center gap-2"> {/* Link içine flex eklendi */}
-                     {/* İkon Alanı */}
-                     <span className="bg-amber-400 p-2 rounded-full inline-flex items-center justify-center">
-                        <ArrowRight className="h-5 w-5 text-teal-800 transition-transform duration-300 group-hover:translate-x-1" />
-                     </span>
-                     {/* Metin Alanı */}
-                     <span className="font-semibold">{primaryButtonText}</span> {/* Metni span içine aldık */}
-                   </Link>
-                 </Button>
-                 {/* İkincil Buton (Metin Linki) */}
-                 <Button asChild variant="link" size="lg" className="text-gray-800 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400 px-0 py-3 font-medium">
-                   <Link href={secondaryButtonLink}>{secondaryButtonText}</Link>
-                 </Button>
+              {/* Butonlar - TOC stillerine göre */}
+              <div className="mt-6 flex flex-col sm:flex-row gap-4 items-center">
+                {/* Primary Button - TOC stiline göre */}
+                <Link href={primaryButtonLink} className="flex items-center gap-2 bg-[#486F79] hover:bg-[#3a5a63] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
+                  <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
+                    <ArrowRight className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="text-base font-medium">{primaryButtonText}</span>
+                </Link>
+                {/* Secondary Button - TOC stiline göre */}
+                <Link href={secondaryButtonLink} className="text-gray-800 hover:text-gray-600 transition-colors duration-300 text-base font-medium flex items-center">
+                  {secondaryButtonText}
+                </Link>
               </div>
             </div>
 
