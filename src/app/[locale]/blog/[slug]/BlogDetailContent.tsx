@@ -159,7 +159,7 @@ const BlogDetailContent: React.FC<BlogDetailContentProps> = ({ blogId, locale, s
       <BlogPreview />
 
       {/* Tam Genişlikli Bileşen */}
-      <WhyTrustSection />
+      <WhyTrustSection locale={locale} />
     </div>
   );
 };

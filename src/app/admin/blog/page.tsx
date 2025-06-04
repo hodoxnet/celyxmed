@@ -1,419 +1,287 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { format } from 'date-fns';
-import { tr } from 'date-fns/locale';
-import { toast } from 'sonner';
-import { 
-  Plus, 
-  Pencil, 
-  Trash2, 
-  Eye, 
-  Globe, 
-  Search,
-  Check,
-  X,
-  ArrowUpDown
-} from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useSearchParams } from 'next/navigation';
+import {
+  FileText,
+  Plus,
+  Settings,
+  BookOpen,
+  PenTool,
+} from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { toast } from "sonner";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Skeleton } from '@/components/ui/skeleton';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import BlogListesi from "./components/BlogListesi";
+import BlogFormu from "./components/BlogFormu";
+import { Language } from "@/generated/prisma/client";
 
-// Blog tipi
-interface BlogTranslation {
+interface BlogModule {
   id: string;
   title: string;
-  fullDescription: string;
-  languageCode: string;
+  icon: React.ElementType;
+  description?: string;
 }
 
-interface Blog {
-  id: string;
-  slug: string;
-  coverImageUrl: string | null;
-  isPublished: boolean;
-  publishedAt: string | null;
-  createdAt: string;
-  updatedAt: string;
-  title: string | null;
-  fullDescription: string | null;
-  hasTranslation: boolean;
-  languageCode: string;
-}
+const modules: BlogModule[] = [
+  { id: "blog-list", title: "Blog Listesi ve Yönetimi", icon: FileText, description: "Tüm blog yazılarını görüntüleyin ve yönetin" },
+  { id: "blog-add", title: "Yeni Blog Yazısı", icon: Plus, description: "Blog içeriği, kapak görseli ve yayın durumu" },
+];
 
-export default function BlogsPage() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<null | string>(null);
-  const [languages, setLanguages] = useState<{code: string, name: string}[]>([]);
-  const [selectedLanguage, setSelectedLanguage] = useState('tr'); // Varsayılan dil
-  const [searchTerm, setSearchTerm] = useState('');
-  const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [sortField, setSortField] = useState<'createdAt' | 'publishedAt' | 'title'>('createdAt');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
-  
-  const router = useRouter();
+export default function BlogYonetimiPage() {
+  const searchParams = useSearchParams();
+  const [selectedModule, setSelectedModule] = useState<BlogModule | null>(modules[0] || null);
+  const [availableLanguages, setAvailableLanguages] = useState<Language[]>([]);
+  const [loadingLanguages, setLoadingLanguages] = useState(true);
+  const [activeLanguageCode, setActiveLanguageCode] = useState<string>("");
+  const [progress, setProgress] = useState(0);
 
-  // Dilleri getir
+  // Blog formu için state'ler
+  const [blogFormView, setBlogFormView] = useState<'list' | 'form'>('list');
+  const [editingBlogId, setEditingBlogId] = useState<string | null>(null);
+  const [blogListRefreshTrigger, setBlogListRefreshTrigger] = useState(0);
+
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
+        setLoadingLanguages(true);
         const response = await fetch('/api/languages');
-        if (!response.ok) throw new Error('Diller yüklenirken hata oluştu');
+        if (!response.ok) throw new Error('Diller yüklenemedi.');
         const data = await response.json();
-        setLanguages(data);
-      } catch (err) {
-        console.error('Error fetching languages:', err);
-        toast.error('Diller yüklenirken bir hata oluştu.');
+        const activeLangs = data.filter((lang: any) => lang.isActive);
+        setAvailableLanguages(activeLangs);
+        if (activeLangs.length > 0) {
+          const defaultLang = activeLangs.find((lang: Language) => lang.isDefault);
+          setActiveLanguageCode(defaultLang?.code || activeLangs[0].code);
+        }
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : 'Diller yüklenirken bir hata oluştu.');
+      } finally {
+        setLoadingLanguages(false);
       }
     };
     fetchLanguages();
   }, []);
 
-  // Blogları getir
+  // Query parameter'leri işle
   useEffect(() => {
-    const fetchBlogs = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(`/api/admin/blogs?lang=${selectedLanguage}`);
-        if (!response.ok) throw new Error('Bloglar yüklenirken hata oluştu');
-        const data = await response.json();
-        setBlogs(data);
-      } catch (err: any) {
-        console.error('Error fetching blogs:', err);
-        setError(err.message || 'Bloglar yüklenirken bir hata oluştu.');
-        toast.error('Bloglar yüklenirken bir hata oluştu.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchBlogs();
-  }, [selectedLanguage]);
-
-  // Blog silme fonksiyonu
-  const handleDelete = async () => {
-    if (!deleteId) return;
+    const moduleParam = searchParams.get('module');
+    const editParam = searchParams.get('edit');
     
-    setIsDeleting(true);
-    try {
-      const response = await fetch(`/api/admin/blogs/${deleteId}`, {
-        method: 'DELETE',
-      });
-      
-      if (!response.ok) throw new Error('Blog silinirken bir hata oluştu');
-      
-      // Silinen blogu listeden kaldır
-      setBlogs(prev => prev.filter(blog => blog.id !== deleteId));
-      toast.success('Blog başarıyla silindi');
-    } catch (err) {
-      console.error('Error deleting blog:', err);
-      toast.error('Blog silinirken bir hata oluştu');
-    } finally {
-      setIsDeleting(false);
-      setDeleteId(null);
+    if (moduleParam) {
+      const module = modules.find(m => m.id === moduleParam);
+      if (module) {
+        setSelectedModule(module);
+        if (moduleParam === 'blog-add') {
+          setBlogFormView('form');
+          setEditingBlogId(editParam);
+        }
+      }
+    }
+  }, [searchParams]);
+
+  const handleModuleSelect = (module: BlogModule) => {
+    setSelectedModule(module);
+    if (module.id === 'blog-list') setBlogFormView('list');
+    if (module.id === 'blog-add') {
+      setEditingBlogId(null);
+      setBlogFormView('form');
     }
   };
 
-  // Arama ve filtreleme
-  const filteredBlogs = blogs.filter(blog => {
-    const searchLower = searchTerm.toLowerCase();
-    return (
-      (blog.title?.toLowerCase().includes(searchLower) || false) ||
-      (blog.fullDescription?.toLowerCase().includes(searchLower) || false) ||
-      blog.slug.toLowerCase().includes(searchLower)
-    );
-  });
-
-  // Sıralama
-  const sortedBlogs = [...filteredBlogs].sort((a, b) => {
-    if (sortField === 'title') {
-      const titleA = a.title || '';
-      const titleB = b.title || '';
-      return sortDirection === 'asc' 
-        ? titleA.localeCompare(titleB)
-        : titleB.localeCompare(titleA);
-    } else {
-      const dateA = a[sortField] ? new Date(a[sortField] as string).getTime() : 0;
-      const dateB = b[sortField] ? new Date(b[sortField] as string).getTime() : 0;
-      return sortDirection === 'asc' ? dateA - dateB : dateB - dateA;
-    }
-  });
-
-  // Sıralama değiştirme fonksiyonu
-  const toggleSort = (field: 'createdAt' | 'publishedAt' | 'title') => {
-    if (sortField === field) {
-      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortField(field);
-      setSortDirection('desc'); // Yeni alan seçildiğinde varsayılan olarak desc
-    }
+  const handleEditBlog = (blogId: string) => {
+    setEditingBlogId(blogId);
+    setBlogFormView('form');
+    setSelectedModule(modules.find(m => m.id === 'blog-add') || modules[1]);
   };
 
-  // Dil adını getir
-  const getLanguageName = (code: string) => {
-    const language = languages.find(lang => lang.code === code);
-    return language ? language.name : code;
+  const handleAddNewBlog = () => {
+    setEditingBlogId(null);
+    setBlogFormView('form');
+    setSelectedModule(modules.find(m => m.id === 'blog-add') || modules[1]);
+  };
+
+  const handleBlogFormSuccess = () => {
+    setBlogFormView('list');
+    setBlogListRefreshTrigger(p => p + 1);
+    setSelectedModule(modules[0]);
+  };
+
+  const handleBlogFormCancel = () => {
+    setBlogFormView('list');
+    setEditingBlogId(null);
+    setSelectedModule(modules[0]);
+  };
+
+  const renderModuleContent = () => {
+    if (!selectedModule) {
+      return (
+        <Card className="flex items-center justify-center h-64">
+          <div className="text-center p-6">
+            <BookOpen className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+            <h3 className="text-lg font-medium mb-2">Blog Yönetimi</h3>
+            <p className="text-muted-foreground">Düzenlemek için modül seçin</p>
+          </div>
+        </Card>
+      );
+    }
+    
+    if (loadingLanguages) {
+      return (
+        <Card>
+          <CardContent className="p-6">
+            <div className="text-center">
+              <p className="text-muted-foreground">Diller ve modül içeriği yükleniyor...</p>
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+    
+    if (availableLanguages.length === 0) {
+      return (
+        <Card>
+          <CardContent className="p-6">
+            <div className="space-y-4 rounded-lg border border-red-200 bg-red-50 p-6">
+              <div className="flex items-center gap-2 text-red-600">
+                <h3 className="font-medium">Aktif dil bulunamadı</h3>
+              </div>
+              <p className="text-sm text-red-600">Lütfen yönetim panelinden en az bir dili aktif hale getirin.</p>
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+    
+    if (!activeLanguageCode) {
+      return (
+        <Card>
+          <CardContent className="p-6">
+            <div className="text-center">
+              <p className="text-muted-foreground">Aktif dil kodu ayarlanıyor...</p>
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+
+    const propsWithLang = { availableLanguages, activeLanguageCode };
+
+    switch (selectedModule.id) {
+      case 'blog-list':
+        return (
+          <BlogListesi
+            onEditItem={handleEditBlog}
+            onAddNewItem={handleAddNewBlog}
+            refreshTrigger={blogListRefreshTrigger}
+            {...propsWithLang}
+          />
+        );
+      case 'blog-add':
+        return (
+          <BlogFormu
+            onSubmitSuccess={handleBlogFormSuccess}
+            onCancel={handleBlogFormCancel}
+            blogIdToEdit={editingBlogId}
+            {...propsWithLang}
+          />
+        );
+      default:
+        return (
+          <Card>
+            <CardContent className="p-6">
+              <p className="text-gray-700">`{selectedModule.title}` için yönetim arayüzü burada görünecek.</p>
+            </CardContent>
+          </Card>
+        );
+    }
   };
 
   return (
-    <div className="container mx-auto py-10">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <h1 className="text-3xl font-bold">Blog Yazıları</h1>
-        <Button onClick={() => router.push('/admin/blog/ekle')}>
-          <Plus className="mr-2 h-4 w-4" /> Yeni Blog Yazısı Ekle
-        </Button>
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight">Blog Yönetimi</h2>
+        <p className="text-muted-foreground">Blog yazılarını yönetin ve düzenleyin.</p>
       </div>
-
-      {/* Filtreler ve Arama */}
-      <div className="mb-6 flex flex-col sm:flex-row gap-4">
-        <div className="flex-1">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Blog ara..."
-              className="pl-10"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+    
+      <Card>
+        <CardHeader className="pb-3">
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle>{selectedModule?.title || "Blog Yönetimi"}</CardTitle>
+              <CardDescription>
+                {selectedModule?.description || "Lütfen düzenlemek istediğiniz modülü seçin"}
+              </CardDescription>
+            </div>
           </div>
-        </div>
-        <div className="w-full sm:w-48">
-          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger>
-              <SelectValue placeholder="Dil Seçin" />
-            </SelectTrigger>
-            <SelectContent>
-              {languages.map(lang => (
-                <SelectItem key={lang.code} value={lang.code}>
-                  {lang.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {/* Blog Listesi */}
-      {isLoading ? (
-        <div className="space-y-4">
-          {[1, 2, 3].map(i => (
-            <div key={i} className="border rounded-lg p-4 flex flex-col md:flex-row gap-4">
-              <div className="w-full md:w-[150px] h-[80px]">
-                <Skeleton className="h-full w-full" />
-              </div>
-              <div className="flex-1">
-                <Skeleton className="h-7 w-3/4 mb-2" />
-                <Skeleton className="h-4 w-full mb-1" />
-                <Skeleton className="h-4 w-2/3" />
-              </div>
-              <div className="w-[100px] flex-shrink-0">
-                <Skeleton className="h-10 w-full" />
-              </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col space-y-4">
+            {/* İlerleme çubuğu */}
+            <div className="flex items-center">
+              <Progress value={progress} className="w-full" />
+              <span className="text-sm text-muted-foreground ml-2 whitespace-nowrap">
+                %{progress}
+              </span>
             </div>
-          ))}
-        </div>
-      ) : error ? (
-        <div className="text-center py-10">
-          <p className="text-red-500">{error}</p>
-          <Button variant="outline" onClick={() => router.refresh()} className="mt-4">
-            Yenile
-          </Button>
-        </div>
-      ) : sortedBlogs.length === 0 ? (
-        <div className="text-center py-10 border rounded-lg">
-          <p className="text-gray-500 mb-4">
-            {searchTerm ? 'Aramanızla eşleşen blog bulunamadı.' : 'Henüz blog yazısı bulunmuyor.'}
-          </p>
-          {searchTerm && (
-            <Button variant="outline" onClick={() => setSearchTerm('')}>
-              Aramayı Temizle
-            </Button>
-          )}
-        </div>
-      ) : (
-        <div>
-          {/* Tablo başlıkları */}
-          <div className="hidden md:grid grid-cols-12 gap-4 px-4 py-3 bg-gray-100 rounded-t-lg font-medium text-sm">
-            <div className="col-span-6" onClick={() => toggleSort('title')}>
-              <div className="flex items-center cursor-pointer">
-                <span>Başlık</span>
-                {sortField === 'title' && (
-                  <ArrowUpDown className={`ml-1 h-4 w-4 ${sortDirection === 'asc' ? 'rotate-180' : ''}`} />
-                )}
-              </div>
-            </div>
-            <div className="col-span-2" onClick={() => toggleSort('publishedAt')}>
-              <div className="flex items-center cursor-pointer">
-                <span>Durum</span>
-                {sortField === 'publishedAt' && (
-                  <ArrowUpDown className={`ml-1 h-4 w-4 ${sortDirection === 'asc' ? 'rotate-180' : ''}`} />
-                )}
-              </div>
-            </div>
-            <div className="col-span-2" onClick={() => toggleSort('createdAt')}>
-              <div className="flex items-center cursor-pointer">
-                <span>Tarih</span>
-                {sortField === 'createdAt' && (
-                  <ArrowUpDown className={`ml-1 h-4 w-4 ${sortDirection === 'asc' ? 'rotate-180' : ''}`} />
-                )}
-              </div>
-            </div>
-            <div className="col-span-2 text-right">İşlemler</div>
+            
+            {/* Dil Seçimi - Sadece blog formu için */}
+            {selectedModule?.id === 'blog-add' && availableLanguages.length > 0 && activeLanguageCode && (
+              <Tabs value={activeLanguageCode} onValueChange={setActiveLanguageCode} className="w-full">
+                <TabsList className="grid w-full grid-cols-none sm:grid-cols-auto sm:inline-flex">
+                  {availableLanguages.map((lang) => (
+                    <TabsTrigger key={lang.code} value={lang.code} className="px-4 py-2 text-sm">
+                      {lang.name}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            )}
           </div>
+        </CardContent>
+      </Card>
 
-          {/* Blog satırları */}
-          <div className="rounded-b-lg border">
-            {sortedBlogs.map((blog) => (
-              <div
-                key={blog.id}
-                className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 border-b last:border-b-0 hover:bg-gray-50 items-center"
-              >
-                {/* Blog kapak resmi ve başlık (mobilde görünecek) */}
-                <div className="md:col-span-6 flex items-center gap-4">
-                  {blog.coverImageUrl ? (
-                    <div className="w-[80px] h-[60px] bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                      <img
-                        src={blog.coverImageUrl}
-                        alt={blog.title || ''}
-                        className="w-full h-full object-cover"
-                      />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Sol taraf - Modül listesi */}
+        <div className="md:col-span-1">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Modüller</CardTitle>
+              <CardDescription className="text-sm">
+                Düzenlemek için modül seçin
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-4 space-y-3">
+              {modules.map((module) => {
+                const IconComponent = module.icon;
+                const isActive = selectedModule?.id === module.id;
+                return (
+                  <div 
+                    key={module.id}
+                    className={`rounded-lg border border-gray-200 shadow-sm overflow-hidden ${isActive ? 'ring-2 ring-primary' : ''} 
+                      hover:border-primary/70 hover:bg-gray-50 cursor-pointer transition-all duration-200`}
+                    onClick={() => handleModuleSelect(module)}
+                  >
+                    <div className="flex items-center p-3">
+                      <div className="flex items-center space-x-3">
+                        <IconComponent className="h-5 w-5 text-gray-500" />
+                        <span className="font-medium">{module.title}</span>
+                      </div>
                     </div>
-                  ) : (
-                    <div className="w-[80px] h-[60px] bg-gray-100 rounded flex items-center justify-center flex-shrink-0">
-                      <span className="text-gray-400 text-sm">Görsel Yok</span>
-                    </div>
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-gray-900 truncate">
-                      {blog.title || <span className="text-red-500 italic">Çeviri yok</span>}
-                    </h3>
-                    <p className="text-sm text-gray-500 truncate">{blog.slug}</p>
-                    {!blog.hasTranslation && (
-                      <span className="inline-flex items-center rounded-full bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800">
-                        <Globe className="mr-1 h-3 w-3" />
-                        {getLanguageName(selectedLanguage)} çevirisi eksik
-                      </span>
-                    )}
                   </div>
-                </div>
-
-                {/* Durum (yayın durumu) */}
-                <div className="md:col-span-2 flex items-center">
-                  {blog.isPublished ? (
-                    <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
-                      <Check className="mr-1 h-3 w-3" />
-                      Yayında
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                      <X className="mr-1 h-3 w-3" />
-                      Taslak
-                    </span>
-                  )}
-                </div>
-
-                {/* Tarih */}
-                <div className="md:col-span-2 text-sm text-gray-500">
-                  {blog.publishedAt ? (
-                    <span title={`Yayın: ${new Date(blog.publishedAt).toLocaleString('tr-TR')}`}>
-                      {format(new Date(blog.publishedAt), 'dd MMM yyyy', { locale: tr })}
-                    </span>
-                  ) : (
-                    <span title={`Oluşturma: ${new Date(blog.createdAt).toLocaleString('tr-TR')}`}>
-                      {format(new Date(blog.createdAt), 'dd MMM yyyy', { locale: tr })}
-                    </span>
-                  )}
-                </div>
-
-                {/* İşlemler */}
-                <div className="md:col-span-2 flex justify-end">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
-                        <span className="sr-only">Menüyü aç</span>
-                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4">
-                          <path d="M3.625 7.5C3.625 8.12132 3.12132 8.625 2.5 8.625C1.87868 8.625 1.375 8.12132 1.375 7.5C1.375 6.87868 1.87868 6.375 2.5 6.375C3.12132 6.375 3.625 6.87868 3.625 7.5ZM8.625 7.5C8.625 8.12132 8.12132 8.625 7.5 8.625C6.87868 8.625 6.375 8.12132 6.375 7.5C6.375 6.87868 6.87868 6.375 7.5 6.375C8.12132 6.375 8.625 6.87868 8.625 7.5ZM13.625 7.5C13.625 8.12132 13.1213 8.625 12.5 8.625C11.8787 8.625 11.375 8.12132 11.375 7.5C11.375 6.87868 11.8787 6.375 12.5 6.375C13.1213 6.375 13.625 6.87868 13.625 7.5Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
-                        </svg>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Blog İşlemleri</DropdownMenuLabel>
-                      <DropdownMenuItem onClick={() => router.push(`/admin/blog/${blog.id}`)}>
-                        <Pencil className="mr-2 h-4 w-4" />
-                        Düzenle
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => router.push(`/blog/${blog.slug}`)}>
-                        <Eye className="mr-2 h-4 w-4" />
-                        Önizleme
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        className="text-red-600 focus:text-red-600"
-                        onClick={() => setDeleteId(blog.id)}
-                      >
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        Sil
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </CardContent>
+          </Card>
         </div>
-      )}
 
-      {/* Silme Dialog */}
-      <AlertDialog open={!!deleteId} onOpenChange={(open) => !open && setDeleteId(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Blog yazısını silmek istediğinizden emin misiniz?</AlertDialogTitle>
-            <AlertDialogDescription>
-              Bu işlem geri alınamaz. Blog yazısı ve ilişkili tüm çeviriler kalıcı olarak silinecektir.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>İptal</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleDelete}
-              disabled={isDeleting}
-              className="bg-red-600 text-white hover:bg-red-700"
-            >
-              {isDeleting ? 'Siliniyor...' : 'Evet, Sil'}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+        {/* Sağ taraf - İçerik alanı */}
+        <div className="md:col-span-3">
+          {renderModuleContent()}
+        </div>
+      </div>
     </div>
   );
 }
