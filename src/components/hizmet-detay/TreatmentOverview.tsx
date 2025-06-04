@@ -38,7 +38,7 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
   const titleLine2 = titleParts.slice(-2).join(' '); // Son iki kelime
 
   return (
-    <section className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900">
+    <section className="py-20 md:py-32 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         {/* Başlık/Açıklama alanı ortalandı */}
         <div className="text-center mb-12 md:mb-16">
@@ -73,7 +73,7 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
         <Tabs defaultValue={tabsData[0].value} className="w-full">
           {/* Sekme Listesi eski site stilinde */}
           <div className="flex justify-center mb-12">
-            <TabsList className="inline-flex h-auto rounded-xl bg-gray-50 dark:bg-gray-800 p-2 gap-2 border border-gray-200 dark:border-gray-700">
+            <TabsList className="inline-flex h-auto rounded-xl p-2 gap-2 border border-gray-200 dark:border-gray-700" style={{backgroundColor: '#f6f9fc'}}>
               {tabsData.map((tab) => (
                 <TabsTrigger
                   key={tab.value}
@@ -89,7 +89,7 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
           {tabsData.map((tab) => (
             <TabsContent key={tab.value} value={tab.value} className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               {/* İçerik alanı eski site stilinde */}
-              <div className="bg-white dark:bg-gray-800/50 rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100 dark:border-gray-700">
+              <div className="dark:bg-gray-800/50 rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100 dark:border-gray-700" style={{backgroundColor: '#f6f9fc'}}>
                 <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                   {/* Metin İçeriği */}
                   <div className="space-y-6">
