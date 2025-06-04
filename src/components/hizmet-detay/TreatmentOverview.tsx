@@ -89,10 +89,10 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
           {tabsData.map((tab) => (
             <TabsContent key={tab.value} value={tab.value} className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               {/* İçerik alanı eski site stilinde */}
-              <div className="dark:bg-gray-800/50 rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100 dark:border-gray-700" style={{backgroundColor: '#f6f9fc'}}>
-                <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+              <div className="dark:bg-gray-800/50 rounded-2xl p-12 md:p-16 border border-gray-100 dark:border-gray-700" style={{backgroundColor: '#f6f9fc'}}>
+                <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
                   {/* Metin İçeriği */}
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <h3 className="text-2xl md:text-3xl font-medium leading-tight" style={{ color: '#283849' }}>{tab.title}</h3>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">{tab.content}</p>
                     {/* Buton TOC & CTA stilinde */}
@@ -105,7 +105,7 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
                   </div>
                   {/* Resim eski site stilinde */}
                   {(tab.imagePath || tab.imageUrl) && (
-                    <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg">
+                    <div className="relative h-96 md:h-[32rem] rounded-2xl overflow-hidden">
                       <Image
                         src={tab.imagePath || tab.imageUrl || ""}
                         alt={tab.imageAlt || tab.title}
