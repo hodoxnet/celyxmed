@@ -178,36 +178,43 @@ const SuccessStories = ({ locale }: { locale: string }) => {
             </GhostAnimatedButton>
           </div>
 
-        {/* Hasta Yorumları */}
+        {/* Hasta Yorumları - Yeni Tasarım */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="flex flex-col">
-              <CardContent className="p-6 flex-grow">
-                <div className="flex mb-2">
+            <Card key={testimonial.id} className="flex flex-col bg-white border border-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardContent className="p-8 flex-grow">
+                {/* Yıldızlar - Siyah ve büyük */}
+                <div className="flex mb-6">
                   {[...Array(testimonial.stars)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    <Star key={i} className="h-6 w-6 text-slate-800 fill-slate-800" />
                   ))}
                   {[...Array(5 - testimonial.stars)].map((_, i) => (
-                     <Star key={`empty-${i}`} className="h-5 w-5 text-gray-300" />
+                     <Star key={`empty-${i}`} className="h-6 w-6 text-gray-300" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
-              </CardContent>
-              <div className="bg-gray-100 p-4 mt-auto flex items-center space-x-3">
-                 {testimonial.imageUrl && (
-                   <Image
+                
+                {/* Yorum metni - Büyük ve kalın */}
+                <p className="text-slate-800 text-lg font-semibold leading-relaxed mb-8">
+                  {testimonial.text}
+                </p>
+                
+                {/* Avatar ve bilgiler - Alt kısımda */}
+                <div className="flex items-center space-x-4 mt-auto">
+                  {testimonial.imageUrl && (
+                    <Image
                       src={testimonial.imageUrl}
                       alt={testimonial.author}
-                      width={40}
-                      height={40}
-                      className="rounded-full"
+                      width={56}
+                      height={56}
+                      className="rounded-full flex-shrink-0"
                     />
-                 )}
-                  <div>
-                    <p className="font-semibold text-sm text-gray-800">{testimonial.author}</p>
-                    <p className="text-xs text-gray-500">{testimonial.treatment}</p>
+                  )}
+                  <div className="flex-grow">
+                    <p className="font-bold text-base text-slate-800 mb-1">{testimonial.author}</p>
+                    <p className="text-sm text-gray-500 font-normal">{testimonial.treatment}</p>
                   </div>
-              </div>
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
