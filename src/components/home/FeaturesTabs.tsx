@@ -5,9 +5,11 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { SecondaryAnimatedButton } from '@/components/ui/animated-button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useLocale } from 'next-intl'; // Aktif dili almak için
-import { Skeleton } from "@/components/ui/skeleton"; // Yükleme durumu için skeleton
+import { useLocale } from 'next-intl';
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface TabDataItem {
   id: string;
@@ -147,20 +149,13 @@ const FeaturesTabs = () => {
                       {tab.description}
                     </p>
                     <div className="self-start">
-                      <Link
+                      <SecondaryAnimatedButton 
                         href={tab.buttonLink}
-                        className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 group bg-[#486F79] hover:bg-[#406069]"
+                        icon={ArrowRight}
+                        iconPosition="left"
                       >
-                        <div className="bg-[#d4b978] group-hover:bg-[#c5ad6e] rounded-lg p-1.5 flex items-center justify-center transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-white">
-                            <path d="m5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                          </svg>
-                        </div>
-                        <span className="text-sm font-medium">
-                          {tab.buttonText}
-                        </span>
-                      </Link>
+                        {tab.buttonText}
+                      </SecondaryAnimatedButton>
                     </div>
                   </div>
                   <div className="relative w-full h-full min-h-[450px]">

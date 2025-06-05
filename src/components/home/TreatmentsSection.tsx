@@ -3,10 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation'; // Dil parametresini almak için
-// Button ve Card bileşenleri bu dosyada doğrudan kullanılmıyor, kaldırılabilir.
-// import { Button } from '@/components/ui/button';
-// import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight } from 'lucide-react';
+import { SecondaryAnimatedButton } from '@/components/ui/animated-button';
+import { useParams } from 'next/navigation';
 
 // API'den gelen veri tipleri (Frontend için)
 interface ContentTranslation {
@@ -130,18 +129,13 @@ const TreatmentsSection = () => {
               {contentTranslation?.mainDescription || defaultMainDescription}
             </p>
             {(contentTranslation?.exploreButtonText || defaultExploreButtonText) && (
-              <Link 
+              <SecondaryAnimatedButton 
                 href={contentTranslation?.exploreButtonLink || defaultExploreButtonLink}
-                className="inline-flex items-center gap-2 bg-[#486F79] hover:bg-[#406069] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
+                icon={ArrowRight}
+                iconPosition="left"
               >
-                <div className="bg-[#d4b978] rounded-lg p-1.5 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-white">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
-                </div>
-                <span className="text-sm font-medium">{contentTranslation?.exploreButtonText || defaultExploreButtonText}</span>
-              </Link>
+                {contentTranslation?.exploreButtonText || defaultExploreButtonText}
+              </SecondaryAnimatedButton>
             )}
           </div>
 

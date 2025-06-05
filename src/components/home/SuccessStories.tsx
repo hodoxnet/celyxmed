@@ -5,7 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from "@/components/ui/card";
-import { Star } from 'lucide-react'; // Yıldız ikonu için
+import { ArrowRight, Star } from 'lucide-react';
+import { SecondaryAnimatedButton, GhostAnimatedButton } from '@/components/ui/animated-button';
 
 // Fallback veri tipleri
 type SuccessStoriesData = {
@@ -160,29 +161,21 @@ const SuccessStories = ({ locale }: { locale: string }) => {
 
          {/* Butonlar */}
          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 md:mb-16">
-            <Link 
+            <SecondaryAnimatedButton 
               href={consultButtonLink}
-              className="flex items-center gap-2 bg-[#486F79] hover:bg-[#406069] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
+              icon={ArrowRight}
+              iconPosition="left"
             >
-              <div className="bg-[#d4b978] rounded-lg p-1.5 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-white">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </div>
-              <span className="text-sm font-medium">{consultButtonText}</span>
-            </Link>
+              {consultButtonText}
+            </SecondaryAnimatedButton>
             
-            <Link 
+            <GhostAnimatedButton 
               href={discoverButtonLink}
-              className="inline-flex items-center justify-center text-[#486F79] hover:text-[#406069] border border-[#486F79] hover:bg-[#486F79]/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-medium"
+              icon={ArrowRight}
+              iconPosition="right"
             >
               {discoverButtonText}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 h-4 w-4">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </Link>
+            </GhostAnimatedButton>
           </div>
 
         {/* Hasta Yorumları */}

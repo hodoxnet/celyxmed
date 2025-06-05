@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { PrimaryAnimatedButton, OutlineAnimatedButton } from '@/components/ui/animated-button';
 import useEmblaCarousel from 'embla-carousel-react'; // Default import kullanılıyor
 import Autoplay from 'embla-carousel-autoplay'; // Autoplay tekrar eklendi
 import { useParams } from 'next/navigation'; 
@@ -112,15 +113,21 @@ const HeroSection = () => {
             )}
              <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
-                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
-                  <div className="bg-[#486F79] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
-                  <span className="text-sm font-normal">{translation.button1Text}</span>
-                </Link>
+                <PrimaryAnimatedButton 
+                  href={translation.button1Link}
+                  icon={ArrowRight}
+                  iconPosition="left"
+                >
+                  {translation.button1Text}
+                </PrimaryAnimatedButton>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-normal">
+                <OutlineAnimatedButton 
+                  href={translation.button2Link}
+                  showIcon={false}
+                >
                   {translation.button2Text}
-                </Link>
+                </OutlineAnimatedButton>
               )}
             </div>
           </div>
@@ -165,15 +172,21 @@ const HeroSection = () => {
             )}
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {translation.button1Text && translation.button1Link && (
-                <Link href={translation.button1Link} className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
-                  <div className="bg-[#486F79] rounded-lg p-1.5 flex items-center justify-center"><ArrowRight className="h-4 w-4 text-white" /></div>
-                  <span className="text-sm font-normal">{translation.button1Text}</span>
-                </Link>
+                <PrimaryAnimatedButton 
+                  href={translation.button1Link}
+                  icon={ArrowRight}
+                  iconPosition="left"
+                >
+                  {translation.button1Text}
+                </PrimaryAnimatedButton>
               )}
               {translation.button2Text && translation.button2Link && (
-                 <Link href={translation.button2Link} className="flex items-center justify-center bg-transparent text-white hover:bg-white/10 px-6 py-3 rounded-2xl shadow-lg transition-all duration-300 text-sm font-normal">
+                <OutlineAnimatedButton 
+                  href={translation.button2Link}
+                  showIcon={false}
+                >
                   {translation.button2Text}
-                </Link>
+                </OutlineAnimatedButton>
               )}
             </div>
           </div>
