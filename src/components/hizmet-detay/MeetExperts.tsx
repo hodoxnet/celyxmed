@@ -3,9 +3,10 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; // Link bileşenini import et
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react'; // İkonu import et
+import { ArrowRight } from 'lucide-react';
+import { PrimaryAnimatedButton } from '@/components/ui/animated-button';
 
 // Uzman verisi tipi
 interface ExpertData {
@@ -53,15 +54,14 @@ const MeetExperts: React.FC<MeetExpertsProps> = ({ sectionTitle, experts, taglin
               {/* Açıklama */}
               <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">{expert.description}</p>
               {/* CTA Butonu - Hero Stilinde */}
-              <Link 
+              <PrimaryAnimatedButton 
                 href={expert.ctaLink || '/iletisim'}
-                className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
+                icon={ArrowRight}
+                iconPosition="left"
+                className="[&>div]:bg-[#D4AF37]"
               >
-                <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
-                  <ArrowRight className="h-4 w-4 text-white" />
-                </div>
-                <span className="text-base font-medium">{expert.ctaText || 'Çevrimiçi Danışma'}</span>
-              </Link>
+                {expert.ctaText || 'Çevrimiçi Danışma'}
+              </PrimaryAnimatedButton>
             </div>
             {/* Uzman Resmi (Sağ Taraf) */}
             <div className="relative w-full aspect-[5/4] rounded-xl overflow-hidden shadow-lg">

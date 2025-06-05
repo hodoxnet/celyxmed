@@ -1,12 +1,13 @@
 // src/components/hizmet-detay/TreatmentOverview.tsx
 "use client";
 
-import React from 'react'; // Duplicate import removed
-import Image from 'next/image'; // Resimler için Next.js Image bileşeni
-import Link from 'next/link'; // Link bileşenini import et
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button"; // Butonları da ekleyelim
-import { ArrowRight } from 'lucide-react'; // İkonu import et
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from 'lucide-react';
+import { PrimaryAnimatedButton } from '@/components/ui/animated-button';
 
 // Sekme verisi tipi
 interface TabData {
@@ -96,12 +97,15 @@ const TreatmentOverview: React.FC<TreatmentOverviewProps> = ({ sectionTitle, sec
                     <h3 className="text-2xl md:text-3xl font-medium leading-tight" style={{ color: '#4c6d8f' }}>{tab.title}</h3>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">{tab.content}</p>
                     {/* Buton TOC & CTA stilinde */}
-                    <Link href={tab.buttonLink || '/iletisim'} className="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl transition-all duration-300">
-                      <div className="bg-[#D4AF37] rounded-lg p-2 flex items-center justify-center">
-                        <ArrowRight className="h-5 w-5 text-white" />
-                      </div>
-                      <span className="text-base font-semibold">{tab.buttonText}</span>
-                    </Link>
+                    <PrimaryAnimatedButton 
+                      href={tab.buttonLink || '/iletisim'}
+                      icon={ArrowRight}
+                      iconPosition="left"
+                      size="lg"
+                      className="[&>div]:bg-[#D4AF37] gap-3"
+                    >
+                      {tab.buttonText}
+                    </PrimaryAnimatedButton>
                   </div>
                   {/* Resim eski site stilinde */}
                   {(tab.imagePath || tab.imageUrl) && (

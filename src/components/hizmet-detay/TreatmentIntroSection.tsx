@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button'; // Shadcn Button kullanılıyor
-import { ImageOff, ArrowRight } from 'lucide-react'; // ImageOff ve ArrowRight ikonlarını ekle
+import { Button } from '@/components/ui/button';
+import { ImageOff, ArrowRight } from 'lucide-react';
+import { SecondaryAnimatedButton, LinkAnimatedButton } from '@/components/ui/animated-button';
 
 interface TreatmentLink {
   id: string; // Bölüm ID'si (örn. '#1', '#fiyat')
@@ -75,16 +76,23 @@ const TreatmentIntroSection: React.FC<TreatmentIntroSectionProps> = ({
               {/* Butonlar - TOC stillerine göre */}
               <div className="mt-6 flex flex-col sm:flex-row gap-4 items-center">
                 {/* Primary Button - TOC stiline göre */}
-                <Link href={primaryButtonLink} className="flex items-center gap-2 bg-[#486F79] hover:bg-[#3a5a63] text-white px-6 py-3 rounded-2xl shadow-lg transition-all duration-300">
-                  <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
-                    <ArrowRight className="h-4 w-4 text-white" />
-                  </div>
-                  <span className="text-base font-medium">{primaryButtonText}</span>
-                </Link>
+                <SecondaryAnimatedButton 
+                  href={primaryButtonLink}
+                  icon={ArrowRight}
+                  iconPosition="left"
+                  className="[&>div]:bg-[#D4AF37]"
+                >
+                  {primaryButtonText}
+                </SecondaryAnimatedButton>
+                
                 {/* Secondary Button - TOC stiline göre */}
-                <Link href={secondaryButtonLink} className="text-gray-800 hover:text-gray-600 transition-colors duration-300 text-base font-medium flex items-center">
+                <LinkAnimatedButton 
+                  href={secondaryButtonLink}
+                  showIcon={false}
+                  className="text-gray-800 hover:text-gray-600"
+                >
                   {secondaryButtonText}
-                </Link>
+                </LinkAnimatedButton>
               </div>
             </div>
 

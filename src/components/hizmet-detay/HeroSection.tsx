@@ -6,7 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from 'lucide-react'; // İkonu ArrowRight olarak değiştirelim
+import { ArrowRight } from 'lucide-react';
+import { PrimaryAnimatedButton, LinkAnimatedButton } from '@/components/ui/animated-button';
 
 interface HeroSectionProps {
   // breadcrumb prop'u kaldırıldı, otomatik oluşturulacak
@@ -95,21 +96,22 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Butonlar - Ayrı container, sağ tarafa yaslanmış */}
           <div className="w-full flex justify-end mb-10">
             <div className="flex items-center gap-4">
-            <Link 
-              href={primaryButtonLink}
-              className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-3 rounded-2xl shadow-lg transition-all duration-300"
-            >
-              <div className="bg-[#D4AF37] rounded-lg p-1.5 flex items-center justify-center">
-                <ArrowRight className="h-4 w-4 text-white" />
-              </div>
-              <span className="text-base font-medium">{primaryButtonText}</span>
-            </Link>
-            <Link 
-              href={secondaryButtonLink}
-              className="text-white hover:text-gray-300 transition-colors duration-300 text-base font-medium flex items-center"
-            >
-              {secondaryButtonText}
-            </Link>
+              <PrimaryAnimatedButton 
+                href={primaryButtonLink}
+                icon={ArrowRight}
+                iconPosition="left"
+                className="[&>div]:bg-[#D4AF37]"
+              >
+                {primaryButtonText}
+              </PrimaryAnimatedButton>
+              
+              <LinkAnimatedButton 
+                href={secondaryButtonLink}
+                showIcon={false}
+                className="text-white hover:text-gray-300"
+              >
+                {secondaryButtonText}
+              </LinkAnimatedButton>
             </div>
           </div>
         </div>

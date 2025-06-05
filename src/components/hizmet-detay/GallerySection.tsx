@@ -3,9 +3,10 @@
 // src/components/hizmet-detay/GallerySection.tsx
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; // Link bileşenini import et
-import { Button } from '@/components/ui/button'; // Butonları ekleyelim
-import { ArrowRight } from 'lucide-react'; // İkonu import et
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import { LinkAnimatedButton } from '@/components/ui/animated-button';
 
 // Galeri öğesi tipi
 interface GalleryItem {
@@ -78,9 +79,13 @@ const GallerySection: React.FC<GallerySectionProps> = ({
              </span>
            </Link>
            {/* İkincil Buton (Metin Linki) */}
-           <Button variant="link" asChild className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 px-0 font-medium text-base">
-             <Link href={viewMoreButtonLink}>{viewMoreButtonText}</Link>
-           </Button>
+           <LinkAnimatedButton 
+             href={viewMoreButtonLink}
+             showIcon={false}
+             className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 px-0 font-medium text-base"
+           >
+             {viewMoreButtonText}
+           </LinkAnimatedButton>
         </div>
       </div>
     </section>

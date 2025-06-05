@@ -4,8 +4,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-// Button import'u kaldırıldı, direkt Link kullanılıyor
-import { ArrowRight } from 'lucide-react'; // İkon için
+import { ArrowRight } from 'lucide-react';
+import { PrimaryAnimatedButton } from '@/components/ui/animated-button';
 
 // Avatar verisi tipi
 interface Avatar {
@@ -110,12 +110,15 @@ const CtaSection: React.FC<CtaSectionProps> = ({
               )}
 
               {/* Buton - TreatmentOverview stili */}
-              <Link href={buttonLink || "/iletisim"} className="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl transition-all duration-300">
-                <div className="bg-[#29707a] rounded-lg p-2 flex items-center justify-center">
-                  <ArrowRight className="h-5 w-5 text-white" />
-                </div>
-                <span className="text-base font-semibold">{buttonText}</span>
-              </Link>
+              <PrimaryAnimatedButton 
+                href={buttonLink || "/iletisim"}
+                icon={ArrowRight}
+                iconPosition="left"
+                size="lg"
+                className="[&>div]:bg-[#29707a] gap-3"
+              >
+                {buttonText}
+              </PrimaryAnimatedButton>
             </div>
           </div>
         </div>

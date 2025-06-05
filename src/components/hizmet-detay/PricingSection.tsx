@@ -2,9 +2,11 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link'; // Link bileşenini import et
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"; // Kart yapısı için
+import { ArrowRight } from 'lucide-react';
+import { PrimaryAnimatedButton } from '@/components/ui/animated-button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Fiyatlandırma paketi tipi (Temsili)
 interface PricingPackage {
@@ -70,14 +72,15 @@ const PricingSection: React.FC<PricingSectionProps> = ({
             )}
 
             {/* Buton */}
-            <Link href="/iletisim" className="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg">
-              <div className="bg-[#D4AF37] rounded-lg p-2 flex items-center justify-center">
-                <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </div>
-              <span className="text-base font-semibold">Çevrimiçi Danışma</span>
-            </Link>
+            <PrimaryAnimatedButton 
+              href="/iletisim"
+              icon={ArrowRight}
+              iconPosition="left"
+              size="lg"
+              className="[&>div]:bg-[#D4AF37] gap-3"
+            >
+              Çevrimiçi Danışma
+            </PrimaryAnimatedButton>
           </div>
 
           {/* Sağ Taraf - Tek Görsel */}
