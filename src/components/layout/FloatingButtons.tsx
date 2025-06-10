@@ -79,12 +79,12 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
             href={whatsappLink} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="group relative text-white p-2 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300"
+            className="group relative text-white p-2 rounded-full flex items-center justify-center transition-all duration-300"
             aria-label="WhatsApp ile iletişime geçin"
             style={{ transitionDelay: '100ms' }}
           >
             {/* Lottie WhatsApp animasyonu */}
-            <div className="relative z-10 w-12 h-12">
+            <div className="relative z-10 w-14 h-14">
               {whatsappAnimation ? (
                 <Lottie 
                   animationData={whatsappAnimation}
@@ -94,8 +94,8 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
                 />
               ) : (
                 // Fallback ikon animasyon yüklenene kadar
-                <div className="w-12 h-12 flex items-center justify-center">
-                  <span className="text-green-600 text-xl">💬</span>
+                <div className="w-14 h-14 flex items-center justify-center">
+                  <span className="text-green-600 text-2xl">💬</span>
                 </div>
               )}
             </div>
@@ -113,12 +113,12 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
         {/* Telefon butonu */}
         <Link 
           href={`tel:${(whatsappNumber || defaultPhoneNumber).replace(/\s+/g, '')}`}
-          className="group relative text-white p-2 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300"
+          className="group relative text-white p-2 rounded-full flex items-center justify-center transition-all duration-300"
           aria-label="Telefonla arayın"
           style={{ transitionDelay: '200ms' }}
         >
           {/* Lottie Telefon animasyonu */}
-          <div className="relative z-10 w-12 h-12">
+          <div className="relative z-10 w-14 h-14">
             {phoneAnimation ? (
               <Lottie 
                 animationData={phoneAnimation}
@@ -128,8 +128,8 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
               />
             ) : (
               // Fallback ikon animasyon yüklenene kadar
-              <div className="w-12 h-12 flex items-center justify-center">
-                <span className="text-blue-600 text-xl">📞</span>
+              <div className="w-14 h-14 flex items-center justify-center">
+                <span className="text-blue-600 text-2xl">📞</span>
               </div>
             )}
           </div>
