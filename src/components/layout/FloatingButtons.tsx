@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Lottie from 'lottie-react';
 
 interface FloatingButtonsProps {
   whatsappNumber?: string | null;
@@ -17,7 +18,13 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
 }) => {
   const [whatsappLink, setWhatsappLink] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const [whatsappAnimation, setWhatsappAnimation] = useState(null);
+  const [phoneAnimation, setPhoneAnimation] = useState(null);
   const defaultPhoneNumber = "902167064780"; // Varsayılan numara, eğer prop gelmezse kullanılır
+  
+  // Lottie animasyon URL'leri
+  const whatsappAnimationUrl = "https://cdn.prod.website-files.com/676bde51384f76011aa96afe/676bde51384f76011aa96f39_139413.json";
+  const phoneAnimationUrl = "https://cdn.prod.website-files.com/676bde51384f76011aa96afe/676bde51384f76011aa96f3b_eea59bc0c37846698d67eb2ca41eceef.json";
 
   useEffect(() => {
     const phoneToUse = whatsappNumber || defaultPhoneNumber;
@@ -37,6 +44,27 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
     }, 500);
   }, [whatsappNumber]);
 
+  // Lottie animasyonlarını yükle
+  useEffect(() => {
+    const fetchAnimations = async () => {
+      try {
+        // WhatsApp animasyonu
+        const whatsappResponse = await fetch(whatsappAnimationUrl);
+        const whatsappData = await whatsappResponse.json();
+        setWhatsappAnimation(whatsappData);
+
+        // Telefon animasyonu
+        const phoneResponse = await fetch(phoneAnimationUrl);
+        const phoneData = await phoneResponse.json();
+        setPhoneAnimation(phoneData);
+      } catch (error) {
+        console.error('Animasyonlar yüklenemedi:', error);
+      }
+    };
+
+    fetchAnimations();
+  }, []);
+
   const finalStickyButtonLink = stickyButtonLink || "/contact";
   const finalStickyButtonText = stickyButtonText || "Consultation";
 
@@ -51,15 +79,26 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
             href={whatsappLink} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="group relative bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white p-4 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300"
+            className="group relative text-white p-2 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300"
             aria-label="WhatsApp ile iletişime geçin"
             style={{ transitionDelay: '100ms' }}
           >
-            {/* Pulse animasyonu */}
-            <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-20"></div>
-            <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-10" style={{ animationDelay: '0.5s' }}></div>
-            
-            <MessageCircle className="h-6 w-6 relative z-10" />
+            {/* Lottie WhatsApp animasyonu */}
+            <div className="relative z-10 w-12 h-12">
+              {whatsappAnimation ? (
+                <Lottie 
+                  animationData={whatsappAnimation}
+                  loop={true}
+                  autoplay={true}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              ) : (
+                // Fallback ikon animasyon yüklenene kadar
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <span className="text-green-600 text-xl">💬</span>
+                </div>
+              )}
+            </div>
             
             {/* Hover tooltip */}
             <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
@@ -74,14 +113,26 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
         {/* Telefon butonu */}
         <Link 
           href={`tel:${(whatsappNumber || defaultPhoneNumber).replace(/\s+/g, '')}`}
-          className="group relative bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-4 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300"
+          className="group relative text-white p-2 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300"
           aria-label="Telefonla arayın"
           style={{ transitionDelay: '200ms' }}
         >
-          {/* Glow efekti */}
-          <div className="absolute inset-0 rounded-full bg-blue-400 blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-          
-          <Phone className="h-6 w-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+          {/* Lottie Telefon animasyonu */}
+          <div className="relative z-10 w-12 h-12">
+            {phoneAnimation ? (
+              <Lottie 
+                animationData={phoneAnimation}
+                loop={true}
+                autoplay={true}
+                style={{ width: '100%', height: '100%' }}
+              />
+            ) : (
+              // Fallback ikon animasyon yüklenene kadar
+              <div className="w-12 h-12 flex items-center justify-center">
+                <span className="text-blue-600 text-xl">📞</span>
+              </div>
+            )}
+          </div>
           
           {/* Hover tooltip */}
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
